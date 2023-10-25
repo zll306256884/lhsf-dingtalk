@@ -1,0 +1,46 @@
+{
+  "pages": [
+    "pages/work/index",
+    "pages/message/index",
+    "pages/databoard/index",
+    "pages/user/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "backgroundColor":"#cccccc",
+    "navigationBarBackgroundColor": "#ff9700",
+    "navigationBarTitleText": "小程序",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "textColor": "#343C4A",
+    "selectedColor": "#3C82F6",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/work/index",
+        "name": "工作台",
+        "icon": "/assets/images/icon-work-default.png",
+        "activeIcon": "/assets/images/icon-work-active.png"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "name": "消息",
+        "icon": "/assets/images/icon-message-default.png",
+        "activeIcon": "/assets/images/icon-message-active.png"
+      },
+      {
+        "pagePath": "pages/databoard/index",
+        "name": "数据看板",
+        "icon": "/assets/images/icon-databoard-default.png",
+        "activeIcon": "/assets/images/icon-databoard-active.png"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "name": "我的",
+        "icon": "/assets/images/icon-user-default.png",
+        "activeIcon": "/assets/images/icon-user-active.png"
+      }
+    ]
+  }
+}

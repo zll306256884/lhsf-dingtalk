@@ -1,0 +1,10 @@
+@import "/assets/styles/iconfont.acss";
+@import "/assets/styles/common.acss";
+@import "/assets/styles/flex.acss";
+
+
+page {
+    /* background-color: white; */
+    background-color:#F5F5F5;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}
