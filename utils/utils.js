@@ -1,6 +1,6 @@
 import { API_IMG_URL } from '../utils/config'
-import { MD5 } from '../common/libs/md5.js';
-import { SHA1 } from '../common/libs/sha1.js';
+import { MD5 } from './constant/md5.js';
+import { SHA1 } from './constant/sha1.js';
 
 const formatTime = date => {
     const year = date.getFullYear()

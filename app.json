@@ -3,11 +3,15 @@
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
-    "pages/user/index"
+    "pages/user/index",
+    "pages/user/page/login/index",
+    "pages/databoard/page/map/map",
+    "pages/message/page/list/list",
+    "pages/work/page/list/list"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "backgroundColor":"#cccccc",
+    "backgroundColor": "#cccccc",
     "navigationBarBackgroundColor": "#ff9700",
     "navigationBarTitleText": "小程序",
     "navigationBarTextStyle": "white"

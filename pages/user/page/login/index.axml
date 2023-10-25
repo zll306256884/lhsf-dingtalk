@@ -1,0 +1,4 @@
+
+<view class="container">
+    <button class="btn-login" catchTap="bindAuthLoginTap">授权登录</button>
+</view>
