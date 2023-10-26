@@ -5,7 +5,8 @@ App({
             key: this.globalData.keyUserInfo
         }).data || {};
 
-        // this.getSystemInfo()
+        this.getSystemInfo()
+        
     },
     onShow(options) {
     },

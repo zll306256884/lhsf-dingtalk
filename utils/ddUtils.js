@@ -1140,7 +1140,7 @@ function judgeIsLogin(toLogin) {
         if (isEmpty(app.globalData.userToken)) {
             if (toLogin) {
                 navigateTo({
-                    url: "/pages/user/login/login"
+                    url: "/pages/user/page/login/index"
                 })
             }
 

@@ -26,8 +26,8 @@ function doPostRequest(obj) {
     ddUtils.showLoading();
 
   if (!utils.isEmpty(app.globalData.userInfo.userToken))
-    // option.headers["X-Access-Token"] = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI0NjkxNjIwMi0wNmZmLTQ1ZDUtYjAyZi04Njc4NWQ1OTcxZTEiLCJzdWIiOiJhZG1pbiIsImlzcyI6ImFkbWluIiwiaWF0IjoxNjczNDM5MTg4LCJleHAiOjE2NzM2OTgzODh9.eEzcCPdH6eZe9PTH78R53Qd5U5W9CTMfo4Uv7YYtbAc'
-    option.headers["X-Access-Token"] = app.globalData.userInfo.userToken
+    option.headers["X-Access-Token"] = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxZGUzZDQ2Yy1kNWFjLTRmMGMtYWYyYy0zZjJlYzNiM2RiZmIiLCJzdWIiOiJhZG1pbiIsImlzcyI6ImFkbWluIiwiaWF0IjoxNjk4MDY3NTg2LCJleHAiOjE2OTgzMjY3ODZ9.E9LsI7IG_58POQ9Rq3b8fe56kXr6aqLdLxKgCJKrVUA'
+    // option.headers["X-Access-Token"] = app.globalData.userInfo.userToken
 
   // let time = utils.getTimestamp();
   // let sign = utils.sort_ASCII(option.data);
@@ -88,7 +88,7 @@ function doPostRequest(obj) {
         ddUtils.clearLoginStorage();
 
         ddUtils.reLaunch({
-          url: "/pages/user/login/login"
+          url: "/pages/user/page/login/index"
         })
       }
     },
@@ -182,7 +182,7 @@ function doGetRequest(obj) {
         ddUtils.clearLoginStorage();
 
         ddUtils.reLaunch({
-          url: "/pages/user/login/login"
+          url: "/pages/user/page/login/index"
         })
       }
     },
@@ -249,7 +249,7 @@ function doUploadFile(obj) {
         ddUtils.clearLoginStorage();
 
         ddUtils.reLaunch({
-          url: "/pages/user/login/login"
+          url: "/pages/user/page/login/index"
         })
       }
     },
