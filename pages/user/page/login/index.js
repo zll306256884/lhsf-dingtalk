@@ -2,6 +2,8 @@ import { isEqual, isEmptyArray } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
+import loginImage from "../../../../assets/images/login.png"
+
 
 const app = getApp();
 
@@ -10,6 +12,7 @@ Page({
         navbarData: {
             title: "授权登录",
         },
+        src:loginImage
     },
 
     onLoad() {
