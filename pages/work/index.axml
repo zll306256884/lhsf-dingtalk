@@ -1,3 +1,11 @@
 <view class="container">
-  工作台
+  <image class="image"  src="../../../../assets/images/work/Group-top.png" />
+  <view class="grid">
+    <view class="flex f-row f-around f-wrap">
+      <view a:for="{{iconList}}" key="{{item.name}}" class="grid-item" onTap="{{onItemTap}}" data-index="{{index}}">
+      <image class="grid-icon"  src="{{item.url}}" /> 
+      <text class="grid-text">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
 </view>
