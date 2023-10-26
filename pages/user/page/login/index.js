@@ -1,6 +1,6 @@
 import { isEqual, isEmptyArray } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
-import config from "../../../../utils/config"
+import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
 
 const app = getApp();
@@ -51,7 +51,7 @@ Page({
             scopes: 'auth_user',
             success: (resAuth) => {
                 request.doPostRequest({
-                    url: config.API_LOGIN,
+                    url: userServer.API_LOGIN,
                     showLoading: false,
                     data: {
                         code: resAuth.authCode
@@ -117,7 +117,7 @@ Page({
     getUserInfo: function () {
         return new Promise((resolve, reject) => {
             request.doPostRequest({
-                url: config.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
+                url: userServer.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
                 showLoading: false,
                 data: {
                     projectId: app.globalData.userInfo.projectId
@@ -135,7 +135,7 @@ Page({
     getProjectList: function () {
         return new Promise((resolve, reject) => {
             request.doPostRequest({
-                url: config.API_PROJECT_LIST,
+                url: userServer.API_PROJECT_LIST,
                 showLoading: false,
                 data: {
                     pageNum: 1,
