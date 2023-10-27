@@ -1,0 +1,45 @@
+.check-group .check {
+    position: relative;
+    padding-left: 50rpx;
+    font-size: 26rpx;
+    line-height: 32rpx;
+    color: #525966;
+}
+
+.check-group .check::before {
+    content: '';
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    border: 1px solid #D4DAE6;
+     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: PingFangSC-Regular, PingFang SC;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -16rpx;
+}
+
+.check-group .check.active::before {
+    content: '';
+    display: inline-block;
+    width: 32rpx;
+    height: 32rpx;
+    border-radius: 50%;
+    border: 10rpx solid #377DFF;
+     box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: PingFangSC-Regular, PingFang SC;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    margin-top: -16rpx;
+}
+
+.check-group .check:nth-child(n+2) {
+    margin-left: 20rpx;
+}

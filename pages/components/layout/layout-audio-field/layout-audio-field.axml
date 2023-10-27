@@ -1,0 +1,7 @@
+<view class="audio-wrap flex f-between f-column">
+  <view class="flex f-between">
+    <text class="audio-title">{{ itemData.fileName }}</text>
+    <image class="audio-close" mode="center" src="/images/icon_delete_list.png"  catchTap="_bindCloseTap"/>
+  </view>
+  <text class="audio-size">{{ itemData.fileSize }}B</text>
+</view>

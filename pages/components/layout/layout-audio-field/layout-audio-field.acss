@@ -1,0 +1,24 @@
+.audio-wrap {
+  width: 622rpx;
+  height: 112rpx;
+  background: #F5F7FA;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+  padding: 16rpx 32rpx;
+  box-sizing: border-box;
+  margin-bottom: 10rpx;
+}
+
+.audio-wrap .audio-title{
+  font-weight: 500;
+  font-size: 26rpx;
+}
+
+.audio-wrap .audio-close{
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.audio-wrap .audio-size{
+  color: #8B94A3;
+}

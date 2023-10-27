@@ -1,6 +1,5 @@
 {
   "defaultTitle": "工作台",
   "usingComponents": {
-    "field-cell": "/pages/components/field-cell/field-cell"
   }
 }

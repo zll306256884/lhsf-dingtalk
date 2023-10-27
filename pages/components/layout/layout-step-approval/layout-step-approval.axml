@@ -1,0 +1,19 @@
+ <!-- status: 1未提交 2审核中 3已驳回 4执行 5已完成 6监理回复单部分通过 7回复单已驳回 8升级成工程暂停令 -->
+<view class="step-wrap {{itemData.status !== 5 ? 'active' : ''}} {{showStepLine ? 'step-line' : ''}}">
+    <view class="flex f-align-center top ">
+        <view class="flex1 step-name">
+            {{itemData.createBy_dictText}}
+        </view>
+        <view class="step-time">
+            {{itemData.createTime}}
+        </view>
+    </view>
+    <view a:if="{{itemData.status !== 5}}" class="step-content">
+         {{itemData.createBy_dictText}}
+        <text class="step-status"></text>{{itemData.text}}
+    </view>
+    <view class="step-result">
+        审批结果/驳回原因：
+        <text class="step-status">{{itemData.status_dictText}}</text>
+    </view>
+</view>
