@@ -1,0 +1,4 @@
+<!-- share -->
+<view class="share-wrap" catchTap="bindShareTap">
+    <image class="icon-share" mode="aspectFit" src="/images/icon_share_round_white.png" />
+</view>

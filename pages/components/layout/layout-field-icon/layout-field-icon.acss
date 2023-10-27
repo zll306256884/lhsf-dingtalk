@@ -1,0 +1,26 @@
+
+.field-cell-layout {
+    margin: 0 0 0;
+    padding: 30rpx 30rpx;
+}
+
+.field-cell-layout.border-top {
+    border-top: 1px solid #E7EAF3;
+}
+
+.field-cell-layout.border-bottom {
+    border-bottom: 1px solid #E7EAF3;
+}
+
+.field-cell-layout .name {
+    max-width: 450rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+    color: #525966;
+}
+
+.field-cell-layout .icon {
+    margin-left: 10rpx;
+    width: 32rpx;
+    height: 32rpx;
+}

@@ -1,0 +1,12 @@
+<view class="collapse-wrap {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}} {{showShadow ? 'box-shadow' : ''}}" 
+    style="{{cssStyle}}">
+    <view class="flex f-align-center top-arrow" catchTap="_bindCollapseTap">
+        <view class="flex1 single-line arrow-title">
+            {{title}}
+        </view>
+        <image class="icon-arrow" mode="aspectFit" src="{{isExpanded ? '/images/icon_arrow_up.png' : '/images/icon_arrow_down.png'}}" />
+    </view>
+    <view hidden="{{!isExpanded}}">
+        <slot></slot>
+    </view>
+</view>

@@ -1,0 +1,6 @@
+<view class="flex f-center attachment-wrap" style="{{cssStyle}}" catchTap="_bindAddAttachmentTap">
+    <image class="icon-upload" mode="aspectFit" src="/images/icon_upload.png" />
+    <view class="add">
+        上传正式文件
+    </view>
+</view>

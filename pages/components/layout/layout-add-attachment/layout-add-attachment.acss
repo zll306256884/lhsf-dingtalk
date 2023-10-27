@@ -1,0 +1,19 @@
+/* 附件 */
+.attachment-wrap {
+    width: 214rpx;
+    height: 64rpx;
+    border-radius: 10rpx;
+    border: 1px solid #E4E7ED;
+}
+
+.attachment-wrap .icon-upload {
+    width: 28rpx;
+    height: 28rpx;
+}
+
+.attachment-wrap .add {
+    margin-left: 10rpx;
+    font-size: 28rpx;
+    color: #377DFF;
+    font-weight: bold;
+}

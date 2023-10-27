@@ -1,0 +1,12 @@
+<view class="flex f-align-center field-cell-layout {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" 
+    style="{{cssStyle}}">
+    <view class="flex0 name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}" style="color: {{nameColor}};">
+        {{name}}
+    </view>
+    <image a:if="{{showIcon}}" class="icon" style="width: {{iconWidth}}rpx;height: {{iconHeight}}rpx;" mode="aspectFit" src="{{iconRes}}" 
+        data-index="{{itemIndex}}" catchTap="_bindIconTap" />
+    <block a:if="{{showSwitchCheck}}">
+        <view class="flex1"></view>
+        <layout-round-check-group  checkList="{{checkList}}" checkIndex="{{checkIndex}}" itemIndex="{{itemIndex}}" onSwitchCheckChange="_bindSwitchCheckChange"></layout-round-check-group>
+    </block>
+</view>

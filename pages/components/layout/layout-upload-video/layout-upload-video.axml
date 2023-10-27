@@ -1,0 +1,14 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+
+<view class="flex flex-wrap img-list" style="{{cssStyle}}">
+    <block a:for="{{imgList}}">
+        <view class="item" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" catchTap="_bindPreviewTap" data-index="{{index}}">
+            <!-- <video class="img" poster="/images/union.png" controls="{{ false }}" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill"></video> -->
+            <image class="img" default-source="/images/icon_file_video.png" mode="aspectFill"></image>
+            <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url)}}">{{item.progress}}%</view>
+        </view>
+    </block>
+    <image a:if="{{disabled && imgList.length <= 0}}" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" src="/images/icon_placeholder.png" />
+    <image a:if="{{!disabled && imgList.length < maxCount}}" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" class="item add" 
+        src="/images/icon_add_img.png" catchTap="_bindAddTap"></image>
+</view>

@@ -1,0 +1,13 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+
+<view class="flex f-align-center field-cell-arrow {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" style="{{cssStyle}}">
+    <view class="name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}">
+        {{name}}
+    </view>
+    <view class="flex1 value" style="color: {{!utils.isEmpty(value) ? valueColor : valueEmptyColor}}; text-align: {{valueLeft? 'left' : 'right'}}" data-index="{{itemIndex}}"
+        catchTap="_bindArrowTap">
+        {{utils.isEmpty(value) ? placeholder : value}}
+    </view>
+    <image class="icon-arrow" style="width: {{iconWidth}}rpx; height: {{iconHeight}}rpx;" mode="aspectFit" src="{{arrowIcon}}" 
+        data-index="{{itemIndex}}" catchTap="_bindArrowTap" />
+</view>
