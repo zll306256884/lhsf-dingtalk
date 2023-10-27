@@ -1,0 +1,32 @@
+<block>
+  <view class="flex f-between btn-wrap approve-btn">
+      <button class="btn" catchTap="bindStagingToDo">暂存待办</button>
+      <button class="btn" catchTap="bindRefuseTap">审批驳回</button>
+      <button class="btn active" catchTap="bindAgreeTap">审批通过</button>
+  </view>
+</block>
+
+<view a:if="{{showDialog}}" class="modal-mask" catchTouchMove="_bindTouchMove"></view>
+<view a:if="{{showDialog}}" class="box-sizing-box modal-content" catchTouchMove="_bindTouchMove">
+    <view class="dialog-title">
+        {{isApprovalAgree ? '审批通过' : '审批驳回'}}
+    </view>
+    <view class="dialog-name">
+        审批意见：
+    </view>
+    <form onSubmit="_bindFormSunmit">
+        <textarea class="reason" name="reason" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
+        <!-- attachment -->
+        <view class="flex f-align-center file">
+            <view class="dialog-name" style="margin: 0rpx;">
+                附件：
+            </view>
+            <!-- <layout-add-attachment cssStyle="border: none;"></layout-add-attachment> -->
+        </view>
+        <!-- btn -->
+        <view class="flex f-center btn-wrap ">
+            <button class="btn" catchTap="_bindCancelTap">取消</button>
+            <button class="btn active" form-type="submit">{{isApprovalAgree ? '通过' : '驳回'}}</button>
+        </view>
+    </form>
+</view>

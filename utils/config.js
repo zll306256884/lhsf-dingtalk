@@ -1,6 +1,6 @@
 
 //  测试配置
-// const BASE_API_HOST = "http://121.43.151.122";
+const BASE_API_HOST = "http://192.168.6.41";
 const API_HOST = BASE_API_HOST + "/prod-api";
 
 // 线上配置
