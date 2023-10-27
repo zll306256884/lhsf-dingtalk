@@ -12,14 +12,38 @@ Page({
       { url:"../../../../assets/images/work/Group-6.png", name:"新增支付"},
       { url:"../../../../assets/images/work/Group-7.png", name:"变更登记"},
       { url:"../../../../assets/images/work/Group-8.png", name:"竣工结算登记"}
-    ]
+    ],
+    selectedDate:""
+
   },
+  
   onLoad(option) {
     this. getRecordList()
     
   },
   onItemTap(){
 
+  },
+  handleDateChange: function () {
+    dd.datePicker({
+      format: 'yyyy-MM-dd',
+      currentDate: '2023-10-27',
+      success: (res) => {
+        this.setData({
+          selectedDate: res.date
+        })
+      },
+    });
+    // dd.chooseDateTime({
+    //   format: 'yyyy-MM-dd',
+    //   default: 1494415396228,
+    //   success: (res) => {
+    //     const { timezone, chosen } = res;
+    //     console.log('chosen',chosen);
+    //   },
+    //   fail: () => {},
+    //   complete: () => {},
+    // });
   },
     //获取列表
     getRecordList: function () {
@@ -36,5 +60,5 @@ Page({
           complete: res => {
           }
       });
-  },
+  }
 });

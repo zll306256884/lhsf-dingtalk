@@ -1,0 +1,11 @@
+<import-sjs from="/utils/utils.sjs" name="utils" />
+
+<view class="flex-display field-cell-layout {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" style="{{cssStyle}}">
+    <view class="{{valueFlexMatck ? 'flex0' : 'flex1'}} name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}" 
+        style="color: {{nameColor}}; font-weight: {{nameBold ? 'bold' : 'normal'}}">
+        {{name}}
+    </view>
+    <view class="{{valueFlexMatck ? 'flex1' : 'flex0'}} value" style="color: {{!utils.isEmpty(value) ? valueColor : valueEmptyColor}}; text-align: {{valueLeft? 'left' : 'right'}}" 
+        data-value="{{datasetValue}}" catchTap="_bindArrowTap">{{utils.isEmpty(value) ? placeholder : value}}</view>
+    <slot></slot>
+</view>
