@@ -1,0 +1,5 @@
+<view class="flex counter-wrap" style="{{cssStyle}}">
+    <view class="symbol" onTap="_bindSubtractTap"></view>
+    <input class="counter" maxlength="12" type="number" placeholder-class="placeholder-clas" onInput="_bindInputChange" value="{{currentNum}}"/>
+    <view class="symbol" onTap="_bindPlusTap"></view>
+</view>

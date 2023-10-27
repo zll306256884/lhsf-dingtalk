@@ -1,0 +1,32 @@
+
+.field-input-layout {
+    margin: 0 0 0;
+    padding: 20rpx 30rpx;
+}
+
+.field-input-layout.border-top {
+    border-top: 1px solid #E7EAF3;
+}
+
+.field-input-layout.border-bottom {
+    border-bottom: 1px solid #E7EAF3;
+}
+
+.field-input-layout .name {
+    max-width: 450rpx;
+    line-height: 36rpx;
+    font-size: 28rpx;
+    color: #525966;
+}
+
+.field-input-layout .value {
+    margin-left: 40rpx;
+    line-height: 36rpx;
+    font-size: 24rpx;
+    color: #B8BFCC;
+    text-align: right;
+}
+
+.field-input-layout .value.active {
+    color: #333333;   
+}

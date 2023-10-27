@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "工作台"
+  "defaultTitle": "工作台",
+  "usingComponents": {
+  
+  }
 }

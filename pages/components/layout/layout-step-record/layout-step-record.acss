@@ -1,0 +1,58 @@
+ .step-wrap {
+    padding: 30rpx 30rpx;
+    position: relative;
+}
+
+.step-wrap::before {
+    content: '';
+    width: 10rpx;
+    height: 10rpx;
+    border-radius: 50%;
+    background-color: #43464A;
+    position: absolute;
+    left: 30rpx;
+    top: 39rpx;
+}
+
+.step-wrap.active:before {
+    background-color: #377DFF;
+}
+
+.step-wrap.step-line::after {
+    content: '';
+    width: 1px;
+    background-color: #E4E7ED;
+    position: absolute;
+    left: 34rpx;
+    top: 69rpx;
+    bottom: 0px;
+}
+
+.step-wrap .top {
+    margin-left: 30rpx;
+}
+
+.step-wrap .top .step-name {
+    font-size: 28rpx;
+    line-height: 28rpx;
+    color: #343C4A;
+    font-weight: bold;
+}
+
+.step-wrap .top .step-time {
+    margin-left: 20rpx;
+    font-size: 24rpx;
+    line-height: 24rpx;
+    color: #8B94A3;
+}
+
+.step-wrap .step-content {
+    margin: 20rpx 0 0 30rpx;
+    line-height: 36rpx;
+    font-size: 24rpx;
+    color: #525966;
+}
+
+.step-wrap .step-content .step-status {
+    color: #4284FF;
+}

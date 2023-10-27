@@ -1,0 +1,16 @@
+<view class="flex f-align-center field-input-layout {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" 
+    style="{{cssStyle}}">
+    <view class="name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}">
+        {{name}}
+    </view>
+    <block a:if="{{disabled}}">
+        <view class="flex10 value active" style="color: {{valueColor}}; text-align: {{valueLeft? 'left' : 'right'}}">
+            {{value}}
+        </view>
+    </block>
+    <block a:else>
+        <input class="flex10 value" style="color: {{valueColor}}; text-align: {{valueLeft? 'left' : 'right'}}" name="{{inputName}}" 
+            type="{{inputType}}" placeholder-class="placeholder-clas" placeholder="{{placeholder}}" value="{{value}}" onInput="_bindInputChange" 
+            onBlur="_bindBlurChange" />
+    </block>
+</view>

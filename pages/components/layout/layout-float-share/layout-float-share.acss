@@ -1,0 +1,18 @@
+/* share */
+.share-wrap {
+    display: inline-block;
+    position: fixed;
+    top: 350rpx;
+    right: 0;
+    z-index: 9;
+    width: 90rpx;
+    height: 52rpx;
+    border-radius: 26rpx 0 0 26rpx;
+    background-color: #1874FF;
+}
+
+.share-wrap .icon-share {
+    width: 30rpx;
+    height: 30rpx;
+    margin: 11rpx 0 0 25rpx;
+}
