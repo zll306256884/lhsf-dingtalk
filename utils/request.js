@@ -26,8 +26,8 @@ function doPostRequest(obj) {
     ddUtils.showLoading();
 
   if (!utils.isEmpty(app.globalData.userInfo.userToken))
-    option.headers["X-Access-Token"] = 'eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxZGUzZDQ2Yy1kNWFjLTRmMGMtYWYyYy0zZjJlYzNiM2RiZmIiLCJzdWIiOiJhZG1pbiIsImlzcyI6ImFkbWluIiwiaWF0IjoxNjk4MDY3NTg2LCJleHAiOjE2OTgzMjY3ODZ9.E9LsI7IG_58POQ9Rq3b8fe56kXr6aqLdLxKgCJKrVUA'
-    // option.headers["X-Access-Token"] = app.globalData.userInfo.userToken
+    // option.headers["X-Access-Token"] = ''
+    option.headers["X-Access-Token"] = app.globalData.userInfo.userToken
 
   // let time = utils.getTimestamp();
   // let sign = utils.sort_ASCII(option.data);
