@@ -1,8 +1,8 @@
 import { isEqual, isEmptyArray } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
-import config from "../../../../utils/config"
+import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
-// import { API_GET_USER_ROLE_NAMES_BY_PROJECTID  } from "../../../utils/apiUser"
+
 
 const app = getApp();
 
@@ -45,7 +45,6 @@ Page({
         onBack() {
         },
     },
-
     //bind login tap
     bindAuthLoginTap: function (e) {
         ddUtils.showLoading();
@@ -53,7 +52,7 @@ Page({
             scopes: 'auth_user',
             success: (resAuth) => {
                 request.doPostRequest({
-                    url: config.API_LOGIN,
+                    url: userServer.API_LOGIN,
                     showLoading: false,
                     data: {
                         code: resAuth.authCode
@@ -63,6 +62,8 @@ Page({
                         app.globalData.userInfo = {};
                         app.globalData.userInfo.userToken = loginData.token;
                         app.globalData.userInfo.mobile = loginData.mobile;
+                        app.globalData.userInfo.userId= loginData.userId
+
                         this.getAllInfo();
                     },
                     fail: res => {
@@ -73,26 +74,8 @@ Page({
             fail: () => {
                 ddUtils.hideLoading();
             },
-            complete: () => {
-
-            }
         });
     },
-  //   _getIsManagerRole:function(projectId){
-  //     request.doPostRequest({
-  //      url: API_GET_USER_ROLE_NAMES_BY_PROJECTID ,
-  //      data: {
-  //        projectId,
-  //      },
-  //      success: res => {
-  //       app.globalData.userInfo.projectRole = res.data.some(role => role === ('总监理工程师' || '项目管理员'))
-  //         ddUtils.setStorage({
-  //           key: 'projectRole',
-  //           data:  app.globalData.userInfo.projectRole
-  //         }); 
-  //      }
-  //    })
-  // },
     getAllInfo: function () {
         Promise
             .all([this.getUserInfo(), this.getProjectList()])
@@ -112,8 +95,6 @@ Page({
 
                 if (!defaultPeoject && !isEmptyArray(tempProjectList))
                     defaultPeoject = tempProjectList[0];
-
-
                 app.globalData.userInfo.userAccount = tempUserInfo.account;
                 app.globalData.userInfo.userId = tempUserInfo.userId;
                 app.globalData.userInfo.avatar = tempUserInfo.avatar;
@@ -121,15 +102,13 @@ Page({
                 app.globalData.userInfo.sex = "";
                 app.globalData.userInfo.projectId = defaultPeoject ? defaultPeoject.projectId : '';
                 app.globalData.userInfo.projectName = defaultPeoject ? defaultPeoject.projectName : '';
-
                 ddUtils.setStorage({
                     key: app.globalData.keyUserInfo,
                     data: app.globalData.userInfo
                 });
                 ddUtils.switchTab({
-                    url: "/pages/work/work-platform-page/work-platform-page"
+                    url: "/pages/work/index"
                 });
-                // this._getIsManagerRole(app.globalData.userInfo.projectId);
             }).catch((error) => {
                 ddUtils.hideLoading();
                 app.globalData.userInfo = {};
@@ -139,7 +118,7 @@ Page({
     getUserInfo: function () {
         return new Promise((resolve, reject) => {
             request.doPostRequest({
-                url: config.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
+                url: userServer.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
                 showLoading: false,
                 data: {
                     projectId: app.globalData.userInfo.projectId
@@ -157,7 +136,7 @@ Page({
     getProjectList: function () {
         return new Promise((resolve, reject) => {
             request.doPostRequest({
-                url: config.API_PROJECT_LIST,
+                url: userServer.API_PROJECT_LIST,
                 showLoading: false,
                 data: {
                     pageNum: 1,

@@ -1,0 +1,17 @@
+ <!-- status: 1未提交 2审核中 3已驳回 4执行 5已完成 6监理回复单部分通过 7回复单已驳回 8升级成工程暂停令 -->
+<view class="step-wrap  {{showStepLine ? 'step-line' : ''}}">
+    <view class="flex f-align-center top ">
+        <view class="flex1 step-name">
+            {{itemData.operatorsAccount}}
+        </view>
+        <view class="step-time">
+            {{itemData.createTime}}
+        </view>
+    </view>
+    <view class="step-content">
+      <text class="step-status">{{itemData.operatorsContent}}</text> “{{itemData.taskName}}”
+    </view>
+    <view class="step-result">审批意见：{{itemData.content || '-'}}
+        <!-- <text class="step-status"> {{itemData.content || '-'}}</text> -->
+    </view>
+</view>

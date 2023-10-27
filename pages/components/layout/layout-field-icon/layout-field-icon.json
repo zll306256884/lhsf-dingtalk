@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "layout-round-check-group": "/common/components/layout/layout-round-check-group/layout-round-check-group"
+    }
+}

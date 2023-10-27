@@ -8,14 +8,11 @@ const API_HOST = BASE_API_HOST + "/prod-api";
 // const API_HOST = BASE_API_HOST + "/online-api";
 
 
-const API_IMG_URL = "https://wzpm-platform.oss-cn-hangzhou.aliyuncs.com/";
+const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
 
 
 
 module.exports = {
     API_HOST: API_HOST,
     API_IMG_URL: API_IMG_URL,
-    //api接口(注意加注释)
-    // 例如上传文件 
-   API_UPLOAD_FILE: API_HOST + "/supervisor/fileInfo/uploadOssFile", 
 }

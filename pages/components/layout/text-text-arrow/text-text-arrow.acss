@@ -1,0 +1,33 @@
+
+.field-cell-arrow {
+    margin: 0 0 0;
+    padding: 30rpx 30rpx;
+}
+
+.field-cell-arrow .border-top {
+    border-top: 1px solid #E7EAF3;
+}
+
+.field-cell-arrow .border-bottom {
+    border-bottom: 1px solid #E7EAF3;
+}
+
+.field-cell-arrow  .name {
+    line-height: 36rpx;
+    font-size: 28rpx;
+    color: #525966;
+}
+
+.field-cell-arrow .value {
+    margin-left: 40rpx;
+    line-height: 36rpx;
+    font-size: 24rpx;
+    color: #525966;
+    text-align: right;
+}
+
+.field-cell-arrow  .icon-arrow {
+    width: 28rpx;
+    height: 28rpx;
+    margin-left: 10rpx;
+}

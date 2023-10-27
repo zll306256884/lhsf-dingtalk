@@ -1,0 +1,31 @@
+.collapse-wrap {
+    margin: 0;
+    padding: 0;
+}
+
+.collapse-wrap.border-top {
+    border-top: 1px solid #E7EAF3;
+}
+
+.collapse-wrap.border-bottom {
+    border-bottom: 1px solid #E7EAF3;
+}
+
+.collapse-wrap.box-shadow {
+    margin: 30rpx 30rpx 0 !important;
+}
+
+.collapse-wrap .top-arrow {
+    padding: 30rpx 30rpx;
+}
+
+.collapse-wrap .top-arrow .arrow-title {
+    font-size: 28rpx;
+    color: #525966;
+}
+
+.collapse-wrap .top-arrow .icon-arrow {
+    width: 24rpx;
+    height: 24rpx;
+    margin-left: 20rpx;
+}
