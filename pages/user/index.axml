@@ -1,3 +1,35 @@
 <view class="container">
+  <!--  -->
+  <view>{{title}}</view>
+  <view>{{array[0].user}}</view>
+  <!--  -->
+  <button onTap="tothePage"> 点击跳转</button>
+  <!-- 视图层 -->
+  <view> Hello {{name}}!</view>
+  <button onTap="changeName"> Click me!</button>
   我的
+  <view class='topNav f-start'>
+    <view class="imgbox">
+
+    </view>
+  </view>
+  <view class='pageNav mt20'>
+    <view class="part f-between">
+      <view class="f-start">
+        <image
+          class="image"
+          data-name="我是图片名字"
+          onTap="onTap"
+          mode="bottom left"
+          src="{{src}}"
+          onError="imageError"
+          onLoad="imageLoad"
+        />
+      </view>
+      <view >
+
+      </view>
+
+    </view>
+  </view>
 </view>

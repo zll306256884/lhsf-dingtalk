@@ -4,6 +4,7 @@
     "pages/message/index",
     "pages/databoard/index",
     "pages/user/index",
+    "pages/user/page/personalinfo/index",
     "pages/user/page/login/index",
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
@@ -20,8 +21,7 @@
     "textColor": "#343C4A",
     "selectedColor": "#3C82F6",
     "backgroundColor": "#ffffff",
-    "items": [
-      {
+    "items": [{
         "pagePath": "pages/work/index",
         "name": "工作台",
         "icon": "/assets/images/icon-work-default.png",
