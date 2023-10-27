@@ -8,7 +8,4 @@
       </view>
     </view>
   </view>
-  <field-cell borderBottom name="进场检查时间"  placeholder="请选择日期" value="{{selectedDate}}" onArrowTap="handleDateChange" ></field-cell>
-
 </view>
-<dialog-picker-date ref="onSaveDialogPickerDateRef" showHourMinuteSecond onPickerCallBack="bindPickerDateCallBack"></dialog-picker-date>

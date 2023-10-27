@@ -4,7 +4,7 @@ import apiApprovalManage from "../../server/workServer"
 Page({
   data:{
     iconList:[
-      { url:"../../../../assets/images/work/Group-1.png", name:"新证项目"},
+      { url:"../../../../assets/images/work/Group-1.png", name:"新增项目"},
       { url:"../../../../assets/images/work/Group-2.png", name:"新增日志"},
       { url:"../../../../assets/images/work/Group-3.png", name:"进度填报"},
       { url:"../../../../assets/images/work/Group-4.png",name:"招标文件会签"},
@@ -13,7 +13,6 @@ Page({
       { url:"../../../../assets/images/work/Group-7.png", name:"变更登记"},
       { url:"../../../../assets/images/work/Group-8.png", name:"竣工结算登记"}
     ],
-    selectedDate:""
 
   },
   
@@ -24,27 +23,7 @@ Page({
   onItemTap(){
 
   },
-  handleDateChange: function () {
-    dd.datePicker({
-      format: 'yyyy-MM-dd',
-      currentDate: '2023-10-27',
-      success: (res) => {
-        this.setData({
-          selectedDate: res.date
-        })
-      },
-    });
-    // dd.chooseDateTime({
-    //   format: 'yyyy-MM-dd',
-    //   default: 1494415396228,
-    //   success: (res) => {
-    //     const { timezone, chosen } = res;
-    //     console.log('chosen',chosen);
-    //   },
-    //   fail: () => {},
-    //   complete: () => {},
-    // });
-  },
+
     //获取列表
     getRecordList: function () {
       let data = {
