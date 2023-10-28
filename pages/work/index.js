@@ -1,6 +1,6 @@
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
-
+import ddUtils from "../../utils/ddUtils"
 Page({
   data:{
     iconList:[
@@ -18,8 +18,13 @@ Page({
     this. getRecordList()
     
   },
-  onItemTap(){
-
+  onItemTap(e){
+  console.log(e.target.dataset.index);
+   if(e.target.dataset.index === 5){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/addPayment/addPayment`
+    });
+   }
   },
     //获取列表
     getRecordList: function () {

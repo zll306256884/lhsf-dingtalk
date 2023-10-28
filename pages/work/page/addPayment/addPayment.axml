@@ -1,0 +1,9 @@
+<view>
+  <view onArrowTap="bindChooseExecuteUserTap">
+    男
+  </view>
+  <!-- <view onArrowTap="bindChooseExecuteUserTap">
+   女
+  </view> -->
+</view>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>

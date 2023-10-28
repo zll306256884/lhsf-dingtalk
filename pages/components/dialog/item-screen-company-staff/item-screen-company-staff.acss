@@ -1,0 +1,26 @@
+.item-company-staff-wrap .item {
+  height: 80rpx;
+  padding: 0 30rpx;
+}
+
+.item-company-staff-wrap .item .company-name {
+  font-size: 26rpx;
+  color: #666666;
+  font-weight: bold;
+}
+
+.item-company-staff-wrap .item .icon-arrow {
+  width: 20rpx;
+  height: 20rpx;
+  margin-right: 10rpx;
+}
+
+.item-company-staff-wrap .item .nickname {
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.item-company-staff-wrap .item .icon {
+  width: 36rpx;
+  height: 36rpx;
+}
