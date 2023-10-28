@@ -1,9 +1,16 @@
-<view>
-  <view onArrowTap="bindChooseExecuteUserTap">
-    男
-  </view>
-  <!-- <view onArrowTap="bindChooseExecuteUserTap">
-   女
-  </view> -->
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+
+<view class="container">
+  <form>
+    <view class="box-shadow">
+      <layout-field-cell borderTop name="项目类型" mustFill placeholder="请选择" value="{{projectTypeData.itemText}}" 
+      onArrowTap="bindChooseProjectTypeTap"></layout-field-cell>
+      <!-- <layout-field-cell borderTop name="执行人员" mustFill placeholder="请选择执行人员" value="{{screenExecuteUser}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
+      <!-- <layout-field-cell borderTop name="所属单位" mustFill placeholder="请选择所属单位" value="{{screenShiGongUnitData.name}}" 
+      onArrowTap="_bindChooseShiGongUnitTap"></layout-field-cell> -->
+    </view>
+  </form>
 </view>
-<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<!-- <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff> -->
+<!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
+<dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef"  onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>

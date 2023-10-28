@@ -1,6 +1,6 @@
 import { isEmpty, isEmptyArray, isEqual, isArrayIndexOutOfBounds } from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
-import config from "../../../../utils//config"
+import config from "../../../../utils/config"
 import request from "../../../../utils/request"
 const app = getApp();
 
@@ -203,6 +203,7 @@ Component({
                 url: config.API_OA_COMPANY_STAFF_LIST,
                 data: {},
                 success: res => {
+                  console.log(res,111111111);
                     let list = res.data || [];
 
                     if (!isEmptyArray(list))

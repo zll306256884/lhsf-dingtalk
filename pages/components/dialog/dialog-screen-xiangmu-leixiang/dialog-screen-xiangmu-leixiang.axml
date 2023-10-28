@@ -1,0 +1,33 @@
+<block a:if="{{showDialog}}">
+  <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
+  <block a:if="{{positionBottom}}">
+      <view class="dialog-picker" animation="{{animation}}">
+          <view class='flex-display flex-space-between picker-view-header box-sizing-box'>
+              <text class="cancel" catchTap="_bindCloseTap">取消</text>
+              <view class="flex1 dialog-picker-title">
+                  {{title}}
+              </view>
+              <text class="sure" catchTap="_bindSureTap">确定</text>
+          </view>
+          <picker-view class="picker-view" onChange="_bindPickerChange" value="{{[chooseIndex < 0 ? 0 : chooseIndex]}}">
+              <picker-view-column>
+                  <view a:for="{{dataList}}" class="item">
+                      {{item.itemText}}
+                  </view>
+              </picker-view-column>
+          </picker-view>
+      </view>
+  </block>
+  <block a:else>
+      <view class="box-sizing-box modal-content" style="top: {{topHeight}}px;marginTop:{{marginTop}}rpx;" animation="{{animationData}}" 
+          catchTouchMove="_bindTouchMove">
+          <scroll-view style="max-height: {{scrollHeight}}px;" scroll-y="{{true}}">
+              <block a:for="{{dataList}}">
+                  <view class="dialog-name border-top {{chooseIndex === index ? 'active' : ''}}" data-index="{{index}}" 
+                      catchTap="_bindItemTap">
+                      {{item.itemText}}
+                  </view>
+              </block>
+          </scroll-view>
+      </view>
+  </block>

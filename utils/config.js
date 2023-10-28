@@ -15,4 +15,10 @@ const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
 module.exports = {
     API_HOST: API_HOST,
     API_IMG_URL: API_IMG_URL,
+    //查询oa组织下人员列表
+    API_OA_COMPANY_STAFF_LIST: API_HOST + "/platform/organize/queryStaffList",
+    //所属单位
+    API_SHO_SHU_DAN_WEI_LIST: API_HOST +'/platform/organize/queryTopList',
+    // 项目类型
+    API_PROJECT_TYPE:API_HOST+ '/platform/sysDictItem/queryListByCode?dictCode='
 }
