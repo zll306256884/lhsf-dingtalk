@@ -1,20 +1,65 @@
+import ddUtils from "../../utils/ddUtils"
+// utils/ddUtils
+
 Page({
   data: {
-    title: 'Dingtalk',
-    array: [{user: 'li'}, {user: 'zhao'}],
-    src: 'https://img.alicdn.com/tfs/TB1up2UVoT1gK0jSZFrXXcNCXXa-199-280.png',
-    items: [
-      { name: 'angular', value: 'AngularJS' },
-      { name: 'react', value: 'React', checked: true },
-      { name: 'polymer', value: 'Polymer' },
-      { name: 'vue', value: 'Vue.js' },
-      { name: 'ember', value: 'Ember.js' },
-      { name: 'backbone', value: 'Backbone.js', disabled: true },
+    userInfo: {
+      nickName: '我是名字',
+      avatar: 'https://img.alicdn.com/tfs/TB1up2UVoT1gK0jSZFrXXcNCXXa-199-280.png',
+      mobile: '13014587895',
+      firstName: '我'
+    },
+    partList: [{
+        img: '../../assets/images/user/one.png',
+        name: '个人信息'
+      },
+      {
+        img: '../../assets/images/user/two.png',
+        name: '修改密码'
+      },
+      {
+        img: '../../assets/images/user/three.png',
+        name: '退出登陆'
+      }
     ],
-    name: 'alibaba',
-    initialData :{
-      name: 'alibaba'
+  },
+  // 跳转
+  bindTopItemTap(e) {
+    console.log(e.target.dataset.index);
+    let code = e.target.dataset.index;
+    if (code == 0) {
+      // 我的信息
+      dd.navigateTo({
+        url: './page/baseinfo/baseinfo'
+      })
     }
+    if (code == 1) {
+      // 修改密码
+      dd.navigateTo({
+        url: './page/editword/editword'
+      })
+    }
+    if (code == 2) {
+      // 退出登录
+      ddUtils.showActionSheet({
+        itemList: ["退出登录"],
+        success: res => {
+          switch (res.index) {
+            case 0:
+              ddUtils.clearLoginStorage();
+
+              ddUtils.reLaunch({
+                url: "/pages/user/login/login"
+              })
+              break;
+            default:
+              break
+          }
+        }
+      });
+
+    }
+
   },
   // 更改数据示例
   changeName(e) {
@@ -23,7 +68,7 @@ Page({
     })
   },
   // 跳转页面示例
-  tothePage(){
+  tothePage() {
     dd.navigateTo({
       url: './page/personalinfo/index'
     })

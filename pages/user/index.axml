@@ -1,35 +1,31 @@
 <view class="container">
-  <!--  -->
-  <view>{{title}}</view>
-  <view>{{array[0].user}}</view>
-  <!--  -->
-  <button onTap="tothePage"> 点击跳转</button>
-  <!-- 视图层 -->
-  <view> Hello {{name}}!</view>
-  <button onTap="changeName"> Click me!</button>
-  我的
-  <view class='topNav f-start'>
-    <view class="imgbox">
-
+  <!-- 头部 -->
+  <view class="header-wrap box-sizing-box">
+    <view class="flex user">
+      <image a:if="{{userInfo.avatar}}" class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
+      <view a:else class="firstName f-center">{{userInfo.firstName}}</view>
+      <view class="right">
+        <view class="single-line name">
+          {{userInfo.nickName}}
+        </view>
+        <view class="mobile">
+          {{userInfo.mobile}}
+        </view>
+      </view>
     </view>
   </view>
-  <view class='pageNav mt20'>
-    <view class="part f-between">
-      <view class="f-start">
-        <image
-          class="image"
-          data-name="我是图片名字"
-          onTap="onTap"
-          mode="bottom left"
-          src="{{src}}"
-          onError="imageError"
-          onLoad="imageLoad"
-        />
+  <!--列表  -->
+  <view class='list box-sizing-box'>
+    <block a:for="{{partList}}">
+      <view class="f-between item flex" data-index="{{index}}" catchTap="bindTopItemTap">
+        <view class="flex f-start left">
+          <image class="icon-img" mode="aspectFill" src="{{item.img}}" />
+          <view class="name">
+            {{item.name}}
+          </view>
+        </view>
+        <image class="icon-arrow" mode="aspectFit" src="../../assets/images/user/icon_arrow_gray.png" />
       </view>
-      <view >
-
-      </view>
-
-    </view>
+    </block>
   </view>
 </view>

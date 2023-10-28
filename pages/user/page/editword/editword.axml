@@ -1,0 +1,32 @@
+<view class="container">
+  <!--  -->
+  <view class="list">
+    <layout-field-cell name="原密码" mustFill value="杭州萧山国际机场三期项目">
+    </layout-field-cell>
+    <layout-field-cell borderTop name="新密码" mustFill value="全咨"></layout-field-cell>
+    <layout-field-cell borderTop name="确认密码" mustFill value="325000万元">
+    </layout-field-cell>
+    <layout-field-cell borderTop name="验证码" mustFill value="杭州萧山国际机场三期项目">
+    </layout-field-cell>
+  </view>
+  <!--  -->
+  <view class='judge flex f-between box-sizing-box'>
+    <view class='right flex f-start'>
+      <view class='redstart'>*</view>验证码
+    </view>
+    <view class='left flex f-start'>
+      <input class="input" onInput="bindKeyInput" placeholder="请输入短信验证码" />
+      <view class="time">
+        (45s)后重新发送
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="bottomBtn flex f-start box-sizing-box">
+    <button type="ghost" class="bottom btn1">取消</button>
+    <button type="primary" class="bottom">保存</button>
+     
+  </view>
+
+  <!--  -->
+</view>

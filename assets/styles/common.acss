@@ -247,6 +247,10 @@
   margin-top: 30rpx !important;
 }
 
+.margin-t20 {
+  margin-top: 20rpx !important;
+}
+
 .bottom-tab-placerholder {
   min-height: 56px;
   padding-bottom: env(safe-area-inset-bottom);

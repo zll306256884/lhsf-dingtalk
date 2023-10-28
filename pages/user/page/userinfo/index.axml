@@ -1,0 +1,19 @@
+<view class='container'>
+  <!--  -->
+  <view class="title"> 基础信息</view>
+  <view class='list box-sizing-box'>
+    <block a:for="{{baseInfo}}">
+      <view class="f-between item flex" data-index="{{index}}" catchTap="bindTopItemTap">
+        <view class="flex f-start left">
+          <image class="icon-img" mode="aspectFill" src="{{item.img}}" />
+          <view class="name">
+            {{item.name}}
+          </view>
+        </view>
+        <image class="icon-arrow" mode="aspectFit" src="../../assets/images/user/icon_arrow_gray.png" />
+      </view>
+    </block>
+  </view>
+  <!--  -->
+
+</view>
