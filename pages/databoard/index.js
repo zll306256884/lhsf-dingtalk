@@ -7,16 +7,17 @@ Page({
   data: {
     visibel:false,
   },
-  filterRef:null,
+  dialogScreenDateRef:null,
   onLoad() {
   },
-  onSavefilterRef:function (ref) {
-    this.filterRef = ref;
+  _onSaveDialogScreenDateRef:function (ref) {
+    this.dialogScreenDateRef = ref;
   },
   tapName(e){
-    ddTimer.chooseDateTime('{y}-{m}-{d} {h}:{i}:{s}').then(res=>{
-    console.log(res);
-    })
+    this.dialogScreenDateRef._showDialog();
+    // ddTimer.chooseDateTime('{y}-{m}-{d} {h}:{i}:{s}').then(res=>{
+    // console.log(res);
+    // })
     // ddUtils.showModal({
     //   title:"确认删除所选数据?",
     //   content: "删除后不可恢复，请确认",
@@ -29,6 +30,10 @@ Page({
     // this.setData({
     //   visibel:true
     // })
+  },
+  _bindScreenDateCallBack(data){
+    console.log(data);
+
   },
   onDialog(data){
     this.setData({

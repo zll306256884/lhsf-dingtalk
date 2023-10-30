@@ -1,6 +1,7 @@
 {
   "defaultTitle": "数据看板",
   "usingComponents": {
-    "filter": "/pages/components/dialog/filter/filter"
+    "dialog-picker-date-range": "/pages/components/dialog/dialog-picker-date-single/dialog-picker-date-single",
+    "ant-button": "antd-mini/es/Button/index"
 }
 }

@@ -261,18 +261,15 @@ function chooseDateTime(format){
 return  dd.chooseDateTime({
     default: new Date(),
   }).then(res=>{
-    console.log(res);
     return parseTime(res.chosen,format)
   })
-    // dd.datePicker({
-    //   format: 'yyyy-MM-dd HH:mm:ss',
-    //   currentDate: '2023-10-27 ',
-    //   success: (res) => {
-    //     this.setData({
-    //       selectedDate: res.date
-    //     })
-    //   },
-    // });
+// return dd.datePicker({
+//     format: 'yyyy-MM-dd HH:mm:ss',
+//     currentDate: '',
+//     success: (res) => {
+//     return res.data
+//     },
+//   })
 }
 
 
