@@ -258,13 +258,12 @@ function parseTime(time, cFormat) {
 }
 
 function chooseDateTime(format){
-  console.log('format',format);
-  dd.chooseDateTime({
+return  dd.chooseDateTime({
     default: new Date(),
-    success: (res) => {
-       return parseTime(res.chosen, format)
-    }
-  });
+  }).then(res=>{
+    console.log(res);
+    return parseTime(res.chosen,format)
+  })
     // dd.datePicker({
     //   format: 'yyyy-MM-dd HH:mm:ss',
     //   currentDate: '2023-10-27 ',
