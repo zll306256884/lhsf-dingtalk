@@ -4,35 +4,35 @@ Component({
   mixins: [],
   data: {
     options:[
-      // {
-      //   label:"类型",
-      //   prop:"type",
-      //   value:[],
-      //   type:'select',
-      //   option: [
-      //     {
-      //         id:"1",
-      //         label: '意外医疗',
-      //         selected: false,
-      //     },
-      //     {
-      //         id:"2",
-      //         label: '疾病医疗',
-      //         selected: false,
-      //     },
-      //     {
-      //         id:"3",
-      //         label: '疾病住院',
-      //         selected: false,
-      //     },
-      // ],
-      // },
-      // {
-      //   label:"人员",
-      //   value:"",
-      //   prop:"userName",
-      //   type:'input' 
-      // },
+      {
+        label:"类型",
+        prop:"type",
+        value:[],
+        type:'select',
+        option: [
+          {
+              id:"1",
+              label: '意外医疗',
+              selected: false,
+          },
+          {
+              id:"2",
+              label: '疾病医疗',
+              selected: false,
+          },
+          {
+              id:"3",
+              label: '疾病住院',
+              selected: false,
+          },
+      ],
+      },
+      {
+        label:"人员",
+        value:"",
+        prop:"userName",
+        type:'input' 
+      },
     ],
     scrollHeight: 0,
     topHeight: 0,
@@ -56,9 +56,11 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
+    // 点击取消按钮
     _bindCloseTap(){
       this.props.onDialog(false)
     },
+    // 点击确认按钮
     _bindSureTap(){
       this.props.onBindSureTap({
         options:this.data.options
@@ -66,6 +68,7 @@ Component({
       this.props.onBindSureTap(this.data.options)
       console.log('this.data.options',this.data.options);
     },
+    // 点击重置按钮
     _bindResetTap(){
       this.data.options.map(opt=>{
         if(opt.type==='select'){
@@ -77,7 +80,8 @@ Component({
       options:this.data.options
       });
     },
-    onChange(e) {
+    // tag项选中状态改变
+    _onChange(e) {
       let Index=e.currentTarget.dataset.Index
       let sunIndex=e.currentTarget.dataset.index
       this.data.options[Index].option[sunIndex].selected = !e.currentTarget.dataset.selected;
@@ -86,6 +90,7 @@ Component({
          options:this.data.options
       });
     },
+    // 鼠标失焦事件
     _bingBlurChange(data){
       this.data.options[data.index].value=data.e.detail.value
       this.setData({
@@ -93,6 +98,7 @@ Component({
     });
     console.log(this.data.options);
     },
+    // 点击蒙层事件
     _bindCancelTap(){
       this.props.onDialog(false)
     }

@@ -14,7 +14,7 @@
               <view class="mt-24"><text>{{item.label}}：</text></view>
               <view class="tag-list">
                 <block a:for="{{item.option}}">
-                    <view class="a-tag {{item.selected ? 'a-tag-active' : 'a-tag-normal'}}" onTap="onChange" data-Index={{idx}}  data-index={{index}} data-selected="{{item.selected}}">
+                    <view class="a-tag {{item.selected ? 'a-tag-active' : 'a-tag-normal'}}" onTap="_onChange" data-Index={{idx}}  data-index={{index}} data-selected="{{item.selected}}">
                       <text class="tag">{{item.label}}</text>
                     </view>  
                 </block>
