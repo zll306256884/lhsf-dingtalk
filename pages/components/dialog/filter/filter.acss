@@ -1,0 +1,133 @@
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.modal-content {
+  width: 100%;
+  padding: 0;
+  background-color: white;
+  z-index: 10000;
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+
+.modal-content .dialog-name {
+  padding: 30rpx 40rpx;
+  font-size: 26rpx;
+  color: #525966;
+}
+
+.modal-content .dialog-name.active {
+  color: #377DFF;
+}
+.mt-24 {
+  margin-top: 24rpx;
+}
+.mt-32{
+  margin-top:32rpx;
+}
+.mb-32{
+  margin-bottom:32rpx;
+}
+.tag-list {
+  display: flex;
+  justify-content:flex-start;
+  margin:24rpx 0;
+}
+.a-tag {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  padding: 0rpx 30rpx;
+  box-sizing: border-box;
+  margin-right: 20rpx;
+  height: 50rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  line-height: 50rpx;
+}
+
+.a-tag-normal {
+  background: rgba(244,244,245,0.8);
+  color: #909399;
+}
+
+.a-tag-active {
+  background: rgba(236,242,255,0.8);
+  color: #3369F7;
+}
+
+/* picker */
+.dialog-picker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  /* height: 580rpx; */
+  background-color: #fff;
+  z-index: 9999;
+  padding:0 32rpx;
+  box-sizing: border-box;
+  border-radius: 24rpx 24rpx 0rpx 0rpx;
+}
+.dialog-picker-line {
+  width: 56rpx;
+  height: 8rpx;
+  background-color:#DCDFE6 ;
+  margin:24rpx auto 0
+  }
+
+.dialog-picker .picker-view-header {
+  height: 100rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  color: #999;
+  font-weight: bold;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.dialog-picker .picker-view-header .dialog-picker-title {
+text-align: center;
+margin: 0 20rpx 0 70rpx;
+font-size: 32rpx;
+font-weight: 500;
+color: #323233;
+line-height: 100rpx;
+}
+.dialog-picker .picker-view-header .sure {
+  color: #377DFF;
+}
+
+.cancel,.sure{
+width: 216rpx;
+height: 80rpx;
+background: #FFFFFF;
+border-radius: 8rpx;
+color: #323233;
+opacity: 1;
+border: 2rpx solid #EBEDF0;
+padding:10rpx 40rpx;
+font-size: 32rpx;
+font-weight: 400;
+line-height: 80rpx;
+text-align: center;
+}
+.sure{
+color: #FFFFFF;
+background: #1A6AFF;
+margin-left:30rpx
+}
+.reset{
+color: #1A6AFF;
+}
+.field-input-layout {
+  padding: 0.2rem 0rem;
+}

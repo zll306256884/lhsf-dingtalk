@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input"
+    }
 }

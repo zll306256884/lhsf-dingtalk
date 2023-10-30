@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "数据看板"
+  "defaultTitle": "数据看板",
+  "usingComponents": {
+    "filter": "/pages/components/dialog/filter/filter"
+}
 }

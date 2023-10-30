@@ -1,3 +1,7 @@
 <view class="container">
-  数据看板
+ <view onTap="tapName">数据看板</view> 
+
+
+<filter ref="onSavefilterRef" showDialog="{{visibel}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></filter>
+
 </view>
