@@ -8,12 +8,9 @@
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
-<<<<<<< HEAD
-    "pages/work/page/addPayment/addPayment"
-=======
+    "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
     "pages/work/page/projectInfo/projectInfo"
->>>>>>> dd-rxj
   ],
   "window": {
     "backgroundTextStyle": "light",
