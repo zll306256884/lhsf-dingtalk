@@ -334,17 +334,17 @@ Page({
     })
   },
   bindFormSubmit(e){
-    // if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.outPutTime.shortDate, "投入使用日期不能为空")) return;
-    // // if (ddUtils.showEmptyToastTips(, "所属单位不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
-    // // if (ddUtils.showEmptyToastTips(, "项目负责人不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.outPutTime.shortDate, "投入使用日期不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.formData.affiliatedUnitName, "所属单位不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
 
     this.setData({
       'formData.projectCode':e.detail.value.projectCode,
@@ -366,56 +366,7 @@ Page({
       'formData.jianAnMoney':e.detail.value.jianAnMoney,
       'formData.sourceFunds':e.detail.value.sourceFunds,
     })
-    // this.data.formData.projectCode = e.detail.value.projectCode
-    // this.data.formData.proNumber = this.data.proNumber
-    // this.data.formData.name = e.detail.value.name
-    // this.data.formData.projectProgram = e.detail.value.projectProgram
-
-
-    // let structureArea = e.detail.value.structureArea
-    // let floorArea = e.detail.value.floorArea
-    // let proposedLocation = e.detail.value.proposedLocation
-    // let proposedLand = e.detail.value.proposedLand
-    // let blockNumber = e.detail.value.blockNumber
-    // let coorX = e.detail.value.coorX
-    // let coorY = e.detail.value.coorY
-    // let constructionContent = e.detail.value.constructionContent
-    // let totalInvestment = e.detail.value.totalInvestment
-    // let jianAnMoney = e.detail.value.jianAnMoney
-    // let sourceFunds = e.detail.value.sourceFunds
-
-    // let data = {
-    //   projectCode,
-    //   proNumber,
-    //   name,
-    //   projectProgram,
-    //   isAccess: this.data.isAccess.value,
-    //   projectClassification: this.data.projectClassification.value,
-    //   constructionPhase: this.data.constructionPhase.value,
-    //   isOutPut: this.data.isOutPut.value,
-    //   outPutTime: this.data.outPutTime.shortDate,
-      
-    //   constructionNature: this.data.constructionNature.value,
-    //   engineeringProperties: this.data.engineeringProperties.value,
-    //   constructionContent,
-    //   structureArea,
-    //   floorArea,
-    //   proposedLocation,
-    //   proposedLand,
-    //   blockNumber,
-
-    //   planConstructionStartTime:this.data.planConstructionStartTime,
-    //   planConstructionEndTime: this.data.planConstructionEndTime,
-    //   duration: this.data.duration,
-    //   actualConstructionStartTime: this.data.actualConstructionStartTime,
-    //   actualConstructionEndTime: this.data.actualConstructionEndTime,
-
-    //   coorX,
-    //   coorY,
-    //   totalInvestment,
-    //   jianAnMoney,
-    //   sourceFunds
-    // }
+    
     let data = this.data.formData
     console.log(data)
     if(this.data.projectId){
