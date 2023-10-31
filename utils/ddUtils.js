@@ -66,10 +66,9 @@ function showModal(obj) {
         });
         return;
     }
-
     dd.confirm({
         title: option.title,
-        content: option.content,
+        content:option.content,
         confirmButtonText: option.confirmText,
         cancelButtonText: option.cancelText,
         success: res => {

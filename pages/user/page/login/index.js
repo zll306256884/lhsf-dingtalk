@@ -116,6 +116,7 @@ Page({
     },
 
     getUserInfo: function () {
+      console.log('app.globalData.userInfo.userToken',app.globalData.userInfo.userToken);
         return new Promise((resolve, reject) => {
             request.doPostRequest({
                 url: userServer.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
