@@ -4,7 +4,7 @@ const app = getApp();
 Component({
   mixins: [],
   props: {
-    selectionMode:"single",
+    selectionMode:"single",// single，range 默认single
     marginTop: 0,
     onPickerCallBack: function(date) {},
   },
@@ -29,6 +29,7 @@ Component({
   didUnmount() {},
   onError(e) {},
   methods: {
+    // 下一月
     nextMonth: function() {
       var current = this.data.options.monthRange[0];
       var newMonth = dayjs(current)
@@ -40,6 +41,7 @@ Component({
         "options.monthRange": [newMonth, newMonth]
       });
     },
+    // 前一月
     previousMonth: function() {
       var current = this.data.options.monthRange[0];
       var newMonth = dayjs(current)
@@ -51,6 +53,7 @@ Component({
         "options.monthRange": [newMonth, newMonth]
       });
     },
+    // 下一年
     nextYear: function() {
       var current = this.data.options.monthRange[0];
       var newMonth = dayjs(current)
@@ -62,6 +65,7 @@ Component({
         "options.monthRange": [newMonth, newMonth]
       });
     },
+    // 前一年
     previousYear: function() {
       var current = this.data.options.monthRange[0];
       var newMonth = dayjs(current)
@@ -73,6 +77,7 @@ Component({
         "options.monthRange": [newMonth, newMonth]
       });
     },
+    // 时间改变
     onChange(date) {
       if(this.props.selectionMode==="single"){
         this.setData({
@@ -85,6 +90,7 @@ Component({
         }); 
       }
     },
+    // 点击确定
     handleTap(){
       if(this.props.selectionMode==="single"){
         this.props.onPickerCallBack({
@@ -98,10 +104,13 @@ Component({
       }
       this._hideDialog();
     },
+    // 点击蒙层移除弹框
+    _bindCancelTap(){
+      this._hideDialog();
+    },
     _bindTouchMove: function(e) {
       return;
     },
-
     //judge is show dialog
     _isShowDialog() {
       return this.data.showDialog;
