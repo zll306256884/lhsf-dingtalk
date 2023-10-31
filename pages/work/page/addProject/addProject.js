@@ -3,6 +3,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
+import { kill } from "process";
 const app = getApp();
 Page({
   data: {
@@ -45,7 +46,7 @@ Page({
     projectClassification: {},//分类
     constructionPhase: {},//建设阶段
     isOutPut: {},//是否投入
-    outPutTime: {},//{date: '', shortDate: ''}
+    outPutTime: '',//{date: '', shortDate: ''}
     constructionNature: {},//建设性质
     engineeringProperties: {},//工程性质
     //所属单位
@@ -67,6 +68,8 @@ Page({
   dialogPickerDateRef: null,
   dialogPickerDateRangeRef: null,
   dialogActualDatRangeRef: null,
+  dialogSuoshuUnit: null,
+  dialogScreenExecuteUser: null,
 
   onLoad(options) {
     console.log(options)
@@ -115,6 +118,16 @@ Page({
   onSavePickerActualDatRangeRef(ref){
     this.dialogActualDatRangeRef = ref
   },
+  _onSaveDialogScreenSuoshuUnitRef(ref){
+    this.dialogSuoshuUnit = ref
+  },
+  onSaveDialogScreenExecuteUserRef(ref){
+    this.dialogScreenExecuteUser = ref
+  },
+  onSaveUploadImgRef(ref){
+
+  },
+  
   _bindChooseIsAccessTap(e){
     // if (this.props.chooseQuesTypeDisabled) return;
     if (this.dialogQuesFromRef) this.dialogQuesFromRef._showDialog();
@@ -148,6 +161,12 @@ Page({
   },
   _bindChooseActualConstruction(){
     if(this.dialogActualDatRangeRef) this.dialogActualDatRangeRef._showDialog()
+  },
+  _bindChooseAffiliatedUnit(){
+    if(this.dialogSuoshuUnit) this.dialogSuoshuUnit._showDialog()
+  },
+  _bindChooseProjectLeaderName(){
+    if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   bindInputChange(e){
 
@@ -194,8 +213,9 @@ Page({
     })
   },
   bindPickerDateCannBack(data){
+    console.log(data)
     this.setData({
-      outPutTime: data
+      outPutTime: data.startDate
     })
   },
   bindPickerActualDateRangeCallBack(data){
@@ -203,6 +223,20 @@ Page({
     this.setData({
       'formData.actualConstructionStartTime': data.startDate,
       'formData.actualConstructionEndTime': data.endDate
+    })
+  },
+  _bindScreenSuoshuUnitCallBack(data){
+    console.log('所属单位', data)
+    this.setData({
+      'formData.affiliatedUnitName':data.name,
+      'formData.affiliatedUnitId':data.id
+    })
+  },
+  bindScreenExecuteUserCallBack(data){
+    console.log('项目负责人',data)
+    this.setData({
+      'formData.projectLeaderName': data[0].username,
+      'formData.personId': data[0].userId
     })
   },
   //详情
@@ -217,12 +251,9 @@ Page({
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
           isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut},
-          'outPutTime.shortDate':res.data.outPutTime,
-
+          outPutTime:res.data.outPutTime,
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
-
-        
         })
         console.log(this.data.isAccess)
       }
@@ -266,7 +297,8 @@ Page({
         })
         console.log(res.data)
         this.setData({
-          constructionPhaseOptions: res.data || []
+          constructionPhaseOptions: res.data || [],
+          constructionPhase: {name: '前期阶段', value:'0'}
         })
       }
     })

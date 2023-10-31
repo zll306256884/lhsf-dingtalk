@@ -7,7 +7,7 @@ const app = getApp();
 Page({
   data: {
     navbarData:{
-      title: "新增项目"
+      title: "项目详情"
     },
     screenFromList:[
       { name:'否',value:0 },
