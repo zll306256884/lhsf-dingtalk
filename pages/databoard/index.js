@@ -14,7 +14,7 @@ Page({
     this.dialogScreenDateRef = ref;
   },
   tapName(e){
-    this.dialogScreenDateRef._showDialog();
+    this.dialogScreenDateRef.showDialog();
     // ddTimer.chooseDateTime('{y}-{m}-{d} {h}:{i}:{s}').then(res=>{
     // console.log(res);
     // })

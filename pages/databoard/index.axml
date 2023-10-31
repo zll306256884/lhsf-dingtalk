@@ -1,4 +1,4 @@
 <view class="container">
  <view onTap="tapName">数据看板</view> 
- <dialog-picker-date selectionMode="range" ref="_onSaveDialogScreenDateRef" onPickerCallBack="_bindScreenDateCallBack"></dialog-picker-date>
+ <dialog-modal  ref="_onSaveDialogScreenDateRef" onPickerCallBack="_bindScreenDateCallBack"></dialog-modal>
 </view>

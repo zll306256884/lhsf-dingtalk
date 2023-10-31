@@ -1,6 +1,6 @@
 {
   "defaultTitle": "数据看板",
   "usingComponents": {
-    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date"
+    "dialog-modal": "/pages/components/dialog/dialog-modal/dialog-modal"
 }
 }

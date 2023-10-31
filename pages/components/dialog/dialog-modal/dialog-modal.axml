@@ -1,0 +1,13 @@
+<view>
+  <modal
+  title="{{option.title}}"
+  content="{{option.content}}"
+  visible="{{customVisible}}"
+  onClose="handleClose"
+  primaryButtonText="{{option.primaryButtonText}}"
+  contentStyle="color:red"
+  primaryButtonStyle="color:#fff; background: #1A6AFF;"
+  secondaryButtonText="{{option.secondaryButtonText}}"
+  onPrimaryButtonTap="handlePrimaryButtonTap"
+  onSecondaryButtonTap="handleSecondaryButtonTap" />
+</view>
