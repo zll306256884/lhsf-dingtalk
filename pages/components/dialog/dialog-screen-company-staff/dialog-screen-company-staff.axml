@@ -14,7 +14,7 @@
             <block a:for="{{dataList}}">
                 <view class="box-sizing-box item" data-index="{{index}}" catchTap="_bindItemTap">
                     <view class="flex-display flex-align-center total-wrap">
-                        <image mode="aspectFit" class="flex0 icon-arrow" src="{{item.isCheck ? '/images/icon_arrow_triangle_down.png' : '/images/icon_arrow_triangle_right.png'}}"></image>
+                        <image mode="aspectFit" class="flex0 icon-arrow" src="{{item.isCheck ? '/assets/images/icon_arrow_triangle_down.png' : '/assets//images/icon_arrow_triangle_right.png'}}"></image>
                         <view class="flex1 total-name single-line">
                             {{item.name}}
                         </view>

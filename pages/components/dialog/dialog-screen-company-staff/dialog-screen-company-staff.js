@@ -11,6 +11,7 @@ Component({
      * 组件的属性列表
      */
     props: {
+      showDialog:false,
         title: "选择",
         positionBottom: false,
         marginTop: 0,
@@ -25,7 +26,7 @@ Component({
      * 组件的初始数据
      */
     data: {
-        showDialog: false,
+        // showDialog: false,
         scrollHeight: 0,
         dataList: [],
     },
@@ -215,6 +216,7 @@ Component({
                         showDialog: true,
                         dataList: list
                     })
+                    console.log(this.data.dataList,);
                 }
             });
         },

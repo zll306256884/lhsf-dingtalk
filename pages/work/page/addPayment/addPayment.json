@@ -1,10 +1,15 @@
 {
   "component": true,
+  "transparentTitle": "always",
+  "titlePenetrate":"NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
       "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
       "dialog-screen-suoshu-danwei":"/pages/components/dialog/dialog-screen-suoshu-danwei/dialog-screen-suoshu-danwei",
-      "dialog-screen-xiangmu-leixiang":"/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang"
+      "dialog-screen-xiangmu-leixiang":"/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang",
+      "dialog-screen-xiangmu-mingcheng":"/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
+      "dialog-screen-hetong-mingcheng":"/pages/components/dialog/dialog-screen-hetong-mingcheng/dialog-screen-hetong-mingcheng",
+      "layout-field-input":"/pages/components/layout/layout-field-input/layout-field-input"
   }
 }

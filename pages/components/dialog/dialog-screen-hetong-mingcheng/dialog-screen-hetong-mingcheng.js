@@ -10,11 +10,11 @@ Component({
      * 组件的属性列表
      */
     props: {
+      projectId:'',
         marginTop: 0,
         positionBottom: false,
         showAllText: false,
         title: "项目",
-        code: "investment_project_type",
         onScreenCallBack: function (item) { }
     },
 
@@ -127,9 +127,9 @@ Component({
             }
 
             request.doPostRequest({
-                url: config.API_PROJECT_TYPE,
+                url: config.API_CONTRACT_NAME,
                 data: {
-                  dictCode: this.props.code,
+                  projectId: this.props.projectId,
                 },
                 success: res => {
                     this.data.dataList = [];

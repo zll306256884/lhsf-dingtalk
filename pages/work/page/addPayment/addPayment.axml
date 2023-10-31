@@ -5,12 +5,22 @@
     <view class="box-shadow">
       <layout-field-cell borderTop name="项目类型" mustFill placeholder="请选择" value="{{projectTypeData.itemText}}" 
       onArrowTap="bindChooseProjectTypeTap"></layout-field-cell>
+      <layout-field-cell borderTop name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" 
+      onArrowTap="bindChooseProjectTap"></layout-field-cell>
+      <layout-field-cell borderTop name="项目负责人" mustFill placeholder="自动带入"  value="{{projectLeader}}"></layout-field-cell>
+      <layout-field-cell borderTop name="所属单位" mustFill placeholder="自动带入"  value="{{affiliateUnit}}"></layout-field-cell>
+      <layout-field-cell borderTop name="合同名称" mustFill placeholder="请选择"  value="{{contractData.contractName}}"  onArrowTap="bindChooseContractNameTap"></layout-field-cell>
+      <layout-field-cell borderTop name="合同金额(万元)" mustFill placeholder="自动带入"  value="{{contractAmount}}"></layout-field-cell>
+      <layout-field-cell borderTop name="累计已付款(万元)" mustFill placeholder="自动带入"  value="{{totalPayment}}"></layout-field-cell>
+
       <!-- <layout-field-cell borderTop name="执行人员" mustFill placeholder="请选择执行人员" value="{{screenExecuteUser}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
       <!-- <layout-field-cell borderTop name="所属单位" mustFill placeholder="请选择所属单位" value="{{screenShiGongUnitData.name}}" 
       onArrowTap="_bindChooseShiGongUnitTap"></layout-field-cell> -->
     </view>
   </form>
 </view>
-<!-- <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff> -->
+<!-- <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff> -->
 <!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
-<dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef"  onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>
+<dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>
+<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>

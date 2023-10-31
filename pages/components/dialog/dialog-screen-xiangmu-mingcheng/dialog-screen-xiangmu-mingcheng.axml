@@ -12,7 +12,7 @@
           <picker-view class="picker-view" onChange="_bindPickerChange" value="{{[chooseIndex < 0 ? 0 : chooseIndex]}}">
               <picker-view-column>
                   <view a:for="{{dataList}}" class="item">
-                      {{item.itemText}}
+                      {{item.name}}
                   </view>
               </picker-view-column>
           </picker-view>
@@ -25,7 +25,7 @@
               <block a:for="{{dataList}}">
                   <view class="dialog-name border-top {{chooseIndex === index ? 'active' : ''}}" data-index="{{index}}" 
                       catchTap="_bindItemTap">
-                      {{item.itemText}}
+                      {{item.name}}
                   </view>
               </block>
           </scroll-view>
