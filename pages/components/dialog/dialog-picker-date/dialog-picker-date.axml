@@ -3,6 +3,7 @@
     catchTouchMove="_bindTouchMove">
     <view slot="content">
       <view class="custom-header">
+        <ant-button type="text" inline onTap="_bindCancelTap">取消</ant-button>
         <icon  onTap="previousYear" type="LeftOutline" />
         <view
           onTap="previousMonth"
