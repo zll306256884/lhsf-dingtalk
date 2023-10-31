@@ -52,3 +52,10 @@
   color: white;
   background-color: #377DFF;
 }
+/* 任务描述 */
+.box-shadow .desc {
+  margin: 10rpx 30rpx 0;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #525966;
+}

@@ -10,11 +10,11 @@ Component({
      * 组件的属性列表
      */
     props: {
-      projectId:'',
+      projectId:"",
         marginTop: 0,
         positionBottom: false,
         showAllText: false,
-        title: "项目",
+        title: "单位",
         onScreenCallBack: function (item) { }
     },
 
@@ -125,32 +125,27 @@ Component({
                 })
                 return;
             }
-              if(this.props.projectId){
-                request.doPostRequest({
-                  url: config.API_CONTRACT_NAME,
-                  data: {
-                    projectId: this.props.projectId,
-                  },
-                  success: res => {
-                      this.data.dataList = [];
-                  console.log(res);
-                      // if (this.props.showAllText) {
-                      //     this.data.dataList.push({
-                      //         projectName: "全部",
-                      //         projectId: ""
-                      //     })
-                      // }
-  
-                      this.data.dataList = this.data.dataList.concat(res.data || []);
-  
-                      this.setData({
-                          chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
-                          showDialog: true,
-                          dataList: this.data.dataList
-                      })
-                  }
-              });
-              }
+            if(this.props.projectId){
+              request.doPostRequest({
+                url: config.API_FUKUAN_TYPE,
+                data: {
+                 proId: this.props.projectId,
+                },
+                success: res => {
+                    this.data.dataList = [];
+                console.log(res);
+                
+                    this.data.dataList = this.data.dataList.concat(res.data || []);
+
+                    this.setData({
+                        chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
+                        showDialog: true,
+                        dataList: this.data.dataList
+                    })
+                }
+            });
+            }
+           
         },
 
         //hide modal dialog

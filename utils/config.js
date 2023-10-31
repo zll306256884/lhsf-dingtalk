@@ -26,5 +26,7 @@ module.exports = {
       // 合同名称
       API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
         // 合同下累计金额
-        API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment'
+        API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
+        // 款项类型
+        API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
 }

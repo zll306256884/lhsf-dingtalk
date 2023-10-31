@@ -24,6 +24,7 @@
 }
 
 .dialog-scroll .picker-view-header {
+  display: flex;
   padding: 0 30rpx;
   height: 100rpx;
   font-size: 28rpx;

@@ -16,6 +16,7 @@ Component({
         positionBottom: false,
         marginTop: 0,
         multiChoose: false,
+        screenDangerousName: "",
         onScreenCallBack: function (chooseList) { }
     },
 
@@ -102,6 +103,16 @@ Component({
             });
         },
 
+        bindInputChange: function(value) {
+          console.log(value);
+          this.screenDangerousName = value;
+      },
+      
+    onSearchConfirm: function(value) {
+      this.screenDangerousName = value;
+
+      this._showDialog();
+  },
         _bindItemChooseCompanyChange: function (indexArray) {
             if (isEmptyArray(indexArray)) return;
 
