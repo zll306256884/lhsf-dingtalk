@@ -7,7 +7,9 @@
     "pages/user/page/login/index",
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
-    "pages/work/page/list/list"
+    "pages/work/page/list/list",
+    "pages/work/page/addProject/addProject",
+    "pages/work/page/projectInfo/projectInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

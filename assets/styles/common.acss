@@ -219,12 +219,12 @@
 }
 
 .star::before {
-  content: '∗ ';
+  content: '∗';
   color: #F24C3D;
 }
 
 .star-transparent::before {
-  content: '∗ ';
+  content: '∗';
   color: transparent;
 }
 

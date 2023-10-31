@@ -4,7 +4,7 @@ import apiApprovalManage from "../../server/workServer"
 Page({
   data:{
     iconList:[
-      { url:"../../../../assets/images/work/Group-1.png", name:"新证项目"},
+      { url:"../../../../assets/images/work/Group-1.png", name:"新证项目",path:'pages/work/page/addProject/addProject'},
       { url:"../../../../assets/images/work/Group-2.png", name:"新增日志"},
       { url:"../../../../assets/images/work/Group-3.png", name:"进度填报"},
       { url:"../../../../assets/images/work/Group-4.png",name:"招标文件会签"},

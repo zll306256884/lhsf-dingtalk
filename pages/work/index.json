@@ -1,5 +1,7 @@
 {
-  "defaultTitle": "工作台",
+  
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
   "usingComponents": {
   
   }

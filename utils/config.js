@@ -13,6 +13,8 @@ const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
 
 
 module.exports = {
-    API_HOST: API_HOST,
-    API_IMG_URL: API_IMG_URL,
+  API_HOST: API_HOST,
+  API_IMG_URL: API_IMG_URL,
+  //数据字典列表
+  API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
 }
