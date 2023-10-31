@@ -1,0 +1,25 @@
+<view a:if="{{isShow}}" class="item-company-staff-wrap">
+  <block a:for="{{companyList}}">
+      <view class="flex-display flex-align-center item" data-index="{{index}}" catchTap="_bindItemCompanyTap">
+          <image mode="aspectFit" class="flex0 icon-arrow" src="{{(item.organizeList && item.organizeList.length > 0) || (item.staffList && item.staffList.length > 0) ? item.isCheck ? '/assets/images/icon_arrow_triangle_down.png' : '/assets/images/icon_arrow_triangle_right.png' : ''}}"></image>
+          <view class="flex1 company-name single-line">
+              {{item.name}}
+          </view>
+      </view>
+      <block a:if="{{(item.organizeList && item.organizeList.length > 0) || (item.staffList && item.staffList.length > 0)}}">
+          <view style="margin-left: 30rpx">
+              <item-screen-company-staff companyList="{{item.organizeList}}" staffList="{{item.staffList}}" multiChoose="{{multiChoose}}" isShow="{{item.isCheck}}" itemIndex="{{index}}" onItemChooseCompanyChange="_bindItemChooseCompanyChange" onItemChooseUserChange="_bindItemChooseUserChange"></item-screen-company-staff>
+          </view>
+      </block>
+  </block>
+  <block a:for="{{staffList}}">
+      <view class="flex-display flex-align-center item" data-index="{{index}}" catchTap="_bindItemUserTap">
+          <view class="flex1 nickname single-line">
+              {{item.username}}
+          </view>
+          <block a:if="{{multiChoose}}">
+              <image mode="aspectFit" class="flex0 icon" src="{{item.isCheck ? '/assets/images/icon_check_square_p.png' : '/assets/images/icon_check_square_n.png'}}"></image>
+          </block> 
+      </view>
+  </block>
+</view>
