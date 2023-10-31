@@ -1,14 +1,4 @@
 <view class="container">
  <view onTap="tapName">数据看板</view> 
-
- <ant-button
- type="default"
- subText="副标题"
- onTap="handleTap">
- 次要按钮
-</ant-button>
-
- <dialog-picker-date-range ref="_onSaveDialogScreenDateRef" onPickerCallBack="_bindScreenDateCallBack"  onShowRecord="_showRecord"></dialog-picker-date-range>
-
-
+ <dialog-picker-date selectionMode="range" ref="_onSaveDialogScreenDateRef" onPickerCallBack="_bindScreenDateCallBack"></dialog-picker-date>
 </view>
