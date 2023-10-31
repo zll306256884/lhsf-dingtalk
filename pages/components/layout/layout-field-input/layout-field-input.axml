@@ -1,6 +1,6 @@
 <view class="flex f-align-center field-input-layout {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" 
     style="{{cssStyle}}">
-    <view class="name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}">
+    <view class="name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}" style='margin-left:-18rpx'>
         {{name}}
     </view>
     <block a:if="{{disabled}}">

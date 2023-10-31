@@ -1,7 +1,7 @@
 
 .field-cell-layout {
-    margin: 0 0 0;
-    padding: 30rpx 30rpx;
+  margin: 0rpx 32rpx;
+  padding: 24rpx 0rpx ;
 }
 
 .field-cell-layout.border-top {
@@ -13,9 +13,10 @@
 }
 
 .field-cell-layout .name {
-    line-height: 36rpx;
-    font-size: 28rpx;
-    color: #525966;
+    line-height: 48rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    color: #323233;
 }
 
 .field-cell-layout>.flex0 {
@@ -25,7 +26,11 @@
 .field-cell-layout .value {
     margin-left: 40rpx;
     line-height: 36rpx;
-    font-size: 24rpx;
+    font-size: 28rpx;
     color: #B8BFCC;
     text-align: right;
+}
+.field-cell-layout .arrowright{
+  width: 48rpx;
+  height: 48rpx
 }

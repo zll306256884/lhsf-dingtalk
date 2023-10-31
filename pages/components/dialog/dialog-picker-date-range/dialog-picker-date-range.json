@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+      "calendar": "mini-ali-ui-rpx/es/calendar/index"
+  }
+}

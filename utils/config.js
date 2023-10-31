@@ -21,10 +21,12 @@ module.exports = {
     API_SHO_SHU_DAN_WEI_LIST: API_HOST +'/platform/organize/queryTopList',
     // 项目类型
     API_PROJECT_TYPE :API_HOST +'/platform/sysDictItem/queryListByCode?dictCode=investment_project_type',
-     // 项目名称
-     API_PROJECT_NAME :API_HOST +'/integratedService/projectInfo/queryRoleProjectList',
-      // 合同名称
-      API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
-        // 合同下累计金额
-        API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment'
+    // 项目名称
+    API_PROJECT_NAME :API_HOST +'/integratedService/projectInfo/queryRoleProjectList',
+    // 合同名称
+    API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
+    // 合同下累计金额
+    API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
+    //数据字典列表
+    API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
 }
