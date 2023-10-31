@@ -1,9 +1,0 @@
-<view a:if="{{showDialog}}" class="dialog-picker-mask" style="top: {{topHeight}}px;marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
-<view a:if="{{showDialog}}" class="box-sizing-box dialog-picker-wrap" style="" animation="{{animationData}}" 
-    catchTouchMove="_bindTouchMove">
-    <!-- <view class='flex-display flex-space-between picker-view-header box-sizing-box'>
-        <text class="cancel" catchTap="_bindCancelTap">取消</text>
-        <text class="sure" catchTap="_bindSureTap">确定</text>
-    </view> -->
-    <calendar type="range" haveYear="{{true}}" onChange="_bindPickerDateChange" onSelect="_bindPickerDateRangeSelect"></calendar>
-</view>

@@ -80,6 +80,6 @@
 <dialog-picker ref="onSaveDialogConstructionNature" dataList="{{constructionNatureOptions}}" onPickerChange="bindScreenConstructionNatureFromCallBack"></dialog-picker>
 
 <dialog-picker-date ref="onSavePickerDateRef" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
-<dialog-picker-date-range ref="onSavePickerDatRangeRef" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date-range>
+<!-- <dialog-picker-date-range ref="onSavePickerDatRangeRef" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date-range>
 
-<dialog-picker-date-range ref="onSavePickerActualDatRangeRef" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date-range>
+<dialog-picker-date-range ref="onSavePickerActualDatRangeRef" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date-range> -->
