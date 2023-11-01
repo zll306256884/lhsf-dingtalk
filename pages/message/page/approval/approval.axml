@@ -1,0 +1,16 @@
+<view>
+  <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange">
+  </nav-tab-bar>
+  <view class="navbox">
+    <view a:if="{{ tabIndex==0 }}">
+      待办审批
+    </view>
+    <view a:if="{{ tabIndex==1 }}">
+      已办审批
+    </view>
+    <view a:if="{{ tabIndex==2 }}">
+      办结审批
+    </view>
+  </view>
+
+</view>

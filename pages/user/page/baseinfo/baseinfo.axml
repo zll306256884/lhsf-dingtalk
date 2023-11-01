@@ -2,22 +2,20 @@
   <!-- 基础信息 -->
   <view class="title box-sizing-box">基础信息</view>
   <view class="list">
-    <layout-field-cell name="姓名" value="杭州萧山国际机场三期项目">
+    <layout-field-cell name="姓名" value="{{username?username:'--'}}">
     </layout-field-cell>
-    <layout-field-cell borderTop name="部门" value="全咨"></layout-field-cell>
-    <layout-field-cell borderTop name="职位" value="325000万元"></layout-field-cell>
+    <layout-field-cell borderTop name="部门" value="{{deptName?deptName:'--'}}">
+    </layout-field-cell>
+    <layout-field-cell borderTop name="职位" value="{{station?station:'--'}}">
+    </layout-field-cell>
   </view>
   <!-- 在职项目 -->
   <view class="title box-sizing-box">在职项目</view>
-  <view class="list">
-    <layout-field-cell name="项目名称" value="杭州萧山国际机场三期项目">
+  <view a:for="{{projectList}}" class="list margin-t20" a:for-index="idx" a:for-item="item">
+    <layout-field-cell name="项目名称" value="{{item.projectName?item.projectName:'--'}}">
     </layout-field-cell>
-    <layout-field-cell borderTop name="项目角色" value="项目经理"></layout-field-cell>
-  </view>
-  <view class="list margin-t20">
-    <layout-field-cell name="项目名称" value="杭州萧山国际机场三期项目">
+    <layout-field-cell borderTop name="项目角色" value="{{item.role?item.role:'--'}}">
     </layout-field-cell>
-    <layout-field-cell borderTop name="项目角色" value="项目经理"></layout-field-cell>
   </view>
   <!--  -->
 </view>

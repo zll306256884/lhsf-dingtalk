@@ -1,12 +1,13 @@
-import ddUtils from "../../utils/ddUtils"
+import ddUtils from "../../../../utils/ddUtils"
 
 import {
   isEqual,
   isEmptyArray
-} from "../../utils/utils"
+} from "../../../../utils/utils"
 // import ddUtils from "../../../../utils/ddUtils"
-import userServer from "../../server/userServer"
-import request from "../../utils/request"
+import userServer from "../../../../server/userServer"
+import request from "../../../../utils/request"
+// import request from "../../../utils/request"
 
 const app = getApp();
 
@@ -14,62 +15,23 @@ const app = getApp();
 Page({
   data: {
     navbarData: {
-      title: "专项巡视",
+      title: "我的审批",
     },
     tabIndex: 0,
     tabList: [{
-      name: "今日巡视",
-      value:'1'
-    }, {
-      name: "巡视记录",
-      value:'2'
-    }, {
-      name: "巡视记录",
-      value:'3'
-    }, {
-      name: "巡视记录",
-      value:'4'
-    }],
-    subTabList: [{
-        name: "施工单位1"
+        name: "待办审批",
+        value: '1'
       },
       {
-        name: "危险源类型"
-      }, {
-        name: "危险源等级"
-      }, {
-        name: "状态"
-      }, {
-        name: "施工单位"
+        name: "已办审批",
+        value: '2'
       },
       {
-        name: "危险源类型"
-      }, {
-        name: "危险源等级"
-      }, {
-        name: "状态"
+        name: "办结审批",
+        value: '3'
       }
     ],
-    edata: '父组件传递过来的',
-    userInfo: {
-      nickName: '我是名字',
-      avatar: 'https://img.alicdn.com/tfs/TB1up2UVoT1gK0jSZFrXXcNCXXa-199-280.png',
-      mobile: '13014587895',
-      firstName: '我'
-    },
-    partList: [{
-        img: '../../assets/images/user/one.png',
-        name: '个人信息'
-      },
-      {
-        img: '../../assets/images/user/two.png',
-        name: '修改密码'
-      },
-      {
-        img: '../../assets/images/user/three.png',
-        name: '退出登陆'
-      }
-    ],
+   
   },
   onLoad(query) {
     // 页面加载
@@ -79,6 +41,14 @@ Page({
     // 页面加载完成
     // 类比于vue的mounted
     this.getList()
+  },
+  // tab切换组件
+  onNavTabChange: function (index) {
+    this.setData({
+      tabIndex: index
+    });
+    let targetValue=this.data.tabList[this.data.tabIndex].value
+    console.log('targetValue', targetValue)
   },
   // 跳转
   bindTopItemTap(e) {
@@ -187,7 +157,7 @@ Page({
     this.setData({
       tabIndex: index
     });
-    let targetValue=this.data.tabList[this.data.tabIndex].value
+    let targetValue = this.data.tabList[this.data.tabIndex].value
 
     console.log('targetValue', targetValue)
   },

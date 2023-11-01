@@ -24,7 +24,7 @@
 
 
 .judge {
-  margin-top: 64rpx;
+  /* margin-top: 64rpx; */
   width: 100%;
   height: 88rpx;
   background: #FFFFFF;

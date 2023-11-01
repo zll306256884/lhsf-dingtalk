@@ -1,10 +1,9 @@
 {
   "pages": [
-    
-    "pages/user/index",
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
+    "pages/user/index",
     "pages/user/page/baseinfo/baseinfo",
     "pages/user/page/editword/editword",
     "pages/user/page/personalinfo/index",
@@ -12,7 +11,9 @@
     "pages/user/page/login/index",
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
-    "pages/work/page/list/list"
+    "pages/work/page/list/list",
+    "pages/message/page/approval/approval"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
