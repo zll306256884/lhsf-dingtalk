@@ -1,6 +1,8 @@
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
 import ddUtils from "../../utils/ddUtils"
+const app = getApp();
+
 Page({
   data:{
     iconList:[
@@ -75,16 +77,32 @@ Page({
     this.getTaskList('',[1,2,5])
   },
   onItemTap(e){
-   if(e.target.dataset.index === 5){
-    ddUtils.navigateTo({
-      url: `/pages/work/page/addPayment/addPayment`
-    });
-   }
+    switch (e.target.dataset.index) {
+      case 0:
+      break;
+      case 1:
+      break;
+      case 2:
+      break;
+      case 3:
+      break;
+      case 4:
+      break;
+      case 5:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/addPayment/addPayment`
+        });
+      break;
+      case 6:
+      break;
+      case 7:
+      break;
+     }
   },
   // 获取全部待办列表
     getAwaitList: function () {
     let data = {
-      projectId:""
+      projectId:app.globalData.userInfo.projectId || ''
     };
     request.doPostRequest({
         url:apiApprovalManage.API_ALL_WAIT_LIST,
@@ -99,8 +117,9 @@ Page({
 },
     //获取审批列表
     getApprovalList: function (status) {
+      // console.log('app ',app,app.globalData.userInfo.userAccount );
       let data = {
-          account:'admin',
+          account: 'admin',//待替换app.globalData.userInfo.userAccount
           pageNum: 1,
           pageSize: 3,
           showType:status,//1待办 2已办 3办结
@@ -199,7 +218,7 @@ onTaskChange(e){
 }) 
   switch (e) {
     case 0:
-    this.getTaskList('',[1,2,5])
+    this.getTaskList('',[1,2,5])//待替换app.globalData.userInfo.userAccount
     break;
     case 1:
     this.getTaskList('',[4])
