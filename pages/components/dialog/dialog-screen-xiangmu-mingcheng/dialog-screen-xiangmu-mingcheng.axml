@@ -1,5 +1,7 @@
+
 <block a:if="{{showDialog}}">
   <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
+ 
   <block a:if="{{positionBottom}}">
       <view class="dialog-picker" animation="{{animation}}">
           <view style="display:flex" class='flex-display flex-space-between picker-view-header box-sizing-box'>
@@ -19,8 +21,16 @@
       </view>
   </block>
   <block a:else>
-      <view class="box-sizing-box modal-content" style="top: {{topHeight}}px;marginTop:{{marginTop}}rpx;" animation="{{animationData}}" 
+  
+      <view class="box-sizing-box modal-content" style="margin-top:50rpx" animation="{{animationData}}" 
           catchTouchMove="_bindTouchMove">
+          <view  class="box-title">
+            选择项目
+            <text style="float:right;color:#969799;margin-right: 50rpx" catchTap="_bindCloseTap">x</text>
+          </view>
+          <view style="margin-bottom:30rpx">
+            <layout-search  onSearchInputChange="bindInputChange" onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>
+          </view>
           <scroll-view style="max-height: {{scrollHeight}}px;" scroll-y="{{true}}">
               <block a:for="{{dataList}}">
                   <view class="dialog-name border-top {{chooseIndex === index ? 'active' : ''}}" data-index="{{index}}" 

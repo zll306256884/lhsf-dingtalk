@@ -27,6 +27,10 @@ Page({
     ddUtils.navigateTo({
       url: `/pages/work/page/addPayment/addPayment`
     });
+   }else if(e.target.dataset.index === 6){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/alterationRegister/alterationRegister`
+    });
    }
   },
 
