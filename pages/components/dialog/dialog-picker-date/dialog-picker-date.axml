@@ -1,0 +1,26 @@
+<view a:if="{{showDialog}}" class="dialog-picker-mask" style="top: {{topHeight}}px;marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
+<view a:if="{{showDialog}}" class="box-sizing-border dialog-picker-wrap" style="" animation="{{animationData}}" 
+    catchTouchMove="_bindTouchMove">
+    <view slot="content">
+      <view class="custom-header">
+        <ant-button type="text" inline onTap="_bindCancelTap">取消</ant-button>
+        <icon  onTap="previousYear" type="LeftOutline" />
+        <view
+          onTap="previousMonth"
+          class="custom-header-left">
+          <icon type="LeftOutline" />
+        </view>
+        <view  onTap="previousYear">{{ options.title }}</view>
+        <view
+          onTap="nextMonth"
+          class="custom-header-right">
+          <icon type="RightOutline" />
+        </view>
+        <icon type="RightOutline" onTap="nextYear" />
+        <ant-button type="text" inline onTap="handleTap">确定</ant-button>
+      </view>
+      <calendar weekStartsOn selectionMode="{{selectionMode}}" monthRange="{{ options.monthRange }}" onChange="onChange">
+        <view slot="calendarTitle" />
+      </calendar>
+    </view>
+</view>

@@ -2,10 +2,10 @@
 
 <view class="flex field-cell-layout {{borderTop ? 'border-top' : ''}} {{borderBottom ? 'border-bottom' : ''}}" style="{{cssStyle}}">
     <view class="{{valueFlexMatck ? 'flex0' : 'flex1'}} name {{mustFill ? 'star' : ''}} {{mustFillTransparent ? 'star-transparent' : ''}}" 
-        style="color: {{nameColor}}; font-weight: {{nameBold ? 'bold' : 'normal'}}">
+        style="color: {{nameColor}}; font-weight: {{nameBold ? 'bold' : 'normal'}};margin-left:-18rpx">
         {{name}}
     </view>
     <view class="{{valueFlexMatck ? 'flex1' : 'flex0'}} value" style="color: {{!utils.isEmpty(value) ? valueColor : valueEmptyColor}}; text-align: {{valueLeft? 'left' : 'right'}}" 
         data-value="{{datasetValue}}" catchTap="_bindArrowTap">{{utils.isEmpty(value) ? placeholder : value}}</view>
-    <slot></slot>
+    <slot a:if="{{!value}}"><image class="arrowright" mode="scaleToFill" src="../../../../assets/images/common/arrow-right.png" /></slot>
 </view>

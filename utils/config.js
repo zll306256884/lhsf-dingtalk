@@ -17,6 +17,8 @@ module.exports = {
     API_IMG_URL: API_IMG_URL,
     //查询oa组织下人员列表
     API_OA_COMPANY_STAFF_LIST: API_HOST + "/platform/organize/queryStaffList",
+    // 筛选模糊查询oa组织下人员列表
+     API_OA_COMPANY_NAME:API_HOST + "/platform/organize/queryStaffListByName",
     //所属单位
     API_SHO_SHU_DAN_WEI_LIST: API_HOST +'/platform/organize/queryTopList',
     // 项目类型
@@ -29,4 +31,6 @@ module.exports = {
         API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
         // 款项类型
         API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
+    //数据字典列表
+    API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
 }

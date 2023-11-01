@@ -1,0 +1,15 @@
+.ant-modal-body-footer-horizontal-secondary,.ant-modal-body-footer-horizontal-primary{
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  margin:16rpx;
+  width: 216rpx;
+  height: 36rpx;
+}
+.ant-modal-body-footer-horizontal{
+  position: unset;
+}
+.ant-modal-body-content{
+  color: red;
+}
