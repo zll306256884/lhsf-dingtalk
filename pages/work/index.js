@@ -74,7 +74,7 @@ Page({
     this.getAwaitList()
     this.getApprovalList(1)
     this.getQueryList('2')
-    this.getTaskList('',[1,2,5])
+    this.getTaskList(app.globalData.userInfo.userId,[1,2,5])
   },
   onItemTap(e){
     switch (e.target.dataset.index) {
@@ -117,9 +117,9 @@ Page({
 },
     //获取审批列表
     getApprovalList: function (status) {
-      // console.log('app ',app,app.globalData.userInfo.userAccount );
+      console.log('app ',app );
       let data = {
-          account: 'admin',//待替换app.globalData.userInfo.userAccount
+          account: app.globalData.userInfo.userAccount,
           pageNum: 1,
           pageSize: 3,
           showType:status,//1待办 2已办 3办结
@@ -218,7 +218,7 @@ onTaskChange(e){
 }) 
   switch (e) {
     case 0:
-    this.getTaskList('',[1,2,5])//待替换app.globalData.userInfo.userAccount
+    this.getTaskList(app.globalData.userInfo.userId,[1,2,5])
     break;
     case 1:
     this.getTaskList('',[4])
