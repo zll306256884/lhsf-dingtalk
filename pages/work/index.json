@@ -1,5 +1,8 @@
 {
   "defaultTitle": "工作台",
   "usingComponents": {
+    "tabs": "antd-mini/es/Tabs/index",
+    "avatar": "antd-mini/es/Avatar/index",
+    "icon": "antd-mini/es/Icon/index"
   }
 }
