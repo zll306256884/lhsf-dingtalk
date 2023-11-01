@@ -1,0 +1,30 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+
+<block a:if="{{showDialog}}">
+    <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
+    <view class="dialog-scroll" animation="{{animation}}">
+      <layout-search onSearchInputChange="bindInputChange" onSearchConfirm="onSearchConfirm" placeholder="请输入人员"></layout-search>
+        <view class='flex-display flex-space-between picker-view-header box-sizing-box'>
+            <text a:if="{{multiChoose}}" class="cancel" catchTap="_bindCancelTap">取消</text>
+            <view class="flex1 dialog-picker-title">
+                {{title}}
+            </view>
+            <text a:if="{{multiChoose}}" class="sure" catchTap="_bindSureTap">确定</text>
+        </view>
+        <scroll-view class="scroll" style="height: {{scrollHeight}}px;" scroll-y="{{true}}">
+            <block a:for="{{dataList}}">
+                <view class="box-sizing-box item" data-index="{{index}}" catchTap="_bindItemTap">
+                    <view class="flex-display flex-align-center total-wrap">
+                        <image mode="aspectFit" class="flex0 icon-arrow" src="{{item.isCheck ? '/assets/images/icon_arrow_triangle_down.png' : '/assets//images/icon_arrow_triangle_right.png'}}"></image>
+                        <view class="flex1 total-name single-line">
+                            {{item.name}}
+                        </view>
+                    </view>
+                    <item-screen-company-staff companyList="{{item.organizeList}}" staffList="{{item.staffList}}" multiChoose="{{multiChoose}}" 
+                        isShow="{{item.isCheck}}" itemIndex="{{index}}" onItemChooseCompanyChange="_bindItemChooseCompanyChange" 
+                        onItemChooseUserChange="_bindItemChooseUserChange"></item-screen-company-staff>
+                </view>
+            </block>
+        </scroll-view>
+    </view>
+</block>

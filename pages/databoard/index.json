@@ -1,3 +1,6 @@
 {
-  "defaultTitle": "数据看板"
+  "defaultTitle": "数据看板",
+  "usingComponents": {
+    "dialog-modal": "/pages/components/dialog/dialog-modal/dialog-modal"
+}
 }

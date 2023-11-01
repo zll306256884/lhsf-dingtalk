@@ -1,10 +1,10 @@
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
-
+import ddUtils from "../../utils/ddUtils"
 Page({
   data:{
     iconList:[
-      { url:"../../../../assets/images/work/Group-1.png", name:"新证项目"},
+      { url:"../../../../assets/images/work/Group-1.png", name:"新增项目",path:'pages/work/page/addProject/addProject'},
       { url:"../../../../assets/images/work/Group-2.png", name:"新增日志"},
       { url:"../../../../assets/images/work/Group-3.png", name:"进度填报"},
       { url:"../../../../assets/images/work/Group-4.png",name:"招标文件会签"},
@@ -12,15 +12,24 @@ Page({
       { url:"../../../../assets/images/work/Group-6.png", name:"新增支付"},
       { url:"../../../../assets/images/work/Group-7.png", name:"变更登记"},
       { url:"../../../../assets/images/work/Group-8.png", name:"竣工结算登记"}
-    ]
+    ],
+
   },
+  
   onLoad(option) {
+    console.log(option);
     this. getRecordList()
     
   },
-  onItemTap(){
-
+  onItemTap(e){
+  console.log(e.target.dataset.index);
+   if(e.target.dataset.index === 5){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/addPayment/addPayment`
+    });
+   }
   },
+
     //获取列表
     getRecordList: function () {
       let data = {
@@ -36,5 +45,5 @@ Page({
           complete: res => {
           }
       });
-  },
+  }
 });

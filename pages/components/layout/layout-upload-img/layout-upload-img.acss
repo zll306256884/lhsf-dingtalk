@@ -5,7 +5,7 @@
 .upload-img-list .item {
     width: 140rpx;
     height: 140rpx;
-    margin: 20rpx 0 0 30rpx;
+    margin: 00rpx 0 0 30rpx;
     position: relative;
 }
 

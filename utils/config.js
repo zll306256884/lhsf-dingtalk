@@ -15,4 +15,22 @@ const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
 module.exports = {
     API_HOST: API_HOST,
     API_IMG_URL: API_IMG_URL,
+    //查询oa组织下人员列表
+    API_OA_COMPANY_STAFF_LIST: API_HOST + "/platform/organize/queryStaffList",
+    // 筛选模糊查询oa组织下人员列表
+     API_OA_COMPANY_NAME:API_HOST + "/platform/organize/queryStaffListByName",
+    //所属单位
+    API_SHO_SHU_DAN_WEI_LIST: API_HOST +'/platform/organize/queryTopList',
+    // 项目类型
+    API_PROJECT_TYPE :API_HOST +'/platform/sysDictItem/queryListByCode?dictCode=investment_project_type',
+     // 项目名称
+     API_PROJECT_NAME :API_HOST +'/integratedService/projectInfo/queryRoleProjectList',
+      // 合同名称
+      API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
+        // 合同下累计金额
+        API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
+        // 款项类型
+        API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
+    //数据字典列表
+    API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
 }

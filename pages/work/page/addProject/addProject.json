@@ -1,0 +1,12 @@
+{
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
+  "usingComponents": {
+    "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
+    "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
+    "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker",
+    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date"
+  }
+}

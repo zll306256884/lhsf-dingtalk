@@ -1,0 +1,49 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+
+<view class="container">
+  <form onSubmit="bindFormSubmit">
+    <view class="box-shadow">
+      <layout-field-cell borderTop name="项目类型" mustFill placeholder="请选择" value="{{projectTypeData.itemText}}" 
+      onArrowTap="bindChooseProjectTypeTap"></layout-field-cell>
+      <layout-field-cell borderTop name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" 
+      onArrowTap="bindChooseProjectTap"></layout-field-cell>
+      <layout-field-cell borderTop name="项目负责人" mustFill placeholder="自动带入"  value="{{projectLeader}}"></layout-field-cell>
+      <layout-field-cell borderTop name="所属单位" mustFill placeholder="自动带入"  value="{{affiliateUnit}}"></layout-field-cell>
+      <layout-field-cell borderTop name="合同名称" mustFill placeholder="请选择"  value="{{contractData.contractName}}"  onArrowTap="bindChooseContractNameTap"></layout-field-cell>
+      <layout-field-cell borderTop name="合同金额(万元)" mustFill placeholder="自动带入"  value="{{contractAmount}}"></layout-field-cell>
+      <layout-field-cell borderTop name="累计已付款(万元)" mustFill placeholder="自动带入"  value="{{totalPayment}}"></layout-field-cell>
+      <layout-field-cell borderTop name="付款单位" mustFill placeholder="请选择"  value="{{slowUnitData.unitName}}"  onArrowTap="bindChooseSlowUnitTap"></layout-field-cell>
+      <layout-field-cell borderTop name="收款单位" mustFill placeholder="请选择"  value="{{proceedsData.unitName}}"  onArrowTap="bindChooseProceedsUnitTap"></layout-field-cell>
+      <layout-field-input borderTop name="本次应付金额" inputName="payAmount" mustFill disabled="{{isEdit}}" value="{{payAmount}}" placeholder="请输入"></layout-field-input>
+      <layout-field-cell borderTop name="支付节点（或形象进度）" mustFill></layout-field-cell>
+      <textarea class="desc" name="desc" maxlength="300" value="{{paymentNode}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>
+      <view style="height: 20rpx;"></view>
+      <layout-field-cell borderTop name="付款内容" mustFill></layout-field-cell>
+      <textarea class="desc" name="desc" maxlength="300" value="{{paymentContent}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>
+      <view style="height: 20rpx;"></view>
+      <layout-field-cell borderTop name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="bindChooseApplyDateTap"></layout-field-cell>
+      <!-- <layout-field-cell borderTop name="所属单位" mustFill placeholder="请选择所属单位" value="{{screenShiGongUnitData.name}}" 
+      onArrowTap="_bindChooseShiGongUnitTap"></layout-field-cell> -->
+    </view>
+    <view class="box-shadow" style="padding-bottom: 30rpx;">
+      <layout-field-cell borderTop mustFill name="上传附件"></layout-field-cell>
+       <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
+    </view>
+    <view class="box-shadow">
+      <layout-field-cell borderTop name="会签分管领导" mustFill placeholder="请选择" value="{{countersignLeader_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell>
+    </view>
+     <view class="flex-display flex-align-center btn-wrap">
+            <button class="flex1 btn" catchTap="bindCancelTap">取  消</button>
+            <button class="flex1 btn zancun">暂存</button>
+            <button class="flex1 btn active" form-type="submit">保  存</button>
+        </view>
+  </form>
+</view>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  multiChoose onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
+<dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>
+<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
+<dialog-screen-fukuan-danwei ref="onSaveDialogScreenslowunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseSlowUnitCallBack"></dialog-screen-fukuan-danwei>
+<dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
+<dialog-picker-date ref="onSaveDialogScreenApplyDateRef" selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>

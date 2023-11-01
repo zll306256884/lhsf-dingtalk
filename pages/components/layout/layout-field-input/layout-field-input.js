@@ -4,6 +4,7 @@ Component({
     data: {
     },
     props: {
+        dataIndex:0,
         borderTop: false,
         borderBottom: false,
         mustFill: false,
@@ -47,7 +48,10 @@ Component({
 
         //bind  blur change
         _bindBlurChange: function (e) {
-            this.props.onBlurChange("")
+            this.props.onBlurChange({
+              e,
+              index:this.props.dataIndex
+            })
         },
     },
 });

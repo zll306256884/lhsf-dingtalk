@@ -12,8 +12,10 @@
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
-    "pages/message/page/approval/approval"
-    
+    "pages/message/page/approval/approval",
+    "pages/work/page/addPayment/addPayment",
+    "pages/work/page/addProject/addProject",
+    "pages/work/page/projectInfo/projectInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

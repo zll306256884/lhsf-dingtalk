@@ -13,6 +13,7 @@ margin:-70rpx auto 0;
 .grid-icon{
 width: 100rpx;
 height: 100rpx;
+background-size: 100% 100%;
 background: linear-gradient(180deg, #5E8FFF 0%, #3271FF 100%);
 opacity: 1;
 margin:24rpx 34rpx
@@ -21,7 +22,6 @@ margin:24rpx 34rpx
   width: 100%;
   display: block;
   font-size: 26rpx;
-  font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
   color: #1D1D1F;
   line-height: 44rpx;

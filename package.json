@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "mini-ali-ui": "^1.4.1",
-    "mini-ali-ui-rpx": "^1.4.1"
+    "antd-mini": "^2.14.0"
   }
 }

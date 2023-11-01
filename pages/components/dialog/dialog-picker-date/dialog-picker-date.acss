@@ -1,0 +1,50 @@
+.dialog-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+}
+
+.dialog-picker-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 10000;
+  padding:24rpx;
+  border-radius: 32rpx 32rpx 0 0;
+}
+
+.dialog-picker-wrap .picker-view-header {
+  padding: 0 30rpx;
+  height: 100rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  color: #999;
+  font-weight: bold;
+  border-bottom: 1px solid #f6f6f6;
+}
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+}
+.custom-header-left {
+  display: flex;
+  align-items: center;
+}
+.custom-header-right {
+  display: flex;
+  align-items: center;
+}
+.odd {
+  color: red;
+}
+.even {
+  color: blue;
+}

@@ -1,0 +1,44 @@
+/* common/components/nav-bar.wxss */
+.nav-wrap {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+    z-index: 99999;
+}
+
+.nav-wrap .nav-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #222222;
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    left: 51px;
+    right: 51px;
+    bottom: 0px;
+}
+
+.nav-wrap .nav-title.active {
+    left: 20px;
+    right: 20px;
+}
+
+.nav-wrap .nav-title.center {
+    text-align: center;
+}
+
+.nav-wrap .nav-back {
+    padding: 0 15px;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 100000;
+}
+
+.nav-back .icon-back {
+    display: block;
+    width: 8px;
+    height: 15px;
+}
