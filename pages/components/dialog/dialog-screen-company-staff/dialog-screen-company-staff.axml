@@ -3,6 +3,7 @@
 <block a:if="{{showDialog}}">
     <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
     <view class="dialog-scroll" animation="{{animation}}">
+      <layout-search onSearchInputChange="bindInputChange" onSearchConfirm="onSearchConfirm" placeholder="请输入人员"></layout-search>
         <view class='flex-display flex-space-between picker-view-header box-sizing-box'>
             <text a:if="{{multiChoose}}" class="cancel" catchTap="_bindCancelTap">取消</text>
             <view class="flex1 dialog-picker-title">

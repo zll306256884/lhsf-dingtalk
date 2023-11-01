@@ -1,0 +1,19 @@
+<!-- 遮罩层 -->
+<view a:if="{{showDialog}}" class="dialog-mask" catchTouchMove="_bindOnTouchMove" />
+<!--城市三级联动-->
+<view a:if="{{showDialog}}" class="dialog-wrap" animation="{{animation}}">
+    <view class='flex picker-view-header box-sizing-box'>
+        <text class="cancel" catchTap="_bindCancelTap">取消</text>
+        <view class="flex1 dialog-picker-title">
+          {{title}}
+        </view>
+        <text class="sure" catchTap="_bindSureTap">确定</text>
+    </view>
+    <picker-view class="picker-view" onChange="_bindPickerChange" value="{{[selectValue]}}">
+        <picker-view-column>
+            <view a:for="{{dataList}}" class="item">
+                {{item.name}}
+            </view>
+        </picker-view-column>
+    </picker-view>
+</view>

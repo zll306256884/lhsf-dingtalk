@@ -18,7 +18,6 @@
     left: 51px;
     right: 51px;
     bottom: 0px;
-    z-index: 99999;
 }
 
 .nav-wrap .nav-title.active {

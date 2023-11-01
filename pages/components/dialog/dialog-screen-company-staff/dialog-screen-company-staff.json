@@ -1,6 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-      "item-screen-company-staff": "/pages/components/dialog/item-screen-company-staff/item-screen-company-staff"
+      "item-screen-company-staff": "/pages/components/dialog/item-screen-company-staff/item-screen-company-staff",
+      "layout-search": "/pages/components/layout/layout-search/layout-search"
+
   }
 }

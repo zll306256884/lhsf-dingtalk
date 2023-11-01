@@ -1,5 +1,6 @@
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../utils/config"
+import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 Page({
   data: {
@@ -11,6 +12,11 @@ Page({
     screenExecuteUser: "",
     contractAmount:'',//合同金额
     totalPayment:'',//累计已付款
+    payAmount:'',//本次应付金额
+    paymentNode:'',//支付节点（或形象进度）
+    paymentContent:'',//付款内容
+    applicationTime:"",
+    countersignLeader_text: "",//会签分管领导
     dialogScreenExecuteUserRef: null,
     dialogScreenShiGongUnitRef: null,
     chooseExecuteUserList: [],
@@ -21,9 +27,15 @@ Page({
     dialogScreenprojectTypeRef:null, //项目类型
     dialogScreenprojectRef:null, //项目名称
     dialogScreenpcontractRef:null,
+    dialogScreenpslowUnitRef:null,
+    dialogScreenpProceedsUnitRef:null,
+    dialogScreenApplyDateRef:null, // 申请日期
+    uploadImgRef: null,// 上传
     projectTypeData:{},// 项目类型,
     projectData:{},// 项目名称,
     contractData:{},// 合同名称
+    slowUnitData:{},//付款单位
+    proceedsData:{}//收款单位
   },
   onLoad() {},
 
@@ -65,6 +77,7 @@ onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
 bindChooseProjectCallBack: function (data) {
+  console.log(data);
   this.setData({
     projectData: data || {},
     projectLeader:data.projectLeaderName,
@@ -88,7 +101,53 @@ bindChooseProjectCallBack: function (data) {
       projectTypeData: data || {}
     });
 },
- //执行人员
+// 付款单位
+bindChooseSlowUnitTap:function(e){
+  if (this.data.isEdit) return;
+  if (this.dialogScreenpslowUnitRef) this.dialogScreenpslowUnitRef._showDialog(this.data.slowUnitData.id)
+},
+onSaveDialogScreenslowunitRef:function (ref){
+  console.log(ref);
+  this.dialogScreenpslowUnitRef = ref;
+},
+bindChooseSlowUnitCallBack:function(data){
+  this.setData({
+    slowUnitData: data || {},
+  });
+},
+//收款单位
+bindChooseProceedsUnitTap:function(e){
+  if (this.data.isEdit) return;
+  if (this.dialogScreenpProceedsUnitRef) this.dialogScreenpProceedsUnitRef._showDialog(this.data.proceedsData.id)
+},
+onSaveDialogScreenproceedsunitRef:function (ref){
+  console.log(ref);
+  this.dialogScreenpProceedsUnitRef = ref;
+},
+bindChooseProceedsUnitCallBack:function(data){
+  this.setData({
+    proceedsData: data || {},
+  });
+},
+// 申请日期
+bindChooseApplyDateTap :function(e){
+  console.log(e);
+  if (this.dialogScreenApplyDateRef) this.dialogScreenApplyDateRef._showDialog()
+},
+onSaveDialogScreenApplyDateRef:function(ref){
+  this.dialogScreenApplyDateRef = ref
+},
+bindChooseApplyDateCallBack(data){
+  console.log(data,333333333333333);
+  this.setData({
+    applicationTime: data.startDate || {},
+  });
+},
+// 上传
+onSaveUploadImgRef: function (ref) {
+  this.uploadImgRef = ref;
+},
+ //会签分管领导
   bindChooseExecuteUserTap: function (e) {
   //   this.setData({
   //     showDialog: true
@@ -112,7 +171,7 @@ bindScreenExecuteUserCallBack: function (list) {
   }
 
   this.setData({
-      screenExecuteUser: isEmpty(str) ? '' : str.substring(0, str.length - 1)
+    countersignLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1)
   });
 },
 //所属单位
@@ -133,5 +192,8 @@ _bindScreenShiGongUnitCallBack: function (data) {
 
   // this._getLastSubmitInfo();
 },
-
+bindCancelTap: function (e) {
+  console.log(12121212);
+  ddUtils.navigateBack();
+},
 });

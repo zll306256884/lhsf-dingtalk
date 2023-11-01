@@ -1,7 +1,7 @@
 
 .field-input-layout {
-    margin: 0 0 0;
-    padding: 20rpx 30rpx;
+  padding: 24rpx 00rpx;
+  margin: 0rpx 32rpx;
 }
 
 .field-input-layout.border-top {
@@ -14,15 +14,16 @@
 
 .field-input-layout .name {
     max-width: 450rpx;
-    line-height: 36rpx;
-    font-size: 28rpx;
-    color: #525966;
+    line-height: 48rpx;
+    font-size: 32rpx;
+    font-weight: 400;
+    color: #323233; 
 }
 
 .field-input-layout .value {
     margin-left: 40rpx;
     line-height: 36rpx;
-    font-size: 24rpx;
+    font-size: 28rpx;
     color: #B8BFCC;
     text-align: right;
 }
