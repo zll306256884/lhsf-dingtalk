@@ -192,6 +192,33 @@ _bindScreenShiGongUnitCallBack: function (data) {
 
   // this._getLastSubmitInfo();
 },
+
+//bind form submit
+bindFormSubmit: function (e) {
+  console.log(e,999999999999999);
+  let payAmount = e.detail.value.payAmount
+  let paymentNode = e.detail.value.paymentNode
+  let paymentContent = e.detail.value.paymentContent
+  if(!this.data.isEdit){
+    if (ddUtils.showEmptyToastTips(this.data.projectTypeData.itemValue, "请选择项目类型")) return;
+    if (ddUtils.showEmptyToastTips(this.data.projectData.id, "请选择项目名称")) return;
+    if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "请选择合同名称")) return;
+    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.proceedsData.id, "请选择收款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
+    if (ddUtils.showEmptyToastTips(payAmount, "请输入应付金额")) return;
+    if (ddUtils.showEmptyToastTips(paymentNode, "请输入支付节点（或形象进度）")) return;
+    if (ddUtils.showEmptyToastTips(paymentContent, "请输入付款内容")) return;
+    if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
+
+  }
+  let investmentFileList = [];
+  if (this.uploadImgRef) {
+    investmentFileList = this.uploadImgRef._getUploadImgId().imgIdList;
+}
+if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传")) return;
+},
+// 取消
 bindCancelTap: function (e) {
   console.log(12121212);
   ddUtils.navigateBack();

@@ -94,6 +94,9 @@ Page({
         });
       break;
       case 6:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/alterationRegister/alterationRegister`
+        });
       break;
       case 7:
       break;

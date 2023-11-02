@@ -3,6 +3,7 @@ Component({
     data: {
     },
     props: {
+        hidden:true,
         borderTop: false,
         borderBottom: false,
         mustFill: false,

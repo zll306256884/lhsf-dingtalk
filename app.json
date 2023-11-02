@@ -10,7 +10,8 @@
     "pages/work/page/list/list",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
-    "pages/work/page/projectInfo/projectInfo"
+    "pages/work/page/projectInfo/projectInfo",
+    "pages/work/page/alterationRegister/alterationRegister"
   ],
   "window": {
     "backgroundTextStyle": "light",
