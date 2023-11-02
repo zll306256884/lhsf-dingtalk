@@ -1,0 +1,29 @@
+<view a:if="{{showDialog}}" class="modal-mask" style="bottom: 0px;" catchTap="_bindCancelTap" onTouchMove="_bindTouchMove"></view>
+<view a:if="{{showDialog}}" class="box-sizing-box modal-content" style="bottom:0px;marginBottom:0rpx;" 
+    animation="{{animationData}}" onTouchMove="_bindContentTouchMove">
+  <view class='flex picker-view-header box-sizing-box'>
+      <text class="cancel" catchTap="_bindCancelTap">取消</text>
+      <view class="flex1 dialog-picker-title">
+        {{title}}
+      </view>
+      <!-- <text class="sure" catchTap="_bindSureTap">确定</text> -->
+  </view>
+
+  <view class="flex f-align-center search-wrap-wrap">
+    <image class="icon-search" src="/assets/images/common/icon_search_gray.png" />
+    <input class="flex1 search-input" value="{{inputValue}}" placeholder-class="placeholder-class" placeholder="请输入单位名称" confirm-type="search" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
+  </view>
+
+  <scroll-view style="max-height: {{scrollHeight}}px;" scroll-y="{{true}}" onScroll="_bindScroll">
+      <block a:for="{{dataList}}">
+          <view class="content-content border-top" data-index="{{index}}" data-id="{{item.id}}" catchTap="_bindItemTap">
+            <view class="dialog-name {{chooseIndex === index ? 'active' : ''}}">
+              {{item.name}}
+            </view>
+            <view class="dialog-code {{chooseIndex === index ? 'active' : ''}}">
+              社会信用代码：{{item.code}}
+            </view>
+          </view>
+      </block>
+  </scroll-view>
+</view>

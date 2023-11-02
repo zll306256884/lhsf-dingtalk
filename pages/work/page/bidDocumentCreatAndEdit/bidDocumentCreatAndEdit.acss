@@ -1,0 +1,39 @@
+.ant-input-content{
+  text-align: right;
+  font-size: 28rpx;
+}
+.buttons{
+  border-top: 1px solid #DBDADF;
+  padding: 16rpx 18rpx;
+  margin-top: 16rpx;
+}
+/* .container{
+  padding-top: 16rpx;
+}
+.container .containerinner{
+  display: block;
+  background:#fff;
+} */
+.buttons .btn{
+  width: 227rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 80rpx;
+}
+.buttons .active{
+  color: #fff;
+  background: #1A6AFF;
+}
+.ant-button{
+  padding: 0;
+}
+.ant-button-default{
+  box-shadow:none
+}

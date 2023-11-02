@@ -274,112 +274,73 @@ Component({
     // web upload file <前端直传>
     _uploadWebFile: function (filePath, name, index) {
       console.log(filePath,name,index)
-      
-      return
-      const host = 'https://cjwtest.eos-tianjin-1.cmecloud.cn'; // 以天津、桶名称为 cjwtest 为例
-      const key = 'ces.png'; //您的文件名moduleName + `/` + file.name
-      const acl = 'public-read'; // acl
-      const contentType = 'image/png' // Content-Type
-      const XAmzCredential = 'BPOCK6I4R2NGWFZDNYXC/20221013/us-east-1/s3/aws4_request'
-      const XAmzAlgorithm = 'AWS4-HMAC-SHA256'
-      const XAmzDate = '20221013T053423Z'
-      const policy = 'eyJleHBpcmF0aW9uIjogIjIwMjItMTAtMTNUMDY6MzQ6MjNaIiwgImNvbmRpdGlvbnMiOiBbeyJhY2wiOiAicHVibGljLXJlYWQifSwgeyJidWNrZXQiOiAiY2p3dGVzdCJ9LCBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiaW1hZ2UvcG5nIl0sIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAwLCAyMDAwMDAwMDAwMF0sIHsiYnVja2V0IjogImNqd3Rlc3QifSwgeyJrZXkiOiAieW91cl9maWxlLnBuZyJ9LCB7IngtYW16LWFsZ29yaXRobSI6ICJBV1M0LUhNQUMtU0hBMjU2In0sIHsieC1hbXotY3JlZGVudGlhbCI6ICJCUE9DSzZJNFIyTkdXRlpETllYQy8yMDIyMTAxMy91cy1lYXN0LTEvczMvYXdzNF9yZXF1ZXN0In0sIHsieC1hbXotZGF0ZSI6ICIyMDIyMTAxM1QwNTM0MjNaIn1dfQ==';
-      const XAmzSignature = '277da2be96678f962ee9c53d60a78a5247311a0023f57df670eadfd4ce3e1dde'
-      dd.uploadFile({
-        url: host,
-        header: {},
+
+      if (isEmpty(filePath)) {
+        ddUtils.showToast({
+          title: "无效的文件地址"
+        });
+        return
+      }
+      request.doWebUploadFile({
         filePath: filePath,
-        fileName: 'file',
-        fileType: 'image',
-        formData: {
-          'key': key,
-          'acl': acl,
-          'Content-Type': contentType,
-          'X-Amz-Credential': XAmzCredential,
-          'X-Amz-Algorithm': XAmzAlgorithm,
-          'X-Amz-Date': XAmzDate,
-          'Policy': policy,
-          'X-Amz-Signature': XAmzSignature
-        },
-        success: (res) => {
-          console.log(res)
-          if (res.statusCode === 204) {
-            console.log('上传成功');
+        compressLevel: 2,
+        success: res => {
+          if (res.data) {
+            console.log(res.data)
+            let item = this.data.imgList[index];
+            item.progress = 100;
+            item.name = res.data.fileName
+            item.url = res.data.path
+            this.data.imgList[index] = item;
+            this.setData({
+              imgList: this.data.imgList
+            });
+            console.log('this.data.imgList',this.data.imgList)
+            // dd.getFileInfo({
+            //   apFilePath: res.data.fileLocalPath,  //回调本地文件地址
+            //   success: file => {
+            //     request.doPostRequest({
+            //       url: config.API_SAVE_FILE_SERVER,  // 上传保存到文件服务器
+            //       data: [
+            //         {
+            //           name: res.data.fileName,
+            //           downloadUrl: res.data.filePath,
+            //           size: file.size,
+            //           type: res.data.fileType === 'image' ? 1 : (res.data.fileType === 'video' ? 2 : 3)
+            //         }
+            //       ],
+            //       success: saveRes1 => {
+            //         if (saveRes1.data && Array.isArray(saveRes1.data.fileResultInfoList) && saveRes1.data.fileResultInfoList.length === 1) {
+            //           item.id = saveRes1.data.fileResultInfoList[0].id;
+            //           item.url = res.data.path;
+            //           item.progress = 100;
+            //           item.name = res.data.fileName
+            //           this.data.imgList[index] = item;
+            //           this.setData({
+            //             imgList: this.data.imgList
+            //           });
+            //         }
+            //       },
+            //       fail: (error) => {
+            //         ddUtils.showAlert({
+            //           content: "图片上传失败!"
+            //         });
+            //       }
+            //     });
+            //   }
+            // })
           }
         },
-        fail: err => {
-          console.log(err);
-        }
-      });
-
-
-
-
-
-
-      // if (isEmpty(filePath)) {
-      //   ddUtils.showToast({
-      //     title: "无效的文件地址"
-      //   });
-      //   return
-      // }
-      // request.doWebUploadFile({
-      //   filePath: filePath,
-      //   compressLevel: 2,
-      //   success: res => {
-      //     if (res.data) {
-      //       console.log(res.data)
-      //       let item = this.data.imgList[index];
-      //       item.progress = 99;
-      //       this.data.imgList[index] = item;
-      //       this.setData({
-      //         imgList: this.data.imgList
-      //       });
-      //       dd.getFileInfo({
-      //         apFilePath: res.data.fileLocalPath,  //回调本地文件地址
-      //         success: file => {
-      //           request.doPostRequest({
-      //             url: config.API_SAVE_FILE_SERVER,  // 上传保存到文件服务器
-      //             data: [
-      //               {
-      //                 name: res.data.fileName,
-      //                 downloadUrl: res.data.filePath,
-      //                 size: file.size,
-      //                 type: res.data.fileType === 'image' ? 1 : (res.data.fileType === 'video' ? 2 : 3)
-      //               }
-      //             ],
-      //             success: saveRes1 => {
-      //               if (saveRes1.data && Array.isArray(saveRes1.data.fileResultInfoList) && saveRes1.data.fileResultInfoList.length === 1) {
-      //                 item.id = saveRes1.data.fileResultInfoList[0].id;
-      //                 item.url = res.data.path;
-      //                 item.progress = 100;
-      //                 item.name = res.data.fileName
-      //                 this.data.imgList[index] = item;
-      //                 this.setData({
-      //                   imgList: this.data.imgList
-      //                 });
-      //               }
-      //             },
-      //             fail: (error) => {
-      //               ddUtils.showAlert({
-      //                 content: "图片上传失败!"
-      //               });
-      //             }
-      //           });
-      //         }
-      //       })
-      //     }
-      //   },
-      //   fail: error => {
-      //     this.data.imgList[index].progress = 0;
-      //     this.setData({
-      //       imgList: this.data.imgList
-      //     });
-      //     ddUtils.showAlert({
-      //       content: "图片上传失败!"
-      //     });
-      //   },
-      // })
+        fail: error => {
+          this.data.imgList[index].progress = 0;
+          this.setData({
+            imgList: this.data.imgList
+          });
+          ddUtils.showAlert({
+            content: "图片上传失败!"
+          });
+        },
+      })
     }
   },
 });

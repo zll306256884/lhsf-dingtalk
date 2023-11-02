@@ -14,6 +14,25 @@
   line-height: 32rpx;
   padding: 32rpx 32rpx 16rpx;
 }
+.container .containerinner .cellcontent{
+  margin:0 30rpx;
+  padding: 20rpx 0;
+  /* margin-left: 16rpx; */
+}
+.container .containerinner .celltitle{
+  font-size: 32rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 48rpx;
+}
+.container .containerinner .textarea{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 48rpx;
+}
 .container .containerinner .redline-title{
   font-size: 32rpx;
   font-family: PingFang SC-Regular, PingFang SC;

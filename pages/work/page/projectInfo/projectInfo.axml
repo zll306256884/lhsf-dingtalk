@@ -1,4 +1,4 @@
-<<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
   <form onSubmit="bindFormSubmit">
     <view class="containerinner">
@@ -21,8 +21,8 @@
       <layout-field-cell borderBottom name="工程性质" mustFillTransparent disabled value="{{engineeringProperties.name}}"></layout-field-cell>
       
       <layout-field-cell borderBottom name="项目负责人" mustFillTransparent disabled value="{{formData.projectLeaderName}}"></layout-field-cell>
-      <layout-field-cell name="建设规模及内容" mustFillTransparent value="{{}}"></layout-field-cell>
-      <textarea class="reason" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
+      <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
+      <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
     </view>
 
     <view class="containerinner" style="margin-top:16rpx">
@@ -39,7 +39,7 @@
       <view class="redline-title">
         项目红线图
       </view>
-      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
+      <layout-upload-img ref="onSaveUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"></layout-upload-img>
     </view>
     <view class="containerinner" style="margin-top:16rpx">
       <view class="title">

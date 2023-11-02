@@ -282,7 +282,7 @@ function doUploadFile(obj) {
 function doWebUploadFile(obj) {
   let option = Object.assign({
     filePath: 'text.jpg',
-    module: 'wzpm/mobile',
+    module: 'lhsf/mobile',
     fileType: 'image',
     compressLevel: 2
   }, obj);
@@ -305,6 +305,7 @@ function doWebUploadFile(obj) {
   getUploadCert({
     filePath: option.ossFilePath,
     success: param => {
+      console.log('param-param',param)
       let uploadObj = { ...param, filePath: option.filePath }
       if (option.fileType === 'image') {
         dd.compressImage({
@@ -397,16 +398,33 @@ function doWebUploadFile(obj) {
 }
 
 
-//文件上传OSS
+//文件上传
 function uploadOss(obj) {
   console.log(obj)
   let option = Object.assign({}, obj)
-
+  // const host = 'https://linhaishefa.eos-shanghai-2.cmecloud.cn'; // 以天津、桶名称为 cjwtest 为例
+  // dd.uploadFile({
+  //   url: host,
+  //   header: {},
+  //   filePath: option.filePath,
+  //   fileName: 'file',
+  //   fileType: 'image',
+  //   formData: option.formData,
+  //   success: (res) => {
+  //     console.log(res)
+  //     if (res.statusCode === 204) {
+  //       console.log('上传成功');
+  //     }
+  //   },
+  //   fail: err => {
+  //     console.log(err);
+  //   }
+  // });
   dd.uploadFile({
     ...option,
     success: (res) => {
       console.log(res)
-      if (res.statusCode === 200 && typeof option.success == "function") {
+      if (res.statusCode === 204 && typeof option.success == "function") {
         option.success(res)
       } else {
         if (typeof option.fail == "function") {
@@ -422,7 +440,7 @@ function uploadOss(obj) {
   })
 }
 
-//获取上传OSS令牌
+//获取
 function getUploadCert(obj) {
   let option = Object.assign({
     filePath: 'text.jpg',
@@ -430,23 +448,31 @@ function getUploadCert(obj) {
   }, obj);
 
   doPostRequest({
-    url: config.API_UPLOAD_OSS_CERT,  // 获取令牌
+    url: config.API_GET_SIGN,  // 获取签名
     data: {
-      filePath: option.filePath,
+      acl:'public-read',
+      objectName:option.filePath,//文件名
+      contentType: option.fileType,
+      durationSeconds:'31536000'
     },
     success: (res) => {
+      console.log(res)
       if (typeof option.success == "function") {
         let param = {
-          url: res.data.host,
+          url: 'https://linhaishefa.eos-shanghai-2.cmecloud.cn',
+          header: {},
           fileType: option.fileType,
           fileName: 'file',
           filePath: option.filePath,
           formData: {
-            key: option.filePath,
-            policy: res.data.policy,
-            OSSAccessKeyId: res.data.accessid,
-            signature: res.data.signature,
-            success_action_status: '200',
+            'key': res.data.key,
+            'acl': res.data.acl,
+            'Content-Type':option.fileType,
+            'X-Amz-Credential': res.data.xamzCredential,
+            'X-Amz-Algorithm': res.data.xamzAlgorithm,
+            'X-Amz-Date': res.data.xamzDate,
+            'Policy': res.data.policy,
+            'X-Amz-Signature': res.data.xamzSignature
           }
         }
         option.success(param);
