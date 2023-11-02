@@ -10,7 +10,9 @@
     "pages/work/page/list/list",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
-    "pages/work/page/projectInfo/projectInfo"
+    "pages/work/page/projectInfo/projectInfo",
+    "pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit",
+    "pages/work/page/bidDocumentDetail/bidDocumentDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

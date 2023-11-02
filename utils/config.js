@@ -29,4 +29,6 @@ module.exports = {
     API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
     //数据字典列表
     API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
+    //上传获取签名
+    API_GET_SIGN: API_HOST + "/file/file/getSign",
 }

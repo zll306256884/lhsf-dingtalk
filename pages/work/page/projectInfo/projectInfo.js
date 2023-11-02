@@ -27,8 +27,12 @@ Page({
     engineeringProperties: {},//工程性质
     //所属单位
     //项目负责人
-    //项目红线图
+    uploadImgRefList: null,//项目红线图
     projectId: null
+  },
+  onSaveUploadImgRef: function (ref) {
+    this.uploadImgRefList = ref;
+    console.log(this.uploadImgRefList)
   },
   onLoad(options) {
     if(options.id){
@@ -54,6 +58,9 @@ Page({
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
         })
         console.log(this.data.isAccess)
+        setTimeout(() => {
+          this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
+        }, 0);
       }
     })
   },

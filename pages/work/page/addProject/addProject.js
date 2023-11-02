@@ -3,7 +3,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
-import { kill } from "process";
+
 const app = getApp();
 Page({
   data: {
@@ -51,12 +51,12 @@ Page({
     engineeringProperties: {},//工程性质
     //所属单位
     //项目负责人
-    //项目红线图
+    projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
     constructionPhaseOptions: [],
     engineeringPropertiesOptions: [],
     constructionNatureOptions: [],
-    projectId: null
+    projectId: null,
   },
 
   dialogQuesFromRef: null,
@@ -70,6 +70,7 @@ Page({
   dialogActualDatRangeRef: null,
   dialogSuoshuUnit: null,
   dialogScreenExecuteUser: null,
+  uploadImgRefList: null,
 
   onLoad(options) {
     console.log(options)
@@ -89,6 +90,10 @@ Page({
     onBack() {
         console.log('onBack')
     },
+  },
+  onSaveUploadImgRef: function (ref) {
+    this.uploadImgRefList = ref;
+    console.log(this.uploadImgRefList)
   },
   onSaveDialogScreenQuesFromRef(ref) {
     this.dialogQuesFromRef = ref;
@@ -123,9 +128,6 @@ Page({
   },
   onSaveDialogScreenExecuteUserRef(ref){
     this.dialogScreenExecuteUser = ref
-  },
-  onSaveUploadImgRef(ref){
-
   },
   
   _bindChooseIsAccessTap(e){
@@ -203,8 +205,10 @@ Page({
       'formData.planConstructionStartTime': data.startDate,
       'formData.planConstructionEndTime': data.endDate
     })
+    let totalDate = new Date(data.endDate.toString().replace(/(-)/g, '/')).getTime() - new Date(data.startDate.toString().replace(/(-)/g, '/')).getTime();
+    let totalDateNum = (totalDate / (1 * 24 * 60 * 60 * 1000)) + 1
     this.setData({
-      // duration: data.endDate - data.startDate
+      'formData.duration': totalDateNum
     })
   },
   bindIsOutPutRef(item){
@@ -255,6 +259,9 @@ Page({
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
         })
+        setTimeout(() => {
+          this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
+        }, 0);
         console.log(this.data.isAccess)
       }
     })
@@ -338,7 +345,7 @@ Page({
     if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
-    if (ddUtils.showEmptyToastTips(this.data.outPutTime.shortDate, "投入使用日期不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.formData.affiliatedUnitName, "所属单位不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
@@ -346,6 +353,12 @@ Page({
     if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
     if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
 
+    let workAuditFile = [];
+    if (this.uploadImgRefList) {
+      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    }
+    console.log(workAuditFile)
+    // console.log('projectRedLineList',this.data.projectRedLineList)
     this.setData({
       'formData.projectCode':e.detail.value.projectCode,
       'formData.name':e.detail.value.name,
@@ -365,6 +378,7 @@ Page({
       'formData.totalInvestment':e.detail.value.totalInvestment,
       'formData.jianAnMoney':e.detail.value.jianAnMoney,
       'formData.sourceFunds':e.detail.value.sourceFunds,
+      'formData.projectRedLineList': workAuditFile
     })
     
     let data = this.data.formData

@@ -1,0 +1,12 @@
+
+<tabs items="{{items}}">
+  <view class="content" slot-scope="item">
+    {{item.value.content}}
+  </view>
+</tabs>
+
+
+<list>
+  <list-item extraBrief="未开启"> 大字号模式 </list-item>
+  <list-item extraBrief="未开启"> 大字号模式 </list-item>
+</list>
