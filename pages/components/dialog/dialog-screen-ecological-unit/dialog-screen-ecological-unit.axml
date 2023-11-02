@@ -1,5 +1,5 @@
 <view a:if="{{showDialog}}" class="modal-mask" style="bottom: 0px;" catchTap="_bindCancelTap" onTouchMove="_bindTouchMove"></view>
-<view a:if="{{showDialog}}" class="box-sizing-box modal-content" style="bottom:0px;marginBottom:0rpx;" 
+<view a:if="{{showDialog}}" class="box-sizing-box modal-content-content" style="bottom:0px;marginBottom:0rpx;" 
     animation="{{animationData}}" onTouchMove="_bindContentTouchMove">
   <view class='flex picker-view-header box-sizing-box'>
       <text class="cancel" catchTap="_bindCancelTap">取消</text>
@@ -7,6 +7,7 @@
         {{title}}
       </view>
       <!-- <text class="sure" catchTap="_bindSureTap">确定</text> -->
+      <text class="sure" catchTap="_bindCancelTap">确定</text>
   </view>
 
   <view class="flex f-align-center search-wrap-wrap">

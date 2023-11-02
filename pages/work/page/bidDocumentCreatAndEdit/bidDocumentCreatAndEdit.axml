@@ -120,5 +120,5 @@
 </view>
 
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
-<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
-<dialog-screen-status ref="onSaveDialogScreenQuesFromRef" onScreenCallBack="bindScreenQuesFromCallBack"></dialog-screen-status>
+<!-- <dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng> -->
+<dialog-screen-ecological-unit ref="onSaveDialogScreenQuesFromRef" onScreenCallBack="bindScreenQuesFromCallBack"></dialog-screen-ecological-unit>

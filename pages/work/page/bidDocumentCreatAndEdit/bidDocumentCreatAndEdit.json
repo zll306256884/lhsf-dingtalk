@@ -12,7 +12,7 @@
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
     "dialog-screen-xiangmu-mingcheng": "/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
-    "dialog-screen-status": "/pages/components/dialog/dialog-screen-status/dialog-screen-status",
+    "dialog-screen-ecological-unit": "/pages/components/dialog/dialog-screen-ecological-unit/dialog-screen-ecological-unit",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input"
   }
