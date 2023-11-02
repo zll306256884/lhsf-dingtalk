@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/work/page/progressDetail/progressDetail",
+    
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -18,9 +18,11 @@
     "pages/work/page/addProject/addProject",
     "pages/work/page/addLog/addLog",
     "pages/work/page/projectInfo/projectInfo",
+    "pages/work/page/progressDetail/progressDetail",
+    "pages/work/page/progressReporting/progressReporting",
     
-    "pages/work/page/progressReporting/progressReporting"
-    
+    "pages/work/page/projectInfo/projectInfo",
+    "pages/work/page/alterationRegister/alterationRegister"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -26,6 +26,7 @@ Component({
         dataList: [],
         topHeight: 0,
         scrollHeight: 0,
+        screenDangerousName:""
     },
 
     //组件创建时触发
@@ -111,7 +112,15 @@ Component({
         _isShowDialog() {
             return this.data.showDialog;
         },
-
+        bindInputChange: function(value) {
+          this.screenDangerousName = value;
+          this._showDialog()
+          console.log(this.screenDangerousName,'this.screenDangerousName');
+      },
+      
+    onSearchConfirm: function(value) {
+      this.data.screenDangerousName = value;
+  },
         //show modal dialog
         _showDialog: function (defaultValue) {
             if (this._isShowDialog())
@@ -128,7 +137,7 @@ Component({
             request.doPostRequest({
                 url: config.API_PROJECT_NAME,
                 data: {
-                  // dictCode: this.props.code,
+                 name:this.screenDangerousName
                 },
                 success: res => {
                     this.data.dataList = [];

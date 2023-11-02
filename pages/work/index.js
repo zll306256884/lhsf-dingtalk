@@ -123,7 +123,10 @@ Page({
         });
         break;
       case 6:
-        break;
+        ddUtils.navigateTo({
+          url: `/pages/work/page/alterationRegister/alterationRegister`
+        });
+      break;
       case 7:
         break;
     }
