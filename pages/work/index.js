@@ -181,7 +181,7 @@ let list = this.data.listWait
 this.setData({
     currentAwait:e
 }) 
-console.log(e,this.data.listWait);
+// console.log(e,this.data.listWait);
  switch (e) {
   case 0:
   this.setData({
@@ -247,7 +247,9 @@ selectMoreApproval(){
 
 },
 selectMoreTask(){
-
+  ddUtils.navigateTo({
+    url: `/pages/work/page/listTask/list`
+  });
 },
 selectMoreQuery(){
 

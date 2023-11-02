@@ -1,0 +1,35 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+<view>
+  <view class="card">
+    <tabs items="{{tabs1}}" current="{{currentTask}}" onChange="onTaskChange" />
+    <input placeholder="请输入任务名称关键词" onBlur="onBlur" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" 
+      allowClear focus onConfirm="onConfirm">
+      <icon slot="prefix" type="SearchOutline" />
+    </input>
+  </view>
+  <view class="card">
+    <list >
+      <list-item>
+        <view class="list-item" a:for="{{listTask}}" data-index={{index}} onTap="selectInfo">
+          <view class="item-title single-lines">
+            {{item.title}}
+          </view>
+          <view class="flex f-row f-between">
+            <view>
+              <text class="item-name">创建人： {{item.createBy_dictText}}</text>
+              <text class="item-time">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            </view>
+            <view>
+              <view class="item-status" a:if="{{currentTask===0 || currentTask===1}}"> {{ item.taskStatus===5 && '逾期'}}</view>
+              <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
+                {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </list-item>
+    </list>
+  </view>
+  <view class="buttons">
+    <button type="primary" onTap="addTask">新建任务</button>
+</view>

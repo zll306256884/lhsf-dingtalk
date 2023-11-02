@@ -7,10 +7,11 @@
     "pages/user/page/login/index",
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
-    "pages/work/page/list/list",
+    "pages/work/page/listTask/list",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
-    "pages/work/page/projectInfo/projectInfo"
+    "pages/work/page/projectInfo/projectInfo",
+    "pages/work/page/addTask/addTask"
   ],
   "window": {
     "backgroundTextStyle": "light",
