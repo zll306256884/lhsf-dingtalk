@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="listbox">
+    <view a:for="{{ [1,1,1,1,1,1,1,1,1,1] }}" class="part">
+      <!--  -->
+      <view class="top flex f-between">
+        <view class="flex f-between">
+          <image  class="greenTypeSpot" src="/assets/images/progress/green.png" />
+          <view class="greenTypeBtn">已完成</view>
+          <!-- <view class="orangeTypeBtn">延期</view>
+          <view class="blueTypeBtn">进行中</view>
+          <view class="grayTypeBtn">未到期</view> -->
+          <view class="name single-line">方案设计批复方案设计批复方案设计批复方案设计批复方案设计批复</view>
+        </view>
+        <view>
+          <image class="right-icon" src="/assets/images/user/icon_arrow_gray.png" />
+        </view>
+      </view>
+      <!--  -->
+      <view class="below flex f-between">
+        <view class="plan">计划完成: 2022-03-07</view>
+        <view class="plan">实际完成: 2022-03-07</view>
+      </view>
+      <!--  -->
+    </view>
+  </view>
+</view>

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/work/page/progressDetail/progressDetail",
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -15,7 +16,11 @@
     "pages/message/page/approval/approval",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
-    "pages/work/page/projectInfo/projectInfo"
+    "pages/work/page/addLog/addLog",
+    "pages/work/page/projectInfo/projectInfo",
+    
+    "pages/work/page/progressReporting/progressReporting"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

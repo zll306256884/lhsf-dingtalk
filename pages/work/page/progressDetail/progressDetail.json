@@ -1,0 +1,8 @@
+{
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
+  "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "progress-item": "/pages/components/progress-item/progress-item"
+  }
+}
