@@ -8,36 +8,38 @@ Page({
      tabs1: [
       {
         title:"待办任务",
-        count:0
       },{
         title:"我发起的",
-        count:0
       },{
         title:"已完成",
-        count:0
       },{
         title:"已取消",
-        count:0
       }
     ],
     taskTitle:"",
+    total:0,
     listTask:[],
     currentTask:0
   },
   onLoad() {
-    this.getTaskList(app.globalData.userInfo.userId,[1,2,5])
+    let params={
+      createById:"",
+      title:"",
+      status:[1,2,5]
+    }
+    this.getTaskList(params)
   },
   //获取任务列表
- getTaskList: function (createById,status) {
+ getTaskList: function (params) {
   let data = {
       pageNum: 1,
       pageSize: 10,
       params:{
-        title:this.data.taskTitle,
-        createById:createById ,//发起人
+        title:params.title,
+        createById:params.createById ,//发起人
         executeUserId: "" ,
         sort:"endTime",
-        taskStatus:status,//[1,2,5]我发起，4已完成，6已取消
+        taskStatus:params.status,//[1,2,5]我发起，4已完成，6已取消
       }
   };
   request.doPostRequest({
@@ -45,44 +47,64 @@ Page({
       data,
       success: res => {
         this.setData({
-          listTask:res.data.records
+          listTask:res.data.records,
+          total:res.data.total
         })
       },
   });
 },
 // 任务名称搜索
-onBlur(value){
+onChange(value){
   this.setData({
     taskTitle:value
-}) 
-  this.getTaskList()
+  })
 },
 // 搜索确认
 onConfirm(value){
-  this.setData({
-    taskTitle:value
-}) 
-  this.getTaskList()
+  this.searchTask(value)
+},
+searchTask(title){
+  let status=()=>{
+    if(this.data.currentTask===3){
+    return [6]
+    }else if(this.data.currentTask===2){
+    return [4]
+    }else{
+    return [1,2,5]
+    }
+  }
+ let params={
+    createById:this.data.currentTask === 1? app.globalData.userInfo.userId : "",
+    status:status(),
+    title,
+  }
+this.getTaskList(params)
 },
 // 切换我的任务tab
 onTaskChange(e){
   this.setData({
-    currentTask:e
-}) 
+    currentTask:e,
+    taskTitle:""
+  }) 
+  let params={
+    createById:"",
+    title:"",
+    status:[1,2,5]
+  }
   switch (e) {
     case 0:
-    this.getTaskList('',[1,2,5])
     break;
     case 1:
-    this.getTaskList(app.globalData.userInfo.userId,[1,2,5])
+      params.createById = app.globalData.userInfo.userId
     break;
     case 2:
-    this.getTaskList('',[4])
+      params.status=[4]
     break;
     case 3:
-    this.getTaskList('',[6])
+       params.status=[6]
     break;
    }
+   this.getTaskList(params)
 },
 addTask(){
   ddUtils.navigateTo({
