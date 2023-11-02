@@ -1,0 +1,33 @@
+.top-card{
+  padding: 32rpx;
+  background: #fff;
+  margin: 20rpx 0 16rpx;
+}
+.top-card-left .name{
+  font-size: 34rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0,0,0,0.9);
+  line-height: 40rpx;
+}
+.top-card-left .time{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0,0,0,0.3);
+  line-height: 33rpx;
+  margin-top: 8rpx;
+}
+.top-card-status{
+  width: 116rpx;
+  height: 56rpx;
+  background: rgba(236,242,255,0.8);
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #3369F7;
+  line-height: 56rpx;
+  text-align: center;
+}
