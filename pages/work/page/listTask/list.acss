@@ -1,10 +1,13 @@
+.container-wrap{
+  position: relative;
+}
 .card {
   width: 100%;
   background: #ffffff;
   border-radius: 16rpx;
   opacity: 1;
   margin: 30rpx auto 0;
-  padding: 0 44rpx 4rpx;
+  padding: 0 38rpx 4rpx;
   box-sizing: border-box;
 }
 .search-bar {
@@ -14,7 +17,7 @@ background: #F7F8FA;
 border-radius: 34rpx;
 opacity: 1;
 margin:20rpx auto;
-padding: 4px 0;
+padding: 4px 8px;
 box-sizing: border-box;
 }
 .ant-input-content{
@@ -83,6 +86,10 @@ background: #FFF2E6;
   line-height: 40rpx;
   }
   .buttons {
+    width: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    bottom:0;
     background: #ffffff;
     padding: 12px 12px 48px 12px;
   }

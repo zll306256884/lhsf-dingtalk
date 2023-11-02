@@ -13,8 +13,12 @@
     </view>
 <!-- 待办列表 -->
     <view class="card">
-      <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange" />
-        <list >
+      <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange">
+        <view slot="title" slot-scope="item">
+          <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+        </view>
+      </tabs>
+        <list>
         <list-item> 
           <view class="list-item" a:for="{{listData}}" data-index={{index}} onTap="selectInfo">
             <view class="item-title two-lines">
@@ -78,7 +82,12 @@
         </view>
       </view>
       <view class="card">
-        <tabs items="{{tabs3}}" current="{{currentTask}}" onChange="onTaskChange" />
+        <tabs items="{{tabs3}}" current="{{currentTask}}" onChange="onTaskChange" >
+          <view slot="title" slot-scope="item">
+            <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+            <view a:else>{{item.value.title}}</view>
+          </view>
+        </tabs>
         <list >
           <list-item> 
             <view class="list-item" a:for="{{listTask}}" data-index={{index}} onTap="selectInfo">
@@ -105,7 +114,12 @@
           </view>
         </view>
         <view class="card">
-          <tabs items="{{tabs4}}" onChange="onQueryChange" />
+          <tabs items="{{tabs4}}" onChange="onQueryChange" >
+            <view slot="title" slot-scope="item">
+              <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+              <view a:else>{{item.value.title}}</view>
+            </view>
+          </tabs>
           <list>
             <list-item> 
               <view class="list-item" a:for="{{listQuery}}" data-index={{index}} onTap="selectInfo">

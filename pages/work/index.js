@@ -111,9 +111,13 @@ Page({
         url:apiApprovalManage.API_ALL_WAIT_LIST,
         data,
         success: res => {
+          this.data.tabs1[0].count=res.data.waitAuditNum,
+          this.data.tabs1[1].count=res.data.waitAuditNum,
+          this.data.tabs1[2].count=res.data.draftNum,
           this.setData({
             listWait:res.data,
-            listData:res.data.waitAuditList.slice(0,3)
+            listData:res.data.waitAuditList.slice(0,3),
+            tabs1:this.data.tabs1
           })
         },
     });
@@ -153,8 +157,10 @@ Page({
       url:apiApprovalManage.API_TASK_LIST,
       data,
       success: res => {
+        this.data.tabs3[0].count =res.data.total
         this.setData({
-          listTask:res.data.records
+          listTask:res.data.records,
+          tabs3:this.data.tabs3
         })
       },
   });
@@ -172,8 +178,10 @@ Page({
       url:apiApprovalManage.API_QUERY_LIST,
       data,
       success: res => {
+        this.data.tabs4[0].count =res.data.total
         this.setData({
-          listQuery:res.data.records
+          listQuery:res.data.records,
+          tabs4:this.data.tabs4
         })
       },
   });
@@ -184,7 +192,7 @@ let list = this.data.listWait
 this.setData({
     currentAwait:e
 }) 
-// console.log(e,this.data.listWait);
+console.log(e,this.data.listWait);
  switch (e) {
   case 0:
   this.setData({

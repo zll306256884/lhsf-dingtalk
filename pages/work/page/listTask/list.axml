@@ -1,8 +1,15 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
-<view>
+<view class="container-wrap">
   <view class="card">
-    <tabs items="{{tabs1}}" current="{{currentTask}}" onChange="onTaskChange" />
-    <input placeholder="请输入任务名称关键词" onBlur="onBlur" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" 
+    <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
+      <view slot="title" slot-scope="item">
+        <view a:if="{{item.index===currentTask}}">
+          <badge type="number" text="{{total}}" position="top-right"> {{item.value.title}}</badge>
+        </view>
+        <view a:else>{{item.value.title}}</view>
+      </view>
+    </tabs>
+    <input placeholder="请输入任务名称关键词" onChange="onChange" value="{{taskTitle}}" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" 
       allowClear focus onConfirm="onConfirm">
       <icon slot="prefix" type="SearchOutline" />
     </input>
@@ -32,4 +39,5 @@
   </view>
   <view class="buttons">
     <button type="primary" onTap="addTask">新建任务</button>
-</view>
+  </view>
+  </view>
