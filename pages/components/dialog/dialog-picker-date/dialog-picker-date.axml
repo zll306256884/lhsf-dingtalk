@@ -1,3 +1,4 @@
+
 <view a:if="{{showDialog}}" class="dialog-picker-mask" style="top: {{topHeight}}px;marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
 <view a:if="{{showDialog}}" class="box-sizing-border dialog-picker-wrap" style="" animation="{{animationData}}" 
     catchTouchMove="_bindTouchMove">

@@ -387,7 +387,47 @@ function getApprovalManageModuleName(value) {
 
     return "--";
 }
-
+function parseTime(time, cFormat) {
+  const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
+  let date
+  if (typeof time === 'object') {
+    date = time
+  } else {
+    if ((typeof time === 'string')) {
+      let patrn1 =getRegExp('(^[0-9]+$)')
+      if (patrn1.test(time)) {
+        time = parseInt(time)
+      }else {
+        let patrn2 =getRegExp('(-)','gm')
+        time = time.replace(patrn2 , '/')
+      }
+    }
+    if ((typeof time === 'number') && (time.toString().length === 10)) {
+      time = time * 1000
+    }
+    date = getDate(time)
+  }
+  const formatObj = {
+   '{y}': date.getFullYear(),
+   '{m}': date.getMonth() + 1,
+   '{d}': date.getDate(),
+   '{h}': date.getHours(),
+   '{i}': date.getMinutes(),
+   '{s}': date.getSeconds(),
+   '{a}': date.getDay()
+  }
+  let patrn3 =getRegExp('({([ymdhisa])+})','g')
+  return format.replace(patrn3, key=>{
+    const value = formatObj[key]
+    if (key === 'a') {
+      return ['日', '一', '二', '三', '四', '五', '六'][value]
+    }
+    if(value.toString().length===1){
+      return "0" + value
+    }
+    return value.toString()
+  })
+}
 export default {
     isNull: isNull,
     isEmpty: isEmpty,
@@ -424,4 +464,5 @@ export default {
     getTaskReminderMode: getTaskReminderMode,
     getTaskReminderTime: getTaskReminderTime,
     getApprovalManageModuleName: getApprovalManageModuleName,
+    parseTime
 }
