@@ -12,7 +12,7 @@
       </view>
     </view>
 <!-- 待办列表 -->
-    <view class="card">
+    <view class="card" style="margin-top:32rpx">
       <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange">
         <view slot="title" slot-scope="item">
           <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>
