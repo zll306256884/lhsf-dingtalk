@@ -126,7 +126,7 @@ Page({
         ddUtils.navigateTo({
           url: `/pages/work/page/alterationRegister/alterationRegister`
         });
-      break;
+        break;
       case 7:
         break;
     }
@@ -140,10 +140,14 @@ Page({
       url: apiApprovalManage.API_ALL_WAIT_LIST,
       data,
       success: res => {
-        this.setData({
-          listWait: res.data,
-          listData: res.data.waitAuditList.slice(0, 3)
-        })
+        this.data.tabs1[0].count = res.data.waitAuditNum,
+          this.data.tabs1[1].count = res.data.waitAuditNum,
+          this.data.tabs1[2].count = res.data.draftNum,
+          this.setData({
+            listWait: res.data,
+            listData: res.data.waitAuditList.slice(0, 3),
+            tabs1: this.data.tabs1
+          })
       },
     });
   },
@@ -182,8 +186,10 @@ Page({
       url: apiApprovalManage.API_TASK_LIST,
       data,
       success: res => {
+        this.data.tabs3[0].count = res.data.total
         this.setData({
-          listTask: res.data.records
+          listTask: res.data.records,
+          tabs3: this.data.tabs3
         })
       },
     });
@@ -259,6 +265,61 @@ Page({
         this.getTaskList('', [6])
         break;
     }
+  },
+
+  // 切换待办tab
+  onAwaitChange(e) {
+    let list = this.data.listWait
+    this.setData({
+      currentAwait: e
+    })
+    console.log(e, this.data.listWait);
+    switch (e) {
+      case 0:
+        this.setData({
+          listData: list.waitAuditList.slice(0, 3)
+        })
+        break;
+      case 1:
+        this.setData({
+          listData: list.waitMissionList.slice(0, 3)
+        })
+        break;
+      case 2:
+        this.setData({
+          listData: list.draftList.slice(0, 3)
+        })
+        break;
+    }
+  },
+  // 切换我的审批tab
+  onApprovalChange(e) {
+    switch (e) {
+      case 0:
+        this.getApprovalList(2)
+        break;
+      case 1:
+        this.getApprovalList(3)
+        break;
+    }
+  },
+  // 切换我的任务tab
+  onTaskChange(e) {
+    this.setData({
+      currentTask: e
+    })
+    switch (e) {
+      case 0:
+        this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+        break;
+      case 1:
+        this.getTaskList('', [4])
+        break;
+      case 2:
+        this.getTaskList('', [6])
+        break;
+    }
+
 
   },
   // 切换我的请求tab
@@ -279,7 +340,9 @@ Page({
 
   },
   selectMoreTask() {
-
+    ddUtils.navigateTo({
+      url: `/pages/work/page/listTask/list`
+    });
   },
   selectMoreQuery() {
 

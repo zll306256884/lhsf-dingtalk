@@ -5,6 +5,21 @@
   -moz-box-sizing: border-box;
   font-family: PingFangSC-Regular, PingFang SC;
 }
+.card-wrap {
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+}
+.card {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 16rpx;
+  opacity: 1;
+  margin: 30rpx auto 0;
+  padding: 0 38rpx;
+  box-sizing: border-box;
+}
 
 .container.has-bottom-button {
   padding-bottom: 110rpx;
@@ -369,3 +384,4 @@ input[type="number"]{
 .font-w700 {
   font-weight: 700;
 }
+/* ant ui */

@@ -1,0 +1,11 @@
+{
+  "defaultTitle": "我的任务",
+  "usingComponents": {
+    "tabs": "antd-mini/es/Tabs/index",
+    "avatar": "antd-mini/es/Avatar/index",
+    "icon": "antd-mini/es/Icon/index",
+    "input": "antd-mini/es/Input/index",
+    "button": "antd-mini/es/Button/index",
+    "badge": "antd-mini/es/Badge/index"
+  }
+}

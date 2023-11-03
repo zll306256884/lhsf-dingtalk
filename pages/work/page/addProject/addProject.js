@@ -3,6 +3,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
+
 const app = getApp();
 Page({
   data: {
@@ -45,17 +46,17 @@ Page({
     projectClassification: {},//分类
     constructionPhase: {},//建设阶段
     isOutPut: {},//是否投入
-    outPutTime: {},//{date: '', shortDate: ''}
+    outPutTime: '',//{date: '', shortDate: ''}
     constructionNature: {},//建设性质
     engineeringProperties: {},//工程性质
     //所属单位
     //项目负责人
-    //项目红线图
+    projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
     constructionPhaseOptions: [],
     engineeringPropertiesOptions: [],
     constructionNatureOptions: [],
-    projectId: null
+    projectId: null,
   },
 
   dialogQuesFromRef: null,
@@ -67,6 +68,9 @@ Page({
   dialogPickerDateRef: null,
   dialogPickerDateRangeRef: null,
   dialogActualDatRangeRef: null,
+  dialogSuoshuUnit: null,
+  dialogScreenExecuteUser: null,
+  uploadImgRefList: null,
 
   onLoad(options) {
     console.log(options)
@@ -86,6 +90,10 @@ Page({
     onBack() {
         console.log('onBack')
     },
+  },
+  onSaveUploadImgRef: function (ref) {
+    this.uploadImgRefList = ref;
+    console.log(this.uploadImgRefList)
   },
   onSaveDialogScreenQuesFromRef(ref) {
     this.dialogQuesFromRef = ref;
@@ -115,6 +123,13 @@ Page({
   onSavePickerActualDatRangeRef(ref){
     this.dialogActualDatRangeRef = ref
   },
+  _onSaveDialogScreenSuoshuUnitRef(ref){
+    this.dialogSuoshuUnit = ref
+  },
+  onSaveDialogScreenExecuteUserRef(ref){
+    this.dialogScreenExecuteUser = ref
+  },
+  
   _bindChooseIsAccessTap(e){
     // if (this.props.chooseQuesTypeDisabled) return;
     if (this.dialogQuesFromRef) this.dialogQuesFromRef._showDialog();
@@ -148,6 +163,12 @@ Page({
   },
   _bindChooseActualConstruction(){
     if(this.dialogActualDatRangeRef) this.dialogActualDatRangeRef._showDialog()
+  },
+  _bindChooseAffiliatedUnit(){
+    if(this.dialogSuoshuUnit) this.dialogSuoshuUnit._showDialog()
+  },
+  _bindChooseProjectLeaderName(){
+    if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   bindInputChange(e){
 
@@ -184,8 +205,10 @@ Page({
       'formData.planConstructionStartTime': data.startDate,
       'formData.planConstructionEndTime': data.endDate
     })
+    let totalDate = new Date(data.endDate.toString().replace(/(-)/g, '/')).getTime() - new Date(data.startDate.toString().replace(/(-)/g, '/')).getTime();
+    let totalDateNum = (totalDate / (1 * 24 * 60 * 60 * 1000)) + 1
     this.setData({
-      // duration: data.endDate - data.startDate
+      'formData.duration': totalDateNum
     })
   },
   bindIsOutPutRef(item){
@@ -194,8 +217,9 @@ Page({
     })
   },
   bindPickerDateCannBack(data){
+    console.log(data)
     this.setData({
-      outPutTime: data
+      outPutTime: data.startDate
     })
   },
   bindPickerActualDateRangeCallBack(data){
@@ -203,6 +227,20 @@ Page({
     this.setData({
       'formData.actualConstructionStartTime': data.startDate,
       'formData.actualConstructionEndTime': data.endDate
+    })
+  },
+  _bindScreenSuoshuUnitCallBack(data){
+    console.log('所属单位', data)
+    this.setData({
+      'formData.affiliatedUnitName':data.name,
+      'formData.affiliatedUnitId':data.id
+    })
+  },
+  bindScreenExecuteUserCallBack(data){
+    console.log('项目负责人',data)
+    this.setData({
+      'formData.projectLeaderName': data[0].username,
+      'formData.personId': data[0].userId
     })
   },
   //详情
@@ -217,13 +255,13 @@ Page({
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
           isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut},
-          'outPutTime.shortDate':res.data.outPutTime,
-
+          outPutTime:res.data.outPutTime,
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
-
-        
         })
+        setTimeout(() => {
+          this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
+        }, 0);
         console.log(this.data.isAccess)
       }
     })
@@ -266,7 +304,8 @@ Page({
         })
         console.log(res.data)
         this.setData({
-          constructionPhaseOptions: res.data || []
+          constructionPhaseOptions: res.data || [],
+          constructionPhase: {name: '前期阶段', value:'0'}
         })
       }
     })
@@ -302,18 +341,24 @@ Page({
     })
   },
   bindFormSubmit(e){
-    // if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.outPutTime.shortDate, "投入使用日期不能为空")) return;
-    // // if (ddUtils.showEmptyToastTips(, "所属单位不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
-    // // if (ddUtils.showEmptyToastTips(, "项目负责人不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.formData.affiliatedUnitName, "所属单位不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
+    if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
 
+    let workAuditFile = [];
+    if (this.uploadImgRefList) {
+      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    }
+    console.log(workAuditFile)
+    // console.log('projectRedLineList',this.data.projectRedLineList)
     this.setData({
       'formData.projectCode':e.detail.value.projectCode,
       'formData.name':e.detail.value.name,
@@ -333,57 +378,9 @@ Page({
       'formData.totalInvestment':e.detail.value.totalInvestment,
       'formData.jianAnMoney':e.detail.value.jianAnMoney,
       'formData.sourceFunds':e.detail.value.sourceFunds,
+      'formData.projectRedLineList': workAuditFile
     })
-    // this.data.formData.projectCode = e.detail.value.projectCode
-    // this.data.formData.proNumber = this.data.proNumber
-    // this.data.formData.name = e.detail.value.name
-    // this.data.formData.projectProgram = e.detail.value.projectProgram
-
-
-    // let structureArea = e.detail.value.structureArea
-    // let floorArea = e.detail.value.floorArea
-    // let proposedLocation = e.detail.value.proposedLocation
-    // let proposedLand = e.detail.value.proposedLand
-    // let blockNumber = e.detail.value.blockNumber
-    // let coorX = e.detail.value.coorX
-    // let coorY = e.detail.value.coorY
-    // let constructionContent = e.detail.value.constructionContent
-    // let totalInvestment = e.detail.value.totalInvestment
-    // let jianAnMoney = e.detail.value.jianAnMoney
-    // let sourceFunds = e.detail.value.sourceFunds
-
-    // let data = {
-    //   projectCode,
-    //   proNumber,
-    //   name,
-    //   projectProgram,
-    //   isAccess: this.data.isAccess.value,
-    //   projectClassification: this.data.projectClassification.value,
-    //   constructionPhase: this.data.constructionPhase.value,
-    //   isOutPut: this.data.isOutPut.value,
-    //   outPutTime: this.data.outPutTime.shortDate,
-      
-    //   constructionNature: this.data.constructionNature.value,
-    //   engineeringProperties: this.data.engineeringProperties.value,
-    //   constructionContent,
-    //   structureArea,
-    //   floorArea,
-    //   proposedLocation,
-    //   proposedLand,
-    //   blockNumber,
-
-    //   planConstructionStartTime:this.data.planConstructionStartTime,
-    //   planConstructionEndTime: this.data.planConstructionEndTime,
-    //   duration: this.data.duration,
-    //   actualConstructionStartTime: this.data.actualConstructionStartTime,
-    //   actualConstructionEndTime: this.data.actualConstructionEndTime,
-
-    //   coorX,
-    //   coorY,
-    //   totalInvestment,
-    //   jianAnMoney,
-    //   sourceFunds
-    // }
+    
     let data = this.data.formData
     console.log(data)
     if(this.data.projectId){

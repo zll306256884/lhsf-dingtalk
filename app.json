@@ -1,5 +1,6 @@
 {
   "pages": [
+   
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -20,8 +21,7 @@
     "pages/work/page/progressDetail/progressDetail",
     "pages/work/page/progressReporting/progressReporting",
     "pages/work/page/projectInfo/projectInfo",
-    "pages/work/page/alterationRegister/alterationRegister",
-    "pages/work/page/progressEdit/progressEdit"
+    "pages/work/page/alterationRegister/alterationRegister"
   ],
   "window": {
     "backgroundTextStyle": "light",

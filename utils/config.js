@@ -33,4 +33,6 @@ module.exports = {
         API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
     //数据字典列表
     API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
+    //上传获取签名
+    API_GET_SIGN: API_HOST + "/file/file/getSign",
 }

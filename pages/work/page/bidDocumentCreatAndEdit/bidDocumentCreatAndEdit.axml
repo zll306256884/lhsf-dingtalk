@@ -1,0 +1,124 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+
+<!-- <view class="container">
+  <form onSubmit="bindFormSubmit">
+    <view class="containerinner">
+      <layout-field-input borderBottom name="标题" mustFillTransparent itemIndex="1" inputName="title" value="{{formData.title}}" placeholder="请输入"></layout-field-input>
+      <layout-field-cell borderBottom name="项目名称" mustFillTransparent value="{{isAccess.name}}" onArrowTap="_bindChooseIsAccessTap"></layout-field-cell>
+    </view>
+  </form>
+</view> -->
+
+<form-input
+  label="标题"
+  name="title"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+<form-picker
+  label="项目名称"
+  arrow
+  name="projectId"
+  options="{{projectListOptions}}"
+  ref="handleRef" />
+<form-input
+  label="招标名称"
+  name="tenderName"
+  validateStatus="default"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+<form-input
+  label="招标人"
+  name="biddingPerson"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+<form-input
+  label="招标代理单位"
+  placeholder="请选择"
+  labelWidth="200rpx"
+  name="tenderingAgencyName"
+  onFocus="chooseTenderingAgency"
+  ref="handleRef" />
+<form-picker
+  label="招标方式"
+  arrow
+  name="biddingType"
+  options="{{biddingTypeOptions}}"
+  ref="handleRef" />
+<form-picker
+  label="项目类别"
+  arrow
+  name="projectType"
+  options="{{projectTypeOptions}}"
+  ref="handleRef" />
+<form-input
+  label="招标标的额(万元)"
+  labelWidth="280rpx"
+  name="tenderAmount"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+<form-picker
+  label="决策依据"
+  arrow
+  name="decisionBasis"
+  options="{{decisionBasisOptions}}"
+  ref="handleRef" />
+<form-textarea
+  label="招标内容"
+  position='vertical'
+  name="biddingContent"
+  placeholder="请输入说明"
+  allowClear
+  autoHeight
+  ref="handleRef" />
+
+<view style="margin:16rpx 0;background:#fff">
+  <list>
+    <list-item class="flex f-center-start"><view style="color:#EE0A24;display:inline-block">*</view><view style="display:inline-block">招标文件会签附件</view></list-item>
+  </list>
+  <!-- <form-input
+    label="招标文件会签附件"
+    required
+    labelWidth="280rpx"
+    disabled
+    ref="handleRef"/> -->
+  <view>
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
+  </view>
+</view>
+
+<view style="margin:16rpx 0;background:#fff">
+  <!-- <form-input
+    label="其他附件"
+    name="otherDocumentList"
+    disabled
+    ref="handleRef"/> -->
+    <list>
+      <list-item>其他附件</list-item>
+    </list>
+  <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
+</view>
+
+<form-input
+  label="选择会签分管领导"
+  labelWidth="280rpx"
+  name="countersignLeader_dictText"
+  placeholder="请输入"
+  allowClear
+  onFocus="chooseLeader"
+  ref="handleRef" />
+
+
+<view class="buttons flex f-between">
+  <button class="btn" onTap="reset">取消</button>
+  <button class="btn" onTap="staging">暂存</button>
+  <button class="btn active" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
+</view>
+</view>
+
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<!-- <dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng> -->
+<dialog-screen-ecological-unit ref="onSaveDialogScreenQuesFromRef" onScreenCallBack="bindScreenQuesFromCallBack"></dialog-screen-ecological-unit>

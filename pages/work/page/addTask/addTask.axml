@@ -1,0 +1,22 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+
+<view class="container">
+  <view class="form-card">
+    <view class="form-title">任务信息</view>
+      <form-input label="任务标题" allowClear name="title" placeholder="请输入" ref="handleRef"/>
+      <form-picker label="所属项目" allowClear arrow name="projectId" placeholder="请选择" options="{{projectList}}" ref="handleRef" />
+      <form-input label="截止时间" name="endTime" placeholder="请选择" allowClear onFocus="chooseDate" ref="handleRef" />
+      <!-- <form-date-picker label="截至时间" allowClear arrow name="endTime" placeholder="请选择" ref="handleRef" onChange="chooseDate"/> -->
+      <form-input label="执行人员" name="executer_dictText" placeholder="请选择" allowClear onFocus="chooseExecuter" ref="handleRef" />
+      <form-textarea label="任务描述" allowClear name="remark" placeholder="请输入" position="vertical" autoHeight ref="handleRef"/>
+    <view class="form-card">
+      <view class="form-title">附件信息</view>
+      <form-upload-image label="上传附件" name="annexList" onUpload="onUpload"  position="vertical" ref="handleRef"/>
+    </view>
+    <view class="buttons flex f-between">
+      <button onTap="cancel">取消</button>
+      <button type="primary" onTap="submit">保存</button>
+    </view>
+  </view>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<dialog-picker-date  ref="onSaveDialogPickerDateRef"  onPickerCallBack="bindPickerDateCallBack"></dialog-picker-date>
