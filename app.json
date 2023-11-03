@@ -1,6 +1,5 @@
 {
   "pages": [
-   
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -13,6 +12,8 @@
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
+    "pages/work/page/listTask/list",
+    "pages/work/page/addTask/addTask",
     "pages/message/page/approval/approval",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
