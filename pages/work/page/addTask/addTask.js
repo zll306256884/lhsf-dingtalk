@@ -13,25 +13,23 @@ Page({
     },
   }),
   data: {
-   
-      title:"",
-      endTime:"",
-      executer_dictText:"",
-      remark: "",
-      projectId:"",
-      annexList:[],
+    title:"",
+    endTime:"",
+    executer_dictText:"",
+    remark: "",
+    projectId:"",
+    annexList:[],
     projectList:[],
     executeUser:[],
-    // executeUserList:[],
     dialogScreenExecuteUser :null,
     dialogPickerDate:null,
+    uploadTenderImageList:null,
   },
   onLoad() {
     this.getProjectList()
     console.log('form',this.form);
   },
   handleRef(ref) {
-    console.log(ref);
     this.form.addItem(ref);
   },
   onSaveDialogScreenExecuteUserRef(ref){
@@ -39,6 +37,9 @@ Page({
   },
   onSaveDialogPickerDateRef(ref){
     this.dialogPickerDate = ref
+  },
+  onSaveUploadTenderImgRef(ref){
+    this.uploadTenderImageList = ref
   },
   chooseExecuter(){
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
@@ -61,26 +62,8 @@ Page({
       'endTime':date.startDate
     })
   },
-  onUpload(localFile) {
-    return new Promise((resolve, reject) => {
-      my.uploadFile({
-        url: config.API_UPLOAD_FILE, // 请替换成有效的服务端 url
-        // fileType: 'image',
-        // name: 'userfile', // 这里根据后台服务需求来替换
-        filePath: localFile.path, // 这里传入 localFile.path
-        // formData: { extra: '其他信息' }, // 这里根据后台服务需求来替换
-        success: res => {
-          const { url } = JSON.parse(res.data);
-          resolve(url);
-        },
-        fail: err => {
-          reject();
-        },
-      });
-    });
-  },
   cancel(){
-
+    ddUtils.navigateBack();
   },
   getProjectList(){
     request.doPostRequest({
@@ -99,9 +82,18 @@ Page({
   async submit() {
     let values = await this.form.submit();
     console.log('values', values);
+    if (this.uploadTenderImageList) {
+      let list = this.uploadTenderImageList._getUploadImgId().imgList
+      list.forEach(e => {
+        e.fileName = e.name
+        e.type= 1
+      })
+      this.setData({
+        annexList: list
+      }) 
+    }
     values.executeUser = this.data.executeUser
-    values.endTime = values.endTime + ' 00:00:00'
-    values.annexList=[]
+    values.annexList=this.data.annexList
     request.doPostRequest({
       url:workServer.API_CREATE_TASK,
       data:values,

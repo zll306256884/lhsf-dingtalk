@@ -11,7 +11,9 @@
       <form-textarea label="任务描述" allowClear name="remark" placeholder="请输入" position="vertical" autoHeight ref="handleRef"/>
     <view class="form-card">
       <view class="form-title">附件信息</view>
-      <form-upload-image label="上传附件" name="annexList" onUpload="onUpload"  position="vertical" ref="handleRef"/>
+      <view style="background:#fff" >
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
+      </view>
     </view>
     <view class="buttons flex f-between">
       <button onTap="cancel">取消</button>
