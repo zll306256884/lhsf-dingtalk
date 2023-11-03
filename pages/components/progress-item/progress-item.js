@@ -2,9 +2,7 @@ Component({
   mixins: [],
   data: {},
   props: {
-    listData: [{
-      name: 1,
-    }]
+    listData: [1, 1, 1, 1]
   },
   didMount() {
     console.log('this.is组件路径', this.is);
@@ -13,5 +11,14 @@ Component({
   },
   didUpdate() {},
   didUnmount() {},
-  methods: {},
+  methods: {
+    toEditPage(e) {
+      console.log('e', e)
+      let id = e.target.dataset.id
+      let type = e.target.dataset.type
+      dd.navigateTo({
+        url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type,
+      })
+    },
+  },
 });

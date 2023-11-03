@@ -4,15 +4,19 @@
   /* padding: 0; */
 }
 
-.listbox {
+.listboxItem {
   /* width: 638rpx; */
   border-left: 1px solid #DEDFE0;
+  margin-left: 14rpx;
 }
 
-.top {
-  width: 638rpx;
-  margin-bottom: 8rpx;
+.part {}
 
+.topItem {
+  width: 624rpx;
+  margin-bottom: 12rpx;
+  position: relative;
+  padding-left: 40rpx;
 }
 
 /* .top .typeCode{
@@ -20,7 +24,7 @@
   height: 36rpx;
 } */
 
-.top .name {
+.topItem .name {
   /* height: 40rpx; */
   width: 400rpx;
   font-size: 28rpx;
@@ -37,14 +41,28 @@
   margin: 4rpx 0;
 }
 
-.below {
+/*  */
+.belowItem {
   margin-bottom: 48rpx;
+  padding-left: 40rpx;
 }
 
-.below .plan {
+.belowItem .plan {
   height: 34rpx;
   font-size: 24rpx;
   color: #909399;
   line-height: 34rpx;
+}
+
+/*  */
+.mayflyBox {
+  position: fixed;
+  bottom: 100rpx;
+  right: 30rpx;
+}
+
+.mayflyBox .mayfly{
+  width: 124rpx;
+  height: 108rpx;
 
 }

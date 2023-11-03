@@ -1,11 +1,13 @@
-.container{
+.container {
   padding-top: 16rpx;
 }
-.container .containerinner{
+
+.container .containerinner {
   display: block;
-  background:#fff;
+  background: #fff;
 }
-.container .containerinner .title{
+
+.container .containerinner .title {
   display: block;
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
@@ -14,7 +16,8 @@
   line-height: 32rpx;
   padding: 32rpx 32rpx 16rpx;
 }
-.container .containerinner .redline-title{
+
+.container .containerinner .redline-title {
   font-size: 32rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
@@ -22,17 +25,20 @@
   line-height: 48rpx;
   padding: 32rpx 32rpx 8rpx;
 }
-.redline-title .redStart{
+
+.redline-title .redStart {
   color: red;
   margin-top: 20rpx;
   display: inline;
 }
-.btn-wrap{
+
+.btn-wrap {
   margin-top: 16rpx;
   padding: 16rpx 18rpx;
   border-top: 1rpx solid #DBDADF;
 }
-.btn-wrap .btn{
+
+.btn-wrap .btn {
   width: 349rpx;
   height: 80rpx;
   background: #FFFFFF;
@@ -45,7 +51,8 @@
   color: #323233;
   line-height: 80rpx;
 }
-.btn-wrap .active{
+
+.btn-wrap .active {
   width: 349rpx;
   height: 80rpx;
   background: #1A6AFF;

@@ -11,13 +11,14 @@
   >
   </layout-field-cell>
   <view class="flex f-between btn-wrap">
-    <button class="btn" catchTap="bindCancelTap" style="margin-right:20rpx;">取消</button>
+    <button class="btn" catchTap="bindCancelTap" style="margin-right:20rpx;">
+      取消
+    </button>
     <button class="btn active" form-type="submit" catchTap="bindSaveTap">确定</button>
   </view>
 </view>
 <dialog-screen-xiangmu-mingcheng
   ref="onSaveDialogScreenprojecteRef"
-  positionBottom="{{true}}"
   onScreenCallBack="bindChooseProjectCallBack"
 >
 </dialog-screen-xiangmu-mingcheng>

@@ -13,6 +13,7 @@ Page({
     projectData: {
       name: "",
     },
+    projectId: "",
     dialogScreenprojectRef: null, //项目名称
   },
   onLoad() {},
@@ -23,10 +24,19 @@ Page({
   // 点击确定
   bindSaveTap: function (e) {
     console.log(e);
+    // 
     console.log(this.data.projectData.name);
-    ddUtils.navigateTo({
-      url: `/pages/work/page/progressDetail/progressDetail`
-    });
+    console.log(this.data.projectId);
+    dd.navigateTo({
+      url: '/pages/work/page/progressDetail/progressDetail?id=' + this.data.projectId,
+    })
+    // ddUtils.navigateTo({
+    //   url: `/pages/work/page/progressDetail/progressDetail`,
+    //   query: {
+    //     projectId: this.data.projectId
+    //   }
+
+    // });
   },
   // 项目名称----组件start
   bindChooseProjectTap: function (e) {
