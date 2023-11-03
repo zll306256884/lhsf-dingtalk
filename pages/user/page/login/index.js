@@ -2,7 +2,7 @@ import { isEqual, isEmptyArray } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
-
+import config from "../../../../utils/config"
 
 const app = getApp();
 
@@ -78,7 +78,7 @@ Page({
     },
     getAllInfo: function () {
         Promise
-            .all([this.getUserInfo(), this.getProjectList()])
+            .all([this.getUserInfo(), this.getMyProjectList()])
             .then(results => {
                 ddUtils.hideLoading();
                 if (results.length != 2) return;
@@ -134,9 +134,10 @@ Page({
         })
     },
 
-    getProjectList: function () {
+    getMyProjectList: function () {
         return new Promise((resolve, reject) => {
             request.doPostRequest({
+
                 url: userServer.API_PROJECT_LIST,
                 showLoading: false,
                 data: {
@@ -147,6 +148,7 @@ Page({
                     },
                 },
                 success: res => {
+                  console.log("???????????",res);
                     resolve(res.data)
                 },
                 fail: res => {
@@ -154,5 +156,17 @@ Page({
                 }
             });
         })
+    },
+    getProjectList(){
+      request.doPostRequest({
+        url: config.API_PROJECT_NAME,
+        success: res => {
+          res.data.forEach(e => {
+            e.label = e.name
+            e.value = e.id
+          })
+          app.globalData.userInfo.projectList=res.data || []
+        }
+      })
     },
 });
