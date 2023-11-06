@@ -341,7 +341,7 @@ Page({
   },
   selectMoreTask() {
     ddUtils.navigateTo({
-      url: `/pages/work/page/listTask/list`
+      url: `/pages/work/page/myTask/taskList/list`
     });
   },
   selectMoreQuery() {
@@ -364,8 +364,12 @@ Page({
       // 点击列表项查看任务详情
   selectTaskInfo(e) {
     console.log(e);
+    const pramas={
+      type:"edit",
+      id:e.currentTarget.dataset.item.id
+    }
     ddUtils.navigateTo({
-      // url: `/pages/work/page/listTask/list?json=${JSON.stringify(e.currentTarget.dataset.item)}`
+      url: `/pages/work/page/myTask/taskAdd/taskAdd?json=${JSON.stringify(pramas)}`
     });
   },
     // 点击列表项查看请求详情

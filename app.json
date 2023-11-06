@@ -12,8 +12,6 @@
     "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
-    "pages/work/page/listTask/list",
-    "pages/work/page/addTask/addTask",
     "pages/message/page/approval/approval",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
@@ -23,7 +21,10 @@
     "pages/work/page/progressReporting/progressReporting",
     "pages/work/page/progressEdit/progressEdit",
     "pages/work/page/projectInfo/projectInfo",
-    "pages/work/page/alterationRegister/alterationRegister"
+    "pages/work/page/alterationRegister/alterationRegister",
+    "pages/work/page/myTask/taskList/list",
+    "pages/work/page/myTask/taskAdd/taskAdd",
+    "pages/work/page/myTask/taskInfo/taskInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

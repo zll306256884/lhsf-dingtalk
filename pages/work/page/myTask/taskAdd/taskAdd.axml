@@ -1,4 +1,5 @@
-<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+<import-sjs from="../../../../../utils/utils.sjs" name="utils" />
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
 
 <view class="container">
   <view class="form-card">

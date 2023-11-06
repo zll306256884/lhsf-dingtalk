@@ -1,6 +1,8 @@
 {
-  "defaultTitle": "新增任务",
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
   "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
     "form-input": "antd-mini/es/Form/FormInput/index",
     "button": "antd-mini/es/Button/index",
     "form-picker": "antd-mini/es/Form/FormPicker/index",

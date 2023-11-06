@@ -1,5 +1,6 @@
-<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+<import-sjs from="../../../../../utils/utils.sjs" name="utils" />
 <view>
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
   <view class="card">
     <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
       <view slot="title" slot-scope="item">
@@ -17,7 +18,7 @@
   <view class="card" style="margin-top:16rpx">
     <list >
       <list-item>
-        <view class="list-item" a:for="{{listTask}}" data-index={{index}} onTap="selectInfo">
+        <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
           <view class="item-title single-lines">
             {{item.title}}
           </view>

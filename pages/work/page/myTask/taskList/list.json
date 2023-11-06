@@ -1,6 +1,8 @@
 {
-  "defaultTitle": "我的任务",
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
   "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
     "tabs": "antd-mini/es/Tabs/index",
     "avatar": "antd-mini/es/Avatar/index",
     "icon": "antd-mini/es/Icon/index",
