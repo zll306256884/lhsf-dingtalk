@@ -7,6 +7,8 @@ module.exports = {
   API_QUERY_LIST: API_HOST  +  "/platform/userMatter/queryListByPage",
   API_ALL_WAIT_LIST: API_HOST  +  "/mission/mainMission/queryList",
   // 我的任务
-  API_CREATE_TASK: API_HOST  + "/mission/mainMission/create"
+  API_CREATE_TASK: API_HOST  + "/mission/mainMission/create",
+  //消息
+  API_MESSAGE_POST:API_HOST  + "/message/messageCenter/select",
 }
 

@@ -9,5 +9,6 @@ module.exports = {
    // 新增支付提交审批
    API_PAY_BUT_POST : API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/saveAndSubmit',
    // 变更新增
-   API_ALTER_ADD_POST: API_HOST+ '/investment/changeManagement/saveAndUpdate'
+   API_ALTER_ADD_POST: API_HOST+ '/investment/changeManagement/saveAndUpdate',
+   API_JUNGONG_ADD_POST:API_HOST+ '/investment/completionSettlement/add',
 }

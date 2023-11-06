@@ -1,0 +1,49 @@
+.content {
+  color: red;
+  /* padding: 12px; */
+
+}
+.content_text{
+  margin-top: 16rpx;
+background: #FFFFFF;
+}
+.item-label {
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #909399;
+  line-height: 40rpx;
+}
+.list-item{
+  position: relative;
+ height: 190rpx;
+ padding: 32rpx 48rpx;
+ border-bottom: 1rpx solid #E4E7ED;
+}
+.massage_text{
+  font-size: 34rpx;
+font-weight: 400;
+color: rgba(0,0,0,0.9);
+}
+.proName_text{
+font-size: 28rpx;
+font-weight: 400;
+color: rgba(0,0,0,0.5);
+line-height: 33rpx;
+margin: 16rpx 0;
+}
+.code{
+  position: absolute;
+  left: 30rpx;
+  top: 45rpx;
+width: 16rpx;
+height: 16rpx;
+background: #FA5151;
+border-radius: 50rpx;
+opacity: 1;
+}
+.fill{
+  color: rgba(0,0,0,0.9);
+}
+.fill_color{
+  color: rgba(0,0,0,0.5);
+}
