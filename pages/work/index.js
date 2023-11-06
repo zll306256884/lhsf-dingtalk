@@ -99,6 +99,9 @@ Page({
         });
       break;
       case 7:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/beCompletedRegister/beCompletedRegister`
+        });
       break;
      }
   },

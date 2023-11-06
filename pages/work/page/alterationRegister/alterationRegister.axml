@@ -3,7 +3,7 @@
 <view  class="container">
   <form onSubmit="bindFormSubmit">
     <view class="box-shadow">
-      <layout-field-input borderTop name="联系单名称" inputName="contactNoticeName" mustFill disabled="{{isEdit}}" value="{{contactNoticeName}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderTop name="联系单名称" inputName="contactNoticeName" mustFill  value="{{contactNoticeName}}" placeholder="请输入"></layout-field-input>
       <layout-field-cell borderTop name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" 
       onArrowTap="bindChooseProjectTap"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="项目负责人" mustFill placeholder="自动带入"  value="{{projectLeader}}"></layout-field-cell>
@@ -45,5 +45,5 @@
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenslowunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseSlowUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>
-<dialog-picker-date ref="onSaveDialogScreenChangeDateRef" selectionMode="single"  onPickerCallBack="bindChooseChangeDateCallBack"></dialog-picker-date>
+<dialog-picker-date ref="onSaveDialogScreenChangeDateRef" selectionMode="single" parseTime onPickerCallBack="bindChooseChangeDateCallBack"></dialog-picker-date>
 <dialog-picker-date ref="onSaveDialogScreenBuildDateRef" selectionMode="single"  onPickerCallBack="bindChooseBuildDateCallBack"></dialog-picker-date>

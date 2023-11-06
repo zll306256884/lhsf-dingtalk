@@ -1,0 +1,25 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <form onSubmit="bindFormSubmit">
+    <view class="box-shadow">
+      <layout-field-cell borderTop name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" 
+      onArrowTap="bindChooseProjectTap"></layout-field-cell>
+      <layout-field-cell borderTop name="合同名称" mustFill placeholder="请选择"  value="{{contractData.contractName}}"  onArrowTap="bindChooseContractNameTap"></layout-field-cell>
+      <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)" mustFill placeholder="自动带入"  value="{{contractAmount}}"></layout-field-cell>
+      <layout-field-cell hidden={{false}} borderTop name="承包商名称" mustFill placeholder="自动带入"  value="{{contractorName}}"></layout-field-cell>
+      <layout-field-cell borderTop name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="bindChooseApplyDateTap"></layout-field-cell>
+      <layout-field-input borderTop name="送审定价（万元）" inputName="pricingTrial" mustFill disabled="{{isEdit}}" value="{{pricingTrial}}" placeholder="请输入"></layout-field-input>
+      <!-- <form-radio-group
+      onChange="onChange"
+      required
+      label="动物单选"
+      name="animalChoose"
+      options="{{radioGroupOptions}}"
+      ref="handleRef" /> -->
+      <layout-field-input  borderTop inputName="pricingTrial"  disabled="{{isEdit}}" value="{{pricingTrial}}" placeholder="请输入"></layout-field-input>
+    </view>
+  </form>
+</view>
+<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
+<dialog-picker-date ref="onSaveDialogScreenApplyDateRef" selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>

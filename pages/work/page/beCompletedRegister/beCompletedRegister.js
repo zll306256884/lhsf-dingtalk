@@ -1,28 +1,25 @@
+import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 Page({
+  form: new Form(),
   data: {
     navbarData: {
-      title: "新增变更",
+      title: "竣工结算登记",
   },
+  radioGroupOptions: [
+    { value: 1, label: '核减' },
+    { value: 2, label: '核加' },
+  ],
   projectId:"",
-  contactNoticeName:"",//联系单名称
-  projectLeader:'',//负责人
-  affiliateUnit:'',//所属单位,
-  projectChangeAmount:'',//项目累计变更
+ 
   contractAmount:"",//合同金额
-  changeAmount:"",//变更金额
-  contractCumulativeChange:"",//合同累积变更（万元）
-  contractChangeRate:"", // 合同变更率
-  countersignDate:"",// 申请会签批准日期
-  constructionUnitReportDate:"",//施工单位上报日期
-  changeContentTime:"",//变更内容完成时间
-  contactChange:"",//联系单变更内容
-  remark:"",//备注
-  person:'',
-  person_text:'',
+  contractorName:'',//承包商名称
+  applicationTime:"",//申请日期
+  pricingTrial:'',//送审定价
+  'adjust': 1,
   chooseExecuteUserList: [],
   uploadImgRef:null,/// 上传
     isEdit: false,
@@ -30,13 +27,16 @@ Page({
     dialogScreenprojectRef:null, //项目名称
     dialogScreenpcontractRef:null,//合同名称
     dialogScreenApplyDateRef:null,//申请会签批准日期
-    dialogScreenChangeDateRef:null,
-    dialogScreenBuildDateRef:null,
-    dialogScreenExecuteUserRef:null,
     contractData:{},//合同名称
   },
   onLoad() {},
-
+  handleRef(ref) {
+    console.log(ref);
+    this.form.addItem(ref);
+  },
+  onChange(row){
+    console.log(row);
+  },
 // 项目名称
 bindChooseProjectTap:function (e) {
   console.log(e);
@@ -81,7 +81,8 @@ bindChooseContractCallBack: function (data) {
   console.log(data,"data");
   this.setData({
     contractData: data || {},
-    contractAmount:data.contractAmount
+    contractAmount:data.contractAmount,
+    contractorName:data.unitPartyName
   });
   request.doPostRequest({
     url: config.API_CONTRACT_CUMULATIVE,
@@ -110,67 +111,9 @@ onSaveDialogScreenApplyDateRef:function(ref){
 bindChooseApplyDateCallBack(data){
   console.log(data,333333333333333);
   this.setData({
-    countersignDate: data.startDate || '',
+    applicationTime: data.startDate || '',
   });
 },
-// 变更内容完成时间
-bindChooseChangeDateTap :function(e){
-  console.log(e);
-  if (this.dialogScreenChangeDateRef) this.dialogScreenChangeDateRef._showDialog()
-},
-onSaveDialogScreenChangeDateRef:function(ref){
-  this.dialogScreenChangeDateRef = ref
-},
-bindChooseChangeDateCallBack(data){
-  console.log(data,333333333333333);
-  this.setData({
-    changeContentTime: data.startDate || '',
-  });
-},
-
-// 施工单位上报日期
-bindChooseBuildDateTap :function(e){
-  console.log(e);
-  if (this.dialogScreenBuildDateRef) this.dialogScreenBuildDateRef._showDialog()
-},
-onSaveDialogScreenBuildDateRef:function(ref){
-  this.dialogScreenBuildDateRef = ref
-},
-bindChooseBuildDateCallBack(data){
-  console.log(data,333333333333333);
-  this.setData({
-    constructionUnitReportDate: data.startDate || '',
-  });
-},
-  //抄送人
-  bindChooseExecuteUserTap: function (e) {
-    //   this.setData({
-    //     showDialog: true
-    // });
-      console.log(e);
-      if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog()
-  },
-   onSaveDialogScreenExecuteUserRef: function (ref) {
-     console.log(ref);
-    this.dialogScreenExecuteUserRef = ref;
-  },
-  bindScreenExecuteUserCallBack: function (list) {
-    console.log(list);
-    this.chooseExecuteUserList = list;
-  
-    let str = "";
-    let strId = ""
-    for (let item of this.chooseExecuteUserList) {
-        str += item.username;
-        strId +=item.userId
-        str += ",";
-    }
-    this.setData({
-      person_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
-      person: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
-
-    });
-  },
 // 上传
 onSaveUploadImgRef: function (ref) {
   this.uploadImgRef = ref;

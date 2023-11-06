@@ -13,7 +13,8 @@
     "pages/work/page/alterationRegister/alterationRegister",
     "pages/work/page/addTask/addTask",
     "pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit",
-    "pages/work/page/bidDocumentDetail/bidDocumentDetail"
+    "pages/work/page/bidDocumentDetail/bidDocumentDetail",
+    "pages/work/page/beCompletedRegister/beCompletedRegister"
   ],
   "window": {
     "backgroundTextStyle": "light",
