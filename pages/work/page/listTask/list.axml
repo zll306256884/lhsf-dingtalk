@@ -14,7 +14,7 @@
       <icon slot="prefix" type="SearchOutline" />
     </input>
   </view>
-  <view class="card">
+  <view class="card" style="margin-top:16rpx">
     <list >
       <list-item>
         <view class="list-item" a:for="{{listTask}}" data-index={{index}} onTap="selectInfo">
@@ -27,8 +27,8 @@
               <text class="item-time">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
             <view>
-              <view class="item-status" a:if="{{currentTask===0 || currentTask===1}}"> {{ item.taskStatus===5 && '逾期'}}</view>
-              <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
+              <view class="item-status" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>
+              <view a:if="{{currentTask!==0 && currentTask!==1 }}" class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
                 {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
               </view>
             </view>

@@ -1,0 +1,22 @@
+<view>
+  <view a:if="{{ mustFill }}">
+    <layout-field-cell
+      borderBottom
+      name="项目名称"
+      mustFill
+      value="{{isOutPut.name}}"
+      onArrowTap="_bindChooseIsOutPut"
+    >
+    </layout-field-cell>
+  </view>
+  <view a:else>
+    <layout-field-cell borderBottom name="项目名称" value="{{isOutPut.name}}" onArrowTap="_bindChooseIsOutPut">
+    </layout-field-cell>
+  </view>
+  <!--  -->
+  <dialog-picker
+    ref="onSaveDialogScreenIsOutPutRef"
+    dataList="{{listData}}"
+    onPickerChange="bindIsOutPutRef"
+  >
+    </view>

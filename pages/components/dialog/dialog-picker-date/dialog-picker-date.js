@@ -4,6 +4,7 @@ const app = getApp();
 Component({
   mixins: [],
   props: {
+    formatDate:"YYYY-MM-DD HH:mm:ss",//默认YYYY-MM-DD HH:mm:ss
     selectionMode:"single",// single，range 默认single
     marginTop: 0,
     onPickerCallBack: function(date) {},
@@ -81,12 +82,12 @@ Component({
     onChange(date) {
       if(this.props.selectionMode==="single"){
         this.setData({
-          startDate:dayjs(date).format("YYYY-MM-DD")
+          startDate:dayjs(date).format(this.props.formatDate)
         });
       }else{
         this.setData({
-          startDate:dayjs(date[0]).format("YYYY-MM-DD"),
-          endDate:dayjs(date[1]).format("YYYY-MM-DD")
+          startDate:dayjs(date[0]).format(this.props.formatDate),
+          endDate:this.props.formatDate==='YYYY-MM-DD HH:mm:ss'?dayjs(date[1]).format("YYYY-MM-DD") + ' 23:59:59':dayjs(date[1]).format(this.props.formatDate)
         }); 
       }
     },

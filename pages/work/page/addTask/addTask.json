@@ -1,3 +1,14 @@
 {
-  "usingComponents": {}
+  "defaultTitle": "新增任务",
+  "usingComponents": {
+    "form-input": "antd-mini/es/Form/FormInput/index",
+    "button": "antd-mini/es/Button/index",
+    "form-picker": "antd-mini/es/Form/FormPicker/index",
+    "form-date-picker": "antd-mini/es/Form/FormDatePicker/index",
+    "form-upload-image": "antd-mini/es/Form/FormImageUpload/index",
+    "form-textarea": "antd-mini/es/Form/FormTextarea/index",
+    "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
+    "dialog-picker-date":"/pages/components/dialog/dialog-picker-date/dialog-picker-date",
+    "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img"
+  }
 }

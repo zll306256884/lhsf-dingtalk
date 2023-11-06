@@ -1,0 +1,22 @@
+<view>
+  <!-- sub-tab -->
+  <view class="flex sub-tab-wrap">
+    <block a:for="{{subTabList}}">
+      <view class="item" data-index="{{index}}" catchTap="bindSubTabItemTap">
+        {{item.name}}
+      </view>
+    </block>
+  </view>
+  <!--  -->
+  <slot>
+    <view>default slot & default value</view>
+  </slot>
+  <view>我是组件内部的数据：{{counter}} {{name}}</view>
+  <view>我是父页面的数据：{{edata}}</view>
+  <button size="default" type="primary" catchTap="bindSubTabItemTap2">
+    点击我，改变自己的数据
+  </button>
+  <button size="default" catchTap="getParent">
+    点击我，传递子组件的数据
+  </button>
+</view>

@@ -1,3 +1,47 @@
 <view class="container">
-  我的
+  <!-- 头部 -->
+  <view class="header-wrap box-sizing-box">
+    <view class="flex user">
+      <image a:if="{{userInfo.avatar}}" class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
+      <view a:else class="firstName f-center">{{userInfo.firstName}}</view>
+      <view class="right">
+        <view class="single-line name">
+          {{userInfo.nickName}}
+        </view>
+        <view class="mobile">
+          {{userInfo.mobile}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--列表  -->
+  <view class='list box-sizing-box'>
+    <block a:for="{{partList}}">
+      <view class="f-between item flex" data-index="{{index}}" catchTap="bindTopItemTap">
+        <view class="flex f-start left">
+          <image class="icon-img" mode="aspectFill" src="{{item.img}}" />
+          <view class="name">
+            {{item.name}}
+          </view>
+        </view>
+        <image class="icon-arrow" mode="aspectFit" src="../../assets/images/user/icon_arrow_gray.png" />
+      </view>
+    </block>
+  </view>
+  <!-- 测试组件 -->
+  <view a:if="{{ false }}">
+    我是组件box
+    <sub-tab edata="{{edata}}" subTabList="{{subTabList}}" onOptionData="onOptionData1">
+      <!-- 外部使用自定义组件时，如果传递的参数是函数，一定要以 on 为前缀，否则会将其处理为字符串。 -->
+      <!--<view>
+        我是占位</view> -->
+      <!--<slot>1</slot> -->
+    </sub-tab>
+    <!-- sub-tab  -->
+  </view>
+  <!--  -->
+  <view a:if="{{ false }}">
+    我是tab组件
+    <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" ></nav-tab-bar>
+  </view>
 </view>

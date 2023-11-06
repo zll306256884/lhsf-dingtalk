@@ -1,0 +1,8 @@
+{
+  "defaultTitle": "修改密码",
+  "usingComponents": {
+    "layout-field-input":"../../../components/layout/layout-field-input/layout-field-input",
+    "layout-field-cell": "../../../components/layout/layout-field-cell/layout-field-cell",
+    "text-text-arrow": "../../../components/layout/text-text-arrow/text-text-arrow"
+  }
+}

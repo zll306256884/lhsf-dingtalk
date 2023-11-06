@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
+    "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker"
+  }
+}

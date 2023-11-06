@@ -1,0 +1,16 @@
+.container {}
+
+.container .title {
+  width: 750rpx;
+  height: 100rpx;
+  /* margin-top: 50rpx; */
+  padding: 52rpx 32rpx 16rpx 32rpx;
+  font-size: 28rpx;
+  color: #969799;
+  line-height: 32rpx;
+}
+
+.container .list{
+  padding: 0 32rpx;
+  background-color: #fff;
+}

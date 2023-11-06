@@ -1,0 +1,40 @@
+
+.container-wrap{
+  position: relative;
+}
+.form-card{
+  margin-top:16rpx;
+}
+.form-title{
+width: 100%;
+height: 80rpx;
+font-size: 28rpx;
+font-weight: 400;
+color: #969799;
+line-height: 80rpx;
+padding-left:32rpx;
+background: #fff;
+
+}
+.ant-form-item-field{
+  display: block;
+}
+.buttons {
+  width: 100%;
+  position: absolute;
+  box-sizing: border-box;
+  bottom:0;
+  padding: 12px 12px 48px 12px;
+}
+.buttons .ant-button{
+  width:48%
+}
+.ant-button-default{
+  box-shadow: none;
+}
+.ant-input-placeholder{
+  text-align: right;
+}
+.ant-input-content{
+  text-align: right
+}

@@ -1,0 +1,42 @@
+<view class="container">
+  测试新增页面
+
+  <view onTap="go" class="mt10">
+    点击我是跳转
+  </view>
+
+  <view class="mt10" id="item-{{id}}">
+    我是数据绑定{{title}}
+    <view a:if="{{condition}}"> 我是控制属性的例子</view>
+  </view>
+
+  <view a:for="{{items}}"> 我是数据渲染{{item}}</view>
+  <view a:for="{{[zero, 1, 2, 3, 4]}}"> {{item}}</view>
+
+  <view>
+    我是条件渲染
+    <view a:if="{{view == 'WEBVIEW'}}"> WEBVIEW</view>
+    <view a:elif="{{view == 'APP'}}"> APP</view>
+    <view a:else> dingtalk</view>
+    <!-- 多个判断 -->
+    <!-- <block/> 并不是一个组件，仅仅是一个包装元素，不会在页面中做任何渲染，只接受控制属性 -->
+    <block a:if="{{true}}">
+      <view> view1</view>
+      <view> view2</view>
+    </block>
+  </view>
+
+  <view>
+    我是模板
+    <template name="staffName">
+      <view>
+        FirstName: {{firstName}}, LastName: {{lastName}}
+      </view>
+    </template>
+    <template is="staffName" data="{{...staffA}}"></template>
+    <template is="staffName" data="{{...staffB}}"></template>
+    <template is="staffName" data="{{...staffC}}"></template>
+  </view>
+
+
+</view>

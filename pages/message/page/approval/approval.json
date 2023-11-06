@@ -1,0 +1,7 @@
+{
+  "defaultTitle": "我的审批",
+  "usingComponents": {
+    "sub-tab":"/pages/components/sub-tab/sub-tab",
+    "nav-tab-bar":"/pages/components/nav-tab-bar/nav-tab-bar"
+  }
+}

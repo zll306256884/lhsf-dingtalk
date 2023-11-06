@@ -2,7 +2,7 @@
 <import-sjs from="../../utils/utils.sjs" name="utils" />
 <view class="container">
   <image class="image"  src="../../../../assets/images/work/Group-top.png" />
-  <view class="content-wrap">
+  <view class="card-wrap">
     <view class="grid">
       <view class="flex f-row f-around f-wrap">
         <view a:for="{{iconList}}" key="{{item.name}}" class="grid-item" onTap="onItemTap" data-index="{{index}}">
@@ -12,7 +12,7 @@
       </view>
     </view>
 <!-- 待办列表 -->
-    <view class="card">
+    <view class="card" style="margin-top:32rpx">
       <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange">
         <view slot="title" slot-scope="item">
           <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>

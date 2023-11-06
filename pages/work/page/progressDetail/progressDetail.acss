@@ -1,0 +1,131 @@
+
+.container {
+  padding-top: 16rpx;
+  padding-bottom: 52rpx;
+}
+
+.container .containerinner {
+  display: block;
+  background: #fff;
+  margin: 16rpx 24rpx;
+  padding: 32rpx;
+  border-radius: 16rpx;
+}
+
+/* 头部 */
+
+.headerBox {
+  padding-bottom: 24rpx;
+  border-bottom: 1rpx solid #E4E7ED;
+}
+
+
+.headerBox .top {
+  height: 48rpx;
+  /* background-color: pink; */
+}
+
+.top .titke-icon {
+  width: 46rpx;
+  height: 46rpx;
+  display: inline-block;
+  /* background: linear-gradient(43deg, #23A6EF 0%, #15ED85 100%);
+  border-radius: 4rpx 4rpx 4rpx 4rpx;
+  opacity: 1;
+  border: 3rpx solid #FFFFFF; */
+}
+
+.top .title {
+  /* width: 128rpx; */
+  height: 46rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1D1D1F;
+  line-height: 46rpx;
+  margin-left: 15rpx;
+}
+
+.top .time {
+  /* width: 306rpx; */
+  height: 46rpx;
+  font-size: 24rpx;
+  color: #A8ABB2;
+  line-height: 46rpx;
+}
+
+/*里程碑  */
+.lcb {
+  width: 638rpx;
+  height: 64rpx;
+  background: #F8F9FA;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  margin-top: 20rpx;
+  padding: 16rpx 24rpx;
+}
+
+.lcb .left {
+  border-right: 1px solid #DCDFE6;
+}
+
+.lcb .left .has {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 0rpx 0rpx 0rpx 0rpx;
+  opacity: 1;
+  display: inline-block;
+
+}
+
+.lcb .left .name {
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #606266;
+  line-height: 40rpx;
+  padding-right: 32rpx;
+
+}
+
+.lcb .right {}
+
+.lcb .right .part {
+  height: 40rpx;
+  font-size: 24rpx;
+  color: #606266;
+  line-height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.lcb .right .part .spotGreen {
+  width: 12rpx;
+  height: 12rpx;
+  background: #00B42A;
+  border-radius: 50%;
+  opacity: 1;
+  line-height: 40rpx;
+  margin: 7px;
+}
+
+.lcb .right .part .spotOrange {
+  width: 12rpx;
+  height: 12rpx;
+  background: #FF7D00;
+  border-radius: 50%;
+  opacity: 1;
+  line-height: 40rpx;
+  margin: 7px;
+}
+
+.lcb .right .part .spotBlue {
+  width: 12rpx;
+  height: 12rpx;
+  background: #1A6AFF;
+  border-radius: 50%;
+  opacity: 1;
+  line-height: 40rpx;
+  margin: 7px;
+}
+
+
+/* 列表 */
+.listBox {}
