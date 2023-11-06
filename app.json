@@ -27,6 +27,8 @@
     "pages/work/page/myTask/taskInfo/taskInfo"
   ],
   "window": {
+    "transparentTitle": "always",
+    "titlePenetrate": "NO",
     "backgroundTextStyle": "light",
     "backgroundColor": "#fff",
     "navigationBarBackgroundColor": "#ff9700",

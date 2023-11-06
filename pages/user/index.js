@@ -14,7 +14,7 @@ const app = getApp();
 Page({
   data: {
     navbarData: {
-      title: "专项巡视",
+      title: "我的",
     },
     tabIndex: 0,
     tabList: [{
