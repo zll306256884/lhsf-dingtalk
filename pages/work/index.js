@@ -347,8 +347,32 @@ Page({
   selectMoreQuery() {
 
   },
-  // 点击列表项查看详情
-  selectInfo(e) {
+  // 点击列表项查看待办详情
+  selectAwaitInfo(e) {
     console.log(e);
-  }
+    ddUtils.navigateTo({
+     
+    });
+  },
+    // 点击列表项查看审批详情
+    selectApprovalInfo(e) {
+      console.log(e);
+      ddUtils.navigateTo({
+       
+      });
+    },
+      // 点击列表项查看任务详情
+  selectTaskInfo(e) {
+    console.log(e);
+    ddUtils.navigateTo({
+      // url: `/pages/work/page/listTask/list?json=${JSON.stringify(e.currentTarget.dataset.item)}`
+    });
+  },
+    // 点击列表项查看请求详情
+    selectQueryInfo(e) {
+      console.log(e);
+      ddUtils.navigateTo({
+       
+      });
+    }
 });

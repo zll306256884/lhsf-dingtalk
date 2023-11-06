@@ -20,7 +20,7 @@
       </tabs>
         <list>
         <list-item> 
-          <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectInfo">
+          <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
             <view class="item-title two-lines">
             <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status">
               {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
@@ -57,7 +57,7 @@
       <tabs items="{{tabs2}}" onChange="onApprovalChange" />
       <list >
         <list-item> 
-          <view class="list-item" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectInfo">
+          <view class="list-item" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectApprovalInfo">
             <view class="item-title two-lines">{{item.taskName}} </view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
@@ -90,9 +90,9 @@
         </tabs>
         <list >
           <list-item> 
-            <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectInfo">
+            <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
               <view class="item-title two-lines">
-                <view class="item-status" a:if="{{currentTask===0}}"> {{ item.taskStatus===5 && '逾期'}} </view>
+                <view class="item-status" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}} </view>
                 <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
                   {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
                 </view>
@@ -122,7 +122,7 @@
           </tabs>
           <list>
             <list-item> 
-              <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectInfo">
+              <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
                 <view class="item-title two-lines">{{item.title}} </view>
                 <view class="flex f-row f-between">
                   <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
