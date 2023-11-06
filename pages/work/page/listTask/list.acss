@@ -1,9 +1,4 @@
-.container-wrap{
-  /* position: relative; */
-}
-.card {
-  padding: 0 38rpx 4rpx;
-}
+
 .search-bar {
 width: 100%;
 height: 68rpx;

@@ -1,5 +1,5 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
-<view class="container-wrap">
+<view>
   <view class="card">
     <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
       <view slot="title" slot-scope="item">

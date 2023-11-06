@@ -1,7 +1,4 @@
 
-.container-wrap{
-  position: relative;
-}
 .form-card{
   margin-top:16rpx;
 }
