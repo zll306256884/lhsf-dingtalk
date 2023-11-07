@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
+    "badge": "antd-mini/es/Badge/index"
+  }
 }

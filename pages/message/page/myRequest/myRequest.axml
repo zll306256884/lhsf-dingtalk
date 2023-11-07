@@ -1,0 +1,16 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<nav-tab-bar tabList="{{tabList}}"></nav-tab-bar>
+
+<list>
+  <list-item>
+    <view class="flex f-between">
+      <view>
+        <view class="request-name">招标文件会签：XX市峰头水库渠…</view>
+        <view class="request-time">2023-08-20 10:26</view>
+      </view>
+      <view class="request-status">
+        已驳回
+      </view>
+    </view>
+  </list-item>
+</list>

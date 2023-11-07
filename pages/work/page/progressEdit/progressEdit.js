@@ -4,9 +4,9 @@ import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import progressServer from "../../../../server/workServer/progressServer";
 
-
-
 const app = getApp();
+
+
 Page({
   data: {
     navbarData: {
@@ -31,7 +31,9 @@ Page({
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
       taskId: query.id,
-      type: Number(query.type)
+      type: Number(query.type),
+      projectName: query.name,
+      projectId: query.projectId,
     });
     console.log(this.data.taskId);
   },
@@ -40,10 +42,10 @@ Page({
     // 类比于vue的mounted
     this.getDetail()
     console.log('app', app.globalData)
-    this.setData({
-      projectName: app.globalData.userInfo.projectName,
-      projectId: app.globalData.userInfo.projectId
-    });
+    // this.setData({
+    //   projectName: app.globalData.userInfo.projectName,
+    //   projectId: app.globalData.userInfo.projectId
+    // });
   },
   // 获取数据详情
   getDetail() {
@@ -59,6 +61,10 @@ Page({
           this.setData({
             detailData: res.data
           });
+          // 附件的附着
+          setTimeout(() => {
+            this.uploadFileRef._setImgList(JSON.parse(res.data.annexFile))
+          }, 0)
           resolve(res.data)
         },
         fail: res => {
@@ -107,26 +113,39 @@ Page({
   // 上传
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRef = ref;
+    console.log('onSaveUploadImgRef', ref)
+    // console.log('onSaveUploadImgRef',this.uploadImgRef,ref)
   },
   onSaveUploadFileRef: function (ref) {
     this.uploadFileRef = ref;
+    console.log('onSaveUploadFileRef', this.uploadFileRef, ref)
   },
   // 照片----end
 
 
   progressAddSubmit(e) {
+    // 
     console.log('触发了表单', e.detail.value)
+    console.log('附件的数据', this.uploadFileRef._getUploadImgId().imgList)
+    let annexFile
+    if (this.uploadFileRef._getUploadImgId().imgList.length) {
+      annexFile = this.uploadFileRef._getUploadImgId().imgList
+    } else {
+      annexFile = [];
+    }
+    // return
     this.setData({
       'detailData.remark': e.detail.value.remark,
     })
     let param = {
       "actualEndTime": this.data.detailData.actualEndTime,
       "actualStartTime": this.data.detailData.actualBeginTime,
-      "annexFile": [{
-        "name": "",
-        "size": 0,
-        "url": ""
-      }],
+      "annexFile": annexFile,
+      //  [{
+      //   "name": "",
+      //   "size": 0,
+      //   "url": ""
+      // }],
       "projectId": this.data.projectId,
       "remark": this.data.detailData.remark,
       "taskId": this.data.taskId

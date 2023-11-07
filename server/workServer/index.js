@@ -8,6 +8,8 @@ module.exports = {
   API_ALL_WAIT_LIST: API_HOST  +  "/mission/mainMission/queryList",
   // 我的任务
   API_CREATE_TASK: API_HOST  + "/mission/mainMission/create",
+  //消息
+  API_MESSAGE_POST:API_HOST  + "/message/messageCenter/select",
   API_SELECT_TASK: API_HOST  + "/mission/mainMission/selectDetailById",
   API_MODIFY_TASK: API_HOST  + "/mission/mainMission/modifyById",
   API_FINISH_TASK: API_HOST  + "/mission/mainMission/finish",

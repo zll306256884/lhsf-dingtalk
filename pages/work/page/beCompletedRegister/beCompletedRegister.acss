@@ -1,0 +1,82 @@
+.container .box-shadow {
+  padding: 0 0;
+  width: 100%;
+}
+
+.field-cell {
+  margin: 0;
+  padding: 30rpx 30rpx;
+}
+
+.box-shadow.field-cell {
+  margin: 30rpx auto 0;
+  padding: 30rpx 30rpx;
+}
+
+.field-cell .value,
+.field-cell .input {
+  font-size: 24rpx;
+  text-align: right;
+  color: #B8BFCC;
+}
+
+.field-cell .value.active,
+.field-cell .placeholder-class.active {
+  color: #525966;
+}
+
+/* 任务描述 */
+.box-shadow .desc {
+  margin: 10rpx 30rpx 0;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #525966;
+}
+
+/* btn */
+.btn-wrap {
+  margin: 30rpx 30rpx 30rpx;
+}
+.flex-display{
+  display: flex;
+}
+.btn-wrap .btn {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  border: 1px solid #E4E7ED;
+  font-size: 28rpx;
+  color: #525966;
+}
+
+.btn-wrap .btn.active {
+  margin-left: 20rpx;
+  color: white;
+  background-color: #377DFF;
+}
+
+/* 任务描述 */
+.box-shadow .desc {
+  margin: 10rpx 30rpx 0;
+  height: 100rpx;
+  font-size: 28rpx;
+  color: #525966;
+}
+.buttons {
+  background: #ffffff;
+  padding: 12px;
+}
+.button {
+  margin-bottom: 12px;
+}
+.ant-form-item-content-horizontal{
+  justify-content: space-between;
+}
+.ant-radio-group-body{
+  float: right;
+}
+/* border-top: 1px solid #E7EAF3; */
+.ant-form-item{
+  /* border: 1px solid #E7EAF3; */
+  /* position: none; */
+}

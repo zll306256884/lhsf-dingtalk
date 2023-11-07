@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "nav-tab-bar":"/pages/components/nav-tab-bar/nav-tab-bar",
+    "list": "antd-mini/es/List/index",
+    "list-item": "antd-mini/es/List/ListItem/index"
+  }
+}
