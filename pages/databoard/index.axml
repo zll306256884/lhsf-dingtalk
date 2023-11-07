@@ -1,4 +1,6 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+
 <view class="container">
  <view onTap="tapName">数据看板</view> 
-
+<dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
 </view>
