@@ -1,0 +1,225 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+
+<form-input
+  label="标题"
+  name="title"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+<form-input
+  label="项目名称"
+  name="projectName"
+  placeholder="请选择"
+  onFocus="chooseProject"
+  ref="handleRef" />
+
+<form-input
+  label="合同名称"
+  name="contractName"
+  validateStatus="default"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+
+<form-input
+  label="合同号"
+  name="contractNumber"
+  validateStatus="default"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+
+  <form-radio-group
+  label="是否补充协议"
+  labelWidth="200rpx"
+  name="supplementAgreement"
+  options="{{radioGroupOptions}}"
+  onChange="supplementAgreementChange"
+  ref="handleRef" />
+
+  <form-picker
+  a:if="{{contractShow}}"
+  label="主合同"
+  arrow
+  name="masterContract"
+  options="{{contractList}}"
+  ref="handleRef" />
+
+  <form-picker
+  label="项目类型"
+  arrow
+  name="projectType"
+  options="{{projectTypeOptions}}"
+  ref="handleRef" />
+
+  <form-radio-group
+  label="此合同是否需要招标"
+  labelWidth="320rpx"
+  name="contractNeedTender"
+  options="{{radioGroupOptions}}"
+  onChange="contractNeedTenderChange"
+  ref="handleRef" />
+
+  <form-picker
+  a:if="{{tenderShow}}"
+  label="招标文件"
+  arrow
+  name="tenderDocumentId"
+  options="{{biddingListOptions}}"
+  onOk="chooseTenderDocument"
+  ref="handleRef" />
+
+  <form-input
+  a:if="{{tenderShow}}"
+  label="招标方式"
+  disabled
+  name="biddingTypeName"
+  ref="handleRef" />
+
+  <form-picker
+  a:if="{{!tenderShow}}"
+  label="发包方式"
+  arrow
+  name="modeContract"
+  options="{{modeContractOptions}}"
+  ref="handleRef" />
+
+  <form-input
+  label="合同工期"
+  name="contractPeriod"
+  validateStatus="default"
+  placeholder="请输入"
+  allowClear
+  ref="handleRef" />
+
+  <form-radio-group
+  label="合同金额(万元)"
+  labelWidth="280rpx"
+  name="makeSure"
+  options="{{radioGroupOptionsTwo}}"
+  ref="handleRef" />
+  <form-input
+  name="contractAmount"
+  validateStatus="default"
+  placeholder="请输入"
+  allowClear
+  style="text-align:left"
+  ref="handleRef" />
+
+  <form-input
+  label="建设单位(甲方)"
+  labelWidth="280rpx"
+  name="developmentOrganizationName"
+  placeholder="请选择"
+  onFocus="chooseUnit"
+  ref="handleRef" />
+
+  <form-input
+  label="乙方单位"
+  name="unitPartyName"
+  onFocus="chooseEcologicalUnit"
+  ref="handleRef" />
+
+  <form-picker
+  label="乙方单位类型"
+  labelWidth="260rpx"
+  arrow
+  name="unitPartyType"
+  options="{{unitTypeOption}}"
+  ref="handleRef" />
+  
+  <list a:for="{{list}}" a:key="id">
+    <view class="bottom-space" style="height:16rpx"></view>
+    <list-item>
+      <view class="flex f-between">
+        <view> {{list[index].label1}} </view>
+        <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" data-index="{{index}}" onFocus="chooseThirdParty" />
+      </view>
+    </list-item>
+    <list-item> {{list[index].label2}} 
+      <picker slot="extra" options="{{unitTypeOption}}" value="{{list[index].thirdPartyType}}" data-index="{{index}}" onVisibleChange="chooseUnitType" onOk="chooseUnitTypeCallBack"></picker>
+    </list-item>
+    <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item>
+  </list>
+
+  <!-- <view style="margin-top:16rpx" a:for="{{list}}" a:key="id">
+    <form-input
+      label="{{list[index].label1}}"
+      placeholder="请选择"
+      :name="{{list[index].thirdPartyName}}"
+      data-index="{{index}}"
+      onFocus="chooseThirdParty"
+      ref="handleRef">
+    </form-input>
+    
+    <form-picker
+      label="{{list[index].label2}}"
+      arrow
+      labelWidth="295rpx"
+      :name="{{list[index].thirdPartyType}}"
+      options="{{unitTypeOption}}"
+      data-index="{{index}}"
+      onVisibleChange="chooseUnitType"
+      onOk="chooseUnitTypeCallBack"
+      ref="handleRef">
+      </form-picker>
+    <list><list-item extraBrief="删除"></list-item></list>
+  </view> -->
+
+  <view class="addunit" catchTap="addUnit">+添加单位</view>
+
+  <form-textarea
+    label="合同内容"
+    position='vertical'
+    name="contractContent"
+    placeholder="请输入"
+    allowClear
+    autoHeight
+    ref="handleRef" />
+  <form-picker
+    label="付款方式"
+    arrow
+    name="paymentMethod"
+    options="{{paymentMethodOptions}}"
+    ref="handleRef" />
+  <form-textarea
+  label="备注内容"
+  position='vertical'
+  name="remark"
+  placeholder="请输入"
+  allowClear
+  autoHeight
+  ref="handleRef" />
+
+  <view style="margin:16rpx 0;background:#fff">
+    <list>
+      <list-item class="flex f-center-start"><view style="color:#EE0A24;display:inline-block">*</view><view style="display:inline-block">合同正式稿及相关附件</view></list-item>
+    </list>
+    <view>
+      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadContractImgRef"></layout-upload-img>
+    </view>
+  </view>
+
+  <form-input
+  label="选择会签分管领导"
+  labelWidth="280rpx"
+  name="countersignLeader_dictText"
+  placeholder="请输入"
+  allowClear
+  onFocus="chooseLeader"
+  ref="handleRef" />
+
+  <!-- <view class="bottom-space"></view> -->
+
+  <view class="buttons flex f-between">
+    <button class="btn" onTap="reset">取消</button>
+    <button class="btn" onTap="staging">暂存</button>
+    <button class="btn active" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
+  </view>
+
+<dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>
+<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
+
+<dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-construct-unit>
