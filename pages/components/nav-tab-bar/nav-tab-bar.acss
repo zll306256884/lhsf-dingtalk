@@ -14,6 +14,7 @@
   font-size: 26rpx;
   color: #525966;
   text-align: center;
+  position: relative;
 }
 
 .tab-wrap .item.active {
@@ -57,3 +58,5 @@
   color: #8B94A3;
   text-align: center;
 }   
+
+

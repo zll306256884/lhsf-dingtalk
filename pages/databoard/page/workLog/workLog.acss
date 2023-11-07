@@ -74,23 +74,24 @@
 
 /*  */
 .bigPark .navContent{
-  padding: 32rpx 0;
+  padding: 32rpx 0 0 0;
 }
 
 .bigPark .navPark{
-  padding: 32rpx 0;
+  /* padding: 32rpx 0; */
 }
 
 .bigPark .navPark .newPark{
   border-bottom: 1rpx solid #EBEEF5;
   padding-bottom: 32rpx;
-  position: relative;
+  /* position: relative; */
 }
 
 .bigPark .navPark .newPark .baseUser{
-  width: 376rpx;
+  width: 560rpx;
   height: 72rpx;
   padding: 4rpx;
+  position: relative;
 }
 
 .bigPark .navPark .newPark .baseUser .avater{
@@ -115,6 +116,7 @@
   margin-top: 16rpx;
   margin-bottom: 32rpx;
 }
+/* 正常展示 */
 .bigPark .navPark .newPark  .newList .newNormal{
   width: 100%;
   height: auto;
@@ -126,10 +128,22 @@
   padding: 20rpx;
   z-index: 10;
 }
-
+/* 折叠起来  只展示一行 */
 .bigPark .navPark .newPark  .newList .newExpanded{
   width: 100%;
   height: 96rpx;
+  background: #F8F9FA;
+  font-size: 32rpx;
+  color: #121212;
+  line-height: 48rpx;
+  padding: 20rpx;
+  z-index: 10;
+}
+
+/* 点击全部  展开所有 */
+.bigPark .navPark .newPark  .newList .newExpandAll{
+  width: 100%;
+  height: auto;
   background: #F8F9FA;
   font-size: 32rpx;
   color: #121212;

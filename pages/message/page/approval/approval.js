@@ -20,15 +20,18 @@ Page({
     tabIndex: 0,
     tabList: [{
         name: "待办审批",
-        value: '1'
+        value: '1',
+        total:100
       },
       {
         name: "已办审批",
-        value: '2'
+        value: '2',
+        total:10
       },
       {
         name: "办结审批",
-        value: '3'
+        value: '3',
+        total:1
       }
     ],
    
