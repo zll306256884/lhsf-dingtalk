@@ -370,6 +370,14 @@ Page({
     if(this.data.contractId){
       params.id = this.data.contractId
     }
+    if (this.data.list && this.data.list.length) {
+      this.data.list.map(e => {
+        if (e.thirdPartyName === '' || e.thirdPartyType === '') {
+          ddUtils.showToast({title: '第三方和第三方服务类型必填！'})
+          throw Error()
+        }
+      })
+    }
     params.contractThirdPartyRepList = this.data.list
     params.projectId = this.data.projectId
     params.countersignLeader = this.data.countersignLeader
