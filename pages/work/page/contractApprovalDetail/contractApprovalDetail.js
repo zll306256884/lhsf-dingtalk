@@ -10,7 +10,11 @@ Page({
       }
     ],
     current: 0,
-    detailInfo: {}
+    detailInfo: {},
+    list: [],
+    navbarData: {
+      title: "合同签订详情"
+    }
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -21,14 +25,45 @@ Page({
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
   },
+  numberToChinese(num) {
+    const chineseNums = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+    const chineseUnits = ['', '十', '百', '千']
+    if (num === 0) {
+      return chineseNums[0]
+    }
+    let chineseStr = ''
+    let unitIndex = 0
+    while (num > 0) {
+      const digit = num % 10
+      if (digit !== 0) {
+        // 处理非零数字
+        chineseStr = chineseNums[digit] + chineseUnits[unitIndex] + chineseStr
+      } else if (chineseStr.charAt(0) !== chineseNums[0]) {
+        // 处理连续的零，只保留一个零
+        chineseStr = chineseNums[0] + chineseStr
+      }
+      num = Math.floor(num / 10)
+      unitIndex++
+    }
+    return chineseStr
+  },
   getDetail(tenderId){
     request.doPostRequest({
       url: projectService.API_CONTRACT_DETAIL,
       data: {id: tenderId},
       success: res => {
         console.log(res.data)
+        let list = res.data.contractThirdPartyRepList
+        if(list){
+          list.forEach((e, index)=> {
+            e.thirdPartyType = e.thirdPartyType.toString()
+            e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
+            e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
+          });
+        }
         this.setData({
-          detailInfo: res.data
+          detailInfo: res.data,
+          list
         })
         setTimeout(() => {
           this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
@@ -36,4 +71,5 @@ Page({
       }
     })
   },
+  
 });

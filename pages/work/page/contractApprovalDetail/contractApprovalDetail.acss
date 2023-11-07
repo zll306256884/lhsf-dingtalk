@@ -31,3 +31,20 @@
   line-height: 56rpx;
   text-align: center;
 }
+.ant-list-item-content-main{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 48rpx;
+}
+.ant-list-item-line{
+  padding:20rpx 32rpx;
+}
+.ant-list-item-extra-brief{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 48rpx;
+}

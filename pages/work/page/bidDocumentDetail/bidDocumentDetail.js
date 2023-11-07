@@ -3,6 +3,9 @@ import request from "../../../../utils/request"
 
 Page({
   data: {
+    navbarData: {
+      title: "招标文件详情"
+    },
     items: [
       {
         title:"详细信息",

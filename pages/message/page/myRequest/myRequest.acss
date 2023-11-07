@@ -7,6 +7,10 @@
   font-weight: 400;
   color: rgba(0,0,0,0.9);
   line-height: 40rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
 }
 .request-time{
   font-size: 24rpx;
