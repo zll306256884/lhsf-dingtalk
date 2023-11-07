@@ -32,8 +32,8 @@
     "pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit",
     "pages/work/page/contractApprovalDetail/contractApprovalDetail",
     "pages/databoard/page/workLog/workLog",
-    "pages/work/page/alterationRegister/alterationRegister"
-   
+    "pages/work/page/alterationRegister/alterationRegister",
+    "pages/message/page/myRequest/myRequest"
   ],
   "window": {
     "transparentTitle": "always",

@@ -1,0 +1,31 @@
+.ant-list-item-line{
+  padding: 32rpx;
+}
+.request-name{
+  font-size: 34rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0,0,0,0.9);
+  line-height: 40rpx;
+}
+.request-time{
+  font-size: 24rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(0,0,0,0.5);
+  line-height: 28rpx;
+  margin-top: 16rpx;
+}
+.request-status{
+  width: 116rpx;
+  height: 56rpx;
+  background: rgba(245,63,63,0.08);
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #F53F3F;
+  line-height: 56rpx;
+  text-align: center;
+}
