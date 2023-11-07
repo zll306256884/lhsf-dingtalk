@@ -5,6 +5,7 @@
     "container": "antd-mini/es/Container/index",
     "tabs": "antd-mini/es/Tabs/index",
     "textarea": "antd-mini/es/Input/Textarea/index",
-    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup"
+    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
+    "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img"
   }
 }

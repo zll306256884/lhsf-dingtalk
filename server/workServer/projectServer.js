@@ -19,4 +19,25 @@ module.exports = {
   API_SAVEANDSUBMIT: API_HOST + "/tender/tenderDocument/saveAndSubmit",
   //招标文件详情
   API_TENDER_DETAIL: API_HOST + "/tender/tenderDocument/selectById",
+
+  ////根据项目Id查看参建方类型
+  API_CURRENTUNIT_TYPE: API_HOST + "/integratedService/currentUnitType/queryCurrentUnitType",
+
+  //查询所有的合同
+  API_CONTRACT_LIST: API_HOST + "/tender/contract/selectList",
+
+  //招标文件
+  API_TENDERDOCUMENT_LIST: API_HOST + "/tender/tenderDocument/page",
+
+  //合同暂存
+  API_CONTRACT_TEMPORARY_STORAGE: API_HOST + "/tender/contract/temporaryStorage",
+
+  //合同审批-合同保存并提交审批
+  API_CONTRACT_SAVEANDSUBMIT: API_HOST + "/tender/contract/saveAndSubmit",
+
+  //合同详情
+  API_CONTRACT_DETAIL: API_HOST + "/tender/contract/selectById",
+
+  ////根据项目id/单位类型/单位名称分页模糊查询参建方信息
+  API_CURRENTUNIT: API_HOST + "/integratedService/currentUnit/queryPageCurrentUnit"
 }

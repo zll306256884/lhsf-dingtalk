@@ -1,6 +1,5 @@
 import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
-
 Page({
   data: {
     items: [
@@ -13,24 +12,27 @@ Page({
     current: 0,
     detailInfo: {}
   },
+  uploadContractImage: null,
   onLoad(options) {
     if(options.id){
       this.getDetail(options.id)
     }
   },
+  onSaveUploadContractImgRef(ref){
+    this.uploadContractImage = ref
+  },
   getDetail(tenderId){
     request.doPostRequest({
-      url: projectService.API_TENDER_DETAIL,
+      url: projectService.API_CONTRACT_DETAIL,
       data: {id: tenderId},
       success: res => {
         console.log(res.data)
         this.setData({
           detailInfo: res.data
         })
-        // setTimeout(() => {
-        //   this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
-        //   this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
-        // }, 0);
+        setTimeout(() => {
+          this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
+        }, 0);
       }
     })
   },

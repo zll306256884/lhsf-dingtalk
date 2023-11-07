@@ -117,7 +117,7 @@
   <button class="btn" onTap="staging">暂存</button>
   <button class="btn active" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
 </view>
-</view>
+
 
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <!-- <dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng> -->
