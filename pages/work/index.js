@@ -353,5 +353,15 @@ Page({
   // 点击列表项查看详情
   selectInfo(e) {
     console.log(e);
+   let temp =   e.target.dataset.item.type;
+   let item = e.target.dataset.item
+   console.log(item);
+   switch (temp) {
+    case 5:
+      ddUtils.navigateTo({
+        url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+      });
+      break;
+  }
   }
 });

@@ -1,0 +1,47 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view class="card">
+    <tabs items="{{items}}"  defaultCurrent="{{0}}"  onChange="onQueryChange">
+      <view
+        class="content"
+        slot-scope="item">
+        {{item.value.content}}
+      </view>
+    </tabs>
+  </view>
+  <view a:if="{{isShow===0}}">
+    <view class="content_text">
+      <view class="proName">
+        {{projectName?projectName:'-'}}
+      </view>
+      <view class="title">
+        {{title?title:'-'}}
+      </view>
+      <view class="money">年度资金计划总额：
+        {{yearAnnualFundPlanTotal?yearAnnualFundPlanTotal+'万元':'-'}}
+      </view>
+      <view class="money">年度累计计划支付金额：
+        {{annualCumulativePlanPaymentAmount?annualCumulativePlanPaymentAmount+'万元':'-'}}
+      </view>
+    </view>
+   <view class="content-data" a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="click">
+     <view class="data-text">
+      <list>
+        <list-item
+        arrow="right"
+       >{{item.contractName?item.contractName:'-'}}
+       <view class="plan-money">
+        计划支付金额：{{item.plannedPaymentAmount}}
+       </view>
+      </list-item>
+      </list>
+     </view>
+   <view class="bbbb">
+    <divider  />
+   </view>
+    </view>
+  </view>
+  <view a:if="{{isShow}}">
+    121212
+  </view>
+</view>

@@ -122,7 +122,7 @@
           </tabs>
           <list>
             <list-item> 
-              <view class="list-item" a:for="{{listQuery}}" data-index={{index}} onTap="selectInfo">
+              <view class="list-item" a:for="{{listQuery}}" data-index={{index}} data-item={{item}} onTap="selectInfo">
                 <view class="item-title two-lines">{{item.title}} </view>
                 <view class="flex f-row f-between">
                   <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>

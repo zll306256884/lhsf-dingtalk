@@ -15,7 +15,7 @@ background: #FFFFFF;
 }
 .list-item{
   position: relative;
- height: 190rpx;
+ height: 150rpx;
  padding: 32rpx 48rpx;
  border-bottom: 1rpx solid #E4E7ED;
 }
