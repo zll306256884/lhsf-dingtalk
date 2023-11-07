@@ -8,35 +8,42 @@ Page({
     iconList: [{
         url: "../../../../assets/images/work/Group-1.png",
         name: "新增项目",
-        path: 'pages/work/page/addProject/addProject'
+        path: '/pages/work/page/addProject/addProject'
       },
       {
         url: "../../../../assets/images/work/Group-2.png",
-        name: "新增日志"
+        name: "新增日志",
+        path:'/pages/work/page/addLog/addLog'
       },
       {
         url: "../../../../assets/images/work/Group-3.png",
-        name: "进度填报"
+        name: "进度填报",
+        path:'/pages/work/page/progressReporting/progressReporting'
       },
       {
         url: "../../../../assets/images/work/Group-4.png",
-        name: "招标文件会签"
+        name: "招标文件会签",
+        // path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
       },
       {
         url: "../../../../assets/images/work/Group-5.png",
-        name: "合同签订登记"
+        name: "合同签订登记",
+        path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
       },
       {
         url: "../../../../assets/images/work/Group-6.png",
-        name: "新增支付"
+        name: "新增支付",
+        path: '/pages/work/page/addPayment/addPayment'
       },
       {
         url: "../../../../assets/images/work/Group-7.png",
-        name: "变更登记"
+        name: "变更登记",
+        path: '/pages/work/page/alterationRegister/alterationRegister'
       },
       {
         url: "../../../../assets/images/work/Group-8.png",
-        name: "竣工结算登记"
+        name: "竣工结算登记",
+        path: ''
       }
     ],
     // 待办
@@ -94,42 +101,47 @@ Page({
     this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
   },
   onItemTap(e) {
-    switch (e.target.dataset.index) {
-      case 0:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/addProject/addProject`
-        });
+    console.log(e);
+    let {path} = e.currentTarget.dataset
+    ddUtils.navigateTo({
+      url: path
+    });
+    // switch (e.target.dataset.index) {
+    //   case 0:
+    //     ddUtils.navigateTo({
+    //       url: `/pages/work/page/addProject/addProject`
+    //     });
 
-        break;
-      case 1:
-        // 新增日志
-        ddUtils.navigateTo({
-          url: `/pages/work/page/addLog/addLog`
-        });
-        break;
-      case 2:
-        // 进度填报
-        ddUtils.navigateTo({
-          url: `/pages/work/page/progressReporting/progressReporting`
-        });
-        break;
-      case 3:
-        break;
-      case 4:
-        break;
-      case 5:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/addPayment/addPayment`
-        });
-        break;
-      case 6:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/alterationRegister/alterationRegister`
-        });
-        break;
-      case 7:
-        break;
-    }
+    //     break;
+    //   case 1:
+    //     // 新增日志
+    //     ddUtils.navigateTo({
+    //       url: `/pages/work/page/addLog/addLog`
+    //     });
+    //     break;
+    //   case 2:
+    //     // 进度填报
+    //     ddUtils.navigateTo({
+    //       url: `/pages/work/page/progressReporting/progressReporting`
+    //     });
+    //     break;
+    //   case 3:
+    //     break;
+    //   case 4:
+    //     break;
+    //   case 5:
+    //     ddUtils.navigateTo({
+    //       url: `/pages/work/page/addPayment/addPayment`
+    //     });
+    //     break;
+    //   case 6:
+    //     ddUtils.navigateTo({
+    //       url: `/pages/work/page/alterationRegister/alterationRegister`
+    //     });
+    //     break;
+    //   case 7:
+    //     break;
+    // }
   },
   // 获取全部待办列表
   getAwaitList: function () {
