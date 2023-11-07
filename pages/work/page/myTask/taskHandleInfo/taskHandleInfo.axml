@@ -1,0 +1,21 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="card">
+  <form-textarea
+  label="说明"
+  name="description"
+  placeholder="请输入说明"
+  allowClear
+  autoHeight
+  position="vertical"
+  ref="handleRef" />
+  <view>
+    相关完成材料
+  </view>
+  <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
+  
+</view>
+
+<view class="buttons flex f-between">
+  <button onTap="cancel">取消</button>
+  <button type="primary" onTap="submit">保存</button>
+</view>

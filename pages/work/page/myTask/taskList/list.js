@@ -1,10 +1,13 @@
-import request from "../../../../utils/request"
-import apiApprovalManage from "../../../../server/workServer"
-import ddUtils from "../../../../utils/ddUtils"
+import request from "../../../../../utils/request"
+import apiApprovalManage from "../../../../../server/workServer"
+import ddUtils from "../../../../../utils/ddUtils"
 const app = getApp();
 
 Page({
   data: {
+    navbarData:{
+      title: "我的任务"
+    },
      tabs1: [
       {
         title:"待办任务",
@@ -108,7 +111,18 @@ onTaskChange(e){
 },
 addTask(){
   ddUtils.navigateTo({
-    url: `/pages/work/page/addTask/addTask`
+    url: `/pages/work/page/myTask/taskAdd/taskAdd`
   });
-}
+},
+selectTaskInfo(e) {
+  console.log(e);
+  // if(this.data.currentTask===1){
+    const pramas={
+      id:e.currentTarget.dataset.item.id
+    }
+    ddUtils.navigateTo({
+      url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+    });
+  // } 
+},
 });

@@ -1,6 +1,7 @@
 {
-  "defaultTitle": "数据看板",
   "usingComponents": {
-    "dialog-modal": "/pages/components/dialog/dialog-modal/dialog-modal"
+    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
+    "nav-bar": "/pages/components/nav-bar/nav-bar"
+
 }
 }

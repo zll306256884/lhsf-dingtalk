@@ -17,7 +17,7 @@
   border-radius: 16rpx;
   opacity: 1;
   /* margin: 30rpx auto 0; */
-  padding: 0 38rpx;
+  padding: 4rpx 38rpx;
   box-sizing: border-box;
 }
 

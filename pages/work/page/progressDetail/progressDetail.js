@@ -13,6 +13,7 @@ Page({
     },
     listData: [1, 2, 3, 4, 5],
     projectId: '',
+    flagNode: '',//是否为里程碑节点
   },
   onLoad(query) {
     console.log('query', query)
@@ -37,13 +38,15 @@ Page({
   },
   // 获取基本信息
   getList: function () {
+    let param = {
+      "projectId": this.data.projectId,
+      'flagNode': this.data.flagNode
+    }
     return new Promise((resolve, reject) => {
       request.doPostRequest({
         url: progressServer.API_PROGRESS_LIST,
         showLoading: false,
-        data: {
-          "projectId": this.data.projectId
-        },
+        data: param,
         success: res => {
           console.log('res.data', res.data)
           this.setData({
@@ -56,6 +59,21 @@ Page({
         }
       });
     })
-
+  },
+  // 点击里程碑节点
+  milestoneNode(e) {
+    console.log(2333)
+    let code
+     // 1  里程碑  0  非里程碑   空字符串   全量
+    if (this.data.flagNode) {
+      this.setData({
+        flagNode: ''
+      });
+    } else {
+      this.setData({
+        flagNode: 1
+      });
+    }
+    this.getList()
   },
 });

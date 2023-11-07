@@ -10,5 +10,7 @@ module.exports = {
   API_CREATE_TASK: API_HOST  + "/mission/mainMission/create",
   //消息
   API_MESSAGE_POST:API_HOST  + "/message/messageCenter/select",
+  API_SELECT_TASK: API_HOST  + "/mission/mainMission/selectDetailById",
+  API_MODIFY_TASK: API_HOST  + "/mission/mainMission/modifyById"
 }
 

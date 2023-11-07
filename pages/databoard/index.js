@@ -6,6 +6,40 @@ import ddTimer from '../../utils/ddTimer'
 Page({
   data: {
     visibel:false,
+    navbarData:{
+      title: "任务详情"
+    },
+    options:[
+      {
+        label:"类型",
+        prop:"type",
+        value:[],
+        type:'select',
+        option: [
+          {
+              id:"1",
+              label: '12',
+              selected: false,
+          },
+          {
+              id:"2",
+              label: '34',
+              selected: false,
+          },
+          {
+              id:"3",
+              label: '56',
+              selected: false,
+          },
+      ],
+      },
+      {
+        label:"人员",
+        value:"",
+        prop:"userName",
+        type:'input' 
+      },
+    ],
   },
   dialogScreenDateRef:null,
   onLoad() {
@@ -14,22 +48,9 @@ Page({
     this.dialogScreenDateRef = ref;
   },
   tapName(e){
-    this.dialogScreenDateRef.showDialog();
-    // ddTimer.chooseDateTime('{y}-{m}-{d} {h}:{i}:{s}').then(res=>{
-    // console.log(res);
-    // })
-    // ddUtils.showModal({
-    //   title:"确认删除所选数据?",
-    //   content: "删除后不可恢复，请确认",
-    //   success: res => {
-    //     if (res.confirm) {
-    //     console.log(e);
-    //     }
-    //   }
-    // });
-    // this.setData({
-    //   visibel:true
-    // })
+    this.setData({
+      visibel:true
+    })
   },
   _bindScreenDateCallBack(data){
     console.log(data);
@@ -40,8 +61,8 @@ Page({
       visibel:data
     })
   },
-  onBindSureTap(form){
-    console.log(form);
+  onBindSureTap(data){
+    console.log(data);
     this.onDialog(false)
   }
 });

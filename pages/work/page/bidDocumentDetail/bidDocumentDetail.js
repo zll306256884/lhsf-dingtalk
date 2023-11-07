@@ -1,17 +1,37 @@
+import projectService from "../../../../server/workServer/projectServer";
+import request from "../../../../utils/request"
+
 Page({
   data: {
     items: [
       {
-        title:"水果",
-        subTitle:"描述文案",
-        content:"西瓜",
+        title:"详细信息",
       },{
-        title:"蔬菜",
-        subTitle:"描述文案",
-        badge: true,
-        content:"西红柿",
+        title:"审批记录",
       }
     ],
+    current: 0,
+    detailInfo: {}
   },
-  onLoad() {},
+  onLoad(options) {
+    if(options.id){
+      this.getDetail(options.id)
+    }
+  },
+  getDetail(tenderId){
+    request.doPostRequest({
+      url: projectService.API_TENDER_DETAIL,
+      data: {id: tenderId},
+      success: res => {
+        console.log(res.data)
+        this.setData({
+          detailInfo: res.data
+        })
+        // setTimeout(() => {
+        //   this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
+        //   this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
+        // }, 0);
+      }
+    })
+  },
 });

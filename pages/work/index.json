@@ -1,7 +1,4 @@
 {
-  
-  "transparentTitle": "always",
-  "titlePenetrate": "NO",
   "usingComponents": {
     "tabs": "antd-mini/es/Tabs/index",
     "avatar": "antd-mini/es/Avatar/index",

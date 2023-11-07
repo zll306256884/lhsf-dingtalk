@@ -19,19 +19,78 @@ Page({
     },
     tabIndex: 0,
     tabList: [{
-        name: "待办审批",
-        value: '1'
-      },
-      {
-        name: "已办审批",
-        value: '2'
-      },
-      {
-        name: "办结审批",
-        value: '3'
-      }
+      name: "待办审批",
+      value: '1',
+      total: 100
+    },
+    {
+      name: "已办审批",
+      value: '2',
+      total: 10
+    },
+    {
+      name: "办结审批",
+      value: '3',
+      total: 0
+    }
     ],
-   
+    // 漏斗
+    visibel:false,
+    options: [
+      {
+        label: "类型",
+        prop: "type",
+        value: [],
+        type: 'select',
+        option: [
+          {
+            id: "1",
+            label: '12',
+            selected: false,
+          },
+          {
+            id: "2",
+            label: '34',
+            selected: false,
+          },
+          {
+            id: "3",
+            label: '56',
+            selected: false,
+          },
+        ],
+      },
+      {
+        label: "人员",
+        value: "",
+        prop: "userName",
+        type: 'input'
+      },
+    ],
+    dialogScreenDateRef:null,
+    // 
+
+  },
+  _onSaveDialogScreenDateRef: function (ref) {
+    this.dialogScreenDateRef = ref;
+  },
+  tapName(e) {
+    this.setData({
+      visibel: true
+    })
+  },
+  _bindScreenDateCallBack(data) {
+    console.log(data);
+
+  },
+  onDialog(data) {
+    this.setData({
+      visibel: data
+    })
+  },
+  onBindSureTap(data) {
+    console.log(data);
+    this.onDialog(false)
   },
   onLoad(query) {
     // 页面加载
@@ -47,7 +106,7 @@ Page({
     this.setData({
       tabIndex: index
     });
-    let targetValue=this.data.tabList[this.data.tabIndex].value
+    let targetValue = this.data.tabList[this.data.tabIndex].value
     console.log('targetValue', targetValue)
   },
   // 跳转

@@ -14,7 +14,7 @@ const app = getApp();
 Page({
   data: {
     navbarData: {
-      title: "专项巡视",
+      title: "我的",
     },
     tabIndex: 0,
     tabList: [{
@@ -79,6 +79,11 @@ Page({
     // 页面加载完成
     // 类比于vue的mounted
     this.getList()
+  },
+  addTask(){
+    ddUtils.navigateTo({
+      url: `/pages/databoard/page/workLog/workLog`
+    });
   },
   // 跳转
   bindTopItemTap(e) {
