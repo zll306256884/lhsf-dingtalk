@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/databoard/page/workLog/workLog",
+
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -31,7 +31,7 @@
     "pages/work/page/bidDocumentDetail/bidDocumentDetail",
     "pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit",
     "pages/work/page/contractApprovalDetail/contractApprovalDetail",
-    
+    "pages/databoard/page/workLog/workLog",
     "pages/work/page/alterationRegister/alterationRegister"
    
   ],
