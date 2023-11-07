@@ -357,7 +357,9 @@ Page({
     });
   },
   selectMoreQuery() {
-
+    ddUtils.navigateTo({
+      url: `/pages/message/page/myRequest/myRequest`
+    });
   },
   // 点击列表项查看待办详情
   selectAwaitInfo(e) {
