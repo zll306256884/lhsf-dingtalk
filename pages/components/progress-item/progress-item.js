@@ -2,7 +2,8 @@ Component({
   mixins: [],
   data: {},
   props: {
-    listData: [1, 1, 1, 1]
+    listData: [1, 1, 1, 1],
+    projectId:'',
   },
   didMount() {
     console.log('this.is组件路径', this.is);
@@ -14,10 +15,13 @@ Component({
   methods: {
     toEditPage(e) {
       console.log('e', e)
-      let id = e.target.dataset.id
+      let id = e.target.dataset.planId
       let type = e.target.dataset.type
+      let name = e.target.dataset.name
+      let projectId = e.target.dataset.projectId
+      // return
       dd.navigateTo({
-        url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type,
+        url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type+ '&name='+name+ '&projectId='+projectId,
       })
     },
   },

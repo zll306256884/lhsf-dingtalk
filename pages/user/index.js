@@ -80,6 +80,11 @@ Page({
     // 类比于vue的mounted
     this.getList()
   },
+  addTask(){
+    ddUtils.navigateTo({
+      url: `/pages/databoard/page/workLog/workLog`
+    });
+  },
   // 跳转
   bindTopItemTap(e) {
     console.log(e.target.dataset.index);
