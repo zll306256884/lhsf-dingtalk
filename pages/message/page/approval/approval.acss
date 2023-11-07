@@ -2,3 +2,24 @@
   margin-top:4px;
   /* background:pink; */
 }
+
+.funnel {
+  width: 15%;
+  height: 80rpx;
+  background-color: #fff;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.funnel .imgbox{
+  margin: 24rpx 0;
+  height:32rpx;
+  border-left:2rpx solid #EBEDF0;
+  cursor: pointer;
+}
+
+.funnel .imgbox .funnelimg{
+  width: 32rpx;
+  height:32rpx;
+  display: inline-block;
+}

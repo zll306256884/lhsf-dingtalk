@@ -23,23 +23,26 @@
               <view class="baseUser flex f-start">
                 <image class="avater" mode="aspectFill" src="{{itemPart.userImage}}" />
                 <view class="name">{{itemPart.createBy}}</view>
+                <view class="majorTip" a:if="{{itemPart.logType===1}}">
+                  <image class="tip" mode="aspectFill" src="../../../../assets/images/log/major.png" />
+                </view>
               </view>
               <view class="newList box-sizing-box">
                 <view class="newNormal three-lines box-sizing-box" a:if="{{itemPart.expandedAll==1}}">
                   {{itemPart.content}}
                 </view>
+                <!-- style="top: {{navPlacherHeight}}px;" -->
+                <!--<view class="newExpandAll box-sizing-box" a:if="{{itemPart.expandedAll==0&&!showAll}}">
+                  {{itemPart.content}}</view> -->
                 <view class="newExpanded single-line box-sizing-box" a:if="{{itemPart.expandedAll==0}}">
                   {{itemPart.content}}
                 </view>
-                <view class="viewBtn" catchTap='expandedIt'>全文</view>
+                <view class="viewBtn" catchTap='expandedIt' a:if="{{itemPart.expandedAll==0}}">全文</view>
                 <view class="imgBox flex f-wrap f-start">
                   <block a:for="{{itemPart.logPhotoList}}" a:for-item="itemImg" a:for-index="imgIndex">
                     <image class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
                   </block>
                 </view>
-              </view>
-              <view class="majorTip">
-                <image class="tip" mode="aspectFill" src="../../../../assets/images/log/major.png" />
               </view>
             </block>
           </view>

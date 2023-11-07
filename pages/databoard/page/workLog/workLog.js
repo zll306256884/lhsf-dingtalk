@@ -11,6 +11,7 @@ Page({
     navbarData: {
       title: "工作日志",
     },
+    showAll:0,
     items1: [
       { text: '重大', value: 1},
       { text: '全部', value:0 },

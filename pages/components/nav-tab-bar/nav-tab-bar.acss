@@ -4,7 +4,7 @@
   top: 0;
   right: 0;
   background-color: white;
-  z-index: 99999;
+  z-index: 999;
 }
 
 .tab-wrap .item {
@@ -14,6 +14,7 @@
   font-size: 26rpx;
   color: #525966;
   text-align: center;
+  position: relative;
 }
 
 .tab-wrap .item.active {
@@ -27,7 +28,7 @@
   left: 0;
   bottom: 0;
   background-color: #377DFF;
-  z-index: 100000;
+  z-index: 1000;
 }
 
 .tab-placher {
@@ -57,3 +58,5 @@
   color: #8B94A3;
   text-align: center;
 }   
+
+
