@@ -118,7 +118,6 @@ selectTaskInfo(e) {
   console.log(e);
   // if(this.data.currentTask===1){
     const pramas={
-      type:"edit",
       id:e.currentTarget.dataset.item.id
     }
     ddUtils.navigateTo({

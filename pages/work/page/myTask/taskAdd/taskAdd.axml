@@ -21,5 +21,6 @@
       <button type="primary" onTap="submit">保存</button>
     </view>
   </view>
+</view>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <dialog-picker-date  ref="onSaveDialogPickerDateRef"  onPickerCallBack="bindPickerDateCallBack"></dialog-picker-date>

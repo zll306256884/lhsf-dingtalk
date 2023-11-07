@@ -38,6 +38,7 @@ Component({
     topHeight: 0,
   },
   props: {
+    options:[],
     showDialog:false,
     marginTop: 0,
     positionBottom: true,
@@ -52,6 +53,11 @@ Component({
             scrollHeight: app.globalData.appSystemInfo.screenHeight * 0.6
         });
     });
+    if(this.props.showDialog && this.props.options.length){
+      this.setData({
+        options:this.props.options
+      })
+    }
 },
   didUpdate() {},
   didUnmount() {},

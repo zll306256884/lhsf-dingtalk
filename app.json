@@ -24,7 +24,8 @@
     "pages/work/page/alterationRegister/alterationRegister",
     "pages/work/page/myTask/taskList/list",
     "pages/work/page/myTask/taskAdd/taskAdd",
-    "pages/work/page/myTask/taskInfo/taskInfo"
+    "pages/work/page/myTask/taskInfo/taskInfo",
+    "pages/work/page/myTask/taskHandleInfo/taskHandleInfo"
   ],
   "window": {
     "transparentTitle": "always",
