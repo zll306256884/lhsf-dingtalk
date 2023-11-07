@@ -1,14 +1,16 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="card">
   <form-textarea
-  label="说明"
-  name="description"
-  placeholder="请输入说明"
+  label="完成情况说明"
+  name="remark"
+  placeholder="请输入"
   allowClear
   autoHeight
+  required
   position="vertical"
+  maxLength="100"
   ref="handleRef" />
-  <view>
+  <view class="form-title">
     相关完成材料
   </view>
   <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>

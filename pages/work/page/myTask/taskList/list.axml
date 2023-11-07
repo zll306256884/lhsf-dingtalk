@@ -28,7 +28,7 @@
               <text class="item-time">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
             <view>
-              <view class="item-status" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>
+              <view class="item-status-error" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>
               <view a:if="{{currentTask!==0 && currentTask!==1 }}" class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
                 {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
               </view>

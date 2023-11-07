@@ -14,6 +14,7 @@ Page({
         title:"任务完成情况",
       }
     ],
+    activeTab:0,
     executer_dictText: "",
     infoData:{},
     executeUser:[],
@@ -24,6 +25,9 @@ Page({
   onLoad(option) {
     const params = JSON.parse(option.json);
       this.getInfo(params.id);
+      this.setData({
+        currentId:params.id
+      })
     },
     onSaveUploadTenderImgRef(ref) {
       this.uploadImageList = ref;
@@ -33,11 +37,18 @@ Page({
       url: workServer.API_SELECT_TASK,
       data: { id },
       success: res => {
+        res.data.subMissionList = res.data.subMissionList.map(e => {
+          return{
+            ...e,
+            executer_dictText:JSON.parse(e.executeUser).map(i => i.username).toString() 
+          }
+        });
         this.setData({
           infoData:res.data,
           annexList:res.data.missionFileList,
           executer_dictText:JSON.parse(res.data.executeUser).map(e => e.username).toString()
         })
+        console.log(this.data.infoData);
        const files= res.data.missionFileList.map((item)=>{
           return {
             ...item,
@@ -53,7 +64,24 @@ Page({
   },
   handleTask(){
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskHandleInfo/taskHandleInfo`
+      url: `/pages/work/page/myTask/taskHandleInfo/taskHandleInfo?json=${this.data.currentId}`
     });
+  },
+  onTaskChange(e){
+    this.setData({
+      activeTab:e
+    })
+
+  },
+  delete(){
+    // API_REMIND_TASK
+    // API_DELETE_TASK
+
+  },
+  remind(){
+
+  },
+  download(){
+
   }
 });

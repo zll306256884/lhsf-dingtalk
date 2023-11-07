@@ -11,3 +11,13 @@
 .ant-button-default{
   box-shadow: none;
 }
+.form-title{
+  width: 100%;
+  height: 80rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #323233;
+  line-height: 80rpx;
+  padding-left:32rpx;
+  
+  }

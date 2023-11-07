@@ -9,6 +9,9 @@ module.exports = {
   // 我的任务
   API_CREATE_TASK: API_HOST  + "/mission/mainMission/create",
   API_SELECT_TASK: API_HOST  + "/mission/mainMission/selectDetailById",
-  API_MODIFY_TASK: API_HOST  + "/mission/mainMission/modifyById"
+  API_MODIFY_TASK: API_HOST  + "/mission/mainMission/modifyById",
+  API_FINISH_TASK: API_HOST  + "/mission/mainMission/finish",
+  API_REMIND_TASK: API_HOST  + "/mission/mainMission/remind",
+  API_DELETE_TASK: API_HOST  + "/mission/mainMission/deleteById"
 }
 
