@@ -71,17 +71,42 @@ Page({
     this.setData({
       activeTab:e
     })
-
   },
-  delete(){
-    // API_REMIND_TASK
-    // API_DELETE_TASK
-
+  delete(e){
+    const params={
+      id: e.currentTarget.dataset.item.id
+    }
+    request.doPostRequest({
+      url: workServer.API_DELETE_TASK,
+      data:params,
+      success: res => {
+        if(res.code===1000){
+          ddUtils.showToast({
+            title: "删除成功！"
+          });
+        }
+      }
+    })
   },
-  remind(){
-
+  remind(e){
+    const params={
+      executeUserId: e.currentTarget.dataset.item.executeUserId,
+      id: e.currentTarget.dataset.item.id
+    }
+    request.doPostRequest({
+      url: workServer.API_REMIND_TASK,
+      data:params,
+      success: res => {
+        if(res.code===1000){
+          ddUtils.showToast({
+            title: "提醒成功！"
+          });
+        }
+      }
+    })
   },
-  download(){
+  download(e){
+    console.log(e);
 
   }
 });

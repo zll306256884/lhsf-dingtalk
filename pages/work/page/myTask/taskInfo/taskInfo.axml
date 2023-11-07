@@ -47,10 +47,10 @@
           </view>
         </view>
       </view>
-      <view class="list-buttons flex f-row f-end">
-        <button onTap="delete">删除</button>
-        <button type="primary" onTap="remind">提醒</button>
-        <button type="primary" onTap="download">下载相关资料</button>
+      <view  a:if="{{infoData.missionId==='0'}}" class="list-buttons flex f-row f-end">
+        <button a:if="{{item.taskStatus===2}}" data-item="{{item}}" onTap="delete">删除</button>
+        <button a:if="{{item.taskStatus===2}}" data-item="{{item}}" type="primary" onTap="remind">提醒</button>
+        <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
     </view>
     </view>
   </view>
