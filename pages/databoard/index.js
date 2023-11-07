@@ -18,17 +18,17 @@ Page({
         option: [
           {
               id:"1",
-              label: '意外医疗',
+              label: '12',
               selected: false,
           },
           {
               id:"2",
-              label: '疾病医疗',
+              label: '34',
               selected: false,
           },
           {
               id:"3",
-              label: '疾病住院',
+              label: '56',
               selected: false,
           },
       ],
