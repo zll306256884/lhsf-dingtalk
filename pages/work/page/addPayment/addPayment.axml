@@ -35,7 +35,7 @@
      <view class="flex-display flex-align-center btn-wrap">
             <button class="flex1 btn" catchTap="bindCancelTap">取  消</button>
             <button class="flex1 btn zancun" data-flag="{{1}}" form-type="submit">暂存</button>
-            <button class="flex1 btn active" data-flag="{{2}}" form-type="submit">保  存</button>
+            <button class="flex1 btn active" data-flag="{{2}}" form-type="submit">提交审批</button>
         </view>
   </form>
 </view>

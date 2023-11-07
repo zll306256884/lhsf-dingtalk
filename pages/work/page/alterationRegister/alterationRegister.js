@@ -1,6 +1,5 @@
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
-import API_CONTRACT_TO_MONEY from "../../../../utils/config"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 Page({
@@ -22,6 +21,8 @@ Page({
   changeContentTime:"",//变更内容完成时间
   contactChange:"",//联系单变更内容
   remark:"",//备注
+  person:'',
+  person_text:'',
   chooseExecuteUserList: [],
   uploadImgRef:null,/// 上传
     isEdit: false,
@@ -158,14 +159,16 @@ bindChooseBuildDateCallBack(data){
     this.chooseExecuteUserList = list;
   
     let str = "";
-  
+    let strId = ""
     for (let item of this.chooseExecuteUserList) {
         str += item.username;
+        strId +=item.userId
         str += ",";
     }
-  
     this.setData({
-      countersignLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1)
+      person_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
+      person: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
+
     });
   },
 // 上传
@@ -175,27 +178,75 @@ onSaveUploadImgRef: function (ref) {
 
 //bind form submit
 bindFormSubmit: function (e) {
+  console.log(this.data.contactNoticeName);
   console.log(e,999999999999999);
-  let payAmount = e.detail.value.payAmount
-  let paymentNode = e.detail.value.paymentNode
-  let paymentContent = e.detail.value.paymentContent
-  // if(!this.data.isEdit){
-  //   if (ddUtils.showEmptyToastTips(this.data.projectTypeData.itemValue, "请选择项目类型")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.projectData.id, "请选择项目名称")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "请选择合同名称")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.proceedsData.id, "请选择收款单元")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
-  //   if (ddUtils.showEmptyToastTips(payAmount, "请输入应付金额")) return;
-  //   if (ddUtils.showEmptyToastTips(paymentNode, "请输入支付节点（或形象进度）")) return;
-  //   if (ddUtils.showEmptyToastTips(paymentContent, "请输入付款内容")) return;
-  //   if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
-  // }
-  let investmentFileList = [];
-  if (this.uploadImgRef) {
-    investmentFileList = this.uploadImgRef._getUploadImgId().imgIdList;
+  let changeAmount = e.detail.value.changeAmount
+  let contactChange = e.detail.value.contactChange
+  let contactNoticeName = e.detail.value.contactNoticeName
+  let remark = e.detail.value.remark
+//   let investmentFileList = [],temFileList=[]
+//   if (this.uploadImgRef) {
+//     temFileList = this.uploadImgRef._getUploadImgId().imgList;
+// }
+let investmentFileList = [], temFileList=[]
+if (this.uploadImgRef) {
+  temFileList = this.uploadImgRef.data.imgList;
+// console.log( investmentFileList);
+for (let item of temFileList) {
+  investmentFileList.push({
+      type: 0,
+      fileName: item.name,
+      size: item.size,
+      url: item.url,
+  })
 }
-if (ddUtils.showEmptyArrayTips(investmentFileList, "合同正式稿及相关附件")) return;
+}
+
+if(!this.data.isEdit){
+    if (ddUtils.showEmptyToastTips(contactNoticeName, "请输入联系单名称")) return;
+    if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
+    if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
+    if (ddUtils.showEmptyToastTips(changeAmount, "请输入变更金额")) return;
+    if (ddUtils.showEmptyToastTips(this.data.countersignDate, "请选择申请会签批准日期")) return;
+    // if (ddUtils.showEmptyToastTips(this.data.changeContentTime, "请选择变更内容完成时间")) return;
+    if (ddUtils.showEmptyToastTips(this.data.constructionUnitReportDate, "请选择施工单位上报日期")) return;
+    if (ddUtils.showEmptyToastTips(contactChange, "请输入变更内容")) return;
+  }
+  if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
+request.doPostRequest({
+  url: config.API_ALTER_ADD_POST,
+  data: {
+    contactNoticeName:contactNoticeName,//联系单名称
+    projectId:this.data.projectData.id,
+    projectName:this.data.projectData.name,
+    projectLeader:this.data.projectLeader,
+    affiliateUnit:this.data.affiliateUnit,
+    projectChangeAmount:this.data.projectChangeAmount,//项目累计变更
+    contractId:this.data.contractData.contractId,
+    contractName: this.data.contractData.contractName,
+    contractAmount:this.data.contractAmount,//合同金额
+    changeAmount:changeAmount,//变更金额
+    contractCumulativeChange:this.data.contractCumulativeChange,//合同累积变更（万元）
+  contractChangeRate:this.data.contractChangeRate, // 合同变更率
+  countersignDate:this.data.countersignDate,//申请会签批准日期
+  changeContentTime:this.data.changeContentTime?this.data.changeContentTime+ ' 00:00:00':'',//变更内容完成时间
+  constructionUnitReportDate:this.data.constructionUnitReportDate+ ' 00:00:00',//施工单位上报日期
+  contactChange:contactChange,//变更内容
+  remark:remark,
+  investmentFileList:investmentFileList,
+  person:this.data.person,
+  person_text:this.data.person_text,
+  vueUrl: 'approveAlterationAccount,editAlterationContent'
+  },
+  success: res => {
+    ddUtils.showToast({
+      title:"保存成功"
+   })
+   ddUtils.navigateBack();
+  }
+})
+
+
 },
 // 取消
 bindCancelTap: function (e) {

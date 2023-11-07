@@ -1,0 +1,197 @@
+import { Form } from 'antd-mini/es/Form/form';
+import {isEmpty} from "../../../../utils/utils"
+import config from "../../../../server/workServer/addInvestment"
+import ddUtils from "../../../../utils/ddUtils"
+import request from "../../../../utils/request"
+Page({
+  form: new Form(),
+  data: {
+    navbarData: {
+      title: "竣工结算登记",
+  },
+  radioGroupOptions: [
+    { value: 1, label: '核减' },
+    { value: 2, label: '核加' },
+  ],
+  projectId:"",
+ 
+  contractAmount:"",//合同金额
+  contractorName:'',//承包商名称
+  applicationTime:"",//申请日期
+  pricingTrial:'',//送审定价
+  adjust:'',
+  netAccountAmount:'',// 净核算金额,
+  approveTotalPrice:"",//审定总价
+  chooseExecuteUserList: [],
+  uploadImgRef:null,/// 上传
+    isEdit: false,
+    projectData:{},// 项目名称,
+    dialogScreenprojectRef:null, //项目名称
+    dialogScreenpcontractRef:null,//合同名称
+    dialogScreenApplyDateRef:null,//申请会签批准日期
+    contractData:{},//合同名称
+  },
+  onLoad() {},
+  handleRef(ref) {
+    console.log(ref);
+    this.form.addItem(ref);
+  },
+  onChange(row){
+    this.data.adjust = row
+    console.log(this.data.adjust);
+  },
+// 项目名称
+bindChooseProjectTap:function (e) {
+  console.log(e);
+  if (this.data.isEdit) return;
+  if (this.dialogScreenprojectRef) this.dialogScreenprojectRef._showDialog(this.data.projectData.id)
+},
+onSaveDialogScreenprojecteRef: function (ref) {
+  console.log(ref);
+  this.dialogScreenprojectRef = ref;
+},
+bindChooseProjectCallBack: function (data) {
+  this.setData({
+    projectData: data || {},
+    projectLeader:data.projectLeaderName,
+    affiliateUnit:data.affiliatedUnitName,
+    projectId:data.id || ''
+  });
+  request.doPostRequest({
+    url: config.API_PROJECT_TO_POST,
+    data: {
+      projectId:data.id,
+    },
+    success: res => {
+      console.log();
+      this.setData({
+        projectChangeAmount: res.data.projectCumulativeChange || 0,
+      });
+    }
+  })
+  console.log(this.data.projectData,'this.data.projectData');
+},
+ // 合同名称
+ bindChooseContractNameTap:function(e){
+  if (this.data.isEdit) return;
+  if (this.dialogScreenpcontractRef) this.dialogScreenpcontractRef._showDialog(this.data.contractData.contractId)
+},
+onSaveDialogScreencontractRef:function (ref) {
+  console.log(ref);
+  this.dialogScreenpcontractRef = ref;
+},
+bindChooseContractCallBack: function (data) {
+  console.log(data,"data");
+  this.setData({
+    contractData: data || {},
+    contractAmount:data.contractAmount,
+    contractorName:data.unitPartyName
+  });
+  request.doPostRequest({
+    url: config.API_CONTRACT_CUMULATIVE,
+    data: {
+      contractId:data.contractId,
+      projectId:this.data.projectId
+    },
+    success: res => {
+      console.log(res);
+      this.setData({
+        contractCumulativeChange: res.data.contractCumulativeChange || 0,
+        contractChangeRate: res.data.contractCumulativeChangeRate || 0,
+      });
+    }
+  })
+},
+
+// 申请日期
+bindChooseApplyDateTap :function(e){
+  console.log(e);
+  if (this.dialogScreenApplyDateRef) this.dialogScreenApplyDateRef._showDialog()
+},
+onSaveDialogScreenApplyDateRef:function(ref){
+  this.dialogScreenApplyDateRef = ref
+},
+bindChooseApplyDateCallBack(data){
+  console.log(data,333333333333333);
+  this.setData({
+    applicationTime: data.startDate || '',
+  });
+},
+// 上传
+onSaveUploadImgRef: function (ref) {
+  this.uploadImgRef = ref;
+},
+
+//bind form submit
+bindFormSubmit: function (e) {
+  console.log(this.data.contactNoticeName);
+  console.log(e,999999999999999);
+  let pricingTrial = e.detail.value.pricingTrial
+  let netAccountAmount = e.detail.value.netAccountAmount
+  let approveTotalPrice = e.detail.value.approveTotalPrice
+//   let investmentFileList = [],temFileList=[]
+//   if (this.uploadImgRef) {
+//     temFileList = this.uploadImgRef._getUploadImgId().imgList;
+// }
+let investmentFileList = [], temFileList=[]
+if (this.uploadImgRef) {
+  temFileList = this.uploadImgRef.data.imgList;
+// console.log( investmentFileList);
+for (let item of temFileList) {
+  investmentFileList.push({
+      type: 4,
+      fileName: item.name,
+      size: item.size,
+      url: item.url,
+  })
+}
+}
+
+if(!this.data.isEdit){
+    if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
+    if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
+    if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
+    if (ddUtils.showEmptyToastTips(pricingTrial, "请输入送审定价")) return;
+    if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择净核算金额")) return;
+    if (ddUtils.showEmptyToastTips(netAccountAmount, "请输入净核算金额")) return;
+    if (ddUtils.showEmptyToastTips(approveTotalPrice, "请选择审定总价")) return;
+  }
+  if(this.data.adjust=== ''){
+    ddUtils.showToast({
+      title:"保存成功"
+   })
+  }
+  if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
+request.doPostRequest({
+  url: config.API_JUNGONG_ADD_POST,
+  data: {
+    projectId:this.data.projectData.id,
+    projectName:this.data.projectData.name,
+    contractId:this.data.contractData.contractId,
+    contractName: this.data.contractData.contractName,
+    contractAmount:this.data.contractAmount,
+    contractorName:this.data.contractorName,
+  investmentFileList:investmentFileList,
+  applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
+  pricingTrial:pricingTrial,
+  adjust:this.data.adjust,
+  netAccountAmount:netAccountAmount,
+  approveTotalPrice:approveTotalPrice,
+  vueUrl: 'completed'
+  },
+  success: res => {
+    ddUtils.showToast({
+      title:"保存成功"
+   })
+   ddUtils.navigateBack();
+  }
+})
+
+
+},
+// 取消
+bindCancelTap: function (e) {
+  console.log(12121212);
+  ddUtils.navigateBack();
+},
+});

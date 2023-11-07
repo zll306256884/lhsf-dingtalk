@@ -1,0 +1,60 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view class="content">
+   <view class="content-text">
+   <text>合同名称</text>
+   <text>{{info.contractName}}</text>
+   </view>
+   <view class="content-text">
+    <text>合同金额</text>
+    <text>{{info.contractAmount}}</text>
+    </view>
+    <view class="visualize">
+      <view>本期末计划形象</view>
+      <view>{{info.projectDetails}}</view>
+      </view>
+      <view class="content-text">
+        <text>计划支付金额</text>
+        <text>{{info.plannedPaymentAmount}}</text>
+        </view>
+        <view class="content-text">
+          <text>累计支付金额</text>
+          <text>{{info.cumulativePaymentAmount}}</text>
+          </view>
+          <view class="visualize">
+            <view>备注</view>
+            <view>
+              {{info.remark}}</view>
+            </view>
+  </view>
+   <view class="son">
+     子节点
+   </view>
+   <view class="content for-content" a:for="{{sonList}}" data-index={{index}} data-item="{{item}}">
+    <view class="content-text">
+    <text>合同名称</text>
+    <text>{{item.contractName}}</text>
+    </view>
+    <!-- <view class="content-text">
+     <text>合同金额</text>
+     <text>{{item.contractAmount}}</text>
+     </view> -->
+     <view class="visualize">
+       <view>本期末计划形象</view>
+       <view>{{item.projectDetails}}</view>
+       </view>
+       <view class="content-text">
+         <text>计划支付金额</text>
+         <text>{{item.plannedPaymentAmount}}</text>
+         </view>
+         <!-- <view class="content-text">
+           <text>累计支付金额</text>
+           <text>{{item.cumulativePaymentAmount}}</text>
+           </view> -->
+           <view class="visualize">
+             <view>备注</view>
+             <view>
+               {{item.remark}}</view>
+             </view>
+   </view>
+</view>

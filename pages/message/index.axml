@@ -1,3 +1,26 @@
-<view class="container">
-  消息
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view  class="container">
+  <view class="card">
+    <tabs items="{{items}}" onChange="onQueryChange">
+      <view
+        class="content"
+        slot-scope="item">
+        {{item.value.content}}
+      </view>
+    </tabs>
+  </view>
+  <view class="content_text">
+  <view class="list-item" a:for="{{MessageList}}" data-index={{index}} onTap="selectTap">
+  <view a:if="{{item.status===2}}" class="code"></view>
+    <view class="massage_text {{item.status === 1 ? 'fill_color' : 'fill'}}">
+      {{item.title}}
+    </view>
+    <view  class="proName_text">
+      所属项目:{{item.projectName}}
+    </view>
+    <view >
+      <text class="item-label">{{item.createTime}}</text>
+  </view>
+  </view>
+  </view>
 </view>

@@ -1,0 +1,13 @@
+{
+ 
+  "transparentTitle": "always",
+  "titlePenetrate":"NO",
+  "defaultTitle": "Tabs",
+  "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "tabs": "antd-mini/es/Tabs/index",
+    "list": "antd-mini/es/List/index",
+    "list-item": "antd-mini/es/List/ListItem/index",
+    "divider": "antd-mini/es/Divider/index"
+  }
+}

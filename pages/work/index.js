@@ -367,9 +367,16 @@ Page({
   // 点击列表项查看待办详情
   selectAwaitInfo(e) {
     console.log(e);
-    ddUtils.navigateTo({
-     
-    });
+   let temp =   e.target.dataset.item.type;
+   let item = e.target.dataset.item
+   console.log(item);
+   switch (temp) {
+    case 5:
+      ddUtils.navigateTo({
+        url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+      });
+      break;
+  }
   },
     // 点击列表项查看审批详情
     selectApprovalInfo(e) {
@@ -392,8 +399,15 @@ Page({
     // 点击列表项查看请求详情
     selectQueryInfo(e) {
       console.log(e);
-      ddUtils.navigateTo({
-       
-      });
+      let temp =   e.target.dataset.item.type;
+      let item = e.target.dataset.item
+      console.log(item);
+      switch (temp) {
+       case 5:
+         ddUtils.navigateTo({
+           url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+         });
+         break;
+     }
     }
 });
