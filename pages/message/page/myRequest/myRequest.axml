@@ -1,0 +1,2 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<nav-tab-bar tabList="{{tabList}}"></nav-tab-bar>

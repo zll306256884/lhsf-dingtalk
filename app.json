@@ -29,7 +29,8 @@
     "pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit",
     "pages/work/page/bidDocumentDetail/bidDocumentDetail",
     "pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit",
-    "pages/work/page/contractApprovalDetail/contractApprovalDetail"
+    "pages/work/page/contractApprovalDetail/contractApprovalDetail",
+    "pages/message/page/myRequest/myRequest"
   ],
   "window": {
     "transparentTitle": "always",
