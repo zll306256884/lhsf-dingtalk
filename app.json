@@ -25,7 +25,11 @@
     "pages/work/page/myTask/taskList/list",
     "pages/work/page/myTask/taskAdd/taskAdd",
     "pages/work/page/myTask/taskInfo/taskInfo",
-    "pages/work/page/myTask/taskHandleInfo/taskHandleInfo"
+    "pages/work/page/myTask/taskHandleInfo/taskHandleInfo",
+    "pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit",
+    "pages/work/page/bidDocumentDetail/bidDocumentDetail",
+    "pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit",
+    "pages/work/page/contractApprovalDetail/contractApprovalDetail"
   ],
   "window": {
     "transparentTitle": "always",

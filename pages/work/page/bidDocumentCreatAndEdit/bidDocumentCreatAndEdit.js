@@ -196,11 +196,7 @@ Page({
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader
     params.applicationTime = "2023-11-01 00:00:00"
-    params.fileList = [{
-      fileName: "合同 (6) (1).docx",
-      type: 1,
-      url: "https://linhaishefa.eos-shanghai-2.cmecloud.cn/bidding/%E5%90%88%E5%90%8C%20%286%29%20%281%29.docx"
-    }]
+    // params.fileList = []
     console.log(params);
     if (this.uploadTenderImageList) {
       let list = this.uploadTenderImageList._getUploadImgId().imgList
