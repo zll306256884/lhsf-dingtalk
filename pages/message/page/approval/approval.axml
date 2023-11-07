@@ -1,10 +1,27 @@
 <view>
   <nav-bar navbarData="{{navbarData}}"></nav-bar>
-  <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange">
-  </nav-tab-bar>
+  <!--  -->
+  <view class="flex f-start">
+    <view style="width:85%">
+      <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{85}}>
+      </nav-tab-bar>
+    </view>
+    <view class="funnel">
+      <view class="imgbox">
+        <image class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
+        <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
+      </view>
+    </view>
+  </view>
+  <!--  -->
   <view class="navbox">
     <view a:if="{{ tabIndex==0 }}">
       待办审批1
+      <view>
+        <!-- {{options}} -->
+        {{options[0].label}}
+        {{options[1].label}}
+      </view>
     </view>
     <view a:if="{{ tabIndex==1 }}">
       已办审批

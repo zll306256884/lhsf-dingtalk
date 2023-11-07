@@ -349,6 +349,9 @@ Page({
 
   },
   selectMoreApproval() {
+    ddUtils.navigateTo({
+      url: `/pages/message/page/approval/approval`
+    });
 
   },
   selectMoreTask() {

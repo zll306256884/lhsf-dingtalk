@@ -1,17 +1,19 @@
 <!-- tab -->
 <view class="tab-placher {{subTabList && subTabList.length > 0 ? 'double' : ''}}">
 </view>
-<view class="flex tab-wrap" style="top: {{navPlacherHeight}}px;">
+<view class="flex tab-wrap" style="top: {{navPlacherHeight}}px;width:{{navWidth}}%">
   <block a:for="{{tabList}}">
     <view class="item {{tabIndex === index ? 'active' : ''}}" style="width: {{ tabList &&  tabList.length > 0 ? 100 / tabList.length : 0}}%;" 
       data-index="{{index}}" catchTap="_bindTabItemTap">
-      <badge type="number" text="{{item.total}}" position="top-right" offsetX='0rpx' offsetY='14rpx'>
+      <badge type="number" text="{{item.total}}" position="top-right" offsetX='0rpx' offsetY='14rpx' a:if="{{item.total != 0}}">
         {{item.name}}
-        <!-- <view class="box"> {{item.name}}</view> -->
       </badge>
+      <view a:if="{{item.total == 0}}">
+        {{item.name}}
+      </view>
     </view>
   </block>
-  <view class="indicator" style="width: {{ tabList &&  tabList.length > 0 ? 100 / tabList.length : 0}}%;" animation="{{animation}}">
+  <view class="indicator" style="width: {{ tabList &&  tabList.length > 0 ? (navWidth) / tabList.length : 0}}%;" animation="{{animation}}">
   </view>
 </view>
 <!-- 有sub的情况 -->
