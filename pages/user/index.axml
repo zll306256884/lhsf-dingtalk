@@ -3,7 +3,7 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
   <!-- 头部 -->
-  <view class="header-wrap box-sizing-box">
+  <view class="header-wrap box-sizing-box" catchTap='addTask'>
     <view class="flex user">
       <image a:if="{{userInfo.avatar}}" class="avatar" mode="aspectFill" src="{{userInfo.avatar}}" />
       <view a:else class="firstName f-center">{{userInfo.firstName}}</view>

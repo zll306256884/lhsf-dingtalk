@@ -66,6 +66,8 @@
       <layout-upload-img
         cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"
         ref="onSaveUploadFileRef"
+        maxCount='10'
+        imageSize='200'
       >
       </layout-upload-img>
     </view>
