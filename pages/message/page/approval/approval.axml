@@ -1,9 +1,10 @@
 <view>
+  <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange">
   </nav-tab-bar>
   <view class="navbox">
     <view a:if="{{ tabIndex==0 }}">
-      待办审批
+      待办审批1
     </view>
     <view a:if="{{ tabIndex==1 }}">
       已办审批
@@ -12,5 +13,5 @@
       办结审批
     </view>
   </view>
-
+  
 </view>

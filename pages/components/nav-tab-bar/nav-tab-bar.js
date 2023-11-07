@@ -37,8 +37,8 @@ Component({
     didMount() {
         app.getSystemInfo(res => {
             this.setData({
-                // navPlacherHeight: app.globalData.statusBarHeight + app.globalData.navbarHeight
-                navPlacherHeight: 4
+                navPlacherHeight: app.globalData.statusBarHeight + app.globalData.navbarHeight
+                // navPlacherHeight: 4
             });
         });
     },
