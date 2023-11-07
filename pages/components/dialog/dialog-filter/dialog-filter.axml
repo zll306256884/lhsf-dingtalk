@@ -1,31 +1,34 @@
 <block a:if="{{showDialog}}">
   <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap"></view>
   <block a:if="{{positionBottom}}">
-      <view class="dialog-picker" animation="{{animation}}">
-        <view class="dialog-picker-line"></view>
-          <view class='flex f-between picker-view-header'>
-              <view class="flex1 dialog-picker-title">
-                  {{title}}
+    <view class="dialog-picker" animation="{{animation}}">
+      <view class="dialog-picker-line"></view>
+      <view class='flex f-between picker-view-header'>
+        <view class="flex1 dialog-picker-title">
+          {{title}}
+        </view>
+        <text class="reset" catchTap="_bindResetTap">重置</text>
+      </view>
+      <view a:for="{{options}}" a:for-index="idx">
+        <view a:if="{{item.type==='select'}}">
+          <view class="mt-24" style="text-align:left">
+            <text>{{item.label}}：</text></view>
+          <view class="tag-list">
+            <block a:for="{{item.option}}">
+              <view class="a-tag {{item.selected ? 'a-tag-active' : 'a-tag-normal'}}" onTap="_onChange" data-Index={{idx}} 
+                data-index={{index}} data-selected="{{item.selected}}">
+                <text class="tag">{{item.label}}</text>
               </view>
-              <text class="reset" catchTap="_bindResetTap">重置</text>
-          </view> 
-          <view a:for="{{options}}" a:for-index="idx">
-            <view a:if="{{item.type==='select'}}">
-              <view class="mt-24"><text>{{item.label}}：</text></view>
-              <view class="tag-list">
-                <block a:for="{{item.option}}">
-                    <view class="a-tag {{item.selected ? 'a-tag-active' : 'a-tag-normal'}}" onTap="_onChange" data-Index={{idx}}  data-index={{index}} data-selected="{{item.selected}}">
-                      <text class="tag">{{item.label}}</text>
-                    </view>  
-                </block>
-            </view>
-            </view>
-           <layout-field-input a:if="{{item.type==='input'}}" borderBottom name="{{item.label}}" value="{{item.value}}"  dataIndex={{idx}} placeholder="请输入" onBlurChange="_bingBlurChange"></layout-field-input>
-          </view> 
-        <view class='flex f-center mt-32 mb-32'>
+            </block>
+          </view>
+        </view>
+        <layout-field-input a:if="{{item.type==='input'}}" borderBottom name="{{item.label}}" value="{{item.value}}" dataIndex={{idx}} 
+          placeholder="请输入" onBlurChange="_bingBlurChange"></layout-field-input>
+      </view>
+      <view class='flex f-center mt-32 mb-32'>
         <text class="cancel" catchTap="_bindCloseTap">取消</text>
         <text class="sure" catchTap="_bindSureTap">确定</text>
       </view>
-      </view>
+    </view>
   </block>
 </block>
