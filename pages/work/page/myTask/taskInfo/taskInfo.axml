@@ -28,7 +28,9 @@
   <view class="card" style="margin-top：16rpx">
     <layout-upload-img disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
   </view>
-  <view class="buttons">
+  <view class="buttons  flex f-row f-between">
+    <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="cancelTask">取消任务</button>
+    <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="editTask">编辑任务</button>
     <button type="primary" onTap="handleTask">完成任务</button>
   </view>
 </view>

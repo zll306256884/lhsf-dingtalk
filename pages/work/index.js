@@ -387,13 +387,11 @@ Page({
     },
       // 点击列表项查看任务详情
   selectTaskInfo(e) {
-    console.log(e);
     const pramas={
-      type:"edit",
       id:e.currentTarget.dataset.item.id
     }
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskAdd/taskAdd?json=${JSON.stringify(pramas)}`
+      url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
     });
   },
     // 点击列表项查看请求详情

@@ -1,14 +1,20 @@
-import request from "../../utils/request"
-import apiApprovalManage from "../../server/workServer"
+
 import ddUtils from '../../utils/ddUtils'
-import ddTimer from '../../utils/ddTimer'
 
 Page({
   data: {
     visibel:false,
     navbarData:{
-      title: "任务详情"
+      title: "临海市项目工程数据看板"
     },
+    tabs: [{
+      title: "项目概览",
+    }, {
+      title: "年度资金管控",
+    }, {
+      title: "年度招标进度",
+    }],
+    currentTabIndex:0,
     options:[
       {
         label:"类型",
@@ -44,13 +50,22 @@ Page({
   dialogScreenDateRef:null,
   onLoad() {
   },
+  onTabChange(e){
+    this.setData({
+      currentTabIndex:e
+    })
+
+  },
   _onSaveDialogScreenDateRef:function (ref) {
     this.dialogScreenDateRef = ref;
   },
   tapName(e){
-    this.setData({
-      visibel:true
-    })
+    // this.setData({
+    //   visibel:true
+    // })
+    ddUtils.navigateTo({
+      url: `/pages/databoard/page/projectInfo/index`
+    });
   },
   _bindScreenDateCallBack(data){
     console.log(data);
