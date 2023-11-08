@@ -3,9 +3,13 @@ import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
+import { formatTimeToDay } from "../../../../utils/utils";
 
 Page({
   form: new Form({
+    initialValues: {
+      applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+    },
     rules: {
       projectName: [{ required: true, message: '请输入' }],
       projectId: [{ required: true, message: '请选择' }],
@@ -26,7 +30,8 @@ Page({
       unitPartyType: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
-      countersignLeader_dictText: [{ required: true, message: '请选择' }]
+      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      applicationTime: [{ required: true, message: '请选择' }]
     }
   }),
   data: {
@@ -68,6 +73,7 @@ Page({
   dialogScreenConstructUnit: null,
   uploadImgRefList: null,
   dialogScreenConstructUnit2: null,
+  pickerDateRef: null,
 
   onLoad(options) {
     this.getCodeList()
@@ -79,10 +85,10 @@ Page({
     }
   },
   onReady(){
-    this.form.onValuesChange((changedValues, allValues) => {
-      let changedValuesText = '';
-      let allValuesText = ''
-    })
+    
+  },
+  onSavePickerDateRef(ref){
+    this.pickerDateRef = ref
   },
   onSaveUploadContractImgRef: function (ref) {
     this.uploadImgRefList = ref;
@@ -102,6 +108,9 @@ Page({
   onSaveDialogScreenConstructUnitRef2(ref){
     this.dialogScreenConstructUnit2 = ref
   },
+  chooseTime(){
+    if(this.pickerDateRef) this.pickerDateRef._showDialog()
+  },
   chooseProject(){
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
@@ -113,6 +122,9 @@ Page({
   },
   chooseUnit(){
     if(this.dialogScreenConstructUnit) this.dialogScreenConstructUnit._showDialog()
+  },
+  bindPickerDateCannBack(data){
+    this.form.setFieldValue('applicationTime', data.startDate);
   },
   chooseThirdParty(value,e){
     console.log(value,e);
@@ -340,7 +352,6 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganization = this.data.developmentOrganization
     params.ecUnitId = this.data.ecUnitId
-    params.applicationTime = "2023-11-01 00:00:00"
     params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
     let workAuditFile = [];
     if (this.uploadImgRefList) {
@@ -388,7 +399,6 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganization = this.data.developmentOrganization
     params.ecUnitId = this.data.ecUnitId
-    params.applicationTime = "2023-11-01 00:00:00"
     params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
     let workAuditFile = [];
     if (this.uploadImgRefList) {

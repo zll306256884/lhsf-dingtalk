@@ -1,4 +1,4 @@
-
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
 <tabs items="{{items}}" current="{{current}}" />
 
 <view class="top-card flex f-between f-align-center">

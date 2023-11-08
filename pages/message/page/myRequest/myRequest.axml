@@ -1,14 +1,14 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<nav-tab-bar tabList="{{tabList}}"></nav-tab-bar>
+<nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange"></nav-tab-bar>
 
 <list>
-  <list-item>
+  <list-item a:for="{{ dataList }}" a:key="index">
     <view class="flex f-between">
-      <view>
-        <view class="request-name">招标文件会签：XX市峰头水库渠…</view>
-        <view class="request-time">2023-08-20 10:26</view>
+      <view style="width:80%">
+        <view class="request-name">{{item.title}}</view>
+        <view class="request-time">{{item.createTime}}</view>
       </view>
-      <view class="request-status">
+      <view a:if="{{ item.tagType === 2 }}" class="request-status">
         已驳回
       </view>
     </view>
