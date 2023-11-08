@@ -18,7 +18,6 @@
     <view a:if="{{ tabIndex==0 }}">
       待办审批1
       <view>
-        <!-- {{options}} -->
         {{options[0].label}}
         {{options[1].label}}
       </view>
