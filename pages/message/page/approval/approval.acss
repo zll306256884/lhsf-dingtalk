@@ -1,6 +1,11 @@
-.navbox{
-  margin-top:4px;
-  /* background:pink; */
+@import "/assets/styles/typeContent.acss";
+
+/* 头部 */
+
+.approvalTop{
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 .funnel {
@@ -9,6 +14,9 @@
   background-color: #fff;
   vertical-align: middle;
   text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .funnel .imgbox{
@@ -22,4 +30,51 @@
   width: 32rpx;
   height:32rpx;
   display: inline-block;
+}
+
+/* 内容 */
+
+.navbox{
+  margin-top:4px;
+  /* background:pink; */
+}
+
+.approvalPart{
+  /* width: 100%;
+  background-color: pink; */
+
+}
+
+.approvalPart .title{
+  width: 538rpx;
+  height: 40rpx;
+  font-size: 34rpx;
+  color: rgba(0,0,0,0.4);
+  line-height: 40rpx;
+  margin-bottom: 16rpx;
+}
+
+.approvalPart .btnSize{
+  width: 116rpx;
+  height: 56rpx;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  line-height: 56rpx;
+  font-size:28rpx;
+}
+
+.approvalPart .person{
+  width: 538rpx;
+  height: 40rpx;
+  font-size: 28rpx;
+  color: rgba(0,0,0,0.5);
+  line-height: 33rpx;
+  margin-bottom: 16rpx;
+}
+
+.approvalPart .time{
+  width: 538rpx;
+  height: 34rpx;
+  font-size: 24rpx;
+  color: rgba(0,0,0,0.4 );
+  line-height: 28rpx;
 }
