@@ -126,6 +126,10 @@ Page({
   bindPickerDateCannBack(data){
     this.form.setFieldValue('applicationTime', data.startDate);
   },
+  changeContractName(data){
+    let projectName = this.form.getFieldValue('projectName')
+    this.form.setFieldValue('title', projectName+data)
+  },
   chooseThirdParty(value,e){
     console.log(value,e);
     this.setData({

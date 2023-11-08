@@ -103,6 +103,14 @@ Page({
   bindPickerDateCannBack(data){
     this.form.setFieldValue('applicationTime', data.startDate);
   },
+  changeTenderName(data){
+    console.log(data);
+    let id = this.form.getFieldValue('projectId')
+    console.log(id);
+    let projectName = this.data.projectListOptions.find(e => e.id === id).name
+    console.log(projectName);
+    this.form.setFieldValue('title', projectName+data)
+  },
   getProjectList(){
     request.doPostRequest({
       url: config.API_PROJECT_NAME,
@@ -156,6 +164,9 @@ Page({
     console.log(params)
     if(this.data.tenderId){
       params.id = this.data.tenderId
+      params.urlParameter = JSON.stringify({id: this.data.tenderId})
+    }else{
+      params.urlParameter = JSON.stringify({})
     }
     if (this.uploadTenderImageList) {
       let list = this.uploadTenderImageList._getUploadImgId().imgList
@@ -181,7 +192,7 @@ Page({
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
-    params.urlParameter = JSON.stringify({}),
+    
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader
     request.doPostRequest({
@@ -203,10 +214,13 @@ Page({
     const params = await this.form.submit();
     if(this.data.tenderId){
       params.id = this.data.tenderId
+      params.urlParameter = JSON.stringify({id: this.data.tenderId})
+    }else{
+      params.urlParameter = JSON.stringify({})
     }
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
-    params.urlParameter = JSON.stringify({}),
+    // params.urlParameter = JSON.stringify({}),
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader
     // params.applicationTime = "2023-11-01 00:00:00"
@@ -222,6 +236,7 @@ Page({
         tenderDocumentList: list
       }) 
     }
+    if(ddUtils.showEmptyArrayTips(this.data.tenderDocumentList,"请上传招标文件会签附件！")) return
     if (this.uploadOtherImgList) {
       let list = this.uploadOtherImgList._getUploadImgId().imgList
       list.forEach(e => {

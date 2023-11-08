@@ -5,15 +5,17 @@
       <view class="title">
         项目信息
       </view>
-      <layout-field-input borderBottom name="项目码" mustFillTransparent itemIndex="1" inputName="projectCode" value="{{formData.projectCode}}" placeholder="请输入" onInputChange="bindInputChange"></layout-field-input>
+      <layout-field-input borderBottom name="项目码" mustFillTransparent itemIndex="1" inputName="projectCode" maxlength="50" value="{{formData.projectCode}}" placeholder="请输入" onInputChange="bindInputChange"></layout-field-input>
       <layout-field-input borderBottom name="项目编号" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{formData.proNumber}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="项目名称" mustFill inputName="name" value="{{formData.name}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="项目简介" mustFillTransparent itemIndex="1" inputName="projectProgram" value="{{formData.projectProgram}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderBottom name="项目名称" mustFill inputName="name" value="{{formData.name}}" maxlength="200" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderBottom name="项目简介" mustFillTransparent itemIndex="1" maxlength="200" inputName="projectProgram" value="{{formData.projectProgram}}" placeholder="请输入"></layout-field-input>
       <layout-field-cell borderBottom name="是否考核项目" mustFillTransparent value="{{isAccess.name}}" onArrowTap="_bindChooseIsAccessTap"></layout-field-cell>
       <layout-field-cell borderBottom name="项目分类" mustFill value="{{projectClassification.name}}" onArrowTap="_bindChooseProjectClassification"></layout-field-cell>
       <layout-field-cell borderBottom name="建设阶段" mustFill value="{{constructionPhase.name}}" disabled onArrowTap="_bindChooSeconstructionPhaseTap"></layout-field-cell>
+      <layout-field-cell a:if="{{ constructionPhase.value=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
+
       <layout-field-cell borderBottom name="是否投入使用" mustFill value="{{isOutPut.name}}" onArrowTap="_bindChooseIsOutPut"></layout-field-cell>
-      <layout-field-cell borderBottom name="投入使用日期" mustFill value="{{outPutTime}}" onArrowTap="_bindChooseOutPutTime"></layout-field-cell>
+      <layout-field-cell a:if="{{ isOutPut.name=== '是' }}" borderBottom name="投入使用日期" mustFill value="{{outPutTime}}" onArrowTap="_bindChooseOutPutTime"></layout-field-cell>
       
       <layout-field-cell borderBottom name="所属单位" mustFill value="{{formData.affiliatedUnitName}}" onArrowTap="_bindChooseAffiliatedUnit"></layout-field-cell>
 
@@ -21,16 +23,15 @@
       <layout-field-cell borderBottom name="工程性质" mustFillTransparent value="{{engineeringProperties.name}}" onArrowTap="_bindChooseEngineeringProperties"></layout-field-cell>
       
       <layout-field-cell borderBottom name="项目负责人" mustFill value="{{formData.projectLeaderName}}" onArrowTap="_bindChooseProjectLeaderName"></layout-field-cell>
-      <!-- <layout-field-cell name="建设规模及内容" mustFill></layout-field-cell> -->
       <view class="flex f-start cellcontent"><view class="start">*</view><view class="celltitle">建设规模及内容</view></view>
-      <textarea class="textarea" name="constructionContent" maxlength="300" value="{{formData.constructionContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
+      <textarea class="textarea" name="constructionContent" maxlength="1000" value="{{formData.constructionContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
     </view>
 
     <view class="containerinner" style="margin-top:16rpx">
       <layout-field-input borderBottom name="建筑面积(平方米)" inputType="number" mustFill inputName="structureArea" value="{{formData.structureArea}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="占地面积(平方米)" inputType="number" mustFill inputName="floorArea" value="{{formData.floorArea}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="拟建位置" mustFillTransparent inputType="text" inputName="proposedLocation" value="{{formData.proposedLocation}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="拟用土地" mustFillTransparent inputType="text" inputName="proposedLand" value="{{formData.proposedLand}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderBottom name="拟建位置" mustFillTransparent inputType="text" maxlength="100" inputName="proposedLocation" value="{{formData.proposedLocation}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderBottom name="拟用土地" mustFillTransparent inputType="text" maxlength="100" inputName="proposedLand" value="{{formData.proposedLand}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="座数" mustFillTransparent inputType="number" inputName="blockNumber" value="{{formData.blockNumber}}" placeholder="请输入"></layout-field-input>
       <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent value="{{formData.planConstructionStartTime}}至{{formData.planConstructionEndTime }}" onArrowTap="_bindChoosePlanConstructionDate"></layout-field-cell>
       <layout-field-input borderBottom name="计划施工工期(天)" mustFillTransparent value="{{formData.duration}}" disabled></layout-field-input>
@@ -56,7 +57,7 @@
       </view>
       <layout-field-input borderBottom name="总投资金额(万元)" mustFillTransparent inputType="number" inputName="totalInvestment" value="{{formData.totalInvestment}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="建安费用(万元)" mustFillTransparent inputType="number" inputName="jianAnMoney" value="{{formData.jianAnMoney}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="资金来源" mustFillTransparent inputType="text" inputName="sourceFunds" value="{{formData.sourceFunds}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderBottom name="资金来源" mustFillTransparent inputType="text" maxlength="200" inputName="sourceFunds" value="{{formData.sourceFunds}}" placeholder="请输入"></layout-field-input>
     </view>
 
     <!-- <view class="bottom-space"></view> -->
@@ -80,10 +81,12 @@
 <dialog-picker ref="onSaveDialogEngineeringProperties" dataList="{{engineeringPropertiesOptions}}" onPickerChange="bindScreenEngineeringPropertiesFromCallBack"></dialog-picker>
 <dialog-picker ref="onSaveDialogConstructionNature" dataList="{{constructionNatureOptions}}" onPickerChange="bindScreenConstructionNatureFromCallBack"></dialog-picker>
 
-<dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
+<dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
 
-<dialog-picker-date ref="onSavePickerDatRangeRef" selectionMode="range" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date>
-<dialog-picker-date ref="onSavePickerActualDatRangeRef" selectionMode="range" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date>
+<dialog-picker-date ref="onSavePickerDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date>
+<dialog-picker-date ref="onSavePickerActualDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date>
 
 <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenSuoshuUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenSuoshuUnitCallBack"></dialog-screen-suoshu-danwei>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+
+<dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>
