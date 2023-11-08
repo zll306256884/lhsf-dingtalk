@@ -10,7 +10,6 @@
     "pages/user/page/personalinfo/index",
     "pages/user/page/userinfo/index",
     "pages/user/page/login/index",
-    "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
     "pages/message/page/approval/approval",
@@ -39,7 +38,8 @@
     "pages/work/page/contractApprovalDetail/contractApprovalDetail",
     "pages/databoard/page/workLog/workLog",
     "pages/work/page/alterationRegister/alterationRegister",
-    "pages/message/page/myRequest/myRequest"
+    "pages/message/page/myRequest/myRequest",
+    "pages/databoard/page/projectInfo/index"
   ],
   "window": {
     "transparentTitle": "always",

@@ -182,14 +182,12 @@ addTask(){
 },
 selectTaskInfo(e) {
   console.log(e);
-  // if(this.data.currentTask===1){
     const pramas={
       id:e.currentTarget.dataset.item.id
     }
     ddUtils.navigateTo({
       url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
     });
-  // } 
 },
 setRefreshList(){
   this.isNeedRefreshList = true

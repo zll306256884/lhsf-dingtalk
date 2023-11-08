@@ -14,6 +14,7 @@ module.exports = {
   API_MODIFY_TASK: API_HOST  + "/mission/mainMission/modifyById",
   API_FINISH_TASK: API_HOST  + "/mission/mainMission/finish",
   API_REMIND_TASK: API_HOST  + "/mission/mainMission/remind",
-  API_DELETE_TASK: API_HOST  + "/mission/mainMission/deleteById"
+  API_DELETE_TASK: API_HOST  + "/mission/mainMission/deleteById",
+  API_CANCEL_TASK: API_HOST  +  "/mission/mainMission/cancel"
 }
 

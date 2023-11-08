@@ -1,0 +1,4 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+<tabs items="{{tabs}}"  current="{{currentTabIndex}}" scrollMode="center"  onChange="onTabChange"/>
+</view>
