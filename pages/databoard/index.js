@@ -61,12 +61,12 @@ Page({
     this.dialogScreenDateRef = ref;
   },
   tapName(e) {
-    this.setData({
-      visibel: true
-    });
-    // ddUtils.navigateTo({
-    //   url: `/pages/databoard/page/projectInfo/index`
+    // this.setData({
+    //   visibel: true
     // });
+    ddUtils.navigateTo({
+      url: `/pages/databoard/page/projectInfo/index`
+    });
   },
   _bindScreenDateCallBack(data) {
     console.log(data);
