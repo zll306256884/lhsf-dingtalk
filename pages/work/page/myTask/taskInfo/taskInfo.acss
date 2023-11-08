@@ -105,6 +105,11 @@
   background: #ffffff;
   padding: 12px 12px 48px 12px;
 }
+.buttons .ant-button {
+  width: 100%;
+  margin:0 10rpx;
+  font-size: 28rpx;
+}
 .list-buttons {
   border-top: #ebedf0 1px solid;
   padding: 14rpx 0;

@@ -67,21 +67,115 @@ Page({
       url: `/pages/work/page/myTask/taskHandleInfo/taskHandleInfo?json=${this.data.currentId}`
     });
   },
+  editTask(){
+    const params={
+      type:"edit",
+      id:this.data.currentId
+    }
+    ddUtils.navigateTo({
+      url: `/pages/work/page/myTask/taskAdd/taskAdd?json=${JSON.stringify(params)}`
+    });
+  },
+  cancelTask(){
+    ddUtils.showModal({
+      content: "确认取消吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: workServer.API_CANCEL_TASK,
+            data:{
+              id:this.data.currentId
+            } ,
+            success: () => {
+              if(res.code===1000){
+                ddUtils.showToast({
+                  title: "取消成功！"
+                }); 
+              }
+             // let pages = getCurrentPages();
+             // let page = pages[pages.length - 1];
+             // if (page && page.setNeedRefreshList) {
+             //   page.setRefreshList(1);
+             // }
+             ddUtils.navigateBack();
+            }
+          })
+        }
+      }
+    });
+  },
   onTaskChange(e){
     this.setData({
       activeTab:e
     })
-
   },
-  delete(){
-    // API_REMIND_TASK
-    // API_DELETE_TASK
-
+  delete(e){
+    ddUtils.showModal({
+      content: "确认删除吗?",
+      success: res => {
+        if (res.confirm) {
+          const params={
+            id: e.currentTarget.dataset.item.id
+          }
+          request.doPostRequest({
+            url: workServer.API_DELETE_TASK,
+            data:params,
+            success: res => {
+              if(res.code===1000){
+                ddUtils.showToast({
+                  title: "删除成功！"
+                });
+              }
+             // let pages = getCurrentPages();
+             // let page = pages[pages.length - 1];
+             // if (page && page.setNeedRefreshList) {
+             //   page.setRefreshList(1);
+             // }
+             ddUtils.navigateBack();
+            }
+          })
+        }
+      }
+    });
   },
-  remind(){
-
+  remind(e){
+    const params={
+      executeUserId: e.currentTarget.dataset.item.executeUserId,
+      id: e.currentTarget.dataset.item.id
+    }
+    request.doPostRequest({
+      url: workServer.API_REMIND_TASK,
+      data:params,
+      success: res => {
+        if(res.code===1000){
+          ddUtils.showToast({
+            title: "提醒成功！"
+          });
+        }
+      }
+    })
   },
-  download(){
-
+  download(e){
+    const missionFileList=e.currentTarget.dataset.item.missionFileList
+    // console.log(e.currentTarget.dataset.item.missionFileList);
+    if(missionFileList.length===0){
+      ddUtils.showToast({
+        title: "没有可供下载的文件！"
+      });
+      return
+    }else{
+      missionFileList.map(item=>{
+        dd.saveFileToDingTalk({
+          name:item.fileName,
+          url:item.fileUrl,
+          success: (res) => {
+            console.log(res);
+            // const { data } = res;
+          },
+          fail: () => {},
+          complete: () => {},
+        });
+      })
+    } 
   }
 });

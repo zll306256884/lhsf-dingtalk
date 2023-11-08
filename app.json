@@ -9,7 +9,6 @@
     "pages/user/page/personalinfo/index",
     "pages/user/page/userinfo/index",
     "pages/user/page/login/index",
-    "pages/databoard/page/map/map",
     "pages/message/page/list/list",
     "pages/work/page/list/list",
     "pages/message/page/approval/approval",
@@ -40,7 +39,8 @@
     "pages/work/page/alterationRegister/alterationRegister",
     "pages/message/page/myRequest/myRequest",
     "pages/work/page/alterationRegisterDetail/alterationRegisterDetail",
-    "pages/work/page/addPaymentDetail/addPaymentDetail"
+    "pages/work/page/addPaymentDetail/addPaymentDetail",
+    "pages/databoard/page/projectInfo/index"
   ],
   "window": {
     "transparentTitle": "always",

@@ -1,7 +1,7 @@
-<view>
+<view >
   <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <!--  -->
-  <view class="flex f-start">
+  <view class="approvalTop flex f-start" style="position:relative">
     <view style="width:85%">
       <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{85}}>
       </nav-tab-bar>
@@ -9,25 +9,39 @@
     <view class="funnel">
       <view class="imgbox">
         <image class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
-        <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
+        <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></dialog-filter>
       </view>
     </view>
   </view>
   <!--  -->
   <view class="navbox">
-    <view a:if="{{ tabIndex==0 }}">
-      待办审批1
-      <view>
-        <!-- {{options}} -->
-        {{options[0].label}}
-        {{options[1].label}}
-      </view>
-    </view>
-    <view a:if="{{ tabIndex==1 }}">
-      已办审批
-    </view>
-    <view a:if="{{ tabIndex==2 }}">
-      办结审批
+    <view>
+      <list header="" radius="{{ radius }}">
+        <list-item a:for="{{listData}}">
+          <view class="approvalPart" data-item={{item}} catchTap="toDetail">
+            <view class="title single-line">
+              <view class="single-line" style="color: rgba(0,0,0,0.4);" a:if="{{item.isRead===1}}">
+                {{item.taskName}}
+              </view>
+              <view class="single-line" style="color: rgba(0,0,0,0.9)" a:if="{{item.isRead===0}}">
+                {{item.taskName}}
+              </view>
+            </view>
+            <view class="flex f-between">
+              <view>
+                <view class="person">申请人：{{item.userName}}</view>
+                <view class="time">{{item.createTime}}</view>
+              </view>
+              <view>
+                <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
+                <view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view>
+                <view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已驳回</view>
+                <!--<view class="orangeTypeBtn btnSize">延期</view><view class="grayTypeBtn btnSize">未开始</view> -->
+              </view>
+            </view>
+          </view>
+        </list-item>
+      </list>
     </view>
   </view>
   

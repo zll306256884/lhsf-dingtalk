@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "tabs": "antd-mini/es/Tabs/index"
+
+}
+}

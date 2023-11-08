@@ -39,6 +39,7 @@
 .tag-list {
   display: flex;
   justify-content:flex-start;
+  flex-wrap: wrap;
   margin:24rpx 0;
 }
 .a-tag {
@@ -48,6 +49,7 @@
   padding: 0rpx 30rpx;
   box-sizing: border-box;
   margin-right: 20rpx;
+  margin-bottom: 20rpx;
   height: 50rpx;
   border-radius: 8rpx;
   font-size: 28rpx;

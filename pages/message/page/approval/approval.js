@@ -1,13 +1,11 @@
-import ddUtils from "../../../../utils/ddUtils"
-
 import {
   isEqual,
   isEmptyArray
 } from "../../../../utils/utils"
-// import ddUtils from "../../../../utils/ddUtils"
-import userServer from "../../../../server/userServer"
+import ddUtils from "../../../../utils/ddUtils"
+// import userServer from "../../../../server/userServer"
+import approvalServer from "../../../../server/approvalServer/approvalServer"
 import request from "../../../../utils/request"
-// import request from "../../../utils/request"
 
 const app = getApp();
 
@@ -18,6 +16,7 @@ Page({
       title: "我的审批",
     },
     tabIndex: 0,
+    targetValue: '1',
     tabList: [{
       name: "待办审批",
       value: '1',
@@ -35,7 +34,7 @@ Page({
     }
     ],
     // 漏斗
-    visibel:false,
+    visibel: false,
     options: [
       {
         label: "类型",
@@ -45,29 +44,48 @@ Page({
         option: [
           {
             id: "1",
-            label: '12',
+            label: '进度计划',
             selected: false,
           },
           {
             id: "2",
-            label: '34',
+            label: '招标文件会签',
             selected: false,
           },
           {
             id: "3",
-            label: '56',
+            label: '合同审批流程',
+            selected: false,
+          }, {
+            id: "4",
+            label: '款项支付',
+            selected: false,
+          },
+          {
+            id: "5",
+            label: '项目资金计划',
+            selected: false,
+          },
+          {
+            id: "6",
+            label: '生态伙伴',
             selected: false,
           },
         ],
       },
       {
-        label: "人员",
+        label: "申请人",
         value: "",
         prop: "userName",
         type: 'input'
       },
     ],
-    dialogScreenDateRef:null,
+    listData: [],//获取列表数据
+    funnelParam: {//漏斗参数
+      belongModule: '',
+      userName: '',
+    },
+    dialogScreenDateRef: null,
     // 
 
   },
@@ -89,8 +107,21 @@ Page({
     })
   },
   onBindSureTap(data) {
-    console.log(data);
+    console.log('漏斗的参数', data);
+    let userName = data.options[1].value
+    let belongModule = data.options[0].value[0].id
+    console.log('belongModule', belongModule)
+    console.log('userName', userName)
+    // let param ={
+    //   belongModule:
+    // }
+    // return
+    this.setData({
+      'funnelParam.belongModule': belongModule,
+      'funnelParam.userName': userName,
+    });
     this.onDialog(false)
+    this.getList()
   },
   onLoad(query) {
     // 页面加载
@@ -103,103 +134,43 @@ Page({
   },
   // tab切换组件
   onNavTabChange: function (index) {
+    console.log('index', index)
     this.setData({
-      tabIndex: index
+      tabIndex: index,
     });
     let targetValue = this.data.tabList[this.data.tabIndex].value
     console.log('targetValue', targetValue)
-  },
-  // 跳转
-  bindTopItemTap(e) {
-    console.log(e.target.dataset.index);
-    let code = e.target.dataset.index;
-    if (code == 0) {
-      // 我的信息
-      dd.navigateTo({
-        url: './page/baseinfo/baseinfo'
-      })
-    }
-    if (code == 1) {
-      // 修改密码
-      dd.navigateTo({
-        url: './page/editword/editword'
-      })
-    }
-    if (code == 2) {
-      // 退出登录
-      ddUtils.showActionSheet({
-        itemList: ["退出登录"],
-        success: res => {
-          switch (res.index) {
-            case 0:
-              ddUtils.clearLoginStorage();
 
-              ddUtils.reLaunch({
-                url: "./page/login/index"
-              })
-              break;
-            default:
-              break
-          }
-        }
-      });
-
-    }
-
-  },
-  // 更改数据示例
-  changeName(e) {
     this.setData({
-      name: 'dingtalk'
-    })
-  },
-  // 跳转页面示例
-  tothePage() {
-    dd.navigateTo({
-      url: './page/personalinfo/index'
-    })
-  },
-  imageError(e) {
-    console.log('image 发生 error 事件，携带值为', e.detail.errMsg);
-  },
-  onTap(e) {
-    console.log('image 发生 tap 事件', e);
-  },
-  imageLoad(e) {
-    console.log('image 加载成功', e);
-  },
-  onSubmit(e) {
-    console.log('onSubmit', e);
-    dd.alert({
-      content: `你选择的框架是 ${e.detail.value.libs.join(', ')}`,
+      targetValue: targetValue
     });
-  },
-  onReset(e) {
-    console.log('onReset', e);
-  },
-  onChange(e) {
-    console.log(e);
+    this.getList()
   },
   // 获取基本信息
   getList: function () {
+    let param = {
+      "asc": true,
+      "pageNum": 1,
+      "pageSize": 1000,
+      "account": "admin",
+      "userName": "",
+      // "belongModule": this.data.options[0].value,//事项类型
+      // "userName": this.data.options[1].value,//申请人
+      "showType": this.data.targetValue, //状态
+      ...this.data.funnelParam
+    }
+    console.log('param', param)
+    // return
     return new Promise((resolve, reject) => {
       request.doPostRequest({
-        url: userServer.API_BASE_INFO,
+        url: approvalServer.API_SELECT_LIST,
         showLoading: false,
-        data: {
-          userId: app.globalData.userInfo.userId
-        },
+        data: param,
         success: res => {
-          // console.log('res.data', res.data)
+          console.log('res.data', res.data)
           this.setData({
-            userInfo: {
-              nickName: res.data.username,
-              avatar: res.data.headImg,
-              mobile: res.data.mobile,
-              firstName: res.data.username ? res.data.username.split('')[0] : ''
-            },
+            listData: res.data.records
           });
-          console.log('userInfo', this.data.userInfo)
           resolve(res.data)
         },
         fail: res => {
@@ -207,18 +178,56 @@ Page({
         }
       });
     })
-
   },
+
+  // 点击跳转
+  toDetail(e) {
+    let item = e.currentTarget.dataset.item
+    // console.log(1)
+    // console.log(e)
+    console.log('item', item)
+    if (item.belongModule == 1) {
+      // 进度
+    }
+    if (item.belongModule == 2) {
+      // 招标文件会签
+    }
+    if (item.belongModule == 3) {
+      // 合同审批流程
+    }
+    if (item.belongModule == 4) {
+      // 款项支付
+    }
+    if (item.belongModule == 5) {
+      // 项目资金计划
+    }
+    if (item.belongModule == 6) {
+      // 生态伙伴
+    }
+  },
+
+  // 跳转页面示例
+  tothePage() {
+    dd.navigateTo({
+      url: './page/personalinfo/index'
+    })
+  },
+
+  onReset(e) {
+    console.log('onReset', e);
+  },
+
+
   onOptionData1(data) {
     console.log(data, '子组件触发父组件');
   },
-  onNavTabChange: function (index) {
-    this.setData({
-      tabIndex: index
-    });
-    let targetValue = this.data.tabList[this.data.tabIndex].value
+  // onNavTabChange: function (index) {
+  //   this.setData({
+  //     tabIndex: index
+  //   });
+  //   let targetValue = this.data.tabList[this.data.tabIndex].value
 
-    console.log('targetValue', targetValue)
-  },
+  //   console.log('targetValue', targetValue)
+  // },
 
 });

@@ -16,6 +16,7 @@
     "dialog-screen-xiangmu-mingcheng": "/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
     "dialog-screen-ecological-unit": "/pages/components/dialog/dialog-screen-ecological-unit/dialog-screen-ecological-unit",
     "dialog-screen-construct-unit": "../../component/dialog-screen-construct-unit/dialog-screen-construct-unit",
-    "picker": "antd-mini/es/Picker/index"
+    "picker": "antd-mini/es/Picker/index",
+    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date"
   }
 }

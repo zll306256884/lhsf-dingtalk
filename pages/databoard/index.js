@@ -1,68 +1,83 @@
-import request from "../../utils/request"
-import apiApprovalManage from "../../server/workServer"
-import ddUtils from '../../utils/ddUtils'
-import ddTimer from '../../utils/ddTimer'
+import ddUtils from "../../utils/ddUtils";
 
 Page({
   data: {
-    visibel:false,
-    navbarData:{
-      title: "任务详情"
+    visibel: false,
+    navbarData: {
+      title: "临海市项目工程数据看板"
     },
-    options:[
+    tabs: [
       {
-        label:"类型",
-        prop:"type",
-        value:[],
-        type:'select',
+        title: "项目概览"
+      },
+      {
+        title: "年度资金管控"
+      },
+      {
+        title: "年度招标进度"
+      }
+    ],
+    currentTabIndex: 0,
+    options: [
+      {
+        label: "类型",
+        prop: "type",
+        value: [],
+        type: "select",
         option: [
           {
-              id:"1",
-              label: '12',
-              selected: false,
+            id: "1",
+            label: "进度看板高考分数",
+            selected: false
           },
           {
-              id:"2",
-              label: '34',
-              selected: false,
+            id: "2",
+            label: "进度看板高考分数",
+            selected: false
           },
           {
-              id:"3",
-              label: '56',
-              selected: false,
-          },
-      ],
+            id: "3",
+            label: "进度看板高考分数",
+            selected: false
+          }
+        ]
       },
       {
-        label:"人员",
-        value:"",
-        prop:"userName",
-        type:'input' 
-      },
-    ],
+        label: "人员",
+        value: "",
+        prop: "userName",
+        type: "input"
+      }
+    ]
   },
-  dialogScreenDateRef:null,
-  onLoad() {
+  dialogScreenDateRef: null,
+  onLoad() {},
+  onTabChange(e) {
+    this.setData({
+      currentTabIndex: e
+    });
   },
-  _onSaveDialogScreenDateRef:function (ref) {
+  _onSaveDialogScreenDateRef: function(ref) {
     this.dialogScreenDateRef = ref;
   },
-  tapName(e){
-    this.setData({
-      visibel:true
-    })
+  tapName(e) {
+    // this.setData({
+    //   visibel: true
+    // });
+    ddUtils.navigateTo({
+      url: `/pages/databoard/page/projectInfo/index`
+    });
   },
-  _bindScreenDateCallBack(data){
+  _bindScreenDateCallBack(data) {
     console.log(data);
-
   },
-  onDialog(data){
+  onDialog(data) {
     this.setData({
-      visibel:data
-    })
+      visibel: data
+    });
   },
-  onBindSureTap(data){
+  onBindSureTap(data) {
     console.log(data);
-    this.onDialog(false)
+    this.onDialog(false);
   }
 });

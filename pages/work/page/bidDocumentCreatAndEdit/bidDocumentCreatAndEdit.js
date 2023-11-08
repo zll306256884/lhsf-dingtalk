@@ -2,11 +2,14 @@ import { Form } from 'antd-mini/es/Form/form';
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
+import { formatTimeToDay } from "../../../../utils/utils";
 import projectService from "../../../../server/workServer/projectServer";
-
 
 Page({
   form: new Form({
+    initialValues: {
+      applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+    },
     rules: {
       tenderName: [{ required: true, message: '请输入' }],
       projectId: [{ required: true, message: '请选择' }],
@@ -18,7 +21,8 @@ Page({
       decisionBasis: [{ required: true, message: '请选择' }],
       biddingContent: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      tenderDocumentList: [{required: true,message: '请上传'}]
+      tenderDocumentList: [{required: true,message: '请上传'}],
+      applicationTime: [{ required: true, message: '请选择' }]
     },
   }),
   data: {
@@ -39,6 +43,7 @@ Page({
   dialogSScreen: null,
   uploadTenderImageList: null,
   uploadOtherImgList: null,
+  pickerDateRef: null,
 
   onLoad(options) {
     console.log(options)
@@ -55,6 +60,9 @@ Page({
     console.log(ref)
     this.form.addItem(ref);
   },
+  onSavePickerDateRef(ref){
+    this.pickerDateRef = ref
+  },
   onSaveDialogScreenExecuteUserRef(ref){
     this.dialogSScreenExecuteUser = ref
   },
@@ -66,6 +74,9 @@ Page({
   },
   onSaveUploaOtherImgRef(ref){
     this.uploadOtherImgList = ref
+  },
+  chooseTime(){
+    if(this.pickerDateRef) this.pickerDateRef._showDialog()
   },
   chooseLeader(){
     if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog()
@@ -88,6 +99,9 @@ Page({
       tenderingAgency: data.id
     })
     // this.form.setFieldValue('tenderingAgency', data.id);
+  },
+  bindPickerDateCannBack(data){
+    this.form.setFieldValue('applicationTime', data.startDate);
   },
   getProjectList(){
     request.doPostRequest({
@@ -195,7 +209,7 @@ Page({
     params.urlParameter = JSON.stringify({}),
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader
-    params.applicationTime = "2023-11-01 00:00:00"
+    // params.applicationTime = "2023-11-01 00:00:00"
     // params.fileList = []
     console.log(params);
     if (this.uploadTenderImageList) {
