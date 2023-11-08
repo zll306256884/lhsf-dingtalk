@@ -14,9 +14,9 @@ Page({
     showAll:0,
     items1: [
       { text: '重大', value: 1},
-      { text: '全部', value:0 },
+      { text: '全部', value:'' },
     ],
-    logType: 0,
+    logType: '',
     logList:[],//查询的数据
 
   },
