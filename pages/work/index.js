@@ -401,13 +401,24 @@ Page({
       console.log(e);
       let temp =   e.target.dataset.item.type;
       let item = e.target.dataset.item
+      let id = e.target.dataset.item.keyId
       console.log(item);
       switch (temp) {
+        case 4:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail??id=${id}`
+          });
+          break;
        case 5:
          ddUtils.navigateTo({
            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
          });
          break;
+         case 7:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
+          });
+          break;
      }
     }
 });

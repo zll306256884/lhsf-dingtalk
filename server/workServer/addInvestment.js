@@ -15,4 +15,8 @@ module.exports = {
    API_PROJECT_DETAILS_POST:API_HOST+ '/investment/monthAnnualFundPlan/selectById',
    // 年资金使用计划月计划详细详情
    API_PROJECT_DELS_POST:API_HOST+ '/investment/monthAnnualFundPlanDetail/selectById',
+    // 变更详细详情
+    API_ALTER_DETAIL_POST:API_HOST+ '/investment/changeManagement/selectById',
+    // 款项支付详情
+    API_PAY_DETAIL_POST:API_HOST+ '/investment/icMeasurementPaymentEngineeringDetailed/selectById',
 }

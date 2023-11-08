@@ -1,0 +1,40 @@
+
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item extraBrief="{{infoData.contactNoticeName}}">联系单名称</list-item>
+      <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
+      <list-item extraBrief="{{infoData.projectLeader}}">项目负责人</list-item>
+      <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
+      <list-item extraBrief="{{infoData.projectChangeAmount}}">项目累计变更</list-item>
+      <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
+      <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
+      <list-item extraBrief="{{infoData.changeAmount}}">变更金额</list-item>
+      <list-item extraBrief="{{infoData.contractCumulativeChange}}">合同累计变更</list-item>
+      <list-item extraBrief="{{infoData.contractChangeRate}}">合同变更率</list-item>
+      <list-item extraBrief="{{infoData.countersignDate}}">申请会签批准日期</list-item>
+      <list-item extraBrief="{{infoData.changeContentTime}}">变更内容完成时间</list-item>
+      <list-item extraBrief="{{infoData.constructionUnitReportDate}}">施工单位上报日期</list-item>
+      <list-item>
+        联系单变更内容
+        <view style="margin-top:10rpx;color: #969799;">{{infoData.contactChange}}</view>
+      </list-item>
+      <list-item>
+        备注
+        <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>
+      </list-item>
+    </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item>
+        合同正式稿及相关附件
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
+      </list-item>
+      </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list-item extraBrief="{{infoData.person_dictText}}">抄送人员</list-item>
+  </view>
+</view>

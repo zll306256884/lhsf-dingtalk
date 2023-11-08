@@ -10,9 +10,9 @@
     </tabs>
   </view>
   <view class="content_text">
-  <view class="list-item" a:for="{{MessageList}}" data-index={{index}} onTap="selectTap">
+  <view class="list-item" a:for="{{MessageList}}" data-index={{index}} data-item={{item}} onTap="selectTap">
   <view a:if="{{item.status===2}}" class="code"></view>
-    <view class="massage_text {{item.status === 1 ? 'fill_color' : 'fill'}}">
+    <view class="massage_text {{item.status === 1 ? 'fill_color' : 'fill'}}" title={{item.title}}>
       {{item.title}}
     </view>
     <view  class="proName_text">

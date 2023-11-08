@@ -164,6 +164,7 @@ bindChooseBuildDateCallBack(data){
         str += item.username;
         strId +=item.userId
         str += ",";
+        strId += ","
     }
     this.setData({
       person_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),

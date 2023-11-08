@@ -56,6 +56,7 @@ items: [
     },
   });
  },
+ // 消息列表点击详情
  selectTap(e){
    console.log(e);
  }
