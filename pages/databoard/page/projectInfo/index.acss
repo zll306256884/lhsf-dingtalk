@@ -1,9 +1,8 @@
 .ant-tabs-bar-scroll-view {
   justify-content: flex-start;
-  height: 96rpx;
+  height: 88rpx;
 }
 .ant-tabs-bar-item {
-  margin-right: 40rpx;
   font-weight: 400;
   color: #606266;
   font-size: 28rpx;
