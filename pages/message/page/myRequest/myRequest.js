@@ -57,5 +57,8 @@ Page({
     });
 
     this.getDataList()
+  },
+  selectAskInfo(e){
+    console.log(e);
   }
 });

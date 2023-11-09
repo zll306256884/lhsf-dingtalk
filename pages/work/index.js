@@ -398,13 +398,14 @@ Page({
     selectQueryInfo(e) {
       console.log(e);
       let temp =   e.target.dataset.item.type;
+      let status =   e.target.dataset.item.status;
       let item = e.target.dataset.item
       let id = e.target.dataset.item.keyId
       console.log(item);
       switch (temp) {
         case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail??id=${id}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail??id=${id}&type=${temp}&status=${status}`
           });
           break;
        case 5:

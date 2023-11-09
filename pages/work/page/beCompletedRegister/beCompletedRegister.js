@@ -14,7 +14,8 @@ Page({
     { value: 2, label: '核加' },
   ],
   projectId:"",
- 
+  id:"",
+  checked:false,
   contractAmount:"",//合同金额
   contractorName:'',//承包商名称
   applicationTime:"",//申请日期
@@ -31,13 +32,23 @@ Page({
     dialogScreenApplyDateRef:null,//申请会签批准日期
     contractData:{},//合同名称
   },
-  onLoad() {},
+  onLoad(option) {
+    this.setData({
+      id:option.id
+    })
+    if(option.id){
+      this.getEdit(option.id) 
+    }
+  },
   handleRef(ref) {
     console.log(ref);
     this.form.addItem(ref);
   },
   onChange(row){
-    this.data.adjust = row
+    this.setData({
+      adjust: row,
+    })
+    // this.data.adjust = row
     console.log(this.data.adjust);
   },
 // 项目名称
@@ -121,11 +132,36 @@ bindChooseApplyDateCallBack(data){
 onSaveUploadImgRef: function (ref) {
   this.uploadImgRef = ref;
 },
-
+// 编辑
+getEdit(id){
+request.doPostRequest({
+  url: config.API_BE_DETAIL_POST,
+  data: {
+   id:id
+  },
+  success:res=>{
+    console.log(res);
+    this.setData({
+      'projectData.name':res.data.projectName,
+      'projectData.id':res.data.projectId,
+      'contractData.contractName':res.data.contractName,
+      'contractData.contractId':res.data.contractId,
+      contractAmount:res.data.contractAmount,
+      contractorName:res.data.contractorName,
+      applicationTime:res.data.applicationTime,
+      pricingTrial:res.data.pricingTrial,
+      netAccountAmount:res.data.netAccountAmount,
+      approveTotalPrice:res.data.approveTotalPrice,
+      adjust:res.data.adjust,
+    })
+    setTimeout(() => {
+      this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+    }, 0);
+  }
+})
+},
 //bind form submit
 bindFormSubmit: function (e) {
-  console.log(this.data.contactNoticeName);
-  console.log(e,999999999999999);
   let pricingTrial = e.detail.value.pricingTrial
   let netAccountAmount = e.detail.value.netAccountAmount
   let approveTotalPrice = e.detail.value.approveTotalPrice
@@ -146,7 +182,6 @@ for (let item of temFileList) {
   })
 }
 }
-
 if(!this.data.isEdit){
     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
@@ -174,6 +209,7 @@ request.doPostRequest({
   investmentFileList:investmentFileList,
   applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
   pricingTrial:pricingTrial,
+  id:this.data.id?this.data.id:'',
   adjust:this.data.adjust,
   netAccountAmount:netAccountAmount,
   approveTotalPrice:approveTotalPrice,

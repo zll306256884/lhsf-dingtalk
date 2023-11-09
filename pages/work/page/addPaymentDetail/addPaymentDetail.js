@@ -14,16 +14,21 @@ Page({
       }
     ],
     id:"",
+    type:'',
+    status:"",
     current: 0,
     infoData: {}
   },
   uploadContractImage:null,
   onLoad(option) {
+    console.log(option);
     if(option.id){
       this.getDetail(option.id)
     }
     this.setData({
-      id:option.id
+      id:option.id,
+      type:option.type,
+      status:option.status
     })
   },
   onSaveUploadContractImgRef(ref){

@@ -12,6 +12,7 @@
       <form-radio-group
       onChange="onChange"
       required
+      defaultChecked="{{checked}}"
       label="净核算金额"
       name="adjust"
       value="{{adjust}}"

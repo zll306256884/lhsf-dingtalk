@@ -42,7 +42,8 @@
   </view>
   <view class="btn-wrap">
     <list-item >
-      <button class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
+      <button a:if="{{type=== '4'&&status=== '3'}}" class="flex1 btn active"  catchTap="withdrawApplication">打印</button>
+      <button a:else class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
     </list-item>
 </view>
 </view>
