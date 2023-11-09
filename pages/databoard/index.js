@@ -18,6 +18,8 @@ Page({
       }
     ],
     currentTabIndex: 0,
+
+    // 筛选器模拟数据
     options: [
       {
         label: "类型",
@@ -64,9 +66,6 @@ Page({
     this.setData({
       visibel: true
     });
-    // ddUtils.navigateTo({
-    //   url: `/pages/databoard/page/projectInfo/index`
-    // });
   },
   _bindScreenDateCallBack(data) {
     console.log(data);

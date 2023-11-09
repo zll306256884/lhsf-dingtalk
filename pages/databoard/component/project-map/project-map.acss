@@ -1,0 +1,93 @@
+.amap-logo {
+  display: none !important;
+}
+.amap-copyright {
+  display: none !important;
+}
+.map-container{
+  position: relative;
+}
+.status-list{
+  width: 100%;
+  position: absolute;
+  top:0;
+  z-index:99
+
+}
+.status-list .ant-tabs-bar {
+  background-color: transparent;
+
+}
+.status-list .ant-tabs-bar-capsule-title {
+  margin-right: 24rpx;
+
+}
+.status-list .ant-tabs-bar-capsule-title {
+  background-color: #fff;
+}
+/* .status-list .ant-tabs-bar-item::before {
+  display: block;
+  width: 6px;
+  height: 6px;
+  background: #26b76f;
+  border-radius: 50%;
+  margin-right: 8px;
+} */
+.status-list .ant-tabs-bar-capsule.ant-tabs-bar-active .ant-tabs-bar-capsule-title {
+  color: #1D1D1F;
+  background-color: #fff;
+  border: 2rpx solid #1A6AFF;
+}
+/* .status-list .ant-tabs-bar-capsule.ant-tabs-bar-active::after{
+  background-image: url("../../../../assets/images/map/selected.png");
+  z-index:100
+} */
+/* .status-item{
+width: 166rpx;
+height: 48rpx;
+background: #fff;
+border-radius: 24rpx;
+font-size: 24rpx;
+font-weight: 400;
+color: #1D1D1F;
+text-align: center;
+line-height: 40rpx;
+} */
+.status-item .status-count{
+  font-weight: 600;
+}
+.card-list{
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+
+}
+.card-list .card-item{
+  width: 640rpx;
+  height: 258rpx;
+  box-sizing: border-box;
+  margin:0 auto;
+  padding:24rpx;
+  background: #FFFFFF;
+  box-shadow: 20rpx 32rpx 60rpx -24rpx rgba(0,0,0,0.15);
+  border-radius: 24rpx;
+  opacity: 1;
+}
+.item-img{
+  width: 100%;
+  height: 100%;
+  margin-right:24rpx
+}
+.item-info{
+  font-size: 24rpx;
+  font-weight: 400;
+  color: #606266;
+  line-height: 48rpx;
+}
+.item-title{
+font-size: 32rpx;
+font-weight: 500;
+color: #1D1D1F;
+line-height: 48rpx;
+}
+
