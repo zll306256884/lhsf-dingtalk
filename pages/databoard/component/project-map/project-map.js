@@ -4,6 +4,7 @@ import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
 Component({
   mixins: [],
+  props: {},
   data: {
     scale: 10,
     longitude:"121.131229",
@@ -34,14 +35,14 @@ Component({
         value: 4,
       },
     ],
-// 滑块
-    // indicatorDots: true,
-    // autoplay: false,
-    // vertical: false,
-    // circular: false,
+    tabIndex:0,
+    params:{
+      "projectId": "",
+      "projectName": "",
+      "projectStatus": ""
+    }
   },
-  tabIndex:0,
-  props: {},
+  dialogScreenProject:null,
   didMount() {
      this.mapCtx = dd.createMapContext('map');
      this.getProjectList()
@@ -49,25 +50,40 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
+    onSaveDialogScreenprojecteRef(ref){
+      this.dialogScreenProject = ref
+    },
+    onSearchProject(){
+    console.log(this.dialogScreenProject);
+    if (this.dialogScreenProject) this.dialogScreenProject._showDialog()
+    },
     onTabChange(e){
       this.setData({
         tabIndex: e
       })
+      if(e===0){
+        this.data.params.projectStatus=null
+      }else{
+      this.data.params.projectStatus=e
+      }
+      this.setData({
+        params:this.data.params
+      })
+      this.getProjectList()
     },
     onSelectItem(e){
       ddUtils.navigateTo({
       url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(e.currentTarget.dataset.item)}`
     });
     },
+    bindChooseProjectCallBack(data){
+      this.data.params.projectName=data.name
+      this.getProjectList()
+    },
     getProjectList(){
-      const params={
-        "projectId": "",
-        "projectName": "",
-        "projectStatus": ""
-      }
       request.doPostRequest({
         url: apiDataBoardServer.API_MAP_PROJECT_LIST,
-        data:params,
+        data:this.data.params,
         success: res => {
             this.setData({
               projectList: res.data

@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "layout-search": "/pages/components/layout/layout-search/layout-search"
+
+}
+
+}

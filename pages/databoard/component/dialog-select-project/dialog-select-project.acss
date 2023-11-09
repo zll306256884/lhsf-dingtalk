@@ -1,0 +1,78 @@
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+.modal-content {
+  border-radius: 20rpx 20rpx 0 0;
+  height: 100vh;
+  width: 100%;
+  padding: 0;
+  background-color: white;
+  z-index: 100;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modal-content .dialog-name {
+  padding: 30rpx 40rpx;
+  font-size: 26rpx;
+  color: #525966;
+}
+
+.modal-content .dialog-name.active {
+  color: #377dff;
+}
+
+/* picker */
+.dialog-picker {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80%;
+  background-color: #fff;
+  z-index: 9999;
+}
+
+.dialog-picker .picker-view-header {
+  padding: 0 30rpx;
+  height: 100rpx;
+  font-size: 28rpx;
+  line-height: 100rpx;
+  color: #999;
+  font-weight: bold;
+  border-bottom: 1px solid #f6f6f6;
+}
+
+.dialog-picker .picker-view-header .dialog-picker-title {
+  font-size: 32rpx;
+  color: #666666;
+  text-align: center;
+  margin: 0 20rpx;
+}
+
+.dialog-picker .picker-view-header .sure {
+  color: #377dff;
+}
+
+.dialog-picker .picker-view {
+  background-color: white;
+}
+
+.dialog-picker .picker-view .item {
+  font-size: 28rpx;
+}
+.box-title {
+  font-weight: 600;
+  color: #000000;
+  margin-top: 24rpx;
+  text-align: center;
+}
