@@ -22,12 +22,10 @@ Page({
     // 页面加载
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
-      projectId: query.id,
-      planId: query.planId
-      // projectId: '12019020004',
-      // planId: '1717058334583947264'
+      projectId: query.id ? query.id : '12019020004',
+      planId: query.planId ? query.planId : '1717058334583947264'
     });
-    console.log(this.data.projectId);
+    // console.log(this.data.projectId);
   },
   onReady() {
     // 页面加载完成
