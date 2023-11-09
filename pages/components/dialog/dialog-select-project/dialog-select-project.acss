@@ -75,4 +75,5 @@
   color: #000000;
   margin-top: 24rpx;
   text-align: center;
+  margin-left: 15%;
 }

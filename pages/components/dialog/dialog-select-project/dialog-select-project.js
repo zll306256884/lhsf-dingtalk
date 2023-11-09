@@ -1,5 +1,8 @@
 import config from "../../../../utils/config";
 import request from "../../../../utils/request";
+import { isEmpty, isEmptyArray, isEqual } from "../../../../utils/utils";
+import ddUtils from "../../../../utils/ddUtils";
+
 const app = getApp();
 
 Component({
@@ -55,15 +58,24 @@ Component({
     },
     // 确定按钮
     onSureTap() {
-      this._hideDialog();
-      this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex]);
+      if (this.data.chooseIndex === -1) {
+        ddUtils.showToast({
+          title: "请选择项目"
+        });
+      } else {
+        this._hideDialog();
+        this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex]);
+      }
     },
     //show modal dialog
-    _showDialog: function() {
+    _showDialog: function(defaultValue) {
       if (this._isShowDialog()) return;
       this.setData({
         showDialog: true,
-        chooseIndex: null
+        chooseIndex: this._getDefaultChooseIndex(
+          this.data.dataList,
+          defaultValue
+        )
       });
       this.getProjectList();
     },
@@ -87,6 +99,22 @@ Component({
       this.setData({
         showDialog: false
       });
+    },
+    //bind picker change
+    _bindPickerChange: function(e) {
+      this.setData({
+        chooseIndex: e.detail.value[0]
+      });
+    },
+    //设置默认
+    _getDefaultChooseIndex: function(list, value) {
+      if (isEmpty(value) || isEmptyArray(list)) return -1;
+
+      for (let i = 0; i < list.length; i++) {
+        if (isEqual(value, list[i].projectId)) {
+          return i;
+        }
+      }
     }
   }
 });
