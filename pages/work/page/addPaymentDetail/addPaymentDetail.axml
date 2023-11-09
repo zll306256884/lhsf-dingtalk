@@ -1,6 +1,6 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<tabs items="{{items}}"  />
-<view class="container">
+<tabs items="{{items}}" onChange="onQueryChange" />
+<view class="container" a:if="{{current===0}}">
   <view class="top-card flex f-between f-align-center">
     <view class="top-card-left">
       <view class="name">由{{infoData.createName}}创建</view>
@@ -45,4 +45,7 @@
       <button class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
     </list-item>
 </view>
+</view>
+<view class="container" a:else>
+  1212121
 </view>

@@ -40,7 +40,8 @@
     "pages/message/page/myRequest/myRequest",
     "pages/work/page/alterationRegisterDetail/alterationRegisterDetail",
     "pages/work/page/addPaymentDetail/addPaymentDetail",
-    "pages/databoard/page/projectInfo/index"
+    "pages/databoard/page/projectInfo/index",
+    "pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail"
   ],
   "window": {
     "transparentTitle": "always",

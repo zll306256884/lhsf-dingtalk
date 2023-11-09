@@ -1,0 +1,20 @@
+.btn-wrap {
+  margin: 30rpx 30rpx 30rpx;
+}
+.flex-display{
+  display: flex;
+}
+.btn-wrap .btn {
+  height: 80rpx;
+  line-height: 80rpx;
+  border-radius: 10rpx;
+  border: 1px solid #E4E7ED;
+  font-size: 28rpx;
+  color: #525966;
+}
+
+.btn-wrap .btn.active {
+  margin-left: 20rpx;
+  color: white;
+  background-color: #377DFF;
+}

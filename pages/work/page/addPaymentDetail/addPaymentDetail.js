@@ -29,6 +29,22 @@ Page({
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
   },
+   // 切换我的请求tab
+ onQueryChange(e) {
+   console.log(e);
+   this.setData({
+    current : e
+   })
+   
+  switch (e) {
+    case 0:
+      this.getDetail(this.data.id)
+      break;
+    case 1:
+      // this.getMessageList(1)
+      break;
+  }
+ },
   withdrawApplication(){
         request.doPostRequest({
           url: workService.API_JFLOWAUDIT_SELET_INFO,

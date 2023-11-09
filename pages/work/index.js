@@ -417,6 +417,11 @@ Page({
             url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
           });
           break;
+          case 8:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
+          });
+          break;
      }
     }
 });
