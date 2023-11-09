@@ -1,0 +1,51 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<tabs items="{{items}}" onChange="onQueryChange" />
+<view class="container" a:if="{{current===0}}">
+  <view class="top-card flex f-between f-align-center">
+    <view class="top-card-left">
+      <view class="name">由{{infoData.createName}}创建</view>
+      <view class="time">{{infoData.createTime}}</view>
+    </view>
+    <view class="top-card-status">{{['','未提交','审批中','已驳回','已办结','草稿'][infoData.approvalStatus]}}</view>
+  </view>
+  <list>
+    <list-item extraBrief="{{infoData.projectType_dictText}}">项目类型</list-item>
+    <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
+    <list-item extraBrief="{{infoData.projectLeader}}">项目负责人</list-item>
+    <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
+    <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
+    <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
+    <list-item extraBrief="{{infoData.cumulativePayment}}">累计已付款</list-item>
+    <list-item extraBrief="{{infoData.payUnit}}">付款单位</list-item>
+    <list-item extraBrief="{{infoData.receiverUnit}}">收款单位</list-item>
+    <list-item extraBrief="{{infoData.payAmount}}">本次应付金额</list-item>
+    <list-item>
+      支付节点（或形象进度）
+      <view style="margin-top:10rpx;color: #969799;">{{detailInfo.paymentNode}}</view>
+    </list-item>
+    <list-item>
+      付款内容
+      <view style="margin-top:10rpx;color: #969799;">{{detailInfo.paymentContent}}</view>
+    </list-item>
+    <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
+  </list>
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item>
+       相关附件
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
+      </list-item>
+      </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list-item extraBrief="{{infoData.countersignLeader_dictText}}">选择会签分管领导</list-item>
+  </view>
+  <view class="btn-wrap">
+    <list-item >
+      <button class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
+    </list-item>
+</view>
+</view>
+<view class="container" a:else>
+  1212121
+</view>

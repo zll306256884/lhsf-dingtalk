@@ -23,6 +23,10 @@ background: #FFFFFF;
   font-size: 34rpx;
 font-weight: 400;
 color: rgba(0,0,0,0.9);
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
+
 }
 .proName_text{
 font-size: 28rpx;
@@ -30,6 +34,9 @@ font-weight: 400;
 color: rgba(0,0,0,0.5);
 line-height: 33rpx;
 margin: 16rpx 0;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis
 }
 .code{
   position: absolute;
