@@ -18,6 +18,8 @@ Page({
       }
     ],
     currentTabIndex: 0,
+
+    // 筛选器模拟数据
     options: [
       {
         label: "类型",
@@ -61,11 +63,8 @@ Page({
     this.dialogScreenDateRef = ref;
   },
   tapName(e) {
-    // this.setData({
-    //   visibel: true
-    // });
-    ddUtils.navigateTo({
-      url: `/pages/databoard/page/projectInfo/index`
+    this.setData({
+      visibel: true
     });
   },
   _bindScreenDateCallBack(data) {

@@ -1,3 +1,6 @@
 {
-  "component": true
+  "usingComponents": {
+    "tabs": "antd-mini/es/Tabs/index"
+   
+}
 }
