@@ -1,19 +1,19 @@
 @import "/assets/styles/typeContent.acss";
 
-.progressItem {
+.requestProgressItem {
   /* padding: 0; */
 }
 
-.progressItem .listboxItem {
+.requestProgressItem .listboxItem {
   /* width: 638rpx; */
   border-left: 1px solid #DEDFE0;
   margin-left: 14rpx;
 }
 
-.progressItem .part {}
+.requestProgressItem .listboxItem .part {}
 
-.progressItem .topItem {
-  width: 624rpx;
+.requestProgressItem .topItem {
+  /* width: 624rpx; */
   margin-bottom: 12rpx;
   position: relative;
   padding-left: 40rpx;
@@ -24,7 +24,18 @@
   height: 36rpx;
 } */
 
-.progressItem .topItem .name {
+.requestProgressItem .topItem .resPeople {
+  width: auto;
+  height: 36rpx;
+  background: #F4F4F5;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  padding: 4rpx 8rpx;
+  font-size: 20rpx;
+  color: #909399;
+  line-height: 36rpx;
+}
+
+.requestProgressItem .topItem .name {
   /* height: 40rpx; */
   width: 400rpx;
   font-size: 28rpx;
@@ -33,7 +44,7 @@
   margin-left: 8rpx;
 }
 
-.progressItem .right-icon {
+.requestProgressItem .right-icon {
   width: 32rpx;
   height: 32rpx;
   display: inline-block;
@@ -42,12 +53,12 @@
 }
 
 /*  */
-.progressItem .belowItem {
+.requestProgressItem .belowItem {
   margin-bottom: 48rpx;
   padding-left: 40rpx;
 }
 
-.progressItem .belowItem .plan {
+.requestProgressItem .belowItem .plan {
   height: 34rpx;
   font-size: 24rpx;
   color: #909399;
@@ -55,13 +66,13 @@
 }
 
 /*  */
-.progressItem .mayflyBox {
+.requestProgressItem .mayflyBox {
   position: fixed;
   bottom: 100rpx;
   right: 30rpx;
 }
 
-.progressItem .mayflyBox .mayfly{
+.requestProgressItem .mayflyBox .mayfly{
   width: 124rpx;
   height: 108rpx;
 

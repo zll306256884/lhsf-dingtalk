@@ -41,7 +41,9 @@
     "pages/work/page/alterationRegisterDetail/alterationRegisterDetail",
     "pages/work/page/addPaymentDetail/addPaymentDetail",
     "pages/databoard/page/projectInfo/index",
-    "pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail"
+    "pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail",
+    "pages/databoard/page/projectInfo/index",
+    "pages/work/page/requestProgressDetail/requestProgressDetail"
   ],
   "window": {
     "transparentTitle": "always",
