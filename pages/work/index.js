@@ -43,7 +43,7 @@ Page({
       {
         url: "../../../../assets/images/work/Group-8.png",
         name: "竣工结算登记",
-        path: ''
+        path: '/pages/work/page/beCompletedRegister/beCompletedRegister'
       }
     ],
     // 待办

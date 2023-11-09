@@ -7,6 +7,7 @@ Page({
     navbarData: {
       title: "新增变更",
   },
+  disabled:false,
   projectId:"",
   contactNoticeName:"",//联系单名称
   projectLeader:'',//负责人
@@ -24,7 +25,7 @@ Page({
   person:'',
   person_text:'',
   chooseExecuteUserList: [],
-  uploadImgRef:null,/// 上传
+  id:'',
     isEdit: false,
     projectData:{},// 项目名称,
     dialogScreenprojectRef:null, //项目名称
@@ -35,7 +36,17 @@ Page({
     dialogScreenExecuteUserRef:null,
     contractData:{},//合同名称
   },
-  onLoad() {},
+  uploadImgRef:null,/// 上传
+  onLoad(option) {
+    console.log(option,'23232323');
+    this.setData({
+      id:option.id
+    })
+    if(option.id){
+      this.data.disabled = true
+      this.getDetail(option.id) 
+    }
+  },
 
 // 项目名称
 bindChooseProjectTap:function (e) {
@@ -176,7 +187,42 @@ bindChooseBuildDateCallBack(data){
 onSaveUploadImgRef: function (ref) {
   this.uploadImgRef = ref;
 },
-
+// 编辑 
+getDetail(id){
+  request.doPostRequest({
+    url: config.API_ALTER_DETAIL_POST,
+    data: {
+     id:id
+    },
+    success: res => {
+      console.log(res,3333333333333333);
+      this.setData({
+        contactNoticeName:res.data.contactNoticeName,
+        'projectData.name':res.data.projectName,
+        'projectData.id':res.data.projectId,
+        projectLeader:res.data.projectLeader,
+        affiliateUnit:res.data.affiliateUnit,
+        projectChangeAmount:res.data.projectChangeAmount,
+        'contractData.contractName':res.data.contractName,
+        'contractData.contractId':res.data.contractId,
+        contractAmount:res.data.contractAmount,
+        changeAmount:res.data.changeAmount,
+        contractCumulativeChange:res.data.contractCumulativeChange,
+        contractChangeRate:res.data.contractChangeRate,
+        countersignDate:res.data.countersignDate,
+        changeContentTime:res.data.changeContentTime,
+        constructionUnitReportDate:res.data.constructionUnitReportDate,
+        contactChange:res.data.contactChange,
+        remark:res.data.remark,
+        person_text:res.data.person_dictText,
+        person:res.data.person
+      });
+      setTimeout(() => {
+        this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+      }, 0);
+    }
+  })
+},
 //bind form submit
 bindFormSubmit: function (e) {
   console.log(this.data.contactNoticeName);
@@ -234,6 +280,7 @@ request.doPostRequest({
   constructionUnitReportDate:this.data.constructionUnitReportDate+ ' 00:00:00',//施工单位上报日期
   contactChange:contactChange,//变更内容
   remark:remark,
+  id:this.data.id?this.data.id:'',
   investmentFileList:investmentFileList,
   person:this.data.person,
   person_text:this.data.person_text,

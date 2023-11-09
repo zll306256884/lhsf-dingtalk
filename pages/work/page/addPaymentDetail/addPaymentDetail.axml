@@ -42,7 +42,7 @@
   </view>
   <view class="btn-wrap">
     <list-item >
-      <button class="flex1 btn active"  catchTap="bindCancelTap">撤回申请</button>
+      <button class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
     </list-item>
 </view>
 </view>

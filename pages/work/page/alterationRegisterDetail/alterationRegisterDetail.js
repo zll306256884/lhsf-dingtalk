@@ -1,17 +1,22 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
+import ddUtils from "../../../../utils/ddUtils"
 Page({
   data: {
     navbarData: {
       title: "工程联系单",
   },
-  infoData:{}
+  infoData:{},
+  id:'',
   },
   uploadContractImage: null,
   onLoad(option) {
     if(option.id){
       this.getDetail(option.id)
     }
+    this.setData({
+      id:option.id
+    })
   },
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
@@ -31,4 +36,9 @@ Page({
       }
     })
   },
+  editTap:function(){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/alterationRegister/alterationRegister??id=${this.data.id}`
+    }); 
+  }
 });
