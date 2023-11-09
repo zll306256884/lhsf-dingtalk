@@ -1,0 +1,13 @@
+{
+  "transparentTitle": "always",
+  "titlePenetrate":"NO",
+  "usingComponents": {
+    "tabs": "antd-mini/es/Tabs/index",
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "list": "antd-mini/es/List/index",
+    "list-item": "antd-mini/es/List/ListItem/index",
+    "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
+    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup"
+
+  }
+}
