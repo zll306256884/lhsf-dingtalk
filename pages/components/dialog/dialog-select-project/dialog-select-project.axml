@@ -1,0 +1,22 @@
+
+<block a:if="{{showDialog}}">
+  <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCloseTap" catchTouchMove="_bindTouchMove"></view>
+  <block>
+      <view  class="box-sizing-box modal-content dialog-picker" style="margin-top:50rpx" animation="{{animationData}}" 
+          catchTouchMove="_bindTouchMove">
+          <view class="box-title">{{title}}
+            <text style="float:right;color:#1A6AFF;margin-right: 50rpx" catchTap="onSureTap">确定</text>
+          </view>
+          <view style="margin-bottom:30rpx">
+            <layout-search onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>
+          </view>
+          <scroll-view style="max-height: 100Vh;" scroll-y="{{true}}">
+              <block a:for="{{dataList}}">
+                  <view class="dialog-name border-top {{chooseIndex === index ? 'active' : ''}}" data-index="{{index}}"
+                      catchTap="_bindItemTap">
+                      {{item.name}}
+                  </view>
+              </block>
+          </scroll-view>
+      </view>
+  </block>

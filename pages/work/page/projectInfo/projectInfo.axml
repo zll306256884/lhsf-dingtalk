@@ -13,7 +13,7 @@
       <layout-field-cell borderBottom name="项目分类" mustFillTransparent disabled value="{{projectClassification.name}}"></layout-field-cell>
       <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled value="{{constructionPhase.name}}"></layout-field-cell>
       <layout-field-cell borderBottom name="是否投入使用" mustFillTransparent disabled value="{{isOutPut.name}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
+      <layout-field-cell a:if="{{ isOutPut.value === '1' }}" borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
       
       <layout-field-cell borderBottom name="所属单位" mustFillTransparent disabled value="{{formData.affiliatedUnitName}}"></layout-field-cell>
 
@@ -64,7 +64,12 @@
       <button class="btn" catchTap="bindCancelTap">取消</button>
       <button class="btn active" form-type="submit">保存</button>
     </view> -->
-
+    
     <view class="bottom-space"></view>
   </form>
+
+  <view a:if="{{ requestType === '2' }}" class="bottom-content flex f-between btn-wrap">
+    <button class="btn" size="default" type="primary" catchTap="deletThis">删除</button>
+    <button class="btn active" size="default" type="primary" catchTap="editThis">编辑</button>
+  </view>
 </view>

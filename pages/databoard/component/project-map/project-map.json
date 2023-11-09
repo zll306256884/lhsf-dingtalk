@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "tabs": "antd-mini/es/Tabs/index"
+    "tabs": "antd-mini/es/Tabs/index",
+    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project"
    
 }
 }

@@ -1,0 +1,10 @@
+{
+  "transparentTitle": "always",
+  "titlePenetrate": "NO",
+  "usingComponents": {
+    "divider": "antd-mini/es/Divider/index",
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "request-progress-item":"/pages/components/request-progress-item/request-progress-item",
+    "progress-item": "/pages/components/progress-item/progress-item"
+  }
+}

@@ -48,3 +48,27 @@
   color: #969799;
   line-height: 48rpx;
 }
+.bottom-content{
+  width: 100%;
+  padding: 16rpx;
+  border-top: 1px solid #DBDADF;
+  position:fixed;
+  bottom:18rpx;
+}
+.bottom-content .bottom-button{
+  width: 349rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 80rpx;
+}
+.bottom-content .bottom-button .active{
+  background: #1A6AFF;
+  color: #FFFFFF;
+}

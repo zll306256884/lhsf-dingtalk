@@ -15,6 +15,17 @@ module.exports = {
   API_FINISH_TASK: API_HOST  + "/mission/mainMission/finish",
   API_REMIND_TASK: API_HOST  + "/mission/mainMission/remind",
   API_DELETE_TASK: API_HOST  + "/mission/mainMission/deleteById",
-  API_CANCEL_TASK: API_HOST  +  "/mission/mainMission/cancel"
+  API_CANCEL_TASK: API_HOST  +  "/mission/mainMission/cancel",
+
+  //撤回审批查询信息
+  API_JFLOWAUDIT_SELET_INFO: API_HOST  + "/jflow/jflowAuditRecord/selectByKeyId",
+  //撤回审批
+  API_AUDIT_WITHDRAW: API_HOST  + "/jflow/audit/withdrawAudit",
+  //审批通过
+  API_JFLOW_ADOPTAUDIT: API_HOST  + "/jflow/audit/adoptAudit",
+  //jflow拒绝
+  API_JFLOW_REFUSEAUDIT: API_HOST  + "/jflow/audit/refuseAudit",
+  //根据id查询流程数据--------公共调用接口（前端调用）
+  API_SELECT_DETAIL: API_HOST  + "/jflow/jflowAuditRecord/selectById",
 }
 

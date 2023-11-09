@@ -2,7 +2,7 @@
 <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange"></nav-tab-bar>
 
 <list>
-  <list-item a:for="{{ dataList }}" a:key="index" data-item={{item}} data-index={{index}} onTap=selectAskInfo>
+  <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
     <view class="flex f-between">
       <view style="width:80%">
         <view class="request-name">{{item.title}}</view>
@@ -14,3 +14,5 @@
     </view>
   </list-item>
 </list>
+
+<error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>

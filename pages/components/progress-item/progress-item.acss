@@ -1,18 +1,18 @@
 @import "/assets/styles/typeContent.acss";
 
-.container {
+.progressItem {
   /* padding: 0; */
 }
 
-.listboxItem {
+.progressItem .listboxItem {
   /* width: 638rpx; */
   border-left: 1px solid #DEDFE0;
   margin-left: 14rpx;
 }
 
-.part {}
+.progressItem .part {}
 
-.topItem {
+.progressItem .topItem {
   width: 624rpx;
   margin-bottom: 12rpx;
   position: relative;
@@ -24,7 +24,7 @@
   height: 36rpx;
 } */
 
-.topItem .name {
+.progressItem .topItem .name {
   /* height: 40rpx; */
   width: 400rpx;
   font-size: 28rpx;
@@ -33,7 +33,7 @@
   margin-left: 8rpx;
 }
 
-.right-icon {
+.progressItem .right-icon {
   width: 32rpx;
   height: 32rpx;
   display: inline-block;
@@ -42,12 +42,12 @@
 }
 
 /*  */
-.belowItem {
+.progressItem .belowItem {
   margin-bottom: 48rpx;
   padding-left: 40rpx;
 }
 
-.belowItem .plan {
+.progressItem .belowItem .plan {
   height: 34rpx;
   font-size: 24rpx;
   color: #909399;
@@ -55,13 +55,13 @@
 }
 
 /*  */
-.mayflyBox {
+.progressItem .mayflyBox {
   position: fixed;
   bottom: 100rpx;
   right: 30rpx;
 }
 
-.mayflyBox .mayfly{
+.progressItem .mayflyBox .mayfly{
   width: 124rpx;
   height: 108rpx;
 

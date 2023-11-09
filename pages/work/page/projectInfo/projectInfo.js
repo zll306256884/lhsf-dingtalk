@@ -28,13 +28,20 @@ Page({
     //所属单位
     //项目负责人
     uploadImgRefList: null,//项目红线图
-    projectId: null
+    projectId: null,
+    requestType: null
   },
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRefList = ref;
     console.log(this.uploadImgRefList)
   },
   onLoad(options) {
+    if(options.requestType){
+      //我的请求
+      this.setData({
+        requestType: options.requestType
+      })
+    }
     if(options.id){
       this.setData({
         projectId: options.id
@@ -47,21 +54,38 @@ Page({
       url: projectService.API_SELECTPROJECT_INFO_BYID,
       data:{id:id},
       success: res => {
+        if(res.data.isAccess=== 0 || res.data.isAccess=== 1){
+          this.setData({
+            isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess}
+          })
+        }
+        if(res.data.isOutPut){
+          this.setData({
+            isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut}
+          })
+        }
         this.setData({
           formData: res.data,
-          isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess},
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
-          isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut},
-          'outPutTime.shortDate':res.data.outPutTime,
+          outPutTime:{shortDate:res.data.outPutTime},
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
         })
-        console.log(this.data.isAccess)
         setTimeout(() => {
           this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
         }, 0);
       }
     })
+  },
+  //删除
+  deletThis(){
+    
+  },
+  //编辑
+  editThis(){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/addProject/addProject?id=${this.data.projectId}`
+    });
   },
 });
