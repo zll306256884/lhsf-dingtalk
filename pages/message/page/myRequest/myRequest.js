@@ -148,6 +148,9 @@ Page({
     //requestType 0待办 1进行中 3已办
     switch(item.type){
       case 1:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.tabIndex}&projectId=${item.projectId}`
+        });
         break;
       case 2:
         ddUtils.navigateTo({
