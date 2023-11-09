@@ -1,6 +1,5 @@
 {
   "pages": [
-
     "pages/work/index",
     "pages/message/index",
     "pages/databoard/index",
@@ -39,7 +38,8 @@
     "pages/databoard/page/workLog/workLog",
     "pages/work/page/alterationRegister/alterationRegister",
     "pages/message/page/myRequest/myRequest",
-    "pages/databoard/page/projectInfo/index"
+    "pages/databoard/page/projectInfo/index",
+    "pages/work/page/requestProgressDetail/requestProgressDetail"
   ],
   "window": {
     "transparentTitle": "always",

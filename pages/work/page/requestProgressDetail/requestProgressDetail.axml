@@ -1,0 +1,49 @@
+<view class="flex f-column">
+  <nav-bar navbarData="{{navbarData}}"></nav-bar>
+  <view class="requestProgressDetail">
+    <!-- 头部 -->
+    <view class="headerBase box-sizing-box">
+      <view class="title single-line">{{topData.projectName}}</view>
+      <view class="name">创建人：{{topData.createBy}}</view>
+      <view class="time">创建时间：{{topData.createTime}}</view>
+    </view>
+    <!--<view class="headerBox"> -->
+    <!--<view class="top flex f-between"><view class="flex f-start"><image class="titke-icon" src="../../../../assets/images/progress/titleleft.png" /><view class="title" catchTap="showIt">项目进度</view></view><view class="time">更新至2023-6-24 01:30:00</view></view> -->
+    <!--里程碑  -->
+    <!--<view class="lcb flex f-start box-sizing-box"><view class="flex f-start left" catchTap="milestoneNode"><image class="has" src="../../../../assets/images/progress/has.png" /><view class="name">里程碑节点</view></view><view class="flex f-start right"><view class='part flex f-start'><view class="spotGreen"></view>
+            已完成</view><view class='part flex f-start'><view class="spotOrange"></view>延期</view><view class='part flex f-start'><view class="spotBlue"></view>进行中</view></view></view> -->
+    <!--  -->
+    <!--</view> -->
+    <view class="bottomBox">
+      <!--里程碑  -->
+      <view class="lcb flex f-start box-sizing-box">
+        <view class="flex f-start left" catchTap="milestoneNode">
+          <image class="has" src="../../../../assets/images/progress/has.png" />
+          <view class="name">里程碑节点</view>
+        </view>
+        <view class="flex f-start right">
+          <view class='part flex f-start'>
+            <view class="spotBlue"></view>
+            一级节点
+          </view>
+          <view class='part flex f-start'>
+            <view class="spotGray"></view>
+            二级节点
+          </view>
+        </view>
+      </view>
+      <!-- 分割线 -->
+      <view class="dividerCenter">
+        <divider />
+      </view>
+      <!-- 列表 -->
+      <view class="listBox box-sizing-box">
+        <request-progress-item 
+          listData={{listData}} 
+          projectId={{projectId}}
+          ref='progressItemRef'
+        ></request-progress-item>
+      </view>
+    </view>
+  </view>
+</view>

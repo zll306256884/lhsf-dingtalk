@@ -128,4 +128,6 @@
 
 
 /* 列表 */
-.listBox {}
+.listBox {
+  padding-top: 24rpx;
+}
