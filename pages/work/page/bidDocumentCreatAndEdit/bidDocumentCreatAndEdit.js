@@ -133,9 +133,16 @@ Page({
       success: res => {
         console.log(res.data)
         const paramsdata = res.data
-        paramsdata.biddingType = paramsdata.biddingType.toString()
-        paramsdata.projectType = paramsdata.projectType.toString()
-        paramsdata.decisionBasis = paramsdata.decisionBasis.toString()
+        if(paramsdata.biddingType){
+          paramsdata.biddingType = paramsdata.biddingType.toString()
+        }
+        if(paramsdata.projectType){
+          paramsdata.projectType = paramsdata.projectType.toString()
+        }
+        if(paramsdata.decisionBasis){
+          paramsdata.decisionBasis = paramsdata.decisionBasis.toString()
+        }
+        
         const fields = this.form.getFieldsValue()
         for (let item in fields) {
           if ({}.hasOwnProperty.call(fields, item)) {

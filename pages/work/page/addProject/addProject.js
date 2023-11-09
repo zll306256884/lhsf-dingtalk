@@ -259,12 +259,20 @@ Page({
       url: projectService.API_SELECTPROJECT_INFO_BYID,
       data:{id:id},
       success: res => {
+        if(res.data.isAccess === 0 || res.data.isAccess === 1){
+          this.setData({
+            isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess}
+          })
+        }
+        if(res.data.isOutPut){
+          this.setData({
+            isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut}
+          })
+        }
         this.setData({
           formData: res.data,
-          isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess},
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
-          isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut},
           outPutTime:res.data.outPutTime,
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
@@ -394,6 +402,13 @@ Page({
     })
     
     let data = this.data.formData
+
+    data.isAccess = this.data.isAccess.value
+    data.projectClassification = this.data.projectClassification.value
+    data.isOutPut = this.data.isOutPut.value
+    data.constructionNature = this.data.constructionNature.value
+    data.engineeringProperties = this.data.engineeringProperties.value
+
     console.log(data)
     if(this.data.projectId){
       request.doPostRequest({
@@ -418,5 +433,8 @@ Page({
         },
       })
     }
+  },
+  bindCancelTap(){
+    ddUtils.navigateBack();
   }
 });

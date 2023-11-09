@@ -1,0 +1,12 @@
+<!--pages/common/component/error-view/error-view.wxml-->
+<view class="empty-placeholder" style="padding: {{topHeight}}rpx 0 30rpx;" a:if="{{isShowError}}" catchTap="_bindRefresh">
+    <image class="empty-img" src="{{errorSrc}}"></image>
+    <text class="empty-msg">{{errorMessage}}</text>
+    <button a:if="{{showButton}}" class="btn" catchTap="_bindButtonTap">{{buttonText}}</button>
+</view>
+
+<!-- load more -->
+<view class='load-more-wrap' style="visibility: {{isShowLoadMore ? 'visible' : 'hidden'}}; {{styleLoadMore}}">
+    <image class="icon" src="{{loadMoreSrc}}" />
+    <text class="content">{{loadMoreMessage}}</text>
+</view>
