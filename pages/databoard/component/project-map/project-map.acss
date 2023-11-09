@@ -63,6 +63,7 @@ line-height: 40rpx;
 
 }
 .card-list .card-item{
+  position: relative;
   width: 640rpx;
   height: 258rpx;
   box-sizing: border-box;
@@ -73,10 +74,24 @@ line-height: 40rpx;
   border-radius: 24rpx;
   opacity: 1;
 }
+.item-status{
+height: 36rpx;
+background: #00B42A;
+border-radius: 8rpx;
+position: absolute;
+top:40rpx;
+left:-8rpx;
+font-size: 20rpx;
+font-weight: 400;
+color: #FFFFFF;
+line-height: 36rpx;
+padding:0 12rpx
+}
 .item-img{
-  width: 100%;
-  height: 100%;
-  margin-right:24rpx
+  width: 280rpx;
+  height: 210rpx;
+  margin-right:24rpx;
+  background: #EEEFF0;
 }
 .item-info{
   font-size: 24rpx;

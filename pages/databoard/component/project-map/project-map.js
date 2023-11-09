@@ -55,9 +55,8 @@ Component({
       })
     },
     onSelectItem(e){
-      console.log(e);
       ddUtils.navigateTo({
-      url: `/pages/databoard/page/projectInfo/index`
+      url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(e.currentTarget.dataset.item)}`
     });
     },
     getProjectList(){

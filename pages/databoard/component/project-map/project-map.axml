@@ -24,20 +24,21 @@
   <!-- 项目项卡片 -->
       <view class="card-list">
         <swiper>
-        <block a:for="{{statusList}}">
+        <block a:for="{{projectList}}">
           <swiper-item key="swiper-item-{{index}}">
-            <view class="card-item flex f-between" onTap="onSelectItem">
-              <image class="item-img"  src="{{item.avatar}}" />
-              <view>
-                <view class="item-title two-lines">
-                  临海市国际贸易大厦临海市国际贸易大...
+            <view class="card-item flex f-between" data-item="{{item}}" data-index="{{index}}" onTap="onSelectItem">
+              <image class="item-img"  src="{{item.mainImg}}" />
+              <view class="flex1">
+                <view class="item-title two-lines">{{item.projectName}}</view>
+                <view class="item-info">
+                  <text style="color: #909399;">进度主节点:</text>{{item.progressNode || '-'}}
                 </view>
                 <view class="item-info">
-                  <text style="color: #909399;">进度主节点:</text>施工许可证
+                  <text style="color: #909399;">项目负责人:</text>{{item.manager || '-'}}
                 </view>
-                <view class="item-info">
-                  <text style="color: #909399;">项目负责人:</text>张帆
-                </view>
+              </view>
+              <view class="item-status">
+                在建项目
               </view>
             </view>
           </swiper-item>
