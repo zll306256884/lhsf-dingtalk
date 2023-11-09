@@ -1,0 +1,163 @@
+.annual-bidding-progress{
+  padding: 0 24rpx;
+}
+.annual-bidding-progress .top-content{
+  width: 702rpx;
+  height: 520rpx;
+  background: linear-gradient(225deg, #17AE66 0%, #44ADA7 100%), linear-gradient(165deg, rgba(55,190,166,0.55) 0%, rgba(0,0,0,0) 100%);
+  border-radius: 32rpx 32rpx 32rpx 32rpx;
+}
+.annual-bidding-progress .top-content .top-top{
+  background-image: url(/assets//images/databoard/image258@2x.png);
+  background-position: right top;
+  background-repeat: no-repeat;
+  background-size: 212rpx 212rpx;
+}
+.annual-bidding-progress .top-content .line{
+  width: 702rpx;
+  height: 0rpx;
+  opacity: 0.3;
+  border: 2rpx solid;
+  border-image: linear-gradient(90deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 1), rgba(255, 255, 255, 0)) 2 2;
+}
+.annual-bidding-progress .top-content .top{
+  padding: 40rpx 40rpx 10rpx;
+  background: url(/assets/images/databoard/Ellipse964@2x.png);
+  background-position: left top;
+  background-repeat: no-repeat;
+  background-size: 198rpx 164rpx;
+}
+.annual-bidding-progress .top-content .top .text{
+  font-size: 24rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 40rpx;
+}
+.annual-bidding-progress .top-content .top .number{
+  font-size: 56rpx;
+  font-family: DIN Alternate-Bold, DIN Alternate;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 66rpx;
+  margin-top: 8rpx;
+}
+.annual-bidding-progress .top-content .center{
+  margin: 36rpx 40rpx 26rpx;
+}
+.annual-bidding-progress .top-content .center .text{
+  font-size: 20rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 36rpx;
+}
+.annual-bidding-progress .top-content .center .number{
+  font-size: 40rpx;
+  font-family: DIN Alternate-Bold, DIN Alternate;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 47rpx;
+}
+.annual-bidding-progress .top-content .bottom{
+  padding: 54rpx 40rpx 48rpx;
+  background-image: url(/assets//images/databoard/Frame@2x.png);
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-size: 172rpx 140rpx;
+}
+.annual-bidding-progress .top-content .bottom .text{
+  font-size: 24rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #FFFFFF;
+  line-height: 40rpx;
+}
+.annual-bidding-progress .top-content .bottom .number{
+  font-size: 56rpx;
+  font-family: DIN Alternate-Bold, DIN Alternate;
+  font-weight: bold;
+  color: #FFFFFF;
+  line-height: 66rpx;
+}
+.bottom-content{
+  margin-top: 48rpx;
+  /* width: 702rpx; */
+  height: 912rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx 40rpx 40rpx 40rpx;
+  opacity: 1;
+  padding: 32rpx 20rpx 32rpx 32rpx;
+}
+.bottom-content .list{
+  align-items: center;
+}
+.bottom-content .b-top{
+  width: 276rpx;
+  height: 72rpx;
+  background: #F3F4F5;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  align-items: center;
+  padding:0 6rpx;
+}
+.bottom-content .b-top .text{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #606266;
+  line-height: 60rpx;
+  width: 104rpx;
+  text-align: center;
+}
+.bottom-content .b-top .active{
+  width: 160rpx;
+  height: 60rpx;
+  background: #FFFFFF;
+  border-radius: 4rpx 4rpx 4rpx 4rpx;
+  opacity: 1;
+  text-align: center;
+  font-size: 28rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1D1D1F;
+  line-height: 60rpx;
+}
+.bottom-content .list{
+  padding: 46rpx 0 32rpx;
+}
+.bottom-content .list .left-img{
+  width: 162rpx;
+  height: 116rpx;
+  border-radius: 12rpx 12rpx 12rpx 12rpx;
+  opacity: 1;
+  margin-right: 32rpx;
+}
+.bottom-content .list .right-img{
+  width: 32rpx;
+  height: 32rpx;
+}
+.bottom-content .list .center{
+  width: 374rpx;
+}
+.bottom-content .list .center .name{
+  font-size: 32rpx;
+  font-family: PingFang SC-Medium, PingFang SC;
+  font-weight: 500;
+  color: #1D1D1F;
+  line-height: 48rpx;
+}
+.bottom-content .list .center .text{
+  font-size: 24rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #909399;
+  line-height: 40rpx;
+}
+.bottom-content .list .center .number{
+  font-size: 24rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #606266;
+  line-height: 40rpx;
+}

@@ -20,6 +20,7 @@ Component({
         itemIndex: -1,
         minNum: "",//当inputType=number时，输入框能输入的最小值
         disabled: false,
+        maxlength: null,
         onInputChange: function (data) { },
         onBlurChange: function (data) { }
     },

@@ -3,8 +3,9 @@
 <form-input
   label="标题"
   name="title"
-  placeholder="请输入"
+  placeholder="自动生成"
   allowClear
+  disabled
   ref="handleRef" />
 <form-input
   label="项目名称"
@@ -19,6 +20,8 @@
   validateStatus="default"
   placeholder="请输入"
   allowClear
+  maxLength="100"
+  onBlur="changeContractName"
   ref="handleRef" />
 
 <form-input
@@ -27,6 +30,7 @@
   validateStatus="default"
   placeholder="请输入"
   allowClear
+  maxLength="50"
   ref="handleRef" />
 
   <form-radio-group
@@ -89,6 +93,7 @@
   name="contractPeriod"
   validateStatus="default"
   placeholder="请输入"
+  type="number"
   allowClear
   ref="handleRef" />
 
@@ -98,10 +103,12 @@
   name="makeSure"
   options="{{radioGroupOptionsTwo}}"
   ref="handleRef" />
+
   <form-input
   name="contractAmount"
   validateStatus="default"
   placeholder="请输入"
+  type="number"
   allowClear
   style="text-align:left"
   ref="handleRef" />
@@ -175,6 +182,7 @@
     placeholder="请输入"
     allowClear
     autoHeight
+    maxLength="800"
     ref="handleRef" />
   <form-picker
     label="付款方式"
@@ -189,6 +197,7 @@
   placeholder="请输入"
   allowClear
   autoHeight
+  maxLength="300"
   ref="handleRef" />
 
   <view style="margin:16rpx 0;background:#fff">

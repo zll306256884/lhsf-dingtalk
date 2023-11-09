@@ -47,6 +47,7 @@ Page({
     constructionPhase: {},//建设阶段
     isOutPut: {},//是否投入
     outPutTime: '',//{date: '', shortDate: ''}
+    projectEndTime: '',
     constructionNature: {},//建设性质
     engineeringProperties: {},//工程性质
     //所属单位
@@ -91,6 +92,9 @@ Page({
         console.log('onBack')
     },
   },
+  onSavePickerEndDateRef(ref){
+    this.pickEndDate = ref
+  },
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRefList = ref;
     console.log(this.uploadImgRefList)
@@ -129,7 +133,9 @@ Page({
   onSaveDialogScreenExecuteUserRef(ref){
     this.dialogScreenExecuteUser = ref
   },
-  
+  _bindChooseProjectEndTime(){
+    if(this.pickEndDate) this.pickEndDate._showDialog();
+  },
   _bindChooseIsAccessTap(e){
     // if (this.props.chooseQuesTypeDisabled) return;
     if (this.dialogQuesFromRef) this.dialogQuesFromRef._showDialog();
@@ -173,7 +179,11 @@ Page({
   bindInputChange(e){
 
   },
-
+  bindPickerEndDateCallBack(data){
+    this.setData({
+      projectEndTime: data.startDate
+    })
+  },
   bindScreenFromCallBack(item){
     this.setData({
       isAccess: item
@@ -249,12 +259,20 @@ Page({
       url: projectService.API_SELECTPROJECT_INFO_BYID,
       data:{id:id},
       success: res => {
+        if(res.data.isAccess === 0 || res.data.isAccess === 1){
+          this.setData({
+            isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess}
+          })
+        }
+        if(res.data.isOutPut){
+          this.setData({
+            isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut}
+          })
+        }
         this.setData({
           formData: res.data,
-          isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess},
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
-          isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut},
           outPutTime:res.data.outPutTime,
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
@@ -345,7 +363,9 @@ Page({
     if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
-    if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
+    if(this.data.isOutPut.value === '1'){
+      if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
+    }
     if (ddUtils.showEmptyToastTips(this.data.formData.affiliatedUnitName, "所属单位不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
@@ -382,6 +402,13 @@ Page({
     })
     
     let data = this.data.formData
+
+    data.isAccess = this.data.isAccess.value
+    data.projectClassification = this.data.projectClassification.value
+    data.isOutPut = this.data.isOutPut.value
+    data.constructionNature = this.data.constructionNature.value
+    data.engineeringProperties = this.data.engineeringProperties.value
+
     console.log(data)
     if(this.data.projectId){
       request.doPostRequest({
@@ -406,5 +433,8 @@ Page({
         },
       })
     }
+  },
+  bindCancelTap(){
+    ddUtils.navigateBack();
   }
 });

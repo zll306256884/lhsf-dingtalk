@@ -1,12 +1,20 @@
 // import utils from "../../../../utils/utils";
 // import ddUtils from "../../../../utils/ddUtils";
+import request from "../../../../utils/request"
+import ddUtils from "../../../../utils/ddUtils"
+import workService from "../../../../server/workServer";
+
+const app = getApp();
+
 Component({
   mixins: [],
   data: {
     showDialog: false,
-    isApprovalAgree: true
+    isApprovalAgree: true,
+    paramsData: {}
   },
   props: {
+    examineId: '',
     keyId:'' //审批需要用的keyId
     // onApprovalOperate: function (reason, isAgree) { },
   },
@@ -55,13 +63,73 @@ Component({
     },
 
     //提交
-    _bindFormSunmit: function (e) {
-        let reason = e.detail.value.reason;
-        console.log(reason, this.data.isApprovalAgree)
-        if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
-        // this.props.onApprovalOperate(reason, this.data.isApprovalAgree);
-    },
+    async _bindFormSunmit(e) {
+      let reason = e.detail.value.reason;
+      console.log(reason, this.data.isApprovalAgree)
+      if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
+      // this.props.onApprovalOperate(reason, this.data.isApprovalAgree);
 
+      await this.getDetail()
+      setTimeout(() => {
+        let params = this.data.paramsData
+        params.content = reason
+        params.annexesUrl = []
+
+        console.log(params);
+        if(this.data.isApprovalAgree){
+          request.doPostRequest({
+            url: workService.API_JFLOW_ADOPTAUDIT,
+            data: params,
+            success: res => {
+              console.log(res.data)
+              ddUtils.showToast({
+                title: "通过成功"
+              });
+              ddUtils.navigateBack();
+            }
+          })
+        }else{
+          request.doPostRequest({
+            url: workService.API_JFLOW_REFUSEAUDIT,
+            data: params,
+            success: res => {
+              console.log(res.data)
+              ddUtils.showToast({
+                title: "拒绝成功"
+              });
+              ddUtils.navigateBack();
+            }
+          })
+        }
+      }, 1000);
+      
+    },
+    getDetail(){
+      request.doPostRequest({
+        url: workService.API_SELECT_DETAIL,
+        data: {id: this.props.examineId},
+        success: res => {
+          console.log(res.data)
+          let form = {}
+          form.auditUserId = app.globalData.userInfo.userId
+          form.auditUserName = app.globalData.userInfo.nickName
+          form.auditAccount = app.globalData.userInfo.userAccount
+          form.account = res.data.account
+          form.jflowNo = res.data.jflowNo
+          form.jflowWorkid = res.data.jflowWorkid
+          form.nodeId = res.data.nodeId
+          form.keyId = res.data.keyId
+          form.vueUrl = res.data.vueUrl
+          form.urlParameter = res.data.urlParameter
+          form.projectId = res.data.projectId
+          form.projectName = res.data.projectName
+          this.setData({
+            paramsData: form
+          })
+          console.log(this.data.paramsData);
+        }
+      })
+    },
     //judge is show dialog
     _isShowDialog() {
         return this.data.showDialog;
