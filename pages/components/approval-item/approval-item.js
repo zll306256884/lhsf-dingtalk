@@ -17,8 +17,8 @@ Component({
     nextNode: []
   },
   props: {
-    projectId: '',//项目id
-    keyId: "",//keyId
+    projectId: '12019020004',//项目id
+    keyId: "1722516061045305346",//keyId
   },
   //组件创建时触发
   onInit() {
@@ -117,16 +117,16 @@ Component({
         listData: data1
       });
     },
-    toEditPage(e) {
-      console.log('e', e)
-      let id = e.target.dataset.planId
-      let type = e.target.dataset.type
-      let name = e.target.dataset.name
-      let projectId = e.target.dataset.projectId
-      // return
-      dd.navigateTo({
-        url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type + '&name=' + name + '&projectId=' + projectId,
-      })
-    },
+    // toEditPage(e) {
+    //   console.log('e', e)
+    //   let id = e.target.dataset.planId
+    //   let type = e.target.dataset.type
+    //   let name = e.target.dataset.name
+    //   let projectId = e.target.dataset.projectId
+    //   // return
+    //   dd.navigateTo({
+    //     url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type + '&name=' + name + '&projectId=' + projectId,
+    //   })
+    // },
   },
 });
