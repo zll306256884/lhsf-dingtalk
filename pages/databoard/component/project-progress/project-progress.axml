@@ -1,3 +1,35 @@
-<view>
-  项目进度 
+<!-- <nav-bar navbarData="{{navbarData}}"></nav-bar> -->
+<view class="container">
+  <view class="containerinner">
+    <!-- 头部 -->
+    <view class="headerBox">
+      <view class="top flex f-between">
+        <view class="flex f-start">
+          <image class="titke-icon" src="../../../../assets/images/progress/titleleft.png" />
+          <view class="title" catchTap="showIt">项目进度</view>
+        </view>
+        <view class="time" a:if="{{false}}">更新至2023-6-24 01:30:00</view>
+      </view>
+      <!--里程碑  -->
+      <view class="lcb flex f-between box-sizing-box">
+        <view class="flex f-start left" catchTap="milestoneNode">
+          <image class="has" src="../../../../assets/images/progress/has.png" />
+          <view class="name">里程碑节点</view>
+        </view>
+        <view class="flex f-start right">
+          <view class='part flex f-start'>
+            <view class="spotGreen"></view>
+            已完成
+          </view>
+          <view class='part flex f-start'><view class="spotOrange"></view>延期</view>
+          <view class='part flex f-start'><view class="spotBlue"></view>进行中</view>
+        </view>
+      </view>
+      <!--  -->
+    </view>
+    <!-- 列表 -->
+    <view class="listBox">
+      <progress-item listData={{listData}} projectId={{projectId}}  formPage='databoard' ref='progressItemRef'></progress-item>
+    </view>
+  </view>
 </view>

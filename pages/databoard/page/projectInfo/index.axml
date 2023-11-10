@@ -1,4 +1,14 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
 <tabs items="{{tabs}}"  current="{{currentTabIndex}}" scrollMode="center"  onChange="onTabChange"/>
+
+<view a:if="{{currentTabIndex === 1}}">
+  <!-- 项目进度 -->
+  <project-progress></project-progress>
+</view>
+<view a:if="{{currentTabIndex === 2}}">
+  <!-- 项目实景 -->
+  <project-scenery></project-scenery>
+</view>
+
 </view>

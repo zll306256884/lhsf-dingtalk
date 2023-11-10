@@ -8,7 +8,7 @@
           <image class="titke-icon" src="../../../../assets/images/progress/titleleft.png" />
           <view class="title" catchTap="showIt">项目进度</view>
         </view>
-        <view class="time">更新至2023-6-24 01:30:00</view>
+        <view class="time" a:if="{{false}}">更新至2023-6-24 01:30:00</view>
       </view>
       <!--里程碑  -->
       <view class="lcb flex f-between box-sizing-box">
@@ -29,7 +29,7 @@
     </view>
     <!-- 列表 -->
     <view class="listBox">
-      <progress-item listData={{listData}} projectId={{projectId}}  ref='progressItemRef'></progress-item>
+      <progress-item listData={{listData}} projectId={{projectId}} formPage='work' ref='progressItemRef' ></progress-item>
     </view>
   </view>
 </view>

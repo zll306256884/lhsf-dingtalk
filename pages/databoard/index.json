@@ -3,8 +3,7 @@
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "tabs": "antd-mini/es/Tabs/index",
-    "project-map":"/pages/databoard/component/project-map/project-map",
-    "project-progress":"/pages/databoard/component/project-progress/project-progress",
-    "project-scenery":"/pages/databoard/component/project-scenery/project-scenery"
+    "project-map":"/pages/databoard/component/project-map/project-map"
+    
 }
 }
