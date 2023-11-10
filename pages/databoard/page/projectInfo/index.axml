@@ -1,4 +1,5 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
-<tabs items="{{tabs}}"  current="{{currentTabIndex}}" scrollMode="center"  onChange="onTabChange"/>
+  <tabs items="{{tabs}}"  current="{{currentTabIndex}}" scrollMode="center"  onChange="onTabChange"/>
+  <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{1}}"></project-bidding-progress>
 </view>

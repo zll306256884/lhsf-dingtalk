@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
-    "tabs": "antd-mini/es/Tabs/index"
-
-}
+    "tabs": "antd-mini/es/Tabs/index",
+    "project-bidding-progress": "../../component/project-bidding-progress/project-bidding-progress"
+  }
 }

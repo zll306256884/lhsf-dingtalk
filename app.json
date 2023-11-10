@@ -42,8 +42,7 @@
     "pages/databoard/page/projectInfo/index",
     "pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail",
     "pages/databoard/page/projectInfo/index",
-    "pages/work/page/requestProgressDetail/requestProgressDetail",
-    "pages/databoard/page/annualBiddingProgress/annualBiddingProgress"
+    "pages/work/page/requestProgressDetail/requestProgressDetail"
   ],
   "window": {
     "transparentTitle": "always",
