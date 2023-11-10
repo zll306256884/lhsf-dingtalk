@@ -1,6 +1,7 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import workService from "../../../../server/workServer";
+import ddUtils from "../../../../utils/ddUtils"
 Page({
   data: {
     navbarData: {
@@ -90,4 +91,9 @@ Page({
       }
     })
   },
+  editTap:function(){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/addPayment/addPayment??id=${this.data.id}`
+    }); 
+  }
 });

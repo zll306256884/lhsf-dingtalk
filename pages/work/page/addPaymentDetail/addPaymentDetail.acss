@@ -31,6 +31,9 @@
   line-height: 56rpx;
   text-align: center;
 }
+.flex-display{
+  display: flex;
+}
 .btn-wrap{
   margin-bottom: 30rpx;
 }
