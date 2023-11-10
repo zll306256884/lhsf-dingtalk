@@ -3,7 +3,7 @@
   <view class="approvalItem">
     <view a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part box-sizing-box flex f-column">
       <!-- 内容列表 -->
-      <view class="topItem flex f-between box-sizing-box" catchTap="toEditPage">
+      <view class="topItem flex f-between box-sizing-box">
         <view class="flex f-between">
           <block>
             <image class="greenTypeSpot posi" a:if="{{ item.type==1||item.type==3 }}" src="/assets/images/progress/blue.png" />
