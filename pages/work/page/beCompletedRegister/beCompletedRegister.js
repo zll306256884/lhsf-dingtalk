@@ -33,6 +33,13 @@ Page({
     contractData:{},//合同名称
   },
   onLoad(option) {
+    let date = new Date().toLocaleString()
+          for (var i = 0; i < date.length; i++) {
+            if (date[i] === '/') {
+              date = date.replace('/', '-') // 注意替换之后就变成新数组了
+            }
+          }
+          this.data.applicationTime = date.substr(0,10)
     this.setData({
       id:option.id
     })

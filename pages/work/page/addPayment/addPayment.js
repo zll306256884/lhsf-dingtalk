@@ -200,20 +200,25 @@ getEdit(id){
     success: res => {
       console.log(res);
       this.setData({
-        projectId:res.data.projectId,
         'projectTypeData.itemText':res.data.projectType_dictText,
+        'projectTypeData.itemValue':res.data.projectType,
         'projectData.name':res.data.projectName,
+        'projectData.id':res.data.projectId,
+        projectId:res.data.projectId,
         projectLeader:res.data.projectLeader,
         affiliateUnit:res.data.affiliateUnit,
         'contractData.contractName':res.data.contractName,
+        'contractData.contractId':res.data.contractId,
         contractAmount:res.data.contractAmount,
         cumulativePayment:res.data.cumulativePayment,
+        // 'slowUnitData.id':res.data.payUnitId,
         'slowUnitData.unitName':res.data.payUnit,
         'proceedsData.unitName':res.data.receiverUnit,
         payAmount:res.data.payAmount,
         paymentNode:res.data.paymentNode,
         paymentContent:res.data.paymentContent,
         applicationTime:res.data.applicationTime,
+        countersignLeader:res.data.countersignLeader,
         countersignLeader_text:res.data.countersignLeader_dictText
       })
       setTimeout(() => {
@@ -268,7 +273,7 @@ bindFormSubmit: function (e) {
         paymentNode:paymentNode,
         paymentContent:paymentContent,
         id:this.data.id?this.data.id:'',
-        applicationTime:this.data.applicationTime+ ' 00:00:00',
+        applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
         investmentFileList,
@@ -288,8 +293,8 @@ bindFormSubmit: function (e) {
     if (ddUtils.showEmptyToastTips(this.data.projectTypeData.itemValue, "请选择项目类型")) return;
     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "请选择项目名称")) return;
     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "请选择合同名称")) return;
-    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
-    if (ddUtils.showEmptyToastTips(this.data.proceedsData.id, "请选择收款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.unitName, "请选择付款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.proceedsData.unitName, "请选择收款单元")) return;
     if (ddUtils.showEmptyToastTips(payAmount, "请输入应付金额")) return;
     if (ddUtils.showEmptyToastTips(paymentNode, "请输入支付节点（或形象进度）")) return;
     if (ddUtils.showEmptyToastTips(paymentContent, "请输入付款内容")) return;
@@ -317,7 +322,7 @@ bindFormSubmit: function (e) {
       id:this.data.id?this.data.id:'',
       paymentNode:paymentNode,
       paymentContent:paymentContent,
-      applicationTime:this.data.applicationTime+ ' 00:00:00',
+      applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
       countersignLeader_text:this.data.countersignLeader_text,//负责人
       countersignLeader:this.data.countersignLeader,//,
       investmentFileList,

@@ -50,3 +50,6 @@
   font-size: 28rpx;
   color: #525966;
 }
+.bottom .ant-list-item-line{
+  padding-bottom: 0rpx;
+}

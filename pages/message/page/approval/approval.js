@@ -179,12 +179,15 @@ Page({
 
   // 点击跳转
   toDetail(e) {
+    console.log(e);
     let temp = e.currentTarget.dataset.item.belongModule
     let id = e.target.dataset.item.keyId
+    let projectId = e.target.dataset.item.projectId
+    let showType = e.target.dataset.item.showType
     switch (temp) {
       case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
           });
           break;
     }

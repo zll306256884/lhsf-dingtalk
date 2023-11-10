@@ -14,9 +14,7 @@
   </view>
   <!--  -->
   <view class="navbox">
-    <view a:if="{{false}}">
-      <approval-item projectId={{'12019020004'}} ref='approvalItemRef'></approval-item>
-    </view>
+    <!--<view ><approval-item projectId={{'12019020004'}} ref='approvalItemRef'></approval-item></view> -->
     <view>
       <list header="" radius="{{ radius }}">
         <list-item a:for="{{listData}}">

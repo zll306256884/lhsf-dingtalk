@@ -14,7 +14,7 @@ Component({
         marginTop: 0,
         positionBottom: false,
         showAllText: false,
-        title: "项目",
+        title: "合同",
         onScreenCallBack: function (item) { }
     },
 

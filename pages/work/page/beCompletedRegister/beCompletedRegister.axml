@@ -31,6 +31,6 @@
   </view>
   </form>
 </view>
-<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" formatDate='YYYY-MM-DD'selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>

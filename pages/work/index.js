@@ -381,9 +381,17 @@ Page({
     // 点击列表项查看审批详情
     selectApprovalInfo(e) {
       console.log(e);
-      ddUtils.navigateTo({
-       
-      });
+      let temp = e.currentTarget.dataset.item.belongModule
+      let id = e.target.dataset.item.keyId
+    let projectId = e.target.dataset.item.projectId
+    let showType = e.target.dataset.item.showType
+      switch (temp) {
+        case 4:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+          });
+          break;
+      }
     },
       // 点击列表项查看任务详情
   selectTaskInfo(e) {
@@ -405,7 +413,7 @@ Page({
       switch (temp) {
         case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail??id=${id}&type=${temp}&status=${status}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
           });
           break;
        case 5:
