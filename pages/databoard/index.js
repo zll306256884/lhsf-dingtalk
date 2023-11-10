@@ -15,6 +15,12 @@ Page({
       },
       {
         title: "年度招标进度"
+      },
+      {
+        title: "项目实景"
+      },
+      {
+        title: "项目进度"
       }
     ],
     currentTabIndex: 0,

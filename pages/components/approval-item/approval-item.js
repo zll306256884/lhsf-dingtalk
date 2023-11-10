@@ -17,8 +17,8 @@ Component({
     nextNode: []
   },
   props: {
-    projectId: '',//项目id
-    keyId: "",//keyId
+    projectId: '12019020004',//项目id
+    keyId: "1722516061045305346",//keyId
   },
   //组件创建时触发
   onInit() {

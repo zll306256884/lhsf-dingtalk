@@ -4,4 +4,12 @@
 <!-- <view onTap="tapName">点击</view> -->
 <project-map a:if="{{currentTabIndex === 0}}" showPage="{{currentTabIndex === 0}}"/>
 <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
+
+<view a:if="{{currentTabIndex === 3}}">
+  项目实景
+  
+</view>
+<view a:if="{{currentTabIndex === 4}}">
+  项目进度
+</view>
 </view>
