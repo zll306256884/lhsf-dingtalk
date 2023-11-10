@@ -6,10 +6,11 @@
 <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
 
 <view a:if="{{currentTabIndex === 3}}">
-  项目实景
-  
+  <!-- 项目实景 -->
+  <project-scenery></project-scenery>
 </view>
 <view a:if="{{currentTabIndex === 4}}">
-  项目进度
+  <!-- 项目进度 -->
+  <project-progress></project-progress>
 </view>
 </view>

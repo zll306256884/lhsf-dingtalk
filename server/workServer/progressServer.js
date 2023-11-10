@@ -12,5 +12,7 @@ module.exports = {
   API_SAVE_PROGRESS: API_HOST + "/control/planTask/fillConstructionPlan",
   // 查询 -- 请求进度详情  头部数据
   API_TOP_MESSAGE: API_HOST + "/control/plan/queryPlanByCondition",
+  // 看板  --   详情信息
+  API_BANK_DETAIL: API_HOST + "/control/planTask/selectPlanTaskDetailById",
 
 }
