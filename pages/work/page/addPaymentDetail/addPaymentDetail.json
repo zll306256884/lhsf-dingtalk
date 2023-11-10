@@ -7,7 +7,8 @@
     "list": "antd-mini/es/List/index",
     "list-item": "antd-mini/es/List/ListItem/index",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
-    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup"
+    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
+    "approval-item": "/pages/components//approval-item/approval-item"
 
   }
 }

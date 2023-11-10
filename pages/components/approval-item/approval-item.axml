@@ -1,35 +1,34 @@
-<view class="approvalItemBox box-sizing-box">
+<view class="approvalItemBox box-sizing-box flex f-column">
   <view class="title">流程</view>
   <view class="approvalItem">
-    <view a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part box-sizing-box">
-      <!--  -->
+    <view a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part box-sizing-box flex f-column">
+      <!-- 内容列表 -->
       <view class="topItem flex f-between box-sizing-box" catchTap="toEditPage">
         <view class="flex f-between">
           <block>
-            <image class="greenTypeSpot posi" src="/assets/images/progress/blueCancel.png" />
-            <!--<image
-              a:if="{{ item.status==3 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/orangehas.png"
-            /><image
-              a:if="{{ item.status==2 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/bluehas.png"
-            /><image
-              a:if="{{ item.status==1 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/grayhas.png"
-            /> -->
+            <image class="greenTypeSpot posi" a:if="{{ item.type==1||item.type==3 }}" src="/assets/images/progress/blue.png" />
+            <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blueCancel.png" />
+            <image class="greenTypeSpot posi" a:if="{{ item.type==99 }}" src="/assets/images/progress/blueCancel.png" />
           </block>
           <view>
             <view class="name">{{ item.operatorsName }}</view>
-            <view class="type">{{ item.operatorsContent}}</view>
+            <view class="type wordblue" a:if="{{ item.type==99 }}">{{ item.operatorsContent}}</view>
+            <view class="type wordred" a:elif="{{ item.type==2 }}">{{ item.operatorsContent}}</view>
+            <view class="type" a:else>{{ item.operatorsContent}}</view>
+            <view class="fileList" a:if="{{ item.annexesUrl&&item.annexesUrl.length }}">我是文件</view>
           </view>
         </view>
         <view>
           <view class="time">{{ item.createTime }}</view>
         </view>
       </view>
+      <!-- 备注 -->
+      <view class="spContent" a:if="{{item.content}}">{{ item.content}}</view>
+      <!-- 分割线 -->
+      <view class="linebox" a:if="{{idx != listData.length-1}}">
+        <divider />
+      </view>
+      <!--  -->
     </view>
   </view>
 </view>
