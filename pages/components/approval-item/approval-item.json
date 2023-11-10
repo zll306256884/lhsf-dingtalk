@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "steps": "antd-mini/es/Steps/index",
+    "icon": "antd-mini/es/Icon/index",
+    "container": "antd-mini/es/Container/index"
+  }
+}

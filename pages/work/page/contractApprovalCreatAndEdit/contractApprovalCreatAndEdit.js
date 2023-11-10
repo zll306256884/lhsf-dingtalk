@@ -126,6 +126,10 @@ Page({
   bindPickerDateCannBack(data){
     this.form.setFieldValue('applicationTime', data.startDate);
   },
+  changeContractName(data){
+    let projectName = this.form.getFieldValue('projectName')
+    this.form.setFieldValue('title', projectName+data)
+  },
   chooseThirdParty(value,e){
     console.log(value,e);
     this.setData({
@@ -352,12 +356,15 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganization = this.data.developmentOrganization
     params.ecUnitId = this.data.ecUnitId
-    params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+    if(params.unitPartyType){
+      params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+    }
+    
     let workAuditFile = [];
     if (this.uploadImgRefList) {
       workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
     }
-    if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
+    // if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
     
     workAuditFile.forEach(e => {
       e.fileName = e.name
@@ -430,8 +437,12 @@ Page({
       data: {id: this.data.contractId},
       success: res => {
         const paramsdata = res.data
-        paramsdata.projectType = paramsdata.projectType.toString()
-        paramsdata.paymentMethod = paramsdata.paymentMethod.toString()
+        if(paramsdata.projectType){
+          paramsdata.projectType = paramsdata.projectType.toString()
+        }
+        if(paramsdata.paymentMethod){
+          paramsdata.paymentMethod = paramsdata.paymentMethod.toString()
+        }
 
         setTimeout(() => {
           this.getQueryCurrentUnitType()
@@ -443,22 +454,24 @@ Page({
         },1000)
 
         const fields = this.form.getFieldsValue()
-
+        console.log(fields);
         for (let item in fields) {
           if ({}.hasOwnProperty.call(fields, item)) {
-            // fields[item] = paramsdata[item]?paramsdata[item]: ''
-            fields[item] = paramsdata[item]
+            fields[item] = paramsdata[item] || ''
           }
         }
         this.form.setFieldsValue({
           ...fields,
         })
         let list = paramsdata.contractThirdPartyRepList
-        list.forEach((e, index)=> {
-          e.thirdPartyType = e.thirdPartyType.toString()
-          e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
-          e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
-        });
+        if(list && list.length){
+          list.forEach((e, index)=> {
+            e.thirdPartyType = e.thirdPartyType.toString()
+            e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
+            e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
+          });
+        }
+        
         this.setData({
           unitParty: paramsdata.unitParty,
           countersignLeader: paramsdata.countersignLeader,
@@ -472,7 +485,7 @@ Page({
         })
 
         setTimeout(() => {
-          this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:'') 
+          this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
 
         

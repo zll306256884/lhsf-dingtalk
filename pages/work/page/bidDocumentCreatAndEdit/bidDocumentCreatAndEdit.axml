@@ -12,8 +12,8 @@
 <form-input
   label="标题"
   name="title"
-  placeholder="请输入"
   allowClear
+  disabled
   ref="handleRef" />
 <form-picker
   label="项目名称"
@@ -27,12 +27,15 @@
   validateStatus="default"
   placeholder="请输入"
   allowClear
+  maxLength="100"
+  onBlur="changeTenderName"
   ref="handleRef" />
 <form-input
   label="招标人"
   name="biddingPerson"
   placeholder="请输入"
   allowClear
+  maxLength="50"
   ref="handleRef" />
 <form-input
   label="招标代理单位"
@@ -59,6 +62,8 @@
   name="tenderAmount"
   placeholder="请输入"
   allowClear
+  maxLength="15"
+  type="number"
   ref="handleRef" />
 <form-picker
   label="决策依据"
@@ -72,6 +77,7 @@
   name="biddingContent"
   placeholder="请输入说明"
   allowClear
+  maxLength="800"
   autoHeight
   ref="handleRef" />
 

@@ -24,6 +24,15 @@
   </list-item>
 </list>
 
+<view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
+  <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
+  <button class="bottom-button active" size="default" type="primary" catchTap="editThis" style="background: #1A6AFF;color:#fff">编辑</button>
+</view>
+
+<view a:if="{{ requestType === '1' }}" class="bottom-content flex f-between">
+  <button class="bottom-button" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
+</view>
+
 <!-- 有参数才显示 -->
 <view a:if="{{false}}" style="position:fixed;bottom:18rpx;width:100%">
   <submit-opinion-popup keyId="888888" ></submit-opinion-popup>

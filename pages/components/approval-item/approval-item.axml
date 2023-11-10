@@ -1,0 +1,35 @@
+<view class="approvalItemBox box-sizing-box">
+  <view class="title">流程</view>
+  <view class="approvalItem">
+    <view a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part box-sizing-box">
+      <!--  -->
+      <view class="topItem flex f-between box-sizing-box" catchTap="toEditPage">
+        <view class="flex f-between">
+          <block>
+            <image class="greenTypeSpot posi" src="/assets/images/progress/blueCancel.png" />
+            <!--<image
+              a:if="{{ item.status==3 }}"
+              class="greenTypeSpot"
+              src="/assets/images/progress/orangehas.png"
+            /><image
+              a:if="{{ item.status==2 }}"
+              class="greenTypeSpot"
+              src="/assets/images/progress/bluehas.png"
+            /><image
+              a:if="{{ item.status==1 }}"
+              class="greenTypeSpot"
+              src="/assets/images/progress/grayhas.png"
+            /> -->
+          </block>
+          <view>
+            <view class="name">{{ item.operatorsName }}</view>
+            <view class="type">{{ item.operatorsContent}}</view>
+          </view>
+        </view>
+        <view>
+          <view class="time">{{ item.createTime }}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

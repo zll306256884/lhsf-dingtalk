@@ -3,9 +3,11 @@
 /* 头部 */
 
 .approvalTop{
+  width: 100%;
   position: fixed;
-  top: 0;
+  top: 90rpx;
   left: 0;
+  z-index: 1000;
 }
 
 .funnel {
@@ -15,7 +17,7 @@
   vertical-align: middle;
   text-align: center;
   position: absolute;
-  top: 0;
+  top: 85rpx;
   right: 0;
 }
 
@@ -35,7 +37,9 @@
 /* 内容 */
 
 .navbox{
-  margin-top:4px;
+  padding-top:90rpx;
+  height: calc(100vh - 181rpx);
+  overflow: auto;
   /* background:pink; */
 }
 

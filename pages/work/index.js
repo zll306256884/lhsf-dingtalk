@@ -23,12 +23,12 @@ Page({
       {
         url: "../../../../assets/images/work/Group-4.png",
         name: "招标文件会签",
-        // path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
+        path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
       },
       {
         url: "../../../../assets/images/work/Group-5.png",
         name: "合同签订登记",
-        // path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
+        path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
       },
       {
         url: "../../../../assets/images/work/Group-6.png",
