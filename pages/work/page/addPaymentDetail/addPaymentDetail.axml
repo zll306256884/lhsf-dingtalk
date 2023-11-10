@@ -47,7 +47,6 @@
   </view>
 </view>
 <view a:else>
-  <!-- 1212121 -->
   <view>
     <!--projectId-- 项目id  12019020004  keyId --- 列表中的keyid 1722516061045305346 -->
     <approval-item projectId={{'12019020004'}} keyId={{'1722516061045305346'}}></approval-item>
