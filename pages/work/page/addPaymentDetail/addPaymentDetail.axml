@@ -41,14 +41,22 @@
     <list-item extraBrief="{{infoData.countersignLeader_dictText}}">选择会签分管领导</list-item>
   </view>
   <view class="btn-wrap">
-    <list-item >
-      <button class="flex1 btn active" catchTap="withdrawApplication">撤回申请</button>
+    <list-item className="bottom">
+      <button a:if="{{status=== '3'||showType ==='3' }}" class="flex1 btn active"  >打印</button>
+      <button a:if="{{status=== '2'}}" class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
+      <view a:if="{{status=== '1'}}" class="flex-display flex-align-center btn-wrap">
+        <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
+        <button class="flex1 btn active" catchTap="editTap">编辑</button>
+    </view>
+    <!-- <view  style="position:fixed;bottom:18rpx;width:100%"> -->
+    <!-- </view> -->
     </list-item>
+    <submit-opinion-popup a:if="{{showType ==='1'}}" keyId="{{id}}" examineId="1721424993751011330" ></submit-opinion-popup>
   </view>
 </view>
 <view a:else>
   <view>
     <!--projectId-- 项目id  12019020004  keyId --- 列表中的keyid 1722516061045305346 -->
-    <approval-item projectId={{'12019020004'}} keyId={{'1722516061045305346'}}></approval-item>
+    <approval-item projectId={{projectId}} keyId={{id}}></approval-item>
   </view>
 </view>

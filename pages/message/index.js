@@ -22,7 +22,7 @@ items: [
  MessageList:[],
  },
  onLoad(){
-  this.getMessageList(1)
+  this.getMessageList(0)
  },
  // 切换我的请求tab
  onQueryChange(e) {

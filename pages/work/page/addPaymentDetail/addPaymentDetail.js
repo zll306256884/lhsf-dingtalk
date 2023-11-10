@@ -1,6 +1,7 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import workService from "../../../../server/workServer";
+import ddUtils from "../../../../utils/ddUtils"
 Page({
   data: {
     navbarData: {
@@ -13,19 +14,26 @@ Page({
         title: "审批记录",
       }
     ],
-    id: "",
+    id:"",
+    type:'',
+    status:"",
+    projectId:'',
+    showType:"",
     current: 0,
     infoData: {}
   },
   uploadContractImage: null,
   onLoad(option) {
-    console.log('option', option)
-    // option.id = '1719167397660856322'
+    console.log(option,111111111);
     if (option.id) {
       this.getDetail(option.id)
     }
     this.setData({
-      id: option.id
+      id:option.id,
+      type:option.type,
+      status:option.status,
+      projectId:option.projectId,
+      showType:option.showType || ''
     })
   },
   onSaveUploadContractImgRef(ref) {
@@ -87,4 +95,9 @@ Page({
       }
     })
   },
+  editTap:function(){
+    ddUtils.navigateTo({
+      url: `/pages/work/page/addPayment/addPayment??id=${this.data.id}`
+    }); 
+  }
 });

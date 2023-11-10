@@ -6,10 +6,7 @@ import ddUtils from "../../../../utils/ddUtils"
 // import userServer from "../../../../server/userServer"
 import approvalServer from "../../../../server/approvalServer/approvalServer"
 import request from "../../../../utils/request"
-
 const app = getApp();
-
-
 Page({
   data: {
     navbarData: {
@@ -182,28 +179,37 @@ Page({
 
   // 点击跳转
   toDetail(e) {
-    let item = e.currentTarget.dataset.item
-    // console.log(1)
-    // console.log(e)
-    console.log('item', item)
-    if (item.belongModule == 1) {
-      // 进度
+    console.log(e);
+    let temp = e.currentTarget.dataset.item.belongModule
+    let id = e.target.dataset.item.keyId
+    let projectId = e.target.dataset.item.projectId
+    let showType = e.target.dataset.item.showType
+    switch (temp) {
+      case 4:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+          });
+          break;
     }
-    if (item.belongModule == 2) {
-      // 招标文件会签
-    }
-    if (item.belongModule == 3) {
-      // 合同审批流程
-    }
-    if (item.belongModule == 4) {
-      // 款项支付
-    }
-    if (item.belongModule == 5) {
-      // 项目资金计划
-    }
-    if (item.belongModule == 6) {
-      // 生态伙伴
-    }
+    // console.log('item', item)
+    // if (item.belongModule == 1) {
+    //   // 进度
+    // }
+    // if (item.belongModule == 2) {
+    //   // 招标文件会签
+    // }
+    // if (item.belongModule == 3) {
+    //   // 合同审批流程
+    // }
+    // if (item.belongModule == 4) {
+    //   // 款项支付
+    // }
+    // if (item.belongModule == 5) {
+    //   // 项目资金计划
+    // }
+    // if (item.belongModule == 6) {
+    //   // 生态伙伴
+    // }
   },
 
   // 跳转页面示例

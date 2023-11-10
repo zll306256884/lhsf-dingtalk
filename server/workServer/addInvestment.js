@@ -19,4 +19,6 @@ module.exports = {
     API_ALTER_DETAIL_POST:API_HOST+ '/investment/changeManagement/selectById',
     // 款项支付详情
     API_PAY_DETAIL_POST:API_HOST+ '/investment/icMeasurementPaymentEngineeringDetailed/selectById',
+    // 竣工结算详情
+    API_BE_DETAIL_POST:API_HOST+ '/investment/completionSettlement/selectById',
 }

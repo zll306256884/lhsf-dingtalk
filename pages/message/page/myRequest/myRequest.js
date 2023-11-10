@@ -164,12 +164,12 @@ Page({
         break;
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&status=${item.status}`
         });
         break;
       case 5:
         ddUtils.navigateTo({
-          url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
         });
         break;
       case 6:
@@ -184,7 +184,7 @@ Page({
         break;
       case 8:
         ddUtils.navigateTo({
-          url: ``
+          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}`
         });
         break;
     }

@@ -40,7 +40,7 @@
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  multiChoose onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
 <dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>
-<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenslowunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseSlowUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
