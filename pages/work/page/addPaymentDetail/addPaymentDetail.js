@@ -20,7 +20,7 @@ Page({
   uploadContractImage: null,
   onLoad(option) {
     console.log('option', option)
-    option.id = '1719167397660856322'
+    // option.id = '1719167397660856322'
     if (option.id) {
       this.getDetail(option.id)
     }
