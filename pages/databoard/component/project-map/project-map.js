@@ -14,23 +14,6 @@ const markers = [{
   },
   // require("../../../../assets/images/map/1-4.png"),
 }];
-const labelMarker = [{
-  id: 2,
-  longitude:121.131229,
-  latitude:28.845441,
-  width:64,
-  height:64,
-  iconPath: '/assets/images/map/1-4.png',
-  label:{
-    content:"Hello Label",
-    color:"#00FF00",
-    fontSize:14,
-    borderRadius:3,
-    bgColor:"#ffffff",
-    padding:10,
-  },
-  markerLevel: 2
-}];
 const longitude = 121.131229;
 const latitude = 28.845441;
 const includePoints = [{
@@ -134,30 +117,37 @@ Component({
             const newMarkers = this.data.projectList.filter(i=>
              i.cityCapitalX && i.cityCapitalY
             ).map((item,index)=>{
+              this.data.markers.push({
+                
+                  id:index,
+                  width:64,
+                  height:64,
+                  latitude:Number(parseFloat(item.cityCapitalX).toFixed(6)),
+                  longitude:Number(parseFloat(item.cityCapitalY).toFixed(6)),
+                  iconPath:"/assets/images/map/1-4.png",
+                  callout: {
+                    content: 'callout',
+                  },
+  
+        
+              })
+             
+            })
+            const newIncludePoints= newMarkers.map(item=>{
               return {
-                id:index,
-                width:64,
-                height:64,
                 latitude:Number(parseFloat(item.cityCapitalX).toFixed(6)),
-                longitude:Number(parseFloat(item.cityCapitalY).toFixed(6)),
-                // latitude: 121.404079, longitude: 28.842463,
-                iconPath:"/assets/images/map/1-4.png",
-                callout: {
-                  content: 'callout',
-                },
-
+                longitude:Number(parseFloat(item.cityCapitalY).toFixed(6))
               }
             })
-            console.log(newMarkers);
-            // this.mapCtx.updateComponents({
-            //   scale: 12,
-            //   longitude,
-            //   latitude,
-            //   includePoints,
-            //   'markers':newMarkers,
-            // });
+            console.log(newMarkers)
+            this.mapCtx.updateComponents({
+              scale: 12,
+              longitude,
+              latitude,
+              includePoints:newIncludePoints,
+              'markers':this.data.markers,
+            });
         },
-        
       });
      
     },
