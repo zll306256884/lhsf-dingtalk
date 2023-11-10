@@ -12,7 +12,7 @@ Page({
     projectId:"",
     screenExecuteUser: "",
     contractAmount:'',//合同金额
-    totalPayment:'',//累计已付款
+    cumulativePayment:'',//累计已付款
     payAmount:'',//本次应付金额
     paymentNode:'',//支付节点（或形象进度）
     paymentContent:'',//付款内容
@@ -24,6 +24,7 @@ Page({
     chooseExecuteUserList: [],
     screenShiGongUnitData: {},
     isEdit: false,
+    id:'',
     projectLeader:'',//负责人
     affiliateUnit:'',//所属单位,
     dialogScreenprojectTypeRef:null, //项目类型
@@ -39,8 +40,15 @@ Page({
     slowUnitData:{},//付款单位
     proceedsData:{}//收款单位
   },
-  onLoad() {},
-
+  onLoad(option) {
+    console.log(option,'23232323');
+    this.setData({
+      id:option.id
+    })
+    if(option.id){
+      this.getEdit(option.id) 
+    }
+  },
   // 合同名称
   bindChooseContractNameTap:function(e){
     if (this.data.isEdit) return;
@@ -61,7 +69,7 @@ Page({
       },
       success: res => {
         this.setData({
-          totalPayment: res.data || 0,
+          cumulativePayment: res.data || 0,
         });
       }
     })
@@ -182,7 +190,43 @@ _bindScreenShiGongUnitCallBack: function (data) {
 
   // this._getLastSubmitInfo();
 },
-
+// 编辑
+getEdit(id){
+  request.doPostRequest({
+    url: connector.API_PAY_DETAIL_POST,
+    data: {
+     id:id
+    },
+    success: res => {
+      console.log(res);
+      this.setData({
+        'projectTypeData.itemText':res.data.projectType_dictText,
+        'projectTypeData.itemValue':res.data.projectType,
+        'projectData.name':res.data.projectName,
+        'projectData.id':res.data.projectId,
+        projectId:res.data.projectId,
+        projectLeader:res.data.projectLeader,
+        affiliateUnit:res.data.affiliateUnit,
+        'contractData.contractName':res.data.contractName,
+        'contractData.contractId':res.data.contractId,
+        contractAmount:res.data.contractAmount,
+        cumulativePayment:res.data.cumulativePayment,
+        // 'slowUnitData.id':res.data.payUnitId,
+        'slowUnitData.unitName':res.data.payUnit,
+        'proceedsData.unitName':res.data.receiverUnit,
+        payAmount:res.data.payAmount,
+        paymentNode:res.data.paymentNode,
+        paymentContent:res.data.paymentContent,
+        applicationTime:res.data.applicationTime,
+        countersignLeader:res.data.countersignLeader,
+        countersignLeader_text:res.data.countersignLeader_dictText
+      })
+      setTimeout(() => {
+        this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+      }, 0);
+    }
+  })
+},
 //bind form submit
 bindFormSubmit: function (e) {
   let payAmount = e.detail.value.payAmount
@@ -220,7 +264,7 @@ bindFormSubmit: function (e) {
         contractId:this.data.contractData.contractId,
         contractName: this.data.contractData.contractName,
         contractAmount:this.data.contractAmount,
-        totalPayment:this.data.totalPayment,
+        cumulativePayment:this.data.cumulativePayment,
         payUnit:this.data.slowUnitData.unitName,
         payUnitId:this.data.slowUnitData.id,
         receiverUnit:this.data.proceedsData.unitName,
@@ -228,7 +272,8 @@ bindFormSubmit: function (e) {
         payAmount:payAmount,
         paymentNode:paymentNode,
         paymentContent:paymentContent,
-        applicationTime:this.data.applicationTime+ ' 00:00:00',
+        id:this.data.id?this.data.id:'',
+        applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
         investmentFileList,
@@ -248,8 +293,8 @@ bindFormSubmit: function (e) {
     if (ddUtils.showEmptyToastTips(this.data.projectTypeData.itemValue, "请选择项目类型")) return;
     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "请选择项目名称")) return;
     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "请选择合同名称")) return;
-    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.id, "请选择付款单元")) return;
-    if (ddUtils.showEmptyToastTips(this.data.proceedsData.id, "请选择收款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.slowUnitData.unitName, "请选择付款单元")) return;
+    if (ddUtils.showEmptyToastTips(this.data.proceedsData.unitName, "请选择收款单元")) return;
     if (ddUtils.showEmptyToastTips(payAmount, "请输入应付金额")) return;
     if (ddUtils.showEmptyToastTips(paymentNode, "请输入支付节点（或形象进度）")) return;
     if (ddUtils.showEmptyToastTips(paymentContent, "请输入付款内容")) return;
@@ -268,15 +313,16 @@ bindFormSubmit: function (e) {
       contractId:this.data.contractData.contractId,
       contractName: this.data.contractData.contractName,
       contractAmount:this.data.contractAmount,
-      totalPayment:this.data.totalPayment,
+      cumulativePayment:this.data.cumulativePayment,
       payUnit:this.data.slowUnitData.unitName,
       payUnitId:this.data.slowUnitData.id,
       receiverUnit:this.data.proceedsData.unitName,
       receiverUnitId:this.data.proceedsData.id,
       payAmount:payAmount,
+      id:this.data.id?this.data.id:'',
       paymentNode:paymentNode,
       paymentContent:paymentContent,
-      applicationTime:this.data.applicationTime+ ' 00:00:00',
+      applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
       countersignLeader_text:this.data.countersignLeader_text,//负责人
       countersignLeader:this.data.countersignLeader,//,
       investmentFileList,

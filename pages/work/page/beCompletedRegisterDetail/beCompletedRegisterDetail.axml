@@ -1,3 +1,27 @@
-<view>
-  New Page
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
+      <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
+      <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
+      <list-item extraBrief="{{infoData.contractorName}}">承包商名称</list-item>
+      <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
+      <list-item extraBrief="{{infoData.pricingTrial}}">送审定价</list-item>
+      <list-item extraBrief="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}">净核算金额</list-item>
+      <list-item extraBrief="{{infoData.approveTotalPrice}}">审定总价</list-item>
+    </list>
+      </view>
+      <view style="margin-top:20rpx">
+        <list>
+          <list-item>
+            相关材料
+            <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
+          </list-item>
+          </list>
+      </view>
+      <view class="flex-display flex-align-center btn-wrap">
+        <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
+        <button class="flex1 btn active" catchTap="editTap">编辑</button>
+    </view>
 </view>

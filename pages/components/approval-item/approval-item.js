@@ -1,56 +1,132 @@
+// import {
+//   isEqual,
+//   isEmptyArray
+// } from "../../../../utils/utils"
+// import ddUtils from "../../../../utils/ddUtils"
+// import userServer from "../../../server/userServer"
+import approvalServer from "../../../server/approvalServer/approvalServer"
+import request from "../../../utils/request"
+const app = getApp();
+
 Component({
   mixins: [],
   data: {
+    // 已经有的节点
+    listData: [],
+    // 当前进行的节点
+    nextNode: []
   },
   props: {
-    listData: [
-      // 默认数据
-      {
-        "id": "1722131213705154561",
-        "createTime": "2023-11-08 13:57:32",
-        "updateTime": "2023-11-08 13:57:32",
-        "delFlag": 0,
-        "operatorsId": "1715236939407294464",
-        "operatorsName": "任学锦",
-        "operatorsAccount": "任学锦",
-        "operatorsContent": "提交审核",
-        "keyId": "1722131213185085441",
-        "projectId": "1719174362822606848",
-        "projectName": "测试小程序",
-        "type": 3,
-        "jflowWorkid": 16232,
-        "jflowNo": "068",
-        "vueUrl": "ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit",
-        "belongModule": 3,
-        "taskName": "合同审批流程：简介-测试合同",
-        "annexesUrl": null,
-        "content": null,
-        "auditUser": "任学锦",
-        "jflowNodeId": null,
-        "urlParameter": "{\"id\":\"1722131213185085441\"}"
-      }
-    ],
+    projectId: '12019020004',//项目id
+    keyId: "1722516061045305346",//keyId
+  },
+  //组件创建时触发
+  onInit() {
+  },
+  //组件创建时和更新前触发
+  deriveDataFromProps(nextProps) {
 
-    projectId: '',
   },
+  //组件创建完毕时触发
+  //此时页面已经渲染，通常在这时请求服务端数据。
   didMount() {
-    console.log('this.is组件路径', this.is);
-    console.log('$page组件所属页面实例', this.$page);
-    console.log('$id 组件 id，在 axml 中也可直接渲染', this.$id);
+    // console.log('this.is组件路径', this.is);
+    // console.log('$page组件所属页面实例', this.$page);
+    // console.log('$id 组件 id，在 axml 中也可直接渲染', this.$id);
+    this.integrationData()
   },
-  didUpdate() { },
-  didUnmount() { },
+  //组件更新完毕时触发
+  //每次组件数据变更的时候都会调用。
+  didUpdate(prevProps, prevData) { },
+  //组件删除时触发
+  //每当组件实例从页面卸载的时候都会触发此回调。
+  didUnmount() {
+    console.log('父组件传递过来的projectId', this.props.projectId)
+    console.log('keyId', this.props.keyId)
+  },
+  //组件 js 代码抛出错误时触发
+  onError(e) {
+
+  },
+  /**
+   * 组件的方法列表
+   */
   methods: {
-    toEditPage(e) {
-      console.log('e', e)
-      let id = e.target.dataset.planId
-      let type = e.target.dataset.type
-      let name = e.target.dataset.name
-      let projectId = e.target.dataset.projectId
+    // 获取节点
+    getList: function () {
       // return
-      dd.navigateTo({
-        url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type + '&name=' + name + '&projectId=' + projectId,
+      let param = { "keyId": this.props.keyId }
+      console.log('param', param)
+      // return
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: approvalServer.API_APPROVAL_LIST,
+          showLoading: false,
+          data: param,
+          success: res => {
+            res.data.map((item) => {
+              item.annexesUrl = JSON.parse(item.annexesUrl)
+            })
+            // console.log('res.data', res.data)
+            resolve(res.data)
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
       })
     },
+    // 获取下一个节点
+    getNextNode: function () {
+      // return
+      let param = { "keyId": this.props.keyId }
+      console.log('param', param)
+      // return
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: approvalServer.API_NEXT_APPROVAL_NODE,
+          showLoading: false,
+          data: param,
+          success: res => {
+            // console.log('res.data', res.data)
+            resolve(res.data)
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    },
+    // 整合数据
+    async integrationData() {
+      // 审核类型（1通过2驳回3待审核）
+      var data1 = await this.getList()
+      let data2 = await this.getNextNode()
+      console.log('data1', data1)
+      console.log('data2', data2)
+      let obj = {
+        operatorsName: data2["auditUserNameList"][0],
+        operatorsContent: '进行审批',
+        content: '',
+        type: 99
+      }
+      data1.push(obj)
+      console.log('obj', obj)
+      console.log('data1new', data1)
+      this.setData({
+        listData: data1
+      });
+    },
+    // toEditPage(e) {
+    //   console.log('e', e)
+    //   let id = e.target.dataset.planId
+    //   let type = e.target.dataset.type
+    //   let name = e.target.dataset.name
+    //   let projectId = e.target.dataset.projectId
+    //   // return
+    //   dd.navigateTo({
+    //     url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type + '&name=' + name + '&projectId=' + projectId,
+    //   })
+    // },
   },
 });
