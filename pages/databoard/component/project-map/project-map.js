@@ -8,11 +8,11 @@ const markers = [{
   latitude:28.845441,
   width:64,
   height:64,
-  iconPath:"/assets/images/map/在建-医院@3x.png",
+  iconPath:"/assets/images/map/1-4.png",
   callout: {
     content: 'callout',
   },
-  // require("../../../../assets/images/map/在建-医院@3x.png"),
+  // require("../../../../assets/images/map/1-4.png"),
 }];
 const labelMarker = [{
   id: 2,
@@ -20,7 +20,7 @@ const labelMarker = [{
   latitude:28.845441,
   width:64,
   height:64,
-  iconPath: '/assets/images/map/在建-医院@3x.png',
+  iconPath: '/assets/images/map/1-4.png',
   label:{
     content:"Hello Label",
     color:"#00FF00",
@@ -141,7 +141,7 @@ Component({
                 latitude:Number(parseFloat(item.cityCapitalX).toFixed(6)),
                 longitude:Number(parseFloat(item.cityCapitalY).toFixed(6)),
                 // latitude: 121.404079, longitude: 28.842463,
-                iconPath:"/assets/images/map/在建-医院@3x.png",
+                iconPath:"/assets/images/map/1-4.png",
                 callout: {
                   content: 'callout',
                 },
