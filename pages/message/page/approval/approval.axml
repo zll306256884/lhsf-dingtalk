@@ -14,10 +14,10 @@
   </view>
   <!--  -->
   <view class="navbox">
-    <view a:if="{{false}}">
+    <view >
       <approval-item projectId={{'12019020004'}} ref='approvalItemRef'></approval-item>
     </view>
-    <view>
+    <view a:if="{{false}}">
       <list header="" radius="{{ radius }}">
         <list-item a:for="{{listData}}">
           <view class="approvalPart" data-item={{item}} catchTap="toDetail">
