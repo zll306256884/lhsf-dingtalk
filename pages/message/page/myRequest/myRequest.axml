@@ -1,5 +1,13 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange"></nav-tab-bar>
+<view class="top-navbar flex f-between">
+  <view style="width:90%">
+    <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar>
+  </view>
+  <view class="flex f-center" style="width:10%;align-items:center">
+    <image mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
+  </view>
+</view>
+
 
 <list>
   <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
@@ -16,3 +24,5 @@
 </list>
 
 <error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>
+
+<dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></dialog-filter>

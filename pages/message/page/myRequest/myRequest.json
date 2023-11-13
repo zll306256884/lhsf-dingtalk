@@ -4,6 +4,7 @@
     "nav-tab-bar":"/pages/components/nav-tab-bar/nav-tab-bar",
     "list": "antd-mini/es/List/index",
     "list-item": "antd-mini/es/List/ListItem/index",
-    "error-view": "/pages/components/error-view/error-view"
+    "error-view": "/pages/components/error-view/error-view",
+    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter"
   }
 }

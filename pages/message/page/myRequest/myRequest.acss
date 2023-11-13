@@ -1,3 +1,6 @@
+.top-navbar{
+  background: #fff;
+}
 .ant-list-item-line{
   padding: 32rpx;
 }
