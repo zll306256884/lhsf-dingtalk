@@ -22,7 +22,47 @@ Page({
       },
     ],
     tabIndex: 0,
-    dataList: []
+    dataList: [],
+    visibel: false,
+    options: [
+      {
+        label: "事项类型",
+        prop: "type",
+        value: [],
+        type: 'select',
+        option: [
+          {
+            id: 1,
+            label: '进度计划',
+            selected: false,
+          },
+          {
+            id: 2,
+            label: '招标文件会签',
+            selected: false,
+          },
+          {
+            id: "3",
+            label: '合同审批流程',
+            selected: false,
+          }, {
+            id: "4",
+            label: '款项支付',
+            selected: false,
+          },
+          {
+            id: "5",
+            label: '项目资金计划',
+            selected: false,
+          },
+          {
+            id: "6",
+            label: '生态伙伴录入',
+            selected: false,
+          },
+        ],
+      }
+    ]
   },
 
   page: 1,
@@ -43,12 +83,33 @@ Page({
   _bindErrorRefreshTap: function (e) {
     this.getDataList();
   },
-  getDataList(){
+  filterDialog(){
+    this.onDialog(true)
+  },
+  onDialog(data) {
+    this.setData({
+      visibel: data
+    })
+  },
+  onBindSureTap(data) {
+    console.log(data)
+    let filterValue = data[0].option
+    let list = filterValue.find(e => e.selected === true)
+    this.page = 1
+    this.onDialog(false)
+    if(list){
+      let type = list.id
+      this.getDataList(type)
+    }else{
+      this.getDataList()
+    }
+  },
+  getDataList(type){
     let params = {
       asc: false,
       pageNum: this.page,
       pageSize: 10,
-      params: {status: this.data.tabIndex + 1},
+      params: {status: this.data.tabIndex + 1, type: type},
       sort: 'createTime'
     }
     request.doPostRequest({
