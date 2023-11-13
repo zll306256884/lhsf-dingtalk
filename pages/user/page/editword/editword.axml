@@ -1,3 +1,4 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
   <!--  -->
   <!--<form onSubmit="_bindFormSubmit"> -->
@@ -14,6 +15,7 @@
     <layout-field-input
       mustFill
       name="新密码"
+      inputType='password'
       inputName="totalNum"
       placeholder="请输入"
       value="{{newPwd}}"

@@ -76,6 +76,10 @@ Page({
         data: param,
         success: res => {
           console.log('res.data', res.data)
+          ddUtils.showToast({
+            title: "操作成功"
+          });
+          ddUtils.navigateBack();
           // this.setData({
           //   verifyImg: res.data.image,
           // });

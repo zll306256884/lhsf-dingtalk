@@ -1,0 +1,13 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view id="progressTaskDetails">
+  进度任务详情
+  <view style="margin-top:20rpx">
+    <list header="基础用法" radius="{{ true }}">
+      <list-item>1</list-item>
+      <list-item>2</list-item>
+      <list-item>3</list-item>
+    </list>
+  </view>
+  
+  
+</view>

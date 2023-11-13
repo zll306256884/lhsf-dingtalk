@@ -30,7 +30,7 @@
   background: #FFFFFF;
   border-radius: 0rpx 0rpx 0rpx 0rpx;
   opacity: 1;
-  padding: 20rpx 32rpx 20rpx 64rpx;
+  padding: 20rpx 32rpx 20rpx 50rpx;
   font-size: 28rpx;
 }
 
@@ -51,15 +51,15 @@
 }
 
 .judge .left .time {
-  font-size: 28rpx;
+  /* font-size: 28rpx; */
   width: 240rpx;
   height: 48rpx;
-  background: #C8C9CC;
-  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  /* background: #C8C9CC; */
+  /* border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
   line-height: 48rpx;
   color: #FFFFFF;
-  text-align: center;
+  text-align: center; */
 }
 
 /*  */

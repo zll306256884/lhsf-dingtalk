@@ -1,4 +1,4 @@
-<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<!-- <nav-bar navbarData="{{navbarData}}"></nav-bar> -->
 <view class="container">
   <view class="containerinner">
     <!-- 头部 -->
@@ -29,7 +29,7 @@
     </view>
     <!-- 列表 -->
     <view class="listBox">
-      <progress-item listData={{listData}} projectId={{projectId}} formPage='work' ref='progressItemRef' ></progress-item>
+      <progress-item listData={{listData}} projectId={{projectId}}  formPage='databoard' ref='progressItemRef'></progress-item>
     </view>
   </view>
 </view>

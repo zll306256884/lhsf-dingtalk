@@ -1,4 +1,5 @@
 <view class="container">
+  <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <!-- 基础信息 -->
   <view class="title box-sizing-box">基础信息</view>
   <view class="list">
