@@ -1,3 +1,56 @@
+@import "/assets/styles/typeContent.acss";
+
 #progressTaskDetails{
-  
+  margin-bottom: 114rpx;
+}
+
+#progressTaskDetails .btnSize{
+  width: 116rpx;
+  height: 56rpx;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+#progressTaskDetails .headerTitle{
+  font-size: 28rpx;
+  color: #969799;
+  line-height: 40rpx;
+  margin-top:20rpx;
+}
+
+#progressTaskDetails .bigTitle{
+  font-size: 34rpx;
+  color: rgba(0,0,0,0.9);
+
+}
+
+#progressTaskDetails .title{
+  font-size: 28rpx;
+  color: #323233;
+}
+
+#progressTaskDetails .desWord{
+  font-size: 28rpx;
+  color: #969799;
+}
+
+
+#progressTaskDetails .imgIcon{
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 8rpx;
+  margin-right: 14rpx;
+}
+
+/* #progressTaskDetails .rightIcon{
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 12rpx;
+  margin-right: 14rpx;
+} */
+
+#progressTaskDetails .downIcon{
+  width: 32rpx;
+  height: 32rpx;
+  /* background: #969799; */
 }
