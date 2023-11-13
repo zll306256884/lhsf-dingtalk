@@ -18,12 +18,14 @@ Page({
     current: 0,
     detailInfo: {},
     tenderId: null,
-    examineId: null
+    examineId: null,
+    approvalType: null
   },
   onLoad(options) {
     if(options.examineId){//审批
       this.setData({
-        examineId: options.examineId
+        examineId: options.examineId,
+        approvalType: options.approvalType
       })
     }
     if(options.requestType){//我的请求

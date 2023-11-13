@@ -87,10 +87,10 @@
   </list-item>
 
   <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">选择会签分管领导</list-item>
-  <view class="bottom-space" style="height:16rpx"></view>
   <list-item extraBrief="{{detailInfo.applicationTime}}">申请日期</list-item>
+  <view class="bottom-space" style="height:16rpx"></view>
 </list>
-<view a:if="{{!false}}" class="bottom-space" style="height:16rpx"></view>
+<view a:if="{{examineId && approvalType === '1'}}" class="bottom-space" style="height:150rpx"></view>
 
 <view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
   <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
@@ -102,6 +102,6 @@
 </view>
 
 <!-- 有参数才显示 -->
-<view a:if="{{false}}" style="position:fixed;bottom:18rpx;width:100%">
-  <submit-opinion-popup keyId="" examineId="1721424993751011330" ></submit-opinion-popup>
+<view a:if="{{examineId && approvalType === '1'}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
+  <submit-opinion-popup keyId="" examineId="{{examineId}}" ></submit-opinion-popup>
 </view>

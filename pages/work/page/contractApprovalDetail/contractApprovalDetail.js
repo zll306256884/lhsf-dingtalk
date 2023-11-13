@@ -19,10 +19,18 @@ Page({
       title: "合同签订详情"
     },
     requestType: null,
-    contractId: null
+    contractId: null,
+    examineId: null,
+    approvalType: null
   },
   uploadContractImage: null,
   onLoad(options) {
+    if(options.examineId){
+      this.setData({
+        examineId: options.examineId,
+        approvalType: options.approvalType
+      })
+    }
     if(options.requestType){
       this.setData({
         requestType: options.requestType
