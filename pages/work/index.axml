@@ -18,7 +18,7 @@
           <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>
         </view>
       </tabs>
-        <list>
+        <list a:if="{{listData.length}}">
         <list-item> 
           <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
             <view class="item-title two-lines">
@@ -44,6 +44,7 @@
           </view>
         </list-item>
         </list>
+        <empty a:else image="/assets/images/common/empty.png" />
     </view>
 <!-- 我的审批 -->
     <view class="task flex f-row f-between">
@@ -55,7 +56,7 @@
     </view>
     <view class="card">
       <tabs items="{{tabs2}}" onChange="onApprovalChange" />
-      <list >
+      <list a:if="{{listApproval.length}}">
         <list-item> 
           <view class="list-item" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectApprovalInfo">
             <view class="item-title two-lines">{{item.taskName}} </view>
@@ -72,6 +73,7 @@
           </view>
         </list-item>
         </list>
+        <empty a:else image="/assets/images/common/empty.png" />
       </view>
 <!-- 我的任务 -->
       <view class="task flex f-row f-between">
@@ -88,7 +90,7 @@
             <view a:else>{{item.value.title}}</view>
           </view>
         </tabs>
-        <list >
+        <list a:if="{{listTask.length}}">
           <list-item> 
             <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
               <view class="item-title two-lines">
@@ -104,6 +106,7 @@
             </view>
           </list-item>
           </list>
+        <empty a:else image="/assets/images/common/empty.png" />
         </view>
 <!-- 我的请求 -->
         <view class="task flex f-row f-between">
@@ -120,7 +123,7 @@
               <view a:else>{{item.value.title}}</view>
             </view>
           </tabs>
-          <list>
+          <list a:if="{{listQuery.length}}">
             <list-item> 
               <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
                 <view class="item-title two-lines">{{item.title}} </view>
@@ -130,6 +133,7 @@
               </view>
             </list-item>
             </list>
-          </view>
+        <empty a:else image="/assets/images/common/empty.png" />
+    </view>
   </view>
 </view>

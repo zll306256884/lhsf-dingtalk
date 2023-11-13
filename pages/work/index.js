@@ -92,7 +92,7 @@ Page({
       title: "已办结请求",
       count: 0
     }],
-    listquery: []
+    listquery: [],
   },
   onLoad(option) {
     this.getAwaitList()

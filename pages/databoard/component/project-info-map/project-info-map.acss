@@ -100,21 +100,21 @@
 }
 .img-title .success {
   color: #26b76f;
-  background: #ecf2ff;
+  background: #E6F8EA;
 }
 
 .img-title .primary {
-  background: #ecf2ff;
+  background: #ECF2FF;
   color: #1a6aff;
 }
 
 .img-title .error {
-  background: #ecf2ff;
+  background: #FEECEC;
   color: #f24c3d;
 }
 
 .img-title .warning {
-  background: #ecf2ff;
+  background: #FFF2E6;
   color: #f59e0f;
 }
 
