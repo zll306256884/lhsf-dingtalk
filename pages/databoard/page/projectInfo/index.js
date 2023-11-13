@@ -38,4 +38,9 @@ Page({
       navbarData:this.data.navbarData
     })
   },
+  onTabChange(e){
+    this.setData({
+      currentTabIndex:e
+    })
+  },
 });
