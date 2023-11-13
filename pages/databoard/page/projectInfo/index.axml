@@ -1,65 +1,8 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="map-container">
   <tabs items="{{tabs}}" current="{{currentTabIndex}}" scrollMode="center" onChange="onTabChange" />
-  <!-- {{currentTabIndex}} -->
-  <map id="map" customMapStyle="light" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" controls="{{controls}}" 
-    onControlTap="controltap" markers="{{markers}}" onMarkerTap="markertap" onRegionChange="regionchange" onTap="tap" show-location="true" 
-    onCalloutTap="callouttap" style="width: 100%; height: 80vh;">
-  </map>
-  <!-- 项目卡片  -->
-  <view class="card-project" animation="{{animation}}">
-    <view class="card-top pointer">
-      <view class="dialog-picker-line" onTap="onShowUnit"></view>
-    </view>
-    <view class="info-base">
-      <view class="img-title flex f-start" data-item="{{item}}" data-index="{{index}}">
-        <image class="item-img" src="{{projectInfo.mainImg}}" />
-        <view>
-          <view class="item-title two-lines">{{projectInfo.projectName}}</view>
-          <view class="{{'item-status ' +['', 'success', 'error', 'warning', 'primary'][projectInfo.projectStatus]}}">
-            {{['','在建项目','延期项目','投入未使用','投入使用'][projectInfo.projectStatus]}}
-          </view>
-        </view>
-      </view>
-      <view class="card-info">
-        <view class="item-info f-between">
-          <view class="item-lable">总投资额:
-            <text style="color: #1D1D1F;">{{info.totalInvestment || '-'}}万元</text></view>
-          <view class="item-lable">建筑面积:
-            <text style="color: #1D1D1F;">{{info.buildArea || '-'}}平方米</text></view>
-          <view class="item-lable">建安费用:
-            <text style="color: #1D1D1F;">{{info.jianAnMoney || '-'}}万元</text></view>
-          <view class="item-lable">项目负责人:
-            <text style="color: #1D1D1F;">{{info.projectManager || '-'}}</text></view>
-          <view class="item-lable item-lable-time">计划施工工期:
-            <text style="color: #1D1D1F;">{{info.planConstructionStartTime}}-{{info.planConstructionEndTime}} | {{info.duration || '-'}}天</text></view>
-        </view>
-      </view>
-    </view>
-    <view class="info-unit" a:if="{{visibelUnit}}">
-      <view class="info-unit-title">
-        <view class="info-unit-marker"></view>参建单位</view>
-      <view class="card-info">
-        <view class="item-info f-between">
-          <view class="item-lable-unit">建设单位:
-            <text style="color: #1D1D1F;">{{info.developmentOrganization || '-'}}</text></view>
-          <view class="item-lable-unit">勘察单位:
-            <text style="color: #1D1D1F;">{{info.reconnaissanceOrganization || '-'}}</text></view>
-          <view class="item-lable-unit">监理单位:
-            <text style="color: #1D1D1F;">{{info.supervisingOrganization || '-'}}</text></view>
-          <view class="item-lable-unit">设计单位:
-            <text style="color: #1D1D1F;">{{info.designOrganization || '-'}}</text></view>
-          <view class="item-lable-unit">施工单位:
-            <text style="color: #1D1D1F;">{{info.constructionOrganization || '-'}}</text></view>
-        </view>
-      </view>
-      
-    </view>
-    
-    
-  </view>
-  
-  
+  <!-- 项目概览 -->
+  <project-info-map projectInfo="{{projectInfo}}" a:if="{{currentTabIndex === 0}}"></project-info-map>
   <view a:if="{{currentTabIndex === 1}}">
     <!-- 项目进度 -->
     <project-progress></project-progress>

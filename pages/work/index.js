@@ -106,42 +106,6 @@ Page({
     ddUtils.navigateTo({
       url: path
     });
-    // switch (e.target.dataset.index) {
-    //   case 0:
-    //     ddUtils.navigateTo({
-    //       url: `/pages/work/page/addProject/addProject`
-    //     });
-
-    //     break;
-    //   case 1:
-    //     // 新增日志
-    //     ddUtils.navigateTo({
-    //       url: `/pages/work/page/addLog/addLog`
-    //     });
-    //     break;
-    //   case 2:
-    //     // 进度填报
-    //     ddUtils.navigateTo({
-    //       url: `/pages/work/page/progressReporting/progressReporting`
-    //     });
-    //     break;
-    //   case 3:
-    //     break;
-    //   case 4:
-    //     break;
-    //   case 5:
-    //     ddUtils.navigateTo({
-    //       url: `/pages/work/page/addPayment/addPayment`
-    //     });
-    //     break;
-    //   case 6:
-    //     ddUtils.navigateTo({
-    //       url: `/pages/work/page/alterationRegister/alterationRegister`
-    //     });
-    //     break;
-    //   case 7:
-    //     break;
-    // }
   },
   // 获取全部待办列表
   getAwaitList: function () {
@@ -346,6 +310,23 @@ Page({
     }
   },
   selectMoreAwait() {
+    switch (this.data.currentAwait) {
+      case 0:
+        ddUtils.navigateTo({
+          url: `/pages/message/page/approval/approval`
+        });
+        break;
+      case 1:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/myTask/taskList/list`
+        });
+        break;
+      case 2:
+        ddUtils.navigateTo({
+          url: `/pages/message/page/myRequest/myRequest`
+        });
+        break;
+    }
 
   },
   selectMoreApproval() {
