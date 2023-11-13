@@ -12,5 +12,5 @@
     <project-scenery></project-scenery>
   </view>
   
-  
+  <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{1}}"></project-bidding-progress>
 </view>
