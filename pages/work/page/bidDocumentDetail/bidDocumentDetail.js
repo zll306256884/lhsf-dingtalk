@@ -17,11 +17,16 @@ Page({
     requestType: null,
     current: 0,
     detailInfo: {},
-    tenderId: null
+    tenderId: null,
+    examineId: null
   },
   onLoad(options) {
-    if(options.requestType){
-      //我的请求
+    if(options.examineId){//审批
+      this.setData({
+        examineId: options.examineId
+      })
+    }
+    if(options.requestType){//我的请求
       this.setData({
         requestType: options.requestType
       })
