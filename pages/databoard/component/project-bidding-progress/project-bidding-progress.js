@@ -56,15 +56,18 @@ Component({
     },
     searchDocList(e){
       console.log(e);
+      this.getDocList(e.detail.value)
     },
     searchConList(e){
       console.log(e);
+      this.getContratList(e.detail.value)
     },
-    getDocList(){
+    getDocList(tenderName){
       let params = {
         pageNum: 1,
         pageSize: 10,
-        projectId: this.props.projectId
+        projectId: this.props.projectId,
+        tenderName: tenderName
       }
       request.doPostRequest({
         url: apiDataBoardServer.API_TENDER_DOCUMENT_LIST,
@@ -76,11 +79,12 @@ Component({
         },
       });
     },
-    getContratList(){
+    getContratList(contractName){
       let params = {
         pageNum: 1,
         pageSize: 10,
         projectId: this.props.projectId,
+        contractName: contractName
       }
       request.doPostRequest({
         url: apiDataBoardServer.API_TENDER_CONTRACT_LIST,

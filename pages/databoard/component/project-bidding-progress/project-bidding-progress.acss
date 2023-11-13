@@ -35,7 +35,7 @@
   border-radius: 4rpx 4rpx 4rpx 4rpx;
 }
 .annual-bidding-progress .top-content .top-top{
-  background-image: url(/assets//images/databoard/image258@2x.png);
+  background-image: url(/assets/images/databoard/image258@2x.png);
   background-position: right top;
   background-repeat: no-repeat;
   background-size: 212rpx 212rpx;
@@ -87,8 +87,12 @@
   line-height: 47rpx;
 }
 .annual-bidding-progress .top-content .bottom{
+  background: rgba(0,0,0,0.1);
+  border-radius: 0rpx 0rpx 32rpx 32rpx;
+}
+.annual-bidding-progress .top-content .bottom .inner{
   padding: 54rpx 40rpx 48rpx;
-  background-image: url(/assets//images/databoard/Frame@2x.png);
+  background-image: url(/assets/images/databoard/Frame@2x.png);
   background-position: right bottom;
   background-repeat: no-repeat;
   background-size: 172rpx 140rpx;
