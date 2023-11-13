@@ -21,15 +21,15 @@
     <view class="card-info">
       <view class="item-info f-between">
         <view class="item-lable">总投资额:
-          <text style="color: #1D1D1F;">{{info.totalInvestment || '-'}}万元</text></view>
+          <text class="item-value">{{info.totalInvestment || '-'}}万元</text></view>
         <view class="item-lable">建筑面积:
-          <text style="color: #1D1D1F;">{{info.buildArea || '-'}}平方米</text></view>
+          <text class="item-value">{{info.buildArea || '-'}}平方米</text></view>
         <view class="item-lable">建安费用:
-          <text style="color: #1D1D1F;">{{info.jianAnMoney || '-'}}万元</text></view>
+          <text class="item-value">{{info.jianAnMoney || '-'}}万元</text></view>
         <view class="item-lable">项目负责人:
-          <text style="color: #1D1D1F;">{{info.projectManager || '-'}}</text></view>
+          <text class="item-value">{{info.projectManager || '-'}}</text></view>
         <view class="item-lable item-lable-time">计划施工工期:
-          <text style="color: #1D1D1F;">{{info.planConstructionStartTime}}-{{info.planConstructionEndTime}} | {{info.duration || '-'}}天</text></view>
+          <text class="item-value">{{info.planConstructionStartTime}}-{{info.planConstructionEndTime}} | {{info.duration || '-'}}天</text></view>
       </view>
     </view>
   </view>
@@ -39,15 +39,15 @@
     <view class="card-info">
       <view class="item-info f-between">
         <view class="item-lable-unit">建设单位:
-          <text style="color: #1D1D1F;">{{info.developmentOrganization || '-'}}</text></view>
+          <text class="item-value">{{info.developmentOrganization || '-'}}</text></view>
         <view class="item-lable-unit">勘察单位:
-          <text style="color: #1D1D1F;">{{info.reconnaissanceOrganization || '-'}}</text></view>
+          <text class="item-value">{{info.reconnaissanceOrganization || '-'}}</text></view>
         <view class="item-lable-unit">监理单位:
-          <text style="color: #1D1D1F;">{{info.supervisingOrganization || '-'}}</text></view>
+          <text class="item-value">{{info.supervisingOrganization || '-'}}</text></view>
         <view class="item-lable-unit">设计单位:
-          <text style="color: #1D1D1F;">{{info.designOrganization || '-'}}</text></view>
+          <text class="item-value">{{info.designOrganization || '-'}}</text></view>
         <view class="item-lable-unit">施工单位:
-          <text style="color: #1D1D1F;">{{info.constructionOrganization || '-'}}</text></view>
+          <text class="item-value">{{info.constructionOrganization || '-'}}</text></view>
       </view>
     </view>
     

@@ -42,20 +42,20 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
-    onPageScroll(){
-      if(!this.data.visibelUnit){
-        this.setData({
-          visibelUnit:true
-        })
-      }
-    },
-    onPullDownRefresh(){
-      if(this.data.visibelUnit){
-        this.setData({
-          visibelUnit:false
-        })
-      }
-    },
+    // onPageScroll(){
+    //   if(!this.data.visibelUnit){
+    //     this.setData({
+    //       visibelUnit:true
+    //     })
+    //   }
+    // },
+    // onPullDownRefresh(){
+    //   if(this.data.visibelUnit){
+    //     this.setData({
+    //       visibelUnit:false
+    //     })
+    //   }
+    // },
     onShowUnit(){
       this.data.visibelUnit=!this.data.visibelUnit
         this.setData({
@@ -76,27 +76,6 @@ Component({
           this.setData({
             info:res.data
           })
-          // if(res.data.isAccess=== 0 || res.data.isAccess=== 1){
-          //   this.setData({
-          //     isAccess:{name:this.data.screenFromList.find(e=>e.value === res.data.isAccess).name,value:res.data.isAccess}
-          //   })
-          // }
-          // if(res.data.isOutPut){
-          //   this.setData({
-          //     isOutPut:{name:this.data.isOutPutOption.find(e=>e.value === res.data.isOutPut).name,value:res.data.isOutPut}
-          //   })
-          // }
-          // this.setData({
-          //   formData: res.data,
-          //   projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
-          //   constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
-          //   outPutTime:{shortDate:res.data.outPutTime},
-          //   constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
-          //   engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
-          // })
-          // setTimeout(() => {
-          //   this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
-          // }, 0);
         }
       })
     },
