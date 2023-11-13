@@ -1,3 +1,4 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
 
 <view class="container">
   <image class="image"  src="../../../../assets/images/login.png" />

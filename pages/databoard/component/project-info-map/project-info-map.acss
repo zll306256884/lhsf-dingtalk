@@ -54,6 +54,10 @@
   color: #909399;
   line-height: 40rpx;
 }
+.item-value{
+  color: #1D1D1F;
+  margin-left:16rpx
+}
 .item-lable-time {
   width: 100%;
 }
