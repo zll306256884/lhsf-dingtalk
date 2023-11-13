@@ -73,7 +73,7 @@ Component({
       setTimeout(() => {
         let params = this.data.paramsData
         params.content = reason
-        params.annexesUrl = []
+        params.annexesUrl = ""
 
         console.log(params);
         if(this.data.isApprovalAgree){
@@ -82,10 +82,16 @@ Component({
             data: params,
             success: res => {
               console.log(res.data)
-              ddUtils.showToast({
-                title: "通过成功"
-              });
-              ddUtils.navigateBack();
+              if(res.data === 1){
+                ddUtils.showToast({
+                  title: '下一节点未配置审批人员，已发送消息至系统管理员，请在配置审批人员后进行审批'
+                })
+              }else{
+                ddUtils.showToast({
+                  title: "通过成功"
+                });
+                ddUtils.navigateBack();
+              }
             }
           })
         }else{

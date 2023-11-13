@@ -34,6 +34,6 @@
 </view>
 
 <!-- 有参数才显示 -->
-<view a:if="{{false}}" style="position:fixed;bottom:18rpx;width:100%">
-  <submit-opinion-popup keyId="888888" ></submit-opinion-popup>
+<view a:if="{{examineId}}" style="position:fixed;bottom:18rpx;width:100%">
+  <submit-opinion-popup examineId="{{examineId}}" ></submit-opinion-popup>
 </view>

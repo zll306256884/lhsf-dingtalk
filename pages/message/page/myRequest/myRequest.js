@@ -42,22 +42,36 @@ Page({
             selected: false,
           },
           {
-            id: "3",
+            id: 3,
             label: '合同审批流程',
             selected: false,
           }, {
-            id: "4",
+            id: 4,
             label: '款项支付',
             selected: false,
           },
           {
-            id: "5",
-            label: '项目资金计划',
+            id: 5,
+            label: '资金使用计划',
             selected: false,
           },
           {
-            id: "6",
-            label: '生态伙伴录入',
+            id: 6,
+            label: '新增项目',
+            selected: false,
+          },
+          {
+            id: 7,
+            label: '变更登记',
+            selected: false,
+          },
+          {
+            id: 8,
+            label: '竣工结算登记',
+            selected: false,
+          },{
+            id: 9,
+            label: '生态伙伴',
             selected: false,
           },
         ],
