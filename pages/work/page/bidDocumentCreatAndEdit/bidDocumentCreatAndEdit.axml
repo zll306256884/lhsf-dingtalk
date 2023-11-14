@@ -24,7 +24,6 @@
 <form-input
   label="招标名称"
   name="tenderName"
-  validateStatus="default"
   placeholder="请输入"
   allowClear
   maxLength="100"
@@ -35,7 +34,7 @@
   name="biddingPerson"
   placeholder="请输入"
   allowClear
-  maxLength="50"
+  maxLength="10"
   ref="handleRef" />
 <form-input
   label="招标代理单位"
@@ -60,7 +59,7 @@
   label="招标标的额(万元)"
   labelWidth="280rpx"
   name="tenderAmount"
-  placeholder="请输入"
+  placeholder="请输入金额,注意'万元'单位"
   allowClear
   maxLength="15"
   type="number"

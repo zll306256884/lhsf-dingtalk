@@ -5,12 +5,21 @@
   <project-info-map projectInfo="{{projectInfo}}" a:if="{{currentTabIndex === 0}}"></project-info-map>
   <view a:if="{{currentTabIndex === 1}}">
     <!-- 项目进度 -->
-    <project-progress></project-progress>
+    <project-progress projectId="{{projectInfo.projectId}}"></project-progress>
   </view>
   <view a:if="{{currentTabIndex === 2}}">
     <!-- 项目实景 -->
-    <project-scenery></project-scenery>
+    <project-scenery projectId="{{projectInfo.projectId}}"></project-scenery>
   </view>
+  <view a:if="{{currentTabIndex === 5}}">
+    <!-- 工作日志  -->
+    <log-work projectId="{{projectInfo.projectId}}"></log-work>
+  </view>
+<<<<<<< HEAD
   <invest-control a:if="{{ currentTabIndex=== 3 }}"></invest-control>
   <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{projectInfo.id}}"></project-bidding-progress>
+=======
+  
+  <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{projectInfo.projectId}}"></project-bidding-progress>
+>>>>>>> origin/develop
 </view>

@@ -10,11 +10,11 @@
   </view>
   <view class="info-base">
     <view class="img-title flex f-start" data-item="{{item}}" data-index="{{index}}">
-      <image class="item-img" src="{{projectInfo.mainImg}}" />
+      <image class="item-img" src="{{info.mainImg}}" />
       <view>
         <view class="item-title two-lines">{{projectInfo.projectName}}</view>
-        <view class="{{'item-status ' +['', 'success', 'error', 'warning', 'primary'][projectInfo.projectStatus]}}">
-          {{['','在建项目','延期项目','投入未使用','投入使用'][projectInfo.projectStatus]}}
+        <view class="{{'item-status ' +['', 'success', 'error', 'warning', 'primary'][info.projectStatus]}}">
+          {{['','在建项目','延期项目','投入未使用','投入使用'][info.projectStatus]}}
         </view>
       </view>
     </view>

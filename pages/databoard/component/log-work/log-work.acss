@@ -1,0 +1,193 @@
+.container{
+  /* padding-top: 200rpx; */
+  padding: 30rpx 24rpx;
+  background-color: #fff;
+}
+
+.topSelect{
+  width: 276rpx;
+  background: #F3F4F5;
+  /* background-color: pink; */
+}
+
+.bac{
+  background-color: #fff;
+}
+
+/*  */
+
+.listBox{
+  margin-top:26rpx;
+
+}
+
+.bigPark{
+  margin-bottom: 30rpx;
+}
+
+/* 左侧时间 */
+.bigPark .yearCell{
+  /* margin-bottom: 32rpx; */
+}
+.bigPark .yearCell .year{
+  width: 136rpx;
+  height: 40rpx;
+  font-size: 40rpx;
+  font-weight: 500;
+  color: #000000;
+  line-height: 40rpx;
+}
+
+.bigPark .yearCell .bottomImg{
+  width: 136rpx;
+  height: 16rpx;
+  display: inline-block;
+}
+
+/* 中间内容 */
+.bigPark .navPark{
+
+}
+
+.bigPark .navPark .timeCell{
+  width: 115rpx;
+  margin-right: 24rpx;
+}
+
+.bigPark .navPark .timeCell .day{
+  width: 48rpx;
+  height: 56rpx;
+  font-size: 40rpx;
+  color: #1D1D1F;
+  line-height: 56rpx;
+  /* margin-right: 4rpx; */
+}
+.bigPark .navPark .timeCell .month{
+  width: 100rpx;
+  height: 56rpx;
+  margin: 5rpx 0 2rpx 4rpx;
+  font-size: 28rpx;
+  color: #1D1D1F;
+  line-height: 56rpx;
+  font-size: 28rpx;
+}
+
+/*  */
+.bigPark .navContent{
+  padding: 32rpx 0 0 0;
+}
+
+.bigPark .navPark{
+  /* padding: 32rpx 0; */
+}
+
+.bigPark .navPark .newPark{
+  border-bottom: 1rpx solid #EBEEF5;
+  padding-bottom: 32rpx;
+  /* position: relative; */
+}
+
+.bigPark .navPark .newPark .baseUser{
+  width: 560rpx;
+  height: 72rpx;
+  padding: 4rpx;
+  position: relative;
+}
+
+.bigPark .navPark .newPark .baseUser .avater{
+  width: 64rpx;
+  height: 64rpx;
+  border-radius:50%;
+  opacity: 1;
+  margin-right: 8rpx;
+}
+
+.bigPark .navPark .newPark .baseUser .name{
+  width: 184rpx;
+  height: 64rpx;
+  font-size: 28rpx;
+  color: #606266;
+  line-height: 64rpx;
+}
+
+.bigPark .navPark .newPark  .newList{
+  width: 560rpx;
+  z-index: 10;
+  margin-top: 16rpx;
+  margin-bottom: 32rpx;
+}
+/* 正常展示 */
+.bigPark .navPark .newPark  .newList .newNormal{
+  width: 100%;
+  height: auto;
+  max-height: 174rpx;
+  background: #F8F9FA;
+  font-size: 32rpx;
+  color: #121212;
+  line-height: 48rpx;
+  padding: 20rpx;
+  z-index: 10;
+}
+/* 折叠起来  只展示一行 */
+.bigPark .navPark .newPark  .newList .newExpanded{
+  width: 100%;
+  height: 96rpx;
+  background: #F8F9FA;
+  font-size: 32rpx;
+  color: #121212;
+  line-height: 48rpx;
+  padding: 20rpx;
+  z-index: 10;
+}
+
+/* 点击全部  展开所有 */
+.bigPark .navPark .newPark  .newList .newExpandAll{
+  width: 100%;
+  height: auto;
+  background: #F8F9FA;
+  font-size: 32rpx;
+  color: #121212;
+  line-height: 48rpx;
+  padding: 20rpx;
+  z-index: 10;
+}
+
+.bigPark .navPark .newPark  .newList .viewBtn{
+  background: #F8F9FA;
+  font-size: 32rpx;
+  color: #1A6AFF;
+  line-height: 48rpx;
+  padding:0 0 20rpx 20rpx;
+  cursor: pointer;
+}
+
+
+.bigPark .navPark .newPark  .newList .imgBox{
+  padding-top: 16rpx;
+  background: #F8F9FA;
+  /* padding: 20rpx; */
+}
+
+.bigPark .navPark .newPark  .newList .imgBox .imgPart{
+  /* flex: 1; */
+  width: 160rpx;
+  height: 114rpx;
+  border-radius: 12rpx 12rpx 12rpx 12rpx;
+  opacity: 1;
+  margin-right: 20rpx;
+  margin-bottom: 20rpx;
+
+}
+
+/* 右侧标识 */
+
+.bigPark .navPark .majorTip .tip{
+  width: 128rpx;
+  height: 106rpx;
+  opacity: 1;
+  position: absolute;
+  top: 0rpx;
+  right: -24rpx;
+  z-index: 1000;
+  display: inline-block;
+}

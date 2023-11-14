@@ -13,7 +13,7 @@
     "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
-    "dialog-screen-xiangmu-mingcheng": "/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
+    "dialog-select-project": "/pages/components/dialog/dialog-select-project/dialog-select-project",
     "dialog-screen-ecological-unit": "/pages/components/dialog/dialog-screen-ecological-unit/dialog-screen-ecological-unit",
     "dialog-screen-construct-unit": "../../component/dialog-screen-construct-unit/dialog-screen-construct-unit",
     "picker": "antd-mini/es/Picker/index",

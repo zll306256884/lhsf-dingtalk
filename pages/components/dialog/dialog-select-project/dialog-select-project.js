@@ -44,6 +44,7 @@ Component({
       this.setData({
         chooseIndex: e.currentTarget.dataset.index
       });
+      this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex]);
     },
     //judge is show dialog
     _isShowDialog() {

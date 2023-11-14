@@ -14,5 +14,6 @@ module.exports = {
   API_TOP_MESSAGE: API_HOST + "/control/plan/queryPlanByCondition",
   // 看板  --   详情信息
   API_BANK_DETAIL: API_HOST + "/control/planTask/selectPlanTaskDetailById",
-
+  // 看板 --  现场实景
+  API_BANK_SIT: API_HOST + "/integratedService/projectInfoFile/querySitProgressList",
 }

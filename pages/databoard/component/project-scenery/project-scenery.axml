@@ -1,3 +1,31 @@
-<view>
-  项目实景
+<view id="projectScenery" class="box-sizing-box">
+  <view class="listArr">
+    <block a:if="{{listData.length}}">
+      <view class="part flex f-column" a:for="{{listData}}">
+        <block>
+          <view class="canvasNav">
+            <block a:if="{{item.fileType===1}}">
+              <video class="videoShow" src="{{item.url}}"></video>
+            </block>
+            <block a:else>
+              <image class="imgShow" mode="scaleToFill" src="{{item.url}}" />
+            </block>
+          </view>
+          <view class="bottomNav flex f-between">
+            <view class="name">{{item.progress}}</view>
+            <view class="online" a:if="{{false}}">在线</view>
+          </view>
+        </block>
+      </view>
+    </block>
+    <block a:else>
+      <empty title="" message="" image="/assets/images/common/empty.png" />
+    </block>
+    
+  </view>
+  <!--  -->
+  <view class="mayflyBox">
+    <image class="mayfly" src="/assets/images/progress/callpic.png" />
+  </view>
+  <!--  -->
 </view>

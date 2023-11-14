@@ -6,45 +6,45 @@ const app = getApp();
 Page({
   data: {
     iconList: [{
-        url: "../../../../assets/images/work/Group-1.png",
-        name: "新增项目",
-        path: '/pages/work/page/addProject/addProject'
-      },
-      {
-        url: "../../../../assets/images/work/Group-2.png",
-        name: "新增日志",
-        path:'/pages/work/page/addLog/addLog'
-      },
-      {
-        url: "../../../../assets/images/work/Group-3.png",
-        name: "进度填报",
-        path:'/pages/work/page/progressReporting/progressReporting'
-      },
-      {
-        url: "../../../../assets/images/work/Group-4.png",
-        name: "招标文件会签",
-        path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
-      },
-      {
-        url: "../../../../assets/images/work/Group-5.png",
-        name: "合同签订登记",
-        path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
-      },
-      {
-        url: "../../../../assets/images/work/Group-6.png",
-        name: "新增支付",
-        path: '/pages/work/page/addPayment/addPayment'
-      },
-      {
-        url: "../../../../assets/images/work/Group-7.png",
-        name: "变更登记",
-        path: '/pages/work/page/alterationRegister/alterationRegister'
-      },
-      {
-        url: "../../../../assets/images/work/Group-8.png",
-        name: "竣工结算登记",
-        path: '/pages/work/page/beCompletedRegister/beCompletedRegister'
-      }
+      url: "../../../../assets/images/work/Group-1.png",
+      name: "新增项目",
+      path: '/pages/work/page/addProject/addProject'
+    },
+    {
+      url: "../../../../assets/images/work/Group-2.png",
+      name: "新增日志",
+      path: '/pages/work/page/addLog/addLog'
+    },
+    {
+      url: "../../../../assets/images/work/Group-3.png",
+      name: "进度填报",
+      path: '/pages/work/page/progressReporting/progressReporting'
+    },
+    {
+      url: "../../../../assets/images/work/Group-4.png",
+      name: "招标文件会签",
+      path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
+    },
+    {
+      url: "../../../../assets/images/work/Group-5.png",
+      name: "合同签订登记",
+      path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
+    },
+    {
+      url: "../../../../assets/images/work/Group-6.png",
+      name: "新增支付",
+      path: '/pages/work/page/addPayment/addPayment'
+    },
+    {
+      url: "../../../../assets/images/work/Group-7.png",
+      name: "变更登记",
+      path: '/pages/work/page/alterationRegister/alterationRegister'
+    },
+    {
+      url: "../../../../assets/images/work/Group-8.png",
+      name: "竣工结算登记",
+      path: '/pages/work/page/beCompletedRegister/beCompletedRegister'
+    }
     ],
     // 待办
     tabs1: [{
@@ -56,7 +56,7 @@ Page({
     }, {
       title: "待办请求",
       count: 0
-    }, ],
+    },],
     currentAwait: 0,
     listData: [],
     listWait: [],
@@ -71,16 +71,16 @@ Page({
     listApproval: [],
     // 我的任务
     tabs3: [{
-        title: "我发起的",
-        count: 0
-      }, {
-        title: "已完成",
-        count: 0
-      },
-      {
-        title: "已取消",
-        count: 0
-      }
+      title: "我发起的",
+      count: 0
+    }, {
+      title: "已完成",
+      count: 0
+    },
+    {
+      title: "已取消",
+      count: 0
+    }
     ],
     currentTask: 0,
     listTask: [],
@@ -102,7 +102,7 @@ Page({
   },
   onItemTap(e) {
     console.log(e);
-    let {path} = e.currentTarget.dataset
+    let { path } = e.currentTarget.dataset
     ddUtils.navigateTo({
       url: path
     });
@@ -348,70 +348,118 @@ Page({
   // 点击列表项查看待办详情
   selectAwaitInfo(e) {
     console.log(e);
-   let temp =   e.target.dataset.item.type;
-   let item = e.target.dataset.item
-   console.log(item);
-   switch (temp) {
-    case 5:
-      ddUtils.navigateTo({
-        url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
-      });
-      break;
-  }
-  },
-    // 点击列表项查看审批详情
-    selectApprovalInfo(e) {
-      console.log(e);
-      let temp = e.currentTarget.dataset.item.belongModule
-      let id = e.target.dataset.item.keyId
-    let projectId = e.target.dataset.item.projectId
-    let showType = e.target.dataset.item.showType
+    // 待办审批
+    if (this.data.currentAwait === 0) {
+      let item = e.target.dataset.item
+      let temp = e.target.dataset.item.type;
       switch (temp) {
+        case 2:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          });
+          break;
+        case 3:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          });
+          break;
         case 4:
           ddUtils.navigateTo({
             url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
           });
+        case 5:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+          });
           break;
       }
-    },
-      // 点击列表项查看任务详情
+    }
+    // 待办任务
+    if (this.data.currentAwait === 1) {
+      const pramas = {
+        id: e.currentTarget.dataset.item.id
+      }
+      ddUtils.navigateTo({
+        url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+      });
+    }
+    // 待办请求
+    if (this.data.currentAwait === 2) {
+      let item = e.target.dataset.item
+      let temp = e.target.dataset.item.type;
+      switch (temp) {
+        case 5:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+          });
+          break;
+      }
+    }
+
+  },
+  // 点击列表项查看审批详情
+  selectApprovalInfo(e) {
+    console.log(e);
+    let temp = e.currentTarget.dataset.item.belongModule
+    let id = e.target.dataset.item.keyId
+    let projectId = e.target.dataset.item.projectId
+    let showType = e.target.dataset.item.showType
+    switch (temp) {
+      case 2:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+        });
+        break;
+      case 3:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+        });
+        break;
+      case 4:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+        });
+        break;
+    }
+  },
+  // 点击列表项查看任务详情
   selectTaskInfo(e) {
-    const pramas={
-      id:e.currentTarget.dataset.item.id
+    const pramas = {
+      id: e.currentTarget.dataset.item.id
     }
     ddUtils.navigateTo({
       url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
     });
   },
-    // 点击列表项查看请求详情
-    selectQueryInfo(e) {
-      console.log(e);
-      let temp =   e.target.dataset.item.type;
-      let status =   e.target.dataset.item.status;
-      let item = e.target.dataset.item
-      let id = e.target.dataset.item.keyId
-      console.log(item);
-      switch (temp) {
-        case 4:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
-          });
-          break;
-       case 5:
-         ddUtils.navigateTo({
-           url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
-         });
-         break;
-         case 7:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
-          });
-          break;
-          case 8:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
-          });
-          break;
-     }
+  // 点击列表项查看请求详情
+  selectQueryInfo(e) {
+    console.log(e);
+    let temp = e.target.dataset.item.type;
+    let status = e.target.dataset.item.status;
+    let item = e.target.dataset.item
+    let id = e.target.dataset.item.keyId
+    console.log(item);
+    switch (temp) {
+      case 4:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+        });
+        break;
+      case 5:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+        });
+        break;
+      case 7:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
+        });
+        break;
+      case 8:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
+        });
+        break;
     }
+  }
 });

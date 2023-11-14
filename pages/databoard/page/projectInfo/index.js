@@ -24,23 +24,27 @@ Page({
         title: "工作日志"
       }
     ],
-    currentTabIndex:0,
-    projectInfo:{},
+    currentTabIndex: 0,
+    projectInfo: {},
   },
   onLoad(option) {
-    const params = JSON.parse(option.json)
-    console.log(JSON.parse(option.json));
+    console.log(option);
+    this.data.projectInfo.projectName=option.projectName
+    this.data.projectInfo.projectId=option.projectId
+    this.data.navbarData.title = option.projectName
+    if(option.type === '3'){
+      this.setData({
+        currentTabIndex: 4
+      })
+    }
     this.setData({
-      projectInfo: params
-    })
-    this.data.navbarData.title= params.projectName
-    this.setData({
-      navbarData:this.data.navbarData
+      projectInfo:this.data.projectInfo,
+      navbarData: this.data.navbarData
     })
   },
-  onTabChange(e){
+  onTabChange(e) {
     this.setData({
-      currentTabIndex:e
+      currentTabIndex: e
     })
   },
 });

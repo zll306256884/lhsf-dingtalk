@@ -1,0 +1,60 @@
+<!--<nav-bar navbarData="{{navbarData}}"></nav-bar> -->
+<view class="container box-sizing-box">
+  <!--  -->
+  <view>
+    <selector defaultValue="1" value="{{logType}}" onChange="handleChange" options="{{items1}}" className='topSelect' activeItemClassName='bac' />
+  </view>
+  <!--  -->
+  <view class="listBox box-sizing-box">
+    <block a:if="{{logList.length}}">
+      <view class="bigPark flex f-column" a:for="{{logList}}">
+        <view class="yearCell flex f-column">
+          <view class="year">{{item.year}}</view>
+          <image class="bottomImg" mode="aspectFill" src="../../../../assets/images/log/Rectangle.png" />
+        </view>
+        <!--  -->
+        <view class="navContent flex f-column" a:for="{{item.appProjectLogResponseList}}" a:for-item="itemDay" a:for-index="dayIndex">
+          <view class="navPark flex f-start">
+            <view class="timeCell flex f-start">
+              <view class="day">{{itemDay.day}}</view>
+              <view class="month">{{itemDay.month}}月</view>
+            </view>
+            <view class="newPark flex f-column">
+              <block a:for="{{itemDay.appProjectLogDtoList}}" a:for-item="itemPart" a:for-index="PartIndex">
+                <view class="baseUser flex f-start">
+                  <image class="avater" mode="aspectFill" src="{{itemPart.userImage}}" />
+                  <view class="name">{{itemPart.createBy}}</view>
+                  <view class="majorTip" a:if="{{itemPart.logType===1}}">
+                    <image class="tip" mode="aspectFill" src="../../../../assets/images/log/major.png" />
+                  </view>
+                </view>
+                <view class="newList box-sizing-box">
+                  <view class="newNormal three-lines box-sizing-box" a:if="{{itemPart.expandedAll==1}}">
+                    {{itemPart.content}}
+                  </view>
+                  <!-- style="top: {{navPlacherHeight}}px;" -->
+                  <!--<view class="newExpandAll box-sizing-box" a:if="{{itemPart.expandedAll==0&&!showAll}}">
+                  {{itemPart.content}}</view> -->
+                  <view class="newExpanded single-line box-sizing-box" a:if="{{itemPart.expandedAll==0}}">
+                    {{itemPart.content}}
+                  </view>
+                  <view class="viewBtn" catchTap='expandedIt' a:if="{{itemPart.expandedAll==0}}">全文</view>
+                  <view class="imgBox flex f-wrap f-start">
+                    <block a:for="{{itemPart.logPhotoList}}" a:for-item="itemImg" a:for-index="imgIndex">
+                      <image class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
+                    </block>
+                  </view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <!--  -->
+      </view>
+    </block>
+    <block a:else>
+      <empty title="" message="" image="/assets/images/common/empty.png" />
+    </block>
+    
+  </view>
+</view>
