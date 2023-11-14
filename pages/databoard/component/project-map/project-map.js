@@ -1,29 +1,7 @@
 import apiDataBoardServer from "../../../../server/dataBoardServer";
 import request from "../../../../utils/request";
 import ddUtils from "../../../../utils/ddUtils";
-const markers = [
-  {
-    id: 0,
-    longitude: 121.131229,
-    latitude: 28.845441,
-    width: 64,
-    height: 64,
-    iconPath: "/assets/images/map/1-4.png",
-    callout: {
-      content: '项目名称',
-    },
-    "customCallout":{
-      "type": 2,
-      "descList": [{
-        "desc": "项目名称",
-        "descColor": "#333333"
-      }],
-      icon1:require("../../../../assets/images/map/1-4.png"),
-      "isShow": 1
-    },
-    // require("../../../../assets/images/map/1-4.png"),
-  }
-];
+const markers = [];
 const longitude = 121.131229;
 const latitude = 28.845441;
 const includePoints = [
@@ -76,13 +54,11 @@ Component({
   dialogScreenProject: null,
   didMount() {
     this.initMap();
-    // this.getProjectList()
   },
   didUpdate() {},
   didUnmount() {},
   methods: {
     initMap() {
-      // this.mapCtx = my.createMapContext('map');
       this.mapCtx = dd.createMapContext("map");
       this.getProjectList();
     },
@@ -109,14 +85,14 @@ Component({
       this.getProjectList();
     },
     onSelectItem(e) {
-      let projectId=e.currentTarget.dataset.item.projectId;
-      let projectName=e.currentTarget.dataset.item.projectName;
+      let projectId = e.currentTarget.dataset.item.projectId;
+      let projectName = e.currentTarget.dataset.item.projectName;
       ddUtils.navigateTo({
-        url:`/pages/databoard/page/projectInfo/index?projectId=${projectId}&projectName=${projectName}`,
+        url: `/pages/databoard/page/projectInfo/index?projectId=${projectId}&projectName=${projectName}`
         // url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(
         //   e.currentTarget.dataset.item
         // )}`
-      })
+      });
     },
     bindChooseProjectCallBack(data) {
       this.data.params.projectName = data.name;
@@ -130,41 +106,35 @@ Component({
           this.setData({
             projectList: res.data
           });
-          const newMarkers = this.data.projectList
-            .filter(i => i.cityCapitalX && i.cityCapitalY)
-            .map((item, index) => {
-              return {
-                id: index,
-                width: 64,
-                height: 64,
-                latitude: Number(parseFloat(item.cityCapitalX).toFixed(6)),
-                longitude: Number(parseFloat(item.cityCapitalY).toFixed(6)),
-                iconPath: require("../../../../assets/images/map/1-4.png"),
-                label: {
-                  content: "Hello Label",
-                  color: "#00FF00",
-                  fontSize: 14,
-                  borderRadius: 3,
-                  bgColor: "#ffffff",
-                  padding: 10
-                }
-              };
-            });
-          const newIncludePoints = newMarkers.map(item => {
-            return {
-              latitude:item.latitude,
-              longitude:item.longitude
-            };
-          });
-          // this.updateComponents(newMarkers,newIncludePoints);
+          this.updateComponents();
         }
       });
     },
 
-    updateComponents(newMarkers,newIncludePoints) {
-      console.log(newMarkers,newIncludePoints);
+    updateComponents() {
+      const newMarkers = this.data.projectList
+        .filter(i => i.cityCapitalX && i.cityCapitalY)
+        .map((item, index) => {
+          return {
+            id: index,
+            width: 64,
+            height: 64,
+            longitude: Number(parseFloat(item.cityCapitalX).toFixed(6)),
+            latitude: Number(parseFloat(item.cityCapitalY).toFixed(6)),
+            iconPath: require("../../../../assets/images/map/1-4.png"),
+            callout: {
+              content: "Hello Label"
+            }
+          };
+        });
+      const newIncludePoints = newMarkers.map(item => {
+        return {
+          latitude: item.latitude,
+          longitude: item.longitude
+        };
+      });
       this.mapCtx.updateComponents({
-        scale: 12, // 缩放级别
+        scale: 12,
         longitude: 121.131229,
         latitude: 28.845441,
         setting: {
@@ -173,29 +143,8 @@ Component({
           showCompass: 1, // 显示指南针
           tiltGesturesEnabled: 1 // 开启双指下滑手势
         },
-        markers:newMarkers,
-        includePoints:newIncludePoints,
-        // // 点标记覆盖物
-        // markers: [
-        //   {
-        //     id: 1,
-        //     longitude: 121.131229,
-        //     latitude: 28.845441,
-        //     width: 64,
-        //     height: 64,
-        //     iconPath: require("../../../../assets/images/map/1-3.png"),
-        //     callout: {
-        //       content: "1"
-        //     }
-        //   }
-        // ],
-        // // 包含点
-        // includePoints: [
-        //   {
-        //     longitude: 121.131229,
-        //     latitude: 28.845441
-        //   }
-        // ],
+        markers: newMarkers,
+        includePoints: newIncludePoints
       });
     },
     // 重置地图
