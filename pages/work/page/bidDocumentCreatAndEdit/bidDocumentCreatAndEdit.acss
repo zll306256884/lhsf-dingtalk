@@ -1,6 +1,7 @@
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;
+  color: #000;
 }
 .buttons{
   border-top: 1px solid #DBDADF;
@@ -36,4 +37,11 @@
 }
 .ant-button-default{
   box-shadow:none
+}
+.ant-form-item-field-horizontal .ant-input-disabled{
+  color: #000;
+  opacity: 1;
+}
+.ant-form-item-field-horizontal .ant-input[disabled] {
+  color: rgba(0, 0, 0, 1);
 }

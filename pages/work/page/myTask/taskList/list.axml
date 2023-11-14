@@ -19,13 +19,14 @@
     <list a:if="{{listTask.length}}">
       <list-item>
         <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
-          <view class="item-title single-lines">
+          <view class="item-title single-line" style="{{currentTask ===0 && item.isRead===1?'color:#606266':''}}">
             {{item.title}}
           </view>
           <view class="flex f-row f-between">
             <view>
               <text class="item-name">创建人： {{item.createBy_dictText}}</text>
-              <text class="item-time">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+              <text a:if="{{currentTask!==0}}" class="item-name">执行人： {{item.executer_dictText}}</text>
+              <text class="item-time">{{['截止日期','截止日期','完成日期','完成日期'][currentTask]}}：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
             <view>
               <view class="item-status-error" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>

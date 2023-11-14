@@ -92,8 +92,16 @@ Page({
       url:apiApprovalManage.API_TASK_LIST,
       data,
       success: res => {
+        const list= res.data.records.map(item=>{
+          return{
+            ...item,
+            executer_dictText: JSON.parse(item.executeUser)
+            .map(e => e.username)
+            .toString(),
+          }
+        })
         this.setData({
-          listTask:res.data.records,
+          listTask:list,
           total:res.data.total
         })
       },
@@ -116,8 +124,16 @@ getMoreList(params) {
       success: res => {
           this.page++;
           this.hasMore = isHasMore(res.data.records);
+          const list= res.data.records.map(item=>{
+            return{
+              ...item,
+              executer_dictText: JSON.parse(item.executeUser)
+              .map(e => e.username)
+              .toString(),
+            }
+          })
           this.setData({
-            listTask: this.data.listTask.concat(res.data.records || [])
+            listTask: this.data.listTask.concat(list || [])
           });
       },
   });

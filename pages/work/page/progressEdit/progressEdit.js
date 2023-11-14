@@ -151,7 +151,7 @@ Page({
       "taskId": this.data.taskId
     }
 
-    console.log('param', param)
+    // console.log('param', param)
 
     // return
     request.doPostRequest({

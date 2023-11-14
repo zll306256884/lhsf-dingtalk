@@ -31,7 +31,7 @@
     </view>
     <!-- 列表 -->
     <view class="listBox">
-      <block a:if="{{listData.lengtj}}">
+      <block a:if="{{listData.length}}">
         <progress-item listData={{listData}} projectId={{projectId}} formPage='work' ref='progressItemRef'></progress-item>
       </block>
       <block a:else>

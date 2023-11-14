@@ -15,17 +15,17 @@ Page({
     tabIndex: 0,
     targetValue: '1',
     tabList: [{
-      name: "待办审批",
+      title: "待办审批",
       value: '1',
       total: 0
     },
     {
-      name: "已办审批",
+      title: "已办审批",
       value: '2',
       total: 0
     },
     {
-      name: "办结审批",
+      title: "办结审批",
       value: '3',
       total: 0
     }

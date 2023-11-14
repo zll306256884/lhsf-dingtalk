@@ -1,10 +1,10 @@
-<view class="flex f-column">
+<view class="flex f-column approvalMain">
   <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <!--  -->
   <view class="approvalTop flex f-start">
-    <view style="width:85%">
-      <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{85}}>
-      </nav-tab-bar>
+    <view style="width:85%;margin-top:85rpx">
+      <tabs items="{{tabList}}" onChange="onNavTabChange"></tabs>
+      <!--<nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{85}}></nav-tab-bar> -->
     </view>
     <view class="funnel">
       <view class="imgbox">
@@ -17,30 +17,35 @@
     <!--<view ><approval-item projectId={{'12019020004'}} ref='approvalItemRef'></approval-item></view> -->
     <view>
       <list header="" radius="{{ radius }}">
-        <list-item a:for="{{listData}}">
-          <view class="approvalPart" data-item={{item}} catchTap="toDetail">
-            <view class="title single-line">
-              <view class="single-line" style="color: rgba(0,0,0,0.4);" a:if="{{item.isRead===1}}">
-                {{item.taskName}}
+        <block a:if="{{listData.length}}">
+          <list-item a:for="{{listData}}">
+            <view class="approvalPart" data-item={{item}} catchTap="toDetail">
+              <view class="title single-line">
+                <view class="single-line" style="color: rgba(0,0,0,0.4);" a:if="{{item.isRead===1}}">
+                  {{item.taskName}}
+                </view>
+                <view class="single-line" style="color: rgba(0,0,0,0.9)" a:if="{{item.isRead===0}}">
+                  {{item.taskName}}
+                </view>
               </view>
-              <view class="single-line" style="color: rgba(0,0,0,0.9)" a:if="{{item.isRead===0}}">
-                {{item.taskName}}
+              <view class="flex f-between">
+                <view>
+                  <view class="person">申请人：{{item.userName}}</view>
+                  <view class="time">{{item.createTime}}</view>
+                </view>
+                <view>
+                  <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
+                  <view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view>
+                  <view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已驳回</view>
+                  <!--<view class="orangeTypeBtn btnSize">延期</view><view class="grayTypeBtn btnSize">未开始</view> -->
+                </view>
               </view>
             </view>
-            <view class="flex f-between">
-              <view>
-                <view class="person">申请人：{{item.userName}}</view>
-                <view class="time">{{item.createTime}}</view>
-              </view>
-              <view>
-                <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
-                <view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view>
-                <view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已驳回</view>
-                <!--<view class="orangeTypeBtn btnSize">延期</view><view class="grayTypeBtn btnSize">未开始</view> -->
-              </view>
-            </view>
-          </view>
-        </list-item>
+          </list-item>
+        </block>
+        <view a:else style="text-align:center">
+          <empty title="" message="" image="/assets/images/common/empty.png" />
+        </view>
       </list>
     </view>
   </view>

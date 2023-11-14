@@ -21,7 +21,7 @@
         <list a:if="{{listData.length}}">
         <list-item> 
           <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
-            <view class="item-title two-lines">
+            <view class="item-title two-lines" style="{{item.isRead && item.isRead===1?'color:#606266':''}}">
             <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status-error">
               {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
             </view>
@@ -29,13 +29,13 @@
           </view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
-              <text class="item-label">申请人</text>
+              <text class="item-label">{{['申请人','发起人','创建人'][currentAwait]}}</text>
               <view class="avatar-name flex f-row f-between">
               <image class="item-avatar"  src="{{item.avatar}}" />
               <text class="item-name single-line"> {{item.userName || item.createUserName}}</text>
               </view>
             </view>
-              <text class="item-label">提交时间：{{utils.parseTime(item.createTime || item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+              <text class="item-label">{{['提交时间','截止时间','创建时间'][currentAwait]}}：{{utils.parseTime(item.createTime || item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
           </view>
           </view>
           <view class="list-more" onTap="handleTap">

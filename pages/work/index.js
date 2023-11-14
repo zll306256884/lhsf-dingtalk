@@ -93,6 +93,7 @@ Page({
       count: 0
     }],
     listquery: [],
+    requestStatus: 0
   },
   onLoad(option) {
     this.getAwaitList()
@@ -117,7 +118,7 @@ Page({
       data,
       success: res => {
         this.data.tabs1[0].count = res.data.waitAuditNum,
-          this.data.tabs1[1].count = res.data.waitAuditNum,
+          this.data.tabs1[1].count = res.data.waitMissionNum,
           this.data.tabs1[2].count = res.data.draftNum,
           this.setData({
             listWait: res.data,
@@ -300,6 +301,9 @@ Page({
   },
   // 切换我的请求tab
   onQueryChange(e) {
+    this.setData({
+      requestStatus: e
+    })
     switch (e) {
       case 0:
         this.getQueryList(2)
@@ -350,6 +354,7 @@ Page({
     console.log(e);
     // 待办审批
     if (this.data.currentAwait === 0) {
+      console.log('this.data.currentAwait',this.data.currentAwait)
       let item = e.target.dataset.item
       let temp = e.target.dataset.item.type;
       switch (temp) {
@@ -440,6 +445,21 @@ Page({
     let id = e.target.dataset.item.keyId
     console.log(item);
     switch (temp) {
+      case 1:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus+1}&projectId=${item.projectId}`
+        });
+        break;
+      case 2:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+        });
+        break;
+      case 3:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+        });
+        break; 
       case 4:
         ddUtils.navigateTo({
           url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
@@ -448,6 +468,11 @@ Page({
       case 5:
         ddUtils.navigateTo({
           url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+        });
+        break;
+      case 6:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
         });
         break;
       case 7:

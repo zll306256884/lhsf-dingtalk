@@ -1,5 +1,9 @@
 @import "/assets/styles/typeContent.acss";
 
+.approvalMain{
+  /* text-align: center; */
+}
+
 /* 头部 */
 
 .approvalTop{
@@ -12,7 +16,7 @@
 
 .funnel {
   width: 15%;
-  height: 80rpx;
+  height: 70rpx;
   background-color: #fff;
   vertical-align: middle;
   text-align: center;
@@ -37,7 +41,7 @@
 /* 内容 */
 
 .navbox{
-  padding-top:90rpx;
+  padding-top:85rpx;
   height: calc(100vh - 181rpx);
   overflow: auto;
   /* background:pink; */
