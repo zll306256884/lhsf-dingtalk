@@ -81,9 +81,9 @@ Page({
     this.getList()
   },
   addTask(){
-    ddUtils.navigateTo({
-      url: `/pages/databoard/page/workLog/workLog`
-    });
+    // ddUtils.navigateTo({
+    //   url: `/pages/databoard/page/workLog/workLog`
+    // });
   },
   // 跳转
   bindTopItemTap(e) {
