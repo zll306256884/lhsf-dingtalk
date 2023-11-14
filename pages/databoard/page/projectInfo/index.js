@@ -28,14 +28,12 @@ Page({
     projectInfo: {},
   },
   onLoad(option) {
-    const params = JSON.parse(option.json)
-    console.log(JSON.parse(option.json));
+    console.log(option);
+    this.data.projectInfo.projectName=option.projectName
+    this.data.projectInfo.projectId=option.projectId
+    this.data.navbarData.title = option.projectName
     this.setData({
-      projectInfo: params
-    })
-    console.log('params',params)
-    this.data.navbarData.title = params.projectName
-    this.setData({
+      projectInfo:this.data.projectInfo,
       navbarData: this.data.navbarData
     })
   },

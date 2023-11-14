@@ -348,16 +348,26 @@ Page({
   // 点击列表项查看待办详情
   selectAwaitInfo(e) {
     console.log(e);
-    let temp = e.target.dataset.item.type;
-    let item = e.target.dataset.item
-    console.log(item);
-    switch (temp) {
-      case 5:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
-        });
-        break;
+    if(this.data.currentAwait===1){
+      const pramas={
+        id:e.currentTarget.dataset.item.id
+      }
+      ddUtils.navigateTo({
+        url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+      });
     }
+    if(this.data.currentAwait=== 0 || this.data.currentAwait=== 2){
+      let item = e.target.dataset.item
+      let temp = e.target.dataset.item.type;
+      switch (temp) {
+        case 5:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+          });
+          break;
+      }
+    }
+   
   },
   // 点击列表项查看审批详情
   selectApprovalInfo(e) {

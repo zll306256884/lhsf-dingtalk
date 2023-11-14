@@ -10,8 +10,16 @@ const markers = [
     height: 64,
     iconPath: "/assets/images/map/1-4.png",
     callout: {
-      content: "callout"
-    }
+      content: '项目名称',
+    },
+    "customCallout":{
+      "type": 2,
+      "descList": [{
+        "desc": "项目名称",
+        "descColor": "#333333"
+      }],
+      "isShow": 1
+    },
     // require("../../../../assets/images/map/1-4.png"),
   }
 ];
@@ -100,11 +108,14 @@ Component({
       this.getProjectList();
     },
     onSelectItem(e) {
+      let projectId=e.currentTarget.dataset.item.projectId;
+      let projectName=e.currentTarget.dataset.item.projectName;
       ddUtils.navigateTo({
-        url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(
-          e.currentTarget.dataset.item
-        )}`
-      });
+        url:`/pages/databoard/page/projectInfo/index?projectId=${projectId}&projectName=${projectName}`,
+        // url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(
+        //   e.currentTarget.dataset.item
+        // )}`
+      })
     },
     bindChooseProjectCallBack(data) {
       this.data.params.projectName = data.name;
