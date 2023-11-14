@@ -20,6 +20,7 @@
   border-radius: 8rpx 8rpx 0rpx 0rpx;
   opacity: 1;
   overflow: hidden;
+  /* margin-bottom: 20rpx; */
 }
 
 #projectScenery .listArr .canvasNav .imgShow{
@@ -49,4 +50,17 @@
   font-size: 32rpx;
   font-weight: 500;
   color: #1D1D1F;
+}
+
+/*  */
+#projectScenery .mayflyBox {
+  position: fixed;
+  bottom: 100rpx;
+  right: 30rpx;
+}
+
+#projectScenery .mayflyBox .mayfly{
+  width: 124rpx;
+  height: 108rpx;
+
 }

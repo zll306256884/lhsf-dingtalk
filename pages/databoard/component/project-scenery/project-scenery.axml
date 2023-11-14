@@ -1,8 +1,8 @@
 <view id="projectScenery" class="box-sizing-box">
   <view class="listArr">
-    <view class="part flex f-column">
-      <block a:if="{{listData.length}}">
-        <block a:for="{{listData}}">
+    <block a:if="{{listData.length}}">
+      <view class="part flex f-column" a:for="{{listData}}">
+        <block>
           <view class="canvasNav">
             <block a:if="{{item.fileType===1}}">
               <video class="videoShow" src="{{item.url}}"></video>
@@ -16,11 +16,16 @@
             <view class="online" a:if="{{false}}">在线</view>
           </view>
         </block>
-      </block>
-      <block a:else>
-        <empty title="" message="" image="/assets/images/common/empty.png" />
-      </block>
-    </view>
+      </view>
+    </block>
+    <block a:else>
+      <empty title="" message="" image="/assets/images/common/empty.png" />
+    </block>
+    
+  </view>
+  <!--  -->
+  <view class="mayflyBox">
+    <image class="mayfly" src="/assets/images/progress/callpic.png" />
   </view>
   <!--  -->
 </view>

@@ -38,8 +38,8 @@ Component({
     // 获取基本信息
     getList: function () {
       let param = {
-        // "projectId": this.props.projectId,
-        "projectId": '12019020004',
+        "projectId": this.props.projectId,
+        // "projectId": '12019020004',
         "type": 9 //	9现场进度10效果设计11模型12红线图
       }
       return new Promise((resolve, reject) => {

@@ -33,6 +33,7 @@ Page({
     this.setData({
       projectInfo: params
     })
+    console.log('params',params)
     this.data.navbarData.title = params.projectName
     this.setData({
       navbarData: this.data.navbarData
