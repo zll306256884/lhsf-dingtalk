@@ -3,7 +3,7 @@
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "tabs": "antd-mini/es/Tabs/index",
-    "project-map":"/pages/databoard/component/project-map/project-map"
-    
+    "project-map":"/pages/databoard/component/project-map/project-map",
+    "year-capital-control":"/pages/databoard/component/year-capital-control/year-capital-control"
 }
 }
