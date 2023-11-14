@@ -54,7 +54,7 @@
     </view>
 
     <block a:if="{{ listType === '1' }}">
-      <view class="list flex f-between" a:for="{{ docList }}" a:key="index">
+      <view class="list flex f-between" a:for="{{ docList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
         <view class="flex f-start" style="align-items:center">
           <image class="left-img" mode="scaleToFill" src="{{item.img}}" />
           <view class="center">
@@ -76,7 +76,7 @@
     </block>
 
     <block a:if="{{ listType === '2' }}">
-      <view class="list flex f-between" a:for="{{ conList }}" a:key="index">
+      <view class="list flex f-between" a:for="{{ conList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
         <view class="flex f-start" style="align-items:center">
           <image class="left-img" mode="scaleToFill" src="{{item.img}}" />
           <view class="center">
