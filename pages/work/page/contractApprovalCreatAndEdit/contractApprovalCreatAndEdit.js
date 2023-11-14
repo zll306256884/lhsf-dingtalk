@@ -76,6 +76,29 @@ Page({
   pickerDateRef: null,
 
   onLoad(options) {
+    this.form.rules = {
+      projectName: [{ required: true, message: '请输入' }],
+      projectId: [{ required: true, message: '请选择' }],
+      contractName: [{ required: true, message: '请输入' }],
+      contractNumber: [{ required: true, message: '请输入' }],
+      supplementAgreement: [{ required: true, message: '请选择' }],
+      masterContract: [{ required: true, message: '请选择' }],
+      projectType: [{ required: true, message: '请选择' }],
+      contractNeedTender: [{ required: true, message: '请选择' }],
+      tenderDocumentId: [{ required: true, message: '请选择' }],
+      biddingTypeName: [{ required: true, message: '请选择' }],
+      modeContract: [{ required: true, message: '请选择' }],
+      contractPeriod: [{ required: true, message: '请输入' }],
+      makeSure: [{ required: true, message: '请选择' }],
+      contractAmount: [{ required: true, message: '请输入' }],
+      developmentOrganizationName: [{ required: true, message: '请选择' }],
+      unitPartyName: [{ required: true, message: '请选择' }],
+      unitPartyType: [{ required: true, message: '请选择' }],
+      contractContent: [{ required: true, message: '请输入' }],
+      paymentMethod: [{ required: true, message: '请选择' }],
+      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      applicationTime: [{ required: true, message: '请选择' }]
+    }
     this.getCodeList()
     if(options.id){
       this.setData({
