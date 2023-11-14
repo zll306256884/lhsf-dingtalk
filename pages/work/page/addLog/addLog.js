@@ -116,6 +116,7 @@ Page({
   // 上传
   onSaveUploadImgRef: function (ref) {
     // console.log('图片上传',ref)
+    // ref只有刚进入页面的时候  会触发
     this.uploadImgRefList = ref;
     console.log(this.uploadImgRefList)
     // this.uploadImgRef._getUploadImgId().imgList;

@@ -350,6 +350,7 @@ Page({
     console.log(e);
     // 待办审批
     if (this.data.currentAwait === 0) {
+      console.log('this.data.currentAwait',this.data.currentAwait)
       let item = e.target.dataset.item
       let temp = e.target.dataset.item.type;
       switch (temp) {
