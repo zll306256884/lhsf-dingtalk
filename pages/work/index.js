@@ -348,15 +348,43 @@ Page({
   // 点击列表项查看待办详情
   selectAwaitInfo(e) {
     console.log(e);
-    if(this.data.currentAwait===1){
-      const pramas={
-        id:e.currentTarget.dataset.item.id
+    // 待办审批
+    if (this.data.currentAwait === 0) {
+      let item = e.target.dataset.item
+      let temp = e.target.dataset.item.type;
+      switch (temp) {
+        case 2:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          });
+          break;
+        case 3:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          });
+          break;
+        case 4:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+          });
+        case 5:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+          });
+          break;
+      }
+    }
+    // 待办任务
+    if (this.data.currentAwait === 1) {
+      const pramas = {
+        id: e.currentTarget.dataset.item.id
       }
       ddUtils.navigateTo({
         url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
       });
     }
-    if(this.data.currentAwait=== 0 || this.data.currentAwait=== 2){
+    // 待办请求
+    if (this.data.currentAwait === 2) {
       let item = e.target.dataset.item
       let temp = e.target.dataset.item.type;
       switch (temp) {
@@ -367,7 +395,7 @@ Page({
           break;
       }
     }
-   
+
   },
   // 点击列表项查看审批详情
   selectApprovalInfo(e) {
