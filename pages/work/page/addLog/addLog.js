@@ -26,18 +26,18 @@ Page({
     },
     logContent: '', //日志内容
     logTypeOption: [{
-        name: '普通日志',
-        value: '0'
-      },
-      {
-        name: '重大事件',
-        value: '1'
-      },
+      name: '普通日志',
+      value: '0'
+    },
+    {
+      name: '重大事件',
+      value: '1'
+    },
     ],
   },
   dialogProjectNameRef: null, //项目名称弹框实例
   dialogLogTypeRef: null, //日志类型
-  uploadImgRef: null, // 上传照片
+  uploadImgRefList: null, // 上传照片
   uploadFileRef: null, // 上传附件
 
   onLoad(options) {
@@ -115,10 +115,15 @@ Page({
   // 照片---start
   // 上传
   onSaveUploadImgRef: function (ref) {
-    this.uploadImgRef = ref;
+    // console.log('图片上传',ref)
+    this.uploadImgRefList = ref;
+    console.log(this.uploadImgRefList)
+    // this.uploadImgRef._getUploadImgId().imgList;
+
   },
   onSaveUploadFileRef: function (ref) {
     this.uploadFileRef = ref;
+    console.log('文件上传', ref)
   },
   // 照片----end
 
@@ -130,10 +135,27 @@ Page({
     })
     // console.log(this.data.logData, 'this.data.logData');
     // console.log(this.data.logContent, 'this.data.logContent');
+    let logPhotoList
+    if (this.uploadImgRefList._getUploadImgId().imgList.length) {
+      logPhotoList = this.uploadImgRefList._getUploadImgId().imgList
+    } else {
+      logPhotoList = [];
+    }
+    this.data.logData.logPhotoList = logPhotoList
+    let logFileList
+    if (this.uploadFileRef._getUploadImgId().imgList.length) {
+      logFileList = this.uploadFileRef._getUploadImgId().imgList
+    } else {
+      logFileList = [];
+    }
+    this.data.logData.logFileList = logFileList
     let param = {
       ...this.data.logData,
       'content': this.data.logContent
     }
+
+    console.log('param', param)
+    // return
     request.doPostRequest({
       url: logService.API_CREATE_LOG,
       data: param,
