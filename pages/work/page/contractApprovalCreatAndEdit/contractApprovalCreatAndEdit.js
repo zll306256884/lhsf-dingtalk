@@ -349,8 +349,13 @@ Page({
   staging(){
     this.form.rules = {}
     let params = this.form.getFieldsValue()
+    params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+
     if(this.data.contractId){
       params.id = this.data.contractId
+      params.urlParameter = JSON.stringify({id: this.data.contractId})
+    }else{
+      params.urlParameter = JSON.stringify({})
     }
     console.log('this.data.list',this.data.list);
     params.contractThirdPartyRepList = this.data.list
@@ -390,6 +395,9 @@ Page({
     const params = await this.form.submit();
     if(this.data.contractId){
       params.id = this.data.contractId
+      params.urlParameter = JSON.stringify({id: this.data.contractId})
+    }else{
+      params.urlParameter = JSON.stringify({})
     }
     if (this.data.list && this.data.list.length) {
       this.data.list.map(e => {
@@ -403,7 +411,6 @@ Page({
     params.projectId = this.data.projectId
     params.countersignLeader = this.data.countersignLeader
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
-    params.urlParameter = JSON.stringify({})
 
     params.unitParty = this.data.unitParty
     params.countersignLeader = this.data.countersignLeader
