@@ -117,7 +117,7 @@ Page({
       data,
       success: res => {
         this.data.tabs1[0].count = res.data.waitAuditNum,
-          this.data.tabs1[1].count = res.data.waitAuditNum,
+          this.data.tabs1[1].count = res.data.waitMissionNum,
           this.data.tabs1[2].count = res.data.draftNum,
           this.setData({
             listWait: res.data,

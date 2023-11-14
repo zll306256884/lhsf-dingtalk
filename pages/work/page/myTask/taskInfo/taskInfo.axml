@@ -7,7 +7,7 @@
   <view a:if="{{activeTab===0}}">
   <view class="card" style="margin-top:16rpx">
     <view class="list-item">
-      <view class="item-title single-lines">
+      <view class="item-title single-line">
       {{infoData.title}}
       </view>
       <view class="flex f-row f-between">
@@ -38,7 +38,7 @@
   <view a:if="{{activeTab===1}}">
     <view class="card" a:for="{{infoData.subMissionList}}">
       <view class="list-item">
-        <view class="item-title single-lines">
+        <view class="item-title single-line">
           <view class="{{item.taskStatus===2?'item-status-info':'item-status-sucess'}}" a:if="{{item.taskStatus===2 || item.taskStatus===4}}">{{item.taskStatus===2? '未完成':"已完成"}}</view>
           {{item.executer_dictText}}
         </view>

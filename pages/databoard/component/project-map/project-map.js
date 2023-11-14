@@ -18,6 +18,7 @@ const markers = [
         "desc": "项目名称",
         "descColor": "#333333"
       }],
+      icon1:require("../../../../assets/images/map/1-4.png"),
       "isShow": 1
     },
     // require("../../../../assets/images/map/1-4.png"),
