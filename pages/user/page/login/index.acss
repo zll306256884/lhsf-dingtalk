@@ -11,7 +11,7 @@
 }
 .image {
   width: 100%;
-  height: 12rem;
+  height: 75vh;
 }
 .description{
   font-size: 24rpx;

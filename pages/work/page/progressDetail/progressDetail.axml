@@ -21,15 +21,22 @@
             <view class="spotGreen"></view>
             已完成
           </view>
-          <view class='part flex f-start'><view class="spotOrange"></view>延期</view>
-          <view class='part flex f-start'><view class="spotBlue"></view>进行中</view>
+          <view class='part flex f-start'>
+            <view class="spotOrange"></view>延期</view>
+          <view class='part flex f-start'>
+            <view class="spotBlue"></view>进行中</view>
         </view>
       </view>
       <!--  -->
     </view>
     <!-- 列表 -->
     <view class="listBox">
-      <progress-item listData={{listData}} projectId={{projectId}} formPage='work' ref='progressItemRef' ></progress-item>
+      <block a:if="{{listData.lengtj}}">
+        <progress-item listData={{listData}} projectId={{projectId}} formPage='work' ref='progressItemRef'></progress-item>
+      </block>
+      <block a:else>
+        <empty title="" message="" image="/assets/images/common/empty.png" />
+      </block>
     </view>
   </view>
 </view>

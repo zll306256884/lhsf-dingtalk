@@ -19,7 +19,7 @@
     <list a:if="{{listTask.length}}">
       <list-item>
         <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
-          <view class="item-title single-lines">
+          <view class="item-title single-line">
             {{item.title}}
           </view>
           <view class="flex f-row f-between">
