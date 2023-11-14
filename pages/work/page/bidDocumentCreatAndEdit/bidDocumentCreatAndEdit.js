@@ -46,6 +46,20 @@ Page({
   pickerDateRef: null,
 
   onLoad(options) {
+    this.form.rules = {
+      tenderName: [{ required: true, message: '请输入' }],
+      projectId: [{ required: true, message: '请选择' }],
+      biddingPerson: [{ required: true, message: '请输入' }],
+      tenderingAgencyName: [{required: true, message: '请选择'}],
+      biddingType: [{ required: true, message: '请选择' }],
+      projectType: [{ required: true, message: '请选择' }],
+      tenderAmount: [{ required: true, message: '请输入' }],
+      decisionBasis: [{ required: true, message: '请选择' }],
+      biddingContent: [{ required: true, message: '请输入' }],
+      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      tenderDocumentList: [{required: true,message: '请上传'}],
+      applicationTime: [{ required: true, message: '请选择' }]
+    }
     console.log(options)
     if(options.id){
       this.setData({
@@ -164,6 +178,10 @@ Page({
       }
     })
   },
+  reset(){
+    this.form.reset();
+    ddUtils.navigateBack();
+  },
   //暂存
   staging(){
     this.form.rules = {}
@@ -198,7 +216,9 @@ Page({
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
-    params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
+    if(params.projectId){
+      params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
+    }
     
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader

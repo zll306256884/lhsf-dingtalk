@@ -234,7 +234,7 @@
   </view>
 
 <dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>
-<dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng>
+<dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
 

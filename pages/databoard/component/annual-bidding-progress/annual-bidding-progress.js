@@ -20,6 +20,12 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
+    toProject(e){
+      let {item} = e.currentTarget.dataset
+      ddUtils.navigateTo({
+        url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&type=3`
+      });
+    },
     getData(){
       request.doPostRequest({
         url: apiDataBoardServer.API_TENDER_PROGRESS,

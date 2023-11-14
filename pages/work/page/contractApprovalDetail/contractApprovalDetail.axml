@@ -12,7 +12,7 @@
 <list>
   <list-item extraBrief="{{detailInfo.projectName}}">项目名称</list-item>
   <list-item extraBrief="{{detailInfo.contractName}}">合同名称</list-item>
-  <list-item extraBrief="{{detailInfo.contractName}}">合同号</list-item>
+  <list-item extraBrief="{{detailInfo.contractNumber}}">合同号</list-item>
 </list>
 
 <view class="bottom-space" style="height:16rpx"></view>

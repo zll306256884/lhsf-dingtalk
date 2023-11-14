@@ -162,6 +162,8 @@ Page({
     this.form.addItem(ref);
   },
   bindChooseProjectCallBack(data){
+    console.log(123)
+    console.log(data)
     this.form.setFieldValue('projectName',data.name)
     this.setData({
       projectId: data.id,
