@@ -32,6 +32,11 @@ Page({
     this.data.projectInfo.projectName=option.projectName
     this.data.projectInfo.projectId=option.projectId
     this.data.navbarData.title = option.projectName
+    if(option.type === '3'){
+      this.setData({
+        currentTabIndex: 4
+      })
+    }
     this.setData({
       projectInfo:this.data.projectInfo,
       navbarData: this.data.navbarData
