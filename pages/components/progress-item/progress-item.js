@@ -18,7 +18,7 @@ Component({
       console.log('e', e)
       // 工作台的节点
       if (this.props.formPage === 'work') {
-        // console.log('工作台的节点')
+        console.log('工作台的节点')
         let id = e.target.dataset.planId
         let type = e.target.dataset.type
         let name = e.target.dataset.name
@@ -30,15 +30,15 @@ Component({
       }
       // 数据看板的节点
       if (this.props.formPage === 'databoard') {
-        // console.log('数据看板的节点')
+        console.log('数据看板的节点')
+        let taskId = e.target.dataset.planId
         // let id = e.target.dataset.planId
         // let type = e.target.dataset.type
         // let name = e.target.dataset.name
         // let projectId = e.target.dataset.projectId
         // // return
         dd.navigateTo({
-          // 
-          url: '/pages/databoard/page/progressTaskDetails/progressTaskDetails'
+          url: '/pages/databoard/page/progressTaskDetails/progressTaskDetails?taskId=' + taskId,
         })
       }
     },
