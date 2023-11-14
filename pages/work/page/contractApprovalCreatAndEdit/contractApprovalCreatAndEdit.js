@@ -109,6 +109,7 @@ Page({
     this.dialogScreenConstructUnit2 = ref
   },
   chooseTime(){
+    my.hideKeyboard();
     if(this.pickerDateRef) this.pickerDateRef._showDialog()
   },
   chooseProject(){

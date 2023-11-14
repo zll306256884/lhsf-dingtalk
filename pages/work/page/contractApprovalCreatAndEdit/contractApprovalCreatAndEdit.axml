@@ -4,7 +4,6 @@
   label="标题"
   name="title"
   placeholder="自动生成"
-  allowClear
   disabled
   ref="handleRef" />
 <form-input
@@ -17,7 +16,6 @@
 <form-input
   label="合同名称"
   name="contractName"
-  validateStatus="default"
   placeholder="请输入"
   allowClear
   maxLength="100"
@@ -27,7 +25,6 @@
 <form-input
   label="合同号"
   name="contractNumber"
-  validateStatus="default"
   placeholder="请输入"
   allowClear
   maxLength="50"
@@ -89,9 +86,8 @@
   ref="handleRef" />
 
   <form-input
-  label="合同工期"
+  label="合同工期(天)"
   name="contractPeriod"
-  validateStatus="default"
   placeholder="请输入"
   type="number"
   allowClear
@@ -107,7 +103,7 @@
   <form-input
   name="contractAmount"
   validateStatus="default"
-  placeholder="请输入"
+  placeholder="请输入合同金额，注意“万元”单位"
   type="number"
   allowClear
   style="text-align:left"

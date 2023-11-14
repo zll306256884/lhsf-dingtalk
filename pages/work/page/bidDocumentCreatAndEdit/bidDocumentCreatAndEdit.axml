@@ -12,7 +12,6 @@
 <form-input
   label="标题"
   name="title"
-  allowClear
   disabled
   ref="handleRef" />
 <form-picker
@@ -36,13 +35,17 @@
   allowClear
   maxLength="10"
   ref="handleRef" />
-<form-input
-  label="招标代理单位"
-  placeholder="请选择"
-  labelWidth="200rpx"
-  name="tenderingAgencyName"
-  onFocus="chooseTenderingAgency"
-  ref="handleRef" />
+
+  <view catchTap="chooseTenderingAgency">
+    <form-input
+    label="招标代理单位"
+    placeholder="请选择"
+    labelWidth="220rpx"
+    name="tenderingAgencyName"
+    disabled
+    ref="handleRef" />
+  </view>
+
 <form-picker
   label="招标方式"
   arrow
@@ -107,22 +110,26 @@
   <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
 </view>
 
-<form-input
+<view catchTap="chooseLeader">
+  <form-input
   label="选择会签分管领导"
   labelWidth="280rpx"
   name="countersignLeader_dictText"
   placeholder="请输入"
-  allowClear
-  onFocus="chooseLeader"
+  disabled
   ref="handleRef" />
+</view>
 
+<view catchTap="chooseTime">
   <form-input
-  label="申请日期"
-  name="applicationTime"
-  placeholder="请选择"
-  allowClear
-  onFocus="chooseTime"
-  ref="handleRef" />
+    label="申请日期"
+    name="applicationTime"
+    placeholder="请选择"
+    disabled
+    placeholder-style="color:#000;opacity:1;"
+    ref="handleRef" />
+</view>
+  
 
 <view class="buttons flex f-between">
   <button class="btn" onTap="reset">取消</button>
