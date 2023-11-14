@@ -14,7 +14,7 @@
       支付总额 (万元) 
      </view> 
      <view class="sum">
-      113,496.12
+      {{infoData.payPrice}}
      </view>
     </view>
     <view class="pay">
@@ -55,7 +55,11 @@
       <!-- <tabs
         items="{{items}}"
         type="capsule" /> -->
-    </view>  
+    </view> 
+    <view class="search flex f-start">
+      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+      <input  placeholder="请输入搜索内容" onConfirm="searchDocList"></input>
+    </view>
    <view a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="clickCapital">
     <list>
       <list-item

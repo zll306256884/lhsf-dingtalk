@@ -1,7 +1,15 @@
-<view class="container">
+<view >
   <view class="top-money">
-    <image class="image" mode="scaleToFill" src="/assets/images/databoard/card-bg@2x.png" />
+    <image class="image" mode="scaleToFill" src="/assets/images/databoard/bg2x.png" />
    <view class="content-money">
+    <view class="top-tabs">
+      <view class="top-item-label {{typePage===1?'isActiveBacg':''}}" data-id="{{1}}" onTap="topClick">
+        年度
+      </view>
+      <view class="top-item-label {{typePage===2?'isActiveBacg':''}}" data-id="{{2}}" onTap="topClick">
+        总体
+      </view>
+    </view>
     <view class="money-title">
       预算总额（万元）
     </view>
@@ -14,7 +22,7 @@
       支付总额 (万元) 
      </view> 
      <view class="sum">
-      113,496.12
+      {{infoData.payPrice}}
      </view>
     </view>
     <view class="pay">
@@ -46,36 +54,30 @@
   </view>
   <view class="bottom-content"> 
     <view class="cont-tabs">
-      <view class="item-label {{checkoutPage===1?'isActive':''}}" data-id="{{1}}" onTap="oclick">
-        支付
-      </view>
       <view class="item-label {{checkoutPage===2?'isActive':''}}" data-id="{{2}}" onTap="oclick">
-        变更
+        在途支付
       </view>
-      <!-- <tabs
-        items="{{items}}"
-        type="capsule" /> -->
+      <view class="item-label {{checkoutPage===4?'isActive':''}}" data-id="{{4}}" onTap="oclick">
+       实际支付
+      </view>
+      <view class="item-label {{checkoutPage===5?'isActive':''}}" data-id="{{5}}" onTap="oclick">
+        累计变更
+      </view>
     </view>  
+    <view class="search flex f-start">
+      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+      <input  placeholder="请输入搜索内容" onConfirm="searchDocList"></input>
+    </view>
    <view a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="clickCapital">
     <list>
       <list-item
-      arrow="right"
      >
      <view class="plan-money">
-     <view class="images">
-       <image mode="scaleToFill" src="{{item.img}}" />
-     </view>
      <view class="projectName">
-       {{item.projectName}}
+       {{item.contractName}}
       <view class="pay-text">
-      <text>{{checkoutPage===1?'支付额:':'变更额:'}}</text>
-      <text style="float:right">{{checkoutPage===1?'支付项:':'变更项:'}}</text>
-      </view>
-      <view class="pay-text">
-        <text a:if="{{checkoutPage===1}}">{{item.payAmount?item.payAmount:'-'}}</text>
-        <text a:else>{{item.changeAmount?item.changeAmount:'-'}}</text>
-        <text a:if="{{checkoutPage===1}}" style="float:right">{{item.payNum?item.payNum:''}}个</text>
-        <text a:else style="float:right">{{item.changeNum?item.changeNum:''}}个</text>
+      <view >{{checkoutPage===2||checkoutPage===4?'支付金额：':'变更金额：'}} <text>{{checkoutPage===2||checkoutPage===4?item.payAmount:item.changeAmount}}</text> </view>
+      <view >批准日期：<text>{{item.createTime?item.createTime.substr(0,10):'-'}}</text></view>
       </view>
      </view>
      </view>

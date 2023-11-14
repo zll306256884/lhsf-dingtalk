@@ -1,8 +1,8 @@
-.container .top-money{
+ .top-money{
   margin: 0 24rpx 48rpx 24rpx;
 }
 .top-money{
-  height: 520rpx;
+  height: 600rpx;
   position: relative;
 }
 .image{
@@ -10,7 +10,7 @@
   height: 100%;
 }
 .content-money{
-  padding: 40rpx;
+  padding: 20rpx 40rpx 40rpx 40rpx;
   position: absolute;
   top: 0;
   left: 0;
@@ -62,20 +62,8 @@ opacity: 1;
 .plan-money{
   display: flex;
 }
-.images{
-  margin-right: 32rpx;
-width: 162rpx;
-height: 116rpx;
-border-radius: 12rpx 12rpx 12rpx 12rpx;
-opacity: 1;
-}
-.images image{
-  width: 100%;
-  height: 100%;
-  border-radius: 12rpx 12rpx 12rpx 12rpx;
-}
 .projectName{
-  width: 374rpx;
+  width: 630rpx;
   font-weight: 600;
   color: #1D1D1F;
   font-size: 32rpx;
@@ -83,13 +71,17 @@ opacity: 1;
 .pay-text{
   margin-top:8rpx;
   font-size: 24rpx;
-  width: 304rpx;
+  width: 100%;
+  display: flex;
   color: #909399;
 font-weight: 400;
 }
+.pay-text view{
+  width: 280rpx;
+}
 .cont-tabs{
   padding: 0 6rpx;
-  width: 220rpx;
+  width: 492rpx;
   height: 72rpx;
   align-items: center;
   text-align: center;
@@ -99,26 +91,35 @@ font-weight: 400;
   display: flex;
 }
 .item-label{
-  width: 105rpx;
+  width: 160rpx;
   height: 60rpx;
   line-height: 60rpx;
   border-radius: 4rpx 4rpx 4rpx 4rpx;
   opacity: 1;
 }
-/* .cont-tabs view:nth-child(1){
-  width: 104rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 4rpx 4rpx 4rpx 4rpx;
-  opacity: 1;
-}
-.cont-tabs view:nth-child(2){
-  width: 104rpx;
-  height: 60rpx;
-  line-height: 60rpx;
-  border-radius: 4rpx 4rpx 4rpx 4rpx;
-  opacity: 1;
-} */
 .isActive{
   background: #FFFFFF;
+}
+.top-tabs{
+  margin-bottom: 22rpx;
+  padding: 0 6rpx;
+  width: 220rpx;
+  height: 72rpx;
+  display: flex;
+  align-items: center;
+  text-align: center;
+background: rgba(0,0,0,0.1);
+border-radius: 8rpx 8rpx 8rpx 8rpx;
+opacity: 1;
+}
+.top-item-label{
+  color: #FFFFFF;
+  width: 220rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+}
+.isActiveBacg{
+  background: #4B90F1;
 }

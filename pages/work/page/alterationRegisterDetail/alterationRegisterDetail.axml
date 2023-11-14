@@ -37,7 +37,7 @@
   <view style="margin-top:20rpx">
     <list-item extraBrief="{{infoData.person_dictText}}">抄送人员</list-item>
   </view>
-  <view class="flex-display flex-align-center btn-wrap">
+  <view a:if="{{isShow}}" class="flex-display flex-align-center btn-wrap">
     <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
     <button class="flex1 btn active" catchTap="editTap">编辑</button>
 </view>

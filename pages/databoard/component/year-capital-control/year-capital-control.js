@@ -43,13 +43,18 @@ Component({
       this.getList()
     }
   },
-   getList(){
+  searchDocList(e){
+    console.log(e);
+    this.getList(e.detail.value)
+    this.getAlteration(e.detail.value)
+  },
+   getList(name){
     request.doPostRequest({
       url: confing.API_PAY_POST,
       data: {
         pageNum:1,
         pageSize:10,
-        projectName:''
+        projectName:name
       },
       success: res => {
         console.log(res.data)
@@ -59,13 +64,13 @@ Component({
       }
     })
    },   
-   getAlteration(){
+   getAlteration(proName){
     request.doPostRequest({
       url: confing.API_ALTER_POST,
       data: {
         pageNum:1,
         pageSize:10,
-        projectName:''
+        projectName:proName
       },
       success: res => {
         console.log(res.data)
@@ -80,7 +85,7 @@ Component({
      console.log(value);
     let item = value.target.dataset.item
    ddUtils.navigateTo({
-    url: `/pages/databoard/page/projectInfo/index?id=${item.projectId}&projectName=${item.projectName}&current=${3}`
+    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}`
   });
    }
   },
