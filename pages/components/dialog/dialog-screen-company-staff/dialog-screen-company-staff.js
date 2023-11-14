@@ -105,34 +105,34 @@ Component({
 
         bindInputChange: function(value) {
           this.screenDangerousName = value;
-          request.doPostRequest({
-            url: config.API_OA_COMPANY_NAME,
-            data: {
-              username:value
-            },
-            success: res => {
-              console.log(res,111111111);
-                let list = res.data || [];
-
-                if (!isEmptyArray(list))
-                    list[0].isCheck = true;
-
-                this.tempDataList = JSON.parse(JSON.stringify(list));
-
-                this.setData({
-                    showDialog: true,
-                    dataList: list
-                })
-                console.log(this.data.dataList,);
-            }
-        });
       },
       
-    onSearchConfirm: function(value) {
-      this.data.screenDangerousName = value;
+      onSearchConfirm: function(value) {
+        console.log(value)
+        this.data.screenDangerousName = value;
+        // this._showDialog();
+        request.doPostRequest({
+          url: config.API_OA_COMPANY_NAME,
+          data: {
+            username:value
+          },
+          success: res => {
+            console.log(res,111111111);
+              let list = res.data || [];
 
-      this._showDialog();
-  },
+              if (!isEmptyArray(list))
+                  list[0].isCheck = true;
+
+              this.tempDataList = JSON.parse(JSON.stringify(list));
+
+              this.setData({
+                  showDialog: true,
+                  dataList: list
+              })
+              console.log(this.data.dataList,);
+          }
+        });
+      },
         _bindItemChooseCompanyChange: function (indexArray) {
             if (isEmptyArray(indexArray)) return;
 

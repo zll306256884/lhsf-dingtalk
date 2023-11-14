@@ -11,13 +11,15 @@ Page({
       title: '我的请求'
     },
     tabList: [{
-        name: '待办请求',
-        total:0
+        title: '待办请求',
+        total:0,
+        badge: true,
       },{
-        name: '进行中请求',
-        total:0
+        title: '进行中请求',
+        total:0,
+        badge: true,
       },{
-        name: '已办请求',
+        title: '已办请求',
         total:0
       },
     ],
@@ -184,9 +186,9 @@ Page({
         list[0].total = res.data.waitNum
         list[1].total = res.data.handleNum
         console.log(list);
-        // this.setData({
-        //   tabList: list
-        // })
+        this.setData({
+          tabList: list
+        })
       }
     })
   },

@@ -22,7 +22,17 @@ Page({
       tenderDocumentId: [{ required: true, message: '请选择' }],
       biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
-      contractPeriod: [{ required: true, message: '请输入' }],
+      contractPeriod: [
+        { required: true, message: '请输入' },
+        (form) => ({
+          async validator(_, value) {
+            if (!value) {
+              return;
+            }
+            throw new Error('工期只能为整数(最大五位数)');
+          },
+        }),
+      ],
       makeSure: [{ required: true, message: '请选择' }],
       contractAmount: [{ required: true, message: '请输入' }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
@@ -88,7 +98,17 @@ Page({
       tenderDocumentId: [{ required: true, message: '请选择' }],
       biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
-      contractPeriod: [{ required: true, message: '请输入' }],
+      contractPeriod: [
+        { required: true, message: '请输入' },
+        (form) => ({
+          async validator(_, value) {
+            if (!value || (value=value.replace(/^[1-9]\d{0,4}$/,''))) {
+              return;
+            }
+            throw new Error('工期只能为整数(最大五位数)');
+          },
+        }),
+      ],
       makeSure: [{ required: true, message: '请选择' }],
       contractAmount: [{ required: true, message: '请输入' }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
@@ -366,8 +386,15 @@ Page({
     });
   },
   reset(){
-    this.form.reset();
-    ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "确认取消吗?",
+      success: res => {
+        if (res.confirm) {
+          this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
   },
   staging(){
     this.form.rules = {}

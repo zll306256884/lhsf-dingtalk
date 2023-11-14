@@ -5,6 +5,8 @@
     "list": "antd-mini/es/List/index",
     "list-item": "antd-mini/es/List/ListItem/index",
     "error-view": "/pages/components/error-view/error-view",
-    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter"
+    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
+    "tabs": "antd-mini/es/Tabs/index",
+    "badge": "antd-mini/es/Badge/index"
   }
 }
