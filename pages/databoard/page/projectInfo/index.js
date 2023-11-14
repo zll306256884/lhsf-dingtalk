@@ -24,8 +24,8 @@ Page({
         title: "工作日志"
       }
     ],
-    currentTabIndex:0,
-    projectInfo:{},
+    currentTabIndex: 0,
+    projectInfo: {},
   },
   onLoad(option) {
     const params = JSON.parse(option.json)
@@ -33,14 +33,14 @@ Page({
     this.setData({
       projectInfo: params
     })
-    this.data.navbarData.title= params.projectName
+    this.data.navbarData.title = params.projectName
     this.setData({
-      navbarData:this.data.navbarData
+      navbarData: this.data.navbarData
     })
   },
-  onTabChange(e){
+  onTabChange(e) {
     this.setData({
-      currentTabIndex:e
+      currentTabIndex: e
     })
   },
 });
