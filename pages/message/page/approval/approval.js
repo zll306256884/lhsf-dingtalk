@@ -149,7 +149,7 @@ Page({
       "asc": true,
       "pageNum": 1,
       "pageSize": 1000,
-      "account": "admin",
+      "account": app.globalData.userInfo.userAccount,
       "userName": "",
       // "belongModule": this.data.options[0].value,//事项类型
       // "userName": this.data.options[1].value,//申请人
@@ -181,10 +181,22 @@ Page({
   toDetail(e) {
     console.log(e);
     let temp = e.currentTarget.dataset.item.belongModule
+    //1-进度计划 2-招标文件会签 3-合同审批流程 4-款项支付 5-项目资金计划 6-生态伙伴
     let id = e.target.dataset.item.keyId
     let projectId = e.target.dataset.item.projectId
     let showType = e.target.dataset.item.showType
+    let examineId = e.target.dataset.item.id //审批组件用
     switch (temp) {
+      case 2:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+        });
+        break;
+      case 3:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+        });
+        break;
       case 4:
           ddUtils.navigateTo({
             url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`

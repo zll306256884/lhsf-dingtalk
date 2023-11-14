@@ -6,6 +6,7 @@
     "icon": "antd-mini/es/Icon/index",
     "input": "antd-mini/es/Input/index",
     "button": "antd-mini/es/Button/index",
+    "empty": "antd-mini/es/Empty/index",
     "badge": "antd-mini/es/Badge/index"
   }
 }

@@ -3,6 +3,8 @@
 <tabs items="{{tabs}}" current="{{currentTabIndex}}" onChange="onTabChange"/>
 <!-- <view onTap="tapName">点击</view> -->
 <project-map a:if="{{currentTabIndex === 0}}" showPage="{{currentTabIndex === 0}}"/>
+
+<annual-bidding-progress a:if="{{currentTabIndex === 2}}" />
 <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
 <year-capital-control a:if="{{currentTabIndex === 1}}"></year-capital-control>
 </view>

@@ -66,9 +66,9 @@ Component({
     },
     // 点击确认按钮
     _bindSureTap(){
-      this.props.onBindSureTap({
-        options:this.data.options
-      })
+      // this.props.onBindSureTap({
+      //   options:this.data.options
+      // })
       this.props.onBindSureTap(this.data.options)
       console.log('this.data.options',this.data.options);
     },

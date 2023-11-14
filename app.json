@@ -26,7 +26,6 @@
     "pages/work/page/projectCapital/capitalPlan/capitalPlan",
     "pages/work/page/projectCapital/fundParticulars/fundParticulars",
     "pages/work/page/projectInfo/projectInfo",
-    "pages/work/page/alterationRegister/alterationRegister",
     "pages/work/page/myTask/taskList/list",
     "pages/work/page/myTask/taskAdd/taskAdd",
     "pages/work/page/myTask/taskInfo/taskInfo",
@@ -43,8 +42,8 @@
     "pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail",
     "pages/databoard/page/projectInfo/index",
     "pages/work/page/requestProgressDetail/requestProgressDetail",
-    "pages/databoard/page/annualBiddingProgress/annualBiddingProgress",
-    "pages/databoard/page/progressTaskDetails/progressTaskDetails"
+    "pages/databoard/page/progressTaskDetails/progressTaskDetails",
+    "pages/work/page/requestProgressDetail/requestProgressDetail"
   ],
   "window": {
     "transparentTitle": "always",

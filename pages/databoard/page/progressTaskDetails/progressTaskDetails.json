@@ -6,6 +6,7 @@
     "list": "antd-mini/es/List/index",
     "list-item": "antd-mini/es/List/ListItem/index",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
-    "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input"
+    "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
+    "ant-button": "antd-mini/es/Button/index"
   }
 }

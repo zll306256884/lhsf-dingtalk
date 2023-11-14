@@ -1,4 +1,17 @@
-
+.card-tabs{
+  position: fixed;
+  top:84px
+}
+.ant-tabs-bar-scroll-view {
+  justify-content: flex-start;
+  height: 88rpx;
+}
+.ant-tabs-bar-item {
+  margin-right: 40rpx;
+  font-weight: 400;
+  color: #606266;
+  font-size: 28rpx;
+}
 .search-bar {
 width: 100%;
 height: 68rpx;
@@ -14,6 +27,10 @@ background: #F7F8FA;
 }
 .search-bar-focus {
   border-color: #1677ff;
+}
+.card-list{
+  margin-top:112px;
+  height: 100%;
 }
 .list-item {
   padding: 24rpx 0;
@@ -76,7 +93,7 @@ background: #FFF2E6;
   }
   .buttons {
     width: 100%;
-    position: absolute;
+    position: fixed;
     box-sizing: border-box;
     bottom:0;
     background: #ffffff;

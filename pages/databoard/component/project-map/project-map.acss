@@ -14,12 +14,11 @@
   z-index: 99;
 }
 .search-list{
-  width: 80rpx;
-  height: 114rpx;
+  width: 128rpx;
+  height: 135rpx;
   position: absolute;
-  top: 68%;
+  top: 65%;
   left:26rpx;
-  background-size: contain;
   z-index: 99;
 }
 .status-list .ant-tabs-bar {
@@ -27,40 +26,75 @@
 }
 .status-list .ant-tabs-bar-capsule-title {
   margin-right: 24rpx;
-}
-.status-list .ant-tabs-bar-capsule-title {
   background-color: #fff;
 }
-/* .status-list .ant-tabs-bar-item::before {
-  display: block;
+
+
+.status-list #ant-tabs-bar-item-5-1 .ant-tabs-bar-capsule-title::before {
+  content: "";
+  display: inline-block;
   width: 6px;
   height: 6px;
   background: #26b76f;
   border-radius: 50%;
   margin-right: 8px;
-} */
+  margin-bottom: 4rpx
+}
+.status-list #ant-tabs-bar-item-5-2 .ant-tabs-bar-capsule-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #F53F3F;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+.status-list #ant-tabs-bar-item-5-3 .ant-tabs-bar-capsule-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #FFC100 ;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+.status-list #ant-tabs-bar-item-5-4 .ant-tabs-bar-capsule-title::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #1A6AFF ;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+
 .status-list
   .ant-tabs-bar-capsule.ant-tabs-bar-active
   .ant-tabs-bar-capsule-title {
+  position: relative;
   color: #1d1d1f;
   background-color: #fff;
   border: 2rpx solid #1a6aff;
+  line-height: 48rpx;
+  padding:0 16rpx
 }
-/* .status-list .ant-tabs-bar-capsule.ant-tabs-bar-active::after{
-  background-image: url("../../../../assets/images/map/selected.png");
+.status-list
+  .ant-tabs-bar-capsule.ant-tabs-bar-active .ant-tabs-bar-capsule-title::after{
+  content: "";
+  width: 28rpx;
+  height: 28rpx;
+  display: inline-block;
+  position: absolute;
+  right: -2rpx;
+  bottom: -2rpx;
+  /* background: #1a6aff; */
+  background: url("/assets/images/map/selected.png");
+  background-size: 100% 100%;
   z-index:100
-} */
-/* .status-item{
-width: 166rpx;
-height: 48rpx;
-background: #fff;
-border-radius: 24rpx;
-font-size: 24rpx;
-font-weight: 400;
-color: #1D1D1F;
-text-align: center;
-line-height: 40rpx;
-} */
+}
 .status-item .status-count {
   font-weight: 600;
 }

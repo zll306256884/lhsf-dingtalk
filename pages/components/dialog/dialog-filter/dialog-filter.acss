@@ -46,15 +46,15 @@
   display: inline-block;
   position: relative;
   text-align: center;
-  padding: 0rpx 30rpx;
+  padding: 0rpx 16rpx;
   box-sizing: border-box;
   margin-right: 20rpx;
   margin-bottom: 20rpx;
-  height: 50rpx;
+  height: 56rpx;
   border-radius: 8rpx;
   font-size: 28rpx;
   font-weight: 400;
-  line-height: 50rpx;
+  line-height: 56rpx;
 }
 
 .a-tag-normal {
@@ -109,23 +109,24 @@ line-height: 100rpx;
 }
 
 .cancel,.sure{
-width: 216rpx;
-height: 80rpx;
-background: #FFFFFF;
-border-radius: 8rpx;
-color: #323233;
-opacity: 1;
-border: 2rpx solid #EBEDF0;
-padding:10rpx 40rpx;
-font-size: 32rpx;
-font-weight: 400;
-line-height: 80rpx;
-text-align: center;
+  width: 216rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx;
+  color: #323233;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  padding:10rpx 40rpx;
+  font-size: 32rpx;
+  font-weight: 400;
+  line-height: 80rpx;
+  text-align: center;
+  padding: 0;
 }
 .sure{
-color: #FFFFFF;
-background: #1A6AFF;
-margin-left:30rpx
+  color: #FFFFFF;
+  background: #1A6AFF;
+  margin-left:30rpx
 }
 .reset{
 color: #1A6AFF;

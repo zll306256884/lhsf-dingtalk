@@ -4,7 +4,9 @@
     "tabs": "antd-mini/es/Tabs/index",
     "icon": "antd-mini/es//Icon/index",
     "project-progress":"/pages/databoard/component/project-progress/project-progress",
-    "project-scenery":"/pages/databoard/component/project-scenery/project-scenery"
-
-}
+    "project-scenery":"/pages/databoard/component/project-scenery/project-scenery",
+    "project-info-map":"/pages/databoard/component/project-info-map/project-info-map",
+    "project-bidding-progress": "../../component/project-bidding-progress/project-bidding-progress",
+    "invest-control":"../../component/invest-control/invest-control"
+  }
 }

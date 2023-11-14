@@ -1,0 +1,101 @@
+<view class="annual-bidding-progress">
+  <view class="top-content">
+    <view class="top-top">
+      <view class="top flex f-start">
+          <view style="width:48.15%">
+            <view class="text">招标标的总额 (万元)</view>
+            <view class="number">{{dataInfo.tenderAllPrice}}</view>
+          </view>
+          <view>
+            <view class="text">招标项总量 (个)</view>
+            <view class="number">{{dataInfo.allNum}}</view>
+          </view>
+      </view>
+
+      <view class="center flex f-between">
+        <view>
+          <view class="text">市级年度计划 (个)</view>
+          <view class="number">{{dataInfo.cityPlanNum}}</view>
+        </view>
+        <view>
+          <view class="text">集团年度计划 (个)</view>
+          <view class="number">{{dataInfo.groupPlanNum}}</view>
+        </view>
+        <view>
+          <view class="text">子公司年度计划 (个)</view>
+          <view class="number">{{dataInfo.subsidiaryPlanNum}}</view>
+        </view>
+      </view>
+
+      <view class="line"></view>
+
+      <view class="bottom flex f-start">
+        <view style="width:48.15%">
+          <view class="text">合同总额 (万元)</view>
+          <view class="number">{{dataContractInfo.allContractPrice}}</view>
+        </view>
+        <view>
+          <view class="text">招标合同总数 (个)</view>
+          <view class="number">{{dataContractInfo.contractNum}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="bottom-content">
+    <view class="b-top flex f-around">
+      <view class="text {{listType === '1'?'active':''}}" data-index="1" catchTap="listChange">招标文件</view>
+      <view class="text {{listType === '2'?'active':''}}" data-index="2" catchTap="listChange">合同</view>
+    </view>
+
+    <view class="search flex f-start">
+      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+      <input placeholder="请输入项目名称" onConfirm="searchList"></input>
+    </view>
+
+    <block a:if="{{ listType === '1' }}">
+      <view class="list flex f-between" a:for="{{ docList }}" a:key="index">
+        <view class="flex f-start" style="align-items:center">
+          <image class="left-img" mode="scaleToFill" src="{{item.img}}" />
+          <view class="center">
+            <view class="name">{{item.projectName}}</view>
+            <view class="flex f-between">
+              <view>
+                <view class="text">招标总额:</view>
+                <view class="number">{{item.tenderAmount || 0}}万元</view>
+              </view>
+              <view>
+                <view class="text">招标项:</view>
+                <view class="number">{{item.tenderNum || 0}}个</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+      </view>
+    </block>
+
+    <block a:if="{{ listType === '2' }}">
+      <view class="list flex f-between" a:for="{{ conList }}" a:key="index">
+        <view class="flex f-start" style="align-items:center">
+          <image class="left-img" mode="scaleToFill" src="{{item.img}}" />
+          <view class="center">
+            <view class="name">{{item.projectName}}</view>
+            <view class="flex f-between">
+              <view>
+                <view class="text">合同总额:</view>
+                <view class="number">{{item.contractAmount || 0}}万元</view>
+              </view>
+              <view>
+                <view class="text">合同数:</view>
+                <view class="number">{{item.contractNum || 0}}个</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+      </view>
+    </block>
+    
+  </view>
+</view>
