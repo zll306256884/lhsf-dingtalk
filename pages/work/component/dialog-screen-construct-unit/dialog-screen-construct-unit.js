@@ -77,14 +77,15 @@ Component({
      * 组件的方法列表
      */
     methods: {
-      getEcological(){
+      getEcological(name){
         request.doPostRequest({
           url: projectService.API_CURRENTUNIT,
           data: {
             pageSize: 9999,
             pageNum: 1,
             unitTypeId: '1710172427167727616',
-            proId: this.props.projectId
+            proId: this.props.projectId,
+            unitName: name
           },
           success: res => {
             this.setData({

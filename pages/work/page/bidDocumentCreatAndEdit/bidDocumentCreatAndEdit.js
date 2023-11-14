@@ -179,8 +179,15 @@ Page({
     })
   },
   reset(){
-    this.form.reset();
-    ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "确认取消吗?",
+      success: res => {
+        if (res.confirm) {
+          this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
   },
   //暂存
   staging(){
