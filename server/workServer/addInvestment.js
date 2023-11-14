@@ -21,4 +21,16 @@ module.exports = {
     API_PAY_DETAIL_POST:API_HOST+ '/investment/icMeasurementPaymentEngineeringDetailed/selectById',
     // 竣工结算详情
     API_BE_DETAIL_POST:API_HOST+ '/investment/completionSettlement/selectById',
+    // 资金管控
+    API_MONEY_POST:API_HOST + '/large-screen/amountControl/statisticsAmountControl',
+    // 支付金额
+    API_PAY_POST:API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/projectIcMeasurementPaymentEngineeringDetailed',
+    // 变更金额
+    API_ALTER_POST:API_HOST + '/investment/changeManagement/projectChangeManagement',
+    // 项目资金管控
+    API_CONTROL_POST:API_HOST + '/investment/investmentControlFund/investmentControlFund',
+     // 项目资金管控支付
+     API_ROUTE_POST:API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/page',
+      // 项目资金管控变更
+      API_CHANGE_POST:API_HOST + '/investment/changeManagement/page'
 }

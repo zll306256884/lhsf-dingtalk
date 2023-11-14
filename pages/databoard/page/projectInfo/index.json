@@ -7,6 +7,7 @@
     "project-scenery":"/pages/databoard/component/project-scenery/project-scenery",
     "log-work":"/pages/databoard/component/log-work/log-work",
     "project-info-map":"/pages/databoard/component/project-info-map/project-info-map",
-    "project-bidding-progress": "../../component/project-bidding-progress/project-bidding-progress"
+    "project-bidding-progress": "../../component/project-bidding-progress/project-bidding-progress",
+    "invest-control":"../../component/invest-control/invest-control"
   }
 }

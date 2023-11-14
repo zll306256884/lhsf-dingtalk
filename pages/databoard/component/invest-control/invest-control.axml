@@ -1,0 +1,89 @@
+<view >
+  <view class="top-money">
+    <image class="image" mode="scaleToFill" src="/assets/images/databoard/bg2x.png" />
+   <view class="content-money">
+    <view class="top-tabs">
+      <view class="top-item-label {{typePage===1?'isActiveBacg':''}}" data-id="{{1}}" onTap="topClick">
+        年度
+      </view>
+      <view class="top-item-label {{typePage===2?'isActiveBacg':''}}" data-id="{{2}}" onTap="topClick">
+        总体
+      </view>
+    </view>
+    <view class="money-title">
+      预算总额（万元）
+    </view>
+    <view class="budget-money">
+      {{infoData.budgetPrice?infoData.budgetPrice:'-'}}
+    </view>
+    <view class="bo-money">
+    <view class="pay">
+     <view  class="sun-text" >
+      支付总额 (万元) 
+     </view> 
+     <view class="sum">
+      {{infoData.payPrice}}
+     </view>
+    </view>
+    <view class="pay">
+      <view class="sun-text">
+       变更总额 (万元) 
+      </view> 
+      <view class="sum">
+       {{infoData.updatePrice?infoData.updatePrice:"-"}}
+      </view>
+     </view>
+     <view class="pay">
+      <view class="sun-text">
+       在途支付 (万元) 
+      </view> 
+      <view class="sum">
+       {{infoData.auditingPrice?infoData.auditingPrice:'-'}}
+      </view>
+     </view>
+     <view class="pay">
+      <view class="sun-text">
+       实际支付 (万元) 
+      </view> 
+      <view class="sum">
+      {{infoData.actualPayPrice?infoData.actualPayPrice:'-'}}
+      </view>
+     </view>
+    </view> 
+  </view>
+  </view>
+  <view class="bottom-content"> 
+    <view class="cont-tabs">
+      <view class="item-label {{checkoutPage===2?'isActive':''}}" data-id="{{2}}" onTap="oclick">
+        在途支付
+      </view>
+      <view class="item-label {{checkoutPage===4?'isActive':''}}" data-id="{{4}}" onTap="oclick">
+       实际支付
+      </view>
+      <view class="item-label {{checkoutPage===5?'isActive':''}}" data-id="{{5}}" onTap="oclick">
+        累计变更
+      </view>
+    </view>  
+    <view class="search flex f-start">
+      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+      <input  placeholder="请输入搜索内容" onConfirm="searchDocList"></input>
+    </view>
+   <view a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="clickCapital">
+    <list>
+      <list-item
+     >
+     <view class="plan-money">
+     <view class="projectName">
+       {{item.contractName}}
+      <view class="pay-text">
+      <view >{{checkoutPage===2||checkoutPage===4?'支付金额：':'变更金额：'}} <text>{{checkoutPage===2||checkoutPage===4?item.payAmount:item.changeAmount}}</text> </view>
+      <view >批准日期：<text>{{item.createTime?item.createTime.substr(0,10):'-'}}</text></view>
+      </view>
+     </view>
+     </view>
+    </list-item>
+    </list>
+    <divider/>
+   </view> 
+  </view>
+</view>

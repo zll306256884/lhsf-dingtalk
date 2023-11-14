@@ -8,14 +8,17 @@ Page({
   },
   infoData:{},
   id:'',
+  isShow:true
   },
   uploadContractImage: null,
   onLoad(option) {
+    console.log(option);
     if(option.id){
       this.getDetail(option.id)
     }
     this.setData({
-      id:option.id
+      id:option.id,
+      isShow:option.isShow
     })
   },
   onSaveUploadContractImgRef(ref){

@@ -1,0 +1,91 @@
+<view class="container">
+  <view class="top-money">
+    <image class="image" mode="scaleToFill" src="/assets/images/databoard/card-bg@2x.png" />
+   <view class="content-money">
+    <view class="money-title">
+      预算总额（万元）
+    </view>
+    <view class="budget-money">
+      {{infoData.budgetPrice?infoData.budgetPrice:'-'}}
+    </view>
+    <view class="bo-money">
+    <view class="pay">
+     <view  class="sun-text" >
+      支付总额 (万元) 
+     </view> 
+     <view class="sum">
+      {{infoData.payPrice}}
+     </view>
+    </view>
+    <view class="pay">
+      <view class="sun-text">
+       变更总额 (万元) 
+      </view> 
+      <view class="sum">
+       {{infoData.updatePrice?infoData.updatePrice:"-"}}
+      </view>
+     </view>
+     <view class="pay">
+      <view class="sun-text">
+       在途支付 (万元) 
+      </view> 
+      <view class="sum">
+       {{infoData.auditingPrice?infoData.auditingPrice:'-'}}
+      </view>
+     </view>
+     <view class="pay">
+      <view class="sun-text">
+       实际支付 (万元) 
+      </view> 
+      <view class="sum">
+      {{infoData.actualPayPrice?infoData.actualPayPrice:'-'}}
+      </view>
+     </view>
+    </view> 
+  </view>
+  </view>
+  <view class="bottom-content"> 
+    <view class="cont-tabs">
+      <view class="item-label {{checkoutPage===1?'isActive':''}}" data-id="{{1}}" onTap="oclick">
+        支付
+      </view>
+      <view class="item-label {{checkoutPage===2?'isActive':''}}" data-id="{{2}}" onTap="oclick">
+        变更
+      </view>
+      <!-- <tabs
+        items="{{items}}"
+        type="capsule" /> -->
+    </view> 
+    <view class="search flex f-start">
+      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+      <input  placeholder="请输入搜索内容" onConfirm="searchDocList"></input>
+    </view>
+   <view a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="clickCapital">
+    <list>
+      <list-item
+      arrow="right"
+     >
+     <view class="plan-money">
+     <view class="images">
+       <image mode="scaleToFill" src="{{item.img}}" />
+     </view>
+     <view class="projectName">
+       {{item.projectName}}
+      <view class="pay-text">
+      <text>{{checkoutPage===1?'支付额:':'变更额:'}}</text>
+      <text style="float:right">{{checkoutPage===1?'支付项:':'变更项:'}}</text>
+      </view>
+      <view class="pay-text">
+        <text a:if="{{checkoutPage===1}}">{{item.payAmount?item.payAmount:'-'}}</text>
+        <text a:else>{{item.changeAmount?item.changeAmount:'-'}}</text>
+        <text a:if="{{checkoutPage===1}}" style="float:right">{{item.payNum?item.payNum:''}}个</text>
+        <text a:else style="float:right">{{item.changeNum?item.changeNum:''}}个</text>
+      </view>
+     </view>
+     </view>
+    </list-item>
+    </list>
+    <divider/>
+   </view> 
+  </view>
+</view>

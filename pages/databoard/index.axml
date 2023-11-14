@@ -6,6 +6,5 @@
 
 <annual-bidding-progress a:if="{{currentTabIndex === 2}}" />
 <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
-
-
+<year-capital-control a:if="{{currentTabIndex === 1}}"></year-capital-control>
 </view>
