@@ -17,14 +17,14 @@ Page({
       tenderName: [{ required: true, message: '请输入' }],
       projectId: [{ required: true, message: '请选择' }],
       biddingPerson: [{ required: true, message: '请输入' }],
-      tenderingAgencyName: [{required: true, message: '请选择'}],
+      tenderingAgencyName: [{ required: true, message: '请选择' }],
       biddingType: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       tenderAmount: [{ required: true, message: '请输入' }],
       decisionBasis: [{ required: true, message: '请选择' }],
       biddingContent: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      tenderDocumentList: [{required: true,message: '请上传'}],
+      tenderDocumentList: [{ required: true, message: '请上传' }],
       applicationTime: [{ required: true, message: '请选择' }]
     },
   }),
@@ -195,6 +195,15 @@ Page({
   },
   // 
   bindCancelTap() {
-    ddUtils.navigateBack();
+    // ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "是否退出编辑？退出后不会保存当前编辑内容",
+      success: res => {
+        if (res.confirm) {
+          // this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
   },
 });
