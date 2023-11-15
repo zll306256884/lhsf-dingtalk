@@ -21,9 +21,16 @@ Page({
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
       projectId: query.id,
-      'navbarData.title':query.name,
+      'navbarData.title': query.name,
     });
     console.log(this.data.projectId);
+
+  },
+  onShow() {
+    // 页面显示
+    // getCurrentPages()函数用于获取当前页面栈的实例，以数组形式按栈的顺序给出，第一个元素为首页，最后一个元素为当前页面。
+    // 当页面返回的时候 ，需要调用的函数
+    this.getList()
   },
   onReady() {
     // 页面加载完成
@@ -65,7 +72,7 @@ Page({
   milestoneNode(e) {
     console.log(2333)
     let code
-     // 1  里程碑  0  非里程碑   空字符串   全量
+    // 1  里程碑  0  非里程碑   空字符串   全量
     if (this.data.flagNode) {
       this.setData({
         flagNode: ''

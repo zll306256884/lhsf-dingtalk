@@ -8,9 +8,10 @@ const app = getApp();
 Component({
   mixins: [],
   props: {
+    fromProgress: false,//判断是否是进度里面调用的
     marginTop: 0,
     title: "选择项目",
-    onScreenCallBack: function(item) {}
+    onScreenCallBack: function (item) { }
   },
   data: {
     showDialog: false,
@@ -28,19 +29,19 @@ Component({
       });
     });
   },
-  didUpdate() {},
-  didUnmount() {},
+  didUpdate() { },
+  didUnmount() { },
   methods: {
     // 点击蒙层
-    _bindTouchMove: function(e) {
+    _bindTouchMove: function (e) {
       this._hideDialog();
     },
     //bind close tap
-    _bindCloseTap: function(e) {
+    _bindCloseTap: function (e) {
       this._hideDialog();
     },
     //bind item tap
-    _bindItemTap: function(e) {
+    _bindItemTap: function (e) {
       this.setData({
         chooseIndex: e.currentTarget.dataset.index
       });
@@ -51,7 +52,7 @@ Component({
       return this.data.showDialog;
     },
     // 搜索回车
-    onSearchConfirm: function(value) {
+    onSearchConfirm: function (value) {
       this.setData({
         keyWords: value
       });
@@ -69,7 +70,7 @@ Component({
       }
     },
     //show modal dialog
-    _showDialog: function(defaultValue) {
+    _showDialog: function (defaultValue) {
       if (this._isShowDialog()) return;
       this.setData({
         showDialog: true,
@@ -82,11 +83,21 @@ Component({
     },
     // 获取数据
     getProjectList() {
+      var baseUrl = config.API_PROJECT_NAME
+      var param = {
+        name: this.data.keyWords
+      }
+      // 进度的时候  需要新的接口和参数
+      if (this.props.fromProgress) {
+        baseUrl = config.API_INIT_PROJECT_NAME
+        param = {
+          projectName: this.data.keyWords
+        }
+
+      }
       request.doPostRequest({
-        url: config.API_PROJECT_NAME,
-        data: {
-          name: this.data.keyWords
-        },
+        url: baseUrl,
+        data: param,
         success: res => {
           this.setData({
             dataList: res.data
@@ -95,20 +106,20 @@ Component({
       });
     },
     //hide modal dialog
-    _hideDialog: function(e) {
+    _hideDialog: function (e) {
       if (!this._isShowDialog()) return;
       this.setData({
         showDialog: false
       });
     },
     //bind picker change
-    _bindPickerChange: function(e) {
+    _bindPickerChange: function (e) {
       this.setData({
         chooseIndex: e.detail.value[0]
       });
     },
     //设置默认
-    _getDefaultChooseIndex: function(list, value) {
+    _getDefaultChooseIndex: function (list, value) {
       if (isEmpty(value) || isEmptyArray(list)) return -1;
 
       for (let i = 0; i < list.length; i++) {

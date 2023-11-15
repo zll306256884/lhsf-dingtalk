@@ -16,4 +16,6 @@ module.exports = {
   API_BANK_DETAIL: API_HOST + "/control/planTask/selectPlanTaskDetailById",
   // 看板 --  现场实景
   API_BANK_SIT: API_HOST + "/integratedService/projectInfoFile/querySitProgressList",
+
+  // 进度列表 --获取项目接口
 }

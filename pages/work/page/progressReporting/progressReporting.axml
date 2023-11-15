@@ -21,6 +21,7 @@
 <!-- 项目名称选择 -->
 <dialog-select-project
   ref="onSaveDialogScreenprojecteRef"
+  fromProgress="true"
   onScreenCallBack="bindChooseProjectCallBack"
 >
 </dialog-select-project>
