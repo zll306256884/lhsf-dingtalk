@@ -69,7 +69,6 @@
   name="tenderAmount"
   placeholder="请输入,注意'万元'单位"
   allowClear
-  maxLength="15"
   type="number"
   ref="handleRef" />
 <form-picker

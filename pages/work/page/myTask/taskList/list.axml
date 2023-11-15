@@ -1,7 +1,7 @@
 <import-sjs from="../../../../../utils/utils.sjs" name="utils" />
 <view>
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-  <view class="card card-tabs">
+  <view class="card-tabs">
     <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
       <view slot="title" slot-scope="item">
         <view a:if="{{item.index===currentTask && (currentTask ===0 || currentTask ===1)}}">
@@ -15,7 +15,7 @@
       <icon slot="prefix" type="SearchOutline" />
     </input>
   </view>
-  <view class="card card-list" style="margin-top:112px">
+  <view class="card card-list">
     <list a:if="{{listTask.length}}">
       <list-item>
         <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">

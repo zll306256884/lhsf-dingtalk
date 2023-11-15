@@ -19,7 +19,6 @@ Component({
     latitude,
     includePoints,
     markers,
-    mapCtx: null,
     mapV2Enable: dd.canIUse("map.optimize"),
     projectList: [],
     statusList: [
@@ -53,18 +52,17 @@ Component({
     }
   },
   dialogScreenProject: null,
+  mapCtx: null,
   didMount() {
     this.initMap();
   },
-  didUpdate() {},
+  didUpdate() {
+  },
   didUnmount() {},
   methods: {
     initMap() {
       this.mapCtx = dd.createMapContext("map");
       this.getProjectList();
-      this.setData({
-        currentItem:5
-      })
     },
     onSaveDialogScreenprojecteRef(ref) {
       this.dialogScreenProject = ref;
@@ -93,9 +91,6 @@ Component({
       let projectName = e.currentTarget.dataset.item.projectName;
       ddUtils.navigateTo({
         url: `/pages/databoard/page/projectInfo/index?projectId=${projectId}&projectName=${projectName}`
-        // url: `/pages/databoard/page/projectInfo/index?json=${JSON.stringify(
-        //   e.currentTarget.dataset.item
-        // )}`
       });
     },
     bindChooseProjectCallBack(data) {
@@ -118,9 +113,9 @@ Component({
     updateComponents() {
       const newMarkers = this.data.projectList
         .filter(i => i.cityCapitalX && i.cityCapitalY)
-        .map((item, index) => {
+        .map(item => {
           return {
-            id:index + 1,
+            id:item.id,
             width: 64,
             height: 64,
             joinCluster: true,
@@ -144,18 +139,15 @@ Component({
         latitude: 28.845441,
         setting: {
           gestureEnable: 1, // 开启手势功能
-          showScale: 1, // 显示比例尺
-          showCompass: 1, // 显示指南针
+          showScale: 0, // 隐藏比例尺
+          showCompass: 0, // 隐藏指南针
           tiltGesturesEnabled: 1 // 开启双指下滑手势
         },
         markers: newMarkers,
         includePoints: newIncludePoints
       });
-      this.mapCtx.showsCompass({isShowsCompass:false});
-      this.mapCtx.showsScale({isShowsScale:false});
     },
     handleSwiper(e){
-      console.log("??????????????????????????",e);
       this.setData({
         currentItem:e.detail.current
       })
@@ -183,24 +175,6 @@ Component({
     //     });
     //   }
     // },
-    // marker动画
-    // demoMarkerAnimation() {
-    //   if (!dd.canIUse('createMapContext.return.updateComponents')) {
-    //     dd.alert({
-    //       title: '不支持',
-    //       content: mapV2Message
-    //     });
-    //     return;
-    //   }
-    //   this.mapCtx.updateComponents({
-    //     'markers':animMarker,
-    //   });
-    //   this.mapCtx.updateComponents({
-    //     command:{
-    //       markerAnim:[{markerId:1,type:0},],
-    //     }
-    //   });
-    // },
     // 手势的放大与缩小
     demoGesture() {
       if (dd.canIUse("createMapContext")) {
@@ -214,11 +188,13 @@ Component({
     },
     // 点击 Marker 时触发
     markertap(e) {
-      console.log("marker tap", e);
+     let index = this.data.projectList.findIndex(item=>item.id===e.markerId)
+      this.setData({
+        currentItem:index
+      })
     },
     // 点击地图时触发
     tap() {
-      this.getProjectList();
       console.log("tap");
     },
   }

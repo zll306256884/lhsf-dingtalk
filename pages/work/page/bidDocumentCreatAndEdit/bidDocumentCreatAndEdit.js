@@ -10,20 +10,7 @@ Page({
     initialValues: {
       applicationTime: formatTimeToDay(new Date())
     },
-    rules: {
-      tenderName: [{ required: true, message: '请输入' }],
-      projectName: [{ required: true, message: '请选择' }],
-      biddingPerson: [{ required: true, message: '请输入' }],
-      tenderingAgencyName: [{required: true, message: '请选择'}],
-      biddingType: [{ required: true, message: '请选择' }],
-      projectType: [{ required: true, message: '请选择' }],
-      tenderAmount: [{ required: true, message: '请输入' }],
-      decisionBasis: [{ required: true, message: '请选择' }],
-      biddingContent: [{ required: true, message: '请输入' }],
-      countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      tenderDocumentList: [{required: true,message: '请上传'}],
-      applicationTime: [{ required: true, message: '请选择' }]
-    },
+    rules: {},
   }),
   data: {
     navbarData:{
@@ -54,7 +41,7 @@ Page({
       tenderingAgencyName: [{required: true, message: '请选择'}],
       biddingType: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
-      tenderAmount: [{ required: true, message: '请输入' }],
+      tenderAmount: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/   }],
       decisionBasis: [{ required: true, message: '请选择' }],
       biddingContent: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
@@ -194,7 +181,8 @@ Page({
   },
   reset(){
     ddUtils.showModal({
-      content: "确认取消吗?",
+      title:'请确认',
+      content: "是否退出编辑，退出后不会保存当前编辑内容",
       success: res => {
         if (res.confirm) {
           this.form.reset();

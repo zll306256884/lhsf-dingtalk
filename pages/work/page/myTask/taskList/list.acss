@@ -1,6 +1,9 @@
 .card-tabs{
+  width: 100%;
+  background: #fff;
+  padding:0 24rpx;
   position: fixed;
-  top:84px
+  box-sizing: border-box;
 }
 .ant-tabs-bar-scroll-view {
   justify-content: flex-start;
