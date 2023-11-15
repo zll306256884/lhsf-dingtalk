@@ -58,6 +58,8 @@ Page({
     engineeringPropertiesOptions: [],
     constructionNatureOptions: [],
     projectId: null,
+    planConstructionDate: '',
+    actualConstruction: ''
   },
 
   dialogQuesFromRef: null,
@@ -213,7 +215,8 @@ Page({
     console.log(data)
     this.setData({
       'formData.planConstructionStartTime': data.startDate,
-      'formData.planConstructionEndTime': data.endDate
+      'formData.planConstructionEndTime': data.endDate,
+      planConstructionDate:data.startDate+'至'+data.endDate
     })
     let totalDate = new Date(data.endDate.toString().replace(/(-)/g, '/')).getTime() - new Date(data.startDate.toString().replace(/(-)/g, '/')).getTime();
     let totalDateNum = (totalDate / (1 * 24 * 60 * 60 * 1000)) + 1
@@ -236,7 +239,8 @@ Page({
     console.log(data)
     this.setData({
       'formData.actualConstructionStartTime': data.startDate,
-      'formData.actualConstructionEndTime': data.endDate
+      'formData.actualConstructionEndTime': data.endDate,
+      actualConstruction: data.startDate+'至'+data.endDate
     })
   },
   _bindScreenSuoshuUnitCallBack(data){
@@ -362,7 +366,9 @@ Page({
     if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
-    if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
+    if(this.data.constructionPhase.value === '3'){
+      if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
+    }
     if(this.data.isOutPut.value === '1'){
       if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
     }
@@ -372,6 +378,7 @@ Page({
     if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
     if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
     if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
+    if (ddUtils.showEmptyToastTips(this.data.formData.totalInvestment, "总投资金额不能为空")) return;
 
     let workAuditFile = [];
     if (this.uploadImgRefList) {
@@ -435,6 +442,14 @@ Page({
     }
   },
   bindCancelTap(){
-    ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "确认取消吗?",
+      success: res => {
+        if (res.confirm) {
+          this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
   }
 });

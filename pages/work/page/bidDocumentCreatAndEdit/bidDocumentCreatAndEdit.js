@@ -64,7 +64,8 @@ Page({
     console.log(options)
     if(options.id){
       this.setData({
-        tenderId: options.id
+        tenderId: options.id,
+        navbarData: { title: '编辑招标文件'}
       })
       this.getDetail(options.id)
     }
@@ -126,10 +127,7 @@ Page({
   },
   changeTenderName(data){
     console.log(data);
-    let id = this.form.getFieldValue('projectId')
-    console.log(id);
-    let projectName = this.data.projectListOptions.find(e => e.id === id).name
-    console.log(projectName);
+    let projectName = this.form.getFieldValue('projectName')
     this.form.setFieldValue('title', projectName+data)
   },
   bindChooseProjectCallBack(data){
@@ -138,6 +136,8 @@ Page({
     this.setData({
       projectId: data.id,
     })
+    let tenderName = this.form.getFieldValue('tenderName') || ''
+    this.form.setFieldValue('title', data.name+tenderName)
   },
   getProjectList(){
     request.doPostRequest({
