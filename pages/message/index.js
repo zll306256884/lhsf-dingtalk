@@ -21,7 +21,7 @@ items: [
 ],
  MessageList:[],
  },
- onLoad(){
+ onShow(){
   this.getMessageList(0)
  },
  // 切换我的请求tab

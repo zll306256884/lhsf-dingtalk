@@ -25,6 +25,7 @@ Page({
   person:'',
   person_text:'',
   chooseExecuteUserList: [],
+  investmentFileList:[],
   id:'',
     isEdit: false,
     projectData:{},// 项目名称,
@@ -222,6 +223,7 @@ getDetail(id){
         contractChangeRate:res.data.contractChangeRate,
         countersignDate:res.data.countersignDate,
         changeContentTime:res.data.changeContentTime,
+        investmentFileList:res.data.investmentFileList,
         constructionUnitReportDate:res.data.constructionUnitReportDate,
         contactChange:res.data.contactChange,
         remark:res.data.remark,
@@ -249,7 +251,6 @@ bindFormSubmit: function (e) {
 let investmentFileList = [], temFileList=[]
 if (this.uploadImgRef) {
   temFileList = this.uploadImgRef.data.imgList;
-// console.log( investmentFileList);
 for (let item of temFileList) {
   investmentFileList.push({
       type: 0,
@@ -292,7 +293,7 @@ request.doPostRequest({
   contactChange:contactChange,//变更内容
   remark:remark,
   id:this.data.id?this.data.id:'',
-  investmentFileList:investmentFileList,
+  investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
   person:this.data.person,
   person_text:this.data.person_text,
   vueUrl: 'approveAlterationAccount,editAlterationContent'
