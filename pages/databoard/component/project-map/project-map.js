@@ -45,6 +45,7 @@ Component({
       }
     ],
     tabIndex: 0,
+    currentItem:0,
     params: {
       projectId: "",
       projectName: "",
@@ -61,6 +62,9 @@ Component({
     initMap() {
       this.mapCtx = dd.createMapContext("map");
       this.getProjectList();
+      this.setData({
+        currentItem:5
+      })
     },
     onSaveDialogScreenprojecteRef(ref) {
       this.dialogScreenProject = ref;
@@ -116,14 +120,15 @@ Component({
         .filter(i => i.cityCapitalX && i.cityCapitalY)
         .map((item, index) => {
           return {
-            id: index,
+            id:index + 1,
             width: 64,
             height: 64,
+            joinCluster: true,
             longitude: Number(parseFloat(item.cityCapitalX).toFixed(6)),
             latitude: Number(parseFloat(item.cityCapitalY).toFixed(6)),
-            iconPath: require("../../../../assets/images/map/1-4.png"),
+            iconPath: require(`../../../../assets/images/map/${item.projectType}-${item.projectStatus}.png`),
             callout: {
-              content: "Hello Label"
+              content: item.projectName
             }
           };
         });
@@ -147,44 +152,35 @@ Component({
         includePoints: newIncludePoints
       });
     },
-    // 重置地图
-    demoResetMap() {
+    handleSwiper(e){
+      console.log("??????????????????????????",e);
       this.setData({
-        scale: 11,
-        longitude: "121.131229",
-        latitude: "28.845441",
-        includePoints: "",
-        groundOverlays: []
-      });
-      if (dd.canIUse("createMapContext.return.clearRoute")) {
-        this.mapCtx.clearRoute();
-      }
+        currentItem:e.detail.current
+      })
     },
+    // 重置地图
+    // demoResetMap() {
+    //   this.setData({
+    //     scale: 11,
+    //     longitude: "121.131229",
+    //     latitude: "28.845441",
+    //     includePoints: "",
+    //     groundOverlays: []
+    //   });
+    //   if (dd.canIUse("createMapContext.return.clearRoute")) {
+    //     this.mapCtx.clearRoute();
+    //   }
+    // },
     // 获取中心点坐标
-    demoGetCenterLocation() {
-      if (dd.canIUse("createMapContext")) {
-        this.mapCtx.getCenterLocation({
-          success: res => {
-            dd.alert({
-              content:
-                "longitude:" +
-                res.longitude +
-                "\nlatitude:" +
-                res.latitude +
-                "\nscale:" +
-                res.scale
-            });
-            console.log(res.longitude, res.latitude, res.scale);
-          }
-        });
-      }
-    },
-    // 回到定位点
-    demoMoveToLocation() {
-      if (dd.canIUse("createMapContext")) {
-        this.mapCtx.moveToLocation();
-      }
-    },
+    // demoGetCenterLocation() {
+    //   if (dd.canIUse("createMapContext")) {
+    //     this.mapCtx.getCenterLocation({
+    //       success: res => {
+    //         console.log(res.longitude, res.latitude, res.scale);
+    //       }
+    //     });
+    //   }
+    // },
     // marker动画
     // demoMarkerAnimation() {
     //   if (!dd.canIUse('createMapContext.return.updateComponents')) {
@@ -203,57 +199,6 @@ Component({
     //     }
     //   });
     // },
-    // marker-label
-    demoMarkerLabel() {
-      if (!dd.canIUse("createMapContext.return.updateComponents")) {
-        dd.alert({
-          title: "不支持",
-          content: mapV2Message
-        });
-        return;
-      }
-      this.mapCtx.updateComponents({
-        scale: 14,
-        longitude,
-        latitude,
-        includePoints,
-        markers: markers
-      });
-    },
-    // demoMarkerCustomCallout() {
-    //   if (!dd.canIUse('createMapContext.return.updateComponents')) {
-    //     dd.alert({
-    //       title: '不支持',
-    //       content: mapV2Message
-    //     });
-    //     return;
-    //   }
-    //   this.mapCtx.updateComponents({
-    //     scale: 14,
-    //     longitude,
-    //     latitude,
-    //     includePoints,
-    //     'markers':customCalloutMarker,
-    //   });
-    // },
-    // 文字marker
-    // demoMarkerAppendStr() {
-    //   if (!dd.canIUse('createMapContext.return.updateComponents')) {
-    //     dd.alert({
-    //       title: '不支持',
-    //       content: mapV2Message
-    //     });
-    //     return;
-    //   }
-    //   this.mapCtx.updateComponents({
-    //     scale: 14,
-    //     longitude,
-    //     latitude,
-    //     includePoints,
-    //     'markers':iconAppendStrMarker,
-    //   });
-    // },
-
     // 手势的放大与缩小
     demoGesture() {
       if (dd.canIUse("createMapContext")) {
@@ -269,18 +214,10 @@ Component({
     markertap(e) {
       console.log("marker tap", e);
     },
-    // 点击 control 时触发
-    controltap(e) {
-      console.log("control tap", e);
-    },
     // 点击地图时触发
     tap() {
       this.getProjectList();
       console.log("tap");
     },
-    // 点击 Marker 对应的 callout 时触发
-    callouttap(e) {
-      console.log("callout tap", e);
-    }
   }
 });

@@ -1,18 +1,7 @@
 import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
 
-const markers = [{
-  id: 0,
-  longitude:121.131229,
-  latitude:28.845441,
-  width:64,
-  height:64,
-  iconPath:"/assets/images/map/1-4.png",
-  callout: {
-    content: 'callout',
-  },
-  // require("../../../../assets/images/map/1-4.png"),
-}];
+const markers = [];
 const longitude = 121.131229;
 const latitude = 28.845441;
 const includePoints = [{
@@ -22,7 +11,6 @@ const includePoints = [{
 Component({
   mixins: [],
   data: {
-    visibel: false,
     visibelUnit:false,
     info:{},
     scale: 12,
@@ -76,8 +64,38 @@ Component({
           this.setData({
             info:res.data
           })
+          this.updateComponents()
         }
       })
+    },
+    updateComponents() {
+      let item = this.data.info
+      this.mapCtx.updateComponents({
+        scale: 12,
+        longitude: Number(parseFloat(item.coorX).toFixed(6)),
+        latitude: Number(parseFloat(item.coorY).toFixed(6)),
+        setting: {
+          gestureEnable: 1, // 开启手势功能
+          showScale: 1, // 显示比例尺
+          showCompass: 1, // 显示指南针
+          tiltGesturesEnabled: 1 // 开启双指下滑手势
+        },
+        markers: [{
+        id: 1,
+            width: 64,
+            height: 64,
+            longitude: Number(parseFloat(item.coorX).toFixed(6)),
+            latitude: Number(parseFloat(item.coorY).toFixed(6)),
+            iconPath: require(`../../../../assets/images/map/${item.projectClassification}-${item.projectStatus}.png`),
+            callout: {
+              content: item.name
+            }
+        }],
+        includePoints: [{
+          longitude: Number(parseFloat(item.coorX).toFixed(6)),
+          latitude: Number(parseFloat(item.coorY).toFixed(6)),
+        }]
+      });
     },
   },
 });
