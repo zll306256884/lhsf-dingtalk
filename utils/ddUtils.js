@@ -3,7 +3,7 @@ import { isEmpty, isEmptyObject, isEmptyArray, isArrayIndexOutOfBounds, formatTi
 //显示 toast
 function showToast(obj) {
     let option = Object.assign({
-        duration: 2000,
+        duration:600,
         icon: 'none'
     }, obj);
 

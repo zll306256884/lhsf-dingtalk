@@ -22,6 +22,7 @@ Page({
     dialogScreenExecuteUserRef: null,
     dialogScreenShiGongUnitRef: null,
     chooseExecuteUserList: [],
+    investmentFileList:[],
     screenShiGongUnitData: {},
     isEdit: false,
     id:'',
@@ -221,7 +222,8 @@ getEdit(id){
         paymentContent:res.data.paymentContent,
         applicationTime:res.data.applicationTime,
         countersignLeader:res.data.countersignLeader,
-        countersignLeader_text:res.data.countersignLeader_dictText
+        countersignLeader_text:res.data.countersignLeader_dictText,
+        investmentFileList:res.data.investmentFileList
       })
       setTimeout(() => {
         this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
@@ -279,7 +281,7 @@ bindFormSubmit: function (e) {
         applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
-        investmentFileList,
+        investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
         vueUrl:'approveMoneyPaymentDetails',
       },
       success: res => {
@@ -329,7 +331,7 @@ bindFormSubmit: function (e) {
       applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
       countersignLeader_text:this.data.countersignLeader_text,//负责人
       countersignLeader:this.data.countersignLeader,//,
-      investmentFileList,
+      investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
       vueUrl:'approveMoneyPaymentDetails',
     },
     success: res => {

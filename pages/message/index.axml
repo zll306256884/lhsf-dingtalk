@@ -16,7 +16,7 @@
       {{item.title}}
     </view>
     <view  class="proName_text">
-      所属项目:{{item.projectName}}
+      所属项目:{{item.projectName?item.projectName:'-'}}
     </view>
     <view >
       <text class="item-label">{{item.createTime}}</text>
