@@ -1,6 +1,8 @@
 import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
+import workService from "../../../../server/workServer";
+import messageServer from "../../../../server/messageServer"
 
 Page({
   data: {
@@ -19,7 +21,8 @@ Page({
     detailInfo: {},
     tenderId: null,
     examineId: null,
-    approvalType: null
+    approvalType: null,
+    deleteId: null
   },
   onLoad(options) {
     if(options.examineId){//审批
@@ -35,7 +38,8 @@ Page({
     }
     if(options.id){
       this.setData({
-        tenderId: options.id
+        tenderId: options.id,
+        deleteId: options.deleteId
       })
       this.getDetail(options.id)
     }
@@ -58,7 +62,24 @@ Page({
   },
   //删除
   deletThis(){
-
+    ddUtils.showModal({
+      content: "确认删除吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: messageServer.API_REQUEST_DELETE,
+            data: {ids: [this.data.deleteId]},
+            success: res => {
+              console.log(res.data)
+              ddUtils.showToast({
+                title: "删除成功！"
+              });
+              ddUtils.navigateBack();
+            }
+          })
+        }
+      }
+    });
   },
   //编辑
   editThis(){
