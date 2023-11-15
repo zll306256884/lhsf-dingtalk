@@ -70,7 +70,11 @@ bindChooseProjectCallBack: function (data) {
     projectData: data || {},
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
-    projectId:data.id || ''
+    projectId:data.id || '',
+    'contractData.contractName': '',
+    contractAmount:'',
+    contractCumulativeChange:'',
+    contractChangeRate:''
   });
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,

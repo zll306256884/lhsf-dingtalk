@@ -59,5 +59,13 @@ items: [
  // 消息列表点击详情
  selectTap(e){
    console.log(e);
+   let item = e.target.dataset.item
+   switch (e) {
+    case 0:
+      case 4:
+        ddUtils.navigateTo({
+          // url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+        });
+   }
  }
 });
