@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "个人信息",
+  "defaultTitle": "",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "layout-field-cell": "../../../components/layout/layout-field-cell/layout-field-cell",
