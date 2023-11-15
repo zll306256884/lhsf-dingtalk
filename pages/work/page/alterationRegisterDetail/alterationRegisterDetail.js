@@ -8,6 +8,7 @@ Page({
   },
   infoData:{},
   id:'',
+  type:true
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -17,6 +18,7 @@ Page({
     }
     this.setData({
       id:option.id,
+      type:option.type || true
     })
   },
   onSaveUploadContractImgRef(ref){

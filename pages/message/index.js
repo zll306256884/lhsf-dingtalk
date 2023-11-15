@@ -60,12 +60,27 @@ items: [
  selectTap(e){
    console.log(e);
    let item = e.target.dataset.item
-   switch (e) {
-    case 0:
+   let pId = JSON.parse(item.urlParameter)
+   let ID = e.target.dataset.item.belongModule
+   request.doPostRequest({
+    url: apiApprovalManage.API_MESSAGE_READ_TASK,
+    data:{id:item.id},
+    success: res => {
+      console.log(res);
+    },
+  });
+  this.getMessageList(0)
+   switch (ID) {
       case 4:
         ddUtils.navigateTo({
-          // url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}`
         });
+        break;
+        case 10:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&type=${false}`
+          });
+          break;
    }
  }
 });

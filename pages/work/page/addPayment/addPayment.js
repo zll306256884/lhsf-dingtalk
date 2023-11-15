@@ -275,7 +275,7 @@ bindFormSubmit: function (e) {
         paymentNode:paymentNode,
         paymentContent:paymentContent,
         id:this.data.id?this.data.id:'',
-        icMeasurementPaymentId:res.data.icMeasurementPaymentId,
+        icMeasurementPaymentId:this.data.icMeasurementPaymentId,
         applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
