@@ -22,6 +22,7 @@ Page({
     dialogScreenExecuteUserRef: null,
     dialogScreenShiGongUnitRef: null,
     chooseExecuteUserList: [],
+    investmentFileList:[],
     screenShiGongUnitData: {},
     isEdit: false,
     id:'',
@@ -38,7 +39,8 @@ Page({
     projectData:{},// 项目名称,
     contractData:{},// 合同名称
     slowUnitData:{},//付款单位
-    proceedsData:{}//收款单位
+    proceedsData:{},//收款单位
+    icMeasurementPaymentId:''
   },
   onLoad(option) {
     console.log(option,'23232323');
@@ -214,12 +216,14 @@ getEdit(id){
         // 'slowUnitData.id':res.data.payUnitId,
         'slowUnitData.unitName':res.data.payUnit,
         'proceedsData.unitName':res.data.receiverUnit,
+        icMeasurementPaymentId:res.data.icMeasurementPaymentId,
         payAmount:res.data.payAmount,
         paymentNode:res.data.paymentNode,
         paymentContent:res.data.paymentContent,
         applicationTime:res.data.applicationTime,
         countersignLeader:res.data.countersignLeader,
-        countersignLeader_text:res.data.countersignLeader_dictText
+        countersignLeader_text:res.data.countersignLeader_dictText,
+        investmentFileList:res.data.investmentFileList
       })
       setTimeout(() => {
         this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
@@ -273,10 +277,11 @@ bindFormSubmit: function (e) {
         paymentNode:paymentNode,
         paymentContent:paymentContent,
         id:this.data.id?this.data.id:'',
+        icMeasurementPaymentId:this.data.icMeasurementPaymentId,
         applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
-        investmentFileList,
+        investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
         vueUrl:'approveMoneyPaymentDetails',
       },
       success: res => {
@@ -322,10 +327,11 @@ bindFormSubmit: function (e) {
       id:this.data.id?this.data.id:'',
       paymentNode:paymentNode,
       paymentContent:paymentContent,
+      icMeasurementPaymentId:this.data.icMeasurementPaymentId,
       applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
       countersignLeader_text:this.data.countersignLeader_text,//负责人
       countersignLeader:this.data.countersignLeader,//,
-      investmentFileList,
+      investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
       vueUrl:'approveMoneyPaymentDetails',
     },
     success: res => {

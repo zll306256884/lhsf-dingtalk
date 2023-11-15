@@ -67,7 +67,7 @@
   label="招标标的额(万元)"
   labelWidth="280rpx"
   name="tenderAmount"
-  placeholder="请输入金额,注意'万元'单位"
+  placeholder="请输入,注意'万元'单位"
   allowClear
   maxLength="15"
   type="number"
@@ -118,7 +118,7 @@
 <view catchTap="chooseLeader">
   <form-input
   label="选择会签分管领导"
-  labelWidth="280rpx"
+  labelWidth="290rpx"
   name="countersignLeader_dictText"
   placeholder="请输入"
   disabled

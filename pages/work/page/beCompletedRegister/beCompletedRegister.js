@@ -11,7 +11,7 @@ Page({
   },
   radioGroupOptions: [
     { value: 1, label: '核减' },
-    { value: 2, label: '核加' },
+    { value: 2, label: '核增' },
   ],
   projectId:"",
   id:"",
@@ -24,7 +24,8 @@ Page({
   netAccountAmount:'',// 净核算金额,
   approveTotalPrice:"",//审定总价
   chooseExecuteUserList: [],
-  uploadImgRef:null,/// 上传
+  uploadImgRef:null,/// 上传,
+  investmentFileList:[],
     isEdit: false,
     projectData:{},// 项目名称,
     dialogScreenprojectRef:null, //项目名称
@@ -160,6 +161,7 @@ request.doPostRequest({
       netAccountAmount:res.data.netAccountAmount,
       approveTotalPrice:res.data.approveTotalPrice,
       adjust:res.data.adjust,
+      investmentFileList:res.data.investmentFileList
     })
     setTimeout(() => {
       this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
@@ -213,8 +215,8 @@ request.doPostRequest({
     contractName: this.data.contractData.contractName,
     contractAmount:this.data.contractAmount,
     contractorName:this.data.contractorName,
-  investmentFileList:investmentFileList,
-  applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
+    investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
+    applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
   pricingTrial:pricingTrial,
   id:this.data.id?this.data.id:'',
   adjust:this.data.adjust,

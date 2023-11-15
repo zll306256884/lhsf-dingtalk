@@ -21,7 +21,7 @@ items: [
 ],
  MessageList:[],
  },
- onLoad(){
+ onShow(){
   this.getMessageList(0)
  },
  // 切换我的请求tab
@@ -59,5 +59,28 @@ items: [
  // 消息列表点击详情
  selectTap(e){
    console.log(e);
+   let item = e.target.dataset.item
+   let pId = JSON.parse(item.urlParameter)
+   let ID = e.target.dataset.item.belongModule
+   request.doPostRequest({
+    url: apiApprovalManage.API_MESSAGE_READ_TASK,
+    data:{id:item.id},
+    success: res => {
+      console.log(res);
+    },
+  });
+  this.getMessageList(0)
+   switch (ID) {
+      case 4:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}`
+        });
+        break;
+        case 10:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&type=${false}`
+          });
+          break;
+   }
  }
 });

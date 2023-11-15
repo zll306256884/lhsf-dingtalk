@@ -2,7 +2,7 @@ import config from "../../../../utils/config";
 import request from "../../../../utils/request";
 import { isEmpty, isEmptyArray, getImgUrl } from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
-const defaultCount = 5;
+const defaultCount = 10;
 const app = getApp();
 
 Component({
