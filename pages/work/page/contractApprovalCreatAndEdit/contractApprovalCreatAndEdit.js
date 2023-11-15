@@ -206,12 +206,12 @@ Page({
     this.form.addItem(ref);
   },
   bindChooseProjectCallBack(data){
-    console.log(123)
-    console.log(data)
     this.form.setFieldValue('projectName',data.name)
     this.setData({
       projectId: data.id,
     })
+    let contractName = this.form.getFieldValue('contractName') || ''
+    this.form.setFieldValue('title', data.name+contractName)
     setTimeout(() => {
       this.getQueryCurrentUnitType()
       this.getBiddingData()

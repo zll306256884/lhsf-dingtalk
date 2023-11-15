@@ -127,6 +127,7 @@
   <form-input
   label="乙方单位"
   name="unitPartyName"
+  placeholder="请选择"
   disabled
   ref="handleRef" />
 </view>
