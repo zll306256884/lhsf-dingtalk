@@ -29,6 +29,8 @@
     font-size: 28rpx;
     color: #B8BFCC;
     text-align: right;
+    white-space: normal;
+    word-break: break-word;
 }
 .field-cell-layout .arrowright{
   width: 48rpx;

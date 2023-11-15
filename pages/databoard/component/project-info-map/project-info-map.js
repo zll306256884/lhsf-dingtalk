@@ -96,6 +96,8 @@ Component({
           latitude: Number(parseFloat(item.coorY).toFixed(6)),
         }]
       });
+      this.mapCtx.showsCompass({isShowsCompass:false});
+      this.mapCtx.showsScale({isShowsScale:false});
     },
   },
 });

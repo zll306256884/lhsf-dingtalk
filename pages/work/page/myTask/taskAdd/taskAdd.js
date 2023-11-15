@@ -32,6 +32,7 @@ Page({
     uploadImageList: null
   },
   onLoad(option) {
+    this.getProjectList();
     const params = JSON.parse(option.json);
     if (params.type === "edit") {
       this.setData({
@@ -40,7 +41,6 @@ Page({
       this.data.navbarData.title="编辑任务"
       this.getInfo(params.id);
     }
-    this.getProjectList();
   },
   handleRef(ref) {
     this.form.addItem(ref);

@@ -7,7 +7,7 @@
     "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
     "dialog-screen-suoshu-danwei": "/pages/components/dialog/dialog-screen-suoshu-danwei/dialog-screen-suoshu-danwei",
     "dialog-screen-xiangmu-leixiang": "/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang",
-    "dialog-screen-xiangmu-mingcheng": "/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
+    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project",
     "dialog-screen-hetong-mingcheng": "/pages/components/dialog/dialog-screen-hetong-mingcheng/dialog-screen-hetong-mingcheng",
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
     "dialog-screen-fukuan-danwei": "/pages/components/dialog/dialog-screen-fukuan-danwei/dialog-screen-fukuan-danwei",

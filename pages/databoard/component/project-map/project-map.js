@@ -151,6 +151,8 @@ Component({
         markers: newMarkers,
         includePoints: newIncludePoints
       });
+      this.mapCtx.showsCompass({isShowsCompass:false});
+      this.mapCtx.showsScale({isShowsScale:false});
     },
     handleSwiper(e){
       console.log("??????????????????????????",e);

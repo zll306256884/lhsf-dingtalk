@@ -178,8 +178,41 @@ Page({
       ...this.data.logData,
       'content': this.data.logContent
     }
-
     console.log('param', param)
+
+    // 校验
+    if (!this.data.logData.logDate) {
+      ddUtils.showToast({
+        title: "日志日期必选"
+      });
+      return
+    }
+    if (!this.data.logData.logType.length) {
+      ddUtils.showToast({
+        title: "日志类型必选"
+      });
+      return
+    }
+    if (!this.data.logContent) {
+      ddUtils.showToast({
+        title: "日志内容必填"
+      });
+      return
+    }
+    if (this.data.logData.logTypeName == '重大事件') {
+      if (!this.data.logData.name) {
+        ddUtils.showToast({
+          title: "请选择项目名称"
+        });
+        return
+      }
+      if (!this.data.logData.logPhotoList.length) {
+        ddUtils.showToast({
+          title: "重大事件的时候 图片必填"
+        });
+        return
+      }
+    }
     // return
     request.doPostRequest({
       url: logService.API_CREATE_LOG,

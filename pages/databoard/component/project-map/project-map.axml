@@ -3,7 +3,7 @@
   <view class="status-list">
     <tabs items="{{statusList}}" type="capsule"  scrollMode="center" current="{{tabIndex}}" onChange="onTabChange" />
   </view>
-  <image class="search-list" src="../../../../assets/images/map/search.png" onTap="onSearchProject"/>
+  <image class="search-list" src="/assets/images/map/search.png" onTap="onSearchProject"/>
       <map
         id="map"
         customMapStyle="light"
@@ -24,7 +24,7 @@
         <block a:for="{{projectList}}">
           <swiper-item key="swiper-item-{{index}}" >
             <view class="card-item flex f-between" data-item="{{item}}" data-index="{{index}}" onTap="onSelectItem">
-              <image class="item-img"  src="{{item.mainImg}}" />
+              <image class="item-img" mode="aspectFit"  src="{{item.mainImg || '/assets/images/common/default-img.png'}}" />
               <view class="flex1">
                 <view class="item-title two-lines">{{item.projectName}}</view>
                 <view class="item-info">
