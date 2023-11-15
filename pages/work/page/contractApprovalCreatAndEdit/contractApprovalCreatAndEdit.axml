@@ -106,7 +106,6 @@
 
   <form-input
   name="contractAmount"
-  validateStatus="default"
   placeholder="请输入合同金额，注意“万元”单位"
   type="number"
   allowClear

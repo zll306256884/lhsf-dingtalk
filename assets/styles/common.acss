@@ -389,3 +389,7 @@ input[type="number"]{
   width: 134px!important;
   height: 200px!important;
 }
+
+.ant-form-item-error-info{
+  text-align: right !important;
+}
