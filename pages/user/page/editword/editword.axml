@@ -57,7 +57,7 @@
   </view>
   <!--  -->
   <view class="bottomBtn flex f-start box-sizing-box">
-    <button type="ghost" class="bottom btn1">取消</button>
+    <button type="ghost" class="bottom btn1" catchTap="resetIt">取消</button>
     <button type="primary" class="bottom" catchTap="submitIt">保存</button>
 
   </view>

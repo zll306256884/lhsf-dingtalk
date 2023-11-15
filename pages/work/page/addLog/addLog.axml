@@ -50,8 +50,8 @@
 </view>
 
 <!-- 项目名称选择 -->
-<dialog-screen-xiangmu-mingcheng ref="onSaveDialogLogProjectNameRef" onScreenCallBack="bindChooseLogProjectCallBack">
-</dialog-screen-xiangmu-mingcheng>
+<dialog-select-project ref="onSaveDialogLogProjectNameRef" onScreenCallBack="bindChooseLogProjectCallBack">
+</dialog-select-project>
 
 <!-- 日志日期 -->
 <dialog-picker-date ref="onSavePickerDateRef" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack">

@@ -19,6 +19,9 @@ Page({
   onLoad() { },
   // 点击取消
   bindCancelTap: function (e) {
+    // ddUtils.showToast({
+    //   title: "请选择项目名称"
+    // });
     // ddUtils.navigateBack();
     ddUtils.showModal({
       content: "是否退出编辑？退出后不会保存当前编辑内容",

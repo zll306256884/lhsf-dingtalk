@@ -77,7 +77,7 @@ Page({
         success: res => {
           console.log('res.data', res.data)
           ddUtils.showToast({
-            title: "操作成功"
+            title: "密码修改成功！请使用新密码登录电脑端！"
           });
           ddUtils.navigateBack();
           // this.setData({
@@ -87,6 +87,8 @@ Page({
         },
         fail: res => {
           reject(res)
+          // console.log('失败')
+          this.getVerifyCode()
         }
       });
     })
@@ -127,5 +129,17 @@ Page({
     });
     console.log('code', this.data.code);
   },
+  // 取消
+  resetIt() {
+    ddUtils.showModal({
+      content: "是否退出？退出后不会保存当前内容",
+      success: res => {
+        if (res.confirm) {
+          // this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
+  }
 
 });
