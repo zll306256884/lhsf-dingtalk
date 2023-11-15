@@ -21,11 +21,11 @@
     <list-item extraBrief="{{infoData.payAmount}}">本次应付金额</list-item>
     <list-item>
       支付节点（或形象进度）
-      <view style="margin-top:10rpx;color: #969799;">{{detailInfo.paymentNode}}</view>
+      <view style="margin-top:10rpx;color: #969799;">{{infoData.paymentNode}}</view>
     </list-item>
     <list-item>
       付款内容
-      <view style="margin-top:10rpx;color: #969799;">{{detailInfo.paymentContent}}</view>
+      <view style="margin-top:10rpx;color: #969799;">{{infoData.paymentContent}}</view>
     </list-item>
     <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
   </list>

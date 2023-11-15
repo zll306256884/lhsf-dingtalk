@@ -32,5 +32,7 @@ module.exports = {
      // 项目资金管控支付
      API_ROUTE_POST:API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/page',
       // 项目资金管控变更
-      API_CHANGE_POST:API_HOST + '/investment/changeManagement/page'
+      API_CHANGE_POST:API_HOST + '/investment/changeManagement/page',
+       // 变更删除
+       API_DELETE_POST:API_HOST + '/platform/userMatter/deleteByArray'
 }

@@ -16,7 +16,7 @@
       <layout-field-cell borderTop name="收款单位" mustFill placeholder="请选择"  value="{{proceedsData.unitName}}"  onArrowTap="bindChooseProceedsUnitTap"></layout-field-cell>
       <layout-field-input borderTop name="本次应付金额" inputName="payAmount" mustFill disabled="{{isEdit}}" value="{{payAmount}}" placeholder="请输入"></layout-field-input>
       <layout-field-cell borderTop hidden={{false}} name="支付节点（或形象进度）" mustFill></layout-field-cell>
-      <textarea class="desc" name="paymentNode" maxlength="300" value="{{paymentNode}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>
+      <textarea class="desc" name="paymentNode" maxlength="50" value="{{paymentNode}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>
       <view style="height: 20rpx;"></view>
       <layout-field-cell borderTop hidden={{false}} name="付款内容" mustFill></layout-field-cell>
       <textarea class="desc" name="paymentContent" maxlength="300" value="{{paymentContent}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>

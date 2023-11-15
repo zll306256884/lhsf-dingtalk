@@ -8,7 +8,7 @@ Page({
   },
   infoData:{},
   id:'',
-  isShow:true
+  type:true
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -18,7 +18,7 @@ Page({
     }
     this.setData({
       id:option.id,
-      isShow:option.isShow
+      type:option.type || true
     })
   },
   onSaveUploadContractImgRef(ref){
@@ -38,6 +38,33 @@ Page({
         }, 0);
       }
     })
+  },
+  // 删除
+  bindCancelTap(){
+    ddUtils.showModal({
+      content: "确认删除吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: confing.API_DELETE_POST,
+            data: { ids: [this.data.id] },
+            success: (res) => {
+              if(res.message==="成功"){
+                ddUtils.showToast({
+                  title: "操作成功"
+                })
+              }
+              let pages = getCurrentPages(); //获取加载的页面
+              let page = pages[pages.length - 2];
+              page.rightFrPage._getRecordList()
+              setTimeout(()=>{
+              ddUtils.navigateBack()
+              },1000)
+            }
+          })
+        }
+      }
+    });
   },
   editTap:function(){
     ddUtils.navigateTo({
