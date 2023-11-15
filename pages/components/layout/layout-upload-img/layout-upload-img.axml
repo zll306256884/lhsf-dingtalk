@@ -1,6 +1,6 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
 
-<view class="flex flex-wrap upload-img-list" style="{{cssStyle}}">
+<view class="flex f-wrap upload-img-list" style="{{cssStyle}}">
     <block a:for="{{imgList}}">
         <view 
         class="item" 

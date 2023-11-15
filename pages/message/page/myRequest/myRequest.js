@@ -11,13 +11,15 @@ Page({
       title: '我的请求'
     },
     tabList: [{
-        name: '待办请求',
-        total:0
+        title: '待办请求',
+        total:0,
+        badge: true,
       },{
-        name: '进行中请求',
-        total:0
+        title: '进行中请求',
+        total:0,
+        badge: true,
       },{
-        name: '已办请求',
+        title: '已办请求',
         total:0
       },
     ],
@@ -85,6 +87,10 @@ Page({
   isLoading: false,
 
   onLoad() {
+    
+  },
+  onShow() {
+    this.page = 1
     this.getDataList()
     this.getCount()
   },
@@ -184,9 +190,9 @@ Page({
         list[0].total = res.data.waitNum
         list[1].total = res.data.handleNum
         console.log(list);
-        // this.setData({
-        //   tabList: list
-        // })
+        this.setData({
+          tabList: list
+        })
       }
     })
   },
@@ -229,12 +235,12 @@ Page({
         break;
       case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 3:
         ddUtils.navigateTo({
-          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 4:
@@ -249,7 +255,7 @@ Page({
         break;
       case 6:
         ddUtils.navigateTo({
-          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 7:

@@ -1,7 +1,15 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="top-navbar flex f-between">
   <view style="width:90%">
-    <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar>
+    <!-- <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar> -->
+    <tabs items="{{tabList}}"  current="{{tabIndex}}" onChange="onNavTabChange" >
+      <view slot="title" slot-scope="item">
+        <view a:if="{{item.value.badge}}">
+          <badge type="number" text="{{item.value.total}}" position="top-right"> {{item.value.title}}</badge>
+        </view>
+        <view a:else>{{item.value.title}}</view>
+      </view>
+    </tabs>
   </view>
   <view class="flex f-center" style="width:10%;align-items:center">
     <image mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />

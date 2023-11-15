@@ -3,131 +3,82 @@
   <form onSubmit="logAddSubmit">
     <view class="containerinner">
       <view class="title" a:if="{{ false }}">项目信息</view>
-      <layout-field-cell 
-        name="项目名称"
-        borderBottom
-        mustFillTransparent
-        placeholder="请选择"
-        value="{{logData.name}}"
-        onArrowTap="_bindChooseLogProject"
-      >
+      <block a:if="{{logData.logTypeName=='重大事件'}}">
+        <layout-field-cell name="项目名称" borderBottom mustFill placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject">
+        </layout-field-cell>
+      </block>
+      <block a:else>
+        <layout-field-cell name="项目名称" borderBottom mustFillTransparent placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject">
+        </layout-field-cell>
+      </block>
+      <layout-field-cell borderBottom name="日志日期" mustFill value="{{logData.logDate}}" placeholder="请选择" onArrowTap="_bindLogTime">
       </layout-field-cell>
-      <layout-field-cell
-        borderBottom
-        name="日志日期"
-        mustFill
-        value="{{logData.logDate}}"
-        onArrowTap="_bindLogTime"
-      >
+      <layout-field-cell borderBottom name="日志类型" placeholder="请选择" mustFill value="{{logData.logTypeName}}" onArrowTap="_bindLogType" 
+        showPopver="">
       </layout-field-cell>
-      <layout-field-cell
-        borderBottom
-        name="日志类型"
-        mustFill
-        value="{{logData.logTypeName}}"
-        onArrowTap="_bindLogType"
-      >
-      </layout-field-cell>
-      <layout-field-cell name="日志内容" mustFill value="{{}}"></layout-field-cell>
-      <textarea
-        class="reason"
-        name="logContent"
-        maxlength="300"
-        value="{{logContent}}"
-        placeholder="请输入内容"
-        placeholder-class="placeholder-class"
-        style="padding-left:30rpx;"
-      >
+      <layout-field-cell name="日志内容" mustFill value=" "></layout-field-cell>
+      <textarea class="reason" name="logContent" maxlength="300" value="{{logContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" 
+        style="padding-left:30rpx;">
       </textarea>
     </view>
     <!--  -->
     <view class="containerinner" style="margin-top:16rpx">
       <view class="redline-title">
+        <view class='redStart' a:if="{{logData.logTypeName=='重大事件'}}">*</view>
         照片
       </view>
-      <layout-upload-img
-        cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"
-        ref="onSaveUploadImgRef"
-      >
+      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef">
       </layout-upload-img>
     </view>
     <!--  -->
     <view class="containerinner" style="margin-top:16rpx">
       <view class="redline-title">
-        <view class='redStart'>*</view>
+        <!--<view class='redStart'>*</view> -->
         附件
       </view>
-      <layout-upload-img
-        cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"
-        ref="onSaveUploadFileRef"
-      >
+      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef">
       </layout-upload-img>
     </view>
-
+    
     <view class="flex f-between btn-wrap">
       <button class="btn" catchTap="bindCancelTap">取消</button>
       <button class="btn active" form-type="submit">保存</button>
     </view>
-
+    
     <view class="bottom-space"></view>
   </form>
 </view>
 
 <!-- 项目名称选择 -->
-<dialog-screen-xiangmu-mingcheng
-  ref="onSaveDialogLogProjectNameRef"
-  onScreenCallBack="bindChooseLogProjectCallBack"
->
+<dialog-screen-xiangmu-mingcheng ref="onSaveDialogLogProjectNameRef" onScreenCallBack="bindChooseLogProjectCallBack">
 </dialog-screen-xiangmu-mingcheng>
 
 <!-- 日志日期 -->
-<dialog-picker-date 
-  ref="onSavePickerDateRef" 
-  onPickerCallBack="bindPickerDateCannBack"
->
+<dialog-picker-date ref="onSavePickerDateRef" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack">
 </dialog-picker-date>
 
 <!-- 日志类型 -->
-<dialog-picker
-  ref="onSaveDialogLogTypetRef"
-  dataList="{{logTypeOption}}"
-  onPickerChange="bindLogTypeRef"
->
+<dialog-picker ref="onSaveDialogLogTypetRef" dataList="{{logTypeOption}}" onPickerChange="bindLogTypeRef">
 </dialog-picker>
 
-<!-- <dialog-picker
+<!--<dialog-picker
   ref="onSaveDialogScreenQuesFromRef"
   dataList="{{screenFromList}}"
   onPickerChange="bindScreenFromCallBack"
->
-</dialog-picker>
-
-
-
-<dialog-picker
+></dialog-picker><dialog-picker
   ref="onSaveDialogProjectClassificationFromRef"
   dataList="{{projectClassificationOptions}}"
   onPickerChange="bindProjectClassificationCallBack"
->
-</dialog-picker>
-<dialog-picker
+></dialog-picker><dialog-picker
   ref="onSaveDialogScreenConstructionPhase"
   dataList="{{constructionPhaseOptions}}"
   onPickerChange="bindScreenConstructionPhase"
->
-</dialog-picker>
-
-<dialog-picker
+></dialog-picker><dialog-picker
   ref="onSaveDialogEngineeringProperties"
   dataList="{{engineeringPropertiesOptions}}"
   onPickerChange="bindScreenEngineeringPropertiesFromCallBack"
->
-</dialog-picker>
-<dialog-picker
+></dialog-picker><dialog-picker
   ref="onSaveDialogConstructionNature"
   dataList="{{constructionNatureOptions}}"
   onPickerChange="bindScreenConstructionNatureFromCallBack"
->
-</dialog-picker> -->
-
-
+></dialog-picker> -->

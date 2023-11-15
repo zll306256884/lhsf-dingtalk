@@ -74,6 +74,7 @@ Component({
      */
     methods: {
       getEcological(name){
+        console.log('namenamename',name)
         request.doPostRequest({
           url: projectService.API_GET_UNIT_BIDING,
           data: {
@@ -90,13 +91,12 @@ Component({
         })
       },
         _bindOnConfirm: function (e) {
-          console.log(e,'调接口')
-          this.getEcological(e.detail.value)
+          console.log(e.detail.value,'调接口')
+          this.getEcological(this.data.inputValue)
         },
 
         //bind input change
         _bindInputChange: function (e) {
-          console.log(e)
           this.setData({
             inputValue: e.detail.value
           })

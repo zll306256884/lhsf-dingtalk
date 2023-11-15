@@ -2,6 +2,7 @@ import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
 import workService from "../../../../server/workServer";
 import ddUtils from "../../../../utils/ddUtils"
+import messageServer from "../../../../server/messageServer"
 
 Page({
   data: {
@@ -21,7 +22,8 @@ Page({
     requestType: null,
     contractId: null,
     examineId: null,
-    approvalType: null
+    approvalType: null,
+    deleteId: null
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -38,7 +40,8 @@ Page({
     }
     if(options.id){
       this.setData({
-        contractId: options.id
+        contractId: options.id,
+        deleteId: options.deleteId
       })
       this.getDetail(options.id)
     }
@@ -68,10 +71,10 @@ Page({
     }
     return chineseStr
   },
-  getDetail(tenderId){
+  getDetail(contractId){
     request.doPostRequest({
       url: projectService.API_CONTRACT_DETAIL,
-      data: {id: tenderId},
+      data: {id: contractId},
       success: res => {
         console.log(res.data)
         let list = res.data.contractThirdPartyRepList
@@ -94,7 +97,24 @@ Page({
   },
   //删除
   deletThis(){
-    
+    ddUtils.showModal({
+      content: "确认删除吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: messageServer.API_REQUEST_DELETE,
+            data: {ids: [this.data.deleteId]},
+            success: res => {
+              console.log(res.data)
+              ddUtils.showToast({
+                title: "删除成功！"
+              });
+              ddUtils.navigateBack();
+            }
+          })
+        }
+      }
+    });
   },
   //编辑
   editThis(){

@@ -20,7 +20,8 @@ Page({
     // 页面加载
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
-      projectId: query.id
+      projectId: query.id,
+      'navbarData.title':query.name,
     });
     console.log(this.data.projectId);
   },

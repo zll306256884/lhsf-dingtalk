@@ -393,9 +393,39 @@ Page({
       let item = e.target.dataset.item
       let temp = e.target.dataset.item.type;
       switch (temp) {
+        case 1:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus+1}&projectId=${item.projectId}`
+          });
+          break;
+        case 2:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          });
+          break;
+        case 3:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          });
+          break; 
         case 5:
           ddUtils.navigateTo({
             url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+          });
+          break;
+        case 6:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          });
+          break;
+        case 7:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
+          });
+          break;
+        case 8:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
           });
           break;
       }

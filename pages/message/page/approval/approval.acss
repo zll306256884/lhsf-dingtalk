@@ -12,6 +12,7 @@
   top: 90rpx;
   left: 0;
   z-index: 1000;
+  
 }
 
 .funnel {
@@ -41,7 +42,7 @@
 /* 内容 */
 
 .navbox{
-  padding-top:85rpx;
+  padding-top:74rpx;
   height: calc(100vh - 181rpx);
   overflow: auto;
   /* background:pink; */

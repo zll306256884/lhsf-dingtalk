@@ -101,7 +101,7 @@
 .card-list {
   width: 100%;
   position: absolute;
-  bottom: 0;
+  bottom: 32rpx;
 }
 .card-list .card-item {
   position: relative;
