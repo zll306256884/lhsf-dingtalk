@@ -250,4 +250,4 @@
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
 
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-construct-unit>
-<dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
+<dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>

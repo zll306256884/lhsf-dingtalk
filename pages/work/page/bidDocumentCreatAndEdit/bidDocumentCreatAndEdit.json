@@ -15,6 +15,7 @@
     "dialog-screen-ecological-unit": "/pages/components/dialog/dialog-screen-ecological-unit/dialog-screen-ecological-unit",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
-    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date"
+    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
+    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project"
   }
 }

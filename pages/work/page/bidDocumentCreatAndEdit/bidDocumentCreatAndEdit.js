@@ -8,11 +8,11 @@ import projectService from "../../../../server/workServer/projectServer";
 Page({
   form: new Form({
     initialValues: {
-      applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+      applicationTime: formatTimeToDay(new Date())
     },
     rules: {
       tenderName: [{ required: true, message: '请输入' }],
-      projectId: [{ required: true, message: '请选择' }],
+      projectName: [{ required: true, message: '请选择' }],
       biddingPerson: [{ required: true, message: '请输入' }],
       tenderingAgencyName: [{required: true, message: '请选择'}],
       biddingType: [{ required: true, message: '请选择' }],
@@ -44,11 +44,12 @@ Page({
   uploadTenderImageList: null,
   uploadOtherImgList: null,
   pickerDateRef: null,
+  dialogScreenProject: null,
 
   onLoad(options) {
     this.form.rules = {
       tenderName: [{ required: true, message: '请输入' }],
-      projectId: [{ required: true, message: '请选择' }],
+      projectName: [{ required: true, message: '请选择' }],
       biddingPerson: [{ required: true, message: '请输入' }],
       tenderingAgencyName: [{required: true, message: '请选择'}],
       biddingType: [{ required: true, message: '请选择' }],
@@ -74,6 +75,9 @@ Page({
     console.log(ref)
     this.form.addItem(ref);
   },
+  onSaveDialogScreenprojecteRef(ref){
+    this.dialogScreenProject = ref
+  },
   onSavePickerDateRef(ref){
     this.pickerDateRef = ref
   },
@@ -88,6 +92,9 @@ Page({
   },
   onSaveUploaOtherImgRef(ref){
     this.uploadOtherImgList = ref
+  },
+  chooseProject(){
+    if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
   chooseTime(){
     if(this.pickerDateRef) this.pickerDateRef._showDialog()
@@ -124,6 +131,13 @@ Page({
     let projectName = this.data.projectListOptions.find(e => e.id === id).name
     console.log(projectName);
     this.form.setFieldValue('title', projectName+data)
+  },
+  bindChooseProjectCallBack(data){
+    console.log(data)
+    this.form.setFieldValue('projectName',data.name)
+    this.setData({
+      projectId: data.id,
+    })
   },
   getProjectList(){
     request.doPostRequest({
@@ -223,9 +237,6 @@ Page({
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
-    if(params.projectId){
-      params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
-    }
     
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader
@@ -253,7 +264,7 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
-    params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
+    // params.projectName = this.data.projectListOptions.find(e => e.id === params.projectId).name
     // params.urlParameter = JSON.stringify({}),
     params.tenderingAgency = this.data.tenderingAgency
     params.countersignLeader = this.data.countersignLeader

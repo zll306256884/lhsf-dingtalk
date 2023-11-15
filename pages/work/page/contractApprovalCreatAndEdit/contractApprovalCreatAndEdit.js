@@ -8,7 +8,7 @@ import { formatTimeToDay } from "../../../../utils/utils";
 Page({
   form: new Form({
     initialValues: {
-      applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+      applicationTime: formatTimeToDay(new Date())
     },
     rules: {
       projectName: [{ required: true, message: '请输入' }],
