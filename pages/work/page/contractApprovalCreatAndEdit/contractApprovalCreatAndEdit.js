@@ -4,45 +4,23 @@ import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
 import { formatTimeToDay } from "../../../../utils/utils";
-
+const validateMessages = {
+  required: '请输入',
+  string: {
+    min: '最少${min}个字符',
+    max: '最多${max}个字符'
+  },
+  pattern: {
+    mismatch: '${label}需要满足${pattern}',
+  },
+};
 Page({
   form: new Form({
+    validateMessages,
     initialValues: {
       applicationTime: formatTimeToDay(new Date())
     },
-    rules: {
-      projectName: [{ required: true, message: '请输入' }],
-      projectId: [{ required: true, message: '请选择' }],
-      contractName: [{ required: true, message: '请输入' }],
-      contractNumber: [{ required: true, message: '请输入' }],
-      supplementAgreement: [{ required: true, message: '请选择' }],
-      masterContract: [{ required: true, message: '请选择' }],
-      projectType: [{ required: true, message: '请选择' }],
-      contractNeedTender: [{ required: true, message: '请选择' }],
-      tenderDocumentId: [{ required: true, message: '请选择' }],
-      biddingTypeName: [{ required: true, message: '请选择' }],
-      modeContract: [{ required: true, message: '请选择' }],
-      contractPeriod: [
-        { required: true, message: '请输入' },
-        (form) => ({
-          async validator(_, value) {
-            if (!value) {
-              return;
-            }
-            throw new Error('工期只能为整数(最大五位数)');
-          },
-        }),
-      ],
-      makeSure: [{ required: true, message: '请选择' }],
-      contractAmount: [{ required: true, message: '请输入' }],
-      developmentOrganizationName: [{ required: true, message: '请选择' }],
-      unitPartyName: [{ required: true, message: '请选择' }],
-      unitPartyType: [{ required: true, message: '请选择' }],
-      contractContent: [{ required: true, message: '请输入' }],
-      paymentMethod: [{ required: true, message: '请选择' }],
-      countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      applicationTime: [{ required: true, message: '请选择' }]
-    }
+    rules: {}
   }),
   data: {
     navbarData:{
@@ -98,19 +76,9 @@ Page({
       tenderDocumentId: [{ required: true, message: '请选择' }],
       biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
-      contractPeriod: [
-        { required: true, message: '请输入' },
-        (form) => ({
-          async validator(_, value) {
-            if (!value || (value=value.replace(/^[1-9]\d{0,4}$/,''))) {
-              return;
-            }
-            throw new Error('工期只能为整数(最大五位数)');
-          },
-        }),
-      ],
+      contractPeriod: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
       makeSure: [{ required: true, message: '请选择' }],
-      contractAmount: [{ required: true, message: '请输入' }],
+      contractAmount: [{ required: true,message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
       unitPartyName: [{ required: true, message: '请选择' }],
       unitPartyType: [{ required: true, message: '请选择' }],
@@ -387,7 +355,8 @@ Page({
   },
   reset(){
     ddUtils.showModal({
-      content: "确认取消吗?",
+      title:'请确认',
+      content: "是否退出编辑，退出后不会保存当前编辑内容",
       success: res => {
         if (res.confirm) {
           this.form.reset();

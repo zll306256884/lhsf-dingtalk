@@ -27,6 +27,8 @@ Page({
     currentTabIndex: 0,
     projectInfo: {},
   },
+  mapRef:null,
+
   onLoad(option) {
     console.log(option);
     this.data.projectInfo.projectName=option.projectName
@@ -42,9 +44,17 @@ Page({
       navbarData: this.data.navbarData
     })
   },
+  onSaveMapRef(ref){
+    this.mapRef=ref
+  },
   onTabChange(e) {
     this.setData({
       currentTabIndex: e
     })
+    if(e===0){
+      console.log("??????????",this.mapRef);
+      this.mapRef.initMap()
+    }
   },
+
 });
