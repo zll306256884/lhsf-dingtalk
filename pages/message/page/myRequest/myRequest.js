@@ -87,6 +87,10 @@ Page({
   isLoading: false,
 
   onLoad() {
+    
+  },
+  onShow() {
+    this.page = 1
     this.getDataList()
     this.getCount()
   },
@@ -231,12 +235,12 @@ Page({
         break;
       case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 3:
         ddUtils.navigateTo({
-          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 4:
@@ -251,7 +255,7 @@ Page({
         break;
       case 6:
         ddUtils.navigateTo({
-          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.tabIndex}&deleteId=${item.id}`
         });
         break;
       case 7:

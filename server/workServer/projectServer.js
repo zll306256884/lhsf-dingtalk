@@ -19,6 +19,9 @@ module.exports = {
   API_SAVEANDSUBMIT: API_HOST + "/tender/tenderDocument/saveAndSubmit",
   //招标文件详情
   API_TENDER_DETAIL: API_HOST + "/tender/tenderDocument/selectById",
+  //招标文件删除
+  API_TENDER_DELETE: API_HOST + "/tender/tenderDocument/deleteByKeyIds",
+  
 
   ////根据项目Id查看参建方类型
   API_CURRENTUNIT_TYPE: API_HOST + "/integratedService/currentUnitType/queryCurrentUnitType",
@@ -39,6 +42,8 @@ module.exports = {
   API_CONTRACT_DETAIL: API_HOST + "/tender/contract/selectById",
 
   ////根据项目id/单位类型/单位名称分页模糊查询参建方信息
-  API_CURRENTUNIT: API_HOST + "/integratedService/currentUnit/queryPageCurrentUnit"
+  API_CURRENTUNIT: API_HOST + "/integratedService/currentUnit/queryPageCurrentUnit",
+  //合同删除
+  API_CONTRACT_DELETE: API_HOST + "/tender/contract/deleteByKeyIds",
 
 }
