@@ -120,7 +120,7 @@
   width: 280rpx;
   height: 210rpx;
   margin-right: 24rpx;
-  background: #eeeff0;
+  background: #eeeff0 no-repeat;
 }
 .item-info {
   font-size: 24rpx;

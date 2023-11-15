@@ -11,6 +11,8 @@
   color: #1d1d1f;
   line-height: 40rpx;
   margin-bottom: 16rpx;
+  white-space: normal;
+  word-break: break-word;
 }
 .item-status-error {
   display: inline-block;
@@ -86,6 +88,8 @@
   font-weight: 400;
   color: rgba(0, 0, 0, 0.5);
   line-height: 40rpx;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .form-title {

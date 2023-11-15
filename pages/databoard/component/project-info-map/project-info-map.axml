@@ -20,7 +20,7 @@
   </view>
   <view class="info-base">
     <view class="img-title flex f-start" data-item="{{item}}" data-index="{{index}}">
-      <image class="item-img" src="{{info.mainImg}}" />
+      <image class="item-img"  mode="aspectFit"  src="{{info.mainImg || '/assets/images/common/default-img.png'}}"  />
       <view>
         <view class="item-title two-lines">{{projectInfo.projectName}}</view>
         <view class="{{'item-status ' +['', 'success', 'error', 'warning', 'primary'][info.projectStatus]}}">
