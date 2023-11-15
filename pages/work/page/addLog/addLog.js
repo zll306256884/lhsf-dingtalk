@@ -4,10 +4,30 @@ import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import logService from "../../../../server/workServer/logServer"; //
 import projectService from "../../../../server/workServer/projectServer";
+import { Form } from 'antd-mini/es/Form/form';
 
 
 const app = getApp();
 Page({
+  form: new Form({
+    initialValues: {
+      // applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+    },
+    rules: {
+      tenderName: [{ required: true, message: '请输入' }],
+      projectId: [{ required: true, message: '请选择' }],
+      biddingPerson: [{ required: true, message: '请输入' }],
+      tenderingAgencyName: [{required: true, message: '请选择'}],
+      biddingType: [{ required: true, message: '请选择' }],
+      projectType: [{ required: true, message: '请选择' }],
+      tenderAmount: [{ required: true, message: '请输入' }],
+      decisionBasis: [{ required: true, message: '请选择' }],
+      biddingContent: [{ required: true, message: '请输入' }],
+      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      tenderDocumentList: [{required: true,message: '请上传'}],
+      applicationTime: [{ required: true, message: '请选择' }]
+    },
+  }),
   data: {
     navbarData: {
       title: "新增日志"
@@ -58,6 +78,10 @@ Page({
     onBack() {
       console.log('onBack')
     },
+  },
+
+  handleRef(ref) {
+    this.form.addItem(ref);
   },
 
   // 项目名称----组件start
