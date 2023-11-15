@@ -1,5 +1,5 @@
 {
-  "defaultTitle": "我的审批",
+  "defaultTitle": "",
   "usingComponents": {
     "approval-item": "/pages/components//approval-item/approval-item",
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
