@@ -104,7 +104,7 @@ Page({
     if (code == 2) {
       // 退出登录
       ddUtils.showActionSheet({
-        itemList: ["退出登录"],
+        itemList: ["退出登陆"],
         success: res => {
           switch (res.index) {
             case 0:

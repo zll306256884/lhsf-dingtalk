@@ -408,6 +408,11 @@ Page({
             url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
           });
           break; 
+        case 4:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+          });
+          break;
         case 5:
           ddUtils.navigateTo({
             url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`

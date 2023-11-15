@@ -14,11 +14,13 @@
     <button class="btn" catchTap="bindCancelTap" style="margin-right:20rpx;">
       取消
     </button>
-    <button class="btn active" form-type="submit" catchTap="bindSaveTap">确定</button>
+    <button class="btn active" form-type="submit" catchTap="bindSaveTap">填报</button>
   </view>
 </view>
-<dialog-screen-xiangmu-mingcheng
+
+<!-- 项目名称选择 -->
+<dialog-select-project
   ref="onSaveDialogScreenprojecteRef"
   onScreenCallBack="bindChooseProjectCallBack"
 >
-</dialog-screen-xiangmu-mingcheng>
+</dialog-select-project>

@@ -17,14 +17,14 @@ Page({
       tenderName: [{ required: true, message: '请输入' }],
       projectId: [{ required: true, message: '请选择' }],
       biddingPerson: [{ required: true, message: '请输入' }],
-      tenderingAgencyName: [{required: true, message: '请选择'}],
+      tenderingAgencyName: [{ required: true, message: '请选择' }],
       biddingType: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       tenderAmount: [{ required: true, message: '请输入' }],
       decisionBasis: [{ required: true, message: '请选择' }],
       biddingContent: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      tenderDocumentList: [{required: true,message: '请上传'}],
+      tenderDocumentList: [{ required: true, message: '请上传' }],
       applicationTime: [{ required: true, message: '请选择' }]
     },
   }),
@@ -178,8 +178,41 @@ Page({
       ...this.data.logData,
       'content': this.data.logContent
     }
-
     console.log('param', param)
+
+    // 校验
+    if (!this.data.logData.logDate) {
+      ddUtils.showToast({
+        title: "日志日期必选"
+      });
+      return
+    }
+    if (!this.data.logData.logType.length) {
+      ddUtils.showToast({
+        title: "日志类型必选"
+      });
+      return
+    }
+    if (!this.data.logContent) {
+      ddUtils.showToast({
+        title: "日志内容必填"
+      });
+      return
+    }
+    if (this.data.logData.logTypeName == '重大事件') {
+      if (!this.data.logData.name) {
+        ddUtils.showToast({
+          title: "请选择项目名称"
+        });
+        return
+      }
+      if (!this.data.logData.logPhotoList.length) {
+        ddUtils.showToast({
+          title: "重大事件的时候 图片必填"
+        });
+        return
+      }
+    }
     // return
     request.doPostRequest({
       url: logService.API_CREATE_LOG,
@@ -195,6 +228,15 @@ Page({
   },
   // 
   bindCancelTap() {
-    ddUtils.navigateBack();
+    // ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "是否退出编辑？退出后不会保存当前编辑内容",
+      success: res => {
+        if (res.confirm) {
+          // this.form.reset();
+          ddUtils.navigateBack();
+        }
+      }
+    });
   },
 });

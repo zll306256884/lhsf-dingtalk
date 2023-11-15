@@ -6,10 +6,8 @@
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
-    "select-project": "/pages/components/select-project/select-project",
     "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker",
-    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
-    "dialog-screen-xiangmu-mingcheng":"/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng"
+    "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date"
   }
 }
 
