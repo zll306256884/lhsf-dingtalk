@@ -27,7 +27,7 @@
               {{info.remark}}</view>
             </view>
   </view>
-   <view class="son">
+   <view class="son" a:if="{{sonList.length}}">
      子节点
    </view>
    <view class="content for-content" a:for="{{sonList}}" data-index={{index}} data-item="{{item}}">

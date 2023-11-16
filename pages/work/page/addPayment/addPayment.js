@@ -9,6 +9,7 @@ Page({
       title: "新增支付申请",
   },
     sort:'0',
+    disabled:false,
   // showDialog:false,
     projectId:"",
     screenExecuteUser: "",
@@ -52,6 +53,7 @@ Page({
       this.getEdit(option.id) 
     }
     if(option.sort === '1'){
+      this.data.disabled = true
      this.data.navbarData.title = '编辑支付申请'
     }else{
       this.data.navbarData.title = '新增支付申请'

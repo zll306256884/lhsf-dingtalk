@@ -54,3 +54,17 @@ opacity: 1;
 .fill_color{
   color: rgba(0,0,0,0.5);
 }
+.badge-list {
+  display: flex;
+}
+
+.ant-badge {
+  margin-right: 8px;
+}
+.box {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border-radius: 8px;
+  background: #b3b3b3;
+}

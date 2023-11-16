@@ -17,7 +17,8 @@ module.exports = {
   API_DELETE_TASK: API_HOST  + "/mission/mainMission/deleteById",
   API_CANCEL_TASK: API_HOST  +  "/mission/mainMission/cancel",
   API_MESSAGE_READ_TASK: API_HOST  +  "/message/messageCenter/read",
-  
+  // 未读消息
+  API_UNMESSAGE_TO_POST:API_HOST +'/message/messageCenter/unReadMessageTotal',
   //撤回审批查询信息
   API_JFLOWAUDIT_SELET_INFO: API_HOST  + "/jflow/jflowAuditRecord/selectByKeyId",
   //撤回审批
