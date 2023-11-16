@@ -44,8 +44,9 @@
         </view>
         <view class="flex f-row f-between">
           <view>
-            <text class="item-name">完成情况说明： {{item.remark}}</text>
-            <text class="item-time">截止时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            <text a:if="{{(infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId) || infoData.missionId==='0'}}"  class="item-name">完成情况说明： {{item.remark}}</text>
+            <text a:if="{{item.taskStatus===4}}" class="item-time">完成时间：{{utils.parseTime(item.finishTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            <text a:else class="item-time">截止时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
           </view>
         </view>
       </view>
@@ -54,6 +55,9 @@
         <button a:if="{{item.taskStatus===2}}" data-item="{{item}}" type="primary" onTap="remind">提醒</button>
         <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
     </view>
+    <view a:if="{{infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId}}" class="list-buttons flex f-row f-end">
+      <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
+  </view>
     </view>
   </view>
 </view>

@@ -1,6 +1,7 @@
 import workServer from "../../../../../server/workServer/index";
 import request from "../../../../../utils/request"
 import ddUtils from "../../../../../utils/ddUtils"
+const app = getApp();
 
 Page({
   data: {
@@ -14,6 +15,7 @@ Page({
         title:"任务完成情况",
       }
     ],
+    app,
     activeTab:0,
     executer_dictText: "",
     infoData:{},

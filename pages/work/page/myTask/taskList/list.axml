@@ -28,7 +28,7 @@
               <text a:if="{{currentTask!==0}}" class="item-name">执行人： {{item.executer_dictText}}</text>
               <text class="item-time">{{['截止日期','截止日期','完成日期','完成日期'][currentTask]}}：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
-            <view>
+            <view style="min-width:62px">
               <view class="item-status-error" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>
               <view a:if="{{currentTask!==0 && currentTask!==1 }}" class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
                 {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}

@@ -18,7 +18,7 @@ background: #fff;
 }
 .buttons {
   width: 100%;
-  position: absolute;
+  position: fixed;
   box-sizing: border-box;
   bottom:0;
   padding: 12px 12px 48px 12px;
