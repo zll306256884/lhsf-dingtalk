@@ -42,7 +42,7 @@ items: [
  getMessageList:function(s){
   let data = {
     pageNum: 1,
-    pageSize: 13,
+    pageSize: 10,
     "status": s,
   };
   request.doPostRequest({

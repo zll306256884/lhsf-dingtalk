@@ -9,6 +9,8 @@ Page({
     navbarData: {
       title: "竣工结算登记",
   },
+  disabled:false,
+  sort:'0',
   radioGroupOptions: [
     { value: 1, label: '核减' },
     { value: 2, label: '核增' },
@@ -47,6 +49,12 @@ Page({
     if(option.id){
       this.getEdit(option.id) 
     }
+    if(option.sort === '1'){
+       this.data.disabled = true
+      this.data.navbarData.title = '编辑竣工结算登记'
+     }else{
+       this.data.navbarData.title = '新增竣工结算登记'
+     }
   },
   handleRef(ref) {
     console.log(ref);
