@@ -12,11 +12,16 @@ Page({
     navbarData: {
       title: "进度填报"
     },
-    type: '',
+    type: '',//1  延期  0  正常
     projectName: "",
     projectId: "",
     taskId: '', //任务id
-    detailData: {}, //详情数据
+    detailData: {//详情数据
+      actualEndTime: '',//实际结束时间
+      actualBeginTime: '',//实际开始时间
+      remark: ""//情况说明,延期情况说明
+
+    },
   },
   dialogStartDateRef: null, //实际开始时间 
   dialogEndDateRef: null, //实际结束时间 
@@ -151,7 +156,32 @@ Page({
       "taskId": this.data.taskId
     }
 
-    // console.log('param', param)
+    console.log('param', param)
+
+    // 校验
+    if (this.data.type === 0) {
+      if (!this.data.detailData.actualEndTime) {
+        ddUtils.showToast({
+          title: "请选择实际开始事件"
+        });
+        return
+      }
+    }
+    // debugger
+    if (this.data.type === 1) {
+      if (!this.data.detailData.remark) {
+        ddUtils.showToast({
+          title: "请填写延期说明"
+        });
+        return
+      }
+      if (!annexFile.length) {
+        ddUtils.showToast({
+          title: "请添加证明材料"
+        });
+        return
+      }
+    }
 
     // return
     request.doPostRequest({

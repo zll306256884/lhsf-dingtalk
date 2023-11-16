@@ -1,83 +1,50 @@
 <view class="progressItem">
-  <view class="listboxItem">
-    <block a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part">
-      <!--  -->
-      <view
-        class="topItem flex f-between box-sizing-box"
-        data-planId={{item.id}}
-        data-type={{item.progressReport}}
-        data-name={{item.projectName}}
-        data-projectId={{item.projectId}}
-        catchTap="toEditPage"
-      >
-        <view class="flex f-between">
-          <!-- 是否为里程碑节点 -->
-          <block a:if="{{ item.flagNode==0 }}">
-            <image
-              a:if="{{ item.status==4 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/green.png"
-            />
-            <image
-              a:if="{{ item.status==3 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/orange.png"
-            />
-            <image
-              a:if="{{ item.status==2 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/blue.png"
-            />
-            <image
-              a:if="{{ item.status==1 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/gray.png"
-            />
-          </block>
-          <block a:if="{{ item.flagNode==1 }}">
-            <image
-              a:if="{{ item.status==4 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/greenhas.png"
-            />
-            <image
-              a:if="{{ item.status==3 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/orangehas.png"
-            />
-            <image
-              a:if="{{ item.status==2 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/bluehas.png"
-            />
-            <image
-              a:if="{{ item.status==1 }}"
-              class="greenTypeSpot"
-              src="/assets/images/progress/grayhas.png"
-            />
-          </block>
-          <!-- 按钮状态  -->
-          <view a:if="{{ item.status==4 }}" class="greenTypeBtn">已完成</view>
-          <view a:if="{{ item.status==3 }}" class="orangeTypeBtn">延期</view>
-          <view a:if="{{ item.status==2 }}" class="blueTypeBtn">进行中</view>
-          <view a:if="{{ item.status==1 }}" class="grayTypeBtn">未开始</view>
-          <view class="name single-line">{{item.taskName}}</view>
+  <block a:if="{{listData&&listData.length}}">
+    <view class="listboxItem">
+      <block a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part">
+        <!--  -->
+        <view class="topItem flex f-between box-sizing-box" data-planId={{item.id}} data-type={{item.progressReport}} data-name={{item.projectName}} 
+          data-projectId={{item.projectId}} catchTap="toEditPage">
+          <view class="flex f-between">
+            <!-- 是否为里程碑节点 -->
+            <block a:if="{{ item.flagNode==0 }}">
+              <image a:if="{{ item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/green.png" />
+              <image a:if="{{ item.status==3 }}" class="greenTypeSpot" src="/assets/images/progress/orange.png" />
+              <image a:if="{{ item.status==2 }}" class="greenTypeSpot" src="/assets/images/progress/blue.png" />
+              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/gray.png" />
+            </block>
+            <block a:if="{{ item.flagNode==1 }}">
+              <image a:if="{{ item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/greenhas.png" />
+              <image a:if="{{ item.status==3 }}" class="greenTypeSpot" src="/assets/images/progress/orangehas.png" />
+              <image a:if="{{ item.status==2 }}" class="greenTypeSpot" src="/assets/images/progress/bluehas.png" />
+              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/grayhas.png" />
+            </block>
+            <!-- 按钮状态  -->
+            <view a:if="{{ item.status==4 }}" class="greenTypeBtn">已完成</view>
+            <view a:if="{{ item.status==3 }}" class="orangeTypeBtn">延期</view>
+            <view a:if="{{ item.status==2 }}" class="blueTypeBtn">进行中</view>
+            <view a:if="{{ item.status==1 }}" class="grayTypeBtn">未开始</view>
+            <view class="name single-line">{{item.taskName}}</view>
+          </view>
+          <view>
+            <image class="right-icon" src="/assets/images/user/icon_arrow_gray.png" />
+          </view>
         </view>
-        <view>
-          <image class="right-icon" src="/assets/images/user/icon_arrow_gray.png" />
+        <!--  -->
+        <view class="belowItem flex f-between box-sizing-box">
+          <view class="plan">计划完成: {{item.endTime?item.endTime:'--'}}</view>
+          <view class="plan">实际完成: {{item.actualEndTime?item.actualEndTime:'--'}}</view>
         </view>
-      </view>
-      <!--  -->
-      <view class="belowItem flex f-between box-sizing-box">
-        <view class="plan">计划完成: {{item.endTime?item.endTime:'--'}}</view>
-        <view class="plan">实际完成: {{item.actualEndTime?item.actualEndTime:'--'}}</view>
-      </view>
-      <!--  -->
-
-    </block>
+        <!--  -->
+        
+      </block>
+    </view>
+  </block>
+  <view a:else style="text-align:center">
+    <empty title="" message="" image="/assets/images/common/empty.png" />
   </view>
   <!--  -->
-  <view class="mayflyBox">
+  <view class="mayflyBox" catchTap="callIt" a:if="{{formPage==='databoard' && listData&& listData.length}}">
     <image class="mayfly" src="/assets/images/progress/callpic.png" />
   </view>
   <!--  -->

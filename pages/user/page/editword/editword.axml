@@ -7,30 +7,59 @@
       mustFill
       name="原密码"
       inputName="totalNum"
+      password='true'
       placeholder="请输入"
       value="{{oldPwd}}"
       onInputChange="ymmInputChange"
       disabled="{{utils.isEqual(operationType, 'check')}}"
     />
-    <layout-field-input
+      <layout-field-input
       mustFill
       name="新密码"
-      inputType='password'
+      password='true'
       inputName="totalNum"
       placeholder="请输入"
       value="{{newPwd}}"
       onInputChange="xmmInputChange"
+      onBlurChange='xmmInputBlur'
       disabled="{{utils.isEqual(operationType, 'check')}}"
     />
+    <view class="showTip">由数字，字母组成，且长度不低于8位，区分英文大小写。</view>
     <layout-field-input
       mustFill
       name="确认密码"
       inputName="totalNum"
+      password='true'
       placeholder="请输入"
       value="{{confirmPwd}}"
       onInputChange="suremmInputChange"
+      onBlurChange='suremmInputBlur'
       disabled="{{utils.isEqual(operationType, 'check')}}"
     />
+  </view>
+  <!--  -->
+  <view class='judge flex f-between box-sizing-box' a:if="{{false}}">
+    <view class='right flex f-start'>
+      <view class='redstart'>*</view>新密码
+    </view>
+    <view class='left flex f-start'>
+      <input
+        class="input"
+        onInput="xmmInputChange"
+        onBlur="xmmInputBlur"
+        value="{{newPwd}}"
+        placeholder="请输入新密码"
+      />
+      <!-- <view class="time">
+        <image
+          a:if="{{verifyImg}}"
+          class="time"
+          mode="aspectFill"
+          catchTap="getVerifyCode"
+          src="{{verifyImg}}"
+        />
+      </view> -->
+    </view>
   </view>
   <!--  -->
   <view class='judge flex f-between box-sizing-box'>

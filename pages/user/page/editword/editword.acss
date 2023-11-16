@@ -22,6 +22,12 @@
   margin-top: 20rpx;
 }
 
+.showTip{
+  color:#1A6AFF;
+  font-size:24rpx;
+  padding-left:32rpx;
+}
+
 
 .judge {
   /* margin-top: 64rpx; */

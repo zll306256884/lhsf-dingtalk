@@ -24,7 +24,7 @@ Component({
   deriveDataFromProps(nextProps) { },
   //组件创建完毕时触发
   //此时页面已经渲染，通常在这时请求服务端数据。
-  didMount() { 
+  didMount() {
     this.getList()
   },
   //组件更新完毕时触发
@@ -38,6 +38,7 @@ Component({
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
+        // "projectId": '12019020004',
         'flagNode': this.data.flagNode
       }
       return new Promise((resolve, reject) => {
@@ -74,5 +75,7 @@ Component({
       }
       this.getList()
     },
+    // 
+    
   },
 });
