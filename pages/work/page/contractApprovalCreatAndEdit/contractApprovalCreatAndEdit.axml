@@ -60,7 +60,7 @@
   label="此合同是否需要招标"
   labelWidth="320rpx"
   name="contractNeedTender"
-  options="{{radioGroupOptions}}"
+  options="{{radioGroupOptionss}}"
   onChange="contractNeedTenderChange"
   ref="handleRef" />
 
