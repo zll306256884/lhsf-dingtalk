@@ -1,3 +1,4 @@
+import { Form } from 'antd-mini/es/Form/form';
 import utils from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
@@ -6,6 +7,20 @@ import projectService from "../../../../server/workServer/projectServer";
 
 const app = getApp();
 Page({
+  form: new Form({
+    initialValues: {
+      
+    },
+    rules: {
+      structureArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
+      floorArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
+      totalInvestment: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
+      blockNumber: [{required: false, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/}],
+      jianAnMoney: [{ required: false, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
+      coorX: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
+      coorY: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }]
+    },
+  }),
   data: {
     navbarData:{
       title: "新增项目"
@@ -59,7 +74,8 @@ Page({
     constructionNatureOptions: [],
     projectId: null,
     planConstructionDate: '',
-    actualConstruction: ''
+    actualConstruction: '',
+    blockNumber123: ''
   },
 
   dialogQuesFromRef: null,
@@ -86,8 +102,10 @@ Page({
     }else{
       this.getProNumber()
     }
-    
-    
+  },
+  handleRef(ref) {
+    console.log(ref)
+    this.form.addItem(ref);
   },
   events: {
     onBack() {
@@ -179,7 +197,22 @@ Page({
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   bindInputChange(e){
+    // console.log('qweqw', e)
 
+    // if(e.detail.value.length > 6){
+    //   console.log(1232321, e.detail.value.slice(0,6))
+    //   this.setData({
+    //     'formData.blockNumber': ''
+    //   })
+      
+    //   console.log(this.data.formData.blockNumber)
+    //   // this.setData({
+    //   //   'formData.blockNumber': JSON.parse(JSON.stringify(e.value.slice(0,6)))
+    //   // })
+    // }
+  },
+  onValuesChange(e){
+    console.log(e)
   },
   bindPickerEndDateCallBack(data){
     this.setData({
@@ -259,6 +292,10 @@ Page({
   },
   //详情
   getDetail(id){
+    const fields = this.form.getFieldsValue()
+    console.log(fields);
+    this.form.setFieldValue('', )
+
     request.doPostRequest({
       url: projectService.API_SELECTPROJECT_INFO_BYID,
       data:{id:id},
@@ -280,6 +317,19 @@ Page({
           outPutTime:res.data.outPutTime,
           constructionNature:{name:res.data.constructionNature_dictText,value:res.data.constructionNature},
           engineeringProperties:{name:res.data.engineeringProperties_dictText,value:res.data.engineeringProperties},
+          planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
+          actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime
+        })
+        const paramsdata = res.data
+        const fields = this.form.getFieldsValue()
+        console.log(fields);
+        for (let item in fields) {
+          if ({}.hasOwnProperty.call(fields, item)) {
+            fields[item] = paramsdata[item] || ''
+          }
+        }
+        this.form.setFieldsValue({
+          ...fields,
         })
         setTimeout(() => {
           this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
@@ -362,7 +412,9 @@ Page({
       }
     })
   },
-  bindFormSubmit(e){
+  async bindFormSubmit(e){
+    const params = await this.form.submit();
+
     if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
@@ -376,9 +428,10 @@ Page({
     if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
     if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
     if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
-    if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
-    if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
-    if (ddUtils.showEmptyToastTips(this.data.formData.totalInvestment, "总投资金额不能为空")) return;
+
+    // if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
+    // if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
+    // if (ddUtils.showEmptyToastTips(this.data.formData.totalInvestment, "总投资金额不能为空")) return;
 
     let workAuditFile = [];
     if (this.uploadImgRefList) {
@@ -391,19 +444,29 @@ Page({
       'formData.name':e.detail.value.name,
       'formData.projectProgram':e.detail.value.projectProgram,
 
-      'formData.structureArea':e.detail.value.structureArea,
-      'formData.floorArea':e.detail.value.floorArea,
+      // 'formData.structureArea':e.detail.value.structureArea,
+      // 'formData.floorArea':e.detail.value.floorArea,
+      'formData.structureArea': params.structureArea,
+      'formData.floorArea': params.floorArea,
+      
       'formData.proposedLocation':e.detail.value.proposedLocation,
       'formData.proposedLand':e.detail.value.proposedLand,
-      'formData.blockNumber':e.detail.value.blockNumber,
+      // 'formData.blockNumber':e.detail.value.blockNumber,
+      'formData.blockNumber':params.blockNumber,
 
-      'formData.coorX':e.detail.value.coorX,
-      'formData.coorY':e.detail.value.coorY,
+      // 'formData.coorX':e.detail.value.coorX,
+      // 'formData.coorY':e.detail.value.coorY,
+      'formData.coorX':params.coorX,
+      'formData.coorY':params.coorY,
 
       'formData.constructionContent':e.detail.value.constructionContent,
 
-      'formData.totalInvestment':e.detail.value.totalInvestment,
-      'formData.jianAnMoney':e.detail.value.jianAnMoney,
+      // 'formData.totalInvestment':e.detail.value.totalInvestment,
+      'formData.totalInvestment':params.totalInvestment,
+
+      // 'formData.jianAnMoney':e.detail.value.jianAnMoney,
+      'formData.jianAnMoney':params.jianAnMoney,
+
       'formData.sourceFunds':e.detail.value.sourceFunds,
       'formData.projectRedLineList': workAuditFile
     })

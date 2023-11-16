@@ -400,17 +400,17 @@ Page({
       switch (temp) {
         case 1:
           ddUtils.navigateTo({
-            url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus+1}&projectId=${item.projectId}`
+            url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&projectId=${item.projectId}`
           });
           break;
         case 2:
           ddUtils.navigateTo({
-            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=0`
           });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=0`
           });
           break; 
         case 4:
