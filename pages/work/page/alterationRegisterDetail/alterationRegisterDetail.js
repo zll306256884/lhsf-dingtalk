@@ -68,7 +68,7 @@ Page({
   },
   editTap:function(){
     ddUtils.navigateTo({
-      url: `/pages/work/page/alterationRegister/alterationRegister??id=${this.data.id}`
+      url: `/pages/work/page/alterationRegister/alterationRegister??id=${this.data.id}&sort=${1}`
     }); 
   }
 });

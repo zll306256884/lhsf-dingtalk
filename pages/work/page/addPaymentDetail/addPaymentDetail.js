@@ -97,7 +97,7 @@ Page({
   },
   editTap:function(){
     ddUtils.navigateTo({
-      url: `/pages/work/page/addPayment/addPayment??id=${this.data.id}`
+      url: `/pages/work/page/addPayment/addPayment??id=${this.data.id}&sort=${1}`
     }); 
   }
 });

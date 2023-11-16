@@ -8,6 +8,7 @@ Page({
     navbarData: {
       title: "新增支付申请",
   },
+    sort:'0',
   // showDialog:false,
     projectId:"",
     screenExecuteUser: "",
@@ -45,10 +46,15 @@ Page({
   onLoad(option) {
     console.log(option,'23232323');
     this.setData({
-      id:option.id
+      id:option.id,
     })
     if(option.id){
       this.getEdit(option.id) 
+    }
+    if(option.sort === '1'){
+     this.data.navbarData.title = '编辑支付申请'
+    }else{
+      this.data.navbarData.title = '新增支付申请'
     }
   },
   // 合同名称
