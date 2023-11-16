@@ -30,6 +30,9 @@ Page({
   // hasMore: false,
   // isLoading: false,
   onLoad() {
+   this.initList()
+  },
+  initList(){
     let params={
       executeUserId : app.globalData.userInfo.userId,
       createById:'',
@@ -62,6 +65,7 @@ Page({
     this.getMoreList(params);
 },
   onShow(){
+    this.initList()
   },
   //获取任务列表
  getTaskList: function (params) {

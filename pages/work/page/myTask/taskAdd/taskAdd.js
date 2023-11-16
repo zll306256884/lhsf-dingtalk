@@ -27,6 +27,7 @@ Page({
     annexList: [],
     projectList: [],
     executeUser: [],
+    operation:"add",
     dialogScreenExecuteUser: null,
     dialogPickerDate: null,
     uploadImageList: null
@@ -36,7 +37,8 @@ Page({
     const params = JSON.parse(option.json);
     if (params.type === "edit") {
       this.setData({
-        currentId:params.id
+        currentId:params.id,
+        operation:'edit'
       })
       this.data.navbarData.title="编辑任务"
       this.getInfo(params.id);
