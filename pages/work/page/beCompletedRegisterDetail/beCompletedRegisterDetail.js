@@ -38,7 +38,7 @@ Page({
   },
   editTap:function(){
     ddUtils.navigateTo({
-      url: `/pages/work/page/beCompletedRegister/beCompletedRegister??id=${this.data.id}`
+      url: `/pages/work/page/beCompletedRegister/beCompletedRegister??id=${this.data.id}&sort=${1}`
     }); 
   }
 });

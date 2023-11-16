@@ -5,8 +5,9 @@ import request from "../../../../utils/request"
 Page({
   data: {
     navbarData: {
-      title: "新增变更",
+      title: "新增工程联系单",
   },
+  sort:'0',
   disabled:false,
   projectId:"",
   contactNoticeName:"",//联系单名称
@@ -54,6 +55,11 @@ Page({
       this.data.disabled = true
       this.getDetail(option.id) 
     }
+    if(option.sort === '1'){
+      this.data.navbarData.title = '编辑工程联系单'
+     }else{
+       this.data.navbarData.title = '新增工程联系单'
+     }
   },
 
 // 项目名称
