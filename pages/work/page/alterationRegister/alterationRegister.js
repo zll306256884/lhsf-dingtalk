@@ -131,7 +131,6 @@ onSaveDialogScreenApplyDateRef:function(ref){
   this.dialogScreenApplyDateRef = ref
 },
 bindChooseApplyDateCallBack(data){
-  console.log(data,333333333333333);
   this.setData({
     countersignDate: data.startDate || '',
   });
@@ -145,7 +144,6 @@ onSaveDialogScreenChangeDateRef:function(ref){
   this.dialogScreenChangeDateRef = ref
 },
 bindChooseChangeDateCallBack(data){
-  console.log(data,333333333333333);
   this.setData({
     changeContentTime: data.startDate || '',
   });
@@ -160,7 +158,6 @@ onSaveDialogScreenBuildDateRef:function(ref){
   this.dialogScreenBuildDateRef = ref
 },
 bindChooseBuildDateCallBack(data){
-  console.log(data,333333333333333);
   this.setData({
     constructionUnitReportDate: data.startDate || '',
   });
@@ -197,6 +194,7 @@ bindChooseBuildDateCallBack(data){
   },
 // 上传
 onSaveUploadImgRef: function (ref) {
+  console.log(ref,232323232323);
   this.uploadImgRef = ref;
 },
 // 编辑 
@@ -238,8 +236,6 @@ getDetail(id){
 },
 //bind form submit
 bindFormSubmit: function (e) {
-  console.log(this.data.contactNoticeName);
-  console.log(e,999999999999999);
   let changeAmount = e.detail.value.changeAmount
   let contactChange = e.detail.value.contactChange
   let contactNoticeName = e.detail.value.contactNoticeName
@@ -251,6 +247,7 @@ bindFormSubmit: function (e) {
 let investmentFileList = [], temFileList=[]
 if (this.uploadImgRef) {
   temFileList = this.uploadImgRef.data.imgList;
+  console.log(temFileList);
 for (let item of temFileList) {
   investmentFileList.push({
       type: 0,
@@ -260,7 +257,6 @@ for (let item of temFileList) {
   })
 }
 }
-
 if(!this.data.isEdit){
     if (ddUtils.showEmptyToastTips(contactNoticeName, "请输入联系单名称")) return;
     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;

@@ -355,8 +355,11 @@ Page({
     // 待办审批
     if (this.data.currentAwait === 0) {
       console.log('this.data.currentAwait',this.data.currentAwait)
-      let item = e.target.dataset.item
-      let temp = e.target.dataset.item.type;
+      let temp = e.target.dataset.item.belongModule;
+      let id = e.target.dataset.item.keyId
+      let projectId = e.target.dataset.item.projectId
+      let showType = e.target.dataset.item.showType
+      let examineId = e.target.dataset.item.id //审批组件用
       switch (temp) {
         case 2:
           ddUtils.navigateTo({
@@ -370,13 +373,13 @@ Page({
           break;
         case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}`
           });
-        case 5:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
-          });
-          break;
+        // case 5:
+        //   ddUtils.navigateTo({
+        //     url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+        //   });
+        //   break;
       }
     }
     // 待办任务
@@ -390,7 +393,9 @@ Page({
     }
     // 待办请求
     if (this.data.currentAwait === 2) {
+      console.log('this.data.currentAwait',this.data.currentAwait)
       let item = e.target.dataset.item
+      
       let temp = e.target.dataset.item.type;
       switch (temp) {
         case 1:
@@ -410,7 +415,7 @@ Page({
           break; 
         case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&type=${temp}&status=${item.status}&projectId=${item.projectId}`
           });
           break;
         case 5:
@@ -425,12 +430,12 @@ Page({
           break;
         case 7:
           ddUtils.navigateTo({
-            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}`
           });
           break;
         case 8:
           ddUtils.navigateTo({
-            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
+            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}`
           });
           break;
       }

@@ -1,7 +1,7 @@
 
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container">
-  <view style="margin-top:20rpx">
+  <!-- <view style="margin-top:20rpx">
     <list>
       <list-item extraBrief="{{infoData.contactNoticeName}}">联系单名称</list-item>
       <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
@@ -18,14 +18,44 @@
       <list-item extraBrief="{{infoData.constructionUnitReportDate}}">施工单位上报日期</list-item>
       <list-item>
         联系单变更内容
-        <view style="margin-top:10rpx;color: #969799;">{{infoData.contactChange}}</view>
+        <view style="width: 686rpx;min-height: 30rpx; margin-top:10rpx;color: #969799;white-space:pre-wrap;">{{infoData.contactChange}}</view>
       </list-item>
       <list-item>
         备注
         <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>
       </list-item>
     </list>
-  </view>
+  </view> -->
+
+  <form onSubmit="bindFormSubmit">
+    <view class="box-shadow">
+      <layout-field-cell borderTop name="联系单名称"  placeholder="请选择" value="{{infoData.contactNoticeName}}" ></layout-field-cell>
+      <layout-field-cell borderTop name="项目名称"  placeholder="请选择"  value="{{infoData.projectName}}"></layout-field-cell>
+      <layout-field-cell hidden={{false}} borderTop name="项目负责人"    value="{{infoData.projectLeader}}"></layout-field-cell>
+      <layout-field-cell hidden={{false}} borderTop name="所属单位"    value="{{infoData.affiliateUnit}}"></layout-field-cell>
+      <layout-field-cell borderTop name="项目累计变更"   value="{{infoData.projectChangeAmount}}" ></layout-field-cell>
+      <layout-field-cell borderTop name="合同名称"   disabled="{{isEdit}}" value="{{infoData.contractName}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell name="合同金额"  borderTop   disabled="{{isEdit}}" value="{{infoData.contractAmount}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell  name="变更金额" borderTop    disabled="{{isEdit}}" value="{{infoData.changeAmount}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell borderTop name="合同累计变更"   disabled="{{isEdit}}" value="{{infoData.contractCumulativeChange}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell name="合同变更率"  borderTop   disabled="{{isEdit}}" value="{{infoData.contractChangeRate}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell  name="申请会签批准日期" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.countersignDate}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell name="变更内容完成时间"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.changeContentTime}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell  name="施工单位上报日期" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.constructionUnitReportDate}}" placeholder="请输入"></layout-field-cell>
+       <view class="ReportDate">
+        联系单变更内容
+       </view>
+       <layout-field-cell borderBottom  disabled="{{isEdit}}" value="{{infoData.contactChange}}" placeholder="请输入"></layout-field-cell>
+       <view class="ReportDate">
+        备注
+       </view>
+       <layout-field-cell  disabled="{{isEdit}}" value="{{infoData.remark}}" placeholder="请输入"></layout-field-cell>
+    </view>
+    <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
+      <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>
+       <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
+    </view> -->
+  </form>
   <view style="margin-top:20rpx">
     <list>
       <list-item>

@@ -74,7 +74,10 @@ bindChooseProjectCallBack: function (data) {
     projectData: data || {},
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
-    projectId:data.id || ''
+    projectId:data.id || '',
+    'contractData.contractName':'',
+    contractAmount:'',
+    contractorName:''
   });
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,
@@ -215,7 +218,7 @@ request.doPostRequest({
     contractName: this.data.contractData.contractName,
     contractAmount:this.data.contractAmount,
     contractorName:this.data.contractorName,
-    investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
+    investmentFileList:investmentFileList,
     applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
   pricingTrial:pricingTrial,
   id:this.data.id?this.data.id:'',
