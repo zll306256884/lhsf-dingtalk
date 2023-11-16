@@ -16,7 +16,8 @@
 #projectScenery .listArr .canvasNav{
   /* width: 702rpx; */
   height: 376rpx;
-  background: white;
+  /* background: white; */
+  background: black;
   border-radius: 8rpx 8rpx 0rpx 0rpx;
   opacity: 1;
   overflow: hidden;

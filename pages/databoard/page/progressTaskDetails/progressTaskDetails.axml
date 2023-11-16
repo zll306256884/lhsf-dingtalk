@@ -4,7 +4,7 @@
     <list header="" radius="{{ false }}">
       <list-item>
         <view class="flex f-between">
-          <view class="bigTitle">任务负责人：{{listData.projectLeaderName?listData.projectLeaderName:'--'}}</view>
+          <view class="bigTitle">任务负责人：{{listData.responsible[0].name?listData.responsible[0].name:'--'}}</view>
           <view>
             <!-- 按钮状态  -->
             <view a:if="{{ item.status==4 }}" class="greenTypeBtn btnSize">已完成</view>
@@ -18,7 +18,7 @@
         <view class="flex f-between">
           <view></view>
           <view>
-            <button type="primary" size="mini" catchTap="callUpPerson">呼叫</button>
+            <button type="primary" size="mini" catchTap="callPerson" data-form='任务'>呼叫</button>
           </view>
         </view>
       </list-item>
@@ -38,7 +38,7 @@
           <view class="title">项目负责人</view>
           <view class="flex f-start">
             <view style="line-height:48rpx;" class="desWord">{{listData.projectLeaderName?listData.projectLeaderName:'--'}}</view>
-            <button type="primary" size="mini" style="margin-left:16rpx">呼叫</button>
+            <button type="primary" size="mini" style="margin-left:16rpx" catchTap="callPerson" data-form='项目'>呼叫</button>
           </view>
         </view>
       </list-item>

@@ -17,5 +17,6 @@ module.exports = {
   // 看板 --  现场实景
   API_BANK_SIT: API_HOST + "/integratedService/projectInfoFile/querySitProgressList",
 
-  // 进度列表 --获取项目接口
+  // 通过id查询电话id
+  API_CALL_CODE: API_HOST + "/platform/user/selectUserDetailById",
 }

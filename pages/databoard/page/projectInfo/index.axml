@@ -12,8 +12,8 @@
     <project-scenery projectId="{{projectInfo.projectId}}"></project-scenery>
   </view>
   <view a:if="{{currentTabIndex === 5}}">
-    <!-- 工作日志  -->
-    <log-work projectId="{{projectInfo.projectId}}"></log-work>
+    <!-- 工作日志 projectId="{{projectInfo.projectId}}" -->
+    <log-work ></log-work>
   </view>
   <invest-control a:if="{{ currentTabIndex=== 3 }}" projectId="{{projectInfo.projectId}}"></invest-control>
   

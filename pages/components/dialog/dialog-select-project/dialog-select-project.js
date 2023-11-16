@@ -93,7 +93,6 @@ Component({
         param = {
           projectName: this.data.keyWords
         }
-
       }
       request.doPostRequest({
         url: baseUrl,

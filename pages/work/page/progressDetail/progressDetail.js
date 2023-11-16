@@ -47,7 +47,8 @@ Page({
   // 获取基本信息
   getList: function () {
     let param = {
-      "projectId": this.data.projectId,
+      // "projectId": this.data.projectId,
+      "projectId": '12019020004',
       'flagNode': this.data.flagNode
     }
     return new Promise((resolve, reject) => {
