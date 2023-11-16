@@ -94,7 +94,7 @@
           <list-item> 
             <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
               <view class="item-title two-lines">
-                <view class="item-status-error" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}} </view>
+                <view class="{{item.taskStatus===5?'item-status-error':''}}" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}} </view>
                 <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
                   {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
                 </view>

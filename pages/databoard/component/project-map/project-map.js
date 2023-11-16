@@ -102,8 +102,15 @@ Component({
         url: apiDataBoardServer.API_MAP_PROJECT_LIST,
         data: this.data.params,
         success: res => {
+         const list = res.data.map(item=>{
+            return{
+              ...item,
+              mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:'/assets/images/common/default-img.png'
+            }
+          })
+          console.log(list);
           this.setData({
-            projectList: res.data
+            projectList: list
           });
           this.updateComponents();
         }
@@ -175,17 +182,6 @@ Component({
     //     });
     //   }
     // },
-    // 手势的放大与缩小
-    demoGesture() {
-      if (dd.canIUse("createMapContext")) {
-        myGestureEnabled = (myGestureEnabled + 1) % 2;
-        this.mapCtx.gestureEnable({ isGestureEnable: myGestureEnabled });
-      }
-    },
-    // 视野发生变化时触发
-    regionchange(e) {
-      console.log("regionchange", e);
-    },
     // 点击 Marker 时触发
     markertap(e) {
      let index = this.data.projectList.findIndex(item=>item.id===e.markerId)
@@ -196,6 +192,17 @@ Component({
     // 点击地图时触发
     tap() {
       console.log("tap");
+    },
+     // 视野发生变化时触发
+     regionchange(e) {
+      console.log("regionchange", e);
+     },
+   // 手势的放大与缩小
+    demoGesture() {
+      if (dd.canIUse("createMapContext")) { 
+        myGestureEnabled = (myGestureEnabled + 1) % 2;
+        this.mapCtx.gestureEnable({ isGestureEnable: myGestureEnabled });
+      }
     },
   }
 });
