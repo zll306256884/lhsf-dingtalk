@@ -1,5 +1,5 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
+<view>
 <tabs items="{{tabs}}" current="{{currentTabIndex}}" onChange="onTabChange"/>
 <project-map ref="onSaveMapRef" a:if="{{currentTabIndex === 0}}"/>
 <annual-bidding-progress a:if="{{currentTabIndex === 2}}" />
