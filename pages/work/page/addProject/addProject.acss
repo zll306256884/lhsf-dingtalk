@@ -74,3 +74,6 @@
   opacity: 1;
   color: #FFFFFF;
 }
+.ant-input-content{
+  text-align: right;
+}

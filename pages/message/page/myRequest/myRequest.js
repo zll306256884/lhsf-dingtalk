@@ -78,7 +78,8 @@ Page({
           },
         ],
       }
-    ]
+    ],
+    type: []
   },
 
   page: 1,
@@ -90,6 +91,9 @@ Page({
     
   },
   onShow() {
+    this.setData({
+      options: JSON.parse(JSON.stringify(this.data.options))
+    })
     this.page = 1
     this.getDataList()
     this.getCount()
@@ -114,13 +118,20 @@ Page({
   onBindSureTap(data) {
     console.log(data)
     let filterValue = data[0].option
-    let list = filterValue.find(e => e.selected === true)
+    let list = filterValue.filter(e => e.selected === true)
+
     this.page = 1
     this.onDialog(false)
     if(list){
-      let type = list.id
+      let type = list.map(e => e.id)
+      this.setData({
+        type
+      })
       this.getDataList(type)
     }else{
+      this.setData({
+        type: []
+      })
       this.getDataList()
     }
   },
@@ -201,7 +212,7 @@ Page({
       tabIndex: index
     });
     this.page = 1
-    this.getDataList()
+    this.getDataList(this.data.type)
   },
   //判断是否为空
   _loadDone: function (res) {
