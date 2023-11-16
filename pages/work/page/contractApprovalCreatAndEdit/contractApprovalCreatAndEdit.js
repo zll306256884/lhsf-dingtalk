@@ -66,7 +66,6 @@ Page({
   onLoad(options) {
     this.form.rules = {
       projectName: [{ required: true, message: '请输入' }],
-      projectId: [{ required: true, message: '请选择' }],
       contractName: [{ required: true, message: '请输入' }],
       contractNumber: [{ required: true, message: '请输入' }],
       supplementAgreement: [{ required: true, message: '请选择' }],

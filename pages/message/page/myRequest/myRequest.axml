@@ -1,3 +1,4 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="top-navbar flex f-between">
   <view style="width:90%">
@@ -22,7 +23,7 @@
     <view class="flex f-between">
       <view style="width:80%">
         <view class="request-name">{{item.title}}</view>
-        <view class="request-time">{{item.createTime}}</view>
+        <view class="request-time">{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</view>
       </view>
       <view a:if="{{ item.tagType === 2 }}" class="request-status">
         已驳回
