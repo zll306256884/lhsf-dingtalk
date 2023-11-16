@@ -24,7 +24,7 @@
 }
 
 .field-cell-layout .value {
-    margin-left: 40rpx;
+    /* margin-left: 40rpx; */
     line-height: 48rpx;
     font-size: 28rpx;
     color: #B8BFCC;
