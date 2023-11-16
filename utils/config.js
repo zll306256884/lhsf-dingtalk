@@ -25,6 +25,8 @@ module.exports = {
     API_PROJECT_TYPE :API_HOST +'/platform/sysDictItem/queryListByCode?dictCode=investment_project_type',
      // 项目名称
      API_PROJECT_NAME :API_HOST +'/integratedService/projectInfo/queryRoleProjectList',
+      // 启用中-项目名称
+      API_INIT_PROJECT_NAME :API_HOST +'/control/plan/queryEnableProejctInfo',
       // 合同名称
       API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
         // 合同下累计金额

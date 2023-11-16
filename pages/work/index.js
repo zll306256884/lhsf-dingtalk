@@ -1,6 +1,7 @@
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
 import ddUtils from "../../utils/ddUtils"
+import apiMesssageServer from "../../server/messageServer"
 const app = getApp();
 
 Page({
@@ -96,10 +97,17 @@ Page({
     requestStatus: 0
   },
   onLoad(option) {
+    // this.getAwaitList()
+    // this.getApprovalList(2)
+    // this.getQueryList('2')
+    // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+  },
+  onShow(){
     this.getAwaitList()
     this.getApprovalList(2)
     this.getQueryList('2')
     this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+    this.getCount()
   },
   onItemTap(e) {
     console.log(e);
@@ -400,17 +408,17 @@ Page({
       switch (temp) {
         case 1:
           ddUtils.navigateTo({
-            url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus+1}&projectId=${item.projectId}`
+            url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&projectId=${item.projectId}`
           });
           break;
         case 2:
           ddUtils.navigateTo({
-            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=0`
           });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=0`
           });
           break; 
         case 4:
@@ -475,6 +483,22 @@ Page({
     ddUtils.navigateTo({
       url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
     });
+  },
+  getCount(){
+    request.doPostRequest({
+      url: apiMesssageServer.API_COUNT_MATTER,
+      data: {userId: app.globalData.userInfo.userId},
+      success: res => {
+        let list = this.data.tabs4
+        console.log(list);
+        list[0].count = res.data.handleNum
+        // list[1].total = res.data.handleNum
+        console.log(list);
+        this.setData({
+          tabs4: list
+        })
+      }
+    })
   },
   // 点击列表项查看请求详情
   selectQueryInfo(e) {

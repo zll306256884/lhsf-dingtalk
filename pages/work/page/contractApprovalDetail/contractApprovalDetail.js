@@ -46,6 +46,11 @@ Page({
       this.getDetail(options.id)
     }
   },
+  onNavTabChange(e){
+    this.setData({
+      current: e
+    })
+  },
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
   },
@@ -98,7 +103,8 @@ Page({
   //删除
   deletThis(){
     ddUtils.showModal({
-      content: "确认删除吗?",
+      title:'确认删除所选数据？',
+      content: "删除后不可恢复，请确认",
       success: res => {
         if (res.confirm) {
           request.doPostRequest({
@@ -124,29 +130,35 @@ Page({
   },
   //撤回申请
   withdrawApplication(){
-    request.doPostRequest({
-      url: workService.API_JFLOWAUDIT_SELET_INFO,
-      data: {keyId: this.data.contractId},
+    ddUtils.showModal({
+      content: "确认撤回申请吗?",
       success: res => {
-        console.log(res.data)
-        let params = {
-          account: res.data.account,
-          no: res.data.jflowNo,
-          workId: res.data.jflowWorkid
+        if (res.confirm) {
+          request.doPostRequest({
+            url: workService.API_JFLOWAUDIT_SELET_INFO,
+            data: {keyId: this.data.contractId},
+            success: res => {
+              console.log(res.data)
+              let params = {
+                account: res.data.account,
+                no: res.data.jflowNo,
+                workId: res.data.jflowWorkid
+              }
+              request.doPostRequest({
+                url: workService.API_AUDIT_WITHDRAW,
+                data: params,
+                success: res => {
+                  console.log(res.data)
+                  ddUtils.showToast({
+                    title: "操作成功"
+                  });
+                  ddUtils.navigateBack();
+                }
+              })
+            }
+          })
         }
-        request.doPostRequest({
-          url: workService.API_AUDIT_WITHDRAW,
-          data: params,
-          success: res => {
-            console.log(res.data)
-            ddUtils.showToast({
-              title: "操作成功"
-            });
-            ddUtils.navigateBack();
-          }
-        })
       }
-    })
+    });
   }
-  
 });

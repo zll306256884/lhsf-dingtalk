@@ -24,7 +24,8 @@ Page({
     tenderingAgency: '',
     countersignLeader: '',
     tenderDocumentList: [],
-    otherDocumentList: []
+    otherDocumentList: [],
+    projectId: null
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -170,7 +171,8 @@ Page({
         })
         this.setData({
           tenderingAgency: paramsdata.tenderingAgency,
-          countersignLeader: paramsdata.countersignLeader
+          countersignLeader: paramsdata.countersignLeader,
+          projectId: paramsdata.projectId
         })
         setTimeout(() => {
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 

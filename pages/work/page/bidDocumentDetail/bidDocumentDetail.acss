@@ -41,6 +41,9 @@
 .ant-list-item-line{
   padding:20rpx 32rpx;
 }
+.ant-list-item-content-main{
+  min-width: 130rpx;
+}
 .ant-list-item-extra-brief{
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
@@ -71,4 +74,12 @@
 .bottom-content .bottom-button .active{
   background: #1A6AFF;
   color: #FFFFFF;
+}
+.red-bg{
+  background: rgba(245,63,63,0.08);
+  color: #F53F3F;
+}
+.green-bg{
+  background: #E6F8EA;
+  color: #00B42A;
 }

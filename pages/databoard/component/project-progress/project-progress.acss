@@ -8,7 +8,7 @@
   display: block;
   background: #fff;
   margin: 16rpx 24rpx;
-  padding: 32rpx;
+  /* padding: 32rpx; */
   border-radius: 16rpx;
 }
 

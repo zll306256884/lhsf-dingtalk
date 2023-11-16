@@ -43,6 +43,7 @@ Page({
         success: res => {
           res.data.annexFile = JSON.parse(res.data.annexFile)
           console.log('res.data', res.data)
+          res.data.responsible = JSON.parse(res.data.responsible)
           this.setData({
             listData: res.data
           });
@@ -53,6 +54,62 @@ Page({
         }
       });
     })
+  },
+  // 
+  // 电话
+  callPerson(e) {
+    console.log(e)
+    // 1715236940858523649
+    var callCode
+    console.log('打电话', callCode)
+    if (e.target.dataset.form === '任务') {
+      callCode = this.data.listData.responsible[0].id
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_CALL_CODE,
+          showLoading: true,
+          data: {
+            "userId": callCode
+          },
+          success: res => {
+            console.log('res.data', res.data)
+            dd.callUsers({
+              users: [res.data.dingTalkId],
+              // users: ['01460242357481712'],
+              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+              success: () => { },
+              fail: (res) => {
+                console.log(res)
+                ddUtils.showToast({
+                  title: 'errorCode：' + res.error + ',' + res.errorMessage
+                });
+              },
+              complete: () => { },
+            });
+
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    }
+    if (e.target.dataset.form === '项目') {
+      callCode = this.data.listData.dingTalkId
+      dd.callUsers({
+        users: [this.data.listData.dingTalkId],
+        // users: ['01460242357481712'],
+        corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+        success: () => { },
+        fail: (res) => {
+          console.log(res)
+          ddUtils.showToast({
+            title: 'errorCode：' + res.error + ',' + res.errorMessage
+          });
+        },
+        complete: () => { },
+      });
+    }
   },
   // 
 });

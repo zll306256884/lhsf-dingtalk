@@ -5,7 +5,7 @@
       <view class="title">
         项目信息
       </view>
-      <layout-field-input borderBottom name="项目码" mustFillTransparent itemIndex="1" inputName="projectCode" maxlength="50" value="{{formData.projectCode}}" placeholder="请输入" onInputChange="bindInputChange"></layout-field-input>
+      <layout-field-input borderBottom name="项目码" mustFillTransparent itemIndex="1" inputName="projectCode" maxlength="50" value="{{formData.projectCode}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="项目编号" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{formData.proNumber}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="项目名称" mustFill inputName="name" value="{{formData.name}}" maxlength="200" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="项目简称" mustFillTransparent itemIndex="1" maxlength="200" inputName="projectProgram" value="{{formData.projectProgram}}" placeholder="请输入"></layout-field-input>
@@ -28,11 +28,36 @@
     </view>
 
     <view class="containerinner" style="margin-top:16rpx">
-      <layout-field-input borderBottom name="建筑面积(平方米)" inputType="number" mustFill inputName="structureArea" value="{{formData.structureArea}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="占地面积(平方米)" inputType="number" mustFill inputName="floorArea" value="{{formData.floorArea}}" placeholder="请输入"></layout-field-input>
+      <!-- <layout-field-input borderBottom name="建筑面积(平方米)" inputType="number" mustFill inputName="structureArea" value="{{formData.structureArea}}" placeholder="请输入"></layout-field-input> -->
+      <form-input
+        label="建筑面积(平方米)"
+        labelWidth="280rpx"
+        name="structureArea"
+        placeholder="请输入"
+        type="number"
+        ref="handleRef" />
+
+      <!-- <layout-field-input borderBottom name="占地面积(平方米)" inputType="number" mustFill inputName="floorArea" value="{{formData.floorArea}}" placeholder="请输入"></layout-field-input> -->
+      <form-input
+        label="占地面积(平方米)"
+        labelWidth="280rpx"
+        name="floorArea"
+        placeholder="请输入"
+        type="number"
+        ref="handleRef" />
+      
       <layout-field-input borderBottom name="拟建位置" mustFillTransparent inputType="text" maxlength="100" inputName="proposedLocation" value="{{formData.proposedLocation}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="拟用土地" mustFillTransparent inputType="text" maxlength="100" inputName="proposedLand" value="{{formData.proposedLand}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="座数" mustFillTransparent inputType="number" inputName="blockNumber" value="{{formData.blockNumber}}" placeholder="请输入"></layout-field-input>
+      <!-- <layout-field-input borderBottom name="座数" mustFillTransparent inputType="number" inputName="blockNumber" value="{{formData.blockNumber}}" placeholder="请输入" onInputChange="bindInputChange"></layout-field-input> -->
+
+      <form-input
+        label="座数"
+        labelWidth="280rpx"
+        name="blockNumber"
+        placeholder="请输入"
+        type="number"
+        ref="handleRef" />
+
       <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent placeholder="请选择" value="{{planConstructionDate}}" onArrowTap="_bindChoosePlanConstructionDate"></layout-field-cell>
       <layout-field-input borderBottom name="计划施工工期(天)" mustFillTransparent value="{{formData.duration}}" disabled></layout-field-input>
       <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent placeholder="请选择" value="{{actualConstruction}}" onArrowTap="_bindChooseActualConstruction"></layout-field-cell>
@@ -47,16 +72,45 @@
       <view class="title">
         项目坐标
       </view>
-      <layout-field-input borderBottom name="X" mustFillTransparent inputType="number" inputName="coorX" value="{{formData.coorX}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
-      <layout-field-input borderBottom name="Y" mustFillTransparent inputType="number" inputName="coorY" value="{{formData.coorY}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
+      <!-- <layout-field-input borderBottom name="X" mustFillTransparent inputType="number" inputName="coorX" value="{{formData.coorX}}" placeholder="请按照国标2000坐标填写"></layout-field-input> -->
+      <form-input
+        label="X"
+        name="coorX"
+        placeholder="请按照国标2000坐标填写"
+        type="number"
+        ref="handleRef" />
+
+      <!-- <layout-field-input borderBottom name="Y" mustFillTransparent inputType="number" inputName="coorY" value="{{formData.coorY}}" placeholder="请按照国标2000坐标填写"></layout-field-input> -->
+      <form-input
+        label="Y"
+        name="coorY"
+        placeholder="请按照国标2000坐标填写"
+        type="number"
+        ref="handleRef" />
     </view>
 
     <view class="containerinner" style="margin-top:16rpx">
       <view class="title">
         投资信息
       </view>
-      <layout-field-input borderBottom name="总投资金额(万元)" mustFill inputType="number" inputName="totalInvestment" value="{{formData.totalInvestment}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="建安费用(万元)" mustFillTransparent inputType="number" inputName="jianAnMoney" value="{{formData.jianAnMoney}}" placeholder="请输入"></layout-field-input>
+      <!-- <layout-field-input borderBottom name="总投资金额(万元)" mustFill inputType="number" inputName="totalInvestment" value="{{formData.totalInvestment}}" placeholder="请输入"></layout-field-input> -->
+      <form-input
+        label="总投资金额(万元)"
+        labelWidth="280rpx"
+        name="totalInvestment"
+        placeholder="请输入"
+        type="number"
+        ref="handleRef" />
+      
+      <!-- <layout-field-input borderBottom name="建安费用(万元)" mustFillTransparent inputType="number" inputName="jianAnMoney" value="{{formData.jianAnMoney}}" placeholder="请输入"></layout-field-input> -->
+      <form-input
+      label="建安费用(万元)"
+      labelWidth="280rpx"
+      name="jianAnMoney"
+      placeholder="请输入"
+      type="number"
+      ref="handleRef" />
+
       <layout-field-input borderBottom name="资金来源" mustFillTransparent inputType="text" maxlength="200" inputName="sourceFunds" value="{{formData.sourceFunds}}" placeholder="请输入"></layout-field-input>
     </view>
 

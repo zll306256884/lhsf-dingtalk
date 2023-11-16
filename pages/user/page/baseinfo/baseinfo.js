@@ -38,7 +38,7 @@ Page({
     return new Promise((resolve, reject) => {
       request.doPostRequest({
         url: userServer.API_BASE_INFO,
-        showLoading: false,
+        showLoading: true,
         data: {
           userId: app.globalData.userInfo.userId
         },
@@ -66,8 +66,8 @@ Page({
         data: {
           "pageNum": 1,
           "pageSize": 100,
-          "userId": '1'
-          // "userId": app.globalData.userInfo.userId
+          // "userId": '1'
+          "userId": app.globalData.userInfo.userId
         },
         success: res => {
           console.log('res.data我是在职项目', res.data)
