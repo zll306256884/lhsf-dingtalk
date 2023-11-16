@@ -137,3 +137,8 @@
 .approval .ant-tabs-bar-basic-title{
 
 } */
+
+.ant-empty-image-element {
+  width: 67px!important;
+  height: 100px!important;
+}

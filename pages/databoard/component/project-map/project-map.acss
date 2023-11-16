@@ -25,8 +25,11 @@
   background-color: transparent;
 }
 .status-list .ant-tabs-bar-capsule-title {
+  height: 48rpx;
   margin-right: 24rpx;
   background-color: #fff;
+  line-height: 48rpx;
+  padding:0 32rpx 0 24rpx
 }
 
 
@@ -78,8 +81,7 @@
   color: #1d1d1f;
   background-color: #fff;
   border: 2rpx solid #1a6aff;
-  line-height: 48rpx;
-  padding:0 16rpx
+  box-sizing:border-box
 }
 .status-list
   .ant-tabs-bar-capsule.ant-tabs-bar-active .ant-tabs-bar-capsule-title::after{
@@ -121,6 +123,7 @@
   height: 210rpx;
   margin-right: 24rpx;
   background: #eeeff0 no-repeat;
+  background-size: 40%!important;
 }
 .item-info {
   font-size: 24rpx;

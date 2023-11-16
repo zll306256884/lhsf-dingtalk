@@ -5,6 +5,7 @@
   padding: 32rpx;
 }
 .request-name{
+  max-width: 540rpx;
   font-size: 34rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;

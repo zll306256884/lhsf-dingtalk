@@ -103,3 +103,7 @@ background: #FFF2E6;
     background: #ffffff;
     padding: 12px 12px 48px 12px;
   }
+  .ant-empty-image-element {
+    width: 67px!important;
+    height: 100px!important;
+  }
