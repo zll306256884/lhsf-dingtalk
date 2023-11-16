@@ -97,7 +97,7 @@ Page({
   },
   onLoad(option) {
     this.getAwaitList()
-    this.getApprovalList(1)
+    this.getApprovalList(2)
     this.getQueryList('2')
     this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
   },

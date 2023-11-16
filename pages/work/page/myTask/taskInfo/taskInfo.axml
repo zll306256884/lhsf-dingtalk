@@ -22,12 +22,13 @@
     <layout-field-cell borderBottom name="执行人员" value="{{executer_dictText}}"></layout-field-cell>
     <layout-field-cell borderBottom name="任务发起人" value="{{infoData.createBy_dictText}}"></layout-field-cell>
     <layout-field-cell borderBottom name="任务发起时间" value="{{utils.parseTime(infoData.createTime,'{y}-{m}-{d} {h}:{i}')}}"></layout-field-cell>
-    <layout-field-cell valueLeft borderBottom name="任务描述" value="{{infoData.remark}}"></layout-field-cell>
+    <layout-field-cell name="任务描述"></layout-field-cell>
+    <view style="padding:8rpx 24rpx">{{infoData.remark}}</view>
   </view>
   <view style="margin-top:16rpx;background:#fff">
     <layout-upload-img disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
   </view>
-  <view class="buttons  flex f-row f-between">
+  <view a:if="{{infoData.taskStatus!==4 && infoData.taskStatus!==6}}" class="buttons  flex f-row f-between">
     <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="cancelTask">取消任务</button>
     <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="editTask">编辑任务</button>
     <button type="primary" onTap="handleTask">完成任务</button>

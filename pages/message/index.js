@@ -81,6 +81,11 @@ items: [
             url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&type=${false}`
           });
           break;
+          case 8:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
+            });
+            break;
    }
  }
 });
