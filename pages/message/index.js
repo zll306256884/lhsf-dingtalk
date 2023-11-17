@@ -147,7 +147,7 @@ items: [
           });
           break;
       }
-    }else if(item.jflowType === 2){
+    }else if(item.jflowType === 1){
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
@@ -160,7 +160,20 @@ items: [
           });
           break;
       }  
-   }
+    }else if(item.jflowType === 2){
+      switch (item.belongModule) {
+        case 2:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+        });
+          break;
+        case 3:
+          ddUtils.navigateTo({
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+          });
+          break;
+      }  
+    }
   }else if(item.type === 4){//4系统公告
 
   }
