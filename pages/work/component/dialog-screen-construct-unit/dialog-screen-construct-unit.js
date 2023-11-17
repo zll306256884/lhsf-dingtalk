@@ -26,7 +26,7 @@ Component({
         chooseIndex: -1,
         topHeight: 0,
         scrollHeight: 0,
-        title:"选择相关单位",
+        title:"选择相关单位2",
         inputValue: '',
         dataList: []
     },
@@ -149,15 +149,16 @@ Component({
             if (this._isShowDialog())
                 return
             this.getEcological()
-            for (let i = 0; i < this.data.dataList.length; i++) {
-                if (isEqual(defaultValue, this.data.dataList[i].value)) {
-                    this.data.chooseIndex = i;
-                    break;
-                }
-            }
+            // for (let i = 0; i < this.data.dataList.length; i++) {
+            //     if (isEqual(defaultValue, this.data.dataList[i].value)) {
+            //         this.data.chooseIndex = i;
+            //         break;
+            //     }
+            // }
 
             this.setData({
-                chooseIndex: this.data.chooseIndex,
+                // chooseIndex: this.data.chooseIndex,
+                chooseIndex: -1,
                 showDialog: true
             });
         },
@@ -168,7 +169,7 @@ Component({
                 return;
 
             this.setData({
-                showDialog: false
+              showDialog: false
             })
         },
     }

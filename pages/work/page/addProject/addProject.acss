@@ -76,4 +76,8 @@
 }
 .ant-input-content{
   text-align: right;
+  font-size: 28rpx !important;
+}
+.ant-input-placeholder {
+  font-size: 28rpx !important;
 }

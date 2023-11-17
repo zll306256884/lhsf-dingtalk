@@ -7,7 +7,7 @@
   <!--  -->
   <view class="listBox box-sizing-box">
     <block a:if="{{logList.length}}">
-      <view class="bigPark flex f-column" a:for="{{logList}}">
+      <view class="bigPark flex f-column" a:for="{{logList}}" a:for-item="item" a:for-index="indexStart">
         <view class="yearCell flex f-column">
           <view class="year">{{item.year}}</view>
           <image class="bottomImg" mode="aspectFill" src="../../../../assets/images/log/Rectangle.png" />
@@ -32,13 +32,23 @@
                   <view class="newNormal three-lines box-sizing-box" a:if="{{itemPart.expandedAll==1}}">
                     {{itemPart.content}}
                   </view>
-                  <!-- style="top: {{navPlacherHeight}}px;" -->
-                  <!--<view class="newExpandAll box-sizing-box" a:if="{{itemPart.expandedAll==0&&!showAll}}">
-                  {{itemPart.content}}</view> -->
-                  <view class="newExpanded single-line box-sizing-box" a:if="{{itemPart.expandedAll==0}}">
+                  <view class="newExpanded single-line box-sizing-box" a:if="{{itemPart.expandedAll==0 && itemPart.showAll==0}}">
                     {{itemPart.content}}
                   </view>
-                  <view class="viewBtn" catchTap='expandedIt' a:if="{{itemPart.expandedAll==0}}">全文</view>
+                  <view class="newExpandAll box-sizing-box" a:if="{{itemPart.expandedAll==0 && itemPart.showAll==1}}">
+                    {{itemPart.content}}
+                  </view>
+                  <view class="viewBtn" 
+                    data-index1="{{indexStart}}" 
+                    data-index2="{{dayIndex}}" 
+                    data-index3="{{PartIndex}}" 
+                    data-expandedAll="{{itemPart.expandedAll}}" 
+                    data-showAll="{{itemPart.showAll}}" 
+                    catchTap='expandedIt' 
+                   >
+                    <block  a:if="{{itemPart.expandedAll==0 && itemPart.showAll==0}}">全文</block>
+                    <block  a:if="{{itemPart.expandedAll==0 && itemPart.showAll==1}}">收起</block>
+                  </view>
                   <view class="imgBox flex f-wrap f-start">
                     <block a:for="{{itemPart.logPhotoList}}" a:for-item="itemImg" a:for-index="imgIndex">
                       <image class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />

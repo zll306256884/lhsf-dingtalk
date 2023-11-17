@@ -25,7 +25,8 @@ Page({
     countersignLeader: '',
     tenderDocumentList: [],
     otherDocumentList: [],
-    projectId: null
+    projectId: null,
+    applicationTime: formatTimeToDay(new Date())
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -85,7 +86,8 @@ Page({
   chooseProject(){
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
-  chooseTime(){
+  chooseTime(e){
+    // e.preventDefault()
     if(this.pickerDateRef) this.pickerDateRef._showDialog()
   },
   chooseLeader(){
@@ -111,6 +113,9 @@ Page({
     // this.form.setFieldValue('tenderingAgency', data.id);
   },
   bindPickerDateCannBack(data){
+    this.setData({
+      applicationTime: data.startDate
+    })
     this.form.setFieldValue('applicationTime', data.startDate);
   },
   changeTenderName(data){

@@ -1,4 +1,6 @@
-import utils from "../../../../utils/utils"
+// import utils from "../../../../utils/utils"
+import { isEmpty, isEmptyArray, getImgUrl } from "../../../../utils/utils";
+// import ddUtils from "../../../../utils/ddUtils"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
@@ -121,6 +123,20 @@ Component({
           }
         });
       })
+    },
+    // 
+    _bindPreviewTap(e) {
+      let index = e.currentTarget.dataset.index;
+      let imgs = [];
+      this.data.listData.forEach(function (item) {
+        if (item.fileType != 1) {
+          imgs.push(isEmpty(item.localPath) ? item.url : item.localPath);
+        }
+      });
+      ddUtils.previewImage({
+        current: index,
+        urls: imgs
+      });
     },
     // 
   },

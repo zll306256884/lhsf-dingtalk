@@ -38,11 +38,11 @@
       </view>
       <!-- 列表 -->
       <view class="listBox box-sizing-box">
-        <request-progress-item 
-          listData={{listData}} 
-          projectId={{projectId}}
-          ref='progressItemRef'
-        ></request-progress-item>
+        <request-progress-item listData={{listData}} projectId={{projectId}} ref='progressItemRef'></request-progress-item>
+      </view>
+      <!-- 删除按钮 -->
+      <view style="padding:0 32rpx 32rpx 32rpx" a:if="{{false}}">
+        <button size="default" type="primary" catchTap="detNode">删除</button>
       </view>
     </view>
   </view>

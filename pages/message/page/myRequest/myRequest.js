@@ -102,6 +102,13 @@ Page({
     this.getDataList()
     this.getCount()
   },
+  events: {
+    onBack() {
+      ddUtils.navigateTo({
+        url: '/pages/work/index'
+      })
+    },
+  },
   onReachBottom() {
     this.getMoreDataList();
   },
