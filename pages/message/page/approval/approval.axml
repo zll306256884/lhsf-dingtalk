@@ -33,9 +33,19 @@
                   <view class="time">{{item.createTime}}</view>
                 </view>
                 <view>
-                  <view class="blueTypeBtn btnSize" a:if="{{item.type==3}}">审批中</view>
+                  <block a:if="{{targetValue==1}}">
+                    <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
+                  </block>
+                  <block a:if="{{targetValue==1}}">
+                    <view class="blueTypeBtn btnSize" a:if="{{item.type==1}}">审批中</view>
+                    <view class="redTypeBtn btnSize" a:if="{{item.type==2}}">已驳回</view>
+                  </block>
+                  <block a:if="{{targetValue==3}}">
+                    <view class="greenTypeBtn btnSize" a:if="{{targetValue==3}}">已办结</view>
+                  </block>
+                  <!-- <view class="blueTypeBtn btnSize" a:if="{{item.type==3}}">审批中</view>
                   <view class="greenTypeBtn btnSize" a:if="{{item.type==1}}">已办结</view>
-                  <view class="redTypeBtn btnSize" a:if="{{item.type==2}}">驳回</view>
+                  <view class="redTypeBtn btnSize" a:if="{{item.type==2}}">驳回</view> -->
                   <!-- <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
                   <view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view>
                   <view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已办结</view> -->
