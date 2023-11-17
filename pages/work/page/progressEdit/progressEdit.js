@@ -199,7 +199,7 @@ Page({
   // 
   bindCancelTap() {
     ddUtils.showModal({
-      content: "确认取消吗?",
+      content: "是否退出编辑？退出后不会保存当前编辑内容?",
       success: res => {
         if (res.confirm) {
           // this.form.reset();

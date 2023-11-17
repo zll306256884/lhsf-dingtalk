@@ -18,10 +18,10 @@
         <layout-upload-img maxCount="10" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
       </view>
     </view>
-    <view class="buttons flex f-between">
-      <button onTap="cancel">取消</button>
-      <button type="primary" onTap="submit">保存</button>
-    </view>
+  </view>
+  <view class="buttons flex f-between">
+    <button onTap="cancel">取消</button>
+    <button type="primary" onTap="submit">保存</button>
   </view>
 </view>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>

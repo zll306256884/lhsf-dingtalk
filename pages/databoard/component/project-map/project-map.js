@@ -14,7 +14,7 @@ Component({
   mixins: [],
   props: {},
   data: {
-    scale: 12,
+    scale: 9,
     longitude,
     latitude,
     includePoints,
@@ -141,7 +141,7 @@ Component({
         };
       });
       this.mapCtx.updateComponents({
-        scale: 12,
+        scale: 9,
         longitude: 121.131229,
         latitude: 28.845441,
         setting: {

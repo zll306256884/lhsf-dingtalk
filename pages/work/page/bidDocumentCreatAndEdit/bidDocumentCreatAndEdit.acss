@@ -39,9 +39,24 @@
   box-shadow:none
 }
 .ant-form-item-field-horizontal .ant-input-disabled{
-  color: #000;
-  opacity: 1;
+  color: #000 !important;
+  opacity: 1 !important;
 }
 .ant-form-item-field-horizontal .ant-input[disabled] {
-  color: rgba(0, 0, 0, 1);
+  color: #000 !important;
+  opacity: 1 !important;
+  -webkit-opacity:1;
+  -webkit-text-fill-color: #000;
 }
+.ant-input-disabled{
+  color: #000 !important;
+  opacity: 1 !important;
+}
+.placeholderClassName{
+  color: #000 !important;
+  opacity: 1 !important;
+}
+.ant-input-content{
+  opacity: 1 !important;
+}
+input:disabled, input[disabled]{ -webkit-opacity:1; opacity: 1; }

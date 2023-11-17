@@ -47,6 +47,7 @@
 }
 
 #projectScenery .listArr .bottomNav .name{
+  max-width: 100%;
   line-height: 96rpx;
   font-size: 32rpx;
   font-weight: 500;

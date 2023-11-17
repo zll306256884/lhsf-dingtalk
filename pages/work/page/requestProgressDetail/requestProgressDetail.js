@@ -121,4 +121,42 @@ Page({
     }
     this.getList()
   },
+  // 点击删除
+  detNode(e) {
+    ddUtils.showModal({
+      content: "确定删除所选数据？删除后不可恢复，请确认",
+      success: res => {
+        if (res.confirm) {
+          this.detFun()
+        }
+      }
+    });
+
+
+  },
+  // 删除函数
+  detFun() {
+    let param = {
+      planIdList: [this.data.planId]
+    }
+    request.doPostRequest({
+      url: progressServer.API_DETELE_NODE,
+      showLoading: true,
+      data: param,
+      success: res => {
+        // console.log('头部数据res.data', res.data)
+        ddUtils.showToast({
+          title: "删除成功！"
+        });
+        ddUtils.navigateBack();
+
+        resolve(res.data)
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
+
+  }
+  // 
 });

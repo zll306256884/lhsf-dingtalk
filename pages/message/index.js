@@ -103,10 +103,16 @@ items: [
           });
           break;
           case 8:
-            ddUtils.navigateTo({
-              url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
-            });
-            break;
+            if(item.missionDelFlag===1){
+              ddUtils.showToast({
+                title: "当前任务已删除，无法操作！"
+              });
+            }else{
+              ddUtils.navigateTo({
+                url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
+              });
+              break;
+            }   
    }
  }
 });
