@@ -94,7 +94,8 @@ Page({
       count: 0
     }],
     listquery: [],
-    requestStatus: 0
+    requestStatus: 0,
+    approvalStatus: null
   },
   onLoad(option) {
     // this.getAwaitList()
@@ -225,6 +226,9 @@ Page({
   },
   // 切换我的审批tab
   onApprovalChange(e) {
+    this.setData({
+      approvalStatus: e
+    })
     switch (e) {
       case 0:
         this.getApprovalList(2)
@@ -371,12 +375,12 @@ Page({
       switch (temp) {
         case 2:
           ddUtils.navigateTo({
-            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=1`
           });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=1`
           });
           break;
         case 4:
@@ -433,7 +437,7 @@ Page({
           break;
         case 6:
           ddUtils.navigateTo({
-            url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+            url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=0`
           });
           break;
         case 7:
@@ -453,6 +457,7 @@ Page({
   // 点击列表项查看审批详情
   selectApprovalInfo(e) {
     console.log(e);
+    let item = e.currentTarget.dataset.item
     let temp = e.currentTarget.dataset.item.belongModule
     let id = e.target.dataset.item.keyId
     let projectId = e.target.dataset.item.projectId
@@ -460,12 +465,12 @@ Page({
     switch (temp) {
       case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.id}&id=${item.keyId}&approvalType=${this.data.approvalStatus + 2}`
         });
         break;
       case 3:
         ddUtils.navigateTo({
-          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.id}&id=${item.keyId}&approvalType=${this.data.approvalStatus + 2}`
         });
         break;
       case 4:
