@@ -41,7 +41,7 @@
 <!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
 <dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
-<dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
+<dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{proId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenslowunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseSlowUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" selectionMode="single" formatDate='YYYY-MM-DD'  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>

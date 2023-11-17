@@ -26,18 +26,22 @@ Page({
   onLoad(option) {
     console.log(option,111111111);
     if (option.id) {
+      this.setData({
+        id:option.id,
+        type:option.type,
+        status:option.status,
+        projectId:option.projectId,
+        showType:option.showType || ''
+      })
       this.getDetail(option.id)
     }
-    this.setData({
-      id:option.id,
-      type:option.type,
-      status:option.status,
-      projectId:option.projectId,
-      showType:option.showType || ''
-    })
+    
   },
   onSaveUploadContractImgRef(ref) {
     this.uploadContractImage = ref
+  },
+  onShow(){
+    this.getDetail(this.data.id)
   },
   // 切换我的请求tab
   onQueryChange(e) {
@@ -101,6 +105,33 @@ Page({
         }, 0);
       }
     })
+  },
+  // 删除
+  bindCancelTap(){
+    ddUtils.showModal({
+      content: "确认删除吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: confing.API_DELETE_POST,
+            data: { ids: [this.data.id] },
+            success: (res) => {
+              if(res.message==="成功"){
+                ddUtils.showToast({
+                  title: "操作成功"
+                })
+              }
+              // let pages = getCurrentPages(); //获取加载的页面
+              // let page = pages[pages.length - 2];
+              // page.rightFrPage._getRecordList()
+              setTimeout(()=>{
+              ddUtils.navigateBack()
+              },1000)
+            }
+          })
+        }
+      }
+    });
   },
   editTap:function(){
     ddUtils.navigateTo({
