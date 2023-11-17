@@ -18,7 +18,7 @@ Component({
       { text: '重大', value: 1 },
       { text: '全部', value: '' },
     ],
-    logType: '',
+    logType: 1,
     logList: [],//查询的数据
 
   },
