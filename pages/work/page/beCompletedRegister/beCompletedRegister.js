@@ -84,6 +84,7 @@ bindChooseProjectCallBack: function (data) {
     affiliateUnit:data.affiliatedUnitName,
     projectId:data.id || '',
     'contractData.contractName':'',
+    "contractData.contractId":'',
     contractAmount:'',
     contractorName:''
   });

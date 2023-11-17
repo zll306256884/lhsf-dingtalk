@@ -118,41 +118,45 @@ Component({
             if (this._isShowDialog())
                 return
 
-            if (!isEmptyArray(this.data.dataList)) {
+            // if (!isEmptyArray(this.data.dataList)) {
                 this.setData({
                     chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
                     showDialog: true
                 })
-                return;
-            }
-              if(this.props.projectId){
-                request.doPostRequest({
-                  url: config.API_CONTRACT_NAME,
-                  data: {
-                    projectId: this.props.projectId,
-                  },
-                  success: res => {
-                      this.data.dataList = [];
-                  console.log(res);
-                      // if (this.props.showAllText) {
-                      //     this.data.dataList.push({
-                      //         projectName: "全部",
-                      //         projectId: ""
-                      //     })
-                      // }
-  
-                      this.data.dataList = this.data.dataList.concat(res.data || []);
-  
-                      this.setData({
-                          chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
-                          showDialog: true,
-                          dataList: this.data.dataList
-                      })
-                  }
-              });
-              }
+                this.getProjectList()
+            // }
         },
+       // 获取数据
+      getProjectList() {
+        if(this.props.projectId){
+          request.doPostRequest({
+            url: config.API_CONTRACT_NAME,
+            data: {
+              projectId: this.props.projectId,
+            },
+            success: res => {
+                this.data.dataList = [];
+            console.log(res);
+                // if (this.props.showAllText) {
+                //     this.data.dataList.push({
+                //         projectName: "全部",
+                //         projectId: ""
+                //     })
+                // }
 
+                // this.data.dataList = this.data.dataList.concat(res.data || []);
+                // this.setData({
+                //     chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
+                //     showDialog: true,
+                //     dataList: this.data.dataList
+                // })
+                this.setData({
+                  dataList: res.data
+                }); 
+            }
+        });
+        }
+     },
         //hide modal dialog
         _hideDialog: function (e) {
             if (!this._isShowDialog())

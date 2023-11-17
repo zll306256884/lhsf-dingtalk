@@ -407,7 +407,6 @@ Page({
     if (this.data.currentAwait === 2) {
       console.log('this.data.currentAwait',this.data.currentAwait)
       let item = e.target.dataset.item
-      
       let temp = e.target.dataset.item.type;
       switch (temp) {
         case 1:

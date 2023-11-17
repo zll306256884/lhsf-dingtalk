@@ -70,7 +70,9 @@ Page({
   bindChooseContractCallBack: function (data) {
     this.setData({
       contractData: data || {},
-      contractAmount:data.contractAmount
+      contractAmount:data.contractAmount,
+      'slowUnitData.unitName':'',
+      'proceedsData.unitName':'',
     });
     request.doPostRequest({
       url: config.API_CONTRACT_TO_MONEY,
@@ -97,7 +99,13 @@ bindChooseProjectCallBack: function (data) {
     projectData: data || {},
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
-    projectId:data.id || ''
+    projectId:data.id || '',
+    'contractData.contractName': '',
+    "contractData.contractId":'',
+    contractAmount:'',
+    cumulativePayment:'',
+    'slowUnitData.unitName':'',
+    'proceedsData.unitName':'',
   });
 },
 //项目类型

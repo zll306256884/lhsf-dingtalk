@@ -1,7 +1,6 @@
 {
   "transparentTitle": "always",
   "titlePenetrate":"NO",
-  "defaultTitle": "Tabs",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar"
   }
