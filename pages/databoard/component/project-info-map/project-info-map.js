@@ -26,11 +26,21 @@ Component({
       this.mapCtx = dd.createMapContext('map');
       this.getDetail(this.props.projectInfo.projectId)
     },
-    onShowUnit(){
-      this.data.visibelUnit=!this.data.visibelUnit
+    toggleShowUnit(){
+      let visibelUnit=!this.data.visibelUnit
         this.setData({
-          visibelUnit:this.data.visibelUnit
+          visibelUnit:visibelUnit
         })
+    },
+    onShowUnit(){
+      this.setData({
+        visibelUnit:true
+      })
+    },
+    onHideUnit(){
+      this.setData({
+        visibelUnit:false
+      })
     },
     onTabChange(e){
       this.setData({

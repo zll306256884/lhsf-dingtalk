@@ -29,18 +29,23 @@ Page({
   page: 1,
   // hasMore: false,
   // isLoading: false,
-  onLoad() {
-   this.initList()
+  onLoad(option) {
+    this.setData({
+      currentTask:Number(option.tabIndex)
+    })
   },
-  initList(){
-    let params={
-      executeUserId : app.globalData.userInfo.userId,
-      createById:'',
-      title:"",
-      status:[1,2,5]
-    }
-    this.getTaskList(params)
+  onShow(){
+   this.onTaskChange(this.data.currentTask)
   },
+  // initList(){
+  //   let params={
+  //     executeUserId : app.globalData.userInfo.userId,
+  //     createById:'',
+  //     title:"",
+  //     status:[1,2,5]
+  //   }
+  //   this.getTaskList(params)
+  // },
   onReachBottom() {
   let params={
     executeUserId:"",
@@ -64,9 +69,6 @@ Page({
    }
     this.getMoreList(params);
 },
-  onShow(){
-    this.initList()
-  },
   //获取任务列表
  getTaskList: function (params) {
   let data = {

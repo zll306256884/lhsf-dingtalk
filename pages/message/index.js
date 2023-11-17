@@ -104,9 +104,15 @@ items: [
         });
         break;
       case 8:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
-        });
+        if(item.missionDelFlag===1){
+          ddUtils.showToast({
+            title: "当前任务已删除，无法操作！"
+          });
+        }else{
+          ddUtils.navigateTo({
+            url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
+          });
+        }   
         break;
     }
   //  type 消息类型（1任务消息，2服务消息，3审批消息，4系统公告）
@@ -153,31 +159,10 @@ items: [
             url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=2`
           });
           break;
-      }
-    }else if(item.jflowType === 3){
-      switch (item.belongModule) {
-        case 2:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
-        });
-          break;
-        case 3:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
-          });
-          break;
-      }
-    }
+      }  
+   }
   }else if(item.type === 4){//4系统公告
-    
+
   }
-  
-  // switch (item.belongModule) {
-  //   case 1:
-  //     ddUtils.navigateTo({
-  //       url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}`
-  //     });
-  //     break;  
-  // }
- }
+}
 });

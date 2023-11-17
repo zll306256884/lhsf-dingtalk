@@ -359,7 +359,7 @@ Page({
   },
   selectMoreTask() {
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskList/list`
+      url: `/pages/work/page/myTask/taskList/list?tabIndex=${this.data.currentTask + 1}`
     });
   },
   selectMoreQuery() {

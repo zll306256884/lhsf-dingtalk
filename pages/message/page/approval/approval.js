@@ -1,7 +1,7 @@
 import { isEmptyArray, isHasMore } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 // import userServer from "../../../../server/userServer"
-import approvalServer from "../../../../server/approvalServer/approvalServer"
+import approvalServer from "../../../../server/approvalServer/approvalServer"  //
 import request from "../../../../utils/request"
 const app = getApp();
 Page({
@@ -276,23 +276,43 @@ Page({
     let projectId = e.target.dataset.item.projectId
     let showType = e.target.dataset.item.showType
     let examineId = e.target.dataset.item.id //审批组件用
-    switch (temp) {
-      case 2:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
-        });
-        break;
-      case 3:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
-        });
-        break;
-      case 4:
-        ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
-        });
-        break;
+    // 下面的
+    let params = {
+      "id": examineId,
+      "isRead": 1
     }
+    request.doPostRequest({
+      url: approvalServer.API_UPLATE_READ,
+      showLoading: true,
+      data: params,
+      success: res => {
+        console.log(res)
+        switch (temp) {
+          case 2:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            });
+            break;
+          case 3:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            });
+            break;
+          case 4:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+            });
+            break;
+        }
+
+      },
+      complete: res => {
+        // this._loadDone(res);
+      }
+    })
+    // return
+
+
     // console.log('item', item)
     // if (item.belongModule == 1) {
     //   // 进度

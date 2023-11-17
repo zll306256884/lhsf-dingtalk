@@ -41,19 +41,20 @@
     <view class="card" a:for="{{infoData.subMissionList}}">
       <view class="list-item">
         <view class="item-title single-line">
-          <view class="{{item.taskStatus===2?'item-status-info':'item-status-sucess'}}" a:if="{{item.taskStatus===2 || item.taskStatus===4}}">{{item.taskStatus===2? '未完成':"已完成"}}</view>
+          <view class="{{['','','item-status-info','','item-status-sucess','item-status-error','item-status-primary'][item.taskStatus]}}" >
+            {{['','','未完成','','已完成','已逾期','已取消'][item.taskStatus]}}</view>
           {{item.executer_dictText}}
         </view>
         <view class="flex f-row f-between">
           <view>
-            <text a:if="{{(infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId) || infoData.missionId==='0'}}"  class="item-name">完成情况说明： {{item.remark}}</text>
-            <text a:if="{{item.taskStatus===4}}" class="item-time">完成时间：{{item.finishTime && utils.parseTime(item.finishTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            <text a:if="{{(infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId) || infoData.missionId==='0'}}"  class="item-name">完成情况说明： {{item.taskRemark || '-'}}</text>
+            <text a:if="{{item.taskStatus===4}}" class="item-time">完成时间：{{(item.finishTime && utils.parseTime(item.finishTime,'{y}-{m}-{d} {h}:{i}')) || "-"}}</text>
             <text a:else class="item-time">截止时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
           </view>
         </view>
       </view>
       <view  a:if="{{infoData.missionId==='0'}}" class="list-buttons flex f-row f-end">
-        <button a:if="{{item.taskStatus===2}}" data-item="{{item}}" onTap="delete">删除</button>
+        <button disabled="{{infoData.subMissionList.length===1}}" a:if="{{item.taskStatus===2}}" data-item="{{item}}"  onTap="delete">删除</button>
         <button a:if="{{item.taskStatus===2}}" data-item="{{item}}" type="primary" onTap="remind">提醒</button>
         <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
     </view>

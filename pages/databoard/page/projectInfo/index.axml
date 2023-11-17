@@ -4,16 +4,16 @@
   <!-- 项目概览 -->
   <project-info-map ref="onSaveMapRef" projectInfo="{{projectInfo}}" a:if="{{currentTabIndex === 0}}"></project-info-map>
   <view a:if="{{currentTabIndex === 1}}">
-    <!-- 项目进度 projectId="{{projectInfo.projectId}}"-->
-    <project-progress ></project-progress>
+    <!-- 项目进度 -->
+    <project-progress projectId="{{projectInfo.projectId}}"></project-progress>
   </view>
   <view a:if="{{currentTabIndex === 2}}">
-    <!-- 项目实景 projectId="{{projectInfo.projectId}}"-->
-    <project-scenery ></project-scenery>
+    <!-- 项目实景 -->
+    <project-scenery projectId="{{projectInfo.projectId}}"></project-scenery>
   </view>
   <view a:if="{{currentTabIndex === 5}}">
-    <!-- 工作日志 projectId="{{projectInfo.projectId}}" -->
-    <log-work ></log-work>
+    <!-- 工作日志 -->
+    <log-work projectId="{{projectInfo.projectId}}"></log-work>
   </view>
   <invest-control a:if="{{ currentTabIndex=== 3 }}" projectId="{{projectInfo.projectId}}"></invest-control>
   
