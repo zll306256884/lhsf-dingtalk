@@ -4,7 +4,8 @@
     {{name}}
   </view>
   <block a:if="{{disabled}}">
-    <view class="flex10 value active" style="color: {{valueColor}}; text-align: {{valueLeft? 'left' : 'right'}}">
+    <!-- three-line -->
+    <view class="flex10 value active single-line" style="color: {{valueColor}}; text-align: {{valueLeft? 'left' : 'right'}};max-width:400rpx">
       {{value}}
     </view>
   </block>
