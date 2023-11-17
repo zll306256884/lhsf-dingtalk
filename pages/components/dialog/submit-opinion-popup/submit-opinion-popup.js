@@ -24,8 +24,19 @@ Component({
   methods: {
     //暂存待办
     bindStagingToDo(){
-      console.log(this.props.keyId)
+      console.log(this.props.examineId)
       console.log('暂存待办')
+      request.doPostRequest({
+        url: workService.API_Audit_UPDATE,
+        data: {isRead: 0, id: this.props.examineId},
+        success: res => {
+          console.log(res.data)
+          ddUtils.showToast({
+            title: "暂存待办成功"
+          });
+          ddUtils.navigateBack();
+        }
+      })
     },
     //驳回
     bindRefuseTap: function (e) {

@@ -10,6 +10,7 @@ Page({
   sort:'0',
   disabled:false,
   projectId:"",
+  proId:'',
   contactNoticeName:"",//联系单名称
   projectLeader:'',//负责人
   affiliateUnit:'',//所属单位,
@@ -73,12 +74,15 @@ onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
 bindChooseProjectCallBack: function (data) {
+  console.log(data,'cmscnsjdcnslcnsn');
   this.setData({
     projectData: data || {},
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
     projectId:data.id || '',
+    proId:data.id || '',
     'contractData.contractName': '',
+    "contractData.contractId":'',
     contractAmount:'',
     contractCumulativeChange:'',
     contractChangeRate:''
@@ -295,7 +299,7 @@ request.doPostRequest({
   contactChange:contactChange,//变更内容
   remark:remark,
   id:this.data.id?this.data.id:'',
-  investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
+  investmentFileList:investmentFileList,
   person:this.data.person,
   person_text:this.data.person_text,
   vueUrl: 'approveAlterationAccount,editAlterationContent'

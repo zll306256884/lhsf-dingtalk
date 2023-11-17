@@ -30,5 +30,7 @@ module.exports = {
   API_JFLOW_REFUSEAUDIT: API_HOST  + "/jflow/audit/refuseAudit",
   //根据id查询流程数据--------公共调用接口（前端调用）
   API_SELECT_DETAIL: API_HOST  + "/jflow/jflowAuditRecord/selectById",
+  //设置审批记录已读/未读
+  API_Audit_UPDATE: API_HOST  + "/jflow/audit/updateIsRead",
 }
 

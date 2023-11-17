@@ -24,6 +24,9 @@ Page({
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
   },
+  onShow(){
+    this.getDetail(this.data.id)
+  },
   getDetail(tenderId){
     request.doPostRequest({
       url: confing.API_ALTER_DETAIL_POST ,

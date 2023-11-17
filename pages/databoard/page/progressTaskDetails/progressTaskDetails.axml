@@ -7,10 +7,10 @@
           <view class="bigTitle">任务负责人：{{listData.responsible[0].name?listData.responsible[0].name:'--'}}</view>
           <view>
             <!-- 按钮状态  -->
-            <view a:if="{{ item.status==4 }}" class="greenTypeBtn btnSize">已完成</view>
-            <view a:if="{{ item.status==3 }}" class="orangeTypeBtn btnSize">延期</view>
-            <view a:if="{{ item.status==2 }}" class="blueTypeBtn btnSize">进行中</view>
-            <view a:if="{{ item.status==1 }}" class="grayTypeBtn btnSize">未开始</view>
+            <view a:if="{{ listData.status==4 }}" class="greenTypeBtn btnSize">已完成</view>
+            <view a:if="{{ listData.status==3 }}" class="orangeTypeBtn btnSize">延期</view>
+            <view a:if="{{ listData.status==2 }}" class="blueTypeBtn btnSize">进行中</view>
+            <view a:if="{{ listData.status==1 }}" class="grayTypeBtn btnSize">未开始</view>
           </view>
         </view>
       </list-item>
@@ -46,7 +46,7 @@
         <view class="flex f-between">
           <view class="title">任务名称</view>
           <view class="flex f-start desWord">
-            <image mode="scaleToFill" class="imgIcon" src="../../../../assets/images/progress/lcbleft.png" />
+            <image a:if="{{listData.flagNode==1}}" mode="scaleToFill" class="imgIcon" src="../../../../assets/images/progress/lcbleft.png" />
             {{listData.taskName?listData.taskName:'--'}}
           </view>
         </view>
@@ -80,7 +80,7 @@
     </list>
   </view>
   <!--  -->
-  <view style="margin-top:20rpx">
+  <view style="margin-top:20rpx" a:if="{{listData.fillRecordFlag==1}}">
     <list radius="{{ false }}">
       <view slot='header' class="headerTitle">
         填报信息
@@ -112,7 +112,7 @@
     </list>
   </view>
   <!--  -->
-  <view style="margin-top:20rpx">
+  <view style="margin-top:20rpx" a:if="{{listData.fillRecordFlag==1}}">
     <list header="" radius="{{ false }}">
       <list-item>
         <!-- arrow="down" -->
