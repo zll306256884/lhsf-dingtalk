@@ -159,7 +159,7 @@ Page({
         annexList: list
       });
     }
-    values.executeUser = this.data.executeUser;
+    values.executeUser =this.data.currentId? JSON.stringify(this.data.executeUser):this.data.executeUser;
     values.annexList = this.data.annexList;
     let url
     if(this.data.currentId){
@@ -172,12 +172,12 @@ Page({
       url,
       data: values,
       success: res => {
-        if (res.data.id) {
+        if (res.code===1000) {
           ddUtils.showToast({
             title: "保存成功！"
           });
         }
-        ddUtils.navigateBack();
+        ddUtils.navigateBack(this.data.currentId?2:1);
       }
     });
   }

@@ -36,6 +36,13 @@ Page({
     },
   getInfo(id) {
     request.doPostRequest({
+      url:  workServer.API_READ_TASK,
+      data: { id,isRead: 1 },
+      success: res => {
+        console.log(res);
+      }
+    })
+    request.doPostRequest({
       url: workServer.API_SELECT_TASK,
       data: { id },
       success: res => {
@@ -65,9 +72,32 @@ Page({
     });
   },
   handleTask(){
-    ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskHandleInfo/taskHandleInfo?json=${this.data.currentId}`
-    });
+    if(this.data.infoData.createBy===app.globalData.userInfo.userId){
+      ddUtils.showModal({
+        title:"完成任务",
+        content: `确认后，未完成人：${this.data.executer_dictText}的协作状态设置为已完成，且各协作人无法更改任务详情`,
+        success: res => {
+          if (res.confirm) {
+            request.doPostRequest({
+              url:workServer.API_FINISH_TASK,
+              data: {id:this.data.currentId},
+              success: res => {
+                if (res.code===1000) {
+                  ddUtils.showToast({
+                    title: "操作成功！"
+                  });
+                }
+               ddUtils.navigateBack();
+              }
+            });
+          }
+        }
+      });
+    }else{
+      ddUtils.navigateTo({
+        url: `/pages/work/page/myTask/taskHandleInfo/taskHandleInfo?json=${this.data.currentId}`
+      });
+    }
   },
   editTask(){
     const params={
