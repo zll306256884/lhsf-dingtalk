@@ -94,11 +94,6 @@ Page({
                   title: "取消成功！"
                 }); 
               }
-             // let pages = getCurrentPages();
-             // let page = pages[pages.length - 1];
-             // if (page && page.setNeedRefreshList) {
-             //   page.setRefreshList(1);
-             // }
              ddUtils.navigateBack();
             }
           })
@@ -127,13 +122,8 @@ Page({
                 ddUtils.showToast({
                   title: "删除成功！"
                 });
+                this.getInfo(this.data.currentId)
               }
-             // let pages = getCurrentPages();
-             // let page = pages[pages.length - 1];
-             // if (page && page.setNeedRefreshList) {
-             //   page.setRefreshList(1);
-             // }
-             ddUtils.navigateBack();
             }
           })
         }
