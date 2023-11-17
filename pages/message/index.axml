@@ -2,10 +2,17 @@
 <view  class="container">
   <view class="card">
     <tabs items="{{items}}" onChange="onQueryChange">
-      <view
+      <!-- <view
         class="content"
         slot-scope="item">
         {{item.value.content}}
+      </view> -->
+      <view slot="title" slot-scope="item">
+        <view a:if="{{item.value.badge}}">
+          <badge a:if="{{item.value.total}}" type="number" text="{{item.value.total}}" position="top-right"> {{item.value.title}}</badge>
+          <view a:else>{{item.value.title}}</view>
+        </view>
+        <view a:else>{{item.value.title}}</view>
       </view>
     </tabs>
   </view>

@@ -17,12 +17,15 @@ items: [
   
   },{
     title:"未读",
+    total:0,
+    badge: true,    
   },
 ],
  MessageList:[],
  },
  onShow(){
   this.getMessageList(0)
+  this.getunReadMessageTotal()
  },
  // 切换我的请求tab
  onQueryChange(e) {
@@ -53,6 +56,24 @@ items: [
         MessageList: res.data.records
       })
       console.log(res);
+    },
+  });
+ },
+ getunReadMessageTotal(){
+  request.doPostRequest({
+    url: apiApprovalManage.API_UNMESSAGE_TO_POST,
+    data:{},
+    success: res => {
+      console.log(res);
+      let list = this.data.items
+        console.log(list);
+      
+        list[2].total =res.data.unReadMessageTotal
+        console.log(list);
+        this.setData({
+          items: list
+        })
+     
     },
   });
  },

@@ -6,9 +6,9 @@
       <layout-field-input borderTop name="联系单名称" inputName="contactNoticeName" mustFill  value="{{contactNoticeName}}" placeholder="请输入"></layout-field-input>
       <layout-field-cell borderTop name="项目名称" mustFill placeholder="请选择" disabled="{{disabled}}" value="{{projectData.name}}" 
       onArrowTap="bindChooseProjectTap"></layout-field-cell>
-      <layout-field-cell hidden={{false}} borderTop name="项目负责人" mustFill placeholder="选择项目后自动带入"  value="{{projectLeader}}"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="所属单位" mustFill placeholder="选择项目后自动带入"  value="{{affiliateUnit}}"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="项目累计变更(万元)" mustFill placeholder="选择项目后自动带入"  value="{{projectChangeAmount}}"></layout-field-cell>
+      <layout-field-cell hidden={{false}} borderTop name="项目负责人" mustFill placeholder="选择项目后自动带入"  value="{{projectLeader}}"></layout-field-cell>
       <layout-field-cell borderTop name="合同名称" mustFill placeholder="请选择"  value="{{contractData.contractName}}"  onArrowTap="bindChooseContractNameTap"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)" mustFill placeholder="选择合同后自动带入"  value="{{contractAmount}}"></layout-field-cell>
       <layout-field-input borderTop name="变更金额(万元)" inputName="changeAmount" mustFill disabled="{{isEdit}}" value="{{changeAmount}}" placeholder="请输入"></layout-field-input>
