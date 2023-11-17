@@ -9,11 +9,11 @@
             </block>
             <block a:else>
               <!-- aspectFit scaleToFill -->
-              <image catchTap="_bindPreviewTap" data-index="{{index}}" class="imgShow" mode="aspectFit" src="{{item.url}}" />
+              <image catchTap="_bindPreviewTap" data-index="{{index}}" data-url="{{item.url}}" class="imgShow" mode="aspectFit" src="{{item.url}}" />
             </block>
           </view>
           <view class="bottomNav flex f-between">
-            <view class="name">{{item.progress}}</view>
+            <view class="name single-line">{{item.progress}}</view>
             <view class="online" a:if="{{false}}">在线</view>
           </view>
         </block>
