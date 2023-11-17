@@ -105,7 +105,7 @@ Component({
          const list = res.data.map(item=>{
             return{
               ...item,
-              mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:'/assets/images/common/default-img.png'
+              mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
             }
           })
           console.log(list);

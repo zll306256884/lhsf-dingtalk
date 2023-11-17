@@ -30,6 +30,10 @@ Page({
       { value: 1, label: '是' },
       { value: 0, label: '否' },
     ],
+    radioGroupOptionss: [
+      { value: 1, label: '是' },
+      { value: 0, label: '否' },
+    ],
     radioGroupOptionsTwo: [
       { value: 0, label: '待定' },
       { value: 1, label: '已定' },
@@ -491,6 +495,9 @@ Page({
         this.form.setFieldsValue({
           ...fields,
         })
+        this.form.setFieldValue('contractNeedTender', paramsdata.contractNeedTender)
+        this.form.setFieldValue('supplementAgreement', paramsdata.supplementAgreement)
+        console.log(this.form.getFieldsValue())
         let list = paramsdata.contractThirdPartyRepList
         if(list && list.length){
           list.forEach((e, index)=> {

@@ -8,7 +8,8 @@
               <video class="videoShow" src="{{item.url}}"></video>
             </block>
             <block a:else>
-              <image class="imgShow" mode="scaleToFill" src="{{item.url}}" />
+              <!-- aspectFit scaleToFill -->
+              <image class="imgShow" mode="aspectFit" src="{{item.url}}" />
             </block>
           </view>
           <view class="bottomNav flex f-between">
@@ -24,7 +25,7 @@
     
   </view>
   <!--  -->
-  <view class="mayflyBox">
+  <view class="mayflyBox" catchTap="callIt" a:if="{{listData.length}}">
     <image class="mayfly" src="/assets/images/progress/callpic.png" />
   </view>
   <!--  -->

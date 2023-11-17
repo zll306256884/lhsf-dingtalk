@@ -3,6 +3,8 @@ import request from "../../../../../utils/request";
 import config from "../../../../../utils/config";
 import workServer from "../../../../../server/workServer/index";
 import ddUtils from "../../../../../utils/ddUtils";
+import ddTimer from "../../../../../utils/ddTimer";
+
 Page({
   form: new Form({
     rules: {
@@ -27,16 +29,19 @@ Page({
     annexList: [],
     projectList: [],
     executeUser: [],
+    operation:"add",
     dialogScreenExecuteUser: null,
     dialogPickerDate: null,
     uploadImageList: null
   },
   onLoad(option) {
+    console.log(option);
     this.getProjectList();
-    const params = JSON.parse(option.json);
-    if (params.type === "edit") {
+    const params = option.json && JSON.parse(option.json);
+    if (params && params.type === "edit") {
       this.setData({
-        currentId:params.id
+        currentId:params.id,
+        operation:'edit'
       })
       this.data.navbarData.title="编辑任务"
       this.getInfo(params.id);
@@ -78,9 +83,9 @@ Page({
     this.dialogPickerDate && this.dialogPickerDate._showDialog();
   },
   bindPickerDateCallBack(date) {
-    this.form.setFieldValue("endTime", date.startDate);
+    this.form.setFieldValue("endTime", date.date);
     this.setData({
-      endTime: date.startDate
+      endTime: date.date
     });
   },
   cancel() {

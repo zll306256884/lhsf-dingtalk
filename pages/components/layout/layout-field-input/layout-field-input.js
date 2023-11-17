@@ -12,6 +12,8 @@ Component({
         valueLeft: false,
         inputName: "",
         inputType: "",
+        password:false,//默认为false
+        showTitle:"",//提示语
         name: "",
         value: "",
         placeholder: "",

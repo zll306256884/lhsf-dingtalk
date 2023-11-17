@@ -74,7 +74,7 @@ Page({
       projectData: data || {},
       projectLeader: data.projectLeaderName,
       affiliateUnit: data.affiliatedUnitName,
-      projectId: data.id || ''
+      projectId: data.projectId || ''
     });
     console.log(this.data.projectData, 'this.data.projectData');
   },

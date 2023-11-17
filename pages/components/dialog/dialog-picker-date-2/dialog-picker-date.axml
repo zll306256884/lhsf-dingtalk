@@ -1,0 +1,63 @@
+<!-- 遮罩层 -->
+<view a:if="{{showDialog}}" class="dialog-mask" catchTouchMove="_bindOnTouchMove" />
+<!--三级联动-->
+<view a:if="{{showDialog}}" class="dialog-wrap">
+    <view class='flex f-between picker-view-header box-sizing-box'>
+        <text class="cancel" catchTap="_bindCancelTap">取消</text>
+        <view class="flex1 dialog-picker-title">
+            {{title}}
+        </view>
+        <text class="sure" catchTap="_bindSureTap">确定</text>
+    </view>
+    <picker-view class="picker-view" onChange="_bindPickerChange" value="{{selectValue}}">
+        <block a:if="{{showHourMinuteSecond}}">
+            <picker-view-column data-index="1">
+                <view a:for="{{yearList}}" class="item">
+                    {{item}}年
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{monthList}}" class="item">
+                    {{item}}月
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{dayList}}" class="item">
+                    {{item}}日
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{hourList}}" class="item">
+                    {{item}}时
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{minuteList}}" class="item">
+                    {{item}}分
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{secondList}}" class="item">
+                    {{item}}秒
+                </view>
+            </picker-view-column>
+        </block>
+        <block a:else>
+            <picker-view-column>
+                <view a:for="{{yearList}}" class="item">
+                    {{item}}年
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{monthList}}" class="item">
+                    {{item}}月
+                </view>
+            </picker-view-column>
+            <picker-view-column>
+                <view a:for="{{dayList}}" class="item">
+                    {{item}}日
+                </view>
+            </picker-view-column>
+        </block>
+    </picker-view>
+</view>
