@@ -57,7 +57,9 @@ Page({
   },
   // 打印事件
   printTop(){
-    console.log(122121);
+    ddUtils.showToast({
+      title: '暂不支持打印！'
+    })
     // window.open(`http://192.168.6.41/prod-api/file/jasper/pdf/payment/${this.data.id}`)
   },
   withdrawApplication() {
