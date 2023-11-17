@@ -3,7 +3,7 @@
 
 <view class="box-sizing-box nav-wrap"
     style="height: {{navbarHeight + statusBarHeight}}px; {{navbarData.noBackgroundColor ? 'background: none' : utils.isEmpty(navbarData.navBackgroundColor) ? 'background-color: white' : 'background-color' + navbarData.navBackgroundColor}};">
-    <view class="flex-display flex-align-center box-sizing-box nav-back" style="height: {{navbarHeight}}px;"
+    <view class="flex f-align-center box-sizing-box nav-back" style="height: {{navbarHeight}}px;"
         a:if="{{navbarData.showNavbarBack}}" catchtap="_bindNavBack">
         <image class="icon-back"
             style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"

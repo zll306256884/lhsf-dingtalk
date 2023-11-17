@@ -8,7 +8,7 @@
     "form-upload-image": "antd-mini/es/Form/FormImageUpload/index",
     "form-textarea": "antd-mini/es/Form/FormTextarea/index",
     "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
-    "dialog-picker-date":"/pages/components/dialog/dialog-picker-date/dialog-picker-date",
+    "dialog-picker-date":"/pages/components/dialog/dialog-picker-date-2/dialog-picker-date",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img"
   }
 }

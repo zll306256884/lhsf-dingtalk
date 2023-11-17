@@ -125,6 +125,9 @@
   background: #eeeff0 no-repeat;
   /* background-size: 40%!important; */
 }
+.item-img-default {
+  background-size: 40%!important;
+}
 .item-info {
   font-size: 24rpx;
   font-weight: 400;
