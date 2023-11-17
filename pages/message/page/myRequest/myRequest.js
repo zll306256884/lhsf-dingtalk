@@ -87,8 +87,12 @@ Page({
   hasMore: false,
   isLoading: false,
 
-  onLoad() {
-    
+  onLoad(options) {
+    if(options.requestStatus){
+      this.setData({
+        tabIndex: Number(options.requestStatus)
+      })
+    }
   },
   onShow() {
     this.setData({

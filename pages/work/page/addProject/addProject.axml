@@ -140,7 +140,7 @@
 <dialog-picker-date ref="onSavePickerDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date>
 <dialog-picker-date ref="onSavePickerActualDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date>
 
-<dialog-screen-suoshu-danwei ref="_onSaveDialogScreenSuoshuUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenSuoshuUnitCallBack"></dialog-screen-suoshu-danwei>
+<dialog-screen-affiliated-unit ref="_onSaveDialogScreenSuoshuUnitRef" onScreenCallBack="_bindScreenSuoshuUnitCallBack"></dialog-screen-affiliated-unit>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 
 <dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>

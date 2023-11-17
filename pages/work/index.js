@@ -354,7 +354,7 @@ Page({
   },
   selectMoreQuery() {
     ddUtils.navigateTo({
-      url: `/pages/message/page/myRequest/myRequest`
+      url: `/pages/message/page/myRequest/myRequest?requestStatus=${this.data.requestStatus + 1}`
     });
   },
   // 点击列表项查看待办详情
