@@ -12,7 +12,7 @@ Component({
      */
     props: {
       showDialog:false,
-        title: "选择",
+        title: "选择人员",
         positionBottom: false,
         marginTop: 0,
         multiChoose: false,
