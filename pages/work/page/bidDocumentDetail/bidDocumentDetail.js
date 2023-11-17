@@ -128,5 +128,11 @@ Page({
         }
       }
     });
+  },
+  //打印
+  printThis(){
+    ddUtils.showToast({
+      title: '暂不支持打印！'
+    })
   }
 });

@@ -43,6 +43,10 @@
     <button class="bottom-button" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
   </view>
 
+  <view a:if="{{ requestType === '2' }}" class="bottom-content flex f-between">
+    <button class="bottom-button active" size="default" type="primary" style="width:714rpx;background: #1A6AFF;color:#fff" catchTap="printThis">打印</button>
+  </view>
+
   <!-- 有参数才显示 -->
   <view a:if="{{examineId && approvalType === '1'}}" style="position:fixed;bottom:18rpx;width:100%">
     <submit-opinion-popup examineId="{{examineId}}" ></submit-opinion-popup>
