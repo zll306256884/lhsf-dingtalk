@@ -1,19 +1,11 @@
 import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
-
-// const markers = [];
-// const longitude = 121.131229;
-// const latitude = 28.845441;
-// const includePoints = [{
-//   latitude: 28.845441,
-//   longitude: 121.131229,
-// }];
 Component({
   mixins: [],
   data: {
     visibelUnit:false,
     info:{},
-    scale: 12,
+    scale:12,
     longitude:null,
     latitude:null,
     includePoints:[],
@@ -29,20 +21,7 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
-    // onPageScroll(){
-    //   if(!this.data.visibelUnit){
-    //     this.setData({
-    //       visibelUnit:true
-    //     })
-    //   }
-    // },
-    // onPullDownRefresh(){
-    //   if(this.data.visibelUnit){
-    //     this.setData({
-    //       visibelUnit:false
-    //     })
-    //   }
-    // },
+   
     initMap(){
       this.mapCtx = dd.createMapContext('map');
       this.getDetail(this.props.projectInfo.projectId)
@@ -73,7 +52,7 @@ Component({
     updateComponents() {
       let item = this.data.info
       this.mapCtx.updateComponents({
-        scale: 12,
+        scale:12,
         longitude: Number(parseFloat(item.coorX).toFixed(6)),
         latitude: Number(parseFloat(item.coorY).toFixed(6)),
         setting: {
@@ -83,7 +62,7 @@ Component({
           tiltGesturesEnabled: 1 // 开启双指下滑手势
         },
         markers: [{
-            id: item.id,
+            id: 1,
             width: 64,
             height: 64,
             longitude: Number(parseFloat(item.coorX).toFixed(6)),

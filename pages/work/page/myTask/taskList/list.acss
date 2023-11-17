@@ -33,6 +33,7 @@ background: #F7F8FA;
 }
 .card-list{
   margin-top:112px;
+  margin-bottom: 86px;
   height: 100%;
 }
 .list-item {
@@ -101,7 +102,7 @@ background: #FFF2E6;
     box-sizing: border-box;
     bottom:0;
     background: #ffffff;
-    padding: 12px 12px 48px 12px;
+    padding: 12px 12px 24px 12px;
   }
   .ant-empty-image-element {
     width: 67px!important;

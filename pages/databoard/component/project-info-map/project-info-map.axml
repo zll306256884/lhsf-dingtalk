@@ -33,11 +33,11 @@
         <view class="item-lable">总投资额:
           <text class="item-value">{{info.totalInvestment || '-'}}万元</text></view>
         <view class="item-lable">建筑面积:
-          <text class="item-value">{{info.buildArea || '-'}}平方米</text></view>
+          <text class="item-value">{{info.structureArea || '-'}}平方米</text></view>
         <view class="item-lable">建安费用:
           <text class="item-value">{{info.jianAnMoney || '-'}}万元</text></view>
         <view class="item-lable">项目负责人:
-          <text class="item-value">{{info.projectManager || '-'}}</text></view>
+          <text class="item-value">{{info.projectLeaderName|| '-'}}</text></view>
         <view class="item-lable item-lable-time">计划施工工期:
           <text class="item-value">{{info.planConstructionStartTime}}-{{info.planConstructionEndTime}} | {{info.duration || '-'}}天</text></view>
       </view>

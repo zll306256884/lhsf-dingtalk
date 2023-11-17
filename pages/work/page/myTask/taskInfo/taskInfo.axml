@@ -5,34 +5,36 @@
 <view>
   <!-- 任务详情 -->
   <view a:if="{{activeTab===0}}">
-  <view class="card" style="margin-top:16rpx">
-    <view class="list-item">
-      <view class="item-title">
-      {{infoData.title}}
+    <view style="margin-bottom:86px">
+      <view class="card" style="margin-top:16rpx">
+        <view class="list-item">
+          <view class="item-title">
+          {{infoData.title}}
+          </view>
+          <view class="flex f-row f-between">
+              <text class="item-time">截止时间：{{utils.parseTime(infoData.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+              <view class="{{['','','item-status-info','','item-status-sucess','item-status-error','item-status-primary'][infoData.taskStatus]}}" >
+                {{['','','未完成','','已完成','已逾期','已取消'][infoData.taskStatus]}}</view>
+          </view>
+        </view>
       </view>
-      <view class="flex f-row f-between">
-          <text class="item-time">截止时间：{{utils.parseTime(infoData.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
-          <view class="{{['','','item-status-info','','item-status-sucess','item-status-error','item-status-primary'][infoData.taskStatus]}}" >
-            {{['','','未完成','','已完成','已逾期','已取消'][infoData.taskStatus]}}</view>
+      <view class="form-title">基础信息</view>
+      <view style="background:#fff">
+        <layout-field-cell borderBottom name="执行人员" value="{{executer_dictText}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="任务发起人" value="{{infoData.createBy_dictText}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="任务发起时间" value="{{utils.parseTime(infoData.createTime,'{y}-{m}-{d} {h}:{i}')}}"></layout-field-cell>
+        <layout-field-cell name="任务描述"></layout-field-cell>
+        <view style="padding:0rpx 32rpx 32rpx;color:#525966">{{infoData.remark}}</view>
+      </view>
+      <view style="margin-top:16rpx;background:#fff">
+        <layout-upload-img disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
       </view>
     </view>
-  </view>
-  <view class="form-title">基础信息</view>
-  <view style="background:#fff">
-    <layout-field-cell borderBottom name="执行人员" value="{{executer_dictText}}"></layout-field-cell>
-    <layout-field-cell borderBottom name="任务发起人" value="{{infoData.createBy_dictText}}"></layout-field-cell>
-    <layout-field-cell borderBottom name="任务发起时间" value="{{utils.parseTime(infoData.createTime,'{y}-{m}-{d} {h}:{i}')}}"></layout-field-cell>
-    <layout-field-cell name="任务描述"></layout-field-cell>
-    <view style="padding:0rpx 32rpx 32rpx;color:#525966">{{infoData.remark}}</view>
-  </view>
-  <view style="margin-top:16rpx;background:#fff">
-    <layout-upload-img disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
-  </view>
-  <view a:if="{{infoData.taskStatus!==4 && infoData.taskStatus!==6}}" class="buttons  flex f-row f-between">
-    <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="cancelTask">取消任务</button>
-    <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="editTask">编辑任务</button>
-    <button type="primary" onTap="handleTask">完成任务</button>
-  </view>
+    <view a:if="{{infoData.taskStatus!==4 && infoData.taskStatus!==6}}" class="buttons  flex f-row f-between">
+      <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="cancelTask">取消任务</button>
+      <button a:if="{{infoData.missionId==='0'}}"  data-item="{{infoData}}" onTap="editTask">编辑任务</button>
+      <button type="primary" onTap="handleTask">完成任务</button>
+    </view>
 </view>
   <!-- 任务完成情况 -->
   <view a:if="{{activeTab===1}}">
@@ -45,7 +47,7 @@
         <view class="flex f-row f-between">
           <view>
             <text a:if="{{(infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId) || infoData.missionId==='0'}}"  class="item-name">完成情况说明： {{item.remark}}</text>
-            <text a:if="{{item.taskStatus===4}}" class="item-time">完成时间：{{utils.parseTime(item.finishTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            <text a:if="{{item.taskStatus===4}}" class="item-time">完成时间：{{item.finishTime && utils.parseTime(item.finishTime,'{y}-{m}-{d} {h}:{i}')}}</text>
             <text a:else class="item-time">截止时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
           </view>
         </view>

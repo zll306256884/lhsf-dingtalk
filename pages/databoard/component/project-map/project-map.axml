@@ -20,7 +20,7 @@
       </map>
   <!-- 项目卡片  -->
       <view class="card-list">
-        <swiper current="{{currentItem}}" onChange="handleSwiper">
+        <swiper current="{{currentItem}}" onChange="handleSwiper"  circular="true">
         <block a:for="{{projectList}}">
           <swiper-item key="swiper-item-{{index}}" >
             <view class="card-item flex f-between" data-item="{{item}}" data-index="{{index}}" onTap="onSelectItem">
