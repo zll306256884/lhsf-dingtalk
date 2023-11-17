@@ -129,28 +129,12 @@
     label="申请日期"
     name="applicationTime"
     placeholder="请选择"
-    disabled
     placeholder-class="placeholderClassName"
     placeholder-style="color:#000;opacity:1;"
+    disabled
     ref="handleRef" />
+  <!-- <layout-field-cell borderBottom name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="chooseTime"></layout-field-cell> -->
 </view>
-
-<!-- <form-item
-  label="申请日期"
-  name="applicationTime"
-  required
-  position="horizontal"
-  >
-  <view class="input" onTap="showPopup">
-    <view class="input-items">
-      <view class="input-item"> 申请日期 </view>
-    </view>
-    <view class="choose">请选择<icon type="RightOutline" /> </view>
-  </view>
-  <view slot="extra">
-    <slot name="extra">{{extra}}</slot>
-  </view>
-</form-item> -->
 
 <view class="buttons flex f-between">
   <button class="btn" onTap="reset">取消</button>

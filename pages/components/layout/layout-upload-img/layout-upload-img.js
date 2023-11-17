@@ -178,7 +178,7 @@ Component({
               })
               break;
             case 2: //重新上传
-              // this._uploadWebFile(this.data.imgList[index].localPath,this.data.imgList[index], index);
+              this._uploadWebFile(this.data.imgList[index].localPath,this.data.imgList[index].name, index);
               // this._uploadImage(this.data.imgList[index].localPath, index);
               break;
             default:

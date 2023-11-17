@@ -148,7 +148,7 @@ Page({
   chooseThirdParty(value,e){
     console.log(value,e);
     this.setData({
-      listIndex: e.currentTarget.dataset.index
+      listIndex: value.currentTarget.dataset.index
     })
     if(this.dialogScreenConstructUnit2) this.dialogScreenConstructUnit2._showDialog()
   },
