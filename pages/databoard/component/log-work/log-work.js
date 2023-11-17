@@ -74,9 +74,24 @@ Component({
       this.getDetail()
       console.log(value, items, e);
     },
-    // 点击全文
+    // 点击全文/收起
     expandedIt(e) {
-      console.log('全文', e)
-    }
+      // console.log('全文', e)
+      let index1 = e.target.dataset.index1
+      let index2 = e.target.dataset.index2
+      let index3 = e.target.dataset.index3
+      // let expandedAll = e.target.dataset.expandedAll
+      let showAll = e.target.dataset.showAll
+      if (showAll == 0) {
+        this.data.logList[index1].appProjectLogResponseList[index2].appProjectLogDtoList[index3].showAll = 1
+      }
+      if (showAll == 1) {
+        this.data.logList[index1].appProjectLogResponseList[index2].appProjectLogDtoList[index3].showAll = 0
+      }
+      this.setData({
+        logList: this.data.logList,
+      });
+    },
+    // }
   },
 });

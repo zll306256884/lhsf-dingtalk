@@ -4,6 +4,7 @@
     "divider": "antd-mini/es/Divider/index",
     "steps": "antd-mini/es/Steps/index",
     "icon": "antd-mini/es/Icon/index",
+    "empty": "antd-mini/es/Empty/index",
     "container": "antd-mini/es/Container/index"
   }
 }

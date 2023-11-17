@@ -166,14 +166,15 @@ Page({
       // } else if (!/^(?=.*[0-9].*)(?=.*[a-zA-Z].*).{8,}$/.test(value)) {    //可加特殊符号
     } else if (!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,}$/.test(value)) { //不可加特殊符号
       // callback(new Error('新密码不符合规范'))
+      // this.data.newPwd = ''
       this.setData({
         newPwd: '',
         isShow: false,
       });
-      console.log('newPwd', this.data.newPwd);
+      console.log('newPwd--', this.data.newPwd);
 
       ddUtils.showToast({
-        title: "新密码不符合规"
+        title: "新密码不符合规则"
       });
       return
     } else {
@@ -207,7 +208,7 @@ Page({
   // 取消
   resetIt() {
     ddUtils.showModal({
-      content: "是否退出？退出后不会保存当前内容",
+      content: "是否退出编辑？退出后不会保存当前编辑内容",
       success: res => {
         if (res.confirm) {
           // this.form.reset();

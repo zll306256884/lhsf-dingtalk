@@ -1,7 +1,4 @@
-import {
-  isEqual,
-  isEmptyArray
-} from "../../../../utils/utils"
+import { isEmptyArray, isHasMore } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 // import userServer from "../../../../server/userServer"
 import approvalServer from "../../../../server/approvalServer/approvalServer"
@@ -86,6 +83,10 @@ Page({
     // 
 
   },
+  pageNum: 1,
+  hasMore: false,
+  isLoading: false,
+
   _onSaveDialogScreenDateRef: function (ref) {
     this.dialogScreenDateRef = ref;
   },
@@ -97,6 +98,12 @@ Page({
   _bindScreenDateCallBack(data) {
     console.log(data);
 
+  },
+  _onSaveErrorViewRef: function (ref) {
+    this.errorView = ref;
+  },
+  _bindErrorRefreshTap: function (e) {
+    this.getDataList();
   },
   onDialog(data) {
     this.setData({
@@ -124,10 +131,14 @@ Page({
     // 页面加载
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
   },
+  onShow() {
+    // 返回回到这个页面需要调用的接口
+    this.getList()
+  },
   onReady() {
     // 页面加载完成
     // 类比于vue的mounted
-    this.getList()
+    // this.getList()
   },
   // tab切换组件
   onNavTabChange: function (index) {
@@ -147,8 +158,8 @@ Page({
   getList: function () {
     let param = {
       "asc": true,
-      "pageNum": 1,
-      "pageSize": 1000,
+      "pageNum": this.pageNum,
+      "pageSize": 10,
       "account": app.globalData.userInfo.userAccount,
       "userName": "",
       // "belongModule": this.data.options[0].value,//事项类型
@@ -165,6 +176,7 @@ Page({
         data: param,
         success: res => {
           console.log('res.data', res.data)
+          this.hasMore = isHasMore(res.data.records);
           this.setData({
             listData: res.data.records
           });
@@ -175,6 +187,84 @@ Page({
         }
       });
     })
+  },
+  // 加载数据
+  getMoreDataList() {
+    console.log('chufal2')
+    // if (this.isLoading || !this.hasMore) //防止重复加载和没有更多数据
+    //   return;
+    //防止重复加载和没有更多数据
+    if (this.isLoading || !this.hasMore) {
+      return;
+    }
+
+    this.isLoading = true;
+    // this.errorView._showLoadMore();
+    let page = this.pageNum + 1
+    // console.log('page', page)
+    // return
+    let param = {
+      "asc": true,
+      "pageNum": page,
+      "pageSize": 10,
+      "account": app.globalData.userInfo.userAccount,
+      "userName": "",
+      // "belongModule": this.data.options[0].value,//事项类型
+      // "userName": this.data.options[1].value,//申请人
+      "showType": this.data.targetValue, //状态
+      ...this.data.funnelParam
+    }
+    console.log('param', param)
+    // return
+    return new Promise((resolve, reject) => {
+      request.doPostRequest({
+        url: approvalServer.API_SELECT_LIST,
+        showLoading: false,
+        data: param,
+        success: res => {
+          console.log('res.data', res.data)
+          this.hasMore = isHasMore(res.data.records);
+          this.setData({
+            // listData: res.data.records
+            listData: this.data.listData.concat(res.data.records) || []
+          });
+          console.log('listData数据总共：', this.data.listData)
+          resolve(res.data)
+        },
+        fail: res => {
+          reject(res)
+        }
+      });
+    })
+
+    // let params = {
+    //   asc: false,
+    //   pageNum: this.page,
+    //   pageSize: 10,
+    //   params: { status: this.data.tabIndex + 1 },
+    //   sort: 'createTime'
+    // }
+    // request.doPostRequest({
+    //   url: apiMesssageServer.API_REQUEST_LIST,
+    //   data: params,
+    //   success: res => {
+    //     console.log(res.data)
+    //     this.page++;
+    //     this.hasMore = isHasMore(res.data.records);
+
+    //     this.setData({
+    //       dataList: this.data.dataList.concat(res.data.records) || []
+    //     })
+    //   },
+    //   complete: res => {
+    //     this._loadDone(res);
+    //   }
+    // })
+  },
+  onReachBottom() {
+    // 页面被拉到底部
+    console.log('chufal1')
+    this.getMoreDataList()
   },
 
   // 点击跳转
@@ -198,10 +288,10 @@ Page({
         });
         break;
       case 4:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
-          });
-          break;
+        ddUtils.navigateTo({
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+        });
+        break;
     }
     // console.log('item', item)
     // if (item.belongModule == 1) {
