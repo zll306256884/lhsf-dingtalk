@@ -55,6 +55,11 @@ Page({
         break;
     }
   },
+  // 打印事件
+  printTop(){
+    console.log(122121);
+    // window.open(`http://192.168.6.41/prod-api/file/jasper/pdf/payment/${this.data.id}`)
+  },
   withdrawApplication() {
     request.doPostRequest({
       url: workService.API_JFLOWAUDIT_SELET_INFO,

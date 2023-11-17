@@ -47,3 +47,15 @@ margin-top: 8rpx;
 .ant-divider{
   padding:0
 }
+.attachment{
+  font-size: 28rpx;
+  font-weight: 400;
+  color: #323233;
+  margin-bottom: 20rpx;
+}
+.bottom-container{
+  margin-top: 20rpx;
+  min-height: 496rpx;
+background: #FFFFFF;
+  padding: 20rpx 32rpx;
+}

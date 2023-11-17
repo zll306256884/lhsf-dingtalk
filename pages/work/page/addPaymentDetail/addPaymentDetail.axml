@@ -14,11 +14,11 @@
     <list-item extraBrief="{{infoData.projectLeader}}">项目负责人</list-item>
     <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
     <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
-    <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
-    <list-item extraBrief="{{infoData.cumulativePayment}}">累计已付款</list-item>
+    <list-item extraBrief="{{infoData.contractAmount}}">合同金额(万元)</list-item>
+    <list-item extraBrief="{{infoData.cumulativePayment}}">累计已付款(万元)</list-item>
     <list-item extraBrief="{{infoData.payUnit}}">付款单位</list-item>
     <list-item extraBrief="{{infoData.receiverUnit}}">收款单位</list-item>
-    <list-item extraBrief="{{infoData.payAmount}}">本次应付金额</list-item>
+    <list-item extraBrief="{{infoData.payAmount}}">本次应付金额(万元)</list-item>
     <list-item>
       支付节点（或形象进度）
       <view style="margin-top:10rpx;color: #969799;">{{infoData.paymentNode}}</view>
@@ -42,7 +42,7 @@
   </view>
   <view class="btn-wrap">
     <list-item className="bottom">
-      <button a:if="{{status=== '3'||showType ==='3' }}" class="flex1 btn active"  >打印</button>
+      <button a:if="{{status=== '3'||showType ==='3' }}" class="flex1 btn active"  catchTap="printTop">打印</button>
       <button a:if="{{status=== '2'}}" class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
       <view a:if="{{status=== '1'}}" class="flex-display flex-align-center btn-wrap">
         <button class="flex1 btn" catchTap="bindCancelTap">删除</button>

@@ -42,6 +42,8 @@
     </view>
   </view>
   <view a:if="{{isShow}}">
-    121212
+    <view class="bottom-container">
+      <text class="attachment">相关附件</text>
+   </view>
   </view>
 </view>
