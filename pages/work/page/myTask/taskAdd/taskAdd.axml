@@ -4,7 +4,7 @@
 <view class="container">
   <view class="form-card">
     <view class="form-title">任务信息</view>
-      <form-input label="任务标题" disabled="{{operation==='edit'}}" name="title" maxLength="50" placeholder="请输入" ref="handleRef"/>
+      <form-input label="任务标题" disabled="{{currentId}}" name="title" maxLength="50" placeholder="请输入" ref="handleRef"/>
       <form-picker label="所属项目"  arrow name="projectId" placeholder="请选择" options="{{projectList}}" ref="handleRef" />
       <view class="form-item-date" onTap="chooseDate">
       <form-input placeholder-class="color:#000" disabled label="截止时间" name="endTime" placeholder="请选择" ref="handleRef" />

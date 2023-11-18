@@ -29,22 +29,27 @@ Page({
     annexList: [],
     projectList: [],
     executeUser: [],
-    operation:"add",
     dialogScreenExecuteUser: null,
     dialogPickerDate: null,
     uploadImageList: null
   },
   onLoad(option) {
-    console.log(option);
-    this.getProjectList();
     const params = option.json && JSON.parse(option.json);
-    if (params && params.type === "edit") {
+    if (params && params.id) {
       this.setData({
         currentId:params.id,
-        operation:'edit'
       })
-      this.data.navbarData.title="编辑任务"
-      this.getInfo(params.id);
+    }
+  },
+  onShow(){
+    console.log(this.data.currentId);
+    this.getProjectList();
+    if(this.data.currentId){
+      let title=this.data.currentId?"编辑任务":'新增任务'
+      this.setData({
+        "navbarData.title":title
+      })
+      this.getInfo(this.data.currentId);
     }
   },
   handleRef(ref) {
@@ -65,11 +70,10 @@ Page({
   },
   bindScreenExecuteUserCallBack(data) {
     this.setData({
-      executeUser: JSON.stringify(
+      executeUser: 
         data.map(e => {
           return { userId: e.userId, username: e.username };
         })
-      )
     });
     this.form.setFieldValue(
       "executer_dictText",
@@ -158,7 +162,7 @@ Page({
         annexList: list
       });
     }
-    values.executeUser =this.data.currentId? JSON.stringify(this.data.executeUser):this.data.executeUser;
+    values.executeUser =JSON.stringify(this.data.executeUser);
     values.annexList = this.data.annexList;
     let url
     if(this.data.currentId){

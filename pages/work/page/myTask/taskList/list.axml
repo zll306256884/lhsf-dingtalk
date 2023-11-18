@@ -1,6 +1,6 @@
 <import-sjs from="../../../../../utils/utils.sjs" name="utils" />
-<view>
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view>
   <view class="card-tabs">
     <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
       <view slot="title" slot-scope="item">

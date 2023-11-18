@@ -32,7 +32,6 @@ background: #F7F8FA;
   border-color: #1677ff;
 }
 .card-list{
-  margin-top:112px;
   margin-bottom: 86px;
   height: 100%;
 }
