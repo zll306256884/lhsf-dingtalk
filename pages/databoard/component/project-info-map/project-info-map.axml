@@ -15,8 +15,8 @@
 </map>
 <!-- 项目卡片  -->
 <view class="card-project" animation="{{animation}}">
-  <view class="card-top pointer">
-    <view class="dialog-picker-line" onTap="toggleShowUnit"></view>
+  <view class="card-top pointer" onTap="toggleShowUnit">
+    <view class="dialog-picker-line"></view>
   </view>
   <view class="info-base">
     <view class="img-title flex f-start" data-item="{{item}}" data-index="{{index}}">

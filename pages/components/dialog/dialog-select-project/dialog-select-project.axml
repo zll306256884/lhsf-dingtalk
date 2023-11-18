@@ -1,11 +1,12 @@
 
 <block a:if="{{showDialog}}">
-  <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCloseTap" catchTouchMove="_bindTouchMove"></view>
+  <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCloseTap"></view>
   <block>
-      <view  class="box-sizing-box modal-content dialog-picker" style="margin-top:50rpx" animation="{{animationData}}" 
-          catchTouchMove="_bindTouchMove">
-          <view class="box-title">{{title}}
-            <text style="float:right;color:#1A6AFF;margin-right: 50rpx" catchTap="onSureTap">确定</text>
+      <view  class="box-sizing-box modal-content dialog-picker" style="margin-top:50rpx" animation="{{animationData}}">
+          <view class="box-title flex f-between">
+           <text style="color:#1A6AFF" catchTap="_bindCloseTap">取消</text>
+           {{title}}
+          <text style="color:#1A6AFF" catchTap="onSureTap">确定</text>
           </view>
           <view style="margin-bottom:30rpx">
             <layout-search onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>

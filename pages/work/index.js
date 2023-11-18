@@ -340,7 +340,7 @@ Page({
         break;
       case 1:
         ddUtils.navigateTo({
-          url: `/pages/work/page/myTask/taskList/list`
+          url: `/pages/work/page/myTask/taskList/list?tabIndex=${0}`
         });
         break;
       case 2:
