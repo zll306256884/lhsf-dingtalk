@@ -37,6 +37,13 @@ Page({
   onShow(){
    this.onTaskChange(this.data.currentTask)
   },
+  events: {
+    onBack() {
+      ddUtils.navigateTo({
+        url: '/pages/work/index'
+      })
+    },
+  },
   // initList(){
   //   let params={
   //     executeUserId : app.globalData.userInfo.userId,
@@ -105,7 +112,7 @@ getMoreList(params) {
   request.doPostRequest({
       url: apiApprovalManage.API_TASK_LIST,
       data: {
-          pageNum:this.page,
+          pageNum:this.page + 1,
           pageSize: app.globalData.pageSize,
           params:{
             title:params.title,

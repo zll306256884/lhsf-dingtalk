@@ -21,7 +21,7 @@
         <list a:if="{{listData.length}}">
         <list-item> 
           <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
-            <view class="item-title two-lines" style="{{item.isRead && item.isRead===1?'color:#606266':''}}">
+            <view class="item-title two-lines" style="{{item.isRead && item.isRead===1?'color: #666666':''}}">
             <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status-error">
               {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
             </view>

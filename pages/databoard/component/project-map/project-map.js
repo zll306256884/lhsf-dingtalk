@@ -71,6 +71,18 @@ Component({
       console.log(this.dialogScreenProject);
       if (this.dialogScreenProject) this.dialogScreenProject._showDialog();
     },
+    onBlowUp(){
+      this.setData({
+        scale:this.data.scale + 1
+      })
+      this.updateComponents();
+    },
+    onBlowDown(){
+      this.setData({
+        scale:this.data.scale - 1
+      })
+      this.updateComponents();
+    },
     onTabChange(e) {
       this.setData({
         tabIndex: e
@@ -141,7 +153,7 @@ Component({
         };
       });
       this.mapCtx.updateComponents({
-        scale: 9,
+        scale:this.data.scale,
         longitude: 121.131229,
         latitude: 28.845441,
         setting: {

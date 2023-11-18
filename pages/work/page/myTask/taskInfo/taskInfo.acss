@@ -101,6 +101,12 @@
   line-height: 80rpx;
   padding-left: 32rpx;
 }
+.task-remark{
+  padding:0rpx 32rpx 32rpx;
+  color:#525966;
+  white-space: normal;
+  word-break: break-word;
+}
 .buttons {
   width: 100%;
   position: fixed;

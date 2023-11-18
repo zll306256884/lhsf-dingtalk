@@ -19,7 +19,7 @@
     <list a:if="{{listTask.length}}">
       <list-item>
         <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
-          <view class="item-title single-line" style="{{currentTask ===0 && item.isRead===1?'color:#606266':''}}">
+          <view class="item-title single-line" style="{{currentTask ===0 && item.isRead===1?'color: #666666':''}}">
             {{item.title}}
           </view>
           <view class="flex f-row f-between">

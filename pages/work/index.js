@@ -113,7 +113,7 @@ Page({
     this.getAwaitList()
     this.getApprovalList(2)
     this.getQueryList('2')
-    this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+    this.onTaskChange(this.data.currentTask)
     this.getCount()
   },
   onItemTap(e) {
