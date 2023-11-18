@@ -267,7 +267,7 @@ Page({
         break;
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&status=${item.status}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&status=${item.status}&keyId=${item.id}`
         });
         break;
       case 5:
@@ -282,12 +282,12 @@ Page({
         break;
       case 7:
         ddUtils.navigateTo({
-          url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&requestType=${this.data.tabIndex}`
+          url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&requestType=${this.data.tabIndex}&keyId=${item.id}`
         });
         break;
       case 8:
         ddUtils.navigateTo({
-          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}`
+          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}&keyId=${item.id}`
         });
         break;
     }

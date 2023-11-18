@@ -50,6 +50,9 @@ opacity: 1;
 color: #FFFFFF;
 font-weight: bold;
 font-size: 40rpx; 
+text-overflow: ellipsis; /* 溢出显示省略号 */
+overflow: hidden; /* 溢出隐藏 */
+white-space: nowrap;
 }
 .bottom-content{
   padding: 28rpx;
@@ -122,4 +125,23 @@ opacity: 1;
 }
 .isActiveBacg{
   background: #4B90F1;
+}
+.sum-money{
+  color: #FFD643;
+}
+.custom {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.custom > * {
+  margin: 8px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  min-height: 50px;
 }

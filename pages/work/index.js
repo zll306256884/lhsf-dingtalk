@@ -432,7 +432,7 @@ Page({
           break; 
         case 4:
           ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&type=${temp}&status=${item.status}&projectId=${item.projectId}`
+            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&type=${temp}&status=${item.status}&projectId=${item.projectId}&keyId=${item.id}`
           });
           break;
         case 5:
@@ -447,12 +447,12 @@ Page({
           break;
         case 7:
           ddUtils.navigateTo({
-            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}`
+            url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.keyId}&keyId=${item.id}`
           });
           break;
         case 8:
           ddUtils.navigateTo({
-            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}`
+            url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${item.keyId}&keyId=${item.id}`
           });
           break;
       }
@@ -536,7 +536,7 @@ Page({
         break; 
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}&keyId=${item.id}`
         });
         break;
       case 5:
@@ -551,12 +551,12 @@ Page({
         break;
       case 7:
         ddUtils.navigateTo({
-          url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}`
+          url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${id}&keyId=${item.id}&keyId=${item.id}`
         });
         break;
       case 8:
         ddUtils.navigateTo({
-          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}`
+          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?id=${id}&keyId=${item.id}`
         });
         break;
     }

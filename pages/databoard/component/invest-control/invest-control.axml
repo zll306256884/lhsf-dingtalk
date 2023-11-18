@@ -29,8 +29,8 @@
       <view class="sun-text">
        变更总额 (万元) 
       </view> 
-      <view class="sum">
-       {{infoData.updatePrice?infoData.updatePrice:"-"}}
+      <view class="sum sum-money">
+       +{{infoData.updatePrice?infoData.updatePrice:"-"}}
       </view>
      </view>
      <view class="pay">
@@ -76,9 +76,10 @@
      <view class="projectName">
        {{item.contractName}}
       <view class="pay-text">
-      <view >{{checkoutPage===2||checkoutPage===4?'支付金额：':'变更金额：'}} <text>{{checkoutPage===2||checkoutPage===4?item.payAmount:item.changeAmount}}</text> </view>
-      <view >批准日期：<text>{{item.createTime?item.createTime.substr(0,10):'-'}}</text></view>
-      </view>
+      <view >{{checkoutPage===2||checkoutPage===4?'支付金额：':'变更金额：'}} <text>{{checkoutPage===2||checkoutPage===4?item.payAmount+'万元':item.changeAmount+'万元'}}</text> </view>
+      <view a:if="{{checkoutPage===2||checkoutPage===4}}">申请日期：<text>{{item.createTime?item.createTime.substr(0,10):'-'}}</text></view>
+      <view a:else>批准日期：<text>{{item.createTime?item.createTime.substr(0,10):'-'}}</text></view>
+    </view>
      </view>
      </view>
     </list-item>
