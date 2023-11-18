@@ -15,12 +15,12 @@
     <view class="card approval" style="margin-top:32rpx">
       <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange">
         <view slot="title" slot-scope="item">
-          <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+          <view class="pointer">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
         </view>
       </tabs>
         <list a:if="{{listData.length}}">
         <list-item> 
-          <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
+          <view class="list-item pointer" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
             <view class="item-title two-lines" style="{{item.isRead && item.isRead===1?'color: #666666':''}}">
             <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status-error">
               {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
@@ -39,7 +39,7 @@
           </view>
           </view>
           <view class="list-more" onTap="handleTap">
-          <text onTap="selectMoreAwait">查看更多</text>
+          <text class="pointer" onTap="selectMoreAwait">查看更多</text>
           <icon type="RightOutline" />
           </view>
         </list-item>
@@ -50,15 +50,15 @@
     <view class="task flex f-row f-between">
       <text class="task-title">我的审批</text>
       <view style="color:#606266;font-size:28rpx;" onTap="selectMoreApproval">
-      <text onTap="selectMoreApproval">查看更多</text>
+      <text class="pointer" onTap="selectMoreApproval">查看更多</text>
       <icon type="RightOutline" />
       </view>
     </view>
     <view class="card">
-      <tabs items="{{tabs2}}" onChange="onApprovalChange" />
+      <tabs items="{{tabs2}}" class="pointer" onChange="onApprovalChange" />
       <list a:if="{{listApproval.length}}">
         <list-item> 
-          <view class="list-item" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectApprovalInfo">
+          <view class="list-item pointer" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectApprovalInfo">
             <view class="item-title two-lines">{{item.taskName}} </view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
@@ -79,20 +79,20 @@
       <view class="task flex f-row f-between">
         <text class="task-title">我的任务</text>
         <view style="color:#606266;font-size:28rpx;" onTap="selectMoreTask">
-        <text onTap="selectMoreTask">查看更多</text>
+        <text class="pointer" onTap="selectMoreTask">查看更多</text>
         <icon type="RightOutline" />
         </view>
       </view>
       <view class="card">
         <tabs items="{{tabs3}}" current="{{currentTask}}" onChange="onTaskChange" >
-          <view slot="title" slot-scope="item">
+          <view class="pointer" slot="title" slot-scope="item">
             <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
             <view a:else>{{item.value.title}}</view>
           </view>
         </tabs>
         <list a:if="{{listTask.length}}">
           <list-item> 
-            <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
+            <view class="list-item pointer" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
               <view class="item-title two-lines">
                 <view class="{{item.taskStatus===5?'item-status-error':''}}" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}} </view>
                 <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
@@ -112,20 +112,20 @@
         <view class="task flex f-row f-between">
           <text class="task-title">我的请求</text>
           <view style="color:#606266;font-size:28rpx;" onTap="selectMoreQuery">
-          <text onTap="selectMoreQuery">查看更多</text>
+          <text class="pointer" onTap="selectMoreQuery">查看更多</text>
           <icon type="RightOutline" />
           </view>
         </view>
         <view class="card">
           <tabs items="{{tabs4}}" onChange="onQueryChange" >
-            <view slot="title" slot-scope="item">
+            <view class="pointer" slot="title" slot-scope="item">
               <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
               <view a:else>{{item.value.title}}</view>
             </view>
           </tabs>
           <list a:if="{{listQuery.length}}">
             <list-item> 
-              <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
+              <view class="list-item pointer" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
                 <view class="item-title two-lines">{{item.title}} </view>
                 <view class="flex f-row f-between">
                   <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>

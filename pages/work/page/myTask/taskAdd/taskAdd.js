@@ -31,6 +31,7 @@ Page({
     executeUser: [],
     dialogScreenExecuteUser: null,
     dialogPickerDate: null,
+    dialogPickerProject:null,
     uploadImageList: null
   },
   onLoad(option) {
@@ -64,6 +65,9 @@ Page({
   onSaveUploadTenderImgRef(ref) {
     this.uploadImageList = ref;
   },
+  onSaveDialogScreenprojecteRef(ref){
+    this.dialogPickerProject=ref
+  },
   chooseExecuter() {
     if (this.dialogScreenExecuteUser)
       this.dialogScreenExecuteUser._showDialog();
@@ -83,8 +87,18 @@ Page({
       executer_dictText: data.map(e => e.userId).toString()
     });
   },
+  bindChooseProjectCallBack(data){
+    console.log(data);
+    this.form.setFieldValue("projectId", data.id);
+    this.setData({
+      projectId: data.id
+    });
+  },
   chooseDate() {
     this.dialogPickerDate && this.dialogPickerDate._showDialog();
+  },
+  chooseProject(){
+    this.dialogPickerProject && this.dialogPickerProject._showDialog();
   },
   bindPickerDateCallBack(date) {
     this.form.setFieldValue("endTime", date.date);
