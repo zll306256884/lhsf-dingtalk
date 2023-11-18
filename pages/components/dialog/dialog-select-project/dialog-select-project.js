@@ -32,10 +32,6 @@ Component({
   didUpdate() { },
   didUnmount() { },
   methods: {
-    // 点击蒙层
-    _bindTouchMove: function (e) {
-      this._hideDialog();
-    },
     //bind close tap
     _bindCloseTap: function (e) {
       this._hideDialog();

@@ -145,9 +145,8 @@ Page({
   },
   async submit() {
     let values = await this.form.submit();
-    console.log("values", values);
     if (this.uploadImageList) {
-      let list = this.uploadImageList._getUploadImgId().imgList;
+    let list = this.uploadImageList._getUploadImgId().imgList;
       list.forEach(e => {
         e.fileSize=e.size,
         e.fileName = e.name,

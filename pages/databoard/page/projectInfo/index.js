@@ -59,7 +59,7 @@ Page({
   this.mapRef.onShowUnit()
   },
   onPullDownRefresh(){
-    console.log("??????????????");
   this.mapRef.onHideUnit()
+  dd.stopPullDownRefresh()
   },
 });

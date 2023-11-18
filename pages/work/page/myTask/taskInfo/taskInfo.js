@@ -72,7 +72,7 @@ Page({
     });
   },
   handleTask(){
-    if(this.data.infoData.createBy===app.globalData.userInfo.userId){
+    if(this.data.infoData.missionId==='0'){
       ddUtils.showModal({
         title:"完成任务",
         content: `确认后，未完成人：${this.data.executer_dictText}的协作状态设置为已完成，且各协作人无法更改任务详情`,
