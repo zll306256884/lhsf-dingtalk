@@ -8,17 +8,16 @@
       <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)" mustFill placeholder="选择合同后自动带入"  value="{{contractAmount}}"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="承包商名称" mustFill placeholder="选择合同后自动带入"  value="{{contractorName}}"></layout-field-cell>
       <layout-field-cell borderTop name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="bindChooseApplyDateTap"></layout-field-cell>
-      <layout-field-input borderTop name="送审定价(万元)" inputName="pricingTrial" mustFill disabled="{{isEdit}}" value="{{pricingTrial}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input borderTop borderBottom name="送审定价(万元)" inputName="pricingTrial" mustFill disabled="{{isEdit}}" value="{{pricingTrial}}" placeholder="请输入"></layout-field-input>
       <form-radio-group
       onChange="onChange"
       required
-      defaultChecked="{{checked}}"
       label="净核算金额"
       name="adjust"
       value="{{adjust}}"
       options="{{radioGroupOptions}}"
       ref="handleRef" />
-      <layout-field-input  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{netAccountAmount}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input   inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{netAccountAmount}}" placeholder="请输入"></layout-field-input>
       <layout-field-input  name="审定总价" borderTop mustFill inputName="approveTotalPrice"  disabled="{{isEdit}}" value="{{approveTotalPrice}}" placeholder="请输入"></layout-field-input>
     </view>
     <view class="box-shadow" style="padding-bottom: 30rpx;">

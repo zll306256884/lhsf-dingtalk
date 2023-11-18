@@ -80,3 +80,6 @@
   /* border: 1px solid #E7EAF3; */
   /* position: none; */
 }
+.ant-form-item-asterisk{
+  padding: 12px 18px 12px 26px;
+}

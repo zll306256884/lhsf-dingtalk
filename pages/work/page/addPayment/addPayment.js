@@ -241,8 +241,14 @@ getEdit(id){
         countersignLeader_text:res.data.countersignLeader_dictText,
         investmentFileList:res.data.investmentFileList
       })
+      const files= res.data.investmentFileList.map((item)=>{
+        return {
+          ...item,
+          name:item.fileName,
+        }
+      })
       setTimeout(() => {
-        this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+        this.uploadImgRef._setImageList(files) 
       }, 0);
     }
   })
@@ -297,7 +303,7 @@ bindFormSubmit: function (e) {
         applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
         countersignLeader_text:this.data.countersignLeader_text,//负责人
         countersignLeader:this.data.countersignLeader,//,
-        investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
+        investmentFileList:investmentFileList,
         vueUrl:'approveMoneyPaymentDetails',
       },
       success: res => {
@@ -347,7 +353,7 @@ bindFormSubmit: function (e) {
       applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
       countersignLeader_text:this.data.countersignLeader_text,//负责人
       countersignLeader:this.data.countersignLeader,//,
-      investmentFileList:this.data.id?this.data.investmentFileList:investmentFileList,
+      investmentFileList:investmentFileList,
       vueUrl:'approveMoneyPaymentDetails',
     },
     success: res => {

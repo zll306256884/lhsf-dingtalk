@@ -8,6 +8,7 @@ Page({
   },
   infoData:{},
   id:'',
+  keyId:'',
   type:true
   },
   uploadContractImage: null,
@@ -18,7 +19,8 @@ Page({
     }
     this.setData({
       id:option.id,
-      type:option.type || true
+      type:option.type || true,
+      keyId:option.keyId
     })
   },
   onSaveUploadContractImgRef(ref){
@@ -50,19 +52,19 @@ Page({
         if (res.confirm) {
           request.doPostRequest({
             url: confing.API_DELETE_POST,
-            data: { ids: [this.data.id] },
+            data: { ids: [this.data.keyId] },
             success: (res) => {
               if(res.message==="成功"){
                 ddUtils.showToast({
                   title: "操作成功"
                 })
               }
-              let pages = getCurrentPages(); //获取加载的页面
-              let page = pages[pages.length - 2];
-              page.rightFrPage._getRecordList()
+              // let pages = getCurrentPages(); //获取加载的页面
+              // let page = pages[pages.length - 2];
+              // page.rightFrPage._getRecordList()
               setTimeout(()=>{
               ddUtils.navigateBack()
-              },1000)
+              },500)
             }
           })
         }

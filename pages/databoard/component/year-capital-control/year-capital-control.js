@@ -53,7 +53,7 @@ Component({
       url: confing.API_PAY_POST,
       data: {
         pageNum:1,
-        pageSize:10,
+        pageSize:9999,
         projectName:name
       },
       success: res => {
@@ -69,7 +69,7 @@ Component({
       url: confing.API_ALTER_POST,
       data: {
         pageNum:1,
-        pageSize:10,
+        pageSize:9999,
         projectName:proName
       },
       success: res => {
