@@ -1,7 +1,13 @@
 
 <view class="map-container">
   <view class="status-list">
-    <tabs items="{{statusList}}" type="capsule"  scrollMode="center" current="{{tabIndex}}" onChange="onTabChange" />
+    <tabs items="{{statusList}}" type="capsule"  scrollMode="center" current="{{tabIndex}}" onChange="onTabChange">
+      <view slot="title" slot-scope="item">
+      <view class="tab-title">
+        <text className="{{['', 'success', 'error', 'warning', 'primary'][item.index]}}"></text>{{item.value.title}}<text className="tab-count">{{item.value.value}}</text>
+      </view>
+    </view>
+      </tabs>
   </view>
   <image style="{{projectList.length===0?'top:85%':''}}" class="search-list" src="/assets/images/map/search.png" onTap="onSearchProject"/>
   <image class="blow-up" src="/assets/images/map/blow-up.png" onTap="onBlowUp"/>

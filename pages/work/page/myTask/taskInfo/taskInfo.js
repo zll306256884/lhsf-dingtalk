@@ -73,9 +73,15 @@ Page({
   },
   handleTask(){
     if(this.data.infoData.missionId==='0'){
+      const execute=()=>{
+      let executeUsers=this.data.infoData.subMissionList.filter(item=> item.taskStatus===2) 
+      const executeNames=executeUsers.map(item=> {return JSON.parse(item.executeUser)[0].username})
+      console.log(executeUsers,executeNames);
+      return executeNames.join(',')
+      }
       ddUtils.showModal({
         title:"完成任务",
-        content: `确认后，未完成人：${this.data.executer_dictText}的协作状态设置为已完成，且各协作人无法更改任务详情`,
+        content: `确认后，未完成人：${execute()}的协作状态设置为已完成，且各协作人无法更改任务详情`,
         success: res => {
           if (res.confirm) {
             request.doPostRequest({
@@ -101,7 +107,6 @@ Page({
   },
   editTask(){
     const params={
-      type:"edit",
       id:this.data.currentId
     }
     ddUtils.navigateTo({
@@ -137,6 +142,12 @@ Page({
     })
   },
   delete(e){
+    if(this.data.infoData.subMissionList.length===1){
+      ddUtils.showToast({
+        title: "至少有一条任务存在！"
+      });
+      return
+    }
     ddUtils.showModal({
       content: "确认删除吗?",
       success: res => {

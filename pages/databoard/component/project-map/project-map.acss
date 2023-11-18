@@ -47,49 +47,6 @@
   line-height: 48rpx;
   padding:0 32rpx 0 24rpx
 }
-
-
-.status-list #ant-tabs-bar-item-5-1 .ant-tabs-bar-capsule-title::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #26b76f;
-  border-radius: 50%;
-  margin-right: 8px;
-  margin-bottom: 4rpx
-}
-.status-list #ant-tabs-bar-item-5-2 .ant-tabs-bar-capsule-title::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #F53F3F;
-  border-radius: 50%;
-  margin-right: 8px;
-  margin-bottom: 4rpx
-}
-.status-list #ant-tabs-bar-item-5-3 .ant-tabs-bar-capsule-title::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #FFC100 ;
-  border-radius: 50%;
-  margin-right: 8px;
-  margin-bottom: 4rpx
-}
-.status-list #ant-tabs-bar-item-5-4 .ant-tabs-bar-capsule-title::before {
-  content: "";
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  background: #1A6AFF ;
-  border-radius: 50%;
-  margin-right: 8px;
-  margin-bottom: 4rpx
-}
-
 .status-list
   .ant-tabs-bar-capsule.ant-tabs-bar-active
   .ant-tabs-bar-capsule-title {
@@ -190,4 +147,53 @@
 
 .card-item .orange {
   background: #ff7d00;
+}
+.tab-title{
+height: 48rpx;
+font-size: 24rpx;
+font-weight: 400;
+color: #1D1D1F;
+line-height: 48rpx;
+}
+.tab-count{
+  font-weight:600;
+  font-size:28rpx;
+  margin-left: 8rpx;
+  line-height: 48rpx;
+}
+.status-list .success{
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #26b76f;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+.status-list .error {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #F53F3F;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+.status-list .warning{
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #FFC100 ;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
+}
+.status-list .primary {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background: #1A6AFF ;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-bottom: 4rpx
 }

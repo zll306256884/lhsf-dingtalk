@@ -171,19 +171,6 @@ Component({
         currentItem:e.detail.current
       })
     },
-    // 重置地图
-    // demoResetMap() {
-    //   this.setData({
-    //     scale: 11,
-    //     longitude: "121.131229",
-    //     latitude: "28.845441",
-    //     includePoints: "",
-    //     groundOverlays: []
-    //   });
-    //   if (dd.canIUse("createMapContext.return.clearRoute")) {
-    //     this.mapCtx.clearRoute();
-    //   }
-    // },
     // 获取中心点坐标
     // demoGetCenterLocation() {
     //   if (dd.canIUse("createMapContext")) {

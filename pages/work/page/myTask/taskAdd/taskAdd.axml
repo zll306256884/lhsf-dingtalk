@@ -4,12 +4,13 @@
 <view class="container">
   <view class="form-card">
     <view class="form-title">任务信息</view>
-      <form-input label="任务标题" disabled="{{operation==='edit'}}" name="title" maxLength="50" placeholder="请输入" ref="handleRef"/>
-      <form-picker label="所属项目"  arrow name="projectId" placeholder="请选择" options="{{projectList}}" ref="handleRef" />
-      <view class="form-item-date" onTap="chooseDate">
-      <form-input placeholder-class="color:#000" disabled label="截止时间" name="endTime" placeholder="请选择" ref="handleRef" />
+      <form-input label="任务标题" disabled="{{currentId}}" name="title" maxLength="50" placeholder="请输入" ref="handleRef"/>
+      <view onTap="chooseProject">
+      <form-picker disabled label="所属项目" name="projectId" options="{{projectList}}" placeholder="请选择" ref="handleRef" /> 
       </view>
-      <!-- <form-date-picker label="截至时间"  arrow name="endTime" placeholder="请选择" ref="handleRef" onChange="chooseDate"/> -->
+      <view class="form-item-date" onTap="chooseDate">
+      <form-input  disabled label="截止时间" name="endTime" placeholder="请选择" ref="handleRef" />
+      </view>
       <form-input label="执行人员" name="executer_dictText" placeholder="请选择"  onFocus="chooseExecuter" ref="handleRef" />
       <form-textarea label="任务描述"  name="remark" placeholder="请输入" maxLength="300" position="vertical"  autoHeight ref="handleRef"/>
     <view class="form-card">
@@ -24,5 +25,6 @@
     <button type="primary" onTap="submit">保存</button>
   </view>
 </view>
+<dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <dialog-picker-date showHourMinuteSecond  ref="onSaveDialogPickerDateRef"  onPickerCallBack="bindPickerDateCallBack"></dialog-picker-date>

@@ -56,7 +56,7 @@
       <view  a:if="{{infoData.missionId==='0'}}" class="list-buttons flex f-row f-end">
         <button disabled="{{infoData.subMissionList.length===1}}" a:if="{{item.taskStatus===2 || item.taskStatus===5}}" data-item="{{item}}"  onTap="delete">删除</button>
         <button a:if="{{item.taskStatus===2 || item.taskStatus===5}}" data-item="{{item}}" type="primary" onTap="remind">提醒</button>
-        <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
+        <button a:if="{{item.taskStatus===4}}" disabled="{{item.missionFileList.length===0}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>
     </view>
     <view a:if="{{infoData.missionId!=='0' && item.executeUserId === app.globalData.userInfo.userId}}" class="list-buttons flex f-row f-end">
       <button a:if="{{item.taskStatus===4}}" data-item="{{item}}" type="primary" onTap="download">下载相关资料</button>

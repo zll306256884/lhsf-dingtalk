@@ -37,13 +37,13 @@ Page({
   onShow(){
    this.onTaskChange(this.data.currentTask)
   },
-  events: {
-    onBack() {
-      ddUtils.navigateTo({
-        url: '/pages/work/index'
-      })
-    },
-  },
+  // events: {
+  //   onBack() {
+  //     ddUtils.navigateTo({
+  //       url: '/pages/work/index'
+  //     })
+  //   },
+  // },
   // initList(){
   //   let params={
   //     executeUserId : app.globalData.userInfo.userId,
