@@ -21,8 +21,8 @@
       <view class="sun-text">
        变更总额 (万元) 
       </view> 
-      <view class="sum">
-       {{infoData.updatePrice?infoData.updatePrice:"-"}}
+      <view class="sum sum-money">
+       +{{infoData.updatePrice?infoData.updatePrice:"-"}}
       </view>
      </view>
      <view class="pay">
@@ -67,7 +67,8 @@
      >
      <view class="plan-money">
      <view class="images">
-       <image mode="scaleToFill" src="{{item.img}}" />
+       <image a:if="{{item.img}}" mode="scaleToFill" src="{{item.img}}" />
+       <image a:else mode="scaleToFill" src="/assets/images/common/default-img.png" />
      </view>
      <view class="projectName">
        {{item.projectName}}
@@ -76,8 +77,8 @@
       <text style="float:right">{{checkoutPage===1?'支付项:':'变更项:'}}</text>
       </view>
       <view class="pay-text">
-        <text a:if="{{checkoutPage===1}}">{{item.payAmount?item.payAmount:'-'}}</text>
-        <text a:else>{{item.changeAmount?item.changeAmount:'-'}}</text>
+        <text a:if="{{checkoutPage===1}}">{{item.payAmount?item.payAmount+'万元':'-'}}</text>
+        <text a:else>{{item.changeAmount?item.changeAmount+'万元':'-'}}</text>
         <text a:if="{{checkoutPage===1}}" style="float:right">{{item.payNum?item.payNum:''}}个</text>
         <text a:else style="float:right">{{item.changeNum?item.changeNum:''}}个</text>
       </view>

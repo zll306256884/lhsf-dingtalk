@@ -238,8 +238,14 @@ getDetail(id){
         person_text:res.data.person_dictText,
         person:res.data.person
       });
+      const files= res.data.investmentFileList.map((item)=>{
+        return {
+          ...item,
+          name:item.fileName,
+        }
+      })
       setTimeout(() => {
-        this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+        this.uploadImgRef._setImageList(files) 
       }, 0);
     }
   })

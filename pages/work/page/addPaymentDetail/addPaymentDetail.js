@@ -15,6 +15,7 @@ Page({
       }
     ],
     id:"",
+    keyId:'',
     type:'',
     status:"",
     projectId:'',
@@ -29,6 +30,7 @@ Page({
       this.setData({
         id:option.id,
         type:option.type,
+        keyId:option.keyId,
         status:option.status,
         projectId:option.projectId,
         showType:option.showType || ''
@@ -114,7 +116,7 @@ Page({
         if (res.confirm) {
           request.doPostRequest({
             url: confing.API_DELETE_POST,
-            data: { ids: [this.data.id] },
+            data: { ids: [this.data.keyId] },
             success: (res) => {
               if(res.message==="成功"){
                 ddUtils.showToast({

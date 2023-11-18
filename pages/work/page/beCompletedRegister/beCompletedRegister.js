@@ -64,8 +64,6 @@ Page({
     this.setData({
       adjust: row,
     })
-    // this.data.adjust = row
-    console.log(this.data.adjust);
   },
 // 项目名称
 bindChooseProjectTap:function (e) {
@@ -175,8 +173,14 @@ request.doPostRequest({
       adjust:res.data.adjust,
       investmentFileList:res.data.investmentFileList
     })
+    const files= res.data.investmentFileList.map((item)=>{
+      return {
+        ...item,
+        name:item.fileName,
+      }
+    })
     setTimeout(() => {
-      this.uploadImgRef._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
+      this.uploadImgRef._setImageList(files) 
     }, 0);
   }
 })
@@ -208,15 +212,15 @@ if(!this.data.isEdit){
     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
     if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
     if (ddUtils.showEmptyToastTips(pricingTrial, "请输入送审定价")) return;
-    if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择净核算金额")) return;
+    if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择核增或核减")) return;
     if (ddUtils.showEmptyToastTips(netAccountAmount, "请输入净核算金额")) return;
     if (ddUtils.showEmptyToastTips(approveTotalPrice, "请选择审定总价")) return;
   }
-  if(this.data.adjust=== ''){
-    ddUtils.showToast({
-      title:"保存成功"
-   })
-  }
+  // if(this.data.adjust=== ''){
+  //   ddUtils.showToast({
+  //     title:"保存成功"
+  //  })
+  // }
   if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
 request.doPostRequest({
   url: config.API_JUNGONG_ADD_POST,

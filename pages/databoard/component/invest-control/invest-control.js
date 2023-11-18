@@ -96,7 +96,7 @@ Component({
       url: confing.API_ROUTE_POST,
       data: {
         pageNum:1,
-        pageSize:10,
+        pageSize:9999,
         contractName:this.data.searchName,
         approvalStatus:i,
         projectId:this.props.projectId
@@ -114,7 +114,7 @@ Component({
       url: confing.API_CHANGE_POST,
       data: {
         pageNum:1,
-        pageSize:10,
+        pageSize:9999,
         projectName:name,
         projectId:this.props.projectId
       },

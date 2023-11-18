@@ -39,7 +39,7 @@ border-radius: 42rpx 42rpx 42rpx 42rpx;
 opacity: 1;
 }
 .pay{
- width:220rpx; 
+ width:240rpx; 
 }
 .sun-text{
   margin-bottom: 8rpx;
@@ -50,6 +50,9 @@ opacity: 1;
 color: #FFFFFF;
 font-weight: bold;
 font-size: 40rpx; 
+text-overflow: ellipsis; /* 溢出显示省略号 */
+overflow: hidden; /* 溢出隐藏 */
+white-space: nowrap;
 }
 .bottom-content{
   padding: 28rpx;
@@ -121,4 +124,7 @@ font-weight: 400;
 } */
 .isActive{
   background: #FFFFFF;
+}
+.sum-money{
+  color: #FFD643;
 }
