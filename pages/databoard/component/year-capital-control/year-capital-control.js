@@ -10,6 +10,7 @@ Component({
       {title:"变更",},
     ],
     checkoutPage:1,
+    alert:0,
     infoData:{},
     recordList:[]
   },
@@ -38,8 +39,14 @@ Component({
       checkoutPage:index.target.dataset.id === 1? 1:2
     })
     if(this.data.checkoutPage===2){
+      this.setData({
+        alter : 5 
+      })
      this.getAlteration()
     }else{
+      this.setData({
+        alter : 0 
+      })
       this.getList()
     }
   },
@@ -84,8 +91,10 @@ Component({
    clickCapital(value){
      console.log(value);
     let item = value.target.dataset.item
+    if(this.data.checkoutPage === 2){
+    }
    ddUtils.navigateTo({
-    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}`
+    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}&alter=${this.data.alter}`
   });
    }
   },

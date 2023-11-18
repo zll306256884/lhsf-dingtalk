@@ -15,7 +15,7 @@
     <!-- 工作日志 -->
     <log-work projectId="{{projectInfo.projectId}}"></log-work>
   </view>
-  <invest-control a:if="{{ currentTabIndex=== 3 }}" projectId="{{projectInfo.projectId}}"></invest-control>
+  <invest-control a:if="{{ currentTabIndex=== 3 }}" alter="{{alter}}" projectId="{{projectInfo.projectId}}"></invest-control>
   
   <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{projectInfo.projectId}}"></project-bidding-progress>
 </view>

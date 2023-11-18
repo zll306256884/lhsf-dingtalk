@@ -17,11 +17,17 @@ Component({
     recordList:[]
   },
   props: {
-    projectId: null
+    projectId: null,
+    alter:''
   },
   didMount() {
-    this.getTopMoney(1)
+    if(this.props.alter === '5'){
+      this.data.checkoutPage = 5
+       this.getAlteration()
+    }else{
+      this.getTopMoney(1)
     this.getList(2)
+    }
   },
   didUpdate() {},
   didUnmount() {},
