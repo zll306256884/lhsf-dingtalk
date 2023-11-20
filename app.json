@@ -53,7 +53,8 @@
     "backgroundColor": "#fff",
     "navigationBarBackgroundColor": "#ff9700",
     "navigationBarTitleText": "小程序",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "black",
+    "supportColorScheme": "dark"
   },
   "tabBar": {
     "textColor": "#343C4A",

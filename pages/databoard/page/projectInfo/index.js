@@ -26,6 +26,7 @@ Page({
     ],
     currentTabIndex: 0,
     projectInfo: {},
+    childrenTab: null
   },
   mapRef:null,
 
@@ -34,7 +35,7 @@ Page({
     this.data.projectInfo.projectName=option.projectName
     this.data.projectInfo.projectId=option.projectId
     this.data.navbarData.title = option.projectName
-    if(option.type === '3'){
+    if(option.type === '3' || option.type === 3){
       this.setData({
         currentTabIndex: 4
       })
@@ -43,6 +44,11 @@ Page({
       projectInfo:this.data.projectInfo,
       navbarData: this.data.navbarData
     })
+    if(option.childrenTab){
+      this.setData({
+        childrenTab: option.childrenTab
+      })
+    }
   },
   onSaveMapRef(ref){
     this.mapRef=ref
