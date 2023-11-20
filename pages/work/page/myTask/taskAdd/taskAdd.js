@@ -26,6 +26,7 @@ Page({
     executer_dictText: "",
     remark: "",
     projectId: "",
+    projectName:"",
     annexList: [],
     projectList: [],
     executeUser: [],
@@ -73,6 +74,7 @@ Page({
       this.dialogScreenExecuteUser._showDialog();
   },
   bindScreenExecuteUserCallBack(data) {
+    console.log(data);
     this.setData({
       executeUser: 
         data.map(e => {
@@ -91,7 +93,8 @@ Page({
     console.log(data);
     this.form.setFieldValue("projectId", data.id);
     this.setData({
-      projectId: data.id
+      projectId: data.id,
+      projectName:data.name
     });
   },
   chooseDate() {
@@ -178,6 +181,7 @@ Page({
     }
     values.executeUser =JSON.stringify(this.data.executeUser);
     values.annexList = this.data.annexList;
+    values.projectName = this.data.projectName;
     let url
     if(this.data.currentId){
       values.id = this.data.currentId

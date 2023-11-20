@@ -144,7 +144,7 @@ Page({
   delete(e){
     if(this.data.infoData.subMissionList.length===1){
       ddUtils.showToast({
-        title: "至少有一条任务存在！"
+        title: "至少有一个执行人！不可删除"
       });
       return
     }

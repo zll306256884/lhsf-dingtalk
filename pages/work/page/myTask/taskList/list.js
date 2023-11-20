@@ -35,6 +35,7 @@ Page({
     })
   },
   onShow(){
+    console.log("???????????");
    this.onTaskChange(this.data.currentTask)
   },
   // events: {
