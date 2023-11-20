@@ -36,7 +36,7 @@
                   <block a:if="{{targetValue==1}}">
                     <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
                   </block>
-                  <block a:if="{{targetValue==1}}">
+                  <block a:if="{{targetValue==2}}">
                     <view class="blueTypeBtn btnSize" a:if="{{item.type==1}}">审批中</view>
                     <view class="redTypeBtn btnSize" a:if="{{item.type==2}}">已驳回</view>
                   </block>
