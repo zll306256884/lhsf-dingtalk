@@ -3,31 +3,22 @@ import ddUtils from "../../../../utils/ddUtils";
 import config from "../../../../utils/config"
 import request from "../../../../utils/request"
 const app = getApp();
-
 //筛选OA组织下人员列表
 Component({
     mixins: [], // mixins 方便复用代码
-    /**
-     * 组件的属性列表
-     */
     props: {
-      showDialog:false,
-        title: "选择人员",
-        positionBottom: false,
-        marginTop: 0,
-        multiChoose: false,
-        screenDangerousName: "",
-        onScreenCallBack: function (chooseList) { }
+      // showDialog:false,
+      title: "选择人员",
+      positionBottom: false,
+      marginTop: 0,
+      multiChoose: false,
+      screenDangerousName: "",
+      selectedStaff:[],
+      onScreenCallBack: function (chooseList) { }
     },
-
-    tempDataList: [],
     chooseList: [], //[{account: '',headImg: '',userId: '',username: ''}]
-
-    /**
-     * 组件的初始数据
-     */
     data: {
-        // showDialog: false,
+        showDialog: false,
         scrollHeight: 0,
         dataList: [],
     },
@@ -44,16 +35,16 @@ Component({
     //组件创建完毕时触发
     //此时页面已经渲染，通常在这时请求服务端数据。
     didMount() {
-        this.chooseList = [];
-
-        app.getSystemInfo(res => {
-            this.setData({
-                topHeight: app.globalData.statusBarHeight + app.globalData.navbarHeight,
-                scrollHeight: app.globalData.appSystemInfo.screenHeight * 0.65
-            });
+      app.getSystemInfo(res => {
+        this.setData({
+            topHeight: app.globalData.statusBarHeight + app.globalData.navbarHeight,
+            scrollHeight: app.globalData.appSystemInfo.screenHeight * 0.65
         });
+      });
+      this.getDate()
+      this.chooseList = []
+      
     },
-
     //组件更新完毕时触发
     //每次组件数据变更的时候都会调用。
     didUpdate(prevProps, prevData) {
@@ -75,6 +66,20 @@ Component({
      * 组件的方法列表
      */
     methods: {
+      getDate(){
+        request.doPostRequest({
+          url: config.API_OA_COMPANY_STAFF_LIST,
+          data: {},
+          success: res => {
+              let list = res.data || [];
+              list[0].isCheck = true;
+              if (!isEmptyArray(list))
+                this.setData({
+                  dataList: list
+              }) 
+          }
+      });
+      },
         _bindCancelTap: function (e) {
             this._hideDialog();
         },
@@ -108,42 +113,28 @@ Component({
       },
       
       onSearchConfirm: function(value) {
-        console.log(value)
         this.data.screenDangerousName = value;
-        // this._showDialog();
         request.doPostRequest({
           url: config.API_OA_COMPANY_NAME,
           data: {
             username:value
           },
           success: res => {
-            console.log(res,111111111);
               let list = res.data || [];
-
               if (!isEmptyArray(list))
-                  list[0].isCheck = true;
-
-              this.tempDataList = JSON.parse(JSON.stringify(list));
-
+              list[0].isCheck = true;
               this.setData({
-                  showDialog: true,
                   dataList: list
               })
-              console.log(this.data.dataList,);
           }
         });
       },
         _bindItemChooseCompanyChange: function (indexArray) {
             if (isEmptyArray(indexArray)) return;
-
             indexArray.reverse();
-
             let list = JSON.parse(JSON.stringify(this.data.dataList));
-
             let i = 0;
-
             this._getChooseCompanyItem(list[indexArray[i]], indexArray, i, indexArray.length - 1);
-
             this.setData({
                 dataList: list
             });
@@ -151,23 +142,16 @@ Component({
 
         _bindItemChooseUserChange: function (indexArray) {
             if (isEmptyArray(indexArray)) return;
-
             indexArray.reverse();
-
             let list = JSON.parse(JSON.stringify(this.data.dataList));
-
             let i = 0;
-
             let item = this._getChooseUserItem(list[indexArray[i]], indexArray, i, indexArray.length - 2);
-
             if (!this.props.multiChoose) {
                 this.props.onScreenCallBack([item]);
                 this._hideDialog();
                 return;
             }
-
             this._addChooseUserList(item);
-
             this.setData({
                 dataList: list
             });
@@ -178,39 +162,30 @@ Component({
                 index++;
                 return this._getChooseCompanyItem(item.organizeList[indexArray[index]], indexArray, index, total);
             }
-
             item.isCheck = !item.isCheck;
-
             return item;
         },
 
         _getChooseUserItem: function (item, indexArray, index, total) {
             if (index < total) {
                 index++;
-
                 return this._getChooseUserItem(item.organizeList[indexArray[index]], indexArray, index, total);
             }
-
             let itemUser = item.staffList[[indexArray[index + 1]]];
             itemUser.isCheck = !itemUser.isCheck;
-
             return itemUser;
         },
 
         _addChooseUserList: function (item) {
-
-
-            if (!this.chooseList) this.chooseList = [];
-
-            for (let i = 0; i < this.chooseList.length; i++) {
-                if (isEqual(item.userId, this.chooseList[i].userId)) {
-                    this.chooseList.splice(i, 1);
-                    break;
-                }
+        if (!this.chooseList) this.chooseList = [];
+        for (let i = 0; i < this.chooseList.length; i++) {
+            if (isEqual(item.userId, this.chooseList[i].userId)) {
+              this.chooseList.splice(i, 1);
+              break;
             }
-
-            if (item.isCheck)
-                this.chooseList.push(item)
+        }
+        if (item.isCheck)
+        this.chooseList.push(item)
         },
 
         //judge is show dialog
@@ -219,46 +194,45 @@ Component({
         },
 
         //show modal dialog
-        _showDialog: function (defaultValue) {
+        _showDialog: function (defaultList) {
             if (this._isShowDialog())
                 return
-
-            if (!isEmptyArray(this.tempDataList)) {
-                this.setData({
-                    showDialog: true,
-                    dataList: JSON.parse(JSON.stringify(this.tempDataList))
-                })
-                return;
+            this.setData({
+              showDialog: true
+          })
+          this.chooseList=[]
+          const ergodic=(list,selected)=>{
+          const newList=list.map(item=>{
+            if(item.organizeList && item.organizeList.length!==0){
+              ergodic(item.organizeList,selected)
             }
-
-            request.doPostRequest({
-                url: config.API_OA_COMPANY_STAFF_LIST,
-                data: {
-                 
-                },
-                success: res => {
-                  console.log(res,111111111);
-                    let list = res.data || [];
-
-                    if (!isEmptyArray(list))
-                        list[0].isCheck = true;
-
-                    this.tempDataList = JSON.parse(JSON.stringify(list));
-
-                    this.setData({
-                        showDialog: true,
-                        dataList: list
-                    })
-                    console.log(this.data.dataList,);
-                }
-            });
-        },
+              if(item.staffList && item.staffList.length !==0){
+              return item.staffList.map(s=>{
+                  selected.map(sed=>{
+                    if(sed.userId===s.userId){
+                      s.isCheck=true
+                      this.chooseList.push(s)
+                    }
+                  }) 
+                  return s
+                })
+              }else{
+                return item
+              }
+            })
+            return newList
+          }
+        if(defaultList.length!==0){
+          this.setData({
+              dataList: ergodic(this.data.dataList,defaultList)
+          });
+       } 
+     },
 
         //hide modal dialog
         _hideDialog: function (e) {
             if (!this._isShowDialog())
                 return;
-
             this.setData({
                 showDialog: false
             })
