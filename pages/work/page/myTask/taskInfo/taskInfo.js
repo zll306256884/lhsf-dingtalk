@@ -144,7 +144,7 @@ Page({
   delete(e){
     if(this.data.infoData.subMissionList.length===1){
       ddUtils.showToast({
-        title: "至少有一条任务存在！"
+        title: "至少有一个执行人！不可删除"
       });
       return
     }
@@ -190,7 +190,6 @@ Page({
   },
   download(e){
     const missionFileList=e.currentTarget.dataset.item.missionFileList
-    // console.log(e.currentTarget.dataset.item.missionFileList);
     if(missionFileList.length===0){
       ddUtils.showToast({
         title: "没有可供下载的文件！"

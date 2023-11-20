@@ -10,8 +10,8 @@
       </tabs>
   </view>
   <image style="{{projectList.length===0?'top:85%':''}}" class="search-list" src="/assets/images/map/search.png" onTap="onSearchProject"/>
-  <image class="blow-up" src="/assets/images/map/blow-up.png" onTap="onBlowUp"/>
-  <image class="blow-down" src="/assets/images/map/blow-down.png" onTap="onBlowDown"/>
+  <!-- <image class="blow-up" src="/assets/images/map/blow-up.png" onTap="onBlowUp"/>
+  <image class="blow-down" src="/assets/images/map/blow-down.png" onTap="onBlowDown"/> -->
       <map
         id="map"
         customMapStyle="light"

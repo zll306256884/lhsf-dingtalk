@@ -29,7 +29,7 @@
                   </view>
                 </view>
                 <view class="newList box-sizing-box">
-                  <view class="newNormal three-lines box-sizing-box" a:if="{{itemPart.expandedAll==1}}">
+                  <view class="newNormal five-lines box-sizing-box" a:if="{{itemPart.expandedAll==1}}">
                     {{itemPart.content}}
                   </view>
                   <view class="newExpanded single-line box-sizing-box" a:if="{{itemPart.expandedAll==0 && itemPart.showAll==0}}">
@@ -51,7 +51,7 @@
                   </view>
                   <view class="imgBox flex f-wrap f-start">
                     <block a:for="{{itemPart.logPhotoList}}" a:for-item="itemImg" a:for-index="imgIndex">
-                      <image class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
+                      <image catchTap="_bindPreviewTap" data-index="{{imgIndex}}" data-url="{{itemImg.url}}" class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
                     </block>
                   </view>
                 </view>

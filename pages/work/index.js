@@ -69,6 +69,7 @@ Page({
       title: "办结审批",
       count: 0
     }],
+    currentApproval: '2',//选择的审批
     listApproval: [],
     // 我的任务
     tabs3: [{
@@ -238,9 +239,17 @@ Page({
     switch (e) {
       case 0:
         this.getApprovalList(2)
+        this.setData({
+          currentApproval: 2
+        })
+        console.log('currentApproval', this.data.currentApproval)
         break;
       case 1:
         this.getApprovalList(3)
+        this.setData({
+          currentApproval: 3
+        })
+        console.log('currentApproval', this.data.currentApproval)
         break;
     }
   },
@@ -287,17 +296,7 @@ Page({
         break;
     }
   },
-  // 切换我的审批tab
-  onApprovalChange(e) {
-    switch (e) {
-      case 0:
-        this.getApprovalList(2)
-        break;
-      case 1:
-        this.getApprovalList(3)
-        break;
-    }
-  },
+
   // 切换我的任务tab
   onTaskChange(e) {
     this.setData({
@@ -353,7 +352,7 @@ Page({
   },
   selectMoreApproval() {
     ddUtils.navigateTo({
-      url: `/pages/message/page/approval/approval`
+      url: `/pages/message/page/approval/approval?currentApproval=${this.data.currentApproval}`
     });
 
   },
@@ -372,7 +371,7 @@ Page({
     console.log(e);
     // 待办审批
     if (this.data.currentAwait === 0) {
-      console.log('this.data.currentAwait',this.data.currentAwait)
+      console.log('this.data.currentAwait', this.data.currentAwait)
       let temp = e.target.dataset.item.belongModule;
       let id = e.target.dataset.item.keyId
       let projectId = e.target.dataset.item.projectId
@@ -411,7 +410,7 @@ Page({
     }
     // 待办请求
     if (this.data.currentAwait === 2) {
-      console.log('this.data.currentAwait',this.data.currentAwait)
+      console.log('this.data.currentAwait', this.data.currentAwait)
       let item = e.target.dataset.item
       let temp = e.target.dataset.item.type;
       switch (temp) {
@@ -429,7 +428,7 @@ Page({
           ddUtils.navigateTo({
             url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=0`
           });
-          break; 
+          break;
         case 4:
           ddUtils.navigateTo({
             url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.keyId}&type=${temp}&status=${item.status}&projectId=${item.projectId}&keyId=${item.id}`
@@ -494,10 +493,10 @@ Page({
       url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
     });
   },
-  getCount(){
+  getCount() {
     request.doPostRequest({
       url: apiMesssageServer.API_COUNT_MATTER,
-      data: {userId: app.globalData.userInfo.userId},
+      data: { userId: app.globalData.userInfo.userId },
       success: res => {
         let list = this.data.tabs4
         console.log(list);
@@ -521,19 +520,19 @@ Page({
     switch (temp) {
       case 1:
         ddUtils.navigateTo({
-          url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus+1}&projectId=${item.projectId}`
+          url: `/pages/work/page/requestProgressDetail/requestProgressDetail?planId=${item.keyId}&requestType=${this.data.requestStatus + 1}&projectId=${item.projectId}`
         });
         break;
       case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=${this.data.requestStatus + 1}`
         });
         break;
       case 3:
         ddUtils.navigateTo({
-          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=${this.data.requestStatus + 1}`
         });
-        break; 
+        break;
       case 4:
         ddUtils.navigateTo({
           url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&type=${temp}&status=${status}&projectId=${item.projectId}&keyId=${item.id}`
@@ -546,7 +545,7 @@ Page({
         break;
       case 6:
         ddUtils.navigateTo({
-          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.requestStatus+1}`
+          url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=${this.data.requestStatus + 1}`
         });
         break;
       case 7:

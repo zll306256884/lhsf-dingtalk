@@ -28,19 +28,19 @@ Component({
       },
       {
         title: "在建",
-        value: 1
+        value: 0
       },
       {
         title: "延期",
-        value: 2
+        value: 0
       },
       {
         title: "投入未使用",
-        value: 3
+        value: 0
       },
       {
         title: "投入使用",
-        value: 4
+        value: 0
       }
     ],
     tabIndex: 0,
@@ -110,6 +110,20 @@ Component({
       this.getProjectList();
     },
     getProjectList() {
+      request.doPostRequest({
+        url: apiDataBoardServer.API_MAP_PROJECT_COUNT_STAGE,
+        data: this.data.params,
+        success: res => {
+          this.data.statusList[1].value=res.data.doingNum
+          this.data.statusList[2].value=res.data.delayNum
+          this.data.statusList[3].value=res.data.unUseNum
+          this.data.statusList[4].value=res.data.useNum
+          this.setData({
+            statusList: this.data.statusList
+          });
+        }
+      })
+     
       request.doPostRequest({
         url: apiDataBoardServer.API_MAP_PROJECT_LIST,
         data: this.data.params,

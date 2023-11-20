@@ -26,5 +26,5 @@
   </view>
 </view>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
-<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose selectedStaff="{{executeUser}}"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 <dialog-picker-date showHourMinuteSecond  ref="onSaveDialogPickerDateRef"  onPickerCallBack="bindPickerDateCallBack"></dialog-picker-date>
