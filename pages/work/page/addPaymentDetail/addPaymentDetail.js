@@ -16,6 +16,7 @@ Page({
     ],
     id:"",
     keyId:'',
+    examineId:'',
     type:'',
     status:"",
     projectId:'',
@@ -28,6 +29,7 @@ Page({
     console.log(option,111111111);
     if (option.id) {
       this.setData({
+        examineId:option.examineId,
         id:option.id,
         type:option.type,
         keyId:option.keyId,

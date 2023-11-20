@@ -1,5 +1,5 @@
 .message{
-height: 208rpx;
+min-height: 110rpx;
 background: #FFFFFF;
 border-radius: 0rpx 0rpx 0rpx 0rpx;
 opacity: 1;
