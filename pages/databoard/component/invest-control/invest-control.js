@@ -94,10 +94,11 @@ Component({
   },
   searchDocList(e){
     console.log(e);
-   
-    this.data.searchName = e.detail.value
+    this.setData({
+      searchName:e.detail.value
+    })
     this.getList()
-    this.getAlteration(e.detail.value)
+    this.getAlteration()
   },
    getList(i){
     request.doPostRequest({
@@ -117,13 +118,13 @@ Component({
       }
     })
    },   
-   getAlteration(name){
+   getAlteration(){
     request.doPostRequest({
       url: confing.API_CHANGE_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:name,
+        contractName:this.data.searchName,
         projectId:this.props.projectId
       },
       success: res => {
