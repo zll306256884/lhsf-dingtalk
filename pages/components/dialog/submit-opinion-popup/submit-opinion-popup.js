@@ -18,10 +18,16 @@ Component({
     keyId:'' //审批需要用的keyId
     // onApprovalOperate: function (reason, isAgree) { },
   },
+  uploadApproval: null,
   didMount() {},
   didUpdate() {},
   didUnmount() {},
+  
   methods: {
+    onSaveUploadApprovalRef(ref){
+      console.log(ref);
+      this.uploadApproval = ref
+    },
     //暂存待办
     bindStagingToDo(){
       console.log(this.props.examineId)
@@ -79,12 +85,16 @@ Component({
       console.log(reason, this.data.isApprovalAgree)
       if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
       // this.props.onApprovalOperate(reason, this.data.isApprovalAgree);
-
+      let workAuditFile = [];
+      if (this.uploadApproval) {
+        workAuditFile = this.uploadApproval._getUploadImgId().imgList;
+      }
+      console.log(workAuditFile);
       await this.getDetail()
       setTimeout(() => {
         let params = this.data.paramsData
         params.content = reason
-        params.annexesUrl = ""
+        params.annexesUrl = JSON.stringify(workAuditFile)
 
         console.log(params);
         if(this.data.isApprovalAgree){

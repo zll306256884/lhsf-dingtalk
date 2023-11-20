@@ -120,7 +120,7 @@
 .bigPark .navPark .newPark  .newList .newNormal{
   width: 100%;
   height: auto;
-  max-height: 240rpx;
+  max-height: 270rpx;
   background: #F8F9FA;
   font-size: 32rpx;
   color: #121212;

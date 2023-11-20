@@ -2,6 +2,8 @@ import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
 import ddUtils from "../../utils/ddUtils"
 import apiMesssageServer from "../../server/messageServer"
+// approvalServer
+import approvalServer from "../../server/approvalServer/approvalServer"
 const app = getApp();
 
 Page({
@@ -104,7 +106,7 @@ Page({
     // this.getQueryList('2')
     // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
   },
-  onShow(){
+  onShow() {
     this.setData({
       currentAwait: 0,
       currentTask: 0,
@@ -331,10 +333,11 @@ Page({
     }
   },
   selectMoreAwait() {
+    // debugger
     switch (this.data.currentAwait) {
       case 0:
         ddUtils.navigateTo({
-          url: `/pages/message/page/approval/approval`
+          url: `/pages/message/page/approval/approval?currentApproval=1`
         });
         break;
       case 1:
@@ -366,38 +369,79 @@ Page({
       url: `/pages/message/page/myRequest/myRequest?requestStatus=${this.data.requestStatus + 1}`
     });
   },
+  // 刷新为已读
+  getRead(examineId) {
+    let params = {
+      "id": examineId,
+      "isRead": 1
+    }
+    request.doPostRequest({
+      url: approvalServer.API_UPLATE_READ,
+      showLoading: true,
+      data: params,
+      success: res => {
+        console.log(res)
+        return res
+      },
+      complete: res => {
+        // this._loadDone(res);
+      }
+    })
+
+  },
   // 点击列表项查看待办详情
-  selectAwaitInfo(e) {
+  async selectAwaitInfo(e) {
     console.log(e);
     // 待办审批
     if (this.data.currentAwait === 0) {
+      console.log('待办审批')
       console.log('this.data.currentAwait', this.data.currentAwait)
       let temp = e.target.dataset.item.belongModule;
       let id = e.target.dataset.item.keyId
       let projectId = e.target.dataset.item.projectId
       let showType = e.target.dataset.item.showType
       let examineId = e.target.dataset.item.id //审批组件用
-      switch (temp) {
-        case 2:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=1`
-          });
-          break;
-        case 3:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=1`
-          });
-          break;
-        case 4:
-          ddUtils.navigateTo({
-            url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}`
-          });
-        // case 5:
-        //   ddUtils.navigateTo({
-        //     url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
-        //   });
-        //   break;
+      // let resBack = await this.getRead(examineId)
+      // console.log('resBack', resBack)
+      let params = {
+        "id": examineId,
+        "isRead": 1
       }
+      request.doPostRequest({
+        url: approvalServer.API_UPLATE_READ,
+        showLoading: true,
+        data: params,
+        success: res => {
+          console.log(res)
+          switch (temp) {
+            case 2:
+              ddUtils.navigateTo({
+                url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=1`
+              });
+              break;
+            case 3:
+              ddUtils.navigateTo({
+                url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=1`
+              });
+              break;
+            case 4:
+              ddUtils.navigateTo({
+                url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}`
+              });
+            // case 5:
+            //   ddUtils.navigateTo({
+            //     url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
+            //   });
+            //   break;
+          }
+          // return res
+        },
+        complete: res => {
+          // this._loadDone(res);
+        }
+      })
+      return
+
     }
     // 待办任务
     if (this.data.currentAwait === 1) {

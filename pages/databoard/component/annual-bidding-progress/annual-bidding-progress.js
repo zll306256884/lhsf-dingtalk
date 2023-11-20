@@ -32,6 +32,7 @@ Component({
         data: {},
         success: res => {
           console.log(res);
+          res.data.tenderAllPrice = parseInt(res.data.tenderAllPrice)
           this.setData({
             dataInfo: res.data
           })
@@ -43,6 +44,7 @@ Component({
         url: apiDataBoardServer.API_AMOUNTCONTROL,
         data: {},
         success: res => {
+          res.data.allContractPrice = parseInt(res.data.allContractPrice)
           this.setData({
             dataContractInfo: res.data
           })
