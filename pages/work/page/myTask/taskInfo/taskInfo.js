@@ -190,7 +190,6 @@ Page({
   },
   download(e){
     const missionFileList=e.currentTarget.dataset.item.missionFileList
-    // console.log(e.currentTarget.dataset.item.missionFileList);
     if(missionFileList.length===0){
       ddUtils.showToast({
         title: "没有可供下载的文件！"

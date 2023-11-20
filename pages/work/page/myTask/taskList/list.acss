@@ -3,6 +3,7 @@
   background: #fff;
   padding:0 24rpx;
   position: fixed;
+  top:86px;
   box-sizing: border-box;
 }
 .ant-tabs-bar-scroll-view {
@@ -33,6 +34,7 @@ background: #F7F8FA;
 }
 .card-list{
   margin-bottom: 86px;
+  margin-top: 112px;
   height: 100%;
 }
 .list-item {
