@@ -116,6 +116,7 @@ Page({
     this.getQueryList('2')
     this.onTaskChange(this.data.currentTask)
     this.getCount()
+    this.getTaskCount()
   },
   onItemTap(e) {
     console.log(e);
@@ -179,14 +180,35 @@ Page({
       url: apiApprovalManage.API_TASK_LIST,
       data,
       success: res => {
-        this.data.tabs3[0].count = res.data.total
         this.setData({
           listTask: res.data.records,
-          tabs3: this.data.tabs3
         })
       },
     });
   },
+    //获取任务数量
+    getTaskCount: function () {
+      let data = {
+        pageNum: 1,
+        pageSize: 3,
+        params: {
+          createById: app.globalData.userInfo.userId, //发起人
+          executeUserId: "",
+          sort: "endTime",
+          taskStatus:[1,2,5], //[1,2,5]我发起，4已完成，6已取消
+        }
+      };
+      request.doPostRequest({
+        url: apiApprovalManage.API_TASK_LIST,
+        data,
+        success: res => {
+          this.data.tabs3[0].count = res.data.total
+          this.setData({
+            tabs3: this.data.tabs3
+          })
+        },
+      });
+    },
   //获取请求列表
   getQueryList: function (status) {
     let data = {
