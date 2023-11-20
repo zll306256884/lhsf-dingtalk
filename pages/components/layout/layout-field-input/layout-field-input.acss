@@ -1,7 +1,7 @@
 
 .field-input-layout {
   padding: 24rpx 00rpx;
-  margin: 0rpx 48rpx;
+  margin: 0rpx 32rpx;
 }
 
 .field-input-layout.border-top {

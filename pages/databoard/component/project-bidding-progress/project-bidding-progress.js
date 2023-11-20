@@ -12,11 +12,24 @@ Component({
     listType: '1'
   },
   props: {
-    projectId: null
+    projectId: null,
+    childrenTab: null
   },
   didMount() {
-    this.getData('1')
-    this.getDocList()
+    if(this.props.childrenTab){
+      this.setData({
+        listType: this.props.childrenTab
+      })
+      this.getData(this.props.childrenTab)
+      if(this.props.childrenTab === '1'){
+        this.getDocList()
+      }else{
+        this.getContratList()
+      }
+    }else{
+      this.getData('1')
+      this.getDocList()
+    }
   },
   didUpdate() {},
   didUnmount() {},
@@ -94,6 +107,19 @@ Component({
             contratList: res.data.records
           })
         },
+      });
+    },
+    toDocDetail(e){
+      console.log(e)
+      let {item} = e.currentTarget.dataset
+      ddUtils.navigateTo({
+        url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.id}`
+      });
+    },
+    toConDetail(e){
+      let {item} = e.currentTarget.dataset
+      ddUtils.navigateTo({
+        url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.id}`
       });
     }
   },

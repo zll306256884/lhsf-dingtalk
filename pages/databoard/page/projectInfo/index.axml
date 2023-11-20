@@ -17,5 +17,5 @@
   </view>
   <invest-control a:if="{{ currentTabIndex=== 3 }}" alter="{{alter}}" projectId="{{projectInfo.projectId}}"></invest-control>
   
-  <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{projectInfo.projectId}}"></project-bidding-progress>
+  <project-bidding-progress a:if="{{ currentTabIndex=== 4 }}" projectId="{{projectInfo.projectId}}" childrenTab="{{childrenTab}}"></project-bidding-progress>
 </view>
