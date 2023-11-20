@@ -1,0 +1,30 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view  class="container">
+<view class="message">
+  <view class="message-title">
+   系统标题：{{affiche.title?affiche.title:'-'}}
+  </view>
+  <view class="time">
+    {{affiche.createTime?affiche.createTime:'-'}}
+  </view>
+</view>
+<view class="bottom">
+  <view class="message-content">
+    <view class="title">
+     公告内容
+     <view class="affiche-content">
+       {{affiche.content?affiche.content:"-"}}
+     </view>
+    </view>
+ </view>
+  <view class="accessory">
+    附件
+    <view a:if="{{affiche.annexesList.length}}">
+      <view a:for="{{affiche.annexesList}}" data-index={{index}} data-item={{item}}>
+      
+      </view>
+    </view>
+    <empty a:else image="/assets/images/common/empty.png" />
+  </view>
+</view>
+</view>

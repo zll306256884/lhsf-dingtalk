@@ -32,5 +32,7 @@ module.exports = {
   API_SELECT_DETAIL: API_HOST  + "/jflow/jflowAuditRecord/selectById",
   //设置审批记录已读/未读
   API_Audit_UPDATE: API_HOST  + "/jflow/audit/updateIsRead",
+  // 系统公告
+  API_NOTICE_MESSAGE:API_HOST + "/message/systemNotice/selectById"
 }
 

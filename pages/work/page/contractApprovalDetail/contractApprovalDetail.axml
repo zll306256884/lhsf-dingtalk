@@ -2,7 +2,7 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <tabs items="{{items}}" current="{{current}}" onChange="onNavTabChange" />
 
-<block a:if="{{ current === 0 }}">
+<view a:if="{{ current === 0 }}" style="margin-bottom:140rpx">
   <view class="top-card flex f-between f-align-center">
     <view class="top-card-left">
       <view class="name">由{{detailInfo.createBy_dictText}}创建</view>
@@ -94,7 +94,7 @@
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期</list-item>
     <view class="bottom-space" style="height:16rpx"></view>
   </list>
-  <view a:if="{{examineId && approvalType === '1'}}" class="bottom-space" style="height:150rpx"></view>
+  <!-- <view a:if="{{examineId && approvalType === '1'}}" class="bottom-space" style="height:150rpx"></view> -->
 
   <view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
     <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
@@ -113,7 +113,19 @@
   <view a:if="{{examineId && approvalType === '1'}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
     <submit-opinion-popup keyId="" examineId="{{examineId}}" ></submit-opinion-popup>
   </view>
-</block>
+</view>
 <block a:if="{{ current === 1 }}">
   <approval-item projectId={{detailInfo.projectId}} keyId={{detailInfo.id}}></approval-item>
+</block>
+
+<block a:if="{{ current === 2 }}">
+  <view class="supplement-list flex f-between" a:for="{{ supplementList }}" a:key="index" data-item="{{item}}"  catchTap="toDetail">
+    <view>
+      <view class="title">{{item.contractName}}</view>
+      <view class="info">合同号：{{item.contractNumber || '-'}}</view>
+      <view class="info">乙方单位：{{item.unitPartyName || '-'}}</view>
+      <view class="info">合同金额：{{item.contractAmount || '-'}}万元</view>
+    </view>
+    <image mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+  </view>
 </block>

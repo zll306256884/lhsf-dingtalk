@@ -35,8 +35,12 @@ Component({
   methods: {
     //bind inout change
     _bindInputChange: function (e) {
+      console.log(this.props.inputType);
+      console.log(e);
       let value = e.detail.value;
-
+      if (isEqual(this.props.inputType, 'number')) {
+        this.props.value = value.replace(/\D*(\d*)(\.?)(\d{0,5}).*/,'$1$2$3')
+      }
       // if (isEqual(this.props.inputType, 'number')) {
       //     if (isInt(this.props.minNum) && getParseFloat(value) < getParseFloat(this.props.minNum)) {
       //         value = this.props.minNum;

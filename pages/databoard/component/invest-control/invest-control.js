@@ -2,6 +2,7 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
+import progressServer from "../../../../server/workServer/progressServer"; //
 Component({
   mixins: [],
   data: {
@@ -17,11 +18,18 @@ Component({
     recordList:[]
   },
   props: {
-    projectId: null
+    projectId: null,
+    alter:'',
+    dingTalkId:"1"
   },
   didMount() {
-    this.getTopMoney(1)
+    if(this.props.alter === '5'){
+      this.data.checkoutPage = 5
+       this.getAlteration()
+    }else{
+      this.getTopMoney(1)
     this.getList(2)
+    }
   },
   didUpdate() {},
   didUnmount() {},
@@ -86,10 +94,11 @@ Component({
   },
   searchDocList(e){
     console.log(e);
-   
-    this.data.searchName = e.detail.value
+    this.setData({
+      searchName:e.detail.value
+    })
     this.getList()
-    this.getAlteration(e.detail.value)
+    this.getAlteration()
   },
    getList(i){
     request.doPostRequest({
@@ -109,13 +118,13 @@ Component({
       }
     })
    },   
-   getAlteration(name){
+   getAlteration(){
     request.doPostRequest({
       url: confing.API_CHANGE_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:name,
+        contractName:this.data.searchName,
         projectId:this.props.projectId
       },
       success: res => {
@@ -126,6 +135,46 @@ Component({
       }
     })
    },
+    // 电话
+    callIt() {
+      // console.log('打电话')
+      dd.callUsers({
+        users: [this.props.dingTalkId],
+        // users: ['0146024235748171'],
+        corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+        success: () => { },
+        fail: (res) => {
+          console.log(res)
+          ddUtils.showToast({
+            title: 'errorCode：' + res.error + ',' + res.errorMessage
+          });
+        },
+        complete: () => { },
+      });
+
+      return
+      if (this.props.listData && !this.props.listData.length) {
+        return
+      }
+      let callCode = this.props.dingTalkId
+      // let callCode='1715236940858523649'
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_CALL_CODE,
+          showLoading: true,
+          data: {
+            "userId": callCode
+          },
+          success: res => {
+            console.log('res.data', res.data)
+            
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    },
    // 跳转
    clickCapital(value){
      console.log(value);

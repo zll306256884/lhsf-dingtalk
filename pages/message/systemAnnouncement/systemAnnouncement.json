@@ -4,7 +4,6 @@
   "titlePenetrate":"NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
-    "tabs": "antd-mini/es/Tabs/index",
-    "badge": "antd-mini/es/Badge/index"
+    "empty": "antd-mini/es/Empty/index"
   }
 }

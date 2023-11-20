@@ -10,8 +10,10 @@ Component({
       {title:"变更",},
     ],
     checkoutPage:1,
+    alert:0,
     infoData:{},
-    recordList:[]
+    recordList:[],
+    projectName:''
   },
   props: {},
   didMount() {
@@ -38,23 +40,35 @@ Component({
       checkoutPage:index.target.dataset.id === 1? 1:2
     })
     if(this.data.checkoutPage===2){
+      this.setData({
+        alter : 5 
+      })
      this.getAlteration()
     }else{
+      this.setData({
+        alter : 0 
+      })
       this.getList()
     }
   },
   searchDocList(e){
     console.log(e);
-    this.getList(e.detail.value)
-    this.getAlteration(e.detail.value)
+    this.setData({
+      projectName:e.detail.value
+    })
+    if(this.data.checkoutPage === 1){
+      this.getList()
+    }else{
+      this.getAlteration()
+    }
   },
-   getList(name){
+   getList(){
     request.doPostRequest({
       url: confing.API_PAY_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:name
+        projectName:this.data.projectName
       },
       success: res => {
         console.log(res.data)
@@ -64,13 +78,13 @@ Component({
       }
     })
    },   
-   getAlteration(proName){
+   getAlteration(){
     request.doPostRequest({
       url: confing.API_ALTER_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:proName
+        projectName:this.data.projectName
       },
       success: res => {
         console.log(res.data)
@@ -84,8 +98,10 @@ Component({
    clickCapital(value){
      console.log(value);
     let item = value.target.dataset.item
+    if(this.data.checkoutPage === 2){
+    }
    ddUtils.navigateTo({
-    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}`
+    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}&alter=${this.data.alter}&dingTalkId=${item.dingTalkId}`
   });
    }
   },

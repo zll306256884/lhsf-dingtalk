@@ -55,6 +55,7 @@ overflow: hidden; /* 溢出隐藏 */
 white-space: nowrap;
 }
 .bottom-content{
+  position: relative;
   padding: 28rpx;
  margin: 24rpx;
 min-height: 762rpx;
@@ -81,6 +82,9 @@ font-weight: 400;
 }
 .pay-text view{
   width: 280rpx;
+}
+.view-money{
+ width: 400rpx !important;; 
 }
 .cont-tabs{
   padding: 0 6rpx;
@@ -144,4 +148,14 @@ opacity: 1;
   justify-content: center;
   min-width: 30px;
   min-height: 50px;
+}
+.mayflyBox {
+  position: fixed;
+  bottom: 100rpx;
+  right: 30rpx;
+}
+.mayflyBox .mayfly{
+  width: 124rpx;
+  height: 108rpx;
+
 }

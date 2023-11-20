@@ -45,7 +45,7 @@ items: [
  getMessageList:function(s){
   let data = {
     pageNum: 1,
-    pageSize: 10,
+    pageSize: 9999,
     "status": s,
   };
   request.doPostRequest({
@@ -59,6 +59,55 @@ items: [
     },
   });
  },
+ getMoreDataList(){
+  if (this.isLoading || !this.hasMore) //防止重复加载和没有更多数据
+    return;
+
+  this.isLoading = true;
+  this.errorView._showLoadMore();
+
+  let params = {
+    asc: false,
+    pageNum: this.page,
+    pageSize: 10,
+    params: {status: this.data.tabIndex + 1},
+    sort: 'createTime'
+  }
+  request.doPostRequest({
+    url: apiMesssageServer.API_REQUEST_LIST,
+    data: params,
+    success: res => {
+      console.log(res.data)
+      this.page++;
+      this.hasMore = isHasMore(res.data.records);
+
+      this.setData({
+        dataList: this.data.dataList.concat(res.data.records) || []
+      })
+    },
+    complete: res => {
+      this._loadDone(res);
+    }
+  })
+},
+ //判断是否为空
+ _loadDone: function (res) {
+  this.isLoading = false;
+  this.errorView._hideLoadMore();
+
+  if (isEmptyArray(this.data.dataList)) {
+      if (res.loadFail === true) {
+          this.errorView._showEmptyView({
+              loadError: true,
+              errorMessage: "加载失败, 点击重新加载"
+          });
+      } else {
+          this.errorView._showEmptyView();
+      }
+  } else {
+      this.errorView._hideEmptyView();
+  }
+},
  getunReadMessageTotal(){
   request.doPostRequest({
     url: apiApprovalManage.API_UNMESSAGE_TO_POST,
@@ -175,7 +224,7 @@ items: [
       }  
     }
   }else if(item.type === 4){//4系统公告
-
+     ddUtils.navigateTo({url:`/pages/message/systemAnnouncement/systemAnnouncement?id=${item.keyId}`})
   }
 }
 });
