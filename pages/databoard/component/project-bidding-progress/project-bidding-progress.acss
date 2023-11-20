@@ -121,7 +121,7 @@
   padding: 32rpx 20rpx 32rpx 32rpx;
 }
 .bottom-content .search{
-  margin-top: 20px;
+  width: 82%;
   /* width: 638rpx; */
   height: 64rpx;
   background: #F3F4F5;
@@ -227,4 +227,13 @@
   font-weight: 400;
   color: #606266;
   line-height: 40rpx;
+}
+.mayflyBox {
+  position: fixed;
+  bottom: 1rem;
+  right: 0.3rem;
+}
+.mayflyBox .mayfly {
+  width: 1.24rem;
+  height: 1.24rem;
 }

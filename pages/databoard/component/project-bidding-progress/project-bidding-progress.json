@@ -1,3 +1,6 @@
 {
-  "component": true
+  "component": true,
+  "usingComponents": {
+    "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter"
+  }
 }

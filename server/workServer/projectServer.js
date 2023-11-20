@@ -48,5 +48,6 @@ module.exports = {
   API_CURRENTUNIT: API_HOST + "/integratedService/currentUnit/queryPageCurrentUnit",
   //合同删除
   API_CONTRACT_DELETE: API_HOST + "/tender/contract/deleteByKeyIds",
-
+  //合同分页 (和流程中心公用,项目里需要传项目id)
+  API_CONTRACT_PAGE: API_HOST + "/tender/contract/page",
 }
