@@ -8,10 +8,10 @@
 
 .approvalTop{
   width: 100%;
-  position: fixed;
+  /* position: fixed;
   top: 90rpx;
   left: 0;
-  z-index: 1000;
+  z-index: 1000; */
   
 }
 
@@ -21,9 +21,9 @@
   background-color: #fff;
   vertical-align: middle;
   text-align: center;
-  position: absolute;
+  /* position: absolute;
   top: 85rpx;
-  right: 0;
+  right: 0; */
 }
 
 .funnel .imgbox{
@@ -42,7 +42,7 @@
 /* 内容 */
 
 .navbox{
-  padding-top:74rpx;
+  /* padding-top:74rpx; */
   height: calc(100vh - 181rpx);
   overflow: auto;
   /* background:pink; */
