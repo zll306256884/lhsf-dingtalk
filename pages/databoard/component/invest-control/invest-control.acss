@@ -82,6 +82,9 @@ font-weight: 400;
 .pay-text view{
   width: 280rpx;
 }
+.view-money{
+ width: 400rpx !important;; 
+}
 .cont-tabs{
   padding: 0 6rpx;
   width: 492rpx;
