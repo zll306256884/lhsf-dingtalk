@@ -112,10 +112,27 @@ Page({
   },
   onBindSureTap(data) {
     console.log('漏斗的参数', data);
-    let userName = data.options[1].value
-    let belongModule = data.options[0].value[0].id
-    console.log('belongModule', belongModule)
-    console.log('userName', userName)
+    let userName = data[1].value;
+    // let belongModule = data.options[0].value[0].id
+    console.log('data[0].option', data[0].option)
+    var belongModule = []
+    let list = data[0].option
+    list.map((item) => {
+      if (item.selected) {
+        belongModule.push(item.id)
+      }
+    })
+    if (belongModule.length !== 1) {
+      ddUtils.showToast({
+        title: '类型不支持多选'
+      })
+      return
+    }
+    var belongModule = data[0].option[0].id
+
+    // console.log('belongModule', belongModule)
+    // console.log('userName', userName)
+
     // let param ={
     //   belongModule:
     // }
@@ -134,6 +151,14 @@ Page({
   onShow() {
     // 返回回到这个页面需要调用的接口
     this.getList()
+  },
+  events: {
+    // 返回的时候  不需要多层
+    onBack() {
+      ddUtils.navigateTo({
+        url: '/pages/work/index'
+      })
+    },
   },
   onReady() {
     // 页面加载完成
