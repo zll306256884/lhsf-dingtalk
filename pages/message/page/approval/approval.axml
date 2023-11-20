@@ -3,7 +3,7 @@
   <!--  -->
   <view class="approvalTop flex f-start">
     <view style="width:85%">
-      <tabs items="{{tabList}}" onChange="onNavTabChange"></tabs>
+      <tabs items="{{tabList}}" current="{{tabIndex}}" onChange="onNavTabChange"></tabs>
       <!--<nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{85}}></nav-tab-bar> -->
     </view>
     <view class="funnel">

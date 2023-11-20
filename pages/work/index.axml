@@ -1,139 +1,138 @@
-
 <import-sjs from="../../utils/utils.sjs" name="utils" />
 <view class="container">
-  <image class="image"  src="../../../../assets/images/work/Group-top.png" />
+  <image class="image" src="../../../../assets/images/work/Group-top.png" />
   <view class="card-wrap">
     <view class="grid">
       <view class="flex f-row f-around f-wrap">
         <view a:for="{{iconList}}" key="{{item.name}}" class="grid-item" onTap="onItemTap" data-index="{{index}}" data-path="{{item.path}}">
-        <image class="grid-icon"  src="{{item.url}}" /> 
-        <text class="grid-text">{{item.name}}</text>
+          <image class="grid-icon" src="{{item.url}}" />
+          <text class="grid-text">{{item.name}}</text>
         </view>
       </view>
     </view>
-<!-- 待办列表 -->
+    <!-- 待办列表 -->
     <view class="card approval" style="margin-top:32rpx">
       <tabs items="{{tabs1}}" current="{{currentAwait}}" onChange="onAwaitChange">
         <view slot="title" slot-scope="item">
           <view>{{item.value.title}}{{'(' + item.value.count +')'}}</view>
         </view>
       </tabs>
-        <list a:if="{{listData.length}}">
-        <list-item> 
+      <list a:if="{{listData.length}}">
+        <list-item>
           <view class="list-item" a:for="{{listData}}" data-item={{item}} data-index={{index}} onTap="selectAwaitInfo">
             <view class="item-title two-lines" style="{{item.isRead && item.isRead===1?'color:#606266':''}}">
-            <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status-error">
-              {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
+              <view a:if="{{currentAwait!==0 && (item.taskStatus===5 || item.tagType===2)}}" class="item-status-error">
+                {{item.taskStatus && '逾期' || (item.tagType  && '驳回')}}
+              </view>
+              {{item.taskName || item.title || '-'}}
             </view>
-            {{item.taskName || item.title || '-'}}
-          </view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
-              <text class="item-label">{{['申请人','发起人','创建人'][currentAwait]}}</text>
-              <view class="avatar-name flex f-row f-between">
-              <image class="item-avatar"  src="{{item.avatar}}" />
-              <text class="item-name single-line"> {{item.userName || item.createUserName}}</text>
+                <text class="item-label">{{['申请人','发起人','创建人'][currentAwait]}}</text>
+                <view class="avatar-name flex f-row f-between">
+                  <image class="item-avatar" src="{{item.avatar}}" />
+                  <text class="item-name single-line"> {{item.userName || item.createUserName}}</text>
+                </view>
               </view>
-            </view>
               <text class="item-label">{{['提交时间','截止时间','创建时间'][currentAwait]}}：{{utils.parseTime(item.createTime || item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
-          </view>
+            </view>
           </view>
           <view class="list-more" onTap="handleTap">
-          <text onTap="selectMoreAwait">查看更多</text>
-          <icon type="RightOutline" />
+            <text onTap="selectMoreAwait">查看更多</text>
+            <icon type="RightOutline" />
           </view>
         </list-item>
-        </list>
-        <empty a:else image="/assets/images/common/empty.png" />
+      </list>
+      <empty a:else image="/assets/images/common/empty.png" />
     </view>
-<!-- 我的审批 -->
+    <!-- 我的审批 -->
     <view class="task flex f-row f-between">
       <text class="task-title">我的审批</text>
       <view style="color:#606266;font-size:28rpx;" onTap="selectMoreApproval">
-      <text onTap="selectMoreApproval">查看更多</text>
-      <icon type="RightOutline" />
+        <text onTap="selectMoreApproval">查看更多</text>
+        <icon type="RightOutline" />
       </view>
     </view>
     <view class="card">
       <tabs items="{{tabs2}}" onChange="onApprovalChange" />
       <list a:if="{{listApproval.length}}">
-        <list-item> 
+        <list-item>
           <view class="list-item" a:for="{{listApproval}}" data-item={{item}} data-index={{index}} onTap="selectApprovalInfo">
-            <view class="item-title two-lines">{{item.taskName}} </view>
+            <view class="item-title two-lines">{{item.taskName}}</view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
-              <text class="item-label">申请人</text>
-              <view class="avatar-name flex f-row f-between">
-              <image class="item-avatar"  src="{{item.avatar}}" />
-              <text class="item-name single-line"> {{item.userName}}</text>
+                <text class="item-label">申请人</text>
+                <view class="avatar-name flex f-row f-between">
+                  <image class="item-avatar" src="{{item.avatar}}" />
+                  <text class="item-name single-line"> {{item.userName}}</text>
+                </view>
               </view>
-            </view>
               <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
-          </view>
+            </view>
           </view>
         </list-item>
-        </list>
-        <empty a:else image="/assets/images/common/empty.png" />
-      </view>
-<!-- 我的任务 -->
-      <view class="task flex f-row f-between">
-        <text class="task-title">我的任务</text>
-        <view style="color:#606266;font-size:28rpx;" onTap="selectMoreTask">
+      </list>
+      <empty a:else image="/assets/images/common/empty.png" />
+    </view>
+    <!-- 我的任务 -->
+    <view class="task flex f-row f-between">
+      <text class="task-title">我的任务</text>
+      <view style="color:#606266;font-size:28rpx;" onTap="selectMoreTask">
         <text onTap="selectMoreTask">查看更多</text>
         <icon type="RightOutline" />
-        </view>
       </view>
-      <view class="card">
-        <tabs items="{{tabs3}}" current="{{currentTask}}" onChange="onTaskChange" >
-          <view slot="title" slot-scope="item">
-            <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
-            <view a:else>{{item.value.title}}</view>
-          </view>
-        </tabs>
-        <list a:if="{{listTask.length}}">
-          <list-item> 
-            <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
-              <view class="item-title two-lines">
-                <view class="{{item.taskStatus===5?'item-status-error':''}}" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}} </view>
-                <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
-                  {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
-                </view>
-                {{item.title}} 
-                </view>
-              <view class="flex f-row f-between">
-                <text class="item-label">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
-            </view>
-            </view>
-          </list-item>
-          </list>
-        <empty a:else image="/assets/images/common/empty.png" />
+    </view>
+    <view class="card">
+      <tabs items="{{tabs3}}" current="{{currentTask}}" onChange="onTaskChange">
+        <view slot="title" slot-scope="item">
+          <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+          <view a:else>{{item.value.title}}</view>
         </view>
-<!-- 我的请求 -->
-        <view class="task flex f-row f-between">
-          <text class="task-title">我的请求</text>
-          <view style="color:#606266;font-size:28rpx;" onTap="selectMoreQuery">
-          <text onTap="selectMoreQuery">查看更多</text>
-          <icon type="RightOutline" />
-          </view>
-        </view>
-        <view class="card">
-          <tabs items="{{tabs4}}" onChange="onQueryChange" >
-            <view slot="title" slot-scope="item">
-              <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
-              <view a:else>{{item.value.title}}</view>
+      </tabs>
+      <list a:if="{{listTask.length}}">
+        <list-item>
+          <view class="list-item" a:for="{{listTask}}" data-index={{index}} data-item={{item}} onTap="selectTaskInfo">
+            <view class="item-title two-lines">
+              <view class="{{item.taskStatus===5?'item-status-error':''}}" a:if="{{currentTask===0}}"> {{ item.taskStatus===5? '逾期':""}}</view>
+              <view a:else class="{{item.missionId==='0' && 'item-status-sucess' || (item.missionId!=='0' && 'item-status-warning')}}">
+                {{ item.missionId==='0' && '发起' || (item.missionId!=='0' && '协作')}}
+              </view>
+              {{item.title}}
             </view>
-          </tabs>
-          <list a:if="{{listQuery.length}}">
-            <list-item> 
-              <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
-                <view class="item-title two-lines">{{item.title}} </view>
-                <view class="flex f-row f-between">
-                  <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
-              </view>
-              </view>
-            </list-item>
-            </list>
-        <empty a:else image="/assets/images/common/empty.png" />
+            <view class="flex f-row f-between">
+              <text class="item-label">提交时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            </view>
+          </view>
+        </list-item>
+      </list>
+      <empty a:else image="/assets/images/common/empty.png" />
+    </view>
+    <!-- 我的请求 -->
+    <view class="task flex f-row f-between">
+      <text class="task-title">我的请求</text>
+      <view style="color:#606266;font-size:28rpx;" onTap="selectMoreQuery">
+        <text onTap="selectMoreQuery">查看更多</text>
+        <icon type="RightOutline" />
+      </view>
+    </view>
+    <view class="card">
+      <tabs items="{{tabs4}}" onChange="onQueryChange">
+        <view slot="title" slot-scope="item">
+          <view a:if="{{item.index===0}}">{{item.value.title}}{{'(' + item.value.count +')'}}</view>
+          <view a:else>{{item.value.title}}</view>
+        </view>
+      </tabs>
+      <list a:if="{{listQuery.length}}">
+        <list-item>
+          <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
+            <view class="item-title two-lines">{{item.title}}</view>
+            <view class="flex f-row f-between">
+              <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+            </view>
+          </view>
+        </list-item>
+      </list>
+      <empty a:else image="/assets/images/common/empty.png" />
     </view>
   </view>
 </view>

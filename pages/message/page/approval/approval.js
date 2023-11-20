@@ -147,6 +147,18 @@ Page({
   onLoad(query) {
     // 页面加载
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
+    // this.data.targetValue
+    console.log(query)
+    this.setData({
+      tabIndex: Number(query.currentApproval) - 1,
+    });
+    let targetValue = this.data.tabList[this.data.tabIndex].value
+    console.log('targetValue', targetValue)
+
+    this.setData({
+      targetValue: targetValue
+    });
+    this.getList()
   },
   onShow() {
     // 返回回到这个页面需要调用的接口
