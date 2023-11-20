@@ -1,4 +1,6 @@
 {
   "component": true,
-  "usingComponents": { }
+  "usingComponents": {
+    "layout-upload-img": "../../layout//layout-upload-img/layout-upload-img"
+   }
 }

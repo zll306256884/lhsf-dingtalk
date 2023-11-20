@@ -80,7 +80,8 @@ Component({
         pageNum: 1,
         pageSize: 10,
         projectId: this.props.projectId,
-        tenderName: tenderName
+        tenderName: tenderName,
+        approvalStatus: 4
       }
       request.doPostRequest({
         url: apiDataBoardServer.API_TENDER_DOCUMENT_LIST,
@@ -97,7 +98,8 @@ Component({
         pageNum: 1,
         pageSize: 10,
         projectId: this.props.projectId,
-        contractName: contractName
+        contractName: contractName,
+        approvalStatus: 4
       }
       request.doPostRequest({
         url: apiDataBoardServer.API_TENDER_CONTRACT_LIST,

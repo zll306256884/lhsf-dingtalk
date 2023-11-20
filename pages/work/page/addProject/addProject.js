@@ -15,7 +15,7 @@ Page({
       structureArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
       floorArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
       totalInvestment: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
-      blockNumber: [{required: false, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/}],
+      blockNumber: [{required: false, max: 6, message: '请输入(最多6位的整数)',pattern: /^[1-9]\d{0,5}$/}],
       jianAnMoney: [{ required: false, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
       coorX: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
       coorY: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }]
