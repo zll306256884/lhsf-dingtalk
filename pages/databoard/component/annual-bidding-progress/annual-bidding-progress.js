@@ -74,7 +74,7 @@ Component({
     getDocumentDataList(){
       let params = {
         pageNum: 1,
-        pageSize: 10,
+        pageSize: 99999,
         projectName: this.data.projectName
       }
       request.doPostRequest({
@@ -90,7 +90,7 @@ Component({
     getContractDataList(){
       let params = {
         pageNum: 1,
-        pageSize: 10,
+        pageSize: 99999,
         projectName: this.data.projectName
       }
       request.doPostRequest({

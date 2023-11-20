@@ -117,3 +117,15 @@
 <block a:if="{{ current === 1 }}">
   <approval-item projectId={{detailInfo.projectId}} keyId={{detailInfo.id}}></approval-item>
 </block>
+
+<block a:if="{{ current === 2 }}">
+  <view class="supplement-list flex f-between" a:for="{{ supplementList }}" a:key="index" data-item="{{item}}"  catchTap="toDetail">
+    <view>
+      <view class="title">{{item.contractName}}</view>
+      <view class="info">合同号：{{item.contractNumber || '-'}}</view>
+      <view class="info">乙方单位：{{item.unitPartyName || '-'}}</view>
+      <view class="info">合同金额：{{item.contractAmount || '-'}}万元</view>
+    </view>
+    <image mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+  </view>
+</block>

@@ -54,11 +54,19 @@
       <view class="text {{listType === '2'?'active':''}}" data-index="2" catchTap="listChange">合同</view>
     </view>
 
-    <view class="search flex f-start">
-      <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
-      <input a:if="{{ listType === '1' }}" placeholder="请输入招标名称" onConfirm="searchDocList"></input>
-      <input a:if="{{ listType === '2' }}" placeholder="请输入合同名称" onConfirm="searchConList"></input>
+    <view class="flex f-between" style="align-items:center;margin-top: 20px;">
+      <view class="search flex f-start">
+        <image mode="scaleToFill" src="/assets/images/common/Frame-search.png" />
+        <input a:if="{{ listType === '1' }}" placeholder="请输入招标名称" onConfirm="searchDocList"></input>
+        <input a:if="{{ listType === '2' }}" placeholder="请输入合同名称" onConfirm="searchConList"></input>
+      </view>
+
+      <view class="flex f-center" style="width:10%;align-items:center">
+        <image a:if="{{ listType === '1' }}" mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
+        <image a:if="{{ listType === '2' }}" mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialogTwo" />
+      </view>
     </view>
+    
 
     <block a:if="{{ listType === '1' }}">
       <view class="list" a:for="{{ documentList }}" a:key="index" data-item="{{item}}" catchTap="toDocDetail">
@@ -94,4 +102,10 @@
       </view>
     </block>
   </view>
+</view>
+<dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></dialog-filter>
+<dialog-filter showDialog="{{visibelTwo}}" options="{{optionsTwo}}" onDialog="onDialogTwo" onBindSureTap="onBindSureTapTwo"></dialog-filter>
+
+<view class="mayflyBox" catchTap="callIt" >
+  <image class="mayfly" src="/assets/images/progress/callpic.png" />
 </view>
