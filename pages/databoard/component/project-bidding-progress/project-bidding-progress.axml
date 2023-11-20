@@ -61,7 +61,7 @@
     </view>
 
     <block a:if="{{ listType === '1' }}">
-      <view class="list" a:for="{{ documentList }}" a:key="index">
+      <view class="list" a:for="{{ documentList }}" a:key="index" data-item="{{item}}" catchTap="toDocDetail">
         <view class="name">{{item.tenderName}}</view>
         <view class="flex f-between" style="align-items:center">
           <view class="flex f-start">
@@ -76,15 +76,19 @@
     </block>
 
     <block a:if="{{ listType === '2' }}">
-      <view class="list" a:for="{{ contratList }}" a:key="index">
-        <view class="name">{{item.contractName}}</view>
+      <view class="list" a:for="{{ contratList }}" a:key="index"  data-item="{{item}}" catchTap="toConDetail">
+        <view class="flex f-start">
+          <view class="tag" a:if="{{ item.supplementAgreement }}">补充协议</view>
+          <view class="name">{{item.contractName || '-'}}</view>
+        </view>
+        
         <view class="flex f-between" style="align-items:center">
           <view class="flex f-start">
-            <view class="label">合同号:</view><view class="text">{{item.contractNumber}}</view>
+            <view class="label">合同号:</view><view class="text">{{item.contractNumber || '-'}}</view>
           </view>
           <view class="flex f-start">
             <view class="label">合同金额:</view>
-            <view class="number">{{item.contractAmount || 0}}万元</view>
+            <view class="number">{{item.contractAmount || 0}}万元{{item.makeSure=== 0?'(待定)':''}}</view>
           </view>
         </view>
       </view>

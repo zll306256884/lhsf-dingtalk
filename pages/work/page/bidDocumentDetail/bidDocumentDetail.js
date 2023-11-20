@@ -41,7 +41,7 @@ Page({
         tenderId: options.id,
         deleteId: options.deleteId
       })
-      this.getDetail(options.id)
+      // this.getDetail(options.id)
     }
   },
   onShow(){

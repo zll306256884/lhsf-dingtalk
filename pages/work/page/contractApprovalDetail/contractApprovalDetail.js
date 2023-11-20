@@ -43,8 +43,11 @@ Page({
         contractId: options.id,
         deleteId: options.deleteId
       })
-      this.getDetail(options.id)
+      // this.getDetail(options.id)
     }
+  },
+  onShow(){
+    this.getDetail(this.data.contractId)
   },
   onNavTabChange(e){
     this.setData({

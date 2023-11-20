@@ -2,7 +2,7 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <tabs items="{{items}}" current="{{current}}" onChange="onNavTabChange" />
 
-<block a:if="{{ current===0 }}">
+<view a:if="{{ current===0 }}" style="margin-bottom:150rpx;">
   <view class="top-card flex f-between f-align-center">
     <view class="top-card-left">
       <view class="name">由{{detailInfo.createName}}创建</view>
@@ -51,7 +51,7 @@
   <view a:if="{{examineId && approvalType === '1'}}" style="position:fixed;bottom:18rpx;width:100%">
     <submit-opinion-popup examineId="{{examineId}}" ></submit-opinion-popup>
   </view>
-</block>
+</view>
 <block a:else>
   <approval-item projectId={{detailInfo.projectId}} keyId={{detailInfo.id}}></approval-item>
 </block>

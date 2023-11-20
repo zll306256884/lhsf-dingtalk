@@ -57,6 +57,7 @@
   border-top: 1px solid #DBDADF;
   position:fixed;
   bottom:18rpx;
+  background-color: #fff;
 }
 .bottom-content .bottom-button{
   width: 349rpx;

@@ -158,6 +158,7 @@
   opacity: 1;
   margin-right: 32rpx;
   background:#eeeff0;
+  background-repeat:no-repeat;
 }
 .bottom-content .list .right-img{
   width: 32rpx;
