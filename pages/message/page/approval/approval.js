@@ -255,7 +255,7 @@ Page({
   // 加载数据
   getMoreDataList() {
     console.log('chufal2')
-    debugger
+    // debugger
     //防止重复加载和没有更多数据
     if (this.isLoading || !this.hasMore) {
       return;
