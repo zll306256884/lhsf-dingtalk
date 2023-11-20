@@ -86,5 +86,9 @@
     </list>
     <divider/>
    </view> 
+  
+   <view class="mayflyBox" catchTap="callIt" >
+    <image class="mayfly" src="/assets/images/progress/callpic.png" />
+  </view>
   </view>
 </view>

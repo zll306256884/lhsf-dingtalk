@@ -23,6 +23,7 @@ Page({
   ],
   recordList:[]
   },
+  uploadImgRef:null,
   onLoad(option) {
     let op = JSON.parse(option.json)
      console.log(op,1111111111);
@@ -40,6 +41,9 @@ Page({
         this.titleMessage(0)
         this.planDetailsList(0)
         break;
+        case 1:
+          this.getAccessory()
+          break;
     }
   },
   titleMessage:function(status){
@@ -60,6 +64,11 @@ Page({
       },
     });
   },
+  // 上传
+onSaveUploadImgRef: function (ref) {
+  console.log(ref,232323232323);
+  this.uploadImgRef = ref;
+},
 //  年资金使用计划月计划详细详情
    planDetailsList:function(){
     let data = {
@@ -75,6 +84,47 @@ Page({
         console.log(res.data);
       },
     });
+   },
+   getAccessory(){
+    let data = {
+      keyId:this.data.monthAnnualFundPlanId,
+      pageNum:1,
+      pageSize:10
+
+    };
+    request.doPostRequest({
+      url: apiApprovalMessage.API_ASSESSORY_POST,
+      data,
+      success: res => {
+        this.setData({
+          recordList:res.data
+        })
+        const files= res.data.records.map((item)=>{
+          return {
+            ...item,
+            name:item.fileName,
+          }
+        })
+        setTimeout(() => {
+          this.uploadImgRef._setImageList(files) 
+        }, 0);
+        
+      },
+      
+    });
+//     let investmentFileList = [], temFileList=[]
+// if (this.uploadImgRef) {
+//   temFileList = this.uploadImgRef.data.imgList;
+//   console.log(temFileList);
+// for (let item of temFileList) {
+//   investmentFileList.push({
+//       type: 0,
+//       fileName: item.name,
+//       size: item.size,
+//       url: item.url,
+//   })
+// }
+// }
    },
    click:function(value){
      console.log(value);

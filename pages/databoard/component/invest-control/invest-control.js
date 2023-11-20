@@ -2,6 +2,7 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
+import progressServer from "../../../../server/workServer/progressServer"; //
 Component({
   mixins: [],
   data: {
@@ -132,6 +133,45 @@ Component({
       }
     })
    },
+    // 电话
+    callIt() {
+      // console.log('打电话')
+      if (this.props.listData && !this.props.listData.length) {
+        return
+      }
+      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
+      console.log(JSON.parse(this.props.listData[0].responsible))
+      // let callCode='1715236940858523649'
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_CALL_CODE,
+          showLoading: true,
+          data: {
+            "userId": callCode
+          },
+          success: res => {
+            console.log('res.data', res.data)
+            dd.callUsers({
+              users: [res.data.dingTalkId],
+              // users: ['01460242357481712'],
+              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+              success: () => { },
+              fail: (res) => {
+                console.log(res)
+                ddUtils.showToast({
+                  title: 'errorCode：' + res.error + ',' + res.errorMessage
+                });
+              },
+              complete: () => { },
+            });
+
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    },
    // 跳转
    clickCapital(value){
      console.log(value);
