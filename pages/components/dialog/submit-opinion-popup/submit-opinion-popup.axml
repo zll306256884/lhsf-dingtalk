@@ -17,11 +17,12 @@
     <form onSubmit="_bindFormSunmit">
         <textarea class="reason" name="reason" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
         <!-- attachment -->
-        <view class="flex f-align-center file">
+        <view class="file">
             <view class="dialog-name" style="margin: 0rpx;">
                 附件：
             </view>
             <!-- <layout-add-attachment cssStyle="border: none;"></layout-add-attachment> -->
+            <layout-upload-img ref="onSaveUploadApprovalRef"></layout-upload-img>
         </view>
         <!-- btn -->
         <view class="flex f-center btn-wrap ">

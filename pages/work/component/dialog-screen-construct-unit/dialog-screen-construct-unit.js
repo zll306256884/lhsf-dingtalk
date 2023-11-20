@@ -26,7 +26,7 @@ Component({
         chooseIndex: -1,
         topHeight: 0,
         scrollHeight: 0,
-        title:"选择相关单位2",
+        title:"选择相关单位",
         inputValue: '',
         dataList: []
     },

@@ -12,10 +12,10 @@
 
   <view class="flex f-align-center search-wrap-wrap">
     <image class="icon-search" src="/assets/images/common/icon_search_gray.png" />
-    <input class="flex1 search-input" value="{{inputValue}}" placeholder-class="placeholder-class" placeholder="请输入单位名称" confirm-type="search" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
+    <input class="flex1 search-input" value="{{inputValue}}" placeholder-class="placeholder-class" adjust-position="{{false}}" placeholder="请输入单位名称" confirm-type="search" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
   </view>
 
-  <scroll-view style="max-height: {{scrollHeight}}px;" scroll-y="{{true}}" onScroll="_bindScroll">
+  <scroll-view style="max-height: 100vh;" scroll-y="{{true}}" onScroll="_bindScroll">
       <block a:for="{{dataList}}">
           <view class="content-content border-top" data-index="{{index}}" data-id="{{item.id}}" catchTap="_bindItemTap">
             <view class="dialog-name {{chooseIndex === index ? 'active' : ''}}">
