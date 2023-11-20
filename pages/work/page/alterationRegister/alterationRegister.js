@@ -2,7 +2,9 @@ import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
+import { Form } from 'antd-mini/es/Form/form';
 Page({
+  form: new Form(),
   data: {
     navbarData: {
       title: "新增工程联系单",
@@ -69,6 +71,10 @@ bindChooseProjectTap:function (e) {
   if (this.data.isEdit) return;
   if (this.dialogScreenprojectRef) this.dialogScreenprojectRef._showDialog(this.data.projectData.id)
 },
+handleRef(ref) {
+    console.log(ref);
+    this.form.addItem(ref);
+  },
 onSaveDialogScreenprojecteRef: function (ref) {
   console.log(ref);
   this.dialogScreenprojectRef = ref;

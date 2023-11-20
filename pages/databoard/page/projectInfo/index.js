@@ -26,18 +26,25 @@ Page({
     ],
     currentTabIndex: 0,
     projectInfo: {},
+    alter:'',
     childrenTab: null
   },
   mapRef:null,
 
   onLoad(option) {
     console.log(option);
+    this.data.alter = option.alter
     this.data.projectInfo.projectName=option.projectName
     this.data.projectInfo.projectId=option.projectId
     this.data.navbarData.title = option.projectName
     if(option.type === '3' || option.type === 3){
       this.setData({
         currentTabIndex: 4
+      })
+    }
+    if(option.current === '3'){
+      this.setData({
+        currentTabIndex: 3
       })
     }
     this.setData({
@@ -50,6 +57,9 @@ Page({
       })
     }
   },
+  onShow(option){
+ console.log(option);
+  },
   onSaveMapRef(ref){
     this.mapRef=ref
   },
@@ -61,9 +71,9 @@ Page({
       this.mapRef.initMap()
     }
   },
-  onPageScroll(){
-  this.mapRef.onShowUnit()
-  },
+  // onPageScroll(){
+  // this.mapRef.onShowUnit()
+  // },
   onPullDownRefresh(){
   this.mapRef.onHideUnit()
   dd.stopPullDownRefresh()

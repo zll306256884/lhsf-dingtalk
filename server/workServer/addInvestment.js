@@ -34,5 +34,7 @@ module.exports = {
       // 项目资金管控变更
       API_CHANGE_POST:API_HOST + '/investment/changeManagement/page',
        // 变更删除
-       API_DELETE_POST:API_HOST + '/platform/userMatter/deleteByArray'
+       API_DELETE_POST:API_HOST + '/platform/userMatter/deleteByArray',
+       //资金附件
+       API_ASSESSORY_POST:API_HOST + '/investment/investmentFile/queryList'
 }

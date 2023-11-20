@@ -43,13 +43,14 @@
     "pages/databoard/page/projectInfo/index",
     "pages/work/page/requestProgressDetail/requestProgressDetail",
     "pages/databoard/page/progressTaskDetails/progressTaskDetails",
-    "pages/work/page/requestProgressDetail/requestProgressDetail"
+    "pages/work/page/requestProgressDetail/requestProgressDetail",
+    "pages/message/systemAnnouncement/systemAnnouncement"
   ],
   "window": {
     "transparentTitle": "always",
     "titlePenetrate": "NO",
     "backgroundTextStyle": "light",
-    "titleBarColor":"#F5F5F",
+    "titleBarColor": "#F5F5F",
     "backgroundColor": "#fff",
     "navigationBarBackgroundColor": "#ff9700",
     "navigationBarTitleText": "小程序",

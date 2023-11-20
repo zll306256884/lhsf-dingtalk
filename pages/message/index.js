@@ -175,7 +175,7 @@ items: [
       }  
     }
   }else if(item.type === 4){//4系统公告
-
+     ddUtils.navigateTo({url:`/pages/message/systemAnnouncement/systemAnnouncement?id=${item.keyId}`})
   }
 }
 });
