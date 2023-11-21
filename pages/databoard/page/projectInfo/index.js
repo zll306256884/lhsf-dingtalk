@@ -28,6 +28,7 @@ Page({
     projectInfo: {},
     alter:'',
     dingTalkId:"",
+    userName:'',
     childrenTab: null
   },
   mapRef:null,
@@ -51,7 +52,8 @@ Page({
     }
     this.setData({
       projectInfo:this.data.projectInfo,
-      navbarData: this.data.navbarData
+      navbarData: this.data.navbarData,
+      userName:option.userName
     })
     if(option.childrenTab){
       this.setData({

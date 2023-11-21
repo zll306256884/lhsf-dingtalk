@@ -86,7 +86,11 @@ font-weight: 400;
 .view-money{
  width: 400rpx !important;; 
 }
+.search{
+  width: 92%!important;
+}
 .cont-tabs{
+  margin-bottom: 20rpx;
   padding: 0 6rpx;
   width: 492rpx;
   height: 72rpx;

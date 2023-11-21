@@ -20,7 +20,8 @@ Component({
   props: {
     projectId: null,
     alter:'',
-    dingTalkId:"1"
+    dingTalkId:"1",
+    userName:""
   },
   didMount() {
     if(this.props.alter === '5'){
@@ -139,8 +140,8 @@ Component({
     callIt() {
       // console.log('打电话')
       ddUtils.showModal({
-        title:'请确认',
-        content: "您即将呼叫请确认！",
+        title:`您即将呼叫：${this.props.userName}`,
+        content: '请确认',
         success: res => {
           if (res.confirm) {
             dd.callUsers({
