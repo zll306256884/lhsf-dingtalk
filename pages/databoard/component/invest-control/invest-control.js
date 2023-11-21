@@ -138,20 +138,27 @@ Component({
     // 电话
     callIt() {
       // console.log('打电话')
-      dd.callUsers({
-        users: [this.props.dingTalkId],
-        // users: ['0146024235748171'],
-        corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
-        success: () => { },
-        fail: (res) => {
-          console.log(res)
-          ddUtils.showToast({
-            title: 'errorCode：' + res.error + ',' + res.errorMessage
-          });
-        },
-        complete: () => { },
+      ddUtils.showModal({
+        title:'请确认',
+        content: "您即将呼叫请确认！",
+        success: res => {
+          if (res.confirm) {
+            dd.callUsers({
+              // users: [this.props.dingTalkId],
+              users: ['0146024235748171'],
+              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+              success: () => { },
+              fail: (res) => {
+                console.log(res)
+                ddUtils.showToast({
+                  title: 'errorCode：' + res.error + ',' + res.errorMessage
+                });
+              },
+              complete: () => { },
+            });
+          }
+        }
       });
-
       return
       if (this.props.listData && !this.props.listData.length) {
         return
