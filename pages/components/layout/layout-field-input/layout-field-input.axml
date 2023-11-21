@@ -12,6 +12,6 @@
   <block a:else>
     <input class="flex10 value" style="color: {{valueColor}}; text-align: {{valueLeft? 'left' : 'right'}}" name="{{inputName}}" 
       password="{{password}}" type="{{inputType}}" maxlength="{{maxlength}}" placeholder-class="placeholder-clas" placeholder="{{placeholder}}" 
-      value="{{value}}" onInput="_bindInputChange" onBlur="_bindBlurChange" />
+      value="{{value}}" onInput="_bindInputChange" onBlur="_bindBlurChange" onConfirm='_bindBlurChange' />
   </block>
 </view>

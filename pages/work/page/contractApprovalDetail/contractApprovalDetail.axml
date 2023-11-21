@@ -84,11 +84,27 @@
     </list-item>
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
+  <view class="file-list">
+    <view class="title">合同正式稿及相关附件</view>
+    <view class="flex f-between list-item" a:for="{{ detailInfo.fileList }}" a:key="index">
+      <view class="flex f-start" style="align-items:center">
+        <image a:if="{{ item.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <image a:if="{{ item.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <image a:if="{{ item.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <image a:if="{{ item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <view>
+          <view class="name">{{item.fileName}}</view>
+          <view class="size">{{item.size || '-'}}</view>
+        </view>
+      </view>
+      <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
+    </view>
+  </view>
   <list>
-    <list-item>
+    <!-- <list-item>
       合同正式稿及相关附件
       <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
-    </list-item>
+    </list-item> -->
 
     <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">选择会签分管领导</list-item>
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期</list-item>

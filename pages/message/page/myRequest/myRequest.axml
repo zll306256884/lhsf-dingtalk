@@ -13,7 +13,8 @@
     </tabs>
   </view>
   <view class="flex f-center" style="width:10%;align-items:center">
-    <image mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
+    <image a:if="{{ type.length }}" mode="scaleToFill" src="/assets/images/common/filter-o.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
+    <image a:else mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
   </view>
 </view>
 
