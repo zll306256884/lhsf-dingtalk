@@ -57,9 +57,9 @@ Page({
       current: e
     })
   },
-  onSaveUploadContractImgRef(ref){
-    this.uploadContractImage = ref
-  },
+  // onSaveUploadContractImgRef(ref){
+  //   this.uploadContractImage = ref
+  // },
   numberToChinese(num) {
     const chineseNums = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
     const chineseUnits = ['', '十', '百', '千']
@@ -100,9 +100,9 @@ Page({
           detailInfo: res.data,
           list
         })
-        setTimeout(() => {
-          this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
-        }, 0);
+        // setTimeout(() => {
+        //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
+        // }, 0);
       }
     })
   },
@@ -114,10 +114,22 @@ Page({
         console.log(res.data)
         if(res.data.records && res.data.records.length){
           let item = this.data.items
-          item.push({title:"补充协议"})
+          if(item.length === 2){
+            item.push({title:"补充协议"})
+          }
           this.setData({
             items: item,
             supplementList: res.data.records
+          })
+        }else{
+          let list = [{
+            title:"详细信息",
+          },{
+            title:"审批记录",
+          }]
+          this.setData({
+            items: list,
+            supplementList: []
           })
         }
         // this.setData({
