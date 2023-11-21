@@ -213,12 +213,12 @@ _bindErrorRefreshTap: function (e) {
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=1`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=1`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=1`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=1`
           });
           break;
       }
@@ -226,12 +226,12 @@ _bindErrorRefreshTap: function (e) {
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=2`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=2`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=2`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=2`
           });
           break;
       }  
@@ -239,12 +239,12 @@ _bindErrorRefreshTap: function (e) {
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=3`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=3`
           });
           break;
       }  
