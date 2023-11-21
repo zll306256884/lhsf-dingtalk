@@ -3,11 +3,11 @@
   <form onSubmit="progressAddSubmit">
     <view class="containerinner">
       <view a:if="{{ false }}" class="title">项目信息</view>
-      <layout-field-input borderBottom name="项目名称:" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{projectName}}" 
-      valueLeft="'left'" placeholder="请输入">
-      </layout-field-input>
-      <layout-field-cell borderBottom name="任务名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" value="{{detailData.taskName}}" 
-        placeholder="请输入">
+      <layout-field-cell borderBottom name="项目名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" 
+        value="{{projectName}}" placeholder="请输入">
+      </layout-field-cell>
+      <layout-field-cell borderBottom name="任务名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" 
+        value="{{detailData.taskName}}" placeholder="请输入">
       </layout-field-cell>
       <!-- {{type}} -->
       <block a:if="{{ type===0 }}">

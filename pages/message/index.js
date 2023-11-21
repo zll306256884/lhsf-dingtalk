@@ -209,7 +209,7 @@ _bindErrorRefreshTap: function (e) {
       break;
     }
   }else if(item.type === 3){//3审批消息
-    if (item.jflowType === 3) { //通过
+    if (item.jflowType === 3) { //待审核
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
@@ -222,7 +222,7 @@ _bindErrorRefreshTap: function (e) {
           });
           break;
       }
-    }else if(item.jflowType === 1){
+    }else if(item.jflowType === 1){//审批通过
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
@@ -235,7 +235,7 @@ _bindErrorRefreshTap: function (e) {
           });
           break;
       }  
-    }else if(item.jflowType === 2){
+    }else if(item.jflowType === 2){//审批驳回
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
