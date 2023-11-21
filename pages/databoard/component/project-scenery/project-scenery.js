@@ -91,38 +91,49 @@ Component({
       if (this.props.listData && !this.props.listData.length) {
         return
       }
-      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-      console.log(JSON.parse(this.props.listData[0].responsible))
-      // let callCode = '1715236940858523649'
-      return new Promise((resolve, reject) => {
-        request.doPostRequest({
-          url: progressServer.API_CALL_CODE,
-          showLoading: true,
-          data: {
-            "userId": callCode
-          },
-          success: res => {
-            console.log('res.data', res.data)
-            dd.callUsers({
-              users: [res.data.dingTalkId],
-              // users: ['0146024235748171'],
-              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
-              success: () => { },
-              fail: (res) => {
-                console.log(res)
-                ddUtils.showToast({
-                  title: 'errorCode：' + res.error + ',' + res.errorMessage
-                });
-              },
-              complete: () => { },
-            });
+      ddUtils.showModal({
+        title: '您即将呼叫？',
+        content: "请确认",
+        success: res => {
+          if (res.confirm) {
+            let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
+            console.log(JSON.parse(this.props.listData[0].responsible))
+            // let callCode = '1715236940858523649'
+            return new Promise((resolve, reject) => {
+              request.doPostRequest({
+                url: progressServer.API_CALL_CODE,
+                showLoading: true,
+                data: {
+                  "userId": callCode
+                },
+                success: res => {
+                  console.log('res.data', res.data)
+                  dd.callUsers({
+                    users: [res.data.dingTalkId],
+                    // users: ['0146024235748171'],
+                    corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+                    success: () => { },
+                    fail: (res) => {
+                      console.log(res)
+                      ddUtils.showToast({
+                        title: 'errorCode：' + res.error + ',' + res.errorMessage
+                      });
+                    },
+                    complete: () => { },
+                  });
 
-          },
-          fail: res => {
-            reject(res)
+                },
+                fail: res => {
+                  reject(res)
+                }
+              });
+            })
+
+
           }
-        });
+        }
       })
+
     },
     // 
     _bindPreviewTap(e) {
