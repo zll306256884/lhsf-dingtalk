@@ -74,7 +74,7 @@ Page({
   handleTask(){
     if(this.data.infoData.missionId==='0'){
       const execute=()=>{
-      let executeUsers=this.data.infoData.subMissionList.filter(item=> item.taskStatus===2) 
+      let executeUsers=this.data.infoData.subMissionList.filter(item=> item.taskStatus!==4) 
       const executeNames=executeUsers.map(item=> {return JSON.parse(item.executeUser)[0].username})
       console.log(executeUsers,executeNames);
       return executeNames.join(',')

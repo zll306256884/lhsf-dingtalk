@@ -14,6 +14,80 @@ Page({
     listData: [1, 2, 3, 4, 5],
     projectId: '',
     flagNode: '',//是否为里程碑节点
+    status: '',//筛选的状态
+    // new
+    currentOpen: -1,
+    items: [
+      {
+        title: '全部',
+        options: [
+          {
+            text: '全部',
+            value: '',
+          },
+          {
+            text: '延期',
+            value: 3,
+          },
+          {
+            text: '进行中',
+            value: 2,
+          },
+          {
+            text: '未开始',
+            value: 1,
+          },
+          {
+            text: '已完成',
+            value: 4,
+          },
+        ],
+      },
+      {
+        title: '里程碑节点',
+        options: [
+          // {
+          //   text: '选项一',
+          //   value: '1',
+          // },
+          // {
+          //   text: '选项二',
+          //   value: '2',
+          // },
+          // {
+          //   text: '选项三',
+          //   value: '3',
+          // },
+        ],
+      },
+    ],
+
+  },
+  // 二级选项更改
+  handleChange(value, items, e) {
+    console.log(value, items, e, 1);
+    this.data.status = value
+    this.setData({ status: value });
+    this.getList()
+    // this.data.currentOpen = -1;
+    this.setData({ currentOpen: -1 });
+  },
+  // 一级选项更改
+  onTapItem(e) {
+    // console.log(e, 2);
+    // console.log(e.currentTarget.dataset.index);
+    const { index } = e.target.dataset;
+    if (index === 1) {
+      this.milestoneNode(e)
+    }
+    console.log('index', index);
+    const { currentOpen } = this.data;
+    let value = index;
+    if (currentOpen === index) {
+      value = -1;
+    }
+    this.setData({ currentOpen: value });
+
   },
   onLoad(query) {
     console.log('query', query)
@@ -35,7 +109,7 @@ Page({
   onReady() {
     // 页面加载完成
     // 类比于vue的mounted
-    this.getList()
+    // this.getList()
   },
   progressItemRef(e) {
     console.log('我是列表ref', e);
@@ -49,6 +123,7 @@ Page({
     let param = {
       // "projectId": this.data.projectId,
       "projectId": '12019020004',
+      'status': this.data.status,
       'flagNode': this.data.flagNode
     }
     return new Promise((resolve, reject) => {

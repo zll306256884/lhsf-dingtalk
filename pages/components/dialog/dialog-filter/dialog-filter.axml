@@ -23,7 +23,7 @@
           </view>
         </view>
         <layout-field-input a:if="{{item.type==='input'}}" borderBottom name="{{item.label}}" value="{{item.value}}" dataIndex={{idx}} 
-          placeholder="请输入" onBlurChange="_bingBlurChange"></layout-field-input>
+          placeholder="请输入" onBlurChange="_bingBlurChange" onInputChange='_bingBlurChange'></layout-field-input>
       </view>
       <view class='flex f-center mt-32 mb-32'>
         <text class="cancel" catchTap="_bindCloseTap">取消</text>

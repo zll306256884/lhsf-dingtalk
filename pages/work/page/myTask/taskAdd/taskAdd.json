@@ -3,6 +3,7 @@
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "form-input": "antd-mini/es/Form/FormInput/index",
     "button": "antd-mini/es/Button/index",
+    "icon": "antd-mini/es/Icon/index",
     "form-picker": "antd-mini/es/Form/FormPicker/index",
     "form-date-picker": "antd-mini/es/Form/FormDatePicker/index",
     "form-upload-image": "antd-mini/es/Form/FormImageUpload/index",
