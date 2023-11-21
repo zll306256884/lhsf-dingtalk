@@ -7,7 +7,7 @@
     </view>
     <view class="{{valueFlexMatck ? 'flex1' : 'flex0'}} value" style="color: {{!utils.isEmpty(value) ? valueColor : valueEmptyColor}}; text-align: {{valueLeft? 'left' : 'right'}}" 
         data-value="{{datasetValue}}" catchTap="_bindArrowTap">{{utils.isEmpty(value) ? placeholder : value}}</view>
-    <slot a:if="{{!value}}">
-      <image  a:if="{{hidden}}" class="arrowright" mode="scaleToFill" src="../../../../assets/images/common/arrow-right.png" />
+    <slot a:if="{{hidden}}">
+      <image class="arrowright" mode="scaleToFill" src="../../../../assets/images/common/arrow-right.png" />
     </slot>
 </view>
