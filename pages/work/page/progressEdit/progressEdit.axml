@@ -3,11 +3,11 @@
   <form onSubmit="progressAddSubmit">
     <view class="containerinner">
       <view a:if="{{ false }}" class="title">项目信息</view>
-      <layout-field-input borderBottom name="项目名称:" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{projectName}}" 
-      valueLeft="'left'" placeholder="请输入">
-      </layout-field-input>
-      <layout-field-cell borderBottom name="任务名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" value="{{detailData.taskName}}" 
-        placeholder="请输入">
+      <layout-field-cell borderBottom name="项目名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" 
+        value="{{projectName}}" placeholder="请输入">
+      </layout-field-cell>
+      <layout-field-cell borderBottom name="任务名称:" disabled mustFillTransparent hidden="{{false}}" itemIndex="1" inputName="proNumber" 
+        value="{{detailData.taskName}}" placeholder="请输入">
       </layout-field-cell>
       <!-- {{type}} -->
       <block a:if="{{ type===0 }}">
@@ -23,9 +23,9 @@
       <layout-field-cell borderBottom name="实际结束时间:" mustFillTransparent value="{{detailData.actualEndTime}}" onArrowTap="_bindEndTime" 
         placeholder="请选择">
       </layout-field-cell>
-      <layout-field-cell a:if="{{ type===0 }}" name="情况说明:" mustFillTransparent value="{{}}">
+      <layout-field-cell a:if="{{ type===0 }}" name="情况说明" mustFillTransparent value="{{}}" hidden="{{false}}">
       </layout-field-cell>
-      <layout-field-cell a:if="{{ type!==0 }}" name="延期情况说明:" mustFill value="{{}}">
+      <layout-field-cell a:if="{{ type!==0 }}" name="延期情况说明" mustFill value="{{}}" hidden="{{false}}">
       </layout-field-cell>
       <textarea class="reason" name="remark" maxlength="300" value="{{detailData.remark?detailData.remark:''}}" placeholder="请输入内容" 
         placeholder-class="placeholder-class" style="padding-left:30rpx;">

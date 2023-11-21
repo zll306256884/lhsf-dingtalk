@@ -3,6 +3,7 @@ import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
 import progressServer from "../../../../server/workServer/progressServer"; //
+import projectService from "../../../../server/workServer/projectServer";
 Component({
   mixins: [],
   data: {
@@ -15,12 +16,14 @@ Component({
     checkoutPage:2,
     typePage:1,
     infoData:{},
-    recordList:[]
+    recordList:[],
+    userNameInfo:''
   },
   props: {
     projectId: null,
     alter:'',
-    dingTalkId:"1"
+    dingTalkId:"1",
+    
   },
   didMount() {
     if(this.props.alter === '5'){
@@ -137,15 +140,23 @@ Component({
    },
     // 电话
     callIt() {
-      // console.log('打电话')
-      ddUtils.showModal({
-        title:'请确认',
-        content: "您即将呼叫请确认！",
+      request.doPostRequest({
+        url: projectService.API_SELECTPROJECT_INFO_BYID,
+        data:{id:this.props.projectId},
+        success: res => {
+          console.log(res.data,333333333333333333)
+          this.setData({
+            userNameInfo: res.data.projectLeaderName
+          })
+           // console.log('打电话')
+         ddUtils.showModal({
+        title:`您即将呼叫：${res.data.projectLeaderName}`,
+        content: '请确认',
         success: res => {
           if (res.confirm) {
             dd.callUsers({
-              // users: [this.props.dingTalkId],
-              users: ['0146024235748171'],
+              users: [this.props.dingTalkId],
+              // users: ['0146024235748171'],
               corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
               success: () => { },
               fail: (res) => {
@@ -159,6 +170,9 @@ Component({
           }
         }
       });
+        }
+      })
+     
       return
       if (this.props.listData && !this.props.listData.length) {
         return

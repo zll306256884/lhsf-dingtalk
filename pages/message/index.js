@@ -210,42 +210,42 @@ _bindErrorRefreshTap: function (e) {
       break;
     }
   }else if(item.type === 3){//3审批消息
-    if (item.jflowType === 3) { //通过
+    if (item.jflowType === 3) { //待审核
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=1`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=1`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=1`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=1`
           });
           break;
       }
-    }else if(item.jflowType === 1){
+    }else if(item.jflowType === 1){//审批通过
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=2`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=2`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=2`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=2`
           });
           break;
       }  
-    }else if(item.jflowType === 2){
+    }else if(item.jflowType === 2){//审批驳回
       switch (item.belongModule) {
         case 2:
         ddUtils.navigateTo({
-          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+          url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=3`
         });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${item.keyId}&approvalType=3`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${item.keyId}&id=${pId.id}&approvalType=3`
           });
           break;
       }  

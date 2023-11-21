@@ -14,14 +14,14 @@
       </view> -->
       <form onSubmit="bindFormSubmit">
         <view class="box-shadow">
-          <layout-field-cell borderTop name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
-          <layout-field-cell borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName}}"></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" borderTop name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName}}"></layout-field-cell>
           <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)"  placeholder="选择合同后自动带入"  value="{{infoData.contractAmount}}"></layout-field-cell>
           <layout-field-cell hidden={{false}} borderTop name="承包商名称"  placeholder="选择合同后自动带入"  value="{{infoData.contractorName}}"></layout-field-cell>
-          <layout-field-cell borderTop name="申请日期"  placeholder="请选择" value="{{infoData.applicationTime}}" ></layout-field-cell>
-          <layout-field-cell borderTop name="送审定价(万元)" disabled="" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial}}" placeholder="请输入"></layout-field-cell>
-          <layout-field-cell name="净核算金额(万元)"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}" placeholder="请输入"></layout-field-cell>
-          <layout-field-cell  name="审定总价(万元)" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.approveTotalPrice}}" placeholder="请输入"></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" borderTop name="申请日期"  placeholder="请选择" value="{{infoData.applicationTime}}" ></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" borderTop name="送审定价(万元)" disabled="" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial}}" placeholder="请输入"></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" name="净核算金额(万元)"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}" placeholder="请输入"></layout-field-cell>
+          <layout-field-cell hidden="{{false}}" name="审定总价(万元)" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.approveTotalPrice}}" placeholder="请输入"></layout-field-cell>
         </view>
         <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
           <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>

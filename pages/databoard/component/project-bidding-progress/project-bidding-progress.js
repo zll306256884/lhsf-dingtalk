@@ -105,6 +105,7 @@ Component({
     childrenTab: null
   },
   page: 1,
+  callCodeData: {},
   didMount() {
     if(this.props.childrenTab){
       this.setData({
@@ -303,24 +304,24 @@ Component({
       });
     },
     callIt(){
-      ddUtils.showModal({
-        title:'您即将呼叫？',
-        content: "请确认",
+      request.doPostRequest({
+        url: projectService.API_SELECTPROJECT_INFO_BYID,
+        data:{id:this.props.projectId},
         success: res => {
-          if (res.confirm) {
-            request.doPostRequest({
-              url: projectService.API_SELECTPROJECT_INFO_BYID,
-              data:{id:this.props.projectId},
+          console.log(res);
+          this.callCodeData = {personId: res.data.personId, projectLeaderName: res.data.projectLeaderName}
+          if(this.callCodeData.personId){
+            ddUtils.showModal({
+              title:'您即将呼叫'+this.callCodeData.projectLeaderName + '?',
+              content: "请确认",
               success: res => {
-                console.log(res);
-                if(res.data.personId){
-                  // let callCode='1715236940858523649'
+                if (res.confirm) {
                   return new Promise((resolve, reject) => {
                     request.doPostRequest({
                       url: progressServer.API_CALL_CODE,
                       showLoading: true,
                       data: {
-                        "userId": res.data.personId
+                        "userId": this.callCodeData.personId
                       },
                       success: res => {
                         console.log('res.data', res.data)
@@ -350,6 +351,9 @@ Component({
           }
         }
       })
+      console.log(this.callCodeData);
+      
+      
     }
   }
 });

@@ -1,5 +1,6 @@
 // import utils from "../../../../utils/utils"
 // import ddUtils from "../../../../utils/ddUtils"
+import ddUtils from "../../../utils/ddUtils"
 // import request from "../../../../utils/request"
 import request from "../../../utils/request"
 // import config from "../../../../utils/config"
@@ -68,20 +69,18 @@ Component({
       if (this.props.listData && !this.props.listData.length) {
         return
       }
-      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-      console.log(JSON.parse(this.props.listData[0].responsible))
-      // let callCode='1715236940858523649'
-      return new Promise((resolve, reject) => {
-        request.doPostRequest({
-          url: progressServer.API_CALL_CODE,
-          showLoading: true,
-          data: {
-            "userId": callCode
-          },
-          success: res => {
-            console.log('res.data', res.data)
+      // let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
+      let name = this.props.listData[0].projectLeaderName
+      // console.log(JSON.parse(this.props.listData[0].responsible))
+      let str = '您即将呼叫：' + name + '?'
+      ddUtils.showModal({
+        // title: '您即将呼叫？',
+        title: str,
+        content: "请确认",
+        success: res => {
+          if (res.confirm) {
             dd.callUsers({
-              users: [res.data.dingTalkId],
+              users: [this.props.listData[0].dingTalkId],
               // users: ['01460242357481712'],
               corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
               success: () => { },
@@ -94,12 +93,43 @@ Component({
               complete: () => { },
             });
 
-          },
-          fail: res => {
-            reject(res)
+            return
+
+            // let callCode='1715236940858523649'
+            return new Promise((resolve, reject) => {
+              request.doPostRequest({
+                url: progressServer.API_CALL_CODE,
+                showLoading: true,
+                data: {
+                  "userId": callCode
+                },
+                success: res => {
+                  console.log('res.data', res.data)
+                  dd.callUsers({
+                    users: [res.data.dingTalkId],
+                    // users: ['01460242357481712'],
+                    corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+                    success: () => { },
+                    fail: (res) => {
+                      console.log(res)
+                      ddUtils.showToast({
+                        title: 'errorCode：' + res.error + ',' + res.errorMessage
+                      });
+                    },
+                    complete: () => { },
+                  });
+
+                },
+                fail: res => {
+                  reject(res)
+                }
+              });
+            })
+
           }
-        });
+        }
       })
+
     },
   },
 });

@@ -88,23 +88,20 @@ Component({
     // 电话
     callIt() {
       // console.log('打电话')
-      if (this.props.listData && !this.props.listData.length) {
+      if (this.data.listData && !this.data.listData.length) {
         return
       }
-      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-      console.log(JSON.parse(this.props.listData[0].responsible))
-      // let callCode = '1715236940858523649'
-      return new Promise((resolve, reject) => {
-        request.doPostRequest({
-          url: progressServer.API_CALL_CODE,
-          showLoading: true,
-          data: {
-            "userId": callCode
-          },
-          success: res => {
-            console.log('res.data', res.data)
+      let name = this.data.listData[0].projectLeaderName
+      let dingTalkId = this.data.listData[0].dingTalkId
+      let str = '您即将呼叫：' + name + '?'
+      ddUtils.showModal({
+        title: str,
+        // title: '您即将呼叫？',
+        content: "请确认",
+        success: res => {
+          if (res.confirm) {
             dd.callUsers({
-              users: [res.data.dingTalkId],
+              users: [dingTalkId],
               // users: ['0146024235748171'],
               corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
               success: () => { },
@@ -116,13 +113,11 @@ Component({
               },
               complete: () => { },
             });
-
-          },
-          fail: res => {
-            reject(res)
+            return
           }
-        });
+        }
       })
+
     },
     // 
     _bindPreviewTap(e) {

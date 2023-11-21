@@ -14,6 +14,53 @@ Component({
     listData: [1, 2, 3, 4, 5],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
+    status: '',//筛选的状态
+    // new
+    currentOpen: -1,
+    items: [
+      {
+        title: '全部',
+        options: [
+          {
+            text: '全部',
+            value: '',
+          },
+          {
+            text: '延期',
+            value: 3,
+          },
+          {
+            text: '进行中',
+            value: 2,
+          },
+          {
+            text: '未开始',
+            value: 1,
+          },
+          {
+            text: '已完成',
+            value: 4,
+          },
+        ],
+      },
+      {
+        title: '里程碑节点',
+        options: [
+          // {
+          //   text: '选项一',
+          //   value: '1',
+          // },
+          // {
+          //   text: '选项二',
+          //   value: '2',
+          // },
+          // {
+          //   text: '选项三',
+          //   value: '3',
+          // },
+        ],
+      },
+    ],
   },
   props: {
     projectId: '12019020004',//项目id
@@ -34,10 +81,37 @@ Component({
   //每当组件实例从页面卸载的时候都会触发此回调。
   didUnmount() { },
   methods: {
+    // 二级选项更改
+    handleChange(value, items, e) {
+      console.log(value, items, e, 1);
+      this.data.status = value
+      this.setData({ status: value });
+      this.getList()
+      // this.data.currentOpen = -1;
+      this.setData({ currentOpen: -1 });
+    },
+    // 一级选项更改
+    onTapItem(e) {
+      // console.log(e, 2);
+      // console.log(e.currentTarget.dataset.index);
+      const { index } = e.target.dataset;
+      if (index === 1) {
+        this.milestoneNode(e)
+      }
+      console.log('index', index);
+      const { currentOpen } = this.data;
+      let value = index;
+      if (currentOpen === index) {
+        value = -1;
+      }
+      this.setData({ currentOpen: value });
+
+    },
     // 获取基本信息
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
+        'status': this.data.status,
         // "projectId": '12019020004',
         'flagNode': this.data.flagNode
       }
@@ -76,6 +150,6 @@ Component({
       this.getList()
     },
     // 
-    
+
   },
 });
