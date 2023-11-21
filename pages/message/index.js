@@ -2,12 +2,12 @@
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
 import ddUtils from "../../utils/ddUtils"
+import { isEmptyArray, isHasMore } from "../../utils/utils"
 Page({
  data:{
   navbarData: {
     title: "消息",
 },
-current: 0,
 items: [
   {
     title:"全部",
@@ -21,14 +21,25 @@ items: [
     badge: true,    
   },
 ],
+tabIndex: 0,
  MessageList:[],
  },
+ page: 1,
+  errorView: null,
+  hasMore: false,
+  isLoading: false,
  onShow(){
+  this.page = 1
   this.getMessageList(0)
   this.getunReadMessageTotal()
  },
  // 切换我的请求tab
  onQueryChange(e) {
+   console.log(e);
+  this.setData({
+    tabIndex: e
+  });
+  this.page = 1
   switch (e) {
     case 0:
       this.getMessageList(0)
@@ -44,19 +55,24 @@ items: [
  //消息
  getMessageList:function(s){
   let data = {
-    pageNum: 1,
-    pageSize: 9999,
+    pageNum: this.page,
+    pageSize: 10,
     "status": s,
   };
   request.doPostRequest({
     url: apiApprovalManage.API_MESSAGE_POST,
     data,
     success: res => {
+      this.page++;
+      this.hasMore = isHasMore(res.data.records);
       this.setData({
-        MessageList: res.data.records
+        MessageList: res.data.records || []
       })
       console.log(res);
     },
+    complete: res => {
+      this._loadDone(res);
+    }
   });
  },
  getMoreDataList(){
@@ -70,11 +86,11 @@ items: [
     asc: false,
     pageNum: this.page,
     pageSize: 10,
-    params: {status: this.data.tabIndex + 1},
+    status:this.data.tabIndex,
     sort: 'createTime'
   }
   request.doPostRequest({
-    url: apiMesssageServer.API_REQUEST_LIST,
+    url: apiApprovalManage.API_MESSAGE_POST,
     data: params,
     success: res => {
       console.log(res.data)
@@ -82,7 +98,7 @@ items: [
       this.hasMore = isHasMore(res.data.records);
 
       this.setData({
-        dataList: this.data.dataList.concat(res.data.records) || []
+        MessageList: this.data.MessageList.concat(res.data.records) || []
       })
     },
     complete: res => {
@@ -90,12 +106,12 @@ items: [
     }
   })
 },
+
  //判断是否为空
  _loadDone: function (res) {
   this.isLoading = false;
   this.errorView._hideLoadMore();
-
-  if (isEmptyArray(this.data.dataList)) {
+  if (isEmptyArray(this.data.MessageList)) {
       if (res.loadFail === true) {
           this.errorView._showEmptyView({
               loadError: true,
@@ -107,6 +123,16 @@ items: [
   } else {
       this.errorView._hideEmptyView();
   }
+},
+
+onReachBottom() {
+  this.getMoreDataList();
+},
+_onSaveErrorViewRef: function (ref) {
+  this.errorView = ref;
+},
+_bindErrorRefreshTap: function (e) {
+  this.getMessageList();
 },
  getunReadMessageTotal(){
   request.doPostRequest({

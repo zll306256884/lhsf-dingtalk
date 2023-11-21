@@ -1,7 +1,7 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view  class="container">
   <view class="card">
-    <tabs items="{{items}}" onChange="onQueryChange">
+    <tabs items="{{items}}" current="{{tabIndex}}" onChange="onQueryChange">
       <!-- <view
         class="content"
         slot-scope="item">
@@ -31,3 +31,4 @@
   </view>
   </view>
 </view>
+<error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>
