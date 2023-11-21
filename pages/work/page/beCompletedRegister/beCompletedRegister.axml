@@ -12,13 +12,13 @@
       <form-radio-group
       onChange="onChange"
       required
-      label="净核算金额"
+      label="净核算金额(万元)"
       name="adjust"
       value="{{adjust}}"
       options="{{radioGroupOptions}}"
       ref="handleRef" />
       <layout-field-input inputType="number"  inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{netAccountAmount}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input  name="审定总价" inputType="number" borderTop mustFill inputName="approveTotalPrice"  disabled="{{isEdit}}" value="{{approveTotalPrice}}" placeholder="请输入"></layout-field-input>
+      <layout-field-input  name="审定总价(万元)" inputType="number" borderTop mustFill inputName="approveTotalPrice"  disabled="{{isEdit}}" value="{{approveTotalPrice}}" placeholder="请输入"></layout-field-input>
     </view>
     <view class="box-shadow" style="padding-bottom: 30rpx;">
       <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>
