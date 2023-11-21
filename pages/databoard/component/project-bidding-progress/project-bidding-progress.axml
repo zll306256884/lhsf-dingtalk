@@ -62,8 +62,8 @@
       </view>
 
       <view class="flex f-center" style="width:10%;align-items:center">
-        <image a:if="{{ listType === '1' }}" mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
-        <image a:if="{{ listType === '2' }}" mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialogTwo" />
+        <image a:if="{{ listType === '1' }}" mode="scaleToFill" src="{{biddingType !== ''?'/assets/images/common/filter-o.png':projectType !== ''?'/assets/images/common/filter-o.png':'/assets/images/common/funnel.png'}}" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
+        <image a:if="{{ listType === '2' }}" mode="scaleToFill" src="{{supplementAgreement !== ''?'/assets/images/common/filter-o.png':'/assets/images/common/funnel.png'}}" style="width:32rpx;height:32rpx" catchTap="filterDialogTwo" />
       </view>
     </view>
     
