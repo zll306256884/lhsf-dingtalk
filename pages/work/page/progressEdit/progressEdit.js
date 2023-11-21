@@ -160,9 +160,9 @@ Page({
 
     // 校验
     if (this.data.type === 0) {
-      if (!this.data.detailData.actualEndTime) {
+      if (!this.data.detailData.actualBeginTime) {
         ddUtils.showToast({
-          title: "请选择实际开始事件"
+          title: "请选择实际开始时间"
         });
         return
       }

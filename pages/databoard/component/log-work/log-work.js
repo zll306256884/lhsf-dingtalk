@@ -94,6 +94,7 @@ Component({
     },
     // 预览
     _bindPreviewTap(e) {
+      console.log(e)
       let index = e.currentTarget.dataset.index;
       let url = e.currentTarget.dataset.url;
       let localPath = e.currentTarget.dataset.localPath;

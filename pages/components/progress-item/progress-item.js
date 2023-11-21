@@ -33,7 +33,14 @@ Component({
       if (this.props.formPage === 'work') {
         console.log('工作台的节点')
         let id = e.target.dataset.planId
-        let type = e.target.dataset.type
+        let type
+        if (e.target.dataset.delayDays > 0) {
+          type = 1
+        } else {
+          type = 0
+        }
+
+        // let type = e.target.dataset.type
         let name = e.target.dataset.name
         let projectId = e.target.dataset.projectId
         // return
