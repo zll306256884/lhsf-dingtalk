@@ -117,8 +117,14 @@ Page({
       url: workServer.API_SELECT_TASK,
       data: { id },
       success: res => {
+        const list =JSON.parse(res.data.executeUser).map(item=>{
+          return{
+            ...item,
+            disabled:true
+          }
+        })
         this.setData({
-          executeUser:JSON.parse(res.data.executeUser),
+          executeUser:list,
           annexList:res.data.missionFileList
         })
       //  console.log(this.dialogScreenExecuteUser,this.data.executeUser);
