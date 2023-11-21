@@ -96,6 +96,10 @@ Page({
         contractId: options.id
       })
       this.getDetail()
+    }else{
+      this.setData({
+        list: []
+      })
     }
   },
   onReady(){

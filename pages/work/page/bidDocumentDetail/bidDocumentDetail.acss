@@ -85,3 +85,43 @@
   background: #E6F8EA;
   color: #00B42A;
 }
+.file-list{
+  background: #fff;
+  margin-top: 18rpx;
+  padding: 32rpx;
+}
+.file-list .title{
+  font-size: 28rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 48rpx;
+  margin-bottom: 16rpx;
+}
+.file-list .list-item{
+  height: 120rpx;
+  background: #F7F8FA;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  margin-bottom: 16rpx;
+  align-items: center;
+  padding: 0 16rpx;
+}
+.file-list .list-item .name{
+  font-size: 20rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 23rpx;
+}
+.file-list .list-item .size{
+  font-size: 20rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 23rpx;
+  margin-top: 8rpx;
+}
+.file-list .list-item .down-icon{
+  width: 32rpx;
+  height: 32rpx;
+}

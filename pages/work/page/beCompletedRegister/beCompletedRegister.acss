@@ -76,10 +76,10 @@
   float: right;
 }
 /* border-top: 1px solid #E7EAF3; */
-.ant-form-item{
-  /* border: 1px solid #E7EAF3; */
-  /* position: none; */
-}
 .ant-form-item-asterisk{
-  padding: 12px 18px 12px 26px;
+  padding: 12px 18px 12px 20px;
+}
+.ant-form-item-label-horizontal{
+  width: 144px;
+  font-size: 32rpx;
 }
