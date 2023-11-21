@@ -12,7 +12,8 @@ Component({
     checkoutPage:1,
     alert:0,
     infoData:{},
-    recordList:[]
+    recordList:[],
+    projectName:''
   },
   props: {},
   didMount() {
@@ -52,16 +53,22 @@ Component({
   },
   searchDocList(e){
     console.log(e);
-    this.getList(e.detail.value)
-    this.getAlteration(e.detail.value)
+    this.setData({
+      projectName:e.detail.value
+    })
+    if(this.data.checkoutPage === 1){
+      this.getList()
+    }else{
+      this.getAlteration()
+    }
   },
-   getList(name){
+   getList(){
     request.doPostRequest({
       url: confing.API_PAY_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:name
+        projectName:this.data.projectName
       },
       success: res => {
         console.log(res.data)
@@ -71,13 +78,13 @@ Component({
       }
     })
    },   
-   getAlteration(proName){
+   getAlteration(){
     request.doPostRequest({
       url: confing.API_ALTER_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:proName
+        projectName:this.data.projectName
       },
       success: res => {
         console.log(res.data)
@@ -94,7 +101,7 @@ Component({
     if(this.data.checkoutPage === 2){
     }
    ddUtils.navigateTo({
-    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}&alter=${this.data.alter}`
+    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}&alter=${this.data.alter}&dingTalkId=${item.dingTalkId}`
   });
    }
   },

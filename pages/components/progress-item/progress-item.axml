@@ -3,7 +3,7 @@
     <view class="listboxItem">
       <block a:for="{{listData}}" a:for-index="idx" a:for-item="item" class="part">
         <!--  -->
-        <view class="topItem flex f-between box-sizing-box" data-planId={{item.id}} data-type={{item.progressReport}} data-name={{item.projectName}} 
+        <view class="topItem flex f-between box-sizing-box" data-planId={{item.id}} data-delayDays={{item.delayDays}} data-type={{item.progressReport}} data-name={{item.projectName}} 
           data-projectId={{item.projectId}} catchTap="toEditPage">
           <view class="flex f-between">
             <!-- 是否为里程碑节点 -->

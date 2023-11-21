@@ -71,7 +71,7 @@ Page({
   },
   chooseExecuter() {
     if (this.dialogScreenExecuteUser)
-      this.dialogScreenExecuteUser._showDialog();
+      this.dialogScreenExecuteUser._showDialog(this.data.executeUser);
   },
   bindScreenExecuteUserCallBack(data) {
     console.log(data);

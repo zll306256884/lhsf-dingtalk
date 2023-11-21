@@ -19,7 +19,8 @@ Component({
   },
   props: {
     projectId: null,
-    alter:''
+    alter:'',
+    dingTalkId:"1"
   },
   didMount() {
     if(this.props.alter === '5'){
@@ -93,10 +94,11 @@ Component({
   },
   searchDocList(e){
     console.log(e);
-   
-    this.data.searchName = e.detail.value
+    this.setData({
+      searchName:e.detail.value
+    })
     this.getList()
-    this.getAlteration(e.detail.value)
+    this.getAlteration()
   },
    getList(i){
     request.doPostRequest({
@@ -116,13 +118,13 @@ Component({
       }
     })
    },   
-   getAlteration(name){
+   getAlteration(){
     request.doPostRequest({
       url: confing.API_CHANGE_POST,
       data: {
         pageNum:1,
         pageSize:9999,
-        projectName:name,
+        contractName:this.data.searchName,
         projectId:this.props.projectId
       },
       success: res => {
@@ -136,24 +138,14 @@ Component({
     // 电话
     callIt() {
       // console.log('打电话')
-      if (this.props.listData && !this.props.listData.length) {
-        return
-      }
-      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-      console.log(JSON.parse(this.props.listData[0].responsible))
-      // let callCode='1715236940858523649'
-      return new Promise((resolve, reject) => {
-        request.doPostRequest({
-          url: progressServer.API_CALL_CODE,
-          showLoading: true,
-          data: {
-            "userId": callCode
-          },
-          success: res => {
-            console.log('res.data', res.data)
+      ddUtils.showModal({
+        title:'请确认',
+        content: "您即将呼叫请确认！",
+        success: res => {
+          if (res.confirm) {
             dd.callUsers({
-              users: [res.data.dingTalkId],
-              // users: ['01460242357481712'],
+              // users: [this.props.dingTalkId],
+              users: ['0146024235748171'],
               corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
               success: () => { },
               fail: (res) => {
@@ -164,7 +156,25 @@ Component({
               },
               complete: () => { },
             });
-
+          }
+        }
+      });
+      return
+      if (this.props.listData && !this.props.listData.length) {
+        return
+      }
+      let callCode = this.props.dingTalkId
+      // let callCode='1715236940858523649'
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_CALL_CODE,
+          showLoading: true,
+          data: {
+            "userId": callCode
+          },
+          success: res => {
+            console.log('res.data', res.data)
+            
           },
           fail: res => {
             reject(res)

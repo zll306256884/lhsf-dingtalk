@@ -84,6 +84,7 @@ Page({
 
   },
   pageNum: 1,
+  errorView: null,
   hasMore: false,
   isLoading: false,
 
@@ -103,7 +104,7 @@ Page({
     this.errorView = ref;
   },
   _bindErrorRefreshTap: function (e) {
-    this.getDataList();
+    this.getList();
   },
   onDialog(data) {
     this.setData({
@@ -122,13 +123,13 @@ Page({
         belongModule.push(item.id)
       }
     })
-    if (belongModule.length !== 1) {
+    if (belongModule.length > 1) {
       ddUtils.showToast({
         title: '类型不支持多选'
       })
       return
     }
-    var belongModule = data[0].option[0].id
+    // var belongModule = data[0].option[0].id
 
     // console.log('belongModule', belongModule)
     // console.log('userName', userName)
@@ -137,8 +138,9 @@ Page({
     //   belongModule:
     // }
     // return
+    this.pageNum = 1
     this.setData({
-      'funnelParam.belongModule': belongModule,
+      'funnelParam.belongModule': belongModule[0],
       'funnelParam.userName': userName,
     });
     this.onDialog(false)
@@ -158,10 +160,11 @@ Page({
     this.setData({
       targetValue: targetValue
     });
-    this.getList()
+    // this.getList()
   },
   onShow() {
     // 返回回到这个页面需要调用的接口
+    this.pageNum = 1
     this.getList()
   },
   events: {
@@ -183,6 +186,7 @@ Page({
     this.setData({
       tabIndex: index,
     });
+    this.pageNum = 1
     let targetValue = this.data.tabList[this.data.tabIndex].value
     console.log('targetValue', targetValue)
 
@@ -190,6 +194,24 @@ Page({
       targetValue: targetValue
     });
     this.getList()
+  },
+  //判断是否为空
+  _loadDone: function (res) {
+    this.isLoading = false;
+    this.errorView._hideLoadMore();
+
+    if (isEmptyArray(this.data.listData)) {
+      if (res.loadFail === true) {
+        this.errorView._showEmptyView({
+          loadError: true,
+          errorMessage: "加载失败, 点击重新加载"
+        });
+      } else {
+        this.errorView._showEmptyView();
+      }
+    } else {
+      this.errorView._hideEmptyView();
+    }
   },
   // 获取基本信息
   getList: function () {
@@ -206,43 +228,47 @@ Page({
     }
     console.log('param', param)
     // return
-    return new Promise((resolve, reject) => {
-      request.doPostRequest({
-        url: approvalServer.API_SELECT_LIST,
-        showLoading: false,
-        data: param,
-        success: res => {
-          console.log('res.data', res.data)
-          this.hasMore = isHasMore(res.data.records);
-          this.setData({
-            listData: res.data.records
-          });
-          resolve(res.data)
-        },
-        fail: res => {
-          reject(res)
-        }
-      });
-    })
+    // return new Promise((resolve, reject) => {
+    request.doPostRequest({
+      url: approvalServer.API_SELECT_LIST,
+      showLoading: false,
+      data: param,
+      success: res => {
+        console.log('res.data', res.data)
+        this.hasMore = isHasMore(res.data.records);
+        // let page = this.pageNum + 1
+        this.pageNum++
+        this.setData({
+          listData: res.data.records || []
+          // pageNum: page
+        });
+        // resolve(res.data)
+      },
+      complete: res => {
+        this._loadDone(res);
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
+    // })
   },
   // 加载数据
   getMoreDataList() {
     console.log('chufal2')
-    // if (this.isLoading || !this.hasMore) //防止重复加载和没有更多数据
-    //   return;
+    // debugger
     //防止重复加载和没有更多数据
     if (this.isLoading || !this.hasMore) {
       return;
     }
-
     this.isLoading = true;
-    // this.errorView._showLoadMore();
-    let page = this.pageNum + 1
-    // console.log('page', page)
+    this.errorView._showLoadMore();
+    // let page = this.pageNum + 1
+    console.log('pageNum', this.pageNum)
     // return
     let param = {
       "asc": true,
-      "pageNum": page,
+      "pageNum": this.pageNum,
       "pageSize": 10,
       "account": app.globalData.userInfo.userAccount,
       "userName": "",
@@ -253,26 +279,30 @@ Page({
     }
     console.log('param', param)
     // return
-    return new Promise((resolve, reject) => {
-      request.doPostRequest({
-        url: approvalServer.API_SELECT_LIST,
-        showLoading: false,
-        data: param,
-        success: res => {
-          console.log('res.data', res.data)
-          this.hasMore = isHasMore(res.data.records);
-          this.setData({
-            // listData: res.data.records
-            listData: this.data.listData.concat(res.data.records) || []
-          });
-          console.log('listData数据总共：', this.data.listData)
-          resolve(res.data)
-        },
-        fail: res => {
-          reject(res)
-        }
-      });
-    })
+    // return new Promise((resolve, reject) => {
+    request.doPostRequest({
+      url: approvalServer.API_SELECT_LIST,
+      showLoading: false,
+      data: param,
+      success: res => {
+        console.log('res.data', res.data)
+        this.hasMore = isHasMore(res.data.records);
+        this.pageNum++
+        this.setData({
+          // listData: res.data.records
+          listData: this.data.listData.concat(res.data.records) || []
+        });
+        console.log('listData数据总共：', this.data.listData)
+        // resolve(res.data)
+      },
+      complete: res => {
+        this._loadDone(res);
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
+    // })
 
     // let params = {
     //   asc: false,
@@ -337,11 +367,10 @@ Page({
             break;
           case 4:
             ddUtils.navigateTo({
-              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}`
             });
             break;
         }
-
       },
       complete: res => {
         // this._loadDone(res);

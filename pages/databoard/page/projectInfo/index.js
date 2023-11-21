@@ -27,6 +27,7 @@ Page({
     currentTabIndex: 0,
     projectInfo: {},
     alter:'',
+    dingTalkId:"",
     childrenTab: null
   },
   mapRef:null,
@@ -34,6 +35,7 @@ Page({
   onLoad(option) {
     console.log(option);
     this.data.alter = option.alter
+    this.data.dingTalkId = option.dingTalkId
     this.data.projectInfo.projectName=option.projectName
     this.data.projectInfo.projectId=option.projectId
     this.data.navbarData.title = option.projectName

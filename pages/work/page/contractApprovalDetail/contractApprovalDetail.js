@@ -23,7 +23,8 @@ Page({
     contractId: null,
     examineId: null,
     approvalType: null,
-    deleteId: null
+    deleteId: null,
+    supplementList: []
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -48,8 +49,10 @@ Page({
   },
   onShow(){
     this.getDetail(this.data.contractId)
+    this.getMinContract()
   },
   onNavTabChange(e){
+    console.log(e);
     this.setData({
       current: e
     })
@@ -100,6 +103,30 @@ Page({
         setTimeout(() => {
           this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
         }, 0);
+      }
+    })
+  },
+  getMinContract(){
+    request.doPostRequest({
+      url: projectService.API_CONTRACT_PAGE,
+      data: {masterContract: this.data.contractId,pageSize:999,pageNum:1},
+      success: res => {
+        console.log(res.data)
+        if(res.data.records && res.data.records.length){
+          let item = this.data.items
+          item.push({title:"补充协议"})
+          this.setData({
+            items: item,
+            supplementList: res.data.records
+          })
+        }
+        // this.setData({
+        //   detailInfo: res.data,
+        //   list
+        // })
+        // setTimeout(() => {
+        //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
+        // }, 0);
       }
     })
   },
@@ -169,5 +196,11 @@ Page({
     ddUtils.showToast({
       title: '暂不支持打印！'
     })
+  },
+  toDetail(e){
+    let {item} = e.currentTarget.dataset
+    ddUtils.navigateTo({
+      url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.id}`
+    });
   }
 });
