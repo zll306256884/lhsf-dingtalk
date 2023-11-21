@@ -69,13 +69,17 @@ Component({
       if (this.props.listData && !this.props.listData.length) {
         return
       }
+      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
+      let name = (JSON.parse(this.props.listData[0].responsible))[0].name
+      console.log(JSON.parse(this.props.listData[0].responsible))
+      let str = '您即将呼叫：' + name + '?'
       ddUtils.showModal({
-        title: '您即将呼叫？',
+        // title: '您即将呼叫？',
+        title: str,
         content: "请确认",
         success: res => {
           if (res.confirm) {
-            let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-            console.log(JSON.parse(this.props.listData[0].responsible))
+
             // let callCode='1715236940858523649'
             return new Promise((resolve, reject) => {
               request.doPostRequest({

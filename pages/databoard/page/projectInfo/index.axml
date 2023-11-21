@@ -8,7 +8,7 @@
     <project-progress projectId="{{projectInfo.projectId}}"></project-progress>
   </view>
   <view a:if="{{currentTabIndex === 2}}">
-    <!-- 项目实景 -->
+    <!-- 项目实景  -->
     <project-scenery projectId="{{projectInfo.projectId}}"></project-scenery>
   </view>
   <view a:if="{{currentTabIndex === 5}}">
