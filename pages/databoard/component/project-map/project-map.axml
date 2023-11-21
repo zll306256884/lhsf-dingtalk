@@ -21,8 +21,6 @@
         controls="{{controls}}"
         markers="{{markers}}"
         onMarkerTap="markertap"
-        onRegionChange="regionchange"
-        onTap="tap"
         style="width: 100%; height: calc(100vh - 130px);"
      >
       </map>

@@ -18,7 +18,8 @@
               {{item.username}}
           </view>
           <block a:if="{{multiChoose}}">
-              <image mode="aspectFit" class="flex0 icon" src="{{item.isCheck ? '/assets/images/icon_check_square_p.png' : '/assets/images/icon_check_square_n.png'}}"></image>
+            <checkbox checked="{{item.isCheck }}" disabled="{{item.disabled}}"/>
+              <!-- <image mode="aspectFit" class="flex0 icon" src="{{item.isCheck ? '/assets/images/icon_check_square_p.png' : '/assets/images/icon_check_square_n.png'}}"></image> -->
           </block> 
       </view>
   </block>

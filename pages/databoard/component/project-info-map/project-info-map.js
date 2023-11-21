@@ -21,7 +21,6 @@ Component({
   didUpdate() {},
   didUnmount() {},
   methods: {
-   
     initMap(){
       this.mapCtx = dd.createMapContext('map');
       this.getDetail(this.props.projectInfo.projectId)
@@ -40,11 +39,6 @@ Component({
     onHideUnit(){
       this.setData({
         visibelUnit:false
-      })
-    },
-    onTabChange(e){
-      this.setData({
-        currentTabIndex:e
       })
     },
     getDetail(id){
@@ -77,7 +71,7 @@ Component({
             height: 64,
             longitude: Number(parseFloat(item.coorX).toFixed(6)),
             latitude: Number(parseFloat(item.coorY).toFixed(6)),
-            iconPath: require(`../../../../assets/images/map/${item.projectClassification}-${item.projectStatus}.png`),
+            iconPath: `/assets/images/map/${item.projectClassification}-${item.projectStatus}.png`,
             callout: {
               content: item.name
             }
