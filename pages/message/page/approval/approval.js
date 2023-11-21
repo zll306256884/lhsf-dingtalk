@@ -114,6 +114,7 @@ Page({
   onBindSureTap(data) {
     console.log('漏斗的参数', data);
     let userName = data[1].value;
+    console.log('申请人', userName);
     // let belongModule = data.options[0].value[0].id
     console.log('data[0].option', data[0].option)
     var belongModule = []
