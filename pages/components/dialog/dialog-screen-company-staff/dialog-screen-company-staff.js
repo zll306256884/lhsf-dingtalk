@@ -211,6 +211,9 @@ Component({
                   selected.map(sed=>{
                     if(sed.userId===s.userId){
                       s.isCheck=true
+                      if(sed.disabled){
+                        s.disabled=sed.disabled
+                      }
                       this.chooseList.push(s)
                     }
                   }) 

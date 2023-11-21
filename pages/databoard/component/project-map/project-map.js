@@ -1,14 +1,27 @@
 import apiDataBoardServer from "../../../../server/dataBoardServer";
 import request from "../../../../utils/request";
 import ddUtils from "../../../../utils/ddUtils";
-const markers = [];
+const mapV2Message = '客户端版本过低，请升级客户端并开启V2引擎。'
+const markers = [
+  // {
+  //   longitude: 121.131229,
+  //   latitude: 28.845441,
+  //   id:1,
+  //   width: 64,
+  //   height: 64,
+  //   iconPath: `/assets/images/map/1-1.png`,
+  //   callout: {
+  //     content: '你好'
+  //   }
+  // }
+];
 const longitude = 121.131229;
 const latitude = 28.845441;
 const includePoints = [
-  {
-    latitude: 28.845441,
-    longitude: 121.131229
-  }
+  // {
+  //   latitude: 28.845441,
+  //   longitude: 121.131229
+  // }
 ];
 Component({
   mixins: [],
@@ -144,6 +157,12 @@ Component({
     },
 
     updateComponents() {
+      if (!dd.canIUse('createMapContext.return.updateComponents')) {
+        ddUtils.showToast({
+          title: mapV2Message
+        });
+        return;
+      } 
       const newMarkers = this.data.projectList
         .filter(i => i.cityCapitalX && i.cityCapitalY)
         .map(item => {
@@ -151,10 +170,9 @@ Component({
             id:item.id,
             width: 64,
             height: 64,
-            joinCluster: true,
             longitude: Number(parseFloat(item.cityCapitalX).toFixed(6)),
             latitude: Number(parseFloat(item.cityCapitalY).toFixed(6)),
-            iconPath: require(`../../../../assets/images/map/${item.projectType}-${item.projectStatus}.png`),
+            iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
             callout: {
               content: item.projectName
             }
@@ -185,16 +203,6 @@ Component({
         currentItem:e.detail.current
       })
     },
-    // 获取中心点坐标
-    // demoGetCenterLocation() {
-    //   if (dd.canIUse("createMapContext")) {
-    //     this.mapCtx.getCenterLocation({
-    //       success: res => {
-    //         console.log(res.longitude, res.latitude, res.scale);
-    //       }
-    //     });
-    //   }
-    // },
     // 点击 Marker 时触发
     markertap(e) {
      let index = this.data.projectList.findIndex(item=>item.id===e.markerId)
@@ -202,14 +210,6 @@ Component({
         currentItem:index
       })
     },
-    // 点击地图时触发
-    tap() {
-      console.log("tap");
-    },
-     // 视野发生变化时触发
-     regionchange(e) {
-      console.log("regionchange", e);
-     },
    // 手势的放大与缩小
     demoGesture() {
       if (dd.canIUse("createMapContext")) { 
