@@ -69,9 +69,9 @@ Component({
       if (this.props.listData && !this.props.listData.length) {
         return
       }
-      let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
-      let name = (JSON.parse(this.props.listData[0].responsible))[0].name
-      console.log(JSON.parse(this.props.listData[0].responsible))
+      // let callCode = (JSON.parse(this.props.listData[0].responsible))[0].id
+      let name = this.props.listData[0].projectLeaderName
+      // console.log(JSON.parse(this.props.listData[0].responsible))
       let str = '您即将呼叫：' + name + '?'
       ddUtils.showModal({
         // title: '您即将呼叫？',
@@ -79,6 +79,21 @@ Component({
         content: "请确认",
         success: res => {
           if (res.confirm) {
+            dd.callUsers({
+              users: [this.props.listData[0].dingTalkId],
+              // users: ['01460242357481712'],
+              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+              success: () => { },
+              fail: (res) => {
+                console.log(res)
+                ddUtils.showToast({
+                  title: 'errorCode：' + res.error + ',' + res.errorMessage
+                });
+              },
+              complete: () => { },
+            });
+
+            return
 
             // let callCode='1715236940858523649'
             return new Promise((resolve, reject) => {
