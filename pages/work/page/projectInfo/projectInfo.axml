@@ -9,18 +9,18 @@
       <layout-field-input borderBottom name="项目编号" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{formData.proNumber || '-'}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="项目名称" mustFillTransparent inputName="name" value="{{formData.name}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="项目简称" mustFillTransparent disabled inputName="projectProgram" value="{{formData.projectProgram || '-' }}" placeholder="请输入"></layout-field-input>
-      <layout-field-cell borderBottom name="是否考核项目" disabled mustFillTransparent value="{{isAccess.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="项目分类" mustFillTransparent disabled value="{{projectClassification.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled value="{{constructionPhase.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="是否投入使用" mustFillTransparent disabled value="{{isOutPut.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="项目分类" mustFillTransparent disabled hidden="{{false}}" value="{{projectClassification.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled hidden="{{false}}" value="{{constructionPhase.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="是否投入使用" mustFillTransparent disabled hidden="{{false}}" value="{{isOutPut.name || '-'}}"></layout-field-cell>
       <layout-field-cell a:if="{{ isOutPut.value === '1' }}" borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
       
-      <layout-field-cell borderBottom name="所属单位" mustFillTransparent disabled value="{{formData.affiliatedUnitName || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="所属单位" mustFillTransparent disabled hidden="{{false}}" value="{{formData.affiliatedUnitName || '-'}}"></layout-field-cell>
 
-      <layout-field-cell borderBottom name="建设性质" mustFillTransparent disabled value="{{constructionNature.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="工程性质" mustFillTransparent disabled value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="建设性质" mustFillTransparent disabled hidden="{{false}}" value="{{constructionNature.name || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="工程性质" mustFillTransparent disabled hidden="{{false}}" value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
       
-      <layout-field-cell borderBottom name="项目负责人" mustFillTransparent disabled value="{{formData.projectLeaderName || '-'}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="项目负责人" mustFillTransparent disabled hidden="{{false}}" value="{{formData.projectLeaderName || '-'}}"></layout-field-cell>
       <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
       <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
     </view>
@@ -31,9 +31,9 @@
       <layout-field-input borderBottom name="拟建位置" mustFillTransparent disabled inputName="proposedLocation" value="{{formData.proposedLocation || '-'}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="拟用土地" mustFillTransparent disabled inputName="proposedLand" value="{{formData.proposedLand || '-'}}" placeholder="请输入"></layout-field-input>
       <layout-field-input borderBottom name="座数" mustFillTransparent disabled inputName="blockNumber" value="{{formData.blockNumber || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent disabled value="{{formData.planConstructionStartTime || ''}}-{{formData.planConstructionEndTime || '' }}"></layout-field-cell>
+      <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.planConstructionStartTime || ''}}-{{formData.planConstructionEndTime || '' }}"></layout-field-cell>
       <layout-field-input borderBottom name="计划施工工期(天)" mustFillTransparent value="{{formData.duration || '-'}}" disabled></layout-field-input>
-      <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent disabled value="{{formData.actualConstructionStartTime || ''}}-{{formData.actualConstructionEndTime || ''}}"></layout-field-cell>
+      <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.actualConstructionStartTime || ''}}-{{formData.actualConstructionEndTime || ''}}"></layout-field-cell>
     </view>
     <view class="containerinner" style="margin-top:16rpx">
       <view class="redline-title">
