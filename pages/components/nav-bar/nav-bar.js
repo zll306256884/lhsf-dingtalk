@@ -7,19 +7,19 @@ Component({
      * 组件的属性列表
      */
     props: {
-        navbarData: {
-            title: "监理",
-            titleColor: "#333333",
-            navBackgroundColor: "white",
-            showNavbarBack: false,
-            navBackRes: "/images/icon_back_black.png",
-            noBackgroundColor: false,
-            titleLeft: false,
-            noPlaceholder: false, //导航栏不占顶部位置
-            isCatchtap: false, //catch tap by navgationbar back
-            backWidth: 8,
-            backHeight: 16
-        },
+      navbarData: {
+        title: "小程序",
+        titleColor: "#333333",
+        navBackgroundColor: "white",
+        showNavbarBack:true,
+        navBackRes: "/assets/images/arrow-left.png",
+        noBackgroundColor: false,
+        titleLeft: false,
+        noPlaceholder: false, //导航栏不占顶部位置
+        isCatchtap: false, //catch tap by navgationbar back
+        backWidth: 8,
+        backHeight: 16
+    },
         onNavBack: function () { }
     },
 
@@ -27,11 +27,30 @@ Component({
      * 组件的初始数据
      */
     data: {
+      navbarData: {
+        title: "小程序",
+        titleColor: "#333333",
+        navBackgroundColor: "white",
+        showNavbarBack:true,
+        navBackRes: "/assets/images/arrow-left.png",
+        noBackgroundColor: false,
+        titleLeft: false,
+        noPlaceholder: false, //导航栏不占顶部位置
+        isCatchtap: false, //catch tap by navgationbar back
+        backWidth: 8,
+        backHeight: 16
+    },
         _isNavClick: false, //防止返回按钮快速点击
     },
 
     //组件创建时触发
     onInit() {
+      this.data.navbarData.showNavbarBack= this.props.navbarData.showNavbarBack
+      this.data.navbarData.navBackRes= this.props.navbarData.navBackRes
+      this.data.navbarData.title= this.props.navbarData.title
+      this.setData({
+        navbarData:this.data.navbarData
+      })
     },
 
     //组件创建时和更新前触发

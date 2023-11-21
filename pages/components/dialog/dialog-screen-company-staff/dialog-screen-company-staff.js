@@ -142,9 +142,11 @@ Component({
     },
 
     _bindItemChooseUserChange: function(indexArray) {
+      console.log(indexArray);
       if (isEmptyArray(indexArray)) return;
       indexArray.reverse();
       let list = JSON.parse(JSON.stringify(this.data.dataList));
+      list[0].isCheck = true;
       let i = 0;
       let item = this._getChooseUserItem(
         list[indexArray[i]],

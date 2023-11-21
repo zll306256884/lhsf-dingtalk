@@ -15,6 +15,7 @@ Page({
   data: {
     navbarData: {
       title: "我的",
+      showNavbarBack:false
     },
     tabIndex: 0,
     tabList: [{

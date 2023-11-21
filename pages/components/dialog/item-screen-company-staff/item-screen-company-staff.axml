@@ -1,6 +1,6 @@
 <view a:if="{{isShow}}" class="item-company-staff-wrap">
   <block a:for="{{companyList}}">
-      <view class="flex-display flex-align-center item" data-index="{{index}}" catchTap="_bindItemCompanyTap">
+      <view class="flex f-align-center item" data-index="{{index}}" catchTap="_bindItemCompanyTap">
           <image mode="aspectFit" class="flex0 icon-arrow" src="{{(item.organizeList && item.organizeList.length > 0) || (item.staffList && item.staffList.length > 0) ? item.isCheck ? '/assets/images/icon_arrow_triangle_down.png' : '/assets/images/icon_arrow_triangle_right.png' : ''}}"></image>
           <view class="flex1 company-name single-line">
               {{item.name}}
@@ -13,7 +13,7 @@
       </block>
   </block>
   <block a:for="{{staffList}}">
-      <view class="flex-display flex-align-center item" data-index="{{index}}" catchTap="_bindItemUserTap">
+      <view class="flex f-align-center item" data-item="{{item}}" data-index="{{index}}" catchTap="_bindItemUserTap">
           <view class="flex1 nickname single-line">
               {{item.username}}
           </view>

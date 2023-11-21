@@ -30,7 +30,9 @@ Component({
 
         //bind item tap
         _bindItemUserTap: function (e) {
+          if(!e.currentTarget.dataset.item.disabled){
             this.props.onItemChooseUserChange([e.currentTarget.dataset.index, this.props.itemIndex]);
+          }
         },
 
         _bindItemChooseCompanyChange: function (arr) {

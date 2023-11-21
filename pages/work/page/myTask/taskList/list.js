@@ -8,7 +8,7 @@ const app = getApp();
 Page({
   data: {
     navbarData:{
-      title: "我的任务"
+      title: "我的任务",
     },
      tabs1: [
       {

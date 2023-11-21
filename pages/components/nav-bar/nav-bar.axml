@@ -2,12 +2,12 @@
 <import-sjs from="../../../utils/utils.sjs" name="utils" />
 
 <view class="box-sizing-box nav-wrap"
-    style="height: {{navbarHeight + statusBarHeight}}px; {{navbarData.noBackgroundColor ? 'background: none' : utils.isEmpty(navbarData.navBackgroundColor) ? 'background-color: white' : 'background-color' + navbarData.navBackgroundColor}};">
+    style="height: {{navbarHeight + statusBarHeight}}px; {{navbarData.noBackgroundColor ? 'background: none' : utils.isEmpty(navbarData.navBackgroundColor) ? 'background-color: white' : 'background-color:' + navbarData.navBackgroundColor}};">
     <view class="flex f-align-center box-sizing-box nav-back" style="height: {{navbarHeight}}px;"
         a:if="{{navbarData.showNavbarBack}}" catchtap="_bindNavBack">
         <image class="icon-back"
             style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"
-            src="{{utils.isEmpty(navbarData.navBackRes) ? '/images/icon_back_black.png' : navbarData.navBackRes}}">
+            src="{{utils.isEmpty(navbarData.navBackRes) ? '/assets/images/arrow-left.png' : navbarData.navBackRes}}">
         </image>
     </view>
     <view class="nav-title {{navbarData.titleLeft ? '' : 'center'}} {{navbarData.hideNavbarBack ? 'active' : ''}}"
