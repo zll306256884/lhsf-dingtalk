@@ -104,15 +104,19 @@ Component({
       let data2 = await this.getNextNode()
       console.log('data1', data1)
       console.log('data2', data2)
-      let obj = {
-        operatorsName: data2["auditUserNameList"][0],
-        operatorsContent: '进行审批',
-        content: '',
-        type: 99
+      let obj
+      if (data2["auditUserNameList"] && data2["auditUserNameList"].length) {
+        obj = {
+          operatorsName: data2["auditUserNameList"][0],
+          operatorsContent: '进行审批',
+          content: '',
+          type: 99
+        }
+        data1.push(obj)
       }
-      data1.push(obj)
       console.log('obj', obj)
       console.log('data1new', data1)
+
       this.setData({
         listData: data1
       });
