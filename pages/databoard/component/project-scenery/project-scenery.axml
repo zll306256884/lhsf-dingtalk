@@ -9,7 +9,7 @@
             </block>
             <block a:else>
               <!-- aspectFit scaleToFill -->
-              <image catchTap="_bindPreviewTap" data-index="{{index}}" data-url="{{item.url}}" class="imgShow" mode="aspectFit" src="{{item.url}}" />
+              <image catchTap="_bindPreviewTap"  data-previewindex="{{item.sn}}" data-index="{{index}}" data-url="{{item.url}}" class="imgShow" mode="aspectFit" src="{{item.url}}" />
             </block>
           </view>
           <view class="bottomNav flex f-between">

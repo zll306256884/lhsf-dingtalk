@@ -43,7 +43,7 @@
 
 .navbox{
   /* padding-top:74rpx; */
-  height: calc(100vh - 181rpx);
+  /* height: calc(100vh - 181rpx); */
   overflow: auto;
   /* background:pink; */
 }

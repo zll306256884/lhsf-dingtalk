@@ -84,6 +84,7 @@ Page({
 
   },
   pageNum: 1,
+  errorView: null,
   hasMore: false,
   isLoading: false,
 
@@ -227,30 +228,30 @@ Page({
     }
     console.log('param', param)
     // return
-    return new Promise((resolve, reject) => {
-      request.doPostRequest({
-        url: approvalServer.API_SELECT_LIST,
-        showLoading: false,
-        data: param,
-        success: res => {
-          console.log('res.data', res.data)
-          this.hasMore = isHasMore(res.data.records);
-          // let page = this.pageNum + 1
-          this.pageNum++
-          this.setData({
-            listData: res.data.records
-            // pageNum: page
-          });
-          resolve(res.data)
-        },
-        complete: res => {
-          this._loadDone(res);
-        },
-        fail: res => {
-          reject(res)
-        }
-      });
-    })
+    // return new Promise((resolve, reject) => {
+    request.doPostRequest({
+      url: approvalServer.API_SELECT_LIST,
+      showLoading: false,
+      data: param,
+      success: res => {
+        console.log('res.data', res.data)
+        this.hasMore = isHasMore(res.data.records);
+        // let page = this.pageNum + 1
+        this.pageNum++
+        this.setData({
+          listData: res.data.records || []
+          // pageNum: page
+        });
+        // resolve(res.data)
+      },
+      complete: res => {
+        this._loadDone(res);
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
+    // })
   },
   // 加载数据
   getMoreDataList() {
@@ -278,30 +279,30 @@ Page({
     }
     console.log('param', param)
     // return
-    return new Promise((resolve, reject) => {
-      request.doPostRequest({
-        url: approvalServer.API_SELECT_LIST,
-        showLoading: false,
-        data: param,
-        success: res => {
-          console.log('res.data', res.data)
-          this.hasMore = isHasMore(res.data.records);
-          this.pageNum++
-          this.setData({
-            // listData: res.data.records
-            listData: this.data.listData.concat(res.data.records) || []
-          });
-          console.log('listData数据总共：', this.data.listData)
-          resolve(res.data)
-        },
-        complete: res => {
-          this._loadDone(res);
-        },
-        fail: res => {
-          reject(res)
-        }
-      });
-    })
+    // return new Promise((resolve, reject) => {
+    request.doPostRequest({
+      url: approvalServer.API_SELECT_LIST,
+      showLoading: false,
+      data: param,
+      success: res => {
+        console.log('res.data', res.data)
+        this.hasMore = isHasMore(res.data.records);
+        this.pageNum++
+        this.setData({
+          // listData: res.data.records
+          listData: this.data.listData.concat(res.data.records) || []
+        });
+        console.log('listData数据总共：', this.data.listData)
+        // resolve(res.data)
+      },
+      complete: res => {
+        this._loadDone(res);
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
+    // })
 
     // let params = {
     //   asc: false,
