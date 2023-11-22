@@ -13,6 +13,13 @@
     </view>
   </view>
   <!--  -->
+  <view class="searchInput">
+    <input placeholder="请输入申请人" onChange="onChange" value="{{userName}}" className="search-bar" focusClassName="search-bar-focus" 
+      confirm-type="search" allowClear onConfirm="onConfirm">
+      <icon slot="prefix" type="SearchOutline" />
+    </input>
+  </view>
+  <!--  -->
   <view class="navbox">
     <view>
       <list header="" radius="{{ radius }}">
@@ -43,12 +50,8 @@
                   <block a:if="{{targetValue==3}}">
                     <view class="greenTypeBtn btnSize" a:if="{{targetValue==3}}">已办结</view>
                   </block>
-                  <!-- <view class="blueTypeBtn btnSize" a:if="{{item.type==3}}">审批中</view>
-                  <view class="greenTypeBtn btnSize" a:if="{{item.type==1}}">已办结</view>
-                  <view class="redTypeBtn btnSize" a:if="{{item.type==2}}">驳回</view> -->
-                  <!-- <view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view>
-                  <view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view>
-                  <view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已办结</view> -->
+                  <!--<view class="blueTypeBtn btnSize" a:if="{{item.type==3}}">审批中</view><view class="greenTypeBtn btnSize" a:if="{{item.type==1}}">已办结</view><view class="redTypeBtn btnSize" a:if="{{item.type==2}}">驳回</view> -->
+                  <!--<view class="blueTypeBtn btnSize" a:if="{{targetValue==1}}">审批中</view><view class="greenTypeBtn btnSize" a:if="{{targetValue==2}}">已办结</view><view class="redTypeBtn btnSize" a:if="{{targetValue==3}}">已办结</view> -->
                   <!--<view class="orangeTypeBtn btnSize">延期</view><view class="grayTypeBtn btnSize">未开始</view> -->
                 </view>
               </view>
