@@ -17,7 +17,6 @@ Page({
   ],
   projectId:"",
   id:"",
-  checked:false,
   contractAmount:"",//合同金额
   contractorName:'',//承包商名称
   applicationTime:"",//申请日期
@@ -39,7 +38,7 @@ Page({
     let date = new Date().toLocaleString()
           for (var i = 0; i < date.length; i++) {
             if (date[i] === '/') {
-              date = date.replace('/', '-') // 注意替换之后就变成新数组了
+              date = date.replace('/', '-') // 替换之后就变成新数组了
             }
           }
           this.data.applicationTime = date.substr(0,10)
@@ -60,7 +59,8 @@ Page({
     console.log(ref);
     this.form.addItem(ref);
   },
-  onChange(row){
+  onChange(row,e){
+    console.log(row,e);
     this.setData({
       adjust: row,
     })
@@ -170,9 +170,10 @@ request.doPostRequest({
       pricingTrial:res.data.pricingTrial,
       netAccountAmount:res.data.netAccountAmount,
       approveTotalPrice:res.data.approveTotalPrice,
-      adjust:res.data.adjust,
+      // adjust:res.data.adjust,
       investmentFileList:res.data.investmentFileList
     })
+    this.form.setFieldValue('adjust', res.data.adjust)
     const files= res.data.investmentFileList.map((item)=>{
       return {
         ...item,
