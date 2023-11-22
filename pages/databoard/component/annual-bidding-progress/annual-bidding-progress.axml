@@ -54,46 +54,56 @@
     </view>
 
     <block a:if="{{ listType === '1' }}">
-      <view class="list flex f-between" a:for="{{ docList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
-        <view class="flex f-start" style="align-items:center">
-          <image class="left-img" mode="aspectFit" src="{{item.img?item.img:'/assets/images/common/default-img.png'}}" />
-          <view class="center">
-            <view class="name">{{item.projectName}}</view>
-            <view class="flex f-between">
-              <view>
-                <view class="text">招标总额:</view>
-                <view class="number">{{item.tenderAmount || 0}}万元</view>
-              </view>
-              <view>
-                <view class="text">招标项:</view>
-                <view class="number">{{item.tenderNum || 0}}个</view>
+      <view a:if="{{ docList && docList.length }}">
+        <view class="list flex f-between" a:for="{{ docList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
+          <view class="flex f-start" style="align-items:center">
+            <image class="left-img" mode="aspectFit" src="{{item.img?item.img:'/assets/images/common/default-img.png'}}" />
+            <view class="center">
+              <view class="name">{{item.projectName}}</view>
+              <view class="flex f-between">
+                <view>
+                  <view class="text">招标总额:</view>
+                  <view class="number">{{item.tenderAmount || 0}}万元</view>
+                </view>
+                <view>
+                  <view class="text">招标项:</view>
+                  <view class="number">{{item.tenderNum || 0}}个</view>
+                </view>
               </view>
             </view>
           </view>
+          <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
         </view>
-        <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+      </view>
+      <view a:else class="flex f-center">
+        <image mode="scaleToFill" src="/assets/images/common/empty.png" style="width:133rpx;height:200rpx;margin:100rpx auto" />
       </view>
     </block>
 
     <block a:if="{{ listType === '2' }}">
-      <view class="list flex f-between" a:for="{{ conList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
-        <view class="flex f-start" style="align-items:center">
-          <image class="left-img" mode="aspectFit" src="{{item.img?item.img:'/assets/images/common/default-img.png'}}" />
-          <view class="center">
-            <view class="name">{{item.projectName}}</view>
-            <view class="flex f-between">
-              <view>
-                <view class="text">合同总额:</view>
-                <view class="number">{{item.contractAmount || 0}}万元</view>
-              </view>
-              <view>
-                <view class="text">合同数:</view>
-                <view class="number">{{item.contractNum || 0}}个</view>
+      <view a:if="{{ conList && conList.length }}">
+          <view class="list flex f-between" a:for="{{ conList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
+          <view class="flex f-start" style="align-items:center">
+            <image class="left-img" mode="aspectFit" src="{{item.img?item.img:'/assets/images/common/default-img.png'}}" />
+            <view class="center">
+              <view class="name">{{item.projectName}}</view>
+              <view class="flex f-between">
+                <view>
+                  <view class="text">合同总额:</view>
+                  <view class="number">{{item.contractAmount || 0}}万元</view>
+                </view>
+                <view>
+                  <view class="text">合同数:</view>
+                  <view class="number">{{item.contractNum || 0}}个</view>
+                </view>
               </view>
             </view>
           </view>
+          <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
         </view>
-        <image class="right-img" mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
+      </view>
+      <view a:else class="flex f-center">
+        <image mode="scaleToFill" src="/assets/images/common/empty.png" style="width:133rpx;height:200rpx;margin:100rpx auto" />
       </view>
     </block>
     
