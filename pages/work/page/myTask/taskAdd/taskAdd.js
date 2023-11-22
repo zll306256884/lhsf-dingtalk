@@ -78,7 +78,7 @@ Page({
     this.setData({
       executeUser: 
         data.map(e => {
-          return { userId: e.userId, username: e.username };
+          return { userId: e.userId, username: e.username,disabled:e.disabled };
         })
     });
     this.form.setFieldValue(
