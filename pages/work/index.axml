@@ -50,8 +50,8 @@
     <view class="task flex f-row f-between">
       <text class="task-title">我的审批</text>
       <view style="color:#606266;font-size:28rpx;" onTap="selectMoreApproval">
-      <text onTap="selectMoreApproval">查看更多</text>
-      <icon type="RightOutline" />
+        <text>查看更多</text>
+        <icon type="RightOutline" />
       </view>
     </view>
     <view class="card">
@@ -79,8 +79,8 @@
       <view class="task flex f-row f-between">
         <text class="task-title">我的任务</text>
         <view style="color:#606266;font-size:28rpx;" onTap="selectMoreTask">
-        <text onTap="selectMoreTask">查看更多</text>
-        <icon type="RightOutline" />
+          <text>查看更多</text>
+          <icon type="RightOutline" />
         </view>
       </view>
       <view class="card">
@@ -112,8 +112,8 @@
         <view class="task flex f-row f-between">
           <text class="task-title">我的请求</text>
           <view style="color:#606266;font-size:28rpx;" onTap="selectMoreQuery">
-          <text onTap="selectMoreQuery">查看更多</text>
-          <icon type="RightOutline" />
+            <text>查看更多</text>
+            <icon type="RightOutline" />
           </view>
         </view>
         <view class="card">

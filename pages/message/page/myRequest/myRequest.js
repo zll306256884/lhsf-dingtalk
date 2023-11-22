@@ -104,9 +104,9 @@ Page({
   },
   events: {
     onBack() {
-      ddUtils.navigateTo({
-        url: '/pages/work/index'
-      })
+      // ddUtils.navigateTo({
+      //   url: '/pages/work/index'
+      // })
     },
   },
   onReachBottom() {
