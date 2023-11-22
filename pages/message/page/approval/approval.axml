@@ -56,7 +56,7 @@
           </list-item>
         </block>
         <view a:else style="text-align:center">
-          <empty title="" message="" image="/assets/images/common/empty.png" />
+          <empty a:if="{{false}}" title="" message="" image="/assets/images/common/empty.png" />
         </view>
       </list>
     </view>
