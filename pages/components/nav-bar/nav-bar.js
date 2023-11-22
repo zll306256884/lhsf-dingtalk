@@ -61,10 +61,6 @@ Component({
     //组件创建完毕时触发
     //此时页面已经渲染，通常在这时请求服务端数据。
     didMount() {
-      my.setNavigationBar({
-        frontColor: '#000000',
-        backgroundColor: '#ffffff',
-      })
         app.getSystemInfo(res => {
             this.setData({
                 statusBarHeight: app.globalData.statusBarHeight,

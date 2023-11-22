@@ -69,8 +69,11 @@ Component({
           let list = res.data || [];
           list[0].isCheck = true;
           if (!isEmptyArray(list))
+            // this.setData({
+            //   dataList: list
+            // });
             this.setData({
-              dataList: list
+              dataList: this.ergodic(list, this.data.selectedStaff)
             });
         }
       });
@@ -117,9 +120,13 @@ Component({
         success: res => {
           let list = res.data || [];
           if (!isEmptyArray(list)) list[0].isCheck = true;
-          if (this.data.selectedStaff.length !== 0) {
+          if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
             this.setData({
               dataList: this.ergodic(list, this.data.selectedStaff)
+            });
+          }else{
+            this.setData({
+              dataList: list
             });
           }
         }
@@ -218,11 +225,12 @@ Component({
         selectedStaff: defaultList
       });
       this.chooseList = [];
-      if (defaultList.length !== 0) {
-        this.setData({
-          dataList: this.ergodic(this.data.dataList, defaultList)
-        });
-      }
+      this.getDate()
+      // if (defaultList.length !== 0) {
+      //   this.setData({
+      //     dataList: this.ergodic(this.data.dataList, defaultList)
+      //   });
+      // }
     },
     ergodic(list, selected) {
       const newList = list.map(item => {
