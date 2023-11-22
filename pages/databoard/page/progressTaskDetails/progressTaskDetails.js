@@ -134,5 +134,9 @@ Page({
 
     }
   },
+  // 点击文件下载
+  uploadThis(e){
+    console.log(e.currentTarget.dataset.item)
+  }
   // 
 });
