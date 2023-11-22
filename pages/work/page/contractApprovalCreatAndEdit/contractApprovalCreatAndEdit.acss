@@ -47,3 +47,22 @@
 .ant-button-default{
   box-shadow:none
 }
+.ant-picker-value-text{
+  color:#000
+}
+.ant-input-placeholder{
+  font-size: 30rpx;
+}
+.f-item{
+  font-size: 28rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+}
+.ant-input-disabled .ant-input-content{
+  color:black;
+  opacity: 1;
+}
+.ant-input-content{
+  opacity: 1 !important;
+}
