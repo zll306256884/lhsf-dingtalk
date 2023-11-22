@@ -27,15 +27,10 @@ Component({
     scrollHeight: 0,
     dataList: []
   },
-
   //组件创建时触发
   onInit() {},
-
   //组件创建时和更新前触发
   deriveDataFromProps(nextProps) {},
-
-  //组件创建完毕时触发
-  //此时页面已经渲染，通常在这时请求服务端数据。
   didMount() {
     app.getSystemInfo(res => {
       this.setData({
@@ -46,20 +41,9 @@ Component({
     this.getDate();
     this.chooseList = [];
   },
-  //组件更新完毕时触发
-  //每次组件数据变更的时候都会调用。
   didUpdate(prevProps, prevData) {},
-
-  //组件删除时触发
-  //每当组件实例从页面卸载的时候都会触发此回调。
   didUnmount() {},
-
-  //组件 js 代码抛出错误时触发
   onError(e) {},
-
-  /**
-   * 组件的方法列表
-   */
   methods: {
     getDate() {
       request.doPostRequest({
@@ -70,7 +54,7 @@ Component({
           list[0].isCheck = true;
           if (!isEmptyArray(list))
             this.setData({
-              dataList: list
+              dataList: this.ergodic(list, this.data.selectedStaff)
             });
         }
       });
@@ -84,8 +68,11 @@ Component({
     //bind sure tap
     _bindSureTap: function(e) {
       if (isEmptyArray(this.chooseList)) return;
-
-      this.props.onScreenCallBack(this.chooseList);
+      let newList =arr=>{
+        let list = [];
+        return arr.filter(item => !list.includes(item.userId) && list.push(item.userId))
+      }
+      this.props.onScreenCallBack(newList(this.chooseList));
       this._hideDialog();
     },
 
@@ -117,9 +104,13 @@ Component({
         success: res => {
           let list = res.data || [];
           if (!isEmptyArray(list)) list[0].isCheck = true;
-          if (this.data.selectedStaff.length !== 0) {
+          if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
             this.setData({
               dataList: this.ergodic(list, this.data.selectedStaff)
+            });
+          }else{
+            this.setData({
+              dataList: list
             });
           }
         }
@@ -142,7 +133,6 @@ Component({
     },
 
     _bindItemChooseUserChange: function(indexArray) {
-      console.log(indexArray);
       if (isEmptyArray(indexArray)) return;
       indexArray.reverse();
       let list = JSON.parse(JSON.stringify(this.data.dataList));
@@ -218,11 +208,7 @@ Component({
         selectedStaff: defaultList
       });
       this.chooseList = [];
-      if (defaultList.length !== 0) {
-        this.setData({
-          dataList: this.ergodic(this.data.dataList, defaultList)
-        });
-      }
+      this.getDate()
     },
     ergodic(list, selected) {
       const newList = list.map(item => {

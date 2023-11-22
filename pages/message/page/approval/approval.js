@@ -67,14 +67,15 @@ Page({
           },
         ],
       },
-      {
-        label: "申请人",
-        value: "",
-        prop: "userName",
-        type: 'input'
-      },
+      // {
+      //   label: "申请人",
+      //   value: "",
+      //   prop: "userName",
+      //   type: 'input'
+      // },
     ],
     listData: [],//获取列表数据
+    userName: '',//申请人
     funnelParam: {//漏斗参数
       belongModule: '',
       userName: '',
@@ -113,8 +114,8 @@ Page({
   },
   onBindSureTap(data) {
     console.log('漏斗的参数', data);
-    let userName = data[1].value;
-    console.log('申请人', userName);
+    // let userName = data[1].value;
+    // console.log('申请人', userName);
     // let belongModule = data.options[0].value[0].id
     console.log('data[0].option', data[0].option)
     var belongModule = []
@@ -130,19 +131,10 @@ Page({
       })
       return
     }
-    // var belongModule = data[0].option[0].id
-
-    // console.log('belongModule', belongModule)
-    // console.log('userName', userName)
-
-    // let param ={
-    //   belongModule:
-    // }
-    // return
     this.pageNum = 1
     this.setData({
-      'funnelParam.belongModule': belongModule[0],
-      'funnelParam.userName': userName,
+      'funnelParam.belongModule': belongModule[0]
+      // 'funnelParam.userName': userName,
     });
     this.onDialog(false)
     this.getList()
@@ -171,9 +163,9 @@ Page({
   events: {
     // 返回的时候  不需要多层
     onBack() {
-      ddUtils.navigateTo({
-        url: '/pages/work/index'
-      })
+      // ddUtils.navigateTo({
+      //   url: '/pages/work/index'
+      // })
     },
   },
   onReady() {
@@ -194,6 +186,20 @@ Page({
     this.setData({
       targetValue: targetValue
     });
+    this.getList()
+  },
+  // 任务名称搜索
+  onChange(value) {
+    this.setData({
+      userName: value
+    })
+  },
+  // 搜索确认
+  onConfirm(value) {
+    this.setData({
+      userName: value
+    })
+    this.pageNum = 1
     this.getList()
   },
   //判断是否为空
@@ -225,7 +231,9 @@ Page({
       // "belongModule": this.data.options[0].value,//事项类型
       // "userName": this.data.options[1].value,//申请人
       "showType": this.data.targetValue, //状态
-      ...this.data.funnelParam
+      'belongModule': this.data.funnelParam.belongModule,
+      'userName': this.data.userName,
+      // ...this.data.funnelParam
     }
     console.log('param', param)
     // return

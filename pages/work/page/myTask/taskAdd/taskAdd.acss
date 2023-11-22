@@ -16,6 +16,15 @@ background: #fff;
 .ant-form-item-field{
   display: block;
 }
+/* .ant-input-disabled{
+  opacity: 1;
+}
+.ant-input-disabled .ant-input-content{
+  color:red;
+  font-weight:600;
+  background:rgba(255, 255, 255, 1)
+
+} */
  .ant-picker-value-text{
    color:#000
  }

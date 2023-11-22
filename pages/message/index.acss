@@ -3,6 +3,9 @@
   /* padding: 12px; */
 
 }
+.ant-tabs-bar-underline{
+ border-bottom: none;
+}
 .content_text{
   margin-top: 16rpx;
 background: #FFFFFF;
