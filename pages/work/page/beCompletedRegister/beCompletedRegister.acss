@@ -2,7 +2,13 @@
   padding: 0 0;
   width: 100%;
 }
-
+.ant-input-content{
+  text-align: right;
+  font-size: 28rpx;
+}
+.ant-radio-group-horizontal .ant-radio-group-body{
+  justify-content: flex-end;
+}
 .field-cell {
   margin: 0;
   padding: 30rpx 30rpx;

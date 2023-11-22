@@ -17,7 +17,7 @@
     line-height: 48rpx;
     font-size: 32rpx;
     font-weight: 400;
-    color: #323233; 
+    color: rgb(82, 89, 102); 
 }
 
 .field-input-layout .value {
