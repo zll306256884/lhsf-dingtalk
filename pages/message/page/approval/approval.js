@@ -171,9 +171,9 @@ Page({
   events: {
     // 返回的时候  不需要多层
     onBack() {
-      ddUtils.navigateTo({
-        url: '/pages/work/index'
-      })
+      // ddUtils.navigateTo({
+      //   url: '/pages/work/index'
+      // })
     },
   },
   onReady() {
