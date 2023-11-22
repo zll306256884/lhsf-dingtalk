@@ -1,16 +1,20 @@
 .container {}
 
-.container .title {
+#baseinfo .title {
   width: 750rpx;
-  height: 100rpx;
+  /* height: 100rpx; */
   /* margin-top: 50rpx; */
-  padding: 52rpx 32rpx 16rpx 32rpx;
+  padding: 32rpx 32rpx 16rpx 20rpx;
   font-size: 28rpx;
   color: #969799;
   line-height: 32rpx;
 }
 
-.container .list{
+#baseinfo .list{
   padding: 0 0 0 10rpx;
   background-color: #fff;
+}
+
+#baseinfo .margin-b20{
+  margin-bottom: 20rpx;
 }
