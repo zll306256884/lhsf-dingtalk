@@ -127,16 +127,21 @@
             <view class="flex f-between list-item" a:for="{{listData.annexFile}}" a:for-item="fileItem" catchTap="uploadThis" 
               data-item={{fileItem}}>
               <view class="flex f-start" style="align-items:center">
-                <image a:if="{{ fileItem.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" 
-                  style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-                <image a:if="{{ fileItem.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" 
-                  style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-                <image a:if="{{ fileItem.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1}}" mode="scaleToFill" 
-                  src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-                <!--<image a:if="{{ fileItem.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" 
-                  src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" /> -->
+                <block a:if="{{ fileItem.type==='pdf' }}">
+                  <image mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+                </block>
+                <block a:if="{{ fileItem.type==='ppt' }}">
+                  <image mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+                </block>
+                <block a:if="{{ fileItem.type==='png'}}">
+                  <image mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+                </block>
+                <block a:if="{{  fileItem.type==='doc' ||  fileItem.type==='docx'}}">
+                  <!-- {{fileItem.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}} -->
+                  <image mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+                </block>
                 <view>
-                  <view class="name">{{fileItem.fileName|| '-'}}</view>
+                  <view class="name">{{fileItem.name|| '-'}}</view>
                   <view class="size">{{fileItem.size || '-'}}</view>
                 </view>
               </view>
