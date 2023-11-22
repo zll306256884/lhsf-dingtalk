@@ -1,6 +1,8 @@
 {
   "defaultTitle": "",
   "usingComponents": {
+    "icon": "antd-mini/es/Icon/index",
+    "input": "antd-mini/es/Input/index",
     "approval-item": "/pages/components//approval-item/approval-item",
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
     "sub-tab":"/pages/components/sub-tab/sub-tab",
