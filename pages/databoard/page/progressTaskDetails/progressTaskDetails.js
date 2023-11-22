@@ -42,8 +42,29 @@ Page({
         data: param,
         success: res => {
           res.data.annexFile = JSON.parse(res.data.annexFile)
-          console.log('res.data', res.data)
+
+          res.data.annexFile.map((item) => {
+            if (item.url.indexOf('.pdf') > -1) {
+              item.type = 'pdf'
+            }
+            if (item.url.indexOf('.ppt') > -1) {
+              item.type = 'ppt'
+            }
+            if (item.url.indexOf('.png') > -1) {
+              item.type = 'png'
+            }
+            if (item.url.indexOf('.jpg') > -1) {
+              item.type = 'jpg'
+            }
+            if (item.url.indexOf('.doc') > -1) {
+              item.type = 'doc'
+            }
+            if (item.url.indexOf('.docx') > -1) {
+              item.type = 'docx'
+            }
+          })
           res.data.responsible = JSON.parse(res.data.responsible)
+          console.log('res.data', res.data)
           this.setData({
             listData: res.data
           });
@@ -135,8 +156,9 @@ Page({
     }
   },
   // 点击文件下载
-  uploadThis(e){
+  uploadThis(e) {
     console.log(e.currentTarget.dataset.item)
+
   }
   // 
 });
