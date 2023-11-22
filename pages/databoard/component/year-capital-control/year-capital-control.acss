@@ -86,13 +86,13 @@ opacity: 1;
 .pay-text{
   margin-top:8rpx;
   font-size: 24rpx;
-  width: 304rpx;
+  width: 314rpx;
   color: #909399;
 font-weight: 400;
 }
 .cont-tabs{
   padding: 0 6rpx;
-  width: 220rpx;
+  width: 210rpx;
   height: 72rpx;
   align-items: center;
   text-align: center;
