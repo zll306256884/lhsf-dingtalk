@@ -336,7 +336,7 @@ Component({
                               title: 'errorCode：' + res.error + ',' + res.errorMessage
                             });
                           },
-                          complete: () => { },
+                          complete: () => {},
                         });
           
                       },

@@ -92,7 +92,7 @@ font-weight: 400;
 .cont-tabs{
   margin-bottom: 20rpx;
   padding: 0 6rpx;
-  width: 492rpx;
+  width: 480rpx;
   height: 72rpx;
   align-items: center;
   text-align: center;
