@@ -11,7 +11,9 @@
       <view onTap="chooseDate">
       <form-date-picker  format="YYYY-MM-DD HH:mm:ss" arrow disabled label="截止时间" name="endTime" placeholder="请选择" ref="handleRef" />
       </view>
-      <form-input label="执行人员" name="executer_dictText" placeholder="请选择"  onFocus="chooseExecuter" ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+      <view onTap="chooseExecuter">
+      <form-input disabled label="执行人员" name="executer_dictText" placeholder="请选择" ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+      </view>
       <form-textarea label="任务描述"  name="remark" placeholder="请输入" maxLength="300" position="vertical"  autoHeight ref="handleRef"/>
     <view class="form-card">
       <view class="form-title">附件信息</view>

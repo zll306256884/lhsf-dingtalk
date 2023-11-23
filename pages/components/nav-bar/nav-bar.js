@@ -11,7 +11,7 @@ Component({
     data: {
       navbarData: {
         title: "小程序",
-        showNavbarBack:true,
+        showNavbarBack:false,
         titleColor: "#333333",
         navBackgroundColor: "white",
         navBackRes: "/assets/images/arrow-left.png",
