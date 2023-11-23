@@ -13,17 +13,31 @@
   label="标题"
   name="title"
   disabled
+  placeholder="自动生成"
   ref="handleRef" />
 
-<view catchTap="chooseProject">
+<!-- <form-item a:if="{{projectName}}" label="项目名称" name="projectName" required >
+  <view class="choose" catchTap="chooseProject"> {{projectName?projectName:'请选择'}} <icon type="RightOutline" /></view>
+</form-item>
+
+<view a:else catchTap="chooseProject">
   <form-input
   label="项目名称"
   name="projectName"
   placeholder="请选择"
   disabled
   ref="handleRef" />
-</view>
+</view> -->
 
+<view catchTap="chooseProject">
+  <form-picker
+    label="项目名称"
+    arrow
+    disabled
+    name="projectId"
+    options="{{projectListOptions}}"
+    ref="handleRef" />
+</view>
 
 <form-input
   label="招标名称"
@@ -41,12 +55,24 @@
   maxLength="10"
   ref="handleRef" />
 
-  <view catchTap="chooseTenderingAgency">
+  <!-- <view catchTap="chooseTenderingAgency">
     <form-input
     label="招标代理单位"
     placeholder="请选择"
     labelWidth="220rpx"
     name="tenderingAgencyName"
+    disabled
+    ref="handleRef" />
+  </view> -->
+
+  <view catchTap="chooseTenderingAgency">
+    <form-picker
+    label="招标代理单位"
+    placeholder="请选择"
+    labelWidth="220rpx"
+    arrow
+    name="tenderingAgency"
+    options="{{tenderingAgencyOptions}}"
     disabled
     ref="handleRef" />
   </view>
@@ -114,6 +140,20 @@
   <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
 </view>
 
+<!-- <form-item a:if="{{countersignLeader_dictText}}" label="选择会签分管领导" name="projectName" required >
+  <view class="f-item" catchTap="chooseLeader"> {{countersignLeader_dictText?countersignLeader_dictText:'请选择'}} <icon type="RightOutline" /></view>
+</form-item>
+
+<view a:else catchTap="chooseLeader">
+  <form-input
+  label="选择会签分管领导"
+  labelWidth="290rpx"
+  name="countersignLeader"
+  placeholder="请输入"
+  disabled
+  ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+</view> -->
+
 <view catchTap="chooseLeader">
   <form-input
   label="选择会签分管领导"
@@ -121,8 +161,12 @@
   name="countersignLeader_dictText"
   placeholder="请输入"
   disabled
-  ref="handleRef" />
+  ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
 </view>
+
+<!-- <form-item a:if="{{applicationTime}}" label="项目名称" name="projectName" required >
+  <view class="f-item" catchTap="chooseTime"> {{applicationTime?applicationTime:'请选择'}} <icon type="RightOutline" /></view>
+</form-item> -->
 
 <view catchTap="chooseTime">
   <form-input
@@ -132,7 +176,7 @@
     placeholder-class="placeholderClassName"
     placeholder-style="color:#000;opacity:1;"
     disabled
-    ref="handleRef" />
+    ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
   <!-- <layout-field-cell borderBottom name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="chooseTime"></layout-field-cell> -->
 </view>
 

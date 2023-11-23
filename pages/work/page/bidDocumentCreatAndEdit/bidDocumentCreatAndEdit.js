@@ -21,12 +21,14 @@ Page({
     decisionBasisOptions: [],
     projectListOptions: [],
     ecologicalListOptions: [],
-    tenderingAgency: '',
+    tenderingAgencyName: '',
     countersignLeader: '',
     tenderDocumentList: [],
     otherDocumentList: [],
     projectId: null,
-    applicationTime: formatTimeToDay(new Date())
+    projectName: '',
+    applicationTime: formatTimeToDay(new Date()),
+    tenderingAgencyOptions: [],
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -38,9 +40,9 @@ Page({
   onLoad(options) {
     this.form.rules = {
       tenderName: [{ required: true, message: '请输入' }],
-      projectName: [{ required: true, message: '请选择' }],
+      projectId: [{ required: true, message: '请选择' }],
       biddingPerson: [{ required: true, message: '请输入' }],
-      tenderingAgencyName: [{required: true, message: '请选择'}],
+      tenderingAgency: [{required: true, message: '请选择'}],
       biddingType: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       tenderAmount: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/   }],
@@ -60,6 +62,7 @@ Page({
     }
     this.getCodeList()
     this.getProjectList()
+    this.getEcological()
   },
   handleRef(ref) {
     console.log(ref)
@@ -100,17 +103,20 @@ Page({
     console.log(data)
     this.form.setFieldValue('countersignLeader_dictText', data.map(e => e.username).toString());
     // this.form.setFieldValue('countersignLeader', data.map(e => e.userId).toString());
+    // this.form.getFieldValue('countersignLeader')
     this.setData({
       countersignLeader: data.map(e => e.userId).toString()
+      // countersignLeader_dictText: data.map(e => e.username).toString()
     })
   },
   bindScreenQuesFromCallBack(data){
     console.log("单位", data)
-    this.form.setFieldValue('tenderingAgencyName', data.name);
+    // this.form.setFieldValue('tenderingAgencyName', data.name);
     this.setData({
-      tenderingAgency: data.id
+      // tenderingAgency: data.id,
+      tenderingAgencyName: data.name
     })
-    // this.form.setFieldValue('tenderingAgency', data.id);
+    this.form.setFieldValue('tenderingAgency', data.id);
   },
   bindPickerDateCannBack(data){
     this.setData({
@@ -120,14 +126,15 @@ Page({
   },
   changeTenderName(data){
     console.log(data);
-    let projectName = this.form.getFieldValue('projectName')
-    this.form.setFieldValue('title', projectName+data)
+    // let projectName = this.form.getFieldValue('projectName')
+    this.form.setFieldValue('title', this.data.projectName+data)
   },
   bindChooseProjectCallBack(data){
     console.log(data)
-    this.form.setFieldValue('projectName',data.name)
+    this.form.setFieldValue('projectId',data.id)
     this.setData({
       projectId: data.id,
+      projectName: data.name
     })
     let tenderName = this.form.getFieldValue('tenderName') || ''
     this.form.setFieldValue('title', data.name+tenderName)
@@ -175,9 +182,10 @@ Page({
           ...fields,
         })
         this.setData({
-          tenderingAgency: paramsdata.tenderingAgency,
+          tenderingAgencyName: paramsdata.tenderingAgencyName,
           countersignLeader: paramsdata.countersignLeader,
-          projectId: paramsdata.projectId
+          projectName: paramsdata.projectName,
+          applicationTime: paramsdata.startDate
         })
         setTimeout(() => {
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
@@ -232,8 +240,8 @@ Page({
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
-    params.projectId = this.data.projectId
-    params.tenderingAgency = this.data.tenderingAgency
+    params.projectName = this.data.projectName
+    params.tenderingAgencyName = this.data.tenderingAgencyName
     params.countersignLeader = this.data.countersignLeader
     request.doPostRequest({
       url: projectService.API_TENDERDOCUMENT_TEMPORARYSTORAGE,
@@ -259,9 +267,9 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
-    params.projectId = this.data.projectId
+    params.projectName = this.data.projectName
     // params.urlParameter = JSON.stringify({}),
-    params.tenderingAgency = this.data.tenderingAgency
+    params.tenderingAgencyName = this.data.tenderingAgencyName
     params.countersignLeader = this.data.countersignLeader
     // params.applicationTime = "2023-11-01 00:00:00"
     // params.fileList = []
@@ -342,6 +350,25 @@ Page({
         console.log(res.data)
         this.setData({
           decisionBasisOptions: res.data || []
+        })
+      }
+    })
+  },
+  getEcological(){
+    request.doPostRequest({
+      url: projectService.API_GET_UNIT_BIDING,
+      data: {
+        pageSize: 9999,
+        pageNum: 1,
+        auditStatus: 3
+      },
+      success: res => {
+        res.data.records.forEach(e => {
+          e.label = e.name
+          e.value = e.id
+        })
+        this.setData({
+          tenderingAgencyOptions: res.data.records || []
         })
       }
     })
