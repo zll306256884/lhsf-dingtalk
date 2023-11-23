@@ -1,5 +1,5 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
+<view class="container" id="addLog">
   <form onSubmit="logAddSubmit">
     <view class="containerinner">
       <view class="title" a:if="{{ false }}">项目信息</view>
@@ -17,8 +17,7 @@
         showPopver="">
       </layout-field-cell>
       <layout-field-cell name="日志内容" mustFill value=" " hidden="{{false}}"></layout-field-cell>
-      <textarea class="reason" name="logContent" maxlength="300" value="{{logContent}}" placeholder="请输入内容" placeholder-class="placeholder-class" 
-        style="margin:0 30rpx;">
+      <textarea class="reason" name="logContent" maxlength="300" value="{{logContent}}" placeholder="请输入内容" placeholder-class="placeholder-class">
       </textarea>
     </view>
     <!--  -->

@@ -53,3 +53,10 @@
   opacity: 1;
   color: #FFFFFF;
 }
+
+#addLog .reason{
+  line-height: 40rpx;
+  height: 200rpx;
+  margin:0 30rpx;
+  /* padding: 20rpx 0; */
+} 

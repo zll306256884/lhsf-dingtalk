@@ -1,31 +1,27 @@
 
-.container {
-  padding-top: 16rpx;
-  padding-bottom: 52rpx;
-}
 
-.container .containerinner {
-  display: block;
+#progressDetail{
   background: #fff;
-  margin: 16rpx 24rpx;
+  margin: 24rpx 24rpx;
   padding: 32rpx;
   border-radius: 16rpx;
+  padding-bottom: 52rpx;
 }
 
 /* 头部 */
 
-.headerBox {
+#progressDetail .headerBox {
   padding-bottom: 24rpx;
   border-bottom: 1rpx solid #E4E7ED;
 }
 
 
-.headerBox .top {
+#progressDetail .headerBox .top {
   height: 48rpx;
   /* background-color: pink; */
 }
 
-.top .titke-icon {
+#progressDetail .top .titke-icon {
   width: 46rpx;
   height: 46rpx;
   display: inline-block;
@@ -35,7 +31,7 @@
   border: 3rpx solid #FFFFFF; */
 }
 
-.top .title {
+#progressDetail .top .title {
   /* width: 128rpx; */
   height: 46rpx;
   font-size: 32rpx;
@@ -45,7 +41,7 @@
   margin-left: 15rpx;
 }
 
-.top .time {
+#progressDetail .top .time {
   /* width: 306rpx; */
   height: 46rpx;
   font-size: 24rpx;
@@ -54,7 +50,7 @@
 }
 
 /*里程碑  */
-.lcb {
+#progressDetail .lcb {
   width: 638rpx;
   height: 64rpx;
   background: #F8F9FA;
@@ -64,11 +60,11 @@
   padding: 16rpx 24rpx;
 }
 
-.lcb .left {
+#progressDetail .lcb .left {
   border-right: 1px solid #DCDFE6;
 }
 
-.lcb .left .has {
+#progressDetail .lcb .left .has {
   width: 40rpx;
   height: 40rpx;
   border-radius: 0rpx 0rpx 0rpx 0rpx;
@@ -77,7 +73,7 @@
 
 }
 
-.lcb .left .name {
+#progressDetail .lcb .left .name {
   height: 40rpx;
   font-size: 24rpx;
   color: #606266;
@@ -86,9 +82,9 @@
 
 }
 
-.lcb .right {}
+#progressDetail .lcb .right {}
 
-.lcb .right .part {
+#progressDetail .lcb .right .part {
   height: 40rpx;
   font-size: 24rpx;
   color: #606266;
@@ -96,7 +92,7 @@
   margin-right: 20rpx;
 }
 
-.lcb .right .part .spotGreen {
+#progressDetail .lcb .right .part .spotGreen {
   width: 12rpx;
   height: 12rpx;
   background: #00B42A;
@@ -106,7 +102,7 @@
   margin: 7px;
 }
 
-.lcb .right .part .spotOrange {
+#progressDetail .lcb .right .part .spotOrange {
   width: 12rpx;
   height: 12rpx;
   background: #FF7D00;
@@ -116,7 +112,7 @@
   margin: 7px;
 }
 
-.lcb .right .part .spotBlue {
+#progressDetail .lcb .right .part .spotBlue {
   width: 12rpx;
   height: 12rpx;
   background: #1A6AFF;
@@ -128,7 +124,7 @@
 
 
 /* 列表 */
-.listBox {
+#progressDetail .listBox {
   padding-top: 24rpx;
 }
 
