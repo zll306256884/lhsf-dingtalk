@@ -105,6 +105,7 @@ bindChooseProjectCallBack: function (data) {
     contractorName:''
   });
   this.form.setFieldValue('projectName',data.name)
+  this.form.setFieldValue('projectId',data.id)
   this.form.setFieldValue('contractName','')
   this.form.setFieldValue('contractAmount','')
   this.form.setFieldValue('contractorName','')
@@ -139,6 +140,7 @@ bindChooseContractCallBack: function (data) {
     contractId:data.contractId
   });
   this.form.setFieldValue('contractName',data.contractName)
+  this.form.setFieldValue('contractId',data.contractId)
   this.form.setFieldValue('contractAmount',data.contractAmount)
   this.form.setFieldValue('contractorName',data.unitPartyName)
   request.doPostRequest({
@@ -200,6 +202,8 @@ request.doPostRequest({
     })
     this.form.setFieldValue('projectName', res.data.projectName)
     this.form.setFieldValue('contractName', res.data.contractName)
+    this.form.setFieldValue('projectId', res.data.projectId)
+    this.form.setFieldValue('contractId', res.data.contractId)
     this.form.setFieldValue('contractAmount', res.data.contractAmount)
     this.form.setFieldValue('contractorName', res.data.contractorName)
     this.form.setFieldValue('applicationTime', res.data.applicationTime)
@@ -221,8 +225,8 @@ request.doPostRequest({
 },
 async submit(){
   const params = await this.form.submit();
-  params.projectId = this.data.projectId
-  params.contractId = this.data.contractId
+  params.projectId = this.data.projectData.id,
+  params.contractId = this.data.contractData.contractId,
   params.id= this.data.id?this.data.id:''
   params.applicationTime=this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':''
   params.vueUrl= 'completed'
