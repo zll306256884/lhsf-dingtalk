@@ -179,7 +179,7 @@
     ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
   <!-- <layout-field-cell borderBottom name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="chooseTime"></layout-field-cell> -->
 </view>
-
+<view class="bottom-space" style="height:150rpx"></view>
 <view class="buttons flex f-between">
   <button class="btn" onTap="reset">取消</button>
   <button class="btn" onTap="staging">暂存</button>

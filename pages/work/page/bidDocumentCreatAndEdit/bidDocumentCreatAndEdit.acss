@@ -7,6 +7,10 @@
   border-top: 1px solid #DBDADF;
   padding: 16rpx 18rpx;
   margin-top: 16rpx;
+  width: 718rpx;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
 }
 /* .container{
   padding-top: 16rpx;
@@ -66,7 +70,8 @@ input:disabled, input[disabled]{ -webkit-opacity:1; opacity: 1; color: red; }
   opacity: 1;
 }
 .ant-picker-value-text{
-  color:#000
+  font-size: 28rpx;
+  color: #323233;
 }
 .ant-input-placeholder{
   font-size: 28rpx;
@@ -83,4 +88,7 @@ input:disabled, input[disabled]{ -webkit-opacity:1; opacity: 1; color: red; }
 }
 .ant-input-content{
   opacity: 1 !important;
+}
+.ant-picker-value-placeholder{
+  font-size: 28rpx;
 }

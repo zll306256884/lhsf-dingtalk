@@ -104,7 +104,7 @@ Page({
         if (res.confirm) {
           request.doPostRequest({
             url: workService.API_JFLOWAUDIT_SELET_INFO,
-            data: {keyId: this.data.contractId},
+            data: {keyId: this.data.tenderId},
             success: res => {
               console.log(res.data)
               let params = {
