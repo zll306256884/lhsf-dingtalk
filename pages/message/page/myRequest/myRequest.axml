@@ -26,7 +26,7 @@
         <view class="request-name">{{item.title}}</view>
         <view class="request-time">{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</view>
       </view>
-      <view a:if="{{ item.tagType === 2 }}" class="request-status">
+      <view a:if="{{ tabIndex===0 && item.tagType === 2 }}" class="request-status">
         已驳回
       </view>
     </view>

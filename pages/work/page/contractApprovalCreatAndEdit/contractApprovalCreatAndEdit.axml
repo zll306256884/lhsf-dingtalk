@@ -8,13 +8,11 @@
   ref="handleRef" />
 
 <view catchTap="chooseProject">
-  <form-picker
+  <form-input
   label="项目名称"
-  name="projectId"
+  name="projectName"
   placeholder="请选择"
   disabled
-  arrow
-  options="{{projectListOptions}}"
   ref="handleRef" />
 </view>
 
@@ -115,25 +113,21 @@
   ref="handleRef" />
 
 <view catchTap="chooseUnit">
-  <form-picker
+  <form-input
   label="建设单位(甲方)"
   labelWidth="280rpx"
-  name="developmentOrganization"
+  name="developmentOrganizationName"
   placeholder="请选择"
   disabled
-  arrow
-  options="{{developmentOrganizationOptions}}"
   ref="handleRef" />
 </view>
   
 <view catchTap="chooseEcologicalUnit">
-  <form-picker
+  <form-input
   label="乙方单位"
-  name="unitParty"
+  name="unitPartyName"
   placeholder="请选择"
   disabled
-  arrow
-  options="{{unitPartyOptions}}"
   ref="handleRef" />
 </view>
   
@@ -151,12 +145,11 @@
     <list-item>
       <view class="flex f-between" data-index="{{index}}" catchTap="chooseThirdParty">
         <view> {{list[index].label1}} </view>
-        <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" disabled /> -->
-        <picker disabled slot="extra" options="{{developmentOrganizationOptions}}" value="{{list[index].thirdParty}}" data-index="{{index}}" onVisibleChange="chooseUnitType"><icon slot="suffix" type="RightOutline" /></picker>
+        <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" disabled />
       </view>
     </list-item>
     <list-item> {{list[index].label2}} 
-      <picker slot="extra" options="{{unitTypeOption}}" value="{{list[index].thirdPartyType}}" data-index="{{index}}" onVisibleChange="chooseUnitType" onOk="chooseUnitTypeCallBack"><icon slot="suffix" type="RightOutline" /></picker>
+      <picker slot="extra" options="{{unitTypeOption}}" value="{{list[index].thirdPartyType}}" data-index="{{index}}" onVisibleChange="chooseUnitType" onOk="chooseUnitTypeCallBack"></picker>
     </list-item>
     <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item>
   </list>
@@ -243,7 +236,7 @@
   ref="handleRef" />
 </view>
   
-  <!-- <view class="bottom-space"></view> -->
+  <view class="bottom-space" style="height:150rpx"></view>
 
   <view class="buttons flex f-between">
     <button class="btn" onTap="reset">取消</button>

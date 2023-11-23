@@ -81,6 +81,7 @@
 .approve-btn{
   border-top: 1px solid #DBDADF;
   padding: 16rpx;
+  background: #fff;
 }
 .approve-btn .btn{
   width: 227rpx;

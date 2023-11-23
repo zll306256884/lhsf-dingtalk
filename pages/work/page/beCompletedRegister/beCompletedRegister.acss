@@ -2,6 +2,9 @@
   padding: 0 0;
   width: 100%;
 }
+.ant-input-placeholder{
+  font-size: 30rpx;
+}
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;

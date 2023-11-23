@@ -3,8 +3,14 @@ import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
+import { formatTimeToDay } from "../../../../utils/utils";
+
 Page({
-  form: new Form(),
+  form: new Form({
+    initialValues: {
+      applicationTime: formatTimeToDay(new Date())
+    },
+  }),
   data: {
     navbarData: {
       title: "竣工结算登记",
@@ -16,6 +22,7 @@ Page({
     { value: 2, label: '核增' },
   ],
   projectId:"",
+  contractId:'',
   id:"",
   contractAmount:"",//合同金额
   contractorName:'',//承包商名称
@@ -54,6 +61,17 @@ Page({
      }else{
        this.data.navbarData.title = '新增竣工结算登记'
      }
+     this.form.rules = {
+      projectName: [{ required: true, message: '请选择项目名称' }],
+      contractName: [{ required: true, message: '请选择合同名称' }],
+      contractAmount: [{ required: true, message: '请输入' }],
+      contractorName: [{ required: true, message: '请选择承包商名称' }],
+      adjust: [{ required: true, message: '请选择核增或核减' }],
+      applicationTime: [{ required: true, message: '请选择' }],
+      pricingTrial: [{ required: true, message: '请输入送审定价' }],
+      netAccountAmount: [{ required: true, message: '请输入净核算金额' }],
+      approveTotalPrice: [{ required: true, message: '请输入审定总价' }],
+     }
   },
   handleRef(ref) {
     console.log(ref);
@@ -86,6 +104,11 @@ bindChooseProjectCallBack: function (data) {
     contractAmount:'',
     contractorName:''
   });
+  this.form.setFieldValue('projectName',data.name)
+  this.form.setFieldValue('projectId',data.id)
+  this.form.setFieldValue('contractName','')
+  this.form.setFieldValue('contractAmount','')
+  this.form.setFieldValue('contractorName','')
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,
     data: {
@@ -98,7 +121,6 @@ bindChooseProjectCallBack: function (data) {
       });
     }
   })
-  console.log(this.data.projectData,'this.data.projectData');
 },
  // 合同名称
  bindChooseContractNameTap:function(e){
@@ -114,8 +136,13 @@ bindChooseContractCallBack: function (data) {
   this.setData({
     contractData: data || {},
     contractAmount:data.contractAmount,
-    contractorName:data.unitPartyName
+    contractorName:data.unitPartyName,
+    contractId:data.contractId
   });
+  this.form.setFieldValue('contractName',data.contractName)
+  this.form.setFieldValue('contractId',data.contractId)
+  this.form.setFieldValue('contractAmount',data.contractAmount)
+  this.form.setFieldValue('contractorName',data.unitPartyName)
   request.doPostRequest({
     url: config.API_CONTRACT_CUMULATIVE,
     data: {
@@ -141,7 +168,7 @@ onSaveDialogScreenApplyDateRef:function(ref){
   this.dialogScreenApplyDateRef = ref
 },
 bindChooseApplyDateCallBack(data){
-  console.log(data,333333333333333);
+  this.form.setFieldValue('applicationTime', data.startDate);
   this.setData({
     applicationTime: data.startDate || '',
   });
@@ -173,6 +200,16 @@ request.doPostRequest({
       // adjust:res.data.adjust,
       investmentFileList:res.data.investmentFileList
     })
+    this.form.setFieldValue('projectName', res.data.projectName)
+    this.form.setFieldValue('contractName', res.data.contractName)
+    this.form.setFieldValue('projectId', res.data.projectId)
+    this.form.setFieldValue('contractId', res.data.contractId)
+    this.form.setFieldValue('contractAmount', res.data.contractAmount)
+    this.form.setFieldValue('contractorName', res.data.contractorName)
+    this.form.setFieldValue('applicationTime', res.data.applicationTime)
+    this.form.setFieldValue('pricingTrial', res.data.pricingTrial)
+    this.form.setFieldValue('netAccountAmount', res.data.netAccountAmount)
+    this.form.setFieldValue('approveTotalPrice', res.data.approveTotalPrice)
     this.form.setFieldValue('adjust', res.data.adjust)
     const files= res.data.investmentFileList.map((item)=>{
       return {
@@ -186,71 +223,107 @@ request.doPostRequest({
   }
 })
 },
-//bind form submit
-bindFormSubmit: function (e) {
-  let pricingTrial = e.detail.value.pricingTrial
-  let netAccountAmount = e.detail.value.netAccountAmount
-  let approveTotalPrice = e.detail.value.approveTotalPrice
-//   let investmentFileList = [],temFileList=[]
-//   if (this.uploadImgRef) {
-//     temFileList = this.uploadImgRef._getUploadImgId().imgList;
-// }
-let investmentFileList = [], temFileList=[]
+async submit(){
+  const params = await this.form.submit();
+  params.projectId = this.data.projectData.id,
+  params.contractId = this.data.contractData.contractId,
+  params.id= this.data.id?this.data.id:''
+  params.applicationTime=this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':''
+  params.vueUrl= 'completed'
+  let temFileList=[]
 if (this.uploadImgRef) {
   temFileList = this.uploadImgRef.data.imgList;
-// console.log( investmentFileList);
-for (let item of temFileList) {
-  investmentFileList.push({
-      type: 4,
-      fileName: item.name,
-      size: item.size,
-      url: item.url,
+  if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
+  temFileList.forEach(e => {
+    e.fileName = e.name
+    e.type= 4
   })
+// for (let item of temFileList) {
+//   this.data.investmentFileList.push({
+//       type: 4,
+//       fileName: item.name,
+//       size: item.size,
+//       url: item.url,
+//   })
+// }
+params.investmentFileList =  temFileList
 }
-}
-if(!this.data.isEdit){
-    if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
-    if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
-    if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
-    if (ddUtils.showEmptyToastTips(pricingTrial, "请输入送审定价")) return;
-    if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择核增或核减")) return;
-    if (ddUtils.showEmptyToastTips(netAccountAmount, "请输入净核算金额")) return;
-    if (ddUtils.showEmptyToastTips(approveTotalPrice, "请选择审定总价")) return;
-  }
-  // if(this.data.adjust=== ''){
-  //   ddUtils.showToast({
-  //     title:"保存成功"
-  //  })
-  // }
-  if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
-request.doPostRequest({
+  request.doPostRequest({
   url: config.API_JUNGONG_ADD_POST,
-  data: {
-    projectId:this.data.projectData.id,
-    projectName:this.data.projectData.name,
-    contractId:this.data.contractData.contractId,
-    contractName: this.data.contractData.contractName,
-    contractAmount:this.data.contractAmount,
-    contractorName:this.data.contractorName,
-    investmentFileList:investmentFileList,
-    applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
-  pricingTrial:pricingTrial,
-  id:this.data.id?this.data.id:'',
-  adjust:this.data.adjust,
-  netAccountAmount:netAccountAmount,
-  approveTotalPrice:approveTotalPrice,
-  vueUrl: 'completed'
-  },
+  data: params,
   success: res => {
     ddUtils.showToast({
       title:"保存成功"
-   })
+      })
    ddUtils.navigateBack();
   }
 })
-
-
 },
+//bind form submit
+// bindFormSubmit: function (e) {
+//   let pricingTrial = e.detail.value.pricingTrial
+//   let netAccountAmount = e.detail.value.netAccountAmount
+//   let approveTotalPrice = e.detail.value.approveTotalPrice
+// //   let investmentFileList = [],temFileList=[]
+// //   if (this.uploadImgRef) {
+// //     temFileList = this.uploadImgRef._getUploadImgId().imgList;
+// // }
+// let investmentFileList = [], temFileList=[]
+// if (this.uploadImgRef) {
+//   temFileList = this.uploadImgRef.data.imgList;
+// // console.log( investmentFileList);
+// for (let item of temFileList) {
+//   investmentFileList.push({
+//       type: 4,
+//       fileName: item.name,
+//       size: item.size,
+//       url: item.url,
+//   })
+// }
+// }
+// if(!this.data.isEdit){
+//     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
+//     if (ddUtils.showEmptyToastTips(pricingTrial, "请输入送审定价")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择核增或核减")) return;
+//     if (ddUtils.showEmptyToastTips(netAccountAmount, "请输入净核算金额")) return;
+//     if (ddUtils.showEmptyToastTips(approveTotalPrice, "请选择审定总价")) return;
+//   }
+//   // if(this.data.adjust=== ''){
+//   //   ddUtils.showToast({
+//   //     title:"保存成功"
+//   //  })
+//   // }
+//   if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
+// request.doPostRequest({
+//   url: config.API_JUNGONG_ADD_POST,
+//   data: {
+//     projectId:this.data.projectData.id,
+//     projectName:this.data.projectData.name,
+//     contractId:this.data.contractData.contractId,
+//     contractName: this.data.contractData.contractName,
+//     contractAmount:this.data.contractAmount,
+//     contractorName:this.data.contractorName,
+//     investmentFileList:investmentFileList,
+//     applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
+//   pricingTrial:pricingTrial,
+//   id:this.data.id?this.data.id:'',
+//   adjust:this.data.adjust,
+//   netAccountAmount:netAccountAmount,
+//   approveTotalPrice:approveTotalPrice,
+//   vueUrl: 'completed'
+//   },
+//   success: res => {
+//     ddUtils.showToast({
+//       title:"保存成功"
+//    })
+//    ddUtils.navigateBack();
+//   }
+// })
+
+
+// },
 // 取消
 bindCancelTap: function (e) {
   console.log(12121212);
