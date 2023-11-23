@@ -44,7 +44,8 @@
     "pages/work/page/requestProgressDetail/requestProgressDetail",
     "pages/databoard/page/progressTaskDetails/progressTaskDetails",
     "pages/work/page/requestProgressDetail/requestProgressDetail",
-    "pages/message/systemAnnouncement/systemAnnouncement"
+    "pages/message/systemAnnouncement/systemAnnouncement",
+    "pages/work/page/addNewProject/addNewProject"
   ],
   "window": {
     "transparentTitle": "always",
@@ -54,7 +55,7 @@
     "navigationBarBackgroundColor": "#ff9700",
     "navigationBarTitleText": "小程序",
     "navigationBarTextStyle": "white",
-    "enablePullDownRefresh":true
+    "enablePullDownRefresh": true
   },
   "tabBar": {
     "textColor": "#343C4A",
