@@ -27,7 +27,9 @@
         <view class="task-remark">{{infoData.remark}}</view>
       </view>
       <view style="margin-top:16rpx;background:#fff">
-        <layout-upload-img disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
+      <view style="color:#323233" class="form-title">附件信息</view>
+        <empty a:if="{{infoData.missionFileList.length===0}}" image="/assets/images/common/empty-file.png" />
+        <layout-upload-img a:else disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
       </view>
     </view>
     <view a:if="{{infoData.taskStatus!==4 && infoData.taskStatus!==6}}" class="buttons  flex f-row f-between">

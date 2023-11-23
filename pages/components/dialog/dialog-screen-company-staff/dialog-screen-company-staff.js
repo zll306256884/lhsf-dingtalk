@@ -92,7 +92,36 @@ Component({
     },
 
     bindInputChange: function(value) {
-      this.screenDangerousName = value;
+      console.log("触发2");
+      this.data.screenDangerousName = value;
+      const openOrganizeList = list=>{
+        if (!isEmptyArray(list)){
+          list[0].isCheck = true;  
+          list.map(item=>{if(!isEmptyArray(item.organizeList)){
+            openOrganizeList(item.organizeList)
+          }
+          })
+        } 
+        return list
+      };
+      request.doPostRequest({
+        url: config.API_OA_COMPANY_NAME,
+        data: {
+          username: value
+        },
+        success: res => {
+          let list =openOrganizeList(res.data) || [];
+          if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
+            this.setData({
+              dataList: this.ergodic(list, this.data.selectedStaff)
+            });
+          }else{
+            this.setData({
+              dataList: list
+            });
+          }
+        }
+      });
     },
 
     onSearchConfirm: function(value) {
