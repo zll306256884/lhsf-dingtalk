@@ -85,7 +85,7 @@ Page({
   //编辑
   editThis(){
     ddUtils.navigateTo({
-      url: `/pages/work/page/addProject/addProject?id=${this.data.projectId}`
+      url: `/pages/work/page/addNewProject/addNewProject?id=${this.data.projectId}`
     });
   },
 });

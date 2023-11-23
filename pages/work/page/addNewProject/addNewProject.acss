@@ -1,0 +1,91 @@
+.container{
+  padding-top: 16rpx;
+  padding-bottom: 100rpx;
+}
+.container .containerinner{
+  display: block;
+  background:#fff;
+}
+.container .containerinner .title{
+  display: block;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 32rpx;
+  padding: 32rpx 32rpx 16rpx;
+}
+.container .containerinner .redline-title{
+  font-size: 32rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 48rpx;
+  padding: 32rpx 32rpx 8rpx;
+}
+.container .containerinner .cellcontent{
+  margin:0 30rpx;
+  padding: 20rpx 0;
+  margin-left: 16rpx;
+}
+.container .containerinner .celltitle{
+  font-size: 32rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 48rpx;
+}
+.container .containerinner .start{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #EE0A24;
+  line-height: 48rpx;
+}
+.container .containerinner  .textarea{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 48rpx;
+}
+.btn-wrap{
+  margin-top: 16rpx;
+  padding: 16rpx 18rpx;
+  border-top: 1rpx solid #DBDADF;
+  position: fixed;
+  bottom: 0;
+  background-color: #fff;
+  width: 100%;
+}
+.btn-wrap .btn{
+  width: 349rpx;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 80rpx;
+}
+.btn-wrap .active{
+  width: 349rpx;
+  height: 80rpx;
+  background: #1A6AFF;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  color: #FFFFFF;
+}
+.ant-input-content{
+  text-align: right;
+  font-size: 28rpx !important;
+}
+.ant-input-placeholder {
+  font-size: 28rpx !important;
+}
+.ant-picker-value-text{
+  color:#000
+}
