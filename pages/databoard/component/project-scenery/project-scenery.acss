@@ -54,6 +54,14 @@
   color: #1D1D1F;
 }
 
+#projectScenery .listArr .time{
+  font-size: 24rpx;
+  color: #909399;
+  background-color: #fff;
+  padding: 0 24rpx 36rpx 24rpx;
+  border-radius: 0rpx 0rpx 8rpx 8rpx;
+}
+
 /*  */
 #projectScenery .mayflyBox {
   position: fixed;

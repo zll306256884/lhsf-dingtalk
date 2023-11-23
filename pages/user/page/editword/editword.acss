@@ -1,4 +1,4 @@
-.container {
+#editword {
   width: 100%;
   height: 100%;
   background-color: #F5F5F5;
@@ -6,57 +6,47 @@
 
 }
 
-.container .title {
-  width: 100%;
-  height: 100rpx;
-  /* margin-top: 50rpx; */
-  padding: 52rpx 32rpx 16rpx 32rpx;
-  font-size: 28rpx;
-  color: #969799;
-  line-height: 32rpx;
-}
-
-.container .list {
-  padding: 0 32rpx;
+#editword .list {
+  /* padding: 0 10rpx; */
   background-color: #fff;
   margin-top: 20rpx;
 }
 
-.showTip{
+#editword .showTip{
   color:#1A6AFF;
   font-size:24rpx;
   padding-left:32rpx;
 }
 
 
-.judge {
+#editword .judge {
   /* margin-top: 64rpx; */
   width: 100%;
   height: 88rpx;
   background: #FFFFFF;
   border-radius: 0rpx 0rpx 0rpx 0rpx;
   opacity: 1;
-  padding: 20rpx 32rpx 20rpx 50rpx;
-  font-size: 28rpx;
+  padding: 20rpx 32rpx 20rpx 20rpx;
+  font-size: 32rpx;
 }
 
-.judge .right {
+#editword .judge .right {
   color: #323233;
   line-height: 48rpx;
 }
 
-.judge .right .redstart {
+#editword .judge .right .redstart {
   color: red;
 }
 
-.judge .left .input {
+#editword .judge .left .input {
   width: 258rpx;
   font-size: 28rpx;
   height: 48rpx;
   line-height: 48rpx;
 }
 
-.judge .left .time {
+#editword .judge .left .time {
   /* font-size: 28rpx; */
   width: 240rpx;
   height: 48rpx;
@@ -69,27 +59,45 @@
 }
 
 /*  */
-.bottomBtn {
+#editword .bottomBtn {
   width: 750rpx;
-  height: 112rpx;
+  /* height: 112rpx; */
   border-radius: 0rpx 0rpx 0rpx 0rpx;
   opacity: 1;
   padding: 16rpx;
   position: fixed;
-  bottom: 100rpx;
+  bottom: 0;
   left: 0;
+  padding-bottom:76rpx;
+  /* background-color: pink; */
+  background-color: #fff;
+  border-top: 1rpx solid #DBDADF;
 }
 
-.bottomBtn .bottom {
+#editword .bottomBtn .bottom {
   width: 365rpx;
   height: 96rpx;
   border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
   font-size: 28rpx;
+  padding-bottom:16rpx;
 }
 
-.btn1 {
+#editword .btn1 {
   background-color: #FFFFFF;
   margin-right: 16rpx;
   color: #323233;
+  border: 2rpx solid #EBEDF0;
+}
+
+#editword .btn2 {
+  background-color: #1A6AFF;
+  margin-right: 16rpx;
+  /* color: #323233; */
+}
+
+ 
+
+#editword .value{
+  padding-right: 0;
 }
