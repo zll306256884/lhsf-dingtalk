@@ -45,11 +45,11 @@
        <view class="ReportDate">
         联系单变更内容
        </view>
-       <layout-field-cell hidden="{{false}}" borderBottom  disabled="{{isEdit}}" value="{{infoData.contactChange}}" placeholder="请输入"></layout-field-cell>
+       <layout-field-cell hidden="{{false}}" borderBottom  disabled="{{isEdit}}" value="{{infoData.contactChange}}" ></layout-field-cell>
        <view class="ReportDate">
         备注
        </view>
-       <layout-field-cell hidden="{{false}}"  disabled="{{isEdit}}" value="{{infoData.remark}}" placeholder="请输入"></layout-field-cell>
+       <layout-field-cell hidden="{{false}}"  disabled="{{isEdit}}" value="{{infoData.remark}}" ></layout-field-cell>
     </view>
     <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
       <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>

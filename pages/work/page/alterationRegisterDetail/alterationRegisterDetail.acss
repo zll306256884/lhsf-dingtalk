@@ -68,7 +68,7 @@
 .ReportDate{
   color: rgb(82, 89, 102);
   font-size: 32rpx;
-  margin-left: 35rpx;
+  margin-left: 23rpx;
   height: 60rpx;
   line-height: 60rpx;
   border-radius: 0rpx 0rpx 0rpx 0rpx;

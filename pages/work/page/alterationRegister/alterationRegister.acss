@@ -1,3 +1,6 @@
+.container{
+  position: relative;
+}
 .container .box-shadow {
   padding: 0 0;
   width: 100%;
@@ -38,6 +41,9 @@
   margin: 30rpx 30rpx 30rpx;
 }
 .flex-display{
+  position: fixed;
+  left: 18px;
+  bottom: -6px;
   display: flex;
 }
 .btn-wrap .btn {
@@ -61,4 +67,7 @@
   height: 100rpx;
   font-size: 28rpx;
   color: #525966;
+}
+.flex1{
+  width: 300rpx;
 }
