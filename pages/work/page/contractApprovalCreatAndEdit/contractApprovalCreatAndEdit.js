@@ -53,11 +53,15 @@ Page({
     biddingListOptions: [],
     countersignLeader: null,
     projectId: null,
+    projectName:'',
     contractShow: false,
     tenderShow: false,
     contractId: null,
-    unitParty: null,
-    listIndex: null
+    unitPartyName: null,
+    listIndex: null,
+    projectListOptions: [],
+    developmentOrganizationOptions: [],
+    unitPartyOptions: []
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -69,7 +73,7 @@ Page({
 
   onLoad(options) {
     this.form.rules = {
-      projectName: [{ required: true, message: '请输入' }],
+      projectId: [{ required: true, message: '请输入' }],
       contractName: [{ required: true, message: '请输入' }],
       contractNumber: [{ required: true, message: '请输入' }],
       supplementAgreement: [{ required: true, message: '请选择' }],
@@ -82,8 +86,8 @@ Page({
       contractPeriod: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
       makeSure: [{ required: true, message: '请选择' }],
       contractAmount: [{ required: true,message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
-      developmentOrganizationName: [{ required: true, message: '请选择' }],
-      unitPartyName: [{ required: true, message: '请选择' }],
+      developmentOrganization: [{ required: true, message: '请选择' }],
+      unitParty: [{ required: true, message: '请选择' }],
       unitPartyType: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
@@ -101,6 +105,7 @@ Page({
         list: []
       })
     }
+    this.getProjectList()
   },
   onReady(){
     
@@ -146,8 +151,8 @@ Page({
     this.form.setFieldValue('applicationTime', data.startDate);
   },
   changeContractName(data){
-    let projectName = this.form.getFieldValue('projectName')
-    this.form.setFieldValue('title', projectName+data)
+    // let projectName = this.form.getFieldValue('projectName')
+    this.form.setFieldValue('title', this.data.projectName+data)
   },
   chooseThirdParty(value,e){
     console.log(value,e);
@@ -181,9 +186,10 @@ Page({
     this.form.addItem(ref);
   },
   bindChooseProjectCallBack(data){
-    this.form.setFieldValue('projectName',data.name)
+    this.form.setFieldValue('projectId',data.id)
     this.setData({
-      projectId: data.id,
+      projectName: data.name,
+      projectId: data.id
     })
     let contractName = this.form.getFieldValue('contractName') || ''
     this.form.setFieldValue('title', data.name+contractName)
@@ -191,12 +197,15 @@ Page({
       this.getQueryCurrentUnitType()
       this.getBiddingData()
       this.getContractList()
+      this.getEcological()
     },1000)
   },
   bindScreenEcologicalUnitCallBack(data){
     this.form.setFieldValue('unitPartyName', data.name);
+    this.form.setFieldValue('unitParty', data.id);
     this.setData({
-      unitParty: data.id
+      unitParty: data.id,
+      unitPartyName: data.name
     })
   },
   bindScreenExecuteUserCallBack(data){
@@ -224,8 +233,10 @@ Page({
     })
   },
   bindScreenConstructUnitCallBack(data){
-    this.form.setFieldValue('developmentOrganizationName', data.unitName);
+    // this.form.setFieldValue('developmentOrganizationName', data.unitName);
+    this.form.setFieldValue('developmentOrganization', data.id);
     this.setData({
+      developmentOrganizationName: data.unitName,
       developmentOrganization: data.id,
       ecUnitId: data.ecUnitId
     })
@@ -386,9 +397,10 @@ Page({
     console.log('this.data.list',this.data.list);
     params.contractThirdPartyRepList = this.data.list
     params.projectId = this.data.projectId
-    params.unitParty = this.data.unitParty
+    params.projectName = this.data.projectName
+    params.unitPartyName = this.data.unitPartyName
     params.countersignLeader = this.data.countersignLeader
-    params.developmentOrganization = this.data.developmentOrganization
+    params.developmentOrganizationName = this.data.developmentOrganizationName
     params.ecUnitId = this.data.ecUnitId
     if(params.unitPartyType){
       params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
@@ -435,12 +447,13 @@ Page({
     }
     params.contractThirdPartyRepList = this.data.list
     params.projectId = this.data.projectId
+    params.projectName = this.data.projectName
     params.countersignLeader = this.data.countersignLeader
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
 
-    params.unitParty = this.data.unitParty
+    params.unitPartyName = this.data.unitPartyName
     params.countersignLeader = this.data.countersignLeader
-    params.developmentOrganization = this.data.developmentOrganization
+    params.developmentOrganizationName = this.data.developmentOrganizationName
     params.ecUnitId = this.data.ecUnitId
     params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
     let workAuditFile = [];
@@ -512,10 +525,11 @@ Page({
         }
         
         this.setData({
-          unitParty: paramsdata.unitParty,
+          unitPartyName: paramsdata.unitPartyName,
           countersignLeader: paramsdata.countersignLeader,
           projectId: paramsdata.projectId,
-          developmentOrganization: paramsdata.developmentOrganization,
+          projectName: paramsdata.projectName,
+          developmentOrganizationName: paramsdata.developmentOrganizationName,
           ecUnitId: paramsdata.ecUnitId,
           unitPartyTypeName: paramsdata.projeunitPartyTypeNamectId,
           contractShow: paramsdata.supplementAgreement===1?true:false,
@@ -527,8 +541,61 @@ Page({
           this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
 
-        
+        this.getEcological()
       }
     })
-  }
+  },
+  getProjectList(){
+    request.doPostRequest({
+      url: config.API_PROJECT_NAME,
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.id
+        })
+        console.log(res.data)
+        this.setData({
+          projectListOptions: res.data || []
+        })
+      }
+    })
+  },
+  getEcological(){
+    request.doPostRequest({
+      url: projectService.API_CURRENTUNIT,
+      data: {
+        pageSize: 9999,
+        pageNum: 1,
+        unitTypeId: '1710172427167727616',
+        proId: this.data.projectId
+      },
+      success: res => {
+        res.data.records.forEach(e => {
+          e.label = e.unitName
+          e.value = e.id
+        })
+        this.setData({
+          developmentOrganizationOptions: res.data.records || []
+        })
+      }
+    })
+    
+    request.doPostRequest({
+      url: projectService.API_GET_UNIT_BIDING,
+      data: {
+        pageSize: 9999,
+        pageNum: 1,
+        auditStatus: 3
+      },
+      success: res => {
+        res.data.records.forEach(e => {
+          e.label = e.name
+          e.value = e.id
+        })
+        this.setData({
+          unitPartyOptions: res.data.records || []
+        })
+      }
+    })
+  },
 });

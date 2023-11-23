@@ -39,24 +39,48 @@
   box-shadow:none
 }
 .ant-form-item-field-horizontal .ant-input-disabled{
-  color: #000 !important;
+  color: red !important;
   opacity: 1 !important;
 }
 .ant-form-item-field-horizontal .ant-input[disabled] {
-  color: #000 !important;
+  color: red !important;
   opacity: 1 !important;
   -webkit-opacity:1;
   -webkit-text-fill-color: #000;
 }
 .ant-input-disabled{
-  color: #000 !important;
+  color: red !important;
   opacity: 1 !important;
 }
 .placeholderClassName{
-  color: #000 !important;
+  color: #000000 !important;
   opacity: 1 !important;
 }
 .ant-input-content{
   opacity: 1 !important;
 }
-input:disabled, input[disabled]{ -webkit-opacity:1; opacity: 1; }
+input:disabled, input[disabled]{ -webkit-opacity:1; opacity: 1; color: red; }
+
+.disabled{
+  color: #000000;
+  opacity: 1;
+}
+.ant-picker-value-text{
+  color:#000
+}
+.ant-input-placeholder{
+  font-size: 28rpx;
+}
+.f-item{
+  font-size: 28rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+}
+.ant-input-disabled .ant-input-content{
+  color:black;
+  opacity: 1;
+}
+.ant-input-content{
+  opacity: 1 !important;
+}
