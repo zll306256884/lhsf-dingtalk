@@ -68,9 +68,9 @@ Page({
       contractorName: [{ required: true, message: '请选择承包商名称' }],
       adjust: [{ required: true, message: '请选择核增或核减' }],
       applicationTime: [{ required: true, message: '请选择' }],
-      pricingTrial: [{ required: true, message: '请选择' }],
+      pricingTrial: [{ required: true, message: '请输入送审定价' }],
       netAccountAmount: [{ required: true, message: '请输入净核算金额' }],
-      approveTotalPrice: [{ required: true, message: '请输入净核算金额' }],
+      approveTotalPrice: [{ required: true, message: '请输入审定总价' }],
      }
   },
   handleRef(ref) {
