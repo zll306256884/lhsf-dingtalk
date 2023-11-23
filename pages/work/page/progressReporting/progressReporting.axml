@@ -1,15 +1,10 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
+<view class="container" id="progressReporting">
   <!-- 我是进度填报 -->
-  <layout-field-cell
-    borderBottom
-    name="项目名称"
-    mustFill
-    placeholder="请选择"
-    value="{{projectData.name}}"
-    onArrowTap="bindChooseProjectTap"
-  >
+  
+  <layout-field-cell name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" onArrowTap="bindChooseProjectTap">
   </layout-field-cell>
+  
   <view class="flex f-between btn-wrap">
     <button class="btn" catchTap="bindCancelTap" style="margin-right:20rpx;">
       取消
@@ -19,9 +14,5 @@
 </view>
 
 <!-- 项目名称选择 -->
-<dialog-select-project
-  ref="onSaveDialogScreenprojecteRef"
-  fromProgress="true"
-  onScreenCallBack="bindChooseProjectCallBack"
->
+<dialog-select-project ref="onSaveDialogScreenprojecteRef" fromProgress="true" onScreenCallBack="bindChooseProjectCallBack">
 </dialog-select-project>

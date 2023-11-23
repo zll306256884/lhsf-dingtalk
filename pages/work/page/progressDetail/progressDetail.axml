@@ -1,6 +1,6 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
-  <view class="containerinner">
+<view id="progressDetail">
+  <view>
     <!-- 头部 -->
     <view class="headerBox">
       <view class="top flex f-between">

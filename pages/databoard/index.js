@@ -3,7 +3,7 @@ Page({
   data: {
     navbarData: {
       title: "临海市项目工程数据看板",
-      showNavbarBack:false
+      // showNavbarBack:false
     },
     tabs: [
       {

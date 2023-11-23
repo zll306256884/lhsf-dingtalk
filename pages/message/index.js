@@ -7,7 +7,7 @@ Page({
  data:{
   navbarData: {
     title: "消息",
-    showNavbarBack:false
+    // showNavbarBack:false
 },
 items: [
   {
