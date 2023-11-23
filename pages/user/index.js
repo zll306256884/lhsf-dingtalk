@@ -15,41 +15,41 @@ Page({
   data: {
     navbarData: {
       title: "我的",
-      // showNavbarBack:false
+      showNavbarBack: false
     },
     tabIndex: 0,
     tabList: [{
       name: "今日巡视",
-      value:'1'
+      value: '1'
     }, {
       name: "巡视记录",
-      value:'2'
+      value: '2'
     }, {
       name: "巡视记录",
-      value:'3'
+      value: '3'
     }, {
       name: "巡视记录",
-      value:'4'
+      value: '4'
     }],
     subTabList: [{
-        name: "施工单位1"
-      },
-      {
-        name: "危险源类型"
-      }, {
-        name: "危险源等级"
-      }, {
-        name: "状态"
-      }, {
-        name: "施工单位"
-      },
-      {
-        name: "危险源类型"
-      }, {
-        name: "危险源等级"
-      }, {
-        name: "状态"
-      }
+      name: "施工单位1"
+    },
+    {
+      name: "危险源类型"
+    }, {
+      name: "危险源等级"
+    }, {
+      name: "状态"
+    }, {
+      name: "施工单位"
+    },
+    {
+      name: "危险源类型"
+    }, {
+      name: "危险源等级"
+    }, {
+      name: "状态"
+    }
     ],
     edata: '父组件传递过来的',
     userInfo: {
@@ -59,17 +59,17 @@ Page({
       firstName: '我'
     },
     partList: [{
-        img: '../../assets/images/user/one.png',
-        name: '个人信息'
-      },
-      {
-        img: '../../assets/images/user/two.png',
-        name: '修改密码'
-      },
-      {
-        img: '../../assets/images/user/three.png',
-        name: '退出登陆'
-      }
+      img: '../../assets/images/user/one.png',
+      name: '个人信息'
+    },
+    {
+      img: '../../assets/images/user/two.png',
+      name: '修改密码'
+    },
+    {
+      img: '../../assets/images/user/three.png',
+      name: '退出登陆'
+    }
     ],
   },
   onLoad(query) {
@@ -81,7 +81,7 @@ Page({
     // 类比于vue的mounted
     this.getList()
   },
-  addTask(){
+  addTask() {
     // ddUtils.navigateTo({
     //   url: `/pages/databoard/page/workLog/workLog`
     // });
@@ -104,22 +104,37 @@ Page({
     }
     if (code == 2) {
       // 退出登录
-      ddUtils.showActionSheet({
-        itemList: ["退出登陆"],
+      ddUtils.showModal({
+        title: '确定退出吗？',
+        // title: str,
+        content: "请确认",
         success: res => {
-          switch (res.index) {
-            case 0:
-              ddUtils.clearLoginStorage();
+          if (res.confirm) {
+            ddUtils.clearLoginStorage();
 
-              ddUtils.reLaunch({
-                url: "./page/login/index"
-              })
-              break;
-            default:
-              break
+            ddUtils.reLaunch({
+              url: "./page/login/index"
+            })
+            return
           }
         }
-      });
+      })
+      // ddUtils.showActionSheet({
+      //   itemList: ["退出登陆"],
+      //   success: res => {
+      //     switch (res.index) {
+      //       case 0:
+      //         ddUtils.clearLoginStorage();
+
+      //         ddUtils.reLaunch({
+      //           url: "./page/login/index"
+      //         })
+      //         break;
+      //       default:
+      //         break
+      //     }
+      //   }
+      // });
 
     }
 
@@ -193,7 +208,7 @@ Page({
     this.setData({
       tabIndex: index
     });
-    let targetValue=this.data.tabList[this.data.tabIndex].value
+    let targetValue = this.data.tabList[this.data.tabIndex].value
 
     console.log('targetValue', targetValue)
   },
