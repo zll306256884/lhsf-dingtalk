@@ -70,7 +70,7 @@
 }
 
 #projectScenery .mayflyBox .mayfly{
-  width: 124rpx;
-  height: 108rpx;
+  width: 172rpx;
+  height: 156rpx;
 
 }

@@ -105,6 +105,7 @@ Component({
           this.setData({
             inputValue: e.detail.value
           })
+          this.getEcological(e.detail.value)
         },
         _bindCancelTap: function (e) {
             this._hideDialog();
