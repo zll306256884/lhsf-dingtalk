@@ -112,10 +112,10 @@ Component({
           username: value
         },
         success: res => {
-          let list = res.data || [];
+          let list =openOrganizeList(res.data) || [];
           if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
             this.setData({
-              dataList: this.ergodic(openOrganizeList(list), this.data.selectedStaff)
+              dataList: this.ergodic(list, this.data.selectedStaff)
             });
           }else{
             this.setData({
