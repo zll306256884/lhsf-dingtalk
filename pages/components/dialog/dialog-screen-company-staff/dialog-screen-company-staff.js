@@ -61,6 +61,7 @@ Component({
     },
     _bindCancelTap: function(e) {
       this._hideDialog();
+      this.props.onScreenCallBack();
     },
 
     _bindTouchMove: function(e) {},
