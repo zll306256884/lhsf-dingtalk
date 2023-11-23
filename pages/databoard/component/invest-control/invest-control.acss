@@ -1,5 +1,5 @@
  .top-money{
-  margin: 0 24rpx 48rpx 24rpx;
+  margin: 24rpx 24rpx 48rpx 24rpx;
 }
 .top-money{
   height: 600rpx;
@@ -25,6 +25,7 @@
 .budget-money{
 color: #FFFFFF;
 font-weight: bold;
+font-family: DIN Alternate, DIN Alternate;
 font-size: 56rpx;
 margin-bottom: 50rpx;
 }
@@ -50,6 +51,7 @@ opacity: 1;
 color: #FFFFFF;
 font-weight: bold;
 font-size: 40rpx; 
+font-family: DIN Alternate, DIN Alternate;
 text-overflow: ellipsis; /* 溢出显示省略号 */
 overflow: hidden; /* 溢出隐藏 */
 white-space: nowrap;
@@ -159,7 +161,7 @@ opacity: 1;
   right: 30rpx;
 }
 .mayflyBox .mayfly{
-  width: 124rpx;
-  height: 108rpx;
+  width: 172rpx;
+  height: 156rpx;
 
 }

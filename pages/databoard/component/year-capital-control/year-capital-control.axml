@@ -67,8 +67,8 @@
      >
      <view class="plan-money">
      <view class="images">
-       <image a:if="{{item.img}}" mode="scaleToFill" src="{{item.img}}" />
-       <image a:else mode="scaleToFill" src="/assets/images/common/default-img.png" />
+       <image  a:if="{{item.img}}" mode="scaleToFill" src="{{item.img}}" />
+       <image mode="aspectFit" a:else  src="/assets/images/common/default-img.png" />
      </view>
      <view class="projectName">
        {{item.projectName}}
