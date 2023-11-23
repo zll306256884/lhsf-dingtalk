@@ -23,6 +23,10 @@
   border-top: 1px solid #DBDADF;
   padding: 16rpx 18rpx;
   margin-top: 16rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 718rpx;
 }
 .buttons .btn{
   width: 227rpx;
@@ -65,4 +69,15 @@
 }
 .ant-input-content{
   opacity: 1 !important;
+}
+.ant-picker-value-text{
+  font-size: 28rpx;
+  color: #323233;
+}
+.ant-picker-value-placeholder{
+  font-size: 28rpx;
+}
+.f-item{
+  font-size: 28rpx;
+  color: #323233;
 }

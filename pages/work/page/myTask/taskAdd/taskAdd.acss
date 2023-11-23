@@ -25,6 +25,9 @@ background: #fff;
   background:rgba(255, 255, 255, 1)
 
 } */
+.ant-input-placeholder{
+  color: #ccc;
+}
  .ant-picker-value-text{
    color:#000
  }

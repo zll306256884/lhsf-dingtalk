@@ -37,6 +37,7 @@
 .item-img {
   width: 280rpx;
   height: 210rpx;
+  border-radius: 12rpx;
   margin-right: 24rpx;
   background: #eeeff0 no-repeat;
 }
@@ -56,7 +57,7 @@
 }
 .item-value{
   color: #1D1D1F;
-  margin-left:16rpx
+  margin-left:16rpx;
 }
 .item-lable-time {
   width: 100%;
@@ -84,6 +85,7 @@
   font-weight: 400;
   color: #909399;
   line-height: 40rpx;
+  margin-bottom: 24rpx;
 }
 .item-title {
   font-size: 32rpx;

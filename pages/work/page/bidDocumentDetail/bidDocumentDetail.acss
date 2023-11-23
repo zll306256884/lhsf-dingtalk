@@ -52,7 +52,7 @@
   line-height: 48rpx;
 }
 .bottom-content{
-  width: 100%;
+  width: 718rpx;
   padding: 16rpx;
   border-top: 1px solid #DBDADF;
   position:fixed;

@@ -236,7 +236,7 @@
   ref="handleRef" />
 </view>
   
-  <!-- <view class="bottom-space"></view> -->
+  <view class="bottom-space" style="height:150rpx"></view>
 
   <view class="buttons flex f-between">
     <button class="btn" onTap="reset">取消</button>

@@ -73,25 +73,33 @@
 }
 
 .avatar-name {
-  width: 160rpx;
+  width: 148rpx;
   height: 48rpx;
   background: #f3f4f5;
   border-radius: 38rpx;
   opacity: 1;
   margin-left: 16rpx;
 }
+.item-avatar-default{
+  width: 48rpx;
+  height: 48rpx;
+  background: #1A6AFF;
+  color: #fff;
+  border-radius: 24rpx;
+  text-align: center;
+  line-height: 48rpx;
+}
 .item-name {
   font-size: 24rpx;
-  font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
   color: #606266;
   line-height: 48rpx;
-  margin: 0 16rpx;
+  margin: 0 8rpx;
 }
 .item-avatar {
-  max-width: 40rpx;
-  height: 40rpx;
-  border-radius: 20rpx;
+  max-width: 48rpx;
+  height: 48rpx;
+  border-radius: 24rpx;
   object-fit: contain;
 }
 .item-label {

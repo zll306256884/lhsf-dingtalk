@@ -20,6 +20,7 @@ Page({
     navbarData:{
       title: "新增任务"
     },
+    disabled:false,
     currentId:null,
     title: "",
     endTime: "",
@@ -73,11 +74,18 @@ Page({
     if (this.dialogScreenExecuteUser)
       this.dialogScreenExecuteUser._showDialog(this.data.executeUser);
   },
+  bingFocusChange(){
+    this.setData({
+      disabled:true
+    })
+  },
   bindScreenExecuteUserCallBack(data) {
-    console.log(data);
+    this.setData({
+      disabled:false
+    })
     this.setData({
       executeUser: 
-        data.map(e => {
+      data && data.map(e => {
           return { userId: e.userId, username: e.username,disabled:e.disabled };
         })
     });
