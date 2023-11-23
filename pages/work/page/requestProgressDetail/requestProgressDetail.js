@@ -45,7 +45,8 @@ Page({
     let param = {
       "projectId": this.data.projectId,
       'flagNode': this.data.flagNode,
-      'planId': this.data.planId
+      'planId': this.data.planId,
+      'enable': ''
     }
     return new Promise((resolve, reject) => {
       request.doPostRequest({
