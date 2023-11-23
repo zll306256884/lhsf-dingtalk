@@ -1,5 +1,7 @@
 import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
+import map from "../../../../utils/map";
+
 Component({
   mixins: [],
   data: {
@@ -46,9 +48,11 @@ Component({
         url: projectService.API_SELECTPROJECT_INFO_BYID,
         data:{id},
         success: res => {
+          const data={...res.data,xy:map.wgs84togcj02(res.data.coorX,res.data.coorY)}
           this.setData({
-            info:res.data
+            info:data
           })
+          console.log(this.data.info);
           this.updateComponents()
         }
       })
@@ -57,8 +61,8 @@ Component({
       let item = this.data.info
       this.mapCtx.updateComponents({
         scale:12,
-        longitude: Number(parseFloat(item.coorX).toFixed(6)),
-        latitude: Number(parseFloat(item.coorY).toFixed(6)),
+        longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+        latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
         setting: {
           gestureEnable: 1, // 开启手势功能
           showScale: 0, // 隐藏比例尺
@@ -69,16 +73,16 @@ Component({
             id: 1,
             width: 64,
             height: 64,
-            longitude: Number(parseFloat(item.coorX).toFixed(6)),
-            latitude: Number(parseFloat(item.coorY).toFixed(6)),
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
             iconPath: `/assets/images/map/${item.projectClassification}-${item.projectStatus}.png`,
             callout: {
               content: item.name
             }
         }],
         includePoints: [{
-          longitude: Number(parseFloat(item.coorX).toFixed(6)),
-          latitude: Number(parseFloat(item.coorY).toFixed(6)),
+          longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+          latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
         }]
       });
     },

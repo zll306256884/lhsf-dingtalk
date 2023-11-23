@@ -30,8 +30,9 @@
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
               <text class="item-label">{{['申请人','创建人','创建人'][currentAwait]}}</text>
-              <view class="avatar-name flex f-row f-between">
-              <image class="item-avatar"  src="{{item.avatar}}" />
+              <view class="avatar-name flex f-row f-start">
+              <image a:if="{{item.avatar}}" class="item-avatar"  src="{{item.avatar}}" />
+              <view a:else class="item-avatar-default" >{{(item.userName || item.createUserName).split('')[0]}}</view>
               <text class="item-name single-line"> {{item.userName || item.createUserName}}</text>
               </view>
             </view>
@@ -63,8 +64,9 @@
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
               <text class="item-label">申请人</text>
-              <view class="avatar-name flex f-row f-between">
-              <image class="item-avatar"  src="{{item.avatar}}" />
+              <view class="avatar-name flex f-row f-start">
+              <image a:if="{{item.avatar}}" class="item-avatar"  src="{{item.avatar}}" />
+              <view a:else class="item-avatar-default" >{{item.userName.split('')[0]}}</view>
               <text class="item-name single-line"> {{item.userName}}</text>
               </view>
             </view>

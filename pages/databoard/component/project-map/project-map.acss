@@ -95,6 +95,7 @@
   width: 280rpx;
   height: 210rpx;
   margin-right: 24rpx;
+  border-radius: 12rpx;
   background: #eeeff0 no-repeat;
   /* background-size: 40%!important; */
 }

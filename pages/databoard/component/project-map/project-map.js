@@ -1,6 +1,9 @@
 import apiDataBoardServer from "../../../../server/dataBoardServer";
 import request from "../../../../utils/request";
 import ddUtils from "../../../../utils/ddUtils";
+import map from "../../../../utils/map";
+
+// utils.wgs84togcj02
 const mapV2Message = '客户端版本过低，请升级客户端并开启V2引擎。'
 const markers = [
   // {
@@ -144,10 +147,10 @@ Component({
          const list = res.data.map(item=>{
             return{
               ...item,
+              xy: map.wgs84togcj02(item.cityCapitalX, item.cityCapitalY),
               mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
             }
           })
-          console.log(list);
           this.setData({
             projectList: list
           });
@@ -162,16 +165,16 @@ Component({
           title: mapV2Message
         });
         return;
-      } 
+      }
       const newMarkers = this.data.projectList
-        .filter(i => i.cityCapitalX && i.cityCapitalY)
-        .map(item => {
+      .filter(i => i.cityCapitalX && i.cityCapitalY)
+      .map(item => {
           return {
             id:item.id,
             width: 64,
             height: 64,
-            longitude: Number(parseFloat(item.cityCapitalX).toFixed(6)),
-            latitude: Number(parseFloat(item.cityCapitalY).toFixed(6)),
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
             iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
             callout: {
               content: item.projectName

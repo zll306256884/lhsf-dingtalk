@@ -6,15 +6,15 @@
     <view class="form-title">任务信息</view>
       <form-input label="任务标题" disabled="{{currentId}}" name="title" maxLength="50" placeholder="请输入" ref="handleRef"/>
       <view onTap="chooseProject">
-      <form-picker disabled  arrow label="所属项目" name="projectId" options="{{projectList}}" placeholder="请选择" ref="handleRef" /> 
+      <form-picker disabled  arrow label="所属项目" name="projectId" options="{{projectList}}" placeholder="" ref="handleRef" /> 
       </view>
       <view onTap="chooseDate">
-      <form-date-picker  format="YYYY-MM-DD HH:mm:ss" arrow disabled label="截止时间" name="endTime" placeholder="请选择" ref="handleRef" />
+      <form-date-picker  format="YYYY-MM-DD HH:mm:ss" arrow disabled label="截止时间" name="endTime" placeholder="" ref="handleRef" />
       </view>
       <view onTap="chooseExecuter">
-      <form-input disabled label="执行人员" name="executer_dictText" placeholder="请选择" ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+      <form-input disabled="{{disabled}}" label="执行人员" onFocus="bingFocusChange" name="executer_dictText" placeholder="" ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
       </view>
-      <form-textarea label="任务描述"  name="remark" placeholder="请输入" maxLength="300" position="vertical"  autoHeight ref="handleRef"/>
+      <form-textarea label="任务描述"  name="remark" placeholder="" maxLength="300" position="vertical"  autoHeight ref="handleRef"/>
     <view class="form-card">
       <view class="form-title">附件信息</view>
       <view style="background:#fff" >
