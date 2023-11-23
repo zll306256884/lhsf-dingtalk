@@ -113,7 +113,8 @@ Component({
         "projectId": this.props.projectId,
         'status': this.data.status,
         // "projectId": '12019020004',
-        'flagNode': this.data.flagNode
+        'flagNode': this.data.flagNode,
+        'enable': 1
       }
       return new Promise((resolve, reject) => {
         request.doPostRequest({

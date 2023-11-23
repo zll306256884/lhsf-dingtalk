@@ -44,7 +44,8 @@ Page({
   getList: function () {
     let param = {
       "projectId": this.data.projectId,
-      'flagNode': this.data.flagNode
+      'flagNode': this.data.flagNode,
+      'planId': this.data.planId
     }
     return new Promise((resolve, reject) => {
       request.doPostRequest({

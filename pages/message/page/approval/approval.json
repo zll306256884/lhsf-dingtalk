@@ -2,6 +2,7 @@
   "defaultTitle": "",
   "usingComponents": {
     "icon": "antd-mini/es/Icon/index",
+    "badge": "antd-mini/es/Badge/index",
     "input": "antd-mini/es/Input/index",
     "approval-item": "/pages/components//approval-item/approval-item",
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",

@@ -5,6 +5,8 @@ import {
 module.exports = {
   //查询列表
   API_SELECT_LIST: API_HOST + "/jflow/audit/selectAuditPending",
+  //点数
+  API_SELECT_COUNT: API_HOST + "/jflow/audit/countAudit",
   // 获取审批节点
   API_APPROVAL_LIST: API_HOST + "/jflow/jflowAuditRecord/selAllByKeyId",
   // 获取下一个审批节点
