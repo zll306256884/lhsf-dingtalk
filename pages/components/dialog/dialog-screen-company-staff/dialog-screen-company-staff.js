@@ -96,6 +96,16 @@ Component({
 
     onSearchConfirm: function(value) {
       this.data.screenDangerousName = value;
+      const openOrganizeList = list=>{
+        if (!isEmptyArray(list)){
+          list[0].isCheck = true;  
+          list.map(item=>{if(!isEmptyArray(item.organizeList)){
+            openOrganizeList(item.organizeList)
+          }
+          })
+        } 
+        return list
+      };
       request.doPostRequest({
         url: config.API_OA_COMPANY_NAME,
         data: {
@@ -103,10 +113,9 @@ Component({
         },
         success: res => {
           let list = res.data || [];
-          if (!isEmptyArray(list)) list[0].isCheck = true;
           if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
             this.setData({
-              dataList: this.ergodic(list, this.data.selectedStaff)
+              dataList: this.ergodic(openOrganizeList(list), this.data.selectedStaff)
             });
           }else{
             this.setData({

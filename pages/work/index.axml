@@ -29,7 +29,7 @@
           </view>
             <view class="flex f-row f-between">
               <view class="flex f-row f-between">
-              <text class="item-label">{{['申请人','发起人','创建人'][currentAwait]}}</text>
+              <text class="item-label">{{['申请人','创建人','创建人'][currentAwait]}}</text>
               <view class="avatar-name flex f-row f-between">
               <image class="item-avatar"  src="{{item.avatar}}" />
               <text class="item-name single-line"> {{item.userName || item.createUserName}}</text>
