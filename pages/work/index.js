@@ -11,7 +11,7 @@ Page({
     iconList: [{
       url: "../../../../assets/images/work/Group-1.png",
       name: "新增项目",
-      path: '/pages/work/page/addProject/addProject'
+      path: '/pages/work/page/addNewProject/addNewProject'
     },
     {
       url: "../../../../assets/images/work/Group-2.png",

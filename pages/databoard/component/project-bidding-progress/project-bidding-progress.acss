@@ -234,6 +234,6 @@
   right: 0.3rem;
 }
 .mayflyBox .mayfly {
-  width: 1.24rem;
-  height: 1.24rem;
+  width: 1.72rem;
+  height: 1.56rem;
 }

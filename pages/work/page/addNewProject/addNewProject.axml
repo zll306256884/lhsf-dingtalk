@@ -1,0 +1,92 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view class="containerinner">
+    <view class="title">
+      项目信息
+    </view>
+    
+    <form-input label="项目码" name="projectCode" placeholder="请输入" type="text" ref="handleRef" />
+    <form-input label="项目编号" name="proNumber" placeholder="请输入" type="text" disabled ref="handleRef" />
+    <form-input label="项目名称" name="name" placeholder="请输入" type="text" ref="handleRef" />
+    <form-input label="项目简称" name="projectProgram" placeholder="请输入" type="text" ref="handleRef" />
+    <form-picker label="是否考核项目" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
+    <form-picker label="项目分类" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
+    <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" disabled />
+
+    <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
+    <form-picker a:if="{{ constructionPhase=== '3' }}" label="是否投入使用" arrow name="isOutPut" options="{{isOutPutOption}}" ref="handleRef" />
+    <layout-field-cell a:if="{{ isOutPut === '1' }}" borderBottom name="投入使用日期" mustFill value="{{outPutTime}}" onArrowTap="_bindChooseOutPutTime"></layout-field-cell>
+    
+    <view catchTap="_bindChooseAffiliatedUnit">
+      <form-picker label="所属单位" arrow name="affiliatedUnitId" options="{{affiliatedUnitOption}}" disabled ref="handleRef" />
+    </view>
+
+    <form-picker label="建设性质" arrow name="constructionNature" options="{{constructionNatureOptions}}" ref="handleRef" />
+    <form-picker label="工程性质" arrow name="engineeringProperties" options="{{engineeringPropertiesOptions}}" ref="handleRef" />
+    <!-- <layout-field-cell borderBottom name="项目负责人" mustFill value="{{projectLeaderName}}" placeholder="请选择" onArrowTap="_bindChooseProjectLeaderName"></layout-field-cell> -->
+    <!-- <view catchTap="_bindChooseProjectLeaderName">
+      <form-input label="项目负责人" name="projectLeaderName" placeholder="请输入" ref="handleRef" disabled>{{projectLeaderName}}<icon slot="suffix" type="RightOutline" /></form-input>
+    </view> -->
+    <form-item label="项目负责人" labelWidth="260rpx" name="projectLeaderName" required>
+      <view class="f-item" catchTap="_bindChooseProjectLeaderName"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc"/></view>
+    </form-item>
+
+
+    <form-textarea label="建设规模及内容" position='vertical' name="constructionContent" placeholder="请输入" allowClear maxLength="1000" autoHeight ref="handleRef" />
+  </view>
+  <view class="containerinner" style="margin-top:16rpx">
+    <form-input label="建筑面积(平方米)" labelWidth="280rpx" name="structureArea" placeholder="请输入" type="number" ref="handleRef" />
+    <form-input label="占地面积(平方米)" labelWidth="280rpx" name="floorArea" placeholder="请输入" type="number" ref="handleRef" />
+
+    <form-input label="拟建位置" name="proposedLocation" placeholder="请输入" type="text" maxLength="100" ref="handleRef" />
+    <form-input label="拟用土地" name="proposedLand" placeholder="请输入" type="text" maxLength="100" ref="handleRef" />
+
+    <form-input label="座数" labelWidth="280rpx" name="blockNumber" placeholder="请输入" type="number" ref="handleRef" />
+
+    <!-- <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent placeholder="请选择" value="{{planConstructionDate}}" onArrowTap="_bindChoosePlanConstructionDate"></layout-field-cell> -->
+    <form-item labelWidth="260rpx" label="计划施工工期" name="planConstructionDate" required>
+      <view class="f-item" catchTap="_bindChoosePlanConstructionDate"> {{planConstructionDate?planConstructionDate:'请选择'}} <icon type="RightOutline" style="color:#ccc"/></view>
+    </form-item>
+    <form-input label="计划施工工期(天)" labelWidth="280rpx" name="duration" placeholder="自动带入" type="number" disabled ref="handleRef" />
+    
+    <!-- <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent placeholder="请选择" value="{{actualConstruction}}" onArrowTap="_bindChooseActualConstruction"></layout-field-cell> -->
+    <form-item label="实际施工工期" labelWidth="260rpx" name="planConstructionDate" required>
+      <view class="f-item" catchTap="_bindChooseActualConstruction"> {{actualConstruction?actualConstruction:'请选择'}} <icon type="RightOutline" style="color:#ccc"/></view>
+    </form-item>
+  </view>
+  <view class="containerinner" style="margin-top:16rpx">
+    <view class="redline-title">
+      项目红线图
+    </view>
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
+  </view>
+  <view class="containerinner" style="margin-top:16rpx">
+    <view class="title"> 项目坐标 </view>
+    <form-input label="X" name="coorX" placeholder="请按照国标2000坐标填写" type="number" ref="handleRef" />
+    <form-input label="Y" name="coorY" placeholder="请按照国标2000坐标填写" type="number" ref="handleRef" />
+  </view>
+
+  <view class="containerinner" style="margin-top:16rpx">
+    <view class="title"> 投资信息 </view>
+    <form-input label="总投资金额(万元)" labelWidth="280rpx" name="totalInvestment" placeholder="请输入" type="number" ref="handleRef" />
+    <form-input label="建安费用(万元)" labelWidth="280rpx" name="jianAnMoney" placeholder="请输入" type="number" ref="handleRef" />
+    <form-input label="资金来源" name="sourceFunds" placeholder="请输入" type="text" maxLength="200" ref="handleRef" />
+  </view>
+
+  <view class="flex f-between btn-wrap">
+    <button class="btn" catchTap="bindCancelTap">取消</button>
+    <button class="btn active" onTap="bindFormSubmit">保存</button>
+  </view>
+
+  <view class="bottom-space"></view>
+</view>
+
+<dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
+
+<dialog-picker-date ref="onSavePickerDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateRangeCallBack"></dialog-picker-date>
+<dialog-picker-date ref="onSavePickerActualDatRangeRef" selectionMode="range" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerActualDateRangeCallBack"></dialog-picker-date>
+
+<dialog-screen-affiliated-unit ref="_onSaveDialogScreenSuoshuUnitRef" onScreenCallBack="_bindScreenSuoshuUnitCallBack"></dialog-screen-affiliated-unit>
+<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+
+<dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>
