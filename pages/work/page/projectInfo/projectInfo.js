@@ -46,8 +46,10 @@ Page({
       this.setData({
         projectId: options.id
       })
-      this.getDetail(options.id)
     }
+  },
+  onShow(){
+    this.getDetail(this.data.projectId)
   },
   getDetail(id){
     request.doPostRequest({
