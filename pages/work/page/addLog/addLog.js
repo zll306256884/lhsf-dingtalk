@@ -279,10 +279,11 @@ Page({
         ddUtils.showToast({
           title: "新增成功！"
         });
-        setTimeout(function () {
+        ddUtils.navigateBack();
+        // setTimeout(function () {
 
-          ddUtils.navigateBack();
-        }, 1000)
+
+        // }, 1000)
       },
     })
   },
