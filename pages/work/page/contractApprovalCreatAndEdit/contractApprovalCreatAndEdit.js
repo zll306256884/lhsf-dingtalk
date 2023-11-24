@@ -387,6 +387,7 @@ Page({
     this.form.rules = {}
     let params = this.form.getFieldsValue()
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+    params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
 
     if(this.data.contractId){
       params.id = this.data.contractId
@@ -448,6 +449,7 @@ Page({
     params.projectName = this.data.projectName
     params.countersignLeader = this.data.countersignLeader
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+    params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
 
     params.unitPartyName  = this.data.unitPartyName 
     params.countersignLeader = this.data.countersignLeader
