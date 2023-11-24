@@ -90,12 +90,7 @@ Component({
         dataList: list
       });
     },
-
-    bindInputChange: function(value) {
-      this.screenDangerousName = value;
-    },
-
-    onSearchConfirm: function(value) {
+    seachHandle(value){
       this.data.screenDangerousName = value;
       const openOrganizeList = list=>{
         if (!isEmptyArray(list)){
@@ -125,6 +120,9 @@ Component({
           }
         }
       });
+    },
+    onSearchConfirm: function(value) {
+      this.seachHandle(value)
     },
     _bindItemChooseCompanyChange: function(indexArray) {
       if (isEmptyArray(indexArray)) return;

@@ -85,6 +85,7 @@
   height: 48rpx;
   background: #1A6AFF;
   color: #fff;
+  font-size: 14px;
   border-radius: 24rpx;
   text-align: center;
   line-height: 48rpx;

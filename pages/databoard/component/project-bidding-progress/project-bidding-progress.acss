@@ -1,5 +1,5 @@
 .annual-bidding-progress{
-  padding: 0 24rpx;
+  padding: 24rpx 24rpx 0px;
 }
 .annual-bidding-progress .top-content{
   padding-top: 20rpx;
@@ -111,7 +111,7 @@
   color: #FFFFFF;
   line-height: 66rpx;
 }
-.bottom-content{
+.bottom-content-project{
   margin-top: 48rpx;
   /* width: 702rpx; */
   /* height: 912rpx; */
@@ -120,7 +120,7 @@
   opacity: 1;
   padding: 32rpx 20rpx 32rpx 32rpx;
 }
-.bottom-content .search{
+.bottom-content-project .search{
   width: 82%;
   /* width: 638rpx; */
   height: 64rpx;
@@ -130,11 +130,11 @@
   align-items: center;
   padding: 0 24rpx;
 }
-.bottom-content .search image{
+.bottom-content-project .search image{
   width: 32rpx;
   height: 32rpx;
 }
-.bottom-content .search input{
+.bottom-content-project .search input{
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
@@ -142,10 +142,10 @@
   line-height: 44rpx;
   background: #F3F4F5;
 }
-.bottom-content .list{
+.bottom-content-project .list{
   align-items: center;
 }
-.bottom-content .b-top{
+.bottom-content-project .b-top{
   width: 276rpx;
   height: 72rpx;
   background: #F3F4F5;
@@ -154,7 +154,7 @@
   align-items: center;
   padding:0 6rpx;
 }
-.bottom-content .b-top .text{
+.bottom-content-project .b-top .text{
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
@@ -163,7 +163,7 @@
   padding: 0 24rpx;
   text-align: center;
 }
-.bottom-content .b-top .active{
+.bottom-content-project .b-top .active{
   padding: 0 24rpx;
   height: 60rpx;
   background: #FFFFFF;
@@ -176,12 +176,12 @@
   color: #1D1D1F;
   line-height: 60rpx;
 }
-.bottom-content .list{
+.bottom-content-project .list{
   padding: 20rpx 0rpx;
   border-bottom: 1rpx solid #EBEEF5;
 }
 
-.bottom-content .list .name{
+.bottom-content-project .list .name{
   font-size: 28rpx;
   font-family: PingFang SC-Medium, PingFang SC;
   font-weight: 500;
@@ -193,7 +193,7 @@
   overflow: hidden;
   word-break: break-all;
 }
-.bottom-content .list .tag{
+.bottom-content-project .list .tag{
   width: 96rpx;
   height: 36rpx;
   background: #ECF2FF;
@@ -207,21 +207,21 @@
   text-align: center;
   margin-right: 16rpx;
 }
-.bottom-content .list .label{
+.bottom-content-project .list .label{
   font-size: 24rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
   color: #A8ABB2;
   line-height: 40rpx;
 }
-.bottom-content .list .text{
+.bottom-content-project .list .text{
   font-size: 24rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
   color: #606266;
   line-height: 40rpx;
 }
-.bottom-content .list .number{
+.bottom-content-project .list .number{
   font-size: 24rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;

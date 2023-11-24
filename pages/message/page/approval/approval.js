@@ -14,7 +14,7 @@ Page({
     tabList: [{
       title: "待办审批",
       value: '1',
-      total: 0
+      total: 1
     },
     {
       title: "已办审批",
@@ -159,6 +159,7 @@ Page({
     // 返回回到这个页面需要调用的接口
     this.pageNum = 1
     this.getList()
+    this.getCount()
   },
   events: {
     // 返回的时候  不需要多层
@@ -335,6 +336,39 @@ Page({
     //   complete: res => {
     //     this._loadDone(res);
     //   }
+    // })
+  },
+  // 获取点数 
+  getCount: function () {
+    let param = {
+
+    }
+    console.log('param', param)
+    // return
+    // return new Promise((resolve, reject) => {
+    request.doPostRequest({
+      url: approvalServer.API_SELECT_COUNT,
+      showLoading: false,
+      data: param,
+      success: res => {
+        console.log('res.data', res.data)
+        let waitNum = res.data.waitNum;
+        let completedNum = res.data.completedNum
+        let overNum = res.data.overNum
+        this.setData({
+          'tabList[0].total': waitNum,
+          // 'tabList[1].total': completedNum,
+          // 'tabList[2].total': overNum,
+        });
+        resolve(res.data)
+      },
+      complete: res => {
+        this._loadDone(res);
+      },
+      fail: res => {
+        reject(res)
+      }
+    });
     // })
   },
   onReachBottom() {

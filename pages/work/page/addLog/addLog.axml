@@ -1,51 +1,73 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container" id="addLog">
-  <form onSubmit="logAddSubmit">
-    <view class="containerinner">
-      <view class="title" a:if="{{ false }}">项目信息</view>
-      <block a:if="{{logData.logTypeName=='重大事件'}}">
-        <layout-field-cell name="项目名称" borderBottom mustFill placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject">
-        </layout-field-cell>
-      </block>
-      <block a:else>
-        <layout-field-cell name="项目名称" borderBottom mustFillTransparent placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject">
-        </layout-field-cell>
-      </block>
-      <layout-field-cell borderBottom name="日志日期" mustFill value="{{logData.logDate}}" placeholder="请选择" onArrowTap="_bindLogTime">
-      </layout-field-cell>
-      <layout-field-cell borderBottom name="日志类型" placeholder="请选择" mustFill value="{{logData.logTypeName}}" onArrowTap="_bindLogType" 
-        showPopver="">
-      </layout-field-cell>
-      <layout-field-cell name="日志内容" mustFill value=" " hidden="{{false}}"></layout-field-cell>
-      <textarea class="reason" name="logContent" maxlength="300" value="{{logContent}}" placeholder="请输入内容" placeholder-class="placeholder-class">
-      </textarea>
-    </view>
-    <!--  -->
-    <view class="containerinner" style="margin-top:16rpx">
-      <view class="redline-title">
-        <view class='redStart' a:if="{{logData.logTypeName=='重大事件'}}">*</view>
-        照片
+  <!--<form onSubmit="logAddSubmit"> -->
+  <view class="containerinner">
+    <view class="title" a:if="{{ false }}">项目信息</view>
+    <!-- 项目名称 -->
+    <block a:if="{{logTypeName=='重大事件'}}">
+      <view catchTap="_bindChooseLogProject">
+        <form-picker label="项目名称" arrow disabled options="{{projectListOptions}}" name="projectId" ref="handleRef" />
       </view>
-      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef">
-      </layout-upload-img>
+      <!--<layout-field-cell name="项目名称" borderBottom mustFill placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject"></layout-field-cell> -->
+    </block>
+    <block a:else>
+      <view catchTap="_bindChooseLogProject">
+        <form-picker label="项目名称" arrow disabled options="{{projectListOptions}}" name="projectIdNext" ref="handleRef" />
+      </view>
+      <!--<layout-field-cell name="项目名称" borderBottom mustFillTransparent placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject"></layout-field-cell> -->
+    </block>
+    
+    <!-- 日志日期 -->
+    <view catchTap="_bindLogTime">
+      <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#ccc;opacity:1;" 
+        disabled ref="handleRef">
+        <icon slot="suffix" type="RightOutline" /></form-input>
+      
+      <!--<layout-field-cell borderBottom name="日志日期" mustFill value="{{logData.logDate}}" placeholder="请选择" onArrowTap="_bindLogTime"></layout-field-cell> -->
     </view>
-    <!--  -->
-    <view class="containerinner" style="margin-top:16rpx">
-      <view class="redline-title">
-        <!--<view class='redStart'>*</view> -->
+    
+    <!-- 日志类型 -->
+    <view catchTap="_bindLogType">
+      <form-picker label="日志类型" arrow disabled name="logTypeName" placeholder="请选择" options="{{logTypeOptionShow}}" ref="handleRef" />
+      
+      <!--<layout-field-cell borderBottom name="日志类型" placeholder="请选择" mustFill value="{{logData.logTypeName}}" onArrowTap="_bindLogType" 
+          showPopver=""></layout-field-cell> -->
+    </view>
+    
+    <!--日志内容  -->
+    <view>
+      <form-textarea label="日志内容" position='vertical' name="logContent" placeholder="请输入" allowClear maxLength="300" autoHeight 
+        ref="handleRef" />
+      <!--<layout-field-cell name="日志内容" mustFill value=" " hidden="{{false}}"></layout-field-cell><textarea class="reason" name="logContent" maxlength="300" value="{{logContent}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea> -->
+    </view>
+  </view>
+  <!--  -->
+  <view class="containerinner" style="margin-top:16rpx">
+    <view class="redline-title">
+      <view class='redStart' a:if="{{logTypeName=='重大事件'}}">*</view>
+      照片
+    </view>
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef">
+    </layout-upload-img>
+  </view>
+  <!--  -->
+  <view class="containerinner" style="margin-top:16rpx">
+    <view class="redline-title">
+      <!--<view class='redStart'>*</view> -->
         附件
-      </view>
-      <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef">
-      </layout-upload-img>
     </view>
-    
-    <view class="flex f-between btn-wrap">
-      <button class="btn" catchTap="bindCancelTap">取消</button>
-      <button class="btn active" form-type="submit">保存</button>
-    </view>
-    
-    <view class="bottom-space"></view>
-  </form>
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef">
+    </layout-upload-img>
+  </view>
+  
+  <view class="bottom-space" style="height:150rpx"></view>
+  <view class="flex f-between btn-wrap">
+    <button class="btn" catchTap="bindCancelTap">取消</button>
+    <button class="btn active" onTap="logAddSubmit">保存</button>
+  </view>
+  
+  
+  <!--</form> -->
 </view>
 
 <!-- 项目名称选择 -->

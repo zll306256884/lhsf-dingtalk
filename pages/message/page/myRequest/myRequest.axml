@@ -5,7 +5,7 @@
     <!-- <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar> -->
     <tabs items="{{tabList}}"  current="{{tabIndex}}" onChange="onNavTabChange" >
       <view slot="title" slot-scope="item">
-        <view a:if="{{item.value.badge}}">
+        <view a:if="{{item.value.badge && item.value.total !== 0}}">
           <badge type="number" text="{{item.value.total}}" position="top-right"> {{item.value.title}}</badge>
         </view>
         <view a:else>{{item.value.title}}</view>
@@ -19,7 +19,7 @@
 </view>
 
 
-<list>
+<list a:if="{{ dataList && dataList.length }}">
   <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
     <view class="flex f-between">
       <view style="width:80%">
@@ -33,6 +33,12 @@
   </list-item>
 </list>
 
-<error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>
+<view a:else class="flex f-center" style="background:#fff">
+  <image mode="scaleToFill" src="/assets/images/common/empty.png" style="margin: 50rpx auto;width:69px;height:104px;" />
+</view>
+
+<view style="display: none">
+  <error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>
+</view>
 
 <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></dialog-filter>

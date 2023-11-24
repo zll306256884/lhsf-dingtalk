@@ -42,27 +42,28 @@ Page({
         data: param,
         success: res => {
           res.data.annexFile = JSON.parse(res.data.annexFile)
-
-          res.data.annexFile.map((item) => {
-            if (item.url.indexOf('.pdf') > -1) {
-              item.type = 'pdf'
-            }
-            if (item.url.indexOf('.ppt') > -1) {
-              item.type = 'ppt'
-            }
-            if (item.url.indexOf('.png') > -1) {
-              item.type = 'png'
-            }
-            if (item.url.indexOf('.jpg') > -1) {
-              item.type = 'jpg'
-            }
-            if (item.url.indexOf('.doc') > -1) {
-              item.type = 'doc'
-            }
-            if (item.url.indexOf('.docx') > -1) {
-              item.type = 'docx'
-            }
-          })
+          if(res.data.annexFile && res.data.annexFile.length){
+            res.data.annexFile.map((item) => {
+              if (item.url.indexOf('.pdf') > -1) {
+                item.type = 'pdf'
+              }
+              if (item.url.indexOf('.ppt') > -1) {
+                item.type = 'ppt'
+              }
+              if (item.url.indexOf('.png') > -1) {
+                item.type = 'png'
+              }
+              if (item.url.indexOf('.jpg') > -1) {
+                item.type = 'jpg'
+              }
+              if (item.url.indexOf('.doc') > -1) {
+                item.type = 'doc'
+              }
+              if (item.url.indexOf('.docx') > -1) {
+                item.type = 'docx'
+              }
+            })
+          }
           res.data.responsible = JSON.parse(res.data.responsible)
           console.log('res.data', res.data)
           this.setData({
@@ -137,19 +138,21 @@ Page({
         title: str,
         content: "请确认",
         success: res => {
-          dd.callUsers({
-            users: [this.data.listData.dingTalkId],
-            // users: ['01460242357481712'],
-            corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
-            success: () => { },
-            fail: (res) => {
-              console.log(res)
-              ddUtils.showToast({
-                title: 'errorCode：' + res.error + ',' + res.errorMessage
-              });
-            },
-            complete: () => { },
-          });
+          if (res.confirm) {
+            dd.callUsers({
+              users: [this.data.listData.dingTalkId],
+              // users: ['01460242357481712'],
+              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+              success: () => { },
+              fail: (res) => {
+                console.log(res)
+                ddUtils.showToast({
+                  title: 'errorCode：' + res.error + ',' + res.errorMessage
+                });
+              },
+              complete: () => { },
+            });
+          }
         }
       })
 

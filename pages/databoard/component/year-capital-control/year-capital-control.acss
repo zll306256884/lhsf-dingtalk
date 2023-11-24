@@ -56,13 +56,35 @@ text-overflow: ellipsis; /* 溢出显示省略号 */
 overflow: hidden; /* 溢出隐藏 */
 white-space: nowrap;
 }
-.bottom-content{
+.bottom-content-year{
   padding: 28rpx;
  margin: 24rpx;
 min-height: 762rpx;
 background: #FFFFFF;
 border-radius: 40rpx 40rpx 0rpx 0rpx;
 opacity: 1;
+}
+.bottom-content-year .search{
+  margin-top: 20px;
+  /* width: 638rpx; */
+  height: 64rpx;
+  background: #F3F4F5;
+  border-radius: 72rpx 72rpx 72rpx 72rpx;
+  opacity: 1;
+  align-items: center;
+  padding: 0 24rpx;
+}
+.bottom-content-year .search image{
+  width: 32rpx;
+  height: 32rpx;
+}
+.bottom-content-year .search input{
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #909399;
+  line-height: 44rpx;
+  background: #F3F4F5;
 }
 .plan-money{
   display: flex;

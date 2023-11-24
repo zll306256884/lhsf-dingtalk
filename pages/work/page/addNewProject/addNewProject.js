@@ -187,6 +187,7 @@ Page({
     this.setData({
       duration: totalDateNum
     })
+    this.form.setFieldValue('duration', totalDateNum)
   },
   bindPickerDateCannBack(data){
     console.log(data)

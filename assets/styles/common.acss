@@ -396,3 +396,13 @@ input[type="number"]{
 .ant-form-item-error-info{
   text-align: right !important;
 }
+.ant-input-disabled {
+  opacity: 1!important;
+}
+.ant-input-disabled .ant-input-content {
+  color:#000!important
+}
+.ant-empty-image-element {
+  width: 70px!important;
+  height: 100px!important;
+}

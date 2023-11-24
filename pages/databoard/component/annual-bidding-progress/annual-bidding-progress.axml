@@ -42,7 +42,7 @@
     </view>
   </view>
 
-  <view class="bottom-content">
+  <view class="bottom-content-board">
     <view class="b-top flex f-around">
       <view class="text {{listType === '1'?'active':''}}" data-index="1" catchTap="listChange">招标文件</view>
       <view class="text {{listType === '2'?'active':''}}" data-index="2" catchTap="listChange">合同</view>
@@ -57,7 +57,8 @@
       <view a:if="{{ docList && docList.length }}">
         <view class="list flex f-between" a:for="{{ docList }}" a:key="index" catchTap="toProject" data-item="{{item}}">
           <view class="flex f-start" style="align-items:center">
-            <image class="left-img" mode="aspectFit" src="{{item.img?item.img:'/assets/images/common/default-img.png'}}" />
+            <image a:if="{{ item.img }}" class="left-img" mode="scaleToFill" src="{{item.img}}" />
+            <image a:else class="left-img" mode="aspectFit" src="/assets/images/common/default-img.png" />
             <view class="center">
               <view class="name">{{item.projectName}}</view>
               <view class="flex f-between">

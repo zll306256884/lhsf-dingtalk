@@ -83,7 +83,7 @@ Component({
     async _bindFormSunmit(e) {
       let reason = e.detail.value.reason;
       console.log(reason, this.data.isApprovalAgree)
-      if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
+      // if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
       // this.props.onApprovalOperate(reason, this.data.isApprovalAgree);
       let workAuditFile = [];
       if (this.uploadApproval) {

@@ -44,7 +44,7 @@
     </view> 
   </view>
   </view>
-  <view class="bottom-content"> 
+  <view class="bottom-content-year"> 
     <view class="cont-tabs">
       <view class="item-label {{checkoutPage===1?'isActive':''}}" data-id="{{1}}" onTap="oclick">
         支付

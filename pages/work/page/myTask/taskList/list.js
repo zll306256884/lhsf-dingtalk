@@ -35,25 +35,8 @@ Page({
     })
   },
   onShow(){
-    console.log("???????????");
    this.onTaskChange(this.data.currentTask)
   },
-  // events: {
-  //   onBack() {
-  //     ddUtils.navigateTo({
-  //       url: '/pages/work/index'
-  //     })
-  //   },
-  // },
-  // initList(){
-  //   let params={
-  //     executeUserId : app.globalData.userInfo.userId,
-  //     createById:'',
-  //     title:"",
-  //     status:[1,2,5]
-  //   }
-  //   this.getTaskList(params)
-  // },
   onReachBottom() {
   let params={
     executeUserId:"",

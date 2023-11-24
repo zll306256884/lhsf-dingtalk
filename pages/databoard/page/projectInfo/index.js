@@ -40,14 +40,10 @@ Page({
     this.data.projectInfo.projectName=option.projectName
     this.data.projectInfo.projectId=option.projectId
     this.data.navbarData.title = option.projectName
-    if(option.type === '3' || option.type === 3){
+    if(option.type){
+      console.log(option.type)
       this.setData({
-        currentTabIndex: 4
-      })
-    }
-    if(option.current === '3'){
-      this.setData({
-        currentTabIndex: 3
+        currentTabIndex: Number(option.type)
       })
     }
     this.setData({
@@ -62,7 +58,7 @@ Page({
     }
   },
   onShow(option){
- console.log(option);
+    console.log(option);
   },
   onSaveMapRef(ref){
     this.mapRef=ref

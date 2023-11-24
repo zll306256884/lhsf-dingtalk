@@ -124,7 +124,8 @@ Page({
       // "projectId": this.data.projectId,
       "projectId": '12019020004',
       'status': this.data.status,
-      'flagNode': this.data.flagNode
+      'flagNode': this.data.flagNode,
+      'enable': 1
     }
     return new Promise((resolve, reject) => {
       request.doPostRequest({
