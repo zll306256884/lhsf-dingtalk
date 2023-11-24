@@ -7,8 +7,9 @@
         <view class="topItem flex f-between box-sizing-box">
           <view class="flex f-between">
             <block>
-              <image class="greenTypeSpot posi" a:if="{{ item.type==1||item.type==3 }}" src="/assets/images/progress/blue.png" />
-              <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blueCancel.png" />
+              <image class="greenTypeSpot posi" a:if="{{ item.type==1||item.type==3||item.type==4 }}" src="/assets/images/progress/blue.png" />
+              <!-- <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blueCancel.png" /> -->
+              <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blue.png" />
               <image class="greenTypeSpot posi" a:if="{{ item.type==99 }}" src="/assets/images/progress/blueCancel.png" />
             </block>
             <view>
