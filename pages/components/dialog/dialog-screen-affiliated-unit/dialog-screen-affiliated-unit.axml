@@ -8,7 +8,7 @@
         {{title}}
       </view>
       <!-- <text class="sure" catchTap="_bindSureTap">确定</text> -->
-      <text class="sure" catchTap="_bindCancelTap">确定</text>
+      <text class="sure" catchTap="_bindSureTap">确定</text>
   </view>
 
   <view class="flex f-align-center search-wrap-wrap">

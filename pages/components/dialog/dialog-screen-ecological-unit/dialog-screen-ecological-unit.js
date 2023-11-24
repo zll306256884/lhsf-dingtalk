@@ -127,14 +127,14 @@ Component({
 
         //bind item tap
         _bindItemTap: function (e) {
-            this.setData({
-                chooseIndex: e.currentTarget.dataset.index
-            });
-
-            this._hideDialog();
-            this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex])
+          this.setData({
+              chooseIndex: e.currentTarget.dataset.index
+          });
         },
-
+        _bindSureTap(){
+          this._hideDialog();
+          this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex])
+        },
         //judge is show dialog
         _isShowDialog() {
             return this.data.showDialog;
