@@ -7,6 +7,7 @@
         <view class="topItem flex f-between box-sizing-box">
           <view class="flex f-between">
             <block>
+              <!-- 1通过2驳回3待审核4撤销审批 -->
               <image class="greenTypeSpot posi" a:if="{{ item.type==1||item.type==3||item.type==4 }}" src="/assets/images/progress/blue.png" />
               <!-- <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blueCancel.png" /> -->
               <image class="greenTypeSpot posi" a:if="{{ item.type==2 }}" src="/assets/images/progress/blue.png" />
