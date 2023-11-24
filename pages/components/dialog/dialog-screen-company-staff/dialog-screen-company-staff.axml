@@ -10,7 +10,7 @@
           </view>
           <text a:if="{{multiChoose}}" class="sure" catchTap="_bindSureTap">确定</text>
       </view>
-      <layout-search onSearchInputChange="bindInputChange" onSearchConfirm="onSearchConfirm" placeholder="请输入人员"></layout-search>
+      <layout-search onSearchInputChange="onSearchConfirm" onSearchConfirm="onSearchConfirm" placeholder="请输入人员"></layout-search>
       <scroll-view class="scroll" style="height: {{scrollHeight}}px;" scroll-y="{{true}}">
           <block a:for="{{dataList}}">
               <view class="box-sizing-box item" data-index="{{index}}" catchTap="_bindItemTap">

@@ -9,7 +9,7 @@
           <text style="color:#1A6AFF" catchTap="onSureTap">确定</text>
           </view>
           <view style="margin-bottom:30rpx">
-            <layout-search onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>
+            <layout-search onSearchInputChange="onSearchConfirm"  onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>
           </view>
           <scroll-view style="max-height: 100Vh;" scroll-y="{{true}}">
               <block a:for="{{dataList}}">

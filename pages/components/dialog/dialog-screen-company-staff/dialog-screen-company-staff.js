@@ -121,10 +121,6 @@ Component({
         }
       });
     },
-    bindInputChange: function(value) {
-      this.seachHandle(value)
-    },
-
     onSearchConfirm: function(value) {
       this.seachHandle(value)
     },
