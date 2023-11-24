@@ -19,7 +19,7 @@
     
     <!-- 日志日期 -->
     <view catchTap="_bindLogTime">
-      <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#000;opacity:1;" 
+      <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#ccc;opacity:1;" 
         disabled ref="handleRef">
         <icon slot="suffix" type="RightOutline" /></form-input>
       

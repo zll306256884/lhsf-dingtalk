@@ -147,7 +147,6 @@
               </view>
               <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
             </view>
-            
             <!-- listData.annexFile -->
           </view>
         </view>

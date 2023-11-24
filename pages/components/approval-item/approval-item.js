@@ -66,6 +66,30 @@ Component({
           success: res => {
             res.data.map((item) => {
               item.annexesUrl = JSON.parse(item.annexesUrl)
+              if (item.annexesUrl && item.annexesUrl.length) {
+                item.annexesUrl.map((item1) => {
+                  if (item1.url.indexOf('.pdf') > -1) {
+                    item1.type = 'pdf'
+                  }
+                  if (item1.url.indexOf('.ppt') > -1) {
+                    item1.type = 'ppt'
+                  }
+                  if (item1.url.indexOf('.png') > -1) {
+                    item1.type = 'png'
+                  }
+                  if (item1.url.indexOf('.jpg') > -1) {
+                    item1.type = 'jpg'
+                  }
+                  if (item1.url.indexOf('.doc') > -1) {
+                    item1.type = 'doc'
+                  }
+                  if (item1.url.indexOf('.docx') > -1) {
+                    item1.type = 'docx'
+                  }
+
+                })
+              }
+
             })
             // console.log('res.data', res.data)
             resolve(res.data)
