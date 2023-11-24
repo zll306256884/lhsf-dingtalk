@@ -3,7 +3,7 @@
   background: #fff;
   padding:0 24rpx;
   position: fixed;
-  top:86px;
+  top:84px;
   box-sizing: border-box;
 }
 .ant-tabs-bar-scroll-view {

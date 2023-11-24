@@ -20,10 +20,10 @@
       </view>
       <view class="form-title">基础信息</view>
       <view style="background:#fff">
-        <layout-field-cell borderBottom name="执行人员" value="{{executer_dictText}}"></layout-field-cell>
-        <layout-field-cell borderBottom name="任务发起人" value="{{infoData.createBy_dictText}}"></layout-field-cell>
-        <layout-field-cell borderBottom name="任务发起时间" value="{{utils.parseTime(infoData.createTime,'{y}-{m}-{d} {h}:{i}')}}"></layout-field-cell>
-        <layout-field-cell name="任务描述"></layout-field-cell>
+        <layout-field-cell mustFillTransparent hidden="{{false}}" borderBottom name="执行人员" value="{{executer_dictText}}"></layout-field-cell>
+        <layout-field-cell mustFillTransparent hidden="{{false}}" borderBottom name="任务发起人" value="{{infoData.createBy_dictText}}"></layout-field-cell>
+        <layout-field-cell mustFillTransparent hidden="{{false}}"  borderBottom name="任务发起时间" value="{{utils.parseTime(infoData.createTime,'{y}-{m}-{d} {h}:{i}')}}"></layout-field-cell>
+        <layout-field-cell mustFillTransparent name="任务描述"></layout-field-cell>
         <view class="task-remark">{{infoData.remark}}</view>
       </view>
       <view style="margin-top:16rpx;background:#fff">

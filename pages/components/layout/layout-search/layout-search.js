@@ -21,7 +21,6 @@ Component({
 
         //bind input change
         _bindInputChange: function (e) {
-          console.log("触发1");
             this.props.onSearchInputChange(e.detail.value);
         }
     },
