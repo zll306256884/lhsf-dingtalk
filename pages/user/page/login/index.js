@@ -65,6 +65,8 @@ Page({
                         app.globalData.userInfo.userId= loginData.userId
 
                         this.getAllInfo();
+                        this.getPermissionByToken()
+                        
                     },
                     fail: res => {
                         ddUtils.hideLoading();
@@ -95,20 +97,20 @@ Page({
 
                 if (!defaultPeoject && !isEmptyArray(tempProjectList))
                     defaultPeoject = tempProjectList[0];
-                app.globalData.userInfo.userAccount = tempUserInfo.account;
-                app.globalData.userInfo.userId = tempUserInfo.userId;
-                app.globalData.userInfo.avatar = tempUserInfo.avatar;
-                app.globalData.userInfo.nickName = tempUserInfo.name;
-                app.globalData.userInfo.sex = "";
-                app.globalData.userInfo.projectId = defaultPeoject ? defaultPeoject.projectId : '';
-                app.globalData.userInfo.projectName = defaultPeoject ? defaultPeoject.projectName : '';
-                ddUtils.setStorage({
-                    key: app.globalData.keyUserInfo,
-                    data: app.globalData.userInfo
-                });
-                ddUtils.switchTab({
-                    url: "/pages/work/index"
-                });
+                    app.globalData.userInfo.userAccount = tempUserInfo.account;
+                    app.globalData.userInfo.userId = tempUserInfo.userId;
+                    app.globalData.userInfo.avatar = tempUserInfo.avatar;
+                    app.globalData.userInfo.nickName = tempUserInfo.name;
+                    app.globalData.userInfo.sex = "";
+                    app.globalData.userInfo.projectId = defaultPeoject ? defaultPeoject.projectId : '';
+                    app.globalData.userInfo.projectName = defaultPeoject ? defaultPeoject.projectName : '';
+                    ddUtils.setStorage({
+                        key: app.globalData.keyUserInfo,
+                        data: app.globalData.userInfo
+                    });
+                    ddUtils.switchTab({
+                        url: "/pages/work/index"
+                    });
             }).catch((error) => {
                 ddUtils.hideLoading();
                 app.globalData.userInfo = {};
@@ -169,4 +171,14 @@ Page({
         }
       })
     },
+    getPermissionByToken(){
+      request.doPostRequest({
+        url: config.API_MENU_LIST,
+        success: res => {
+          console.log('菜单',res)
+          let list = res.data.find(e =>e.title === '移动端') || {}
+          app.globalData.menuList = list
+        }
+      })
+    }
 });

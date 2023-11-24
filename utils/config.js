@@ -37,4 +37,6 @@ module.exports = {
     API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
     //上传获取签名
     API_GET_SIGN: API_HOST + "/file/file/getSign",
+    //获取菜单权限
+    API_MENU_LIST: API_HOST + "/platform/account/getPermissionByToken",
 }
