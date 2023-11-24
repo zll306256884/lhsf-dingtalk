@@ -30,6 +30,9 @@ tabIndex: 0,
   hasMore: false,
   isLoading: false,
  onShow(){
+  this.setData({
+    tabIndex: 0
+  });
   this.page = 1
   this.getMessageList(0)
   this.getunReadMessageTotal()

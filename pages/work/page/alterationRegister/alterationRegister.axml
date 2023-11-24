@@ -139,7 +139,7 @@
     <view class="box-shadow bottom-shadow">
       <view catchTap="bindChooseExecuteUserTap">
         <form-input
-        label="会签分管领导"
+        label="抄送人"
         name="person_text"
         placeholder="请选择"
         disabled

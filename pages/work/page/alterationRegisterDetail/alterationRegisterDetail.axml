@@ -40,7 +40,7 @@
       <layout-field-cell hidden="{{false}}" borderTop name="合同累计变更(万元)"   disabled="{{isEdit}}" value="{{infoData.contractCumulativeChange}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="合同变更率"  borderTop   disabled="{{isEdit}}" value="{{infoData.contractChangeRate}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell  hidden="{{false}}" name="申请会签批准日期" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.countersignDate}}" placeholder="请输入"></layout-field-cell>
-      <layout-field-cell hidden="{{false}}" name="变更内容完成时间"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.changeContentTime}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell hidden="{{false}}" name="变更内容完成时间"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.changeContentTime}}"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="施工单位上报日期" borderTop borderBottom  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.constructionUnitReportDate}}" placeholder="请输入"></layout-field-cell>
        <view class="ReportDate">
         联系单变更内容
@@ -49,7 +49,7 @@
        <view class="ReportDate">
         备注
        </view>
-       <layout-field-cell hidden="{{false}}"  disabled="{{isEdit}}" value="{{infoData.remark}}" ></layout-field-cell>
+       <layout-field-cell hidden="{{false}}"  disabled="{{isEdit}}" value="{{infoData.remark?infoData.remark:'-'}}" ></layout-field-cell>
     </view>
     <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
       <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>
@@ -64,10 +64,10 @@
       </list-item>
       </list>
   </view>
-  <view style="margin-top:20rpx">
+  <view style="margin-top:20rpx" class="bottom-shadow">
     <list-item extraBrief="{{infoData.person_dictText}}">抄送人员</list-item>
   </view>
-  <view a:if="{{type ===true}}" class="flex-display flex-align-center btn-wrap">
+  <view a:if="{{type ===true}}" class="buttons flex f-between">
     <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
     <button class="flex1 btn active" catchTap="editTap">编辑</button>
 </view>

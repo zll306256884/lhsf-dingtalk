@@ -2,7 +2,7 @@
 
 <view class="container">
   <form onSubmit="bindFormSubmit">
-    <view class="box-shadow">
+    <view >
       <view class="box-shadow" >
         <view  catchTap="bindChooseProjectTypeTap">
          <form-input
