@@ -4,7 +4,8 @@
     "tabs": "antd-mini/es/Tabs/index",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
-    "button": "antd-mini/es/Button/index"
+    "button": "antd-mini/es/Button/index",
+    "empty": "antd-mini/es/Empty/index"
 
   }
 }

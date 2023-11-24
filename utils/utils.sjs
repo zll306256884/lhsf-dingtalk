@@ -388,6 +388,9 @@ function getApprovalManageModuleName(value) {
     return "--";
 }
 function parseTime(time, cFormat) {
+  if(!time){
+    return '-'
+  }
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}'
   let date
   if (typeof time === 'object') {

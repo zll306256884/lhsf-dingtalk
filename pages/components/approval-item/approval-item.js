@@ -112,7 +112,8 @@ Component({
           content: '',
           type: 99
         }
-        data1.push(obj)
+        // 下一个审批的数据放在头部
+        data1.unshift(obj)
       }
       console.log('obj', obj)
       console.log('data1new', data1)

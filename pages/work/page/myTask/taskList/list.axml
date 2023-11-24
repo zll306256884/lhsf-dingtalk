@@ -26,7 +26,7 @@
             <view>
               <text a:if="{{currentTask!==1}}" class="item-name">创建人： {{item.createBy_dictText}}</text>
               <text a:if="{{currentTask!==0}}" class="item-name">执行人： {{item.executer_dictText}}</text>
-              <text class="item-time">{{['截止日期','截止日期','完成日期','完成日期'][currentTask]}}：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+              <text class="item-time">{{['截止日期','截止日期','完成日期','取消日期'][currentTask]}}：{{utils.parseTime([item.endTime,item.endTime,item.finishTime,item.updateTime][currentTask],'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
             <view style="min-width:62px">
               <view class="item-status-error" a:if="{{(currentTask===0 || currentTask===1 ) && item.taskStatus===5}}">逾期</view>
