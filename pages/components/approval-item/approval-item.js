@@ -132,7 +132,7 @@ Component({
       if (data2["auditUserNameList"] && data2["auditUserNameList"].length) {
         obj = {
           operatorsName: data2["auditUserNameList"][0],
-          operatorsContent: '进行审批',
+          operatorsContent: '进行审核',
           content: '',
           type: 99
         }

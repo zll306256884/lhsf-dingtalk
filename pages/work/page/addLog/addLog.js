@@ -282,7 +282,7 @@ Page({
         setTimeout(function () {
 
           ddUtils.navigateBack();
-        }, 4000)
+        }, 1000)
       },
     })
   },

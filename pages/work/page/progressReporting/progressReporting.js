@@ -4,19 +4,37 @@ import {
 import config from "../../../../utils/config"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
+import { Form } from 'antd-mini/es/Form/form';
+import { formatTimeToDay } from "../../../../utils/utils";
 
 Page({
+  form: new Form({
+    initialValues: {
+      // logDate: formatTimeToDay(new Date())+ ' 00:00:00'
+      // applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
+    },
+    rules: {
+      projectId: [{ required: true, message: '请选择' }],
+    },
+  }),
   data: {
     navbarData: {
       title: "进度填报",
     },
+    projectListOptions: [],//项目列表
     projectData: {
       name: "",
     },
     projectId: "",
     dialogScreenprojectRef: null, //项目名称
   },
-  onLoad() { },
+  onLoad(options) {
+    console.log(options)
+    this.getProjectList()
+  },
+  handleRef(ref) {
+    this.form.addItem(ref);
+  },
   // 点击取消
   bindCancelTap: function (e) {
     // ddUtils.showToast({
@@ -34,8 +52,11 @@ Page({
     });
   },
   // 点击确定
-  bindSaveTap: function (e) {
+  async bindSaveTap(e) {
     console.log(e);
+    console.log(this.form)
+    const params = await this.form.submit();
+    console.log(params)
     // 
     console.log(this.data.projectData.name);
     console.log(this.data.projectId);
@@ -50,13 +71,6 @@ Page({
         }
       });
     }
-    // ddUtils.navigateTo({
-    //   url: `/pages/work/page/progressDetail/progressDetail`,
-    //   query: {
-    //     projectId: this.data.projectId
-    //   }
-
-    // });
   },
   // 项目名称----组件start
   bindChooseProjectTap: function (e) {
@@ -76,7 +90,24 @@ Page({
       affiliateUnit: data.affiliatedUnitName,
       projectId: data.projectId || ''
     });
+    this.form.setFieldValue('projectId', data.projectId)
     console.log(this.data.projectData, 'this.data.projectData');
   },
   // 项目名称----组件end
+
+  getProjectList() {
+    request.doPostRequest({
+      url: config.API_PROJECT_NAME,
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.id
+        })
+        console.log(res.data)
+        this.setData({
+          projectListOptions: res.data || []
+        })
+      }
+    })
+  },
 });
