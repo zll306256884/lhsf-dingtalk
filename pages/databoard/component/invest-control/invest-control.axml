@@ -52,7 +52,7 @@
     </view> 
   </view>
   </view>
-  <view class="bottom-content"> 
+  <view class="bottom-content-year"> 
     <view class="cont-tabs">
       <view class="item-label {{checkoutPage===2?'isActive':''}}" data-id="{{2}}" onTap="oclick">
         在途支付

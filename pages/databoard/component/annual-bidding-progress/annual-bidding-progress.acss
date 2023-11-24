@@ -1,5 +1,5 @@
 .annual-bidding-progress{
-  padding: 0 24rpx;
+  padding: 24rpx 24rpx 0px;
 }
 .annual-bidding-progress .top-content{
   width: 702rpx;
@@ -80,7 +80,8 @@
   color: #FFFFFF;
   line-height: 66rpx;
 }
-.bottom-content{
+.bottom-content-board{
+  margin: 0;
   margin-top: 48rpx;
   /* width: 702rpx; */
   /* height: 912rpx; */
@@ -89,7 +90,7 @@
   opacity: 1;
   padding: 32rpx 20rpx 32rpx 32rpx;
 }
-.bottom-content .search{
+.bottom-content-board .search{
   margin-top: 20px;
   /* width: 638rpx; */
   height: 64rpx;
@@ -99,11 +100,11 @@
   align-items: center;
   padding: 0 24rpx;
 }
-.bottom-content .search image{
+.bottom-content-board .search image{
   width: 32rpx;
   height: 32rpx;
 }
-.bottom-content .search input{
+.bottom-content-board .search input{
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
@@ -111,10 +112,10 @@
   line-height: 44rpx;
   background: #F3F4F5;
 }
-.bottom-content .list{
+.bottom-content-board .list{
   align-items: center;
 }
-.bottom-content .b-top{
+.bottom-content-board .b-top{
   width: 276rpx;
   height: 72rpx;
   background: #F3F4F5;
@@ -123,7 +124,7 @@
   align-items: center;
   padding:0 6rpx;
 }
-.bottom-content .b-top .text{
+.bottom-content-board .b-top .text{
   font-size: 28rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
@@ -133,7 +134,7 @@
   text-align: center;
   padding: 0 24rpx;
 }
-.bottom-content .b-top .active{
+.bottom-content-board .b-top .active{
   /* width: 160rpx; */
   height: 60rpx;
   background: #FFFFFF;
@@ -147,11 +148,11 @@
   line-height: 60rpx;
   padding: 0 24rpx;
 }
-.bottom-content .list{
+.bottom-content-board .list{
   padding: 46rpx 0 32rpx;
   border-bottom: 1rpx solid #EBEEF5;
 }
-.bottom-content .list .left-img{
+.bottom-content-board .list .left-img{
   width: 162rpx;
   height: 116rpx;
   border-radius: 12rpx 12rpx 12rpx 12rpx;
@@ -160,14 +161,14 @@
   background:#eeeff0;
   background-repeat:no-repeat;
 }
-.bottom-content .list .right-img{
+.bottom-content-board .list .right-img{
   width: 32rpx;
   height: 32rpx;
 }
-.bottom-content .list .center{
+.bottom-content-board .list .center{
   width: 374rpx;
 }
-.bottom-content .list .center .name{
+.bottom-content-board .list .center .name{
   font-size: 32rpx;
   font-family: PingFang SC-Medium, PingFang SC;
   font-weight: 500;
@@ -178,14 +179,14 @@
   overflow: hidden;
   word-break: break-all;
 }
-.bottom-content .list .center .text{
+.bottom-content-board .list .center .text{
   font-size: 24rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
   color: #909399;
   line-height: 40rpx;
 }
-.bottom-content .list .center .number{
+.bottom-content-board .list .center .number{
   font-size: 24rpx;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;

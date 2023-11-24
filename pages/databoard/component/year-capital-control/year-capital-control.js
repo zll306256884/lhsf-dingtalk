@@ -101,7 +101,7 @@ Component({
     if(this.data.checkoutPage === 2){
     }
    ddUtils.navigateTo({
-    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&current=${3}&alter=${this.data.alter}&dingTalkId=${item.dingTalkId}&userName=${item.userName}`
+    url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&type=${3}&alter=${this.data.alter}&dingTalkId=${item.dingTalkId}&userName=${item.userName}`
   });
    }
   },

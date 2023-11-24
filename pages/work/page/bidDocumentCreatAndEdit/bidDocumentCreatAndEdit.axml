@@ -159,7 +159,7 @@
   label="选择会签分管领导"
   labelWidth="290rpx"
   name="countersignLeader_dictText"
-  placeholder="请输入"
+  placeholder="请选择"
   disabled
   ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
 </view>
