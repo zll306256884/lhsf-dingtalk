@@ -79,3 +79,10 @@
   color: #ccc;
   /* color:pink */
 }
+.ant-picker-value-text{
+  font-size: 28rpx;
+  color: #323233;
+}
+.ant-input-placeholder{
+  font-size: 28rpx;
+}
