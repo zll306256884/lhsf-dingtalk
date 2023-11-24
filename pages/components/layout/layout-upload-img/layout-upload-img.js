@@ -9,6 +9,9 @@ Component({
   mixins: [],
   data: {
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
+    isWebView: false, 
+    webViewContext:'',
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
   },
   props: {
     cssStyle: "",
@@ -21,7 +24,6 @@ Component({
     this.setData({
       imgList: []
     })
-
   },
   //组件创建时和更新前触发
   deriveDataFromProps(nextProps) {
@@ -32,6 +34,22 @@ Component({
   },
   didUnmount() { },
   methods: {
+    onMessage:function(e) {
+      if(e.detail.hidden) {
+        this.setData({
+          isWebView : false
+        })
+      }
+      if(e.detail.imgList){
+        this.setData({
+          isWebView : false
+        })
+        this.setData({
+          imgList: this.data.imgList.concat(e.detail.imgList)
+        })
+      }
+      console.log('接受消息',e.detail)
+    },
     //获取上传的图片信息
     _getUploadImgId: function () {
       console.log('this.data.imgList',this.data.imgList)
@@ -116,7 +134,7 @@ Component({
       ddUtils.showActionSheet({
         itemList: ["拍照", "手机相册"],
         success: res => {
-          console.log(res)
+          console.log('res',res)
           let count = this.data.maxCount - this.data.imgList.length;
           switch (res.index) {
             case 0:
@@ -136,9 +154,18 @@ Component({
                 success: resChooseImg => {
                   console.log('resChooseImg',resChooseImg)
                   this._dealChooseImage(resChooseImg);
-                },
+                },'typesOf':'viewFile',
               })
               break
+            case 2:
+              this.webViewContext = dd.createWebViewContext('web-view-1')
+              this.setData({
+                isWebView :true
+              })
+              // setTimeout(()=>{
+              //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
+              // },1000)
+              this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
             default:
               break
           }

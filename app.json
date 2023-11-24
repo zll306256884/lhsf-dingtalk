@@ -48,6 +48,7 @@
     "pages/work/page/addNewProject/addNewProject"
   ],
   "window": {
+    "defaultTitle": "",
     "transparentTitle": "always",
     "titlePenetrate": "NO",
     "backgroundTextStyle": "light",
