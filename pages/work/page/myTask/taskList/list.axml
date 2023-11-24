@@ -4,7 +4,7 @@
   <view class="card-tabs">
     <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
       <view slot="title" slot-scope="item">
-        <view a:if="{{item.index===currentTask && (currentTask ===0 || currentTask ===1)}}">
+        <view a:if="{{item.index===currentTask && (currentTask ===0 || currentTask ===1) && total!==0}}">
           <badge type="number" text="{{total}}" position="top-right"> {{item.value.title}}</badge>
         </view>
         <view a:else>{{item.value.title}}</view>

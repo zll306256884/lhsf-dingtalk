@@ -103,7 +103,7 @@
                 {{item.title}} 
                 </view>
               <view class="flex f-row f-between">
-                <text class="item-label">截止时间：{{utils.parseTime(item.endTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+                <text class="item-label">{{['截止日期','完成日期','取消日期'][currentTask]}}：{{utils.parseTime([item.endTime,item.finishTime,item.updateTime][currentTask],'{y}-{m}-{d} {h}:{i}')}}</text>
             </view>
             </view>
           </list-item>
