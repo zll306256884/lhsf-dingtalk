@@ -116,5 +116,20 @@
   margin-left: 40rpx;
 }
 
+.approvalItem .desWord{
+  font-size: 28rpx;
+  color: #969799;
+  margin-left: 40rpx;
+}
+
+.approvalItem .list-item .down-icon{
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.approvalItem .list-item .name{
+  max-width: 450rpx;
+}
+
 
 
