@@ -25,10 +25,9 @@ Page({
     uploadImageList:null
   },
   onLoad(option) {
-    const params = JSON.parse(option.json);
-      this.getInfo(params.id);
+      this.getInfo(option.id);
       this.setData({
-        currentId:params.id
+        currentId:option.id
       })
     },
     onSaveUploadTenderImgRef(ref) {

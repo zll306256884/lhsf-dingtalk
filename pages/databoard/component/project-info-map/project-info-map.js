@@ -52,39 +52,59 @@ Component({
           this.setData({
             info:data
           })
-          console.log(this.data.info);
           this.updateComponents()
         }
       })
     },
     updateComponents() {
       let item = this.data.info
-      this.mapCtx.updateComponents({
-        scale:12,
-        longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
-        latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
-        setting: {
-          gestureEnable: 1, // 开启手势功能
-          showScale: 0, // 隐藏比例尺
-          showCompass: 0, // 隐藏指南针
-          tiltGesturesEnabled: 1 // 开启双指下滑手势
-        },
-        markers: [{
-            id: 1,
-            width: 64,
-            height: 64,
-            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
-            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
-            iconPath: `/assets/images/map/${item.projectClassification}-${item.projectStatus}.png`,
-            callout: {
-              content: item.name
-            }
-        }],
-        includePoints: [{
+      if(item.coorX && item.coorY){
+        this.mapCtx.updateComponents({
+          scale:12,
           longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
           latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
-        }]
-      });
+          setting: {
+            gestureEnable: 1, // 开启手势功能
+            showScale: 0, // 隐藏比例尺
+            showCompass: 0, // 隐藏指南针
+            tiltGesturesEnabled: 1 // 开启双指下滑手势
+          },
+          markers: [{
+              id: 1,
+              width: 64,
+              height: 64,
+              longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+              latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+              iconPath: `/assets/images/map/${item.projectClassification}-${item.projectStatus}.png`,
+              callout: {
+                content: item.name
+              }
+          }],
+          includePoints: [{
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+          }]
+        }); 
+      }else{
+        this.mapCtx.updateComponents({
+          scale:12,
+          longitude: 121.131229,
+          latitude: 28.845441,
+          setting: {
+            gestureEnable: 1, // 开启手势功能
+            showScale: 0, // 隐藏比例尺
+            showCompass: 0, // 隐藏指南针
+            tiltGesturesEnabled: 1 // 开启双指下滑手势
+          },
+          markers: [],
+          includePoints: []
+        }); 
+        dd.alert({
+          title: '提示',
+          content: '当前项目无坐标，请于项目信息中录入',
+          buttonText: '确定',
+        });
+      }
     },
   },
 });

@@ -3,7 +3,6 @@ import request from "../../../../utils/request";
 import ddUtils from "../../../../utils/ddUtils";
 import map from "../../../../utils/map";
 
-// utils.wgs84togcj02
 const mapV2Message = '客户端版本过低，请升级客户端并开启V2引擎。'
 const markers = [
   // {
@@ -18,6 +17,25 @@ const markers = [
   //   }
   // }
 ];
+const settings ={
+  // 手势
+  gestureEnable: 1,
+  // 比例尺
+  showScale: 0,
+  // 指南针
+  showCompass: 0,
+  //双手下滑
+  tiltGesturesEnabled: 1,
+  // 交通路况展示
+  trafficEnabled: 0,
+  // 地图 POI 信息
+  showMapText: 0,
+  // 高德地图 logo 位置
+  logoPosition: {
+   centerX: 150,
+   centerY: 90
+  }
+ }
 const longitude = 121.131229;
 const latitude = 28.845441;
 const includePoints = [
@@ -35,6 +53,7 @@ Component({
     latitude,
     includePoints,
     markers,
+    settings,
     mapV2Enable: dd.canIUse("map.optimize"),
     projectList: [],
     statusList: [
@@ -144,9 +163,10 @@ Component({
         url: apiDataBoardServer.API_MAP_PROJECT_LIST,
         data: this.data.params,
         success: res => {
-         const list = res.data.map(item=>{
+         const list = res.data.map((item,index)=>{
             return{
               ...item,
+              index:index,
               xy: map.wgs84togcj02(item.cityCapitalX, item.cityCapitalY),
               mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
             }
@@ -178,7 +198,16 @@ Component({
             iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
             callout: {
               content: item.projectName
-            }
+            },
+          //   customCallout: { 
+          //     "type": 2,
+          //     "descList": [{ 
+          //         "desc": item.projectName,
+          //         "descColor": "#333333" 
+          //     }],
+          //     "isShow": this.data.currentItem === item.index? 1:0
+          // },
+          // markerLevel: 2
           };
         });
       const newIncludePoints = newMarkers.map(item => {
@@ -191,12 +220,7 @@ Component({
         scale:this.data.scale,
         longitude: 121.131229,
         latitude: 28.845441,
-        setting: {
-          gestureEnable: 1, // 开启手势功能
-          showScale: 0, // 隐藏比例尺
-          showCompass: 0, // 隐藏指南针
-          tiltGesturesEnabled: 1 // 开启双指下滑手势
-        },
+        setting: this.data.settings,
         markers: newMarkers,
         includePoints: newIncludePoints
       });
@@ -205,6 +229,7 @@ Component({
       this.setData({
         currentItem:e.detail.current
       })
+      // this.updateComponents();
     },
     // 点击 Marker 时触发
     markertap(e) {

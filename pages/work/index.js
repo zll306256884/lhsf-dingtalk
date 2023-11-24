@@ -105,6 +105,9 @@ Page({
     // this.getApprovalList(2)
     // this.getQueryList('2')
     // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+
+    let menuList = app.globalData.menuList
+    console.log('menuList列表',menuList) //对象
   },
   onShow() {
     this.setData({
@@ -467,11 +470,8 @@ Page({
     }
     // 待办任务
     if (this.data.currentAwait === 1) {
-      const pramas = {
-        id: e.currentTarget.dataset.item.id
-      }
       ddUtils.navigateTo({
-        url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+        url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${e.currentTarget.dataset.item.id}`
       });
     }
     // 待办请求
@@ -552,11 +552,9 @@ Page({
   },
   // 点击列表项查看任务详情
   selectTaskInfo(e) {
-    const pramas = {
-      id: e.currentTarget.dataset.item.id
-    }
+  
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+      url: `/pages/work/page/myTask/taskInfo/taskInfo??id=${e.currentTarget.dataset.item.id}`
     });
   },
   getCount() {
