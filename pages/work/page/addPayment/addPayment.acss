@@ -1,11 +1,23 @@
 .container{
   position: relative;
 }
+.ant-input-placeholder{
+  font-size: 30rpx;
+}
+.ant-form-item-label-horizontal{
+  width: 150px;
+}
+.ant-input-content{
+  text-align: right;
+  font-size: 28rpx;
+}
 .container .box-shadow {
   padding: 0 0;
   width: 100%;
 }
-
+.ant-input-disabled{
+  opacity: 1.4!important;
+}
 .field-cell {
   margin: 0;
   padding: 30rpx 30rpx;
@@ -37,16 +49,20 @@
 }
 
 /* btn */
-.btn-wrap {
-  margin: 30rpx 30rpx 30rpx;
-}
-.flex-display{
+.buttons{
+  border-top: 1px solid #DBDADF;
+  padding: 16rpx 18rpx;
+  margin-top: 16rpx;
+  width: 718rpx;
   position: fixed;
-  left: 18px;
-  bottom: -6px;
-  display: flex;
+  bottom: 0;
+  background: #fff;
 }
-.btn-wrap .btn {
+.bottom-shadow{
+  margin-bottom: 130rpx!important;
+}
+.buttons .btn {
+  width: 227rpx;
   height: 80rpx;
   line-height: 80rpx;
   border-radius: 10rpx;
@@ -54,14 +70,10 @@
   font-size: 28rpx;
   color: #525966;
 }
-
-.btn-wrap .btn.active {
+.buttons .active {
   /* margin-left: 20rpx; */
   color: white;
   background-color: #377DFF;
-}
-.btn-wrap .zancun{
-  margin: 0 10rpx;
 }
 /* 任务描述 */
 .box-shadow .desc {
@@ -69,7 +81,4 @@
   height: 100rpx;
   font-size: 28rpx;
   color: #525966;
-}
-.flex1{
-  width: 200rpx;
 }

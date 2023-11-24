@@ -324,6 +324,11 @@ params.investmentFileList =  temFileList
 
 
 // },
+bingFocusChange(){
+  this.setData({
+    disabled:true
+  })
+},
 // 取消
 bindCancelTap: function (e) {
   console.log(12121212);

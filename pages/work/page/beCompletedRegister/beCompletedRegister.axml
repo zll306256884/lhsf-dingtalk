@@ -24,7 +24,7 @@
         name="contractName"
         placeholder="请选择"
         disabled
-        ref="handleRef" />  
+        ref="handleRef" ><icon slot="suffix" type="RightOutline" /></form-input>  
        </view>
        <view a:else>
         <form-input
@@ -32,7 +32,7 @@
         name="contractName"
         placeholder="请选择"
         disabled
-        ref="handleRef" />  
+        ref="handleRef">  <icon slot="suffix" type="RightOutline" /></form-input>
        </view>
        <form-input
        label="合同金额(万元)"
@@ -101,9 +101,9 @@
       <layout-field-cell hidden={{false}}  mustFill name="相关附件"></layout-field-cell>
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
-    <view class="flex-display flex-align-center btn-wrap">
-      <button class="flex1 btn" catchTap="bindCancelTap">取  消</button>
-      <button class="flex1 btn active" form-type="submit" onTap="submit">保  存</button>
+    <view class="buttons flex f-between">
+      <button class="btn" catchTap="bindCancelTap">取  消</button>
+      <button class="btn active" form-type="submit" onTap="submit">保  存</button>
   </view>
   </form>
 </view>
