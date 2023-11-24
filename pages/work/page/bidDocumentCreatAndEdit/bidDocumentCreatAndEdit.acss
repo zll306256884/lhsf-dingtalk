@@ -6,7 +6,6 @@
 .buttons{
   border-top: 1px solid #DBDADF;
   padding: 16rpx 18rpx;
-  margin-top: 16rpx;
   width: 718rpx;
   position: fixed;
   bottom: 0;

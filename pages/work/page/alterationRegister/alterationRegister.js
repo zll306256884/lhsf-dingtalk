@@ -1,10 +1,15 @@
+import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
-import { Form } from 'antd-mini/es/Form/form';
+import { formatTimeToDay } from "../../../../utils/utils";
 Page({
-  form: new Form(),
+  form: new Form({
+    initialValues: {
+      countersignDate: formatTimeToDay(new Date())
+    },
+  }),
   data: {
     navbarData: {
       title: "新增工程联系单",
@@ -43,13 +48,13 @@ Page({
   },
   uploadImgRef:null,/// 上传
   onLoad(option) {
-    let date = new Date().toLocaleString()
-    for (var i = 0; i < date.length; i++) {
-      if (date[i] === '/') {
-        date = date.replace('/', '-') // 注意替换之后就变成新数组了
-      }
-    }
-    this.data.countersignDate = date.substr(0,10)
+    // let date = new Date().toLocaleString()
+    // for (var i = 0; i < date.length; i++) {
+    //   if (date[i] === '/') {
+    //     date = date.replace('/', '-') // 注意替换之后就变成新数组了
+    //   }
+    // }
+    // this.data.countersignDate = date.substr(0,10)
     console.log(option,'23232323');
     this.setData({
       id:option.id
@@ -63,8 +68,27 @@ Page({
      }else{
        this.data.navbarData.title = '新增工程联系单'
      }
+     this.form.rules = {
+      contactNoticeName: [{ required: true, message: '请输入联系单名称' }],
+      projectName: [{ required: true, message: '请选择项目名称' }],
+      affiliateUnit: [{ required: true, message: '请选择所属单位' }],
+      projectChangeAmount: [{ required: true, message: '请输入项目累计变更' }],
+      projectLeader: [{ required: true, message: '请选择项目负责人' }],
+      contractName: [{ required: true, message: '请选择合同名称' }],
+      contractAmount: [{ required: true, message: '请输入合同金额' }],
+      changeAmount: [{ required: true, message: '请输入变更金额' }],
+      contractCumulativeChange: [{ required: true, message: '请输入合同累计变更'}],
+      contractChangeRate: [{ required: true, message: '请输入合同变更率' }],
+      countersignDate: [{ required: true, message: '请选择申请会签日期' }],
+      constructionUnitReportDate: [{ required: true, message: '请选择施工单位上报日期' }],
+      contactChange: [{ required: true, message: '请输入联系单变更内容' }],
+      remark: [{ required: true, message: '请输入备注' }],
+    }
   },
-
+  handleRef(ref) {
+    console.log(ref);
+    this.form.addItem(ref);
+  },
 // 项目名称
 bindChooseProjectTap:function (e) {
   console.log(e);
@@ -87,22 +111,30 @@ bindChooseProjectCallBack: function (data) {
     affiliateUnit:data.affiliatedUnitName,
     projectId:data.id || '',
     proId:data.id || '',
-    'contractData.contractName': '',
-    "contractData.contractId":'',
-    contractAmount:'',
-    contractCumulativeChange:'',
-    contractChangeRate:''
+    // 'contractData.contractName': '',
+    // "contractData.contractId":'',
+    // contractAmount:'',
+    // contractCumulativeChange:'',
+    // contractChangeRate:''
   });
+  this.form.setFieldValue('projectName',data.name)
+  this.form.setFieldValue('projectLeader',data.projectLeaderName)
+  this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
+  this.form.setFieldValue('contractName','')
+  this.form.setFieldValue('contractId','')
+  this.form.setFieldValue('contractAmount','')
+  this.form.setFieldValue('contractCumulativeChange','')
+  this.form.setFieldValue('contractChangeRate','')
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,
     data: {
       projectId:data.id,
     },
     success: res => {
-      console.log();
       this.setData({
         projectChangeAmount: res.data.projectCumulativeChange || 0,
       });
+      this.form.setFieldValue('projectChangeAmount',res.data.projectCumulativeChange)
     }
   })
   console.log(this.data.projectData,'this.data.projectData');
@@ -122,6 +154,8 @@ bindChooseContractCallBack: function (data) {
     contractData: data || {},
     contractAmount:data.contractAmount
   });
+  this.form.setFieldValue('contractName',data.contractName)
+  this.form.setFieldValue('contractAmount',data.contractAmount)
   request.doPostRequest({
     url: config.API_CONTRACT_CUMULATIVE,
     data: {
@@ -134,6 +168,8 @@ bindChooseContractCallBack: function (data) {
         contractCumulativeChange: res.data.contractCumulativeChange || 0,
         contractChangeRate: res.data.contractCumulativeChangeRate || 0,
       });
+      this.form.setFieldValue('contractCumulativeChange',res.data.contractCumulativeChange)
+      this.form.setFieldValue('contractChangeRate',res.data.contractCumulativeChangeRate)
     }
   })
 },
@@ -150,6 +186,7 @@ bindChooseApplyDateCallBack(data){
   this.setData({
     countersignDate: data.startDate || '',
   });
+  this.form.setFieldValue('countersignDate', data.startDate);
 },
 // 变更内容完成时间
 bindChooseChangeDateTap :function(e){
@@ -163,6 +200,7 @@ bindChooseChangeDateCallBack(data){
   this.setData({
     changeContentTime: data.startDate || '',
   });
+  this.form.setFieldValue('changeContentTime', data.startDate);
 },
 
 // 施工单位上报日期
@@ -177,6 +215,7 @@ bindChooseBuildDateCallBack(data){
   this.setData({
     constructionUnitReportDate: data.startDate || '',
   });
+  this.form.setFieldValue('constructionUnitReportDate', data.startDate);
 },
   //抄送人
   bindChooseExecuteUserTap: function (e) {
@@ -207,6 +246,8 @@ bindChooseBuildDateCallBack(data){
       person: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
 
     });
+     this.form.setFieldValue('person_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
+  this.form.setFieldValue('person', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
   },
 // 上传
 onSaveUploadImgRef: function (ref) {
@@ -244,6 +285,25 @@ getDetail(id){
         person_text:res.data.person_dictText,
         person:res.data.person
       });
+      this.form.setFieldValue('projectName', res.data.projectName)
+      this.form.setFieldValue('projectId', res.data.projectId)
+      this.form.setFieldValue('contractName', res.data.contractName)
+      this.form.setFieldValue('contractId', res.data.contractId)
+      this.form.setFieldValue('contactNoticeName', res.data.contactNoticeName)
+      this.form.setFieldValue('projectLeader', res.data.projectLeader)
+      this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit)
+      this.form.setFieldValue('projectChangeAmount', res.data.projectChangeAmount)
+      this.form.setFieldValue('contractAmount', res.data.contractAmount)
+      this.form.setFieldValue('changeAmount', res.data.changeAmount)
+      this.form.setFieldValue('contractCumulativeChange', res.data.contractCumulativeChange)
+      this.form.setFieldValue('contractChangeRate', res.data.contractChangeRate)
+      this.form.setFieldValue('countersignDate', res.data.countersignDate)
+      this.form.setFieldValue('investmentFileList', res.data.investmentFileList)
+      this.form.setFieldValue('constructionUnitReportDate', res.data.constructionUnitReportDate)
+      this.form.setFieldValue('contactChange', res.data.contactChange)
+      this.form.setFieldValue('remark', res.data.remark)
+      this.form.setFieldValue('person_text', res.data.person_dictText)
+      this.form.setFieldValue('person', res.data.person)
       const files= res.data.investmentFileList.map((item)=>{
         return {
           ...item,
@@ -256,66 +316,38 @@ getDetail(id){
     }
   })
 },
-//bind form submit
-bindFormSubmit: function (e) {
-  let changeAmount = e.detail.value.changeAmount
-  let contactChange = e.detail.value.contactChange
-  let contactNoticeName = e.detail.value.contactNoticeName
-  let remark = e.detail.value.remark
-//   let investmentFileList = [],temFileList=[]
-//   if (this.uploadImgRef) {
-//     temFileList = this.uploadImgRef._getUploadImgId().imgList;
-// }
-let investmentFileList = [], temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
-  console.log(temFileList);
-for (let item of temFileList) {
-  investmentFileList.push({
-      type: 0,
-      fileName: item.name,
-      size: item.size,
-      url: item.url,
-  })
-}
-}
-if(!this.data.isEdit){
-    if (ddUtils.showEmptyToastTips(contactNoticeName, "请输入联系单名称")) return;
-    if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
-    if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
-    if (ddUtils.showEmptyToastTips(changeAmount, "请输入变更金额")) return;
-    if (ddUtils.showEmptyToastTips(this.data.countersignDate, "请选择申请会签批准日期")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.changeContentTime, "请选择变更内容完成时间")) return;
-    if (ddUtils.showEmptyToastTips(this.data.constructionUnitReportDate, "请选择施工单位上报日期")) return;
-    if (ddUtils.showEmptyToastTips(contactChange, "请输入变更内容")) return;
+//保存
+async submit(){
+  const params = await this.form.submit();
+  params.projectId = this.data.projectData.id,
+  params.contractId = this.data.contractData.contractId
+  params.changeContentTime=this.data.changeContentTime?this.data.changeContentTime+ ' 00:00:00':''
+  params.constructionUnitReportDate=this.data.constructionUnitReportDate?this.data.constructionUnitReportDate+ ' 00:00:00':''
+  params.vueUrl='approveAlterationAccount,editAlterationContent',
+  params.singleUrl = '/pages/work/page/alterationRegisterDetail/alterationRegisterDetail'
+  params.person = this.data.person
+  params.id= this.data.id?this.data.id:''
+  let temFileList=[]
+  if (this.uploadImgRef) {
+    temFileList = this.uploadImgRef.data.imgList;
+    if (ddUtils.showEmptyArrayTips(temFileList, "请上传相关附件")) return;
+    temFileList.forEach(e => {
+      e.fileName = e.name
+      e.type= 0
+    })
+  // for (let item of temFileList) {
+  //   this.data.investmentFileList.push({
+  //       type: 4,
+  //       fileName: item.name,
+  //       size: item.size,
+  //       url: item.url,
+  //   })
+  // }
+  params.investmentFileList =  temFileList
   }
-  if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
-request.doPostRequest({
+ request.doPostRequest({
   url: config.API_ALTER_ADD_POST,
-  data: {
-    contactNoticeName:contactNoticeName,//联系单名称
-    projectId:this.data.projectData.id,
-    projectName:this.data.projectData.name,
-    projectLeader:this.data.projectLeader,
-    affiliateUnit:this.data.affiliateUnit,
-    projectChangeAmount:this.data.projectChangeAmount,//项目累计变更
-    contractId:this.data.contractData.contractId,
-    contractName: this.data.contractData.contractName,
-    contractAmount:this.data.contractAmount,//合同金额
-    changeAmount:changeAmount,//变更金额
-    contractCumulativeChange:this.data.contractCumulativeChange,//合同累积变更（万元）
-  contractChangeRate:this.data.contractChangeRate, // 合同变更率
-  countersignDate:this.data.countersignDate,//申请会签批准日期
-  changeContentTime:this.data.changeContentTime?this.data.changeContentTime+ ' 00:00:00':'',//变更内容完成时间
-  constructionUnitReportDate:this.data.constructionUnitReportDate+ ' 00:00:00',//施工单位上报日期
-  contactChange:contactChange,//变更内容
-  remark:remark,
-  id:this.data.id?this.data.id:'',
-  investmentFileList:investmentFileList,
-  person:this.data.person,
-  person_text:this.data.person_text,
-  vueUrl: 'approveAlterationAccount,editAlterationContent'
-  },
+  data:params,
   success: res => {
     ddUtils.showToast({
       title:"保存成功"
@@ -323,9 +355,73 @@ request.doPostRequest({
    ddUtils.navigateBack();
   }
 })
-
-
 },
+//bind form submit
+// bindFormSubmit: function (e) {
+//   let changeAmount = e.detail.value.changeAmount
+//   let contactChange = e.detail.value.contactChange
+//   let contactNoticeName = e.detail.value.contactNoticeName
+//   let remark = e.detail.value.remark
+// let investmentFileList = [], temFileList=[]
+// if (this.uploadImgRef) {
+//   temFileList = this.uploadImgRef.data.imgList;
+//   console.log(temFileList);
+// for (let item of temFileList) {
+//   investmentFileList.push({
+//       type: 0,
+//       fileName: item.name,
+//       size: item.size,
+//       url: item.url,
+//   })
+// }
+// }
+// if(!this.data.isEdit){
+//     if (ddUtils.showEmptyToastTips(contactNoticeName, "请输入联系单名称")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
+//     if (ddUtils.showEmptyToastTips(changeAmount, "请输入变更金额")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.countersignDate, "请选择申请会签批准日期")) return;
+//     // if (ddUtils.showEmptyToastTips(this.data.changeContentTime, "请选择变更内容完成时间")) return;
+//     if (ddUtils.showEmptyToastTips(this.data.constructionUnitReportDate, "请选择施工单位上报日期")) return;
+//     if (ddUtils.showEmptyToastTips(contactChange, "请输入变更内容")) return;
+//   }
+//   if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
+// request.doPostRequest({
+//   url: config.API_ALTER_ADD_POST,
+//   data: {
+//     contactNoticeName:contactNoticeName,//联系单名称
+//     projectId:this.data.projectData.id,
+//     projectName:this.data.projectData.name,
+//     projectLeader:this.data.projectLeader,
+//     affiliateUnit:this.data.affiliateUnit,
+//     projectChangeAmount:this.data.projectChangeAmount,//项目累计变更
+//     contractId:this.data.contractData.contractId,
+//     contractName: this.data.contractData.contractName,
+//     contractAmount:this.data.contractAmount,//合同金额
+//     changeAmount:changeAmount,//变更金额
+//     contractCumulativeChange:this.data.contractCumulativeChange,//合同累积变更（万元）
+//   contractChangeRate:this.data.contractChangeRate, // 合同变更率
+//   countersignDate:this.data.countersignDate,//申请会签批准日期
+//   changeContentTime:this.data.changeContentTime?this.data.changeContentTime+ ' 00:00:00':'',//变更内容完成时间
+//   constructionUnitReportDate:this.data.constructionUnitReportDate+ ' 00:00:00',//施工单位上报日期
+//   contactChange:contactChange,//变更内容
+//   remark:remark,
+//   id:this.data.id?this.data.id:'',
+//   investmentFileList:investmentFileList,
+//   person:this.data.person,
+//   person_text:this.data.person_text,
+//   vueUrl: 'approveAlterationAccount,editAlterationContent'
+//   },
+//   success: res => {
+//     ddUtils.showToast({
+//       title:"保存成功"
+//    })
+//    ddUtils.navigateBack();
+//   }
+// })
+
+
+// },
 // 取消
 bindCancelTap: function (e) {
   console.log(12121212);

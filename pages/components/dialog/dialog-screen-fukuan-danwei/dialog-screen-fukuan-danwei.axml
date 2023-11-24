@@ -2,7 +2,7 @@
   <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
   <block a:if="{{positionBottom}}">
       <view class="dialog-pickerd" animation="{{animation}}">
-          <view style="display:flex" class='flex-display flex-space-between picker-view-header box-sizing-box'>
+          <view style="display:flex" class='flex-space-between picker-view-header box-sizing-box'>
               <text class="cancel" catchTap="_bindCloseTap">取消</text>
               <view class="flex1 dialog-picker-title">
                   {{title}}

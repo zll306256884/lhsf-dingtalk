@@ -105,6 +105,9 @@ Page({
     // this.getApprovalList(2)
     // this.getQueryList('2')
     // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
+
+    let menuList = app.globalData.menuList
+    console.log('menuList列表',menuList) //对象
   },
   onShow() {
     this.setData({

@@ -2,6 +2,9 @@
   "transparentTitle": "always",
   "titlePenetrate": "NO",
   "usingComponents": {
+    "form-input": "antd-mini/es/Form/FormInput/index",
+    "form-picker": "antd-mini/es/Form/FormPicker/index",
+    "form-textarea": "antd-mini/es/Form/FormTextarea/index",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
