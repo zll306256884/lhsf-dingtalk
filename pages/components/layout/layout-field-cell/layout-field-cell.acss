@@ -33,6 +33,7 @@
     word-break: break-word;
 }
 .field-cell-layout .arrowright{
-  width: 48rpx;
-  height: 48rpx
+  width: 40rpx;
+  height: 40rpx;
+  margin-top:4rpx
 }
