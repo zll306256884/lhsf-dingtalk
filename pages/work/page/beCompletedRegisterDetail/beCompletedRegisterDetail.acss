@@ -1,4 +1,6 @@
-
+.container{
+  position: relative;
+}
 .container .box-shadow {
   padding: 0 0;
   width: 100%;
@@ -37,32 +39,40 @@
   background: #ffffff;
   padding: 12px;
 }
-.button {
-  margin-bottom: 12px;
-}
 .ant-form-item-content-horizontal{
   justify-content: space-between;
 }
 .ant-radio-group-body{
   float: right;
 }
-.btn-wrap {
-  margin: 30rpx 30rpx 30rpx;
+.buttons{
+  border-top: 1px solid #DBDADF;
+  padding: 16rpx 18rpx;
+  margin-top: 16rpx;
+  width: 718rpx;
+  position: fixed;
+  bottom: 0;
+  background: #fff;
 }
-.flex-display{
-  display: flex;
-}
-.btn-wrap .btn {
-  height: 80rpx;
-  line-height: 80rpx;
-  border-radius: 10rpx;
-  border: 1px solid #E4E7ED;
-  font-size: 28rpx;
-  color: #525966;
+.buttons .btn {
+  width: 100%;
+ height: 80rpx;
+ background: #FFFFFF;
+ border-radius: 8rpx 8rpx 8rpx 8rpx;
+ opacity: 1;
+ border: 2rpx solid #EBEDF0;
+ font-size: 28rpx;
+ font-family: PingFang SC-Regular, PingFang SC;
+ font-weight: 400;
+ color: #323233;
+ line-height: 80rpx;
 }
 
-.btn-wrap .btn.active {
+.buttons .active {
   margin-left: 20rpx;
   color: white;
   background-color: #377DFF;
+}
+.bottom-shadow{
+  margin-bottom: 135rpx;
 }

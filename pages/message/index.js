@@ -174,7 +174,7 @@ _bindErrorRefreshTap: function (e) {
     switch (ID) {
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}&type=${item.type}`
         });
         break;
       case 10:
