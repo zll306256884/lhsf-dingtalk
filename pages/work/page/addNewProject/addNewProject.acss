@@ -57,6 +57,7 @@
   bottom: 0;
   background-color: #fff;
   width: 718rpx;
+  z-index: 8;
 }
 .btn-wrap .btn{
   width: 349rpx;

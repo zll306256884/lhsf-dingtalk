@@ -23,7 +23,7 @@ Component({
     toProject(e){
       let {item} = e.currentTarget.dataset
       ddUtils.navigateTo({
-        url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&type=3&childrenTab=${this.data.listType}`
+        url: `/pages/databoard/page/projectInfo/index?projectId=${item.projectId}&projectName=${item.projectName}&type=4&childrenTab=${this.data.listType}`
       });
     },
     getData(){

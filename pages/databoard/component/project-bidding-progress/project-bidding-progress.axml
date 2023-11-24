@@ -48,7 +48,7 @@
     </view>
   </view>
 
-  <view class="bottom-content">
+  <view class="bottom-content-project">
     <view class="b-top flex f-around">
       <view class="text {{listType === '1'?'active':''}}" data-index="1" catchTap="listChange">招标文件</view>
       <view class="text {{listType === '2'?'active':''}}" data-index="2" catchTap="listChange">合同</view>
