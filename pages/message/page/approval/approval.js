@@ -357,10 +357,8 @@ Page({
         let overNum = res.data.overNum
         this.setData({
           'tabList[0].total': waitNum,
-          'tabList[1].total': completedNum,
-          'tabList[2].total': overNum,
-          // listData: res.data.records || []
-          // pageNum: page
+          // 'tabList[1].total': completedNum,
+          // 'tabList[2].total': overNum,
         });
         resolve(res.data)
       },
