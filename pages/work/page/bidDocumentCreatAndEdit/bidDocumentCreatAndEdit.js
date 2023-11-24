@@ -240,6 +240,7 @@ Page({
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
+    params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.projectName = this.data.projectName
     params.tenderingAgencyName = this.data.tenderingAgencyName
     params.countersignLeader = this.data.countersignLeader
@@ -267,6 +268,7 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
+    params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.projectName = this.data.projectName
     // params.urlParameter = JSON.stringify({}),
     params.tenderingAgencyName = this.data.tenderingAgencyName
