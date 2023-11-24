@@ -20,6 +20,7 @@
         scale="{{scale}}"
         controls="{{controls}}"
         markers="{{markers}}"
+        setting="{{settings}}"
         onMarkerTap="markertap"
         style="width: 100%; height: calc(100vh - 130px);"
      >
