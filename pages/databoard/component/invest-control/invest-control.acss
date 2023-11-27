@@ -131,9 +131,12 @@ font-weight: 400;
   line-height: 60rpx;
   border-radius: 4rpx 4rpx 4rpx 4rpx;
   opacity: 1;
+  color:#606266
 }
 .isActive{
   background: #FFFFFF;
+  font-weight: 500;
+  color:#1D1D1F
 }
 .top-tabs{
   margin-bottom: 22rpx;

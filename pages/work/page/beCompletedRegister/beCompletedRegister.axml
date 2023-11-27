@@ -8,6 +8,7 @@
         name="projectName"
         placeholder="请选择"
         disabled
+        type="none"
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
        </view>
        <view a:else >
