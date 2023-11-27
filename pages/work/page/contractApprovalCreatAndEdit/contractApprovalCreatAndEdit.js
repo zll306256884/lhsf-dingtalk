@@ -537,7 +537,11 @@ Page({
           tenderShow: paramsdata.contractNeedTender===1?true:false,
           list
         })
-
+        if(paramsdata.fileList && paramsdata.fileList){
+          paramsdata.fileList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
