@@ -130,6 +130,9 @@
                 <block a:if="{{ fileItem.type==='pdf' }}">
                   <image mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
                 </block>
+                <block a:if="{{ fileItem.type==='jpg' }}">
+                  <image mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+                </block>
                 <block a:if="{{ fileItem.type==='ppt' }}">
                   <image mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
                 </block>

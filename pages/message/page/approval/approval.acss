@@ -1,5 +1,9 @@
 @import "/assets/styles/typeContent.acss";
 
+.ant-tabs-bar-underline{
+  border: none !important;
+}
+
 .approvalMain{
   /* text-align: center; */
 }
@@ -41,7 +45,7 @@
 /* 筛选 */
 .searchInput{
   background-color: #fff;
-  margin-bottom: 20rpx;
+  /* margin-bottom: 20rpx; */
   padding:0 24rpx;
 }
 
