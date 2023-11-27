@@ -1,7 +1,7 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view  class="container">
   <view class="card">
-    <tabs items="{{items}}" current="{{tabIndex}}" onChange="onQueryChange">
+    <tabs className="backg" items="{{items}}" current="{{tabIndex}}" onChange="onQueryChange">
       <!-- <view
         class="content"
         slot-scope="item">

@@ -3,11 +3,23 @@
   /* padding: 12px; */
 
 }
+.container{
+  position: relative;
+}
+.card{
+position: fixed;
+top: 160rpx;
+background-color: #fff;
+}
 .ant-tabs-bar-underline{
  border-bottom: none;
 }
+.backg{
+  background: #fff;
+  z-index: 99999;
+}
 .content_text{
-  margin-top: 16rpx;
+  margin-top:100rpx;
 background: #FFFFFF;
 }
 .item-label {

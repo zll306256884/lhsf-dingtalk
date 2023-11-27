@@ -33,13 +33,11 @@
           <view class="size">{{item.size || '-'}}kb</view>
         </view>
       </view>
-      <view>
+      <view class="flex">
         <image a:if="{{!disabled}}" class="down-icon" mode="scaleToFill" src="/assets/images/common/delete.png" catchTap="deleteClose"  data-index="{{index}}" />
         <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" style="margin-left:16rpx" />
       </view>
     </view>
   </view>
-  
-  
   <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>      
 </view>
