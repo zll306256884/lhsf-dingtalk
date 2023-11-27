@@ -67,3 +67,8 @@
   opacity: 1;
   color: #FFFFFF;
 }
+
+.placeholder-class {
+  color: #ccc;
+  font-size: 28rpx;
+}
