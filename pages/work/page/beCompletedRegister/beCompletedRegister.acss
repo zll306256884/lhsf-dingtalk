@@ -11,6 +11,7 @@
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;
+  color:#999
 }
 .ant-radio-group-horizontal .ant-radio-group-body{
   justify-content: flex-end;
@@ -70,7 +71,9 @@
  color: #323233;
  line-height: 80rpx;
 }
-
+.ant-textarea-content{
+  color:#999
+}
 .buttons .active {
   margin-left: 20rpx;
   color: white;
