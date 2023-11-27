@@ -40,10 +40,13 @@ background: #fff;
   padding: 12px 12px 24px 12px;
 }
 .buttons .ant-button{
-  width:48%
+  width:48%;
+  height: 80rpx;
 }
 .ant-button-default{
   box-shadow: none;
+  color: #323233;
+  border: 2rpx solid #EBEDF0!important
 }
 .ant-input-placeholder{
   text-align: right;

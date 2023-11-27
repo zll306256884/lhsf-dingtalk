@@ -8,6 +8,7 @@
 }
 
 .nav-wrap .nav-title {
+    max-width: 280px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

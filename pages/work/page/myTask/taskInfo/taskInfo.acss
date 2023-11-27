@@ -120,6 +120,11 @@
   margin:0 10rpx;
   font-size: 28rpx;
 }
+.ant-button-default {
+  color: #323233;
+  box-shadow: none;
+  border: 2rpx solid #EBEDF0!important
+}
 .list-buttons {
   border-top: #ebedf0 1px solid;
   padding: 14rpx 0;
