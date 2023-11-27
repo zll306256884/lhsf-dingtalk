@@ -75,7 +75,7 @@
             placeholder="请选择"
             allowClear
             disabled
-            ref="handleRef" />
+            ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
           </view>    
           <view catchTap="bindChooseChangeDateTap">
             <form-input
@@ -84,7 +84,7 @@
             placeholder="请选择"
             allowClear
             disabled
-            ref="handleRef" />
+            ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
           </view>    
           <view catchTap="bindChooseBuildDateTap">
             <form-input
@@ -93,7 +93,7 @@
             placeholder="请选择"
             allowClear
             disabled
-            ref="handleRef" />
+            ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
           </view> 
           <form-textarea
            label="联系单变更内容"
@@ -139,7 +139,7 @@
     <view class="box-shadow bottom-shadow">
       <view catchTap="bindChooseExecuteUserTap">
         <form-input
-        label="会签分管领导"
+        label="抄送人"
         name="person_text"
         placeholder="请选择"
         disabled

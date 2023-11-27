@@ -82,7 +82,6 @@ Page({
       countersignDate: [{ required: true, message: '请选择申请会签日期' }],
       constructionUnitReportDate: [{ required: true, message: '请选择施工单位上报日期' }],
       contactChange: [{ required: true, message: '请输入联系单变更内容' }],
-      remark: [{ required: true, message: '请输入备注' }],
     }
   },
   handleRef(ref) {
