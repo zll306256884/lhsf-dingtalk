@@ -1,5 +1,9 @@
 .top-navbar{
   background: #fff;
+  position: absolute;
+  top: 175rpx;
+  z-index: 8;
+  width: 100%;
 }
 .ant-list-item-line{
   padding: 32rpx;

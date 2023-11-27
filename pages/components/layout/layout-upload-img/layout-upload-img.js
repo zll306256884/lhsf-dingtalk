@@ -127,6 +127,13 @@ Component({
     //选择图片
     _bindAddTap: function (e) {
       console.log(e)
+      console.log(this.data.imgList.length, this.props.maxCount)
+      if (this.data.imgList.length > this.props.maxCount-1){
+        ddUtils.showToast({
+          title: '上传文件不能超过10个'
+        })
+        return
+      } 
       if (this.props.disabled) return;
 
       ddUtils.showActionSheet({
