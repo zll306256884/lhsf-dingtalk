@@ -38,17 +38,17 @@
 }
 
 .upload-img-list .item .progress {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0.5;
-    background-color: black;
-    color: white;
-    font-size: 26rpx;
-    z-index: 9;
-    border-radius: 10rpx;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: black;
+  color: white;
+  font-size: 26rpx;
+  z-index: 9;
+  border-radius: 10rpx;
 }
 .upload-img-list .item .progress-name{
   /* height: 32rpx; */
@@ -63,4 +63,35 @@
   font-size: 26rpx;
   z-index: 9;
   border-radius: 10rpx;
+}
+
+.upload-img-list .list-item{
+  width: 98%;
+  height: 120rpx;
+  background: #F7F8FA;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  margin-bottom: 16rpx;
+  align-items: center;
+  padding: 0 16rpx;
+}
+.upload-img-list .list-item .name{
+  font-size: 20rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 23rpx;
+  width: 480rpx;
+  display: block;
+}
+.upload-img-list .list-item .size{
+  font-size: 20rpx;
+  font-family: PingFang SC, PingFang SC;
+  font-weight: 400;
+  color: #969799;
+  line-height: 23rpx;
+  margin-top: 8rpx;
+}
+.upload-img-list .list-item .down-icon{
+  width: 32rpx;
+  height: 32rpx;
 }
