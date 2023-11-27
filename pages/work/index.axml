@@ -4,10 +4,16 @@
   <image class="image"  src="../../../../assets/images/work/Group-top.png" />
   <view class="card-wrap">
     <view class="grid">
-      <view class="flex f-row f-around f-wrap">
+      <view a:if="{{ iconList && iconList.length }}" class="flex f-start f-row f-around f-wrap">
         <view a:for="{{iconList}}" key="{{item.name}}" class="grid-item" onTap="onItemTap" data-index="{{index}}" data-path="{{item.path}}">
-        <image class="grid-icon"  src="{{item.url}}" /> 
-        <text class="grid-text">{{item.name}}</text>
+          <image class="grid-icon"  src="{{item.url}}" /> 
+          <text class="grid-text">{{item.name}}</text>
+        </view>
+      </view>
+      <view a:else class="flex f-center" style="align-items:center;height:100%">
+        <view>
+          <image mode="scaleToFill" src="/assets/images/common/empty.png" style="width:69px;height:104px;" />
+          <!-- <span style="font-size: 12px;color: #909399;margin-top:4px">暂无权限</span> -->
         </view>
       </view>
     </view>
@@ -130,7 +136,7 @@
               <view class="list-item" a:for="{{listQuery}}" data-item={{item}} data-index={{index}} onTap="selectQueryInfo">
                 <view class="item-title two-lines">{{item.title}} </view>
                 <view class="flex f-row f-between">
-                  <text class="item-label">提交时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
+                  <text class="item-label">创建时间：{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</text>
               </view>
               </view>
             </list-item>

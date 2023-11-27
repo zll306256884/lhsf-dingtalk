@@ -40,7 +40,7 @@
     </list>
   <empty a:else image="/assets/images/common/empty.png" />
   </view>
-  <view  a:if="{{currentTask ===0 || currentTask ===1}}" class="buttons">
+  <view  a:if="{{(currentTask ===0 || currentTask ===1) && showButton}}" class="buttons">
     <button type="primary" onTap="addTask">新建任务</button>
   </view>
   </view>

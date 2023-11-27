@@ -2,7 +2,8 @@
 Page({
   data: {
     navbarData: {
-      title: "项目"
+      title: "项目",
+      titleLeft: true,
     },
     tabs: [
       {

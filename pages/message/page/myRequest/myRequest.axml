@@ -1,7 +1,7 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="top-navbar flex f-between">
-  <view style="width:90%">
+<view class="top-navbar flex f-between" style="align-items:center">
+  <view style="width:90%;">
     <!-- <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar> -->
     <tabs items="{{tabList}}"  current="{{tabIndex}}" onChange="onNavTabChange" >
       <view slot="title" slot-scope="item">
@@ -12,6 +12,7 @@
       </view>
     </tabs>
   </view>
+  <view style="height: 48rpx; width: 2rpx; background: #EBEDF0;"></view>
   <view class="flex f-center" style="width:10%;align-items:center">
     <image a:if="{{ type.length }}" mode="scaleToFill" src="/assets/images/common/filter-o.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
     <image a:else mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />

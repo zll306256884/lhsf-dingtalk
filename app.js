@@ -4,8 +4,12 @@ App({
         this.globalData.userInfo = dd.getStorageSync({
             key: this.globalData.keyUserInfo
         }).data || {};
-
+        
         this.getSystemInfo()
+
+        this.globalData.menuList = dd.getStorageSync({
+          key: this.globalData.buttonList
+        }).data || {};
         
     },
     onShow(options) {
@@ -64,5 +68,6 @@ App({
         isDebug: false,
         tokenInvalid: false,
         pageSize: 10,
+        buttonList: "buttonList"
     }
 });

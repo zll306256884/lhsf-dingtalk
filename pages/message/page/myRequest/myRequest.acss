@@ -37,3 +37,6 @@
   line-height: 56rpx;
   text-align: center;
 }
+.ant-tabs-bar-underline{
+  border-bottom: none;
+}

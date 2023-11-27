@@ -178,6 +178,10 @@ Page({
           console.log('菜单',res)
           let list = res.data.find(e =>e.title === '移动端') || {}
           app.globalData.menuList = list
+          ddUtils.setStorage({
+            key: app.globalData.buttonList,
+            data: list
+          });
         }
       })
     }
