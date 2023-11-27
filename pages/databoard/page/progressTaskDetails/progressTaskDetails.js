@@ -10,7 +10,11 @@ Page({
       title: "进度任务详情"
     },
     taskId: "",
-    listData: []
+    listData: [],
+    // 上传&&下载
+    isWebView: false,
+    webViewContext: '',
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
   },
   onLoad(query) {
     console.log('query', query)
@@ -42,7 +46,7 @@ Page({
         data: param,
         success: res => {
           res.data.annexFile = JSON.parse(res.data.annexFile)
-          if(res.data.annexFile && res.data.annexFile.length){
+          if (res.data.annexFile && res.data.annexFile.length) {
             res.data.annexFile.map((item) => {
               if (item.url.indexOf('.pdf') > -1) {
                 item.type = 'pdf'
@@ -77,7 +81,28 @@ Page({
       });
     })
   },
-  // 
+  toDownLoad() {
+    this.webViewContext = dd.createWebViewContext('web-view-1')
+    this.setData({
+      isWebView: true
+    })
+    this.webViewContext.postMessage({ tokenStr: app.globalData.userInfo.userToken })
+  },
+  // 下载接收到的数据
+  onMessage: function (e) {
+    if (e.detail.hidden) {
+      this.setData({
+        isWebView: false
+      })
+    }
+    if (e.detail.imgList) {
+      this.setData({
+        isWebView: false,
+        imgList: this.data.imgList.concat(e.detail.imgList)
+      })
+    }
+    console.log('接受消息', e.detail)
+  },
   // 电话
   callPerson(e) {
     console.log(e)

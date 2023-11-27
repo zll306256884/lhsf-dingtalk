@@ -18,10 +18,12 @@
 }
 
 .container .containerinner .redline-title {
-  font-size: 32rpx;
+  /* font-size: 32rpx; */
+  font-size: 17px;
   font-family: PingFang SC-Regular, PingFang SC;
   font-weight: 400;
-  color: #323233;
+  /* color: #323233; */
+  color: #666;
   line-height: 48rpx;
   padding: 32rpx 32rpx 8rpx;
 }

@@ -14,7 +14,11 @@ Component({
     // 已经有的节点
     listData: [],
     // 当前进行的节点
-    nextNode: []
+    nextNode: [],
+    // 上传&&下载
+    isWebView: false,
+    webViewContext: '',
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
   },
   props: {
     projectId: '12019020004',//项目id
@@ -157,5 +161,27 @@ Component({
     //     url: '/pages/work/page/progressEdit/progressEdit?id=' + id + '&type=' + type + '&name=' + name + '&projectId=' + projectId,
     //   })
     // },
+    toDownLoad() {
+      this.webViewContext = dd.createWebViewContext('web-view-1')
+      this.setData({
+        isWebView: true
+      })
+      this.webViewContext.postMessage({ tokenStr: app.globalData.userInfo.userToken })
+    },
+    // 下载接收到的数据
+    onMessage: function (e) {
+      if (e.detail.hidden) {
+        this.setData({
+          isWebView: false
+        })
+      }
+      if (e.detail.imgList) {
+        this.setData({
+          isWebView: false,
+          imgList: this.data.imgList.concat(e.detail.imgList)
+        })
+      }
+      console.log('接受消息', e.detail)
+    },
   },
 });
