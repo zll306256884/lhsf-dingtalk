@@ -83,6 +83,9 @@ Page({
       adjust: row,
     })
   },
+  // onFocus(){
+  //   this.blur() 
+  // },
 // 项目名称
 bindChooseProjectTap:function (e) {
   console.log(e);
