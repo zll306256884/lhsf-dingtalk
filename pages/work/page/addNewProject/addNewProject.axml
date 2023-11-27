@@ -58,7 +58,7 @@
     <view class="redline-title">
       项目红线图
     </view>
-    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
+    <layout-upload-img onlyUploadImage="{{true}}" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
   </view>
   <view class="containerinner" style="margin-top:16rpx">
     <view class="title"> 项目坐标 </view>

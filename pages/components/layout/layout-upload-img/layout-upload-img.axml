@@ -12,7 +12,7 @@
       a:if="{{disabled && imgList.length <= 0}}" 
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
       src="/assets/images/common/icon_placeholder.png" />
-    <view a:if="{{hide}}" style="font-size: 24rpx;color: #969799;margin-bottom:20rpx">支持格式：doc/docx/pdf/excel/jpg/png单个文件不能超过200M,最多三条</view>
+    <view a:if="{{hide && !onlyUploadImage}}" style="font-size: 24rpx;color: #969799;margin-bottom:20rpx">支持格式：doc/docx/pdf/excel/jpg/png单个文件不能超过200M,最多三条</view>
   </view>
  
   <view class="flex f-wrap upload-img-list" style="{{cssStyle}}">

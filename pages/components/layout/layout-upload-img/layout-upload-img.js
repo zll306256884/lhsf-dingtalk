@@ -20,6 +20,7 @@ Component({
     maxCount: defaultCount,
     disabled: false,
     itemIndex: -1,
+    onlyUploadImage: false
   },
   didMount() {
     this.setData({
@@ -136,9 +137,14 @@ Component({
         return
       } 
       if (this.props.disabled) return;
-
+      let itemList = []
+      if(this.props.onlyUploadImage){
+        itemList = ["拍照", "手机相册"]
+      }else{
+        itemList =["拍照", "手机相册",'文件']
+      }
       ddUtils.showActionSheet({
-        itemList: ["拍照", "手机相册",'文件'],
+        itemList: itemList,
         success: res => {
           console.log('res',res)
           let count = this.data.maxCount - this.data.imgList.length;
