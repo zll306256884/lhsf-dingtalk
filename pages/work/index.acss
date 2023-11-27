@@ -17,6 +17,7 @@
 .grid-item{
   /* margin-right: 12rpx; */
   margin-bottom: 32rpx;
+  width: 165.5rpx;
 }
 .grid-icon {
   width: 100rpx;
@@ -24,7 +25,7 @@
   background-size: 100% 100%;
   background: linear-gradient(180deg, #5e8fff 0%, #3271ff 100%);
   opacity: 1;
-  margin: 0 28rpx 12rpx;
+  margin: 0 auto 12rpx;
 }
 .grid-text {
   width: 165.5rpx;

@@ -212,7 +212,13 @@ Component({
         }
       });
     },
-
+    deleteClose(e){
+      let index = e.currentTarget.dataset.index;
+      this.data.imgList.splice(index, 1);
+      this.setData({
+        imgList: this.data.imgList
+      })
+    },
     //deal choose image
     _dealChooseImage: function (files) {
       console.log(files)
