@@ -1,20 +1,20 @@
 <import-sjs from="../../../../../utils/utils.sjs" name="utils" />
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view>
-  <view class="card-tabs">
-    <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
-      <view slot="title" slot-scope="item">
-        <view a:if="{{item.index===currentTask && (currentTask ===0 || currentTask ===1) && total!==0}}">
-          <badge type="number" text="{{total}}" position="top-right"> {{item.value.title}}</badge>
-        </view>
-        <view a:else>{{item.value.title}}</view>
+<view class="card-tabs">
+  <tabs items="{{tabs1}}"  current="{{currentTask}}" onChange="onTaskChange" >
+    <view slot="title" slot-scope="item">
+      <view a:if="{{item.index===currentTask && (currentTask ===0 || currentTask ===1) && total!==0}}">
+        <badge type="number" text="{{total}}" position="top-right"> {{item.value.title}}</badge>
       </view>
-    </tabs>
-    <input placeholder="请输入任务名称关键词" onChange="onChange" value="{{taskTitle}}" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" 
-      allowClear onConfirm="onConfirm">
-      <icon slot="prefix" type="SearchOutline" />
-    </input>
-  </view>
+      <view a:else>{{item.value.title}}</view>
+    </view>
+  </tabs>
+  <input placeholder="请输入任务名称关键词" onChange="onChange" value="{{taskTitle}}" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" 
+    allowClear onConfirm="onConfirm">
+    <icon slot="prefix" type="SearchOutline" />
+  </input>
+</view>
+<view class="container">
   <view class="card card-list">
     <list a:if="{{listTask.length}}">
       <list-item>
