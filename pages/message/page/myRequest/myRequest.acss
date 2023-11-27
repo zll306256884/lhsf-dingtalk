@@ -1,6 +1,6 @@
 .top-navbar{
   background: #fff;
-  position: absolute;
+  position: fixed;
   top: 175rpx;
   z-index: 8;
   width: 100%;
