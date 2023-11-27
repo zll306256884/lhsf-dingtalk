@@ -4,7 +4,7 @@
   <image class="image"  src="../../../../assets/images/work/Group-top.png" />
   <view class="card-wrap">
     <view class="grid">
-      <view a:if="{{ iconList && iconList.length }}" class="flex f-row f-around f-wrap">
+      <view a:if="{{ iconList && iconList.length }}" class="flex f-start f-row f-around f-wrap">
         <view a:for="{{iconList}}" key="{{item.name}}" class="grid-item" onTap="onItemTap" data-index="{{index}}" data-path="{{item.path}}">
         <image class="grid-icon"  src="{{item.url}}" /> 
         <text class="grid-text">{{item.name}}</text>
