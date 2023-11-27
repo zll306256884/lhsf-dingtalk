@@ -25,6 +25,7 @@ Page({
     total:0,
     listTask:[],
     currentTask:0,
+    showButton: false
   },
   page: 1,
   // hasMore: false,
@@ -33,6 +34,18 @@ Page({
     this.setData({
       currentTask:Number(option.tabIndex)
     })
+
+    let menuList = app.globalData.menuList
+    console.log('menuList列表',menuList) //对象
+    let buttonList = menuList.subList[0].subList[1].buttonList
+    console.log('按钮',buttonList)
+    if(buttonList && buttonList.length){
+      if(buttonList.find(e => e.optKey === 'add')){
+        this.setData({
+          showButton: true
+        })
+      }
+    }
   },
   onShow(){
    this.onTaskChange(this.data.currentTask)

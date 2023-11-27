@@ -11,42 +11,50 @@ Page({
     iconList: [{
       url: "../../../../assets/images/work/Group-1.png",
       name: "新增项目",
-      path: '/pages/work/page/addNewProject/addNewProject'
+      path: '/pages/work/page/addNewProject/addNewProject',
+      showType:'xzxm'
     },
     {
       url: "../../../../assets/images/work/Group-2.png",
       name: "新增日志",
-      path: '/pages/work/page/addLog/addLog'
+      path: '/pages/work/page/addLog/addLog',
+      showType: 'xzrz'
     },
     {
       url: "../../../../assets/images/work/Group-3.png",
       name: "进度填报",
-      path: '/pages/work/page/progressReporting/progressReporting'
+      path: '/pages/work/page/progressReporting/progressReporting',
+      showType: 'jdtb'
     },
     {
       url: "../../../../assets/images/work/Group-4.png",
       name: "招标文件会签",
-      path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit'
+      path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit',
+      showType: 'zbwjhq'
     },
     {
       url: "../../../../assets/images/work/Group-5.png",
       name: "合同签订登记",
-      path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit'
+      path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit',
+      showType: 'htsplc'
     },
     {
       url: "../../../../assets/images/work/Group-6.png",
       name: "新增支付",
-      path: '/pages/work/page/addPayment/addPayment'
+      path: '/pages/work/page/addPayment/addPayment',
+      showType: 'kxzf'
     },
     {
       url: "../../../../assets/images/work/Group-7.png",
       name: "变更登记",
-      path: '/pages/work/page/alterationRegister/alterationRegister'
+      path: '/pages/work/page/alterationRegister/alterationRegister',
+      showType: 'bgdj'
     },
     {
       url: "../../../../assets/images/work/Group-8.png",
       name: "竣工结算登记",
-      path: '/pages/work/page/beCompletedRegister/beCompletedRegister'
+      path: '/pages/work/page/beCompletedRegister/beCompletedRegister',
+      showType: 'jgjsdj'
     }
     ],
     // 待办
@@ -108,6 +116,19 @@ Page({
 
     let menuList = app.globalData.menuList
     console.log('menuList列表',menuList) //对象
+    let buttonList = menuList.subList[0].subList[0].buttonList
+    console.log('按钮',buttonList)
+    let list = this.data.iconList
+    let listList = []
+
+    list.forEach(e => {
+      if( buttonList.find(k => k.optKey === e.showType)){
+        listList.push(e)
+      }
+    })
+    this.setData({
+      iconList: listList
+    })
   },
   onShow() {
     this.setData({
