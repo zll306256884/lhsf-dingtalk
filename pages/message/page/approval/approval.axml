@@ -2,7 +2,7 @@
   <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <!--  -->
   <view class="approvalTop flex f-start">
-    <view style="width:85%">
+    <view style="width:85%;background:#fff;">
       <tabs items="{{tabList}}" current="{{tabIndex}}" onChange="onNavTabChange">
         <view slot="title" slot-scope="item">
           <view a:if="{{item.value.total>0}}">
