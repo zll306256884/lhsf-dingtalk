@@ -12,7 +12,7 @@
             <!-- <view a:if="">
                 <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill">
             </image> -->
-            </view>
+            <!-- </view> -->
             <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url)}}">{{item.progress}}%</view>
             </view>
     </block>

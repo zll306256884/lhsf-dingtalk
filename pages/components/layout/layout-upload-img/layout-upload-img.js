@@ -42,9 +42,7 @@ Component({
       }
       if(e.detail.imgList){
         this.setData({
-          isWebView : false
-        })
-        this.setData({
+          isWebView : false,
           imgList: this.data.imgList.concat(e.detail.imgList)
         })
       }
@@ -132,7 +130,7 @@ Component({
       if (this.props.disabled) return;
 
       ddUtils.showActionSheet({
-        itemList: ["拍照", "手机相册"],
+        itemList: ["拍照", "手机相册",'文件'],
         success: res => {
           console.log('res',res)
           let count = this.data.maxCount - this.data.imgList.length;
