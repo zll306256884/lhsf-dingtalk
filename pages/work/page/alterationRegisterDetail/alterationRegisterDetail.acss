@@ -53,9 +53,10 @@
   position: fixed;
   bottom: 0rpx;
   background: #fff;
+  padding-bottom: 42rpx;
 }
 .bottom-shadow{
-  margin-bottom: 130rpx!important;
+  margin-bottom: 155rpx!important;
 }
 
 .buttons .btn {

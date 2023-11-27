@@ -22,7 +22,6 @@
 }
 .ant-input-disabled{
   opacity: 1.4!important;
-  color: #000000!important;
 }
 .box-shadow.field-cell {
   margin: 30rpx auto 0;
@@ -56,6 +55,7 @@
   position: fixed;
   bottom: 0;
   background: #fff;
+  padding-bottom: 42rpx!important;
 }
 /* btn */
 .buttons .btn {

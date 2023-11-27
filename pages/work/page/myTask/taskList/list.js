@@ -38,8 +38,8 @@ Page({
     let menuList = app.globalData.menuList.subList
     let buttonList = []
     if(menuList && menuList.length){
-      if(menuList.subList[0] && menuList.subList[0].length){
-        buttonList = menuList.subList[1].buttonList
+      if(menuList[0].subList && menuList[0].subList.length){
+        buttonList = menuList[0].subList[1].buttonList
       }
     }
     if(buttonList && buttonList.length){

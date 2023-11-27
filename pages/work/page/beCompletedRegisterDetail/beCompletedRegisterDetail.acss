@@ -53,6 +53,7 @@
   position: fixed;
   bottom: 0;
   background: #fff;
+  padding-bottom: 42rpx;
 }
 .buttons .btn {
   width: 100%;

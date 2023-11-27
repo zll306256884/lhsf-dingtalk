@@ -187,6 +187,16 @@ Page({
           projectName: paramsdata.projectName,
           applicationTime: paramsdata.startDate
         })
+        if(res.data.tenderDocumentList && res.data.tenderDocumentList.length){
+          res.data.tenderDocumentList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
+        if(res.data.otherDocumentList && res.data.otherDocumentList.length){
+          res.data.otherDocumentList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
           this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 

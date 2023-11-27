@@ -299,6 +299,7 @@ getDetail(id){
       this.form.setFieldValue('countersignDate', res.data.countersignDate)
       this.form.setFieldValue('investmentFileList', res.data.investmentFileList)
       this.form.setFieldValue('constructionUnitReportDate', res.data.constructionUnitReportDate)
+      this.form.setFieldValue('changeContentTime', res.data.changeContentTime)
       this.form.setFieldValue('contactChange', res.data.contactChange)
       this.form.setFieldValue('remark', res.data.remark)
       this.form.setFieldValue('person_text', res.data.person_dictText)
