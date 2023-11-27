@@ -5,10 +5,23 @@
 .upload-img-list .item {
     width: 140rpx;
     height: 140rpx;
-    margin: 00rpx 0 0 30rpx;
+    margin: 00rpx 0 20rpx 30rpx;
     position: relative;
 }
-
+.upload-img-list .item .close{
+  width: 32rpx;
+  height: 32rpx;
+  background: #000000;
+  border-radius: 0rpx 10rpx 0rpx 10rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 26rpx;
+  text-align: center;
+  line-height: 32rpx;
+  opacity: 0.5;
+}
 .upload-img-list .item:nth-child(3n+1) {
     margin-left: 0rpx;
 }
@@ -21,7 +34,7 @@
 .upload-img-list .item .img {
     width: inherit;
     height: inherit;
-    border-radius: 10rpx;
+    /* border-radius: 10rpx; */
 }
 
 .upload-img-list .item .progress {
@@ -36,4 +49,18 @@
     font-size: 26rpx;
     z-index: 9;
     border-radius: 10rpx;
+}
+.upload-img-list .item .progress-name{
+  /* height: 32rpx; */
+  line-height: 32rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  background-color: black;
+  color: white;
+  font-size: 26rpx;
+  z-index: 9;
+  border-radius: 10rpx;
 }

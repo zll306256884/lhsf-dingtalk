@@ -1,30 +1,39 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
 
 <view class="flex f-wrap upload-img-list" style="{{cssStyle}}">
-    <block a:for="{{imgList}}">
-        <view 
-        class="item" 
-        style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
-        catchTap="_bindPreviewTap" 
-        data-index="{{index}}">
-            <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill">
-            </image>
-            <!-- <view a:if="">
-                <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill">
-            </image> -->
-            <!-- </view> -->
-            <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url)}}">{{item.progress}}%</view>
-            </view>
-    </block>
-    <image 
-        a:if="{{disabled && imgList.length <= 0}}" 
-        style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
-        src="/assets/images/common/icon_placeholder.png" />
-    <image 
-        a:if="{{!disabled && imgList.length < maxCount}}" 
-        style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
-        class="item add" 
-        src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
-    </image>
-   <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>      
+  <block a:for="{{imgList}}">
+    <!-- <view class="item" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" catchTap="_bindPreviewTap" data-index="{{index}}">
+      <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill"> </image>
+      <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url)}}">{{item.progress}}%</view>
+    </view> -->
+    <!-- 图片 -->
+    <view a:if="{{ item.url.indexOf('png') !==-1 ||  item.url.indexOf('jpg') !== -1 || item.url.indexOf('jpeg') !== -1}}" class="item" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" catchTap="_bindPreviewTap" data-index="{{index}}">
+      <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill"> </image>
+      <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url) && (item.url.indexOf('png') !==-1 ||  item.url.indexOf('jpg') !== -1 || item.url.indexOf('jpeg') !== -1)}}">{{item.progress}}%</view>
+    </view>
+    <!-- 文件 -->
+    <view a:else class="item" style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;">
+      <view a:if="{{ item.url.indexOf('.pdf') !== -1 ||  item.url.indexOf('.ppt') !== -1 || item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}"
+      class="close" catchTap="deleteClose" data-index="{{index}}">x</view>
+
+      <image a:if="{{ item.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" class="img" />
+      <image a:if="{{ item.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" class="img" />
+      <image a:if="{{ item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" class="img" />
+      <image a:if="{{ item.url.indexOf('.xlsx') !== -1 || item.url.indexOf('.xls') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_excel.png" class="img" />
+
+      <view  a:if="{{ item.url.indexOf('.pdf') !== -1 ||  item.url.indexOf('.ppt') !== -1 || item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}"
+       class="flex f-center progress-name">{{item.name || item.fileName}}</view>
+    </view>
+  </block>
+  <image 
+    a:if="{{disabled && imgList.length <= 0}}" 
+    style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
+    src="/assets/images/common/icon_placeholder.png" />
+  <image 
+    a:if="{{!disabled && imgList.length < maxCount}}" 
+    style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
+    class="item add" 
+    src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
+  </image>
+  <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>      
 </view>
