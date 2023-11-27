@@ -10,6 +10,10 @@
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;
+  color:#999
+}
+.ant-textarea-content{
+  color:#999
 }
 .container .box-shadow {
   padding: 0 0;
@@ -22,7 +26,6 @@
   margin: 0;
   padding: 30rpx 30rpx;
 }
-
 .box-shadow.field-cell {
   margin: 20rpx auto 0;
   padding: 30rpx 30rpx;
@@ -57,9 +60,10 @@
   position: fixed;
   bottom: 0;
   background: #fff;
+  padding-bottom: 42rpx;
 }
 .bottom-shadow{
-  margin-bottom: 130rpx!important;
+  margin-bottom: 155rpx!important;
 }
 .buttons .btn {
   width: 227rpx;

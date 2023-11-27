@@ -30,6 +30,9 @@ tabIndex: 0,
   hasMore: false,
   isLoading: false,
  onShow(){
+  this.setData({
+    tabIndex: 0
+  });
   this.page = 1
   this.getMessageList(0)
   this.getunReadMessageTotal()
@@ -171,7 +174,7 @@ _bindErrorRefreshTap: function (e) {
     switch (ID) {
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}&type=${item.type}`
         });
         break;
       case 10:
@@ -186,7 +189,7 @@ _bindErrorRefreshTap: function (e) {
           });
         }else{
           ddUtils.navigateTo({
-            url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify({id:item.keyId})}`
+            url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${item.keyId}`
           });
         }   
         break;

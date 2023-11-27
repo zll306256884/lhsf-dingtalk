@@ -1,5 +1,5 @@
 .message{
-min-height: 110rpx;
+min-height: 90rpx;
 background: #FFFFFF;
 border-radius: 0rpx 0rpx 0rpx 0rpx;
 opacity: 1;
@@ -29,7 +29,7 @@ color: rgba(0,0,0,0.5);
 .title{
   font-size: 34rpx;
 font-family: PingFang SC, PingFang SC;
-font-weight: 500;
+font-weight: 400;
 color: #323233;
 margin-bottom: 20rpx;
 }

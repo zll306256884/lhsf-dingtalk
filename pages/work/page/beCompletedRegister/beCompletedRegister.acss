@@ -11,6 +11,7 @@
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;
+  color:#999
 }
 .ant-radio-group-horizontal .ant-radio-group-body{
   justify-content: flex-end;
@@ -70,13 +71,20 @@
  color: #323233;
  line-height: 80rpx;
 }
-
+.ant-textarea-content{
+  color:#999
+}
 .buttons .active {
   margin-left: 20rpx;
   color: white;
   background-color: #377DFF;
 }
-
+.bottom-shadow{
+  padding-bottom: 20rpx;
+  margin-top: 20rpx;
+  margin-bottom: 140rpx;
+background: #FFFFFF;
+}
 /* 任务描述 */
 .box-shadow .desc {
   margin: 10rpx 30rpx 0;

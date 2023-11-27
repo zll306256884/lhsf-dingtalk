@@ -223,28 +223,28 @@ onSaveUploadImgRef: function (ref) {
   this.dialogScreenExecuteUserRef = ref;
 },
 bindScreenExecuteUserCallBack: function (list) {
-  // this.chooseExecuteUserList = list;
-  this.form.setFieldValue('countersignLeader_text', list.map(e => e.username).toString());
-  this.form.setFieldValue('countersignLeader', list.map(e => e.userId).toString());
-  this.setData({
-    countersignLeader: list.map(e => e.userId).toString()
-  })
-  // let str = "";
-  // let strId = ""
-  // for (let item of this.chooseExecuteUserList) {
-  //     str += item.username;
-  //     str += ",";
-  //     strId += item.userId;
-  //     strId += ','
-  // }
-
+  this.chooseExecuteUserList = list;
+  // this.form.setFieldValue('countersignLeader_text', list.map(e => e.username).toString());
+  // this.form.setFieldValue('countersignLeader', list.map(e => e.userId).toString());
   // this.setData({
-  //   countersignLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
-  //   countersignLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
+  //   countersignLeader: list.map(e => e.userId).toString()
+  // })
+  let str = "";
+  let strId = ""
+  for (let item of this.chooseExecuteUserList) {
+      str += item.username;
+      str += ",";
+      strId += item.userId;
+      strId += ','
+  }
 
-  // });
-  // this.form.setFieldValue('countersignLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
-  // this.form.setFieldValue('countersignLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
+  this.setData({
+    countersignLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
+    countersignLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
+
+  });
+  this.form.setFieldValue('countersignLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
+  this.form.setFieldValue('countersignLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
 
   // console.log(this.form.getFieldsValue('countersignLeader'))
 },
@@ -296,22 +296,22 @@ getEdit(id){
         countersignLeader_text:res.data.countersignLeader_dictText,
         investmentFileList:res.data.investmentFileList
       })
-      this.form.setFieldValue('projectType_text', res.data.projectType_dictText)
+      this.form.setFieldValue('projectType_text', res.data.projectType_dictText || '')
       this.form.setFieldValue('projectName', res.data.projectName)
       this.form.setFieldValue('projectId', res.data.projectId)
       this.form.setFieldValue('projectLeader', res.data.projectLeader)
-      this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit)
+      this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit || '')
       this.form.setFieldValue('contractName', res.data.contractName)
       this.form.setFieldValue('contractId', res.data.contractId)
       this.form.setFieldValue('contractAmount', res.data.contractAmount)
       this.form.setFieldValue('cumulativePayment', res.data.cumulativePayment)
-      this.form.setFieldValue('payUnit', res.data.payUnit)
-      this.form.setFieldValue('receiverUnit', res.data.receiverUnit)
-      this.form.setFieldValue('icMeasurementPaymentId', res.data.icMeasurementPaymentId)
-      this.form.setFieldValue('payAmount', res.data.payAmount)
-      this.form.setFieldValue('paymentNode', res.data.paymentNode)
-      this.form.setFieldValue('paymentContent', res.data.paymentContent)
-      this.form.setFieldValue('applicationTime', res.data.applicationTime)
+      this.form.setFieldValue('payUnit', res.data.payUnit || '')
+      this.form.setFieldValue('receiverUnit', res.data.receiverUnit || '')
+      this.form.setFieldValue('icMeasurementPaymentId', res.data.icMeasurementPaymentId || '')
+      this.form.setFieldValue('payAmount', res.data.payAmount || '')
+      this.form.setFieldValue('paymentNode', res.data.paymentNode || '')
+      this.form.setFieldValue('paymentContent', res.data.paymentContent || '')
+      this.form.setFieldValue('applicationTime', res.data.applicationTime || '')
       this.form.setFieldValue('countersignLeader_text', res.data.countersignLeader_dictText || '')
       const files= res.data.investmentFileList.map((item)=>{
         return {

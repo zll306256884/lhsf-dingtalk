@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "antd-mini": "^2.14.0"
+    "antd-mini": "^2.14.0",
+    "dingtalk-jsapi": "^3.0.29"
   }
 }

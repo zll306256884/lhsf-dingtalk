@@ -14,6 +14,10 @@
 .ant-input-content{
   text-align: right;
   font-size: 28rpx;
+  color:#999
+}
+.ant-textarea-content{
+  color:#999
 }
 .field-cell {
   margin: 0;
@@ -54,7 +58,7 @@
   margin-top: 16rpx;
   width: 718rpx;
   position: fixed;
-  bottom: 30rpx;
+  bottom: 0rpx;
   background: #fff;
 }
 .bottom-shadow{

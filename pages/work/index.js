@@ -491,11 +491,8 @@ Page({
     }
     // 待办任务
     if (this.data.currentAwait === 1) {
-      const pramas = {
-        id: e.currentTarget.dataset.item.id
-      }
       ddUtils.navigateTo({
-        url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+        url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${e.currentTarget.dataset.item.id}`
       });
     }
     // 待办请求
@@ -576,11 +573,9 @@ Page({
   },
   // 点击列表项查看任务详情
   selectTaskInfo(e) {
-    const pramas = {
-      id: e.currentTarget.dataset.item.id
-    }
+  
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+      url: `/pages/work/page/myTask/taskInfo/taskInfo??id=${e.currentTarget.dataset.item.id}`
     });
   },
   getCount() {

@@ -9,6 +9,10 @@
         data-index="{{index}}">
             <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill">
             </image>
+            <!-- <view a:if="">
+                <image class="img" src="{{utils.isEmpty(item.localPath) ? item.url : item.localPath}}" mode="aspectFill">
+            </image> -->
+            <!-- </view> -->
             <view class="flex f-center progress" a:if="{{utils.isEmpty(item.url)}}">{{item.progress}}%</view>
             </view>
     </block>
@@ -21,5 +25,6 @@
         style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
         class="item add" 
         src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
-      </image>
+    </image>
+   <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>      
 </view>

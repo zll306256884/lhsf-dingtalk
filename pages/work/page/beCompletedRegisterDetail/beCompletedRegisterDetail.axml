@@ -28,7 +28,7 @@
            <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
         </view> -->
       </form>
-      <view style="margin-top:20rpx">
+      <view style="margin-top:20rpx" class="bottom-shadow">
         <list>
           <list-item>
             相关材料
@@ -36,8 +36,8 @@
           </list-item>
           </list>
       </view>
-      <view class="flex-display flex-align-center btn-wrap">
-        <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
-        <button class="flex1 btn active" catchTap="editTap">编辑</button>
+      <view class="buttons flex f-between">
+        <button class="btn" catchTap="bindCancelTap">删除</button>
+        <button class="btn active" catchTap="editTap">编辑</button>
     </view>
 </view>

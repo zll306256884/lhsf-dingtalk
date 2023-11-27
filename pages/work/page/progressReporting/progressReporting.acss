@@ -7,10 +7,11 @@
 #progressReporting .btn-wrap {
   margin-top: 16rpx;
   padding: 16rpx 18rpx;
-  /* border-top: 1rpx solid #DBDADF; */
+  border-top: 1rpx solid #DBDADF;
   position: fixed;
   bottom: 0;
   left: 0;
+  background-color: #fff;
 }
 
 #progressReporting .btn-wrap .btn {
@@ -25,6 +26,7 @@
   font-weight: 400;
   color: #323233;
   line-height: 80rpx;
+  margin-bottom: 30rpx;
 }
 
 #progressReporting .btn-wrap .active {
@@ -34,4 +36,12 @@
   border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
   color: #FFFFFF;
+}
+
+.ant-picker-value-text{
+  font-size: 28rpx;
+  color: #323233;
+}
+.ant-input-placeholder{
+  font-size: 28rpx;
 }

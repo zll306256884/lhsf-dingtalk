@@ -36,6 +36,10 @@
   margin-top: 16rpx;
   padding: 16rpx 18rpx;
   border-top: 1rpx solid #DBDADF;
+  background-color: #fff;
+  position: fixed;
+  bottom: 0;
+
 }
 
 .btn-wrap .btn {
@@ -50,6 +54,7 @@
   font-weight: 400;
   color: #323233;
   line-height: 80rpx;
+  margin-bottom: 12px;
 }
 
 .btn-wrap .active {

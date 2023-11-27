@@ -198,12 +198,9 @@ addTask(){
   });
 },
 selectTaskInfo(e) {
-  console.log(e);
-    const pramas={
-      id:e.currentTarget.dataset.item.id
-    }
+ 
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskInfo/taskInfo?json=${JSON.stringify(pramas)}`
+      url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${e.currentTarget.dataset.item.id}`
     });
 },
 });
