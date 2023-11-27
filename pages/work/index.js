@@ -115,10 +115,11 @@ Page({
     // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
 
     let menuList = app.globalData.menuList.subList
+    console.log(menuList)
     let buttonList = []
     if(menuList && menuList.length){
-      if(menuList.subList[0] && menuList.subList[0].length){
-        buttonList = menuList.subList[0].buttonList
+      if(menuList[0].subList && menuList[0].subList.length){
+        buttonList = menuList[0].subList[0].buttonList
       }
     }
     console.log(buttonList)
