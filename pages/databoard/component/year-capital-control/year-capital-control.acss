@@ -109,6 +109,9 @@ opacity: 1;
   font-weight: 600;
   color: #1D1D1F;
   font-size: 32rpx;
+  text-overflow: ellipsis; /* 溢出显示省略号 */
+  overflow: hidden; /* 溢出隐藏 */
+  white-space: nowrap;  /* 强制不换行 */
 }
 .pay-text{
   margin-top:8rpx;
