@@ -12,7 +12,15 @@
         disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
         </view>
-        <view  catchTap="bindChooseProjectTap">
+        <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTap">
+          <form-input
+          label="项目名称"
+          name="projectName"
+          placeholder="请选择"
+         disabled
+          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
+         </view>
+         <view a:else>
           <form-input
           label="项目名称"
           name="projectName"
@@ -32,7 +40,15 @@
           placeholder="选择项目后自动带入"
          disabled
           ref="handleRef"></form-input>  
-          <view  catchTap="bindChooseContractNameTap">
+          <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">
+            <form-input
+            label="合同名称"
+            name="contractName"
+            placeholder="请选择"
+           disabled
+            ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
+           </view>
+           <view a:else>
             <form-input
             label="合同名称"
             name="contractName"
@@ -96,7 +112,6 @@
                 label="申请日期"
                 name="applicationTime"
                 placeholder="请选择"
-                allowClear
                disabled
                 ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
               </view>

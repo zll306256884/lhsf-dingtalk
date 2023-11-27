@@ -15,6 +15,7 @@ Component({
   },
   props: {
     cssStyle: "",
+    hide:true,
     imageSize: 190,
     maxCount: defaultCount,
     disabled: false,

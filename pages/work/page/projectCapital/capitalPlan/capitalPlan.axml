@@ -45,7 +45,7 @@
     <view class="bottom-container">
       <text class="attachment">相关附件</text>
       <view>
-        <layout-upload-img ref="onSaveUploadImgRef" disabled cssStyle="margin: 30rpx 15rpx 0;"></layout-upload-img>
+        <layout-upload-img ref="onSaveUploadImgRef" disabled hide={{false}} cssStyle="margin: 30rpx 15rpx 0;"></layout-upload-img>
       </view>
    </view>
   </view>
