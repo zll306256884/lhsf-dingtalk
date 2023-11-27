@@ -114,13 +114,16 @@ Page({
     // this.getQueryList('2')
     // this.getTaskList(app.globalData.userInfo.userId, [1, 2, 5])
 
-    let menuList = app.globalData.menuList
-    console.log('menuList列表',menuList) //对象
-    let buttonList = menuList.subList[0].subList[0].buttonList
-    console.log('按钮',buttonList)
+    let menuList = app.globalData.menuList.subList
+    let buttonList = []
+    if(menuList && menuList.length){
+      if(menuList.subList[0] && menuList.subList[0].length){
+        buttonList = menuList.subList[0].buttonList
+      }
+    }
+    console.log(buttonList)
     let list = this.data.iconList
     let listList = []
-
     list.forEach(e => {
       if( buttonList.find(k => k.optKey === e.showType)){
         listList.push(e)

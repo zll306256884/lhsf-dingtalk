@@ -35,10 +35,13 @@ Page({
       currentTask:Number(option.tabIndex)
     })
 
-    let menuList = app.globalData.menuList
-    console.log('menuList列表',menuList) //对象
-    let buttonList = menuList.subList[0].subList[1].buttonList
-    console.log('按钮',buttonList)
+    let menuList = app.globalData.menuList.subList
+    let buttonList = []
+    if(menuList && menuList.length){
+      if(menuList.subList[0] && menuList.subList[0].length){
+        buttonList = menuList.subList[1].buttonList
+      }
+    }
     if(buttonList && buttonList.length){
       if(buttonList.find(e => e.optKey === 'add')){
         this.setData({
