@@ -39,7 +39,7 @@ background: #F7F8FA;
 }
 .list-item {
   padding: 24rpx 0;
-  border-bottom: 2rpx solid #ebeef5;
+  /* border-bottom: 2rpx solid #ebeef5; */
 }
 .item-title {
   font-size: 34rpx;
