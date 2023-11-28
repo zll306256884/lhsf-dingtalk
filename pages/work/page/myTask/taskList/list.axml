@@ -15,10 +15,10 @@
   </input>
 </view>
 <view class="container">
-  <view class="card card-list">
-    <list a:if="{{listTask.length}}">
+  <view class="card card-list"  a:if="{{listTask.length}}">
+    <list>
       <list-item>
-        <view class="list-item" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
+        <view class="list-item" style="{{listTask.length===1?'':'border-bottom: 2rpx solid #ebeef5'}}" a:for="{{listTask}}" data-item={{item}} data-index={{index}} onTap="selectTaskInfo">
           <view class="item-title single-line" style="{{currentTask ===0 && item.isRead===1?'color: #666666':''}}">
             {{item.title}}
           </view>
@@ -38,8 +38,8 @@
         </view>
       </list-item>
     </list>
-  <empty a:else image="/assets/images/common/empty.png" />
   </view>
+  <empty style="margin-top: 112px;" a:else image="/assets/images/common/empty.png" />
   <view  a:if="{{(currentTask ===0 || currentTask ===1) && showButton}}" class="buttons">
     <button type="primary" onTap="addTask">新建任务</button>
   </view>

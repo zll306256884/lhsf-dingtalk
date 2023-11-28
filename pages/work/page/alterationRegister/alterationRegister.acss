@@ -42,7 +42,16 @@
 .field-cell .placeholder-class.active {
   color: #525966;
 }
-
+.annex{
+  position: relative;
+}
+.annexTitle{
+  position: absolute;
+  top: 31rpx;
+left: 15rpx;
+color:red;
+font-size: 15px;
+}
 /* 任务描述 */
 .box-shadow .desc {
   margin: 10rpx 30rpx 0;
