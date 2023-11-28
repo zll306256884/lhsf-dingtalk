@@ -29,6 +29,7 @@ Page({
     projectName: '',
     applicationTime: formatTimeToDay(new Date()),
     tenderingAgencyOptions: [],
+    executeUser: [],
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -94,7 +95,7 @@ Page({
     if(this.pickerDateRef) this.pickerDateRef._showDialog()
   },
   chooseLeader(){
-    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog()
+    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog(this.data.executeUser)
   },
   chooseTenderingAgency(){
     if(this.dialogSScreen) this.dialogSScreen._showDialog()
@@ -108,6 +109,11 @@ Page({
       countersignLeader: data.map(e => e.userId).toString()
       // countersignLeader_dictText: data.map(e => e.username).toString()
     })
+    this.setData({
+      executeUser: data && data.map(e => {
+        return { userId: e.userId, username: e.username,disabled:e.disabled };
+      })
+    });
   },
   bindScreenQuesFromCallBack(data){
     console.log("单位", data)
@@ -201,6 +207,15 @@ Page({
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
           this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
         }, 0);
+
+        if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
+          const nameList = paramsdata.countersignLeader_dictText.split(',')
+          const idList = paramsdata.countersignLeader.split(',')
+          this.setData({
+            executeUser: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+          })
+        }
+        
       }
     })
   },

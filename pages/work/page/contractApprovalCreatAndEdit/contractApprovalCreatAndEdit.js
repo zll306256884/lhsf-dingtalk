@@ -61,7 +61,8 @@ Page({
     listIndex: null,
     projectListOptions: [],
     developmentOrganizationOptions: [],
-    unitPartyOptions: []
+    unitPartyOptions: [],
+    executeUser: [],
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -139,7 +140,7 @@ Page({
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
   chooseLeader(){
-    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog()
+    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog(this.data.executeUser)
   },
   chooseEcologicalUnit(){
     if(this.dialogScreenEcologicalUnit) this.dialogScreenEcologicalUnit._showDialog()
@@ -214,6 +215,11 @@ Page({
     this.setData({
       countersignLeader: data.map(e => e.userId).toString()
     })
+    this.setData({
+      executeUser: data && data.map(e => {
+        return { userId: e.userId, username: e.username,disabled:e.disabled };
+      })
+    });
   },
   bindScreenConstructUnitCallBack2(data){
     console.log('第三',data);
@@ -545,6 +551,15 @@ Page({
         setTimeout(() => {
           this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
+
+        
+        if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
+          const nameList = paramsdata.countersignLeader_dictText.split(',')
+          const idList = paramsdata.countersignLeader.split(',')
+          this.setData({
+            executeUser: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+          })
+        }
 
         this.getEcological()
       }
