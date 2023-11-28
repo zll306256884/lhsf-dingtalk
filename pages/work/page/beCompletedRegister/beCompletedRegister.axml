@@ -97,8 +97,8 @@
       <!-- <layout-field-input inputType="number"  inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{netAccountAmount}}" placeholder="请输入"></layout-field-input>
       <layout-field-input  name="审定总价(万元)" inputType="number" borderTop mustFill inputName="approveTotalPrice"  disabled="{{isEdit}}" value="{{approveTotalPrice}}" placeholder="请输入"></layout-field-input> -->
     </view>
-    <view class="bottom-shadow" >
-      <layout-field-cell hidden={{false}}  mustFill name="相关附件"></layout-field-cell>
+    <view class="bottom-shadow annex" ><text class="annexTitle">*</text>
+      <layout-field-cell hidden={{false}} cssStyle="margin-left:50rpx"  name="相关附件"></layout-field-cell>
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
     <view class="buttons flex f-between">
