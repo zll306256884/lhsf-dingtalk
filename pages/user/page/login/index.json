@@ -1,6 +1,6 @@
 {
     "usingComponents": {
-    "nav-bar": "/pages/components/nav-bar/nav-bar"
-       
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "ant-button": "antd-mini/es/Button/index"
     }
 }
