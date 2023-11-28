@@ -145,8 +145,8 @@
       <textarea class="desc" name="remark" maxlength="300" value="{{remark}}" placeholder="请输入内容" placeholder-class="placeholder-class"></textarea>
       <view style="height: 20rpx;"></view> -->
     </view>
-    <view class="box-shadow" style="padding-bottom: 30rpx;">
-      <layout-field-cell hidden={{false}}  mustFill name="合同正式稿及相关附件"></layout-field-cell>
+    <view class="box-shadow annex" style="padding-bottom: 30rpx;"><text class="annexTitle">*</text>
+      <layout-field-cell cssStyle="margin-left:45rpx" hidden={{false}}   name="合同正式稿及相关附件"></layout-field-cell>
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
     <view class="box-shadow bottom-shadow">

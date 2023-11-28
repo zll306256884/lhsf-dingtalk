@@ -15,6 +15,21 @@
 .ant-textarea-content{
   color:#999
 }
+input:disabled{  
+  color: #000;
+  opacity: 1;
+  -webkit-text-fill-color: #000;
+}
+.annex{
+  position: relative;
+}
+.annexTitle{
+  position: absolute;
+  top: 31rpx;
+left: 15rpx;
+color:red;
+font-size: 15px;
+}
 .container .box-shadow {
   padding: 0 0;
   width: 100%;
