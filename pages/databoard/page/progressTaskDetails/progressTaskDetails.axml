@@ -148,7 +148,7 @@
                   <view class="size">{{fileItem.size || '-'}}</view>
                 </view>
               </view>
-              <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
+              <image catchTap="toDownLoad" class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
             </view>
             <!-- listData.annexFile -->
           </view>
@@ -162,6 +162,7 @@
       </list-item>
     </list>
   </view>
+  <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>  
   
   
 </view>

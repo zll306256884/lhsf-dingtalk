@@ -19,7 +19,7 @@
   </view>
 </view>
 
-<view style="height:72rpx;"></view>
+<view style="height:67rpx;"></view>
 <list a:if="{{ dataList && dataList.length }}">
   <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
     <view class="flex f-between">
@@ -34,7 +34,7 @@
   </list-item>
 </list>
 
-<view a:else class="flex f-center" style="background:#fff;">
+<view a:else class="flex f-center">
   <image mode="scaleToFill" src="/assets/images/common/empty.png" style="margin: 50rpx auto;width:69px;height:104px;" />
 </view>
 
