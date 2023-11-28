@@ -8,6 +8,7 @@ const app = getApp();
 
 Page({
     data: {
+        isLoading:false,
         navbarData: {
             title: "授权登录",
         },
@@ -47,7 +48,9 @@ Page({
     },
     //bind login tap
     bindAuthLoginTap: function (e) {
-        ddUtils.showLoading();
+      this.setData({
+        isLoading:true
+      })
         dd.getAuthCode({
             scopes: 'auth_user',
             success: (resAuth) => {
@@ -69,12 +72,17 @@ Page({
                         
                     },
                     fail: res => {
-                        ddUtils.hideLoading();
+                      this.setData({
+                        isLoading:true
+                      })
                     },
+                    
                 });
             },
             fail: () => {
-                ddUtils.hideLoading();
+              this.setData({
+                isLoading:true
+              })
             },
         });
     },
@@ -82,7 +90,6 @@ Page({
         Promise
             .all([this.getUserInfo(), this.getMyProjectList()])
             .then(results => {
-                ddUtils.hideLoading();
                 if (results.length != 2) return;
                 let tempUserInfo = results[0] || {};
                 let tempProjectList = results[1].records || [];
@@ -112,7 +119,6 @@ Page({
                         url: "/pages/work/index"
                     });
             }).catch((error) => {
-                ddUtils.hideLoading();
                 app.globalData.userInfo = {};
             });
     },
