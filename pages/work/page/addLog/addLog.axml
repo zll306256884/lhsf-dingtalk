@@ -49,7 +49,7 @@
       <view class='redStart' a:if="{{logTypeName=='重大事件'}}">*</view>
       照片
     </view>
-    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef">
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef" onlyUploadImage="{{true}}">
     </layout-upload-img>
   </view>
   <!--  -->
