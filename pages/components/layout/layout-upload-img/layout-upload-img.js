@@ -11,7 +11,8 @@ Component({
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile',//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
+    descriptionText: '除压缩包如zip/rar外格式,单个文件不能超过200M,最多上传10条'
   },
   props: {
     cssStyle: "",
@@ -20,12 +21,17 @@ Component({
     maxCount: defaultCount,
     disabled: false,
     itemIndex: -1,
-    onlyUploadImage: false
+    onlyUploadImage: false,
   },
   didMount() {
     this.setData({
       imgList: []
     })
+    if(this.props.maxCount){
+      this.setData({
+        descriptionText: '除压缩包如zip/rar外格式,单个文件不能超过200M,最多上传'+this.props.maxCount+'条'
+      })
+    }
   },
   //组件创建时和更新前触发
   deriveDataFromProps(nextProps) {
@@ -132,7 +138,7 @@ Component({
       console.log(this.data.imgList.length, this.props.maxCount)
       if (this.data.imgList.length > this.props.maxCount-1){
         ddUtils.showToast({
-          title: '上传文件不能超过10个'
+          title: '上传文件不能超过'+this.props.maxCount+'个'
         })
         return
       } 
