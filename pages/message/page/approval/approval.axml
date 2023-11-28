@@ -20,12 +20,16 @@
     </view>
   </view>
   <!--  -->
-  <view class="searchInput">
+  <view style="height: 70rpx; width:1rpx"></view>
+  <!--  -->
+  <view class="searchInput box-sizing-box">
     <input placeholder="请输入申请人" onChange="onChange" value="{{userName}}" className="search-bar" focusClassName="search-bar-focus" 
       confirm-type="search" allowClear onConfirm="onConfirm">
       <icon slot="prefix" type="SearchOutline" />
     </input>
   </view>
+  <!--  -->
+  <view style="height: 110rpx; width:1rpx"></view>
   <!--  -->
   <view class="navbox">
     <view>
