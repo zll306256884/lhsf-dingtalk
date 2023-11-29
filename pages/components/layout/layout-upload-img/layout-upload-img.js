@@ -125,72 +125,75 @@ Component({
         imgList: tempList
       });
     },
-
-    //选择图片
-    _bindAddTap: function (e) {
-              //   this.webViewContext = dd.createWebViewContext('web-view-1')
-              // this.setData({
-              //   isWebView :true
-              // })
+    catchAddTap(e){
+      if (this.data.imgList.length > this.props.maxCount-1){
+        ddUtils.showToast({
+          title: '上传文件不能超过10个'
+        })
+        return
+      } 
+      if (this.props.disabled) return;
       ddUtils.navigateTo({
         url: `/pages/components/upload-file/upload-file`
       });
-      
-      // console.log(e)
-      // console.log(this.data.imgList.length, this.props.maxCount)
-      // if (this.data.imgList.length > this.props.maxCount-1){
-      //   ddUtils.showToast({
-      //     title: '上传文件不能超过10个'
-      //   })
-      //   return
-      // } 
-      // if (this.props.disabled) return;
-      // let itemList = []
-      // if(this.props.onlyUploadImage){
-      //   itemList = ["拍照", "手机相册"]
-      // }else{
-      //   itemList =["拍照", "手机相册",'文件']
-      // }
-      // ddUtils.showActionSheet({
-      //   itemList: itemList,
-      //   success: res => {
-      //     console.log('res',res)
-      //     let count = this.data.maxCount - this.data.imgList.length;
-      //     switch (res.index) {
-      //       case 0:
-      //         ddUtils.chooseImage({
-      //           count: count,
-      //           sourceType: ['camera'],
-      //           success: resChooseImg => {
-      //             console.log('resChooseImg',resChooseImg)
-      //             this._dealChooseImage(resChooseImg);
-      //           },
-      //         });
-      //         break;
-      //       case 1:
-      //         ddUtils.chooseImage({
-      //           count: count,
-      //           sourceType: ['album'],
-      //           success: resChooseImg => {
-      //             console.log('resChooseImg',resChooseImg)
-      //             this._dealChooseImage(resChooseImg);
-      //           },'typesOf':'viewFile',
-      //         })
-      //         break
-      //       case 2:
-      //         this.webViewContext = dd.createWebViewContext('web-view-1')
-      //         this.setData({
-      //           isWebView :true
-      //         })
-      //         // setTimeout(()=>{
-      //         //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
-      //         // },1000)
-      //         this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-      //       default:
-      //         break
-      //     }
-      //   }
-      // });
+    },
+    //选择图片
+    _bindAddTap: function (e) {
+      console.log(e)
+      console.log(this.data.imgList.length, this.props.maxCount)
+      if (this.data.imgList.length > this.props.maxCount-1){
+        ddUtils.showToast({
+          title: '上传文件不能超过10个'
+        })
+        return
+      } 
+      if (this.props.disabled) return;
+      let itemList = []
+      if(this.props.onlyUploadImage){
+        itemList = ["拍照", "手机相册"]
+      }else{
+        itemList =["拍照", "手机相册",'文件']
+      }
+      ddUtils.showActionSheet({
+        itemList: itemList,
+        success: res => {
+          console.log('res',res)
+          let count = this.data.maxCount - this.data.imgList.length;
+          switch (res.index) {
+            case 0:
+              ddUtils.chooseImage({
+                count: count,
+                sourceType: ['camera'],
+                success: resChooseImg => {
+                  console.log('resChooseImg',resChooseImg)
+                  this._dealChooseImage(resChooseImg);
+                },
+              });
+              break;
+            case 1:
+              ddUtils.chooseImage({
+                count: count,
+                sourceType: ['album'],
+                success: resChooseImg => {
+                  console.log('resChooseImg',resChooseImg)
+                  this._dealChooseImage(resChooseImg);
+                },'typesOf':'viewFile',
+              })
+              break
+            case 2:
+              this.webViewContext = dd.createWebViewContext('web-view-1')
+              this.setData({
+                isWebView :true
+              })
+              // setTimeout(()=>{
+              //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
+              // },1000)
+              this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
+            default:
+              break
+          }
+        }
+      });
     },
 
     _bindPreviewTap: function (e) {
