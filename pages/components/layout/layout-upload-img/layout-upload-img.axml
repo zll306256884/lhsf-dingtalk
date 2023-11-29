@@ -45,8 +45,5 @@
     </view>
   </view>
 
-  <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view> 
-  <!-- <view a:if="{{isWebView}}" style="height:80%;width:100%;background:rgba(0,0,0,0.5);position:fixed;bottom:0;z-index:99999;" catchTap="closeWeb">
-    <web-view id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view> 
-  </view> -->
+  <!-- <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>  -->
 </view>

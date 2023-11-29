@@ -146,11 +146,15 @@ Component({
         return
       } 
       if (this.props.disabled) return;
+      
+      ddUtils.navigateTo({
+        url: `/pages/components/upload-file/upload-file`
+      });
 
-      this.webViewContext = dd.createWebViewContext('web-view-1')
-      this.setData({
-        isWebView :true
-      })
+      // this.webViewContext = dd.createWebViewContext('web-view-1')
+      // this.setData({
+      //   isWebView :true
+      // })
     },
     //选择图片
     _bindAddTap: function (e) {
