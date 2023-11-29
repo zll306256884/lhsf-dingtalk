@@ -6,8 +6,13 @@
     <image a:if="{{!disabled}}"
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
       class="item add" 
-      src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
+      src="/assets/images/common/icon_add_img.png" catchTap="catchAddTap">
     </image>
+    <!-- <image a:if="{{!disabled}}"
+      style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
+      class="item add" 
+      src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
+    </image> -->
     <image 
       a:if="{{disabled && imgList.length <= 0}}" 
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
@@ -39,5 +44,9 @@
       </view>
     </view>
   </view>
-  <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>      
+
+  <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view> 
+  <!-- <view a:if="{{isWebView}}" style="height:80%;width:100%;background:rgba(0,0,0,0.5);position:fixed;bottom:0;z-index:99999;" catchTap="closeWeb">
+    <web-view id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view> 
+  </view> -->
 </view>
