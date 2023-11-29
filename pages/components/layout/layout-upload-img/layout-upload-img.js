@@ -11,8 +11,7 @@ Component({
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile',//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
-    descriptionText: '除压缩包如zip/rar外格式,单个文件不能超过200M,最多上传10条'
+    webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
   },
   props: {
     cssStyle: "",
@@ -21,17 +20,12 @@ Component({
     maxCount: defaultCount,
     disabled: false,
     itemIndex: -1,
-    onlyUploadImage: false,
+    onlyUploadImage: false
   },
   didMount() {
     this.setData({
       imgList: []
     })
-    if(this.props.maxCount){
-      this.setData({
-        descriptionText: '除压缩包如zip/rar外格式,单个文件不能超过200M,最多上传'+this.props.maxCount+'条'
-      })
-    }
   },
   //组件创建时和更新前触发
   deriveDataFromProps(nextProps) {
@@ -42,25 +36,20 @@ Component({
   },
   didUnmount() { },
   methods: {
-    closeWeb(){
-      this.setData({
-        isWebView: false
-      })
-    },
-    onMessage:function(e) {
-      if(e.detail.hidden) {
-        this.setData({
-          isWebView : false
-        })
-      }
-      if(e.detail.imgList){
-        this.setData({
-          isWebView : false,
-          imgList: this.data.imgList.concat(e.detail.imgList)
-        })
-      }
-      console.log('接受消息',e.detail)
-    },
+    // onMessage:function(e) {
+    //   if(e.detail.hidden) {
+    //     this.setData({
+    //       isWebView : e.detail.hidden
+    //     })
+    //   }
+    //   if(e.detail.imgList){
+    //     this.setData({
+    //       isWebView : false,
+    //       imgList: this.data.imgList.concat(e.detail.imgList)
+    //     })
+    //   }
+    //   console.log('接受消息',e.detail)
+    // },
     //获取上传的图片信息
     _getUploadImgId: function () {
       console.log('this.data.imgList',this.data.imgList)
@@ -137,83 +126,73 @@ Component({
       });
     },
 
-    //直接跳转webview
-    catchAddTap(e){
-      if (this.data.imgList.length > this.props.maxCount-1){
-        ddUtils.showToast({
-          title: '上传文件不能超过'+this.props.maxCount+'个'
-        })
-        return
-      } 
-      if (this.props.disabled) return;
-      
+    //选择图片
+    _bindAddTap: function (e) {
+              //   this.webViewContext = dd.createWebViewContext('web-view-1')
+              // this.setData({
+              //   isWebView :true
+              // })
       ddUtils.navigateTo({
         url: `/pages/components/upload-file/upload-file`
       });
+      
+      // console.log(e)
+      // console.log(this.data.imgList.length, this.props.maxCount)
+      // if (this.data.imgList.length > this.props.maxCount-1){
+      //   ddUtils.showToast({
+      //     title: '上传文件不能超过10个'
+      //   })
+      //   return
+      // } 
+      // if (this.props.disabled) return;
+      // let itemList = []
+      // if(this.props.onlyUploadImage){
+      //   itemList = ["拍照", "手机相册"]
+      // }else{
+      //   itemList =["拍照", "手机相册",'文件']
+      // }
+      // ddUtils.showActionSheet({
+      //   itemList: itemList,
+      //   success: res => {
+      //     console.log('res',res)
+      //     let count = this.data.maxCount - this.data.imgList.length;
+      //     switch (res.index) {
+      //       case 0:
+      //         ddUtils.chooseImage({
+      //           count: count,
+      //           sourceType: ['camera'],
+      //           success: resChooseImg => {
+      //             console.log('resChooseImg',resChooseImg)
+      //             this._dealChooseImage(resChooseImg);
+      //           },
+      //         });
+      //         break;
+      //       case 1:
+      //         ddUtils.chooseImage({
+      //           count: count,
+      //           sourceType: ['album'],
+      //           success: resChooseImg => {
+      //             console.log('resChooseImg',resChooseImg)
+      //             this._dealChooseImage(resChooseImg);
+      //           },'typesOf':'viewFile',
+      //         })
+      //         break
+      //       case 2:
+      //         this.webViewContext = dd.createWebViewContext('web-view-1')
+      //         this.setData({
+      //           isWebView :true
+      //         })
+      //         // setTimeout(()=>{
+      //         //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
+      //         // },1000)
+      //         this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
+      //       default:
+      //         break
+      //     }
+      //   }
+      // });
+    },
 
-      // this.webViewContext = dd.createWebViewContext('web-view-1')
-      // this.setData({
-      //   isWebView :true
-      // })
-    },
-    //选择图片
-    _bindAddTap: function (e) {
-      console.log(e)
-      console.log(this.data.imgList.length, this.props.maxCount)
-      if (this.data.imgList.length > this.props.maxCount-1){
-        ddUtils.showToast({
-          title: '上传文件不能超过'+this.props.maxCount+'个'
-        })
-        return
-      } 
-      if (this.props.disabled) return;
-      let itemList = []
-      if(this.props.onlyUploadImage){
-        itemList = ["拍照", "手机相册"]
-      }else{
-        itemList =["拍照", "手机相册",'文件']
-      }
-      ddUtils.showActionSheet({
-        itemList: itemList,
-        success: res => {
-          console.log('res',res)
-          let count = this.data.maxCount - this.data.imgList.length;
-          switch (res.index) {
-            case 0:
-              ddUtils.chooseImage({
-                count: count,
-                sourceType: ['camera'],
-                success: resChooseImg => {
-                  console.log('resChooseImg',resChooseImg)
-                  this._dealChooseImage(resChooseImg);
-                },
-              });
-              break;
-            case 1:
-              ddUtils.chooseImage({
-                count: count,
-                sourceType: ['album'],
-                success: resChooseImg => {
-                  console.log('resChooseImg',resChooseImg)
-                  this._dealChooseImage(resChooseImg);
-                },'typesOf':'viewFile',
-              })
-              break
-            case 2:
-              this.webViewContext = dd.createWebViewContext('web-view-1')
-              this.setData({
-                isWebView :true
-              })
-              // setTimeout(()=>{
-              //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
-              // },1000)
-              this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-            default:
-              break
-          }
-        }
-      });
-    },
     _bindPreviewTap: function (e) {
       let index = e.currentTarget.dataset.index;
 
@@ -257,17 +236,9 @@ Component({
     },
     deleteClose(e){
       let index = e.currentTarget.dataset.index;
-      ddUtils.showModal({
-        title:'确认删除所选数据？',
-        content: "删除后不可恢复，请确认",
-        success: res => {
-          if (res.confirm) {
-            this.data.imgList.splice(index, 1);
-            this.setData({
-              imgList: this.data.imgList
-            })
-          }
-        }
+      this.data.imgList.splice(index, 1);
+      this.setData({
+        imgList: this.data.imgList
       })
     },
     //deal choose image
