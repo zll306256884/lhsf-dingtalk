@@ -106,7 +106,7 @@ opacity: 1;
 }
 .projectName{
   width: 374rpx;
-  font-weight: 600;
+  font-weight: 500;
   color: #1D1D1F;
   font-size: 32rpx;
   text-overflow: ellipsis; /* 溢出显示省略号 */
@@ -155,7 +155,7 @@ font-weight: 400;
 } */
 .isActive{
   background: #FFFFFF;
-  font-weight: 500;
+  font-weight: 500!important;
   color:#1D1D1F
 }
 .sum-money{
