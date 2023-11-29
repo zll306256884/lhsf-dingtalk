@@ -11,7 +11,7 @@ Page({
     console.log(option);
     if(option.type){
       this.setData({
-        webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile?type='+ option.type
+        webViewUrl: 'http://192.168.6.41/#/share/viewFile?type='+ option.type
       })
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')

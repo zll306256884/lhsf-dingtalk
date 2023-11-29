@@ -34,7 +34,7 @@ Component({
       console.log('暂存待办')
       request.doPostRequest({
         url: workService.API_Audit_UPDATE,
-        data: {isRead: 0, id: this.props.examineId},
+        data: {isRead: 0, id: this.props.examineId ||this.props.keyId },
         success: res => {
           console.log(res.data)
           ddUtils.showToast({

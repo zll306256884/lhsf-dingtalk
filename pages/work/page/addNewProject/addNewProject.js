@@ -71,7 +71,7 @@ Page({
   dialogActualDatRangeRef: null,
   dialogSuoshuUnit: null,
   dialogScreenExecuteUser: null,
-  uploadImgRefList: null,
+  uploadImageList: null,
 
   onLoad(options) {
     console.log(options)
@@ -98,8 +98,8 @@ Page({
     this.pickEndDate = ref
   },
   onSaveUploadImgRef: function (ref) {
-    this.uploadImgRefList = ref;
-    console.log(this.uploadImgRefList)
+    this.uploadImageList = ref;
+    console.log(this.uploadImageList)
   },
   
   //
@@ -255,7 +255,7 @@ Page({
         })
         this.form.setFieldValue('isAccess', paramsdata.isAccess )
         setTimeout(() => {
-          this.uploadImgRefList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
+          this.uploadImageList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
         }, 0);
         console.log(this.data.isAccess)
       }
@@ -388,8 +388,8 @@ Page({
     // if (ddUtils.showEmptyToastTips(this.data.formData.totalInvestment, "总投资金额不能为空")) return;
 
     let workAuditFile = [];
-    if (this.uploadImgRefList) {
-      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     params.projectRedLineList = workAuditFile
 
