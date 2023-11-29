@@ -20,6 +20,9 @@ Page({
   },
   mapRef:null,
   onLoad() {
+
+  },
+  onShow(){
   },
   onSaveMapRef(ref){
     this.mapRef=ref
@@ -29,7 +32,6 @@ Page({
       currentTabIndex: e
     });
     if(e===0){
-      console.log("??????????",this.mapRef);
       this.mapRef.initMap()
     }
   }
