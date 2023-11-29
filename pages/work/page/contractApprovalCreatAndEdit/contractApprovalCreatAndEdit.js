@@ -68,7 +68,7 @@ Page({
   dialogSScreenExecuteUser: null,
   dialogScreenEcologicalUnit: null,
   dialogScreenConstructUnit: null,
-  uploadImgRefList: null,
+  uploadImageList: null,
   dialogScreenConstructUnit2: null,
   pickerDateRef: null,
 
@@ -115,7 +115,7 @@ Page({
     this.pickerDateRef = ref
   },
   onSaveUploadContractImgRef: function (ref) {
-    this.uploadImgRefList = ref;
+    this.uploadImageList = ref;
   },
   onSaveDialogScreenprojecteRef(ref){
     this.dialogScreenProject = ref
@@ -413,8 +413,8 @@ Page({
     }
     
     let workAuditFile = [];
-    if (this.uploadImgRefList) {
-      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     // if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
     
@@ -463,8 +463,8 @@ Page({
     params.ecUnitId = this.data.ecUnitId
     params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
     let workAuditFile = [];
-    if (this.uploadImgRefList) {
-      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
     
@@ -549,7 +549,7 @@ Page({
           })
         }
         setTimeout(() => {
-          this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
+          this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
 
         
