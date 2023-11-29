@@ -96,7 +96,13 @@ Component({
   },
   didUpdate() {
   },
-  didUnmount() {},
+  didUnmount() {
+    this.data.params.projectStatus = null;
+    this.setData({
+      params: this.data.params
+    });
+    this.getProjectList();
+  },
   methods: {
     initMap() {
       this.mapCtx = dd.createMapContext("map");

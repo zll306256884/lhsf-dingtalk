@@ -135,6 +135,7 @@ font-weight: 400;
   color:#606266;
   width: 105rpx;
   height: 60rpx;
+  font-size: 28rpx;
   line-height: 60rpx;
   border-radius: 4rpx 4rpx 4rpx 4rpx;
   opacity: 1;
