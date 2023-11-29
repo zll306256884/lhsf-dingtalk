@@ -32,7 +32,7 @@ Page({
   netAccountAmount:'',// 净核算金额,
   approveTotalPrice:"",//审定总价
   chooseExecuteUserList: [],
-  uploadImgRef:null,/// 上传,
+  uploadImageList:null,/// 上传,
   investmentFileList:[],
     isEdit: false,
     projectData:{},// 项目名称,
@@ -172,7 +172,7 @@ bindChooseApplyDateCallBack(data){
 },
 // 上传
 onSaveUploadImgRef: function (ref) {
-  this.uploadImgRef = ref;
+  this.uploadImageList = ref;
 },
 // 编辑
 getEdit(id){
@@ -214,7 +214,7 @@ request.doPostRequest({
       }
     })
     setTimeout(() => {
-      this.uploadImgRef._setImageList(files) 
+      this.uploadImageList._setImageList(files) 
     }, 0);
   }
 })
@@ -227,8 +227,8 @@ async submit(){
   params.applicationTime=this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':''
   params.vueUrl= 'completed'
   let temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
+if (this.uploadImageList) {
+  temFileList = this.uploadImageList.data.imgList;
   if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
   temFileList.forEach(e => {
     e.fileName = e.name

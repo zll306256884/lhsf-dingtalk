@@ -43,7 +43,7 @@ Page({
     dialogScreenpslowUnitRef:null,
     dialogScreenpProceedsUnitRef:null,
     dialogScreenApplyDateRef:null, // 申请日期
-    uploadImgRef: null,// 上传
+    uploadImageList: null,// 上传
     projectTypeData:{},// 项目类型,
     projectData:{},// 项目名称,
     contractData:{},// 合同名称
@@ -205,7 +205,7 @@ bindChooseApplyDateCallBack(data){
 },
 // 上传
 onSaveUploadImgRef: function (ref) {
-  this.uploadImgRef = ref;
+  this.uploadImageList = ref;
 },
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
@@ -313,7 +313,7 @@ getEdit(id){
         }
       })
       setTimeout(() => {
-        this.uploadImgRef._setImageList(files) 
+        this.uploadImageList._setImageList(files) 
       }, 0);
     }
   })
@@ -333,8 +333,8 @@ params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
+if (this.uploadImageList) {
+  temFileList = this.uploadImageList.data.imgList;
   if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
   temFileList.forEach(e => {
     e.fileName = e.name
@@ -377,8 +377,8 @@ params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
+if (this.uploadImageList) {
+  temFileList = this.uploadImageList.data.imgList;
   // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
   temFileList.forEach(e => {
     e.fileName = e.name
