@@ -7,7 +7,13 @@ Page({
     },
     webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
   },
-  onLoad() {
+  onLoad(option) {
+    console.log(option);
+    if(option.type){
+      this.setData({
+        webViewUrl: 'http://192.168.6.41/#/share/viewFile?type='+ option.type
+      })
+    }
     this.webViewContext = dd.createWebViewContext('web-view-1')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
   },
