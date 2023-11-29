@@ -41,7 +41,7 @@ position: relative;
   margin-bottom: 30rpx;
 }
 .btn-wrap .btn.active {
-  /* margin-left: 20rpx; */
+  margin-left: 15rpx;
   color: white;
   background-color: #377DFF;
 }
