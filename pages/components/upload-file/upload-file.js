@@ -11,7 +11,7 @@ Page({
     console.log(option);
     if(option.type){
       this.setData({
-        webViewUrl: 'http://192.168.8.51:8080/#/share/viewFile?type='+ option.type
+        webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile?type='+ option.type
       })
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
@@ -22,14 +22,13 @@ Page({
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
     console.log('prevPage',prevPage)
-    prevPage.uploadImageList._setImageList(e.detail.imgList)
     if(e.detail.type === '1'){
       prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
     }else if(e.detail.type === '2'){
       prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
+    }else{
+      prevPage.uploadImageList._setImageList(e.detail.imgList)
     }
-    
-    prevPage.uploadImgRefList._setImageList(e.detail.imgList)
     dd.navigateBack()
   },
 });
