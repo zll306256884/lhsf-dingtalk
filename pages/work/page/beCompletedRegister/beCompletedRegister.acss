@@ -63,7 +63,7 @@ font-size: 15px;
   color: #525966;
 }
 .buttons{
-  border-top: 1px solid #DBDADF;
+  border-top: 1px solid #EBEDF0;
   padding: 16rpx 18rpx;
   margin-top: 16rpx;
   width: 718rpx;
@@ -91,8 +91,8 @@ font-size: 15px;
 }
 .buttons .active {
   margin-left: 20rpx;
-  color: white;
-  background-color: #377DFF;
+  color: #fff;
+  background: #1A6AFF;
 }
 .bottom-shadow{
   padding-bottom: 20rpx;

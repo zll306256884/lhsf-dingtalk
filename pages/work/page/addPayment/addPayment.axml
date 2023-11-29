@@ -153,7 +153,7 @@
     <!-- <layout-field-cell  name="会签分管领导" mustFill placeholder="请选择" value="{{countersignLeader_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
   </view>
   <view class="buttons flex f-between">
-          <button class="btn" catchTap="bindCancelTap">取  消</button>
+          <button class="btn" catchTap="bindCancelTap">取消</button>
           <button class="btn zancun" data-flag="{{1}}" form-type="submit" onTap="workingStorage">暂存</button>
           <button class="btn active" data-flag="{{2}}"  form-type="submit" onTap="submit">提交审批</button>
       </view>

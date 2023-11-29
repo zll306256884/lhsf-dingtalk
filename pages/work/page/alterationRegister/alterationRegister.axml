@@ -161,8 +161,8 @@
       <!-- <layout-field-cell mustFillTransparent  name="抄送人"  placeholder="请选择" value="{{person_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
     </view>
     <view class="buttons flex f-between">
-    <button class="btn" catchTap="bindCancelTap">取  消</button>
-    <button class="btn active" form-type="submit" onTap="submit">保  存</button>
+    <button class="btn" catchTap="bindCancelTap">取消</button>
+    <button class="btn active" form-type="submit" onTap="submit">保存</button>
 </view>
   </form>
 </view>

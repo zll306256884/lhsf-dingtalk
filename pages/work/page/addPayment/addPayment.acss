@@ -69,7 +69,7 @@ font-size: 15px;
 
 /* btn */
 .buttons{
-  border-top: 1px solid #DBDADF;
+  border-top: 1px solid #EBEDF0;
   padding: 16rpx 18rpx;
   margin-top: 16rpx;
   width: 718rpx;
@@ -85,15 +85,17 @@ font-size: 15px;
   width: 227rpx;
   height: 80rpx;
   line-height: 80rpx;
+  opacity: 1;
   border-radius: 10rpx;
+  background: #FFFFFF;
   border: 1px solid #E4E7ED;
   font-size: 28rpx;
-  color: #525966;
+  color: #323233;
 }
 .buttons .active {
   /* margin-left: 20rpx; */
-  color: white;
-  background-color: #377DFF;
+  color: #fff;
+  background: #1A6AFF;
 }
 /* 任务描述 */
 .box-shadow .desc {
