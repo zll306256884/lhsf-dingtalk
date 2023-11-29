@@ -1,5 +1,5 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view  class="container">
+<view>
   <view class="card">
     <tabs className="backg" items="{{items}}" current="{{tabIndex}}" onChange="onQueryChange">
       <!-- <view
@@ -15,6 +15,8 @@
         <view a:else>{{item.value.title}}</view>
       </view>
     </tabs>
+  </view>
+  <view style="height:100rpx">
   </view>
   <view class="content_text">
   <view class="list-item" a:for="{{MessageList}}" data-index={{index}} data-item={{item}} onTap="selectTap">

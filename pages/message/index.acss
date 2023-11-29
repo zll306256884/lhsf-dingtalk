@@ -8,7 +8,6 @@
 } */
 .card{
 position: fixed;
-top: 150rpx;
 background-color: #fff;
 z-index: 8;
 }
@@ -20,7 +19,6 @@ z-index: 8;
   z-index: 99999;
 }
 .content_text{
-  margin-top:90rpx;
 background: #FFFFFF;
 }
 .item-label {

@@ -142,7 +142,7 @@ font-weight: 400;
   margin-bottom: 22rpx;
   padding: 0 6rpx;
   width: 220rpx;
-  height: 72rpx;
+  height: 60rpx;
   display: flex;
   align-items: center;
   text-align: center;
@@ -153,8 +153,8 @@ opacity: 1;
 .top-item-label{
   color: #FFFFFF;
   width: 220rpx;
-  height: 60rpx;
-  line-height: 60rpx;
+  height: 48rpx;
+  line-height: 48rpx;
   border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
 }
