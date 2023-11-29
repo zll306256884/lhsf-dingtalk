@@ -118,6 +118,7 @@ Component({
           progress: 100,
           url: getImgUrl(item.url),
           id: item.id,
+          size: item.size,
           name: item.name
         });
       }
