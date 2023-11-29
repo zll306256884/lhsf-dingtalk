@@ -92,7 +92,7 @@ opacity: 1;
 }
 .projectName{
   width: 630rpx;
-  font-weight: 600;
+  font-weight: 500;
   color: #1D1D1F;
   font-size: 32rpx;
 }
@@ -108,7 +108,7 @@ font-weight: 400;
   width: 300rpx;
 }
 .view-money{
- width:390rpx!important;; 
+ width:390rpx!important;
 }
 .search{
   width: 92%!important;
