@@ -99,7 +99,7 @@ Page({
       options: JSON.parse(JSON.stringify(this.data.options))
     })
     this.page = 1
-    this.getDataList()
+    this.getDataList(this.data.type)
     this.getCount()
   },
   events: {

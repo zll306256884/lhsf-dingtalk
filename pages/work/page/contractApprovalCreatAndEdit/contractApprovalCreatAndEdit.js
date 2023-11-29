@@ -24,7 +24,7 @@ Page({
   }),
   data: {
     navbarData:{
-      title: "合同签订信息登记"
+      title: "新增合同审批流程"
     },
     radioGroupOptions: [
       { value: 1, label: '是' },
@@ -98,7 +98,8 @@ Page({
     this.getCodeList()
     if(options.id){
       this.setData({
-        contractId: options.id
+        contractId: options.id,
+        navbarData: {title: '编辑合同审批流程'}
       })
       this.getDetail()
     }else{
