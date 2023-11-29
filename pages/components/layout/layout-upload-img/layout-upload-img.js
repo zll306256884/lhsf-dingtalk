@@ -20,7 +20,8 @@ Component({
     maxCount: defaultCount,
     disabled: false,
     itemIndex: -1,
-    onlyUploadImage: false
+    onlyUploadImage: false,
+    type: '' //招标用1.招标文件，2.其他
   },
   didMount() {
     this.setData({
@@ -134,7 +135,7 @@ Component({
       } 
       if (this.props.disabled) return;
       ddUtils.navigateTo({
-        url: `/pages/components/upload-file/upload-file`
+        url: `/pages/components/upload-file/upload-file?type=${this.props.type}`
       });
     },
     //选择图片
