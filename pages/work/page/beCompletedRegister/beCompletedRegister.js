@@ -48,7 +48,7 @@ Page({
               date = date.replace('/', '-') // 替换之后就变成新数组了
             }
           }
-          this.data.applicationTime = date.substr(0,10)
+    this.data.applicationTime = date.substr(0,10)
     this.setData({
       id:option.id
     })
@@ -74,7 +74,6 @@ Page({
      }
   },
   handleRef(ref) {
-    console.log(ref);
     this.form.addItem(ref);
   },
   onChange(row,e){
@@ -93,7 +92,6 @@ bindChooseProjectTap:function (e) {
   if (this.dialogScreenprojectRef) this.dialogScreenprojectRef._showDialog(this.data.projectData.id)
 },
 onSaveDialogScreenprojecteRef: function (ref) {
-  console.log(ref);
   this.dialogScreenprojectRef = ref;
 },
 bindChooseProjectCallBack: function (data) {
@@ -118,7 +116,6 @@ bindChooseProjectCallBack: function (data) {
       projectId:data.id,
     },
     success: res => {
-      console.log();
       this.setData({
         projectChangeAmount: res.data.projectCumulativeChange || 0,
       });
@@ -131,11 +128,9 @@ bindChooseProjectCallBack: function (data) {
   if (this.dialogScreenpcontractRef) this.dialogScreenpcontractRef._showDialog(this.data.contractData.contractId)
 },
 onSaveDialogScreencontractRef:function (ref) {
-  console.log(ref);
   this.dialogScreenpcontractRef = ref;
 },
 bindChooseContractCallBack: function (data) {
-  console.log(data,"data");
   this.setData({
     contractData: data || {},
     contractAmount:data.contractAmount,
@@ -153,7 +148,6 @@ bindChooseContractCallBack: function (data) {
       projectId:this.data.projectId
     },
     success: res => {
-      console.log(res);
       this.setData({
         contractCumulativeChange: res.data.contractCumulativeChange || 0,
         contractChangeRate: res.data.contractCumulativeChangeRate || 0,
@@ -188,7 +182,6 @@ request.doPostRequest({
    id:id
   },
   success:res=>{
-    console.log(res);
     this.setData({
       'projectData.name':res.data.projectName,
       'projectData.id':res.data.projectId,
@@ -324,8 +317,6 @@ params.investmentFileList =  temFileList
 //    ddUtils.navigateBack();
 //   }
 // })
-
-
 // },
 bingFocusChange(){
   this.setData({
@@ -334,7 +325,6 @@ bingFocusChange(){
 },
 // 取消
 bindCancelTap: function (e) {
-  console.log(12121212);
   ddUtils.navigateBack();
 },
 });

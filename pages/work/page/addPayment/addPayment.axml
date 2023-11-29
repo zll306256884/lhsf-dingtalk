@@ -32,20 +32,21 @@
           label="项目负责人"
           name="projectLeader"
           placeholder="选择项目后自动带入"
-         disabled
+          disabled
           ref="handleRef"></form-input>  
           <form-input
           label="所属单位"
           name="affiliateUnit"
+          style="margin-right:20rpx"
           placeholder="选择项目后自动带入"
-         disabled
+          disabled
           ref="handleRef"></form-input>  
           <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">
             <form-input
             label="合同名称"
             name="contractName"
             placeholder="请选择"
-           disabled
+            disabled
             ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
            </view>
            <view a:else>
