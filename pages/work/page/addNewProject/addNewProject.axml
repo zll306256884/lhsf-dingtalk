@@ -28,7 +28,7 @@
       <form-input label="项目负责人" name="projectLeaderName" placeholder="请输入" ref="handleRef" disabled>{{projectLeaderName}}<icon slot="suffix" type="RightOutline" /></form-input>
     </view> -->
     <form-item label="项目负责人" labelWidth="260rpx" name="projectLeaderName" required>
-      <view class="f-item" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:30rpx;font-weight:500"/></view>
+      <view class="f-item" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
     </form-item>
 
 
@@ -45,20 +45,20 @@
 
     <!-- <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent placeholder="请选择" value="{{planConstructionDate}}" onArrowTap="_bindChoosePlanConstructionDate"></layout-field-cell> -->
     <form-item labelWidth="260rpx" label="计划施工工期" name="planConstructionDate" required>
-      <view class="f-item" catchTap="_bindChoosePlanConstructionDate" style="{{planConstructionDate?'':'color:#ccc;font-size: 30rpx;'}}"> {{planConstructionDate?planConstructionDate:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:30rpx;"/></view>
+      <view class="f-item" catchTap="_bindChoosePlanConstructionDate" style="{{planConstructionDate?'':'color:#ccc;font-size: 30rpx;'}}"> {{planConstructionDate?planConstructionDate:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;"/></view>
     </form-item>
     <form-input label="计划施工工期(天)" labelWidth="280rpx" name="duration" placeholder="自动带入" type="number" disabled ref="handleRef" />
     
     <!-- <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent placeholder="请选择" value="{{actualConstruction}}" onArrowTap="_bindChooseActualConstruction"></layout-field-cell> -->
     <form-item label="实际施工工期" labelWidth="260rpx" name="planConstructionDate" required>
-      <view class="f-item" catchTap="_bindChooseActualConstruction" style="{{actualConstruction?'':'color:#ccc;font-size: 30rpx;'}}"> {{actualConstruction?actualConstruction:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:30rpx;"/></view>
+      <view class="f-item" catchTap="_bindChooseActualConstruction" style="{{actualConstruction?'':'color:#ccc;font-size: 30rpx;'}}"> {{actualConstruction?actualConstruction:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;"/></view>
     </form-item>
   </view>
   <view class="containerinner" style="margin-top:16rpx">
     <view class="redline-title">
       项目红线图
     </view>
-    <layout-upload-img onlyUploadImage="{{true}}" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
   </view>
   <view class="containerinner" style="margin-top:16rpx">
     <view class="title"> 项目坐标 </view>
