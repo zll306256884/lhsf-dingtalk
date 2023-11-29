@@ -105,6 +105,11 @@ background: #FFF2E6;
     background: #ffffff;
     padding: 12px 12px 24px 12px;
   }
+  .buttons .ant-button{
+    height: 80rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
+  }
   .ant-empty-image-element {
     width: 67px!important;
     height: 100px!important;
