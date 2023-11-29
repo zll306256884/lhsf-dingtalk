@@ -54,7 +54,7 @@
 .bottom-content{
   width: 718rpx;
   padding: 16rpx;
-  border-top: 1px solid #DBDADF;
+  border-top: 1px solid #EBEDF0;
   position:fixed;
   bottom:0rpx;
   padding-bottom: 18rpx;
