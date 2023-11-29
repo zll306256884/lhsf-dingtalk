@@ -45,7 +45,8 @@
     "pages/databoard/page/progressTaskDetails/progressTaskDetails",
     "pages/work/page/requestProgressDetail/requestProgressDetail",
     "pages/message/systemAnnouncement/systemAnnouncement",
-    "pages/work/page/addNewProject/addNewProject"
+    "pages/work/page/addNewProject/addNewProject",
+    "pages/components/upload-file/upload-file"
   ],
   "window": {
     "defaultTitle": "",

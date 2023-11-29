@@ -90,6 +90,9 @@ Component({
   mapCtx: null,
   didMount() {
     this.initMap();
+    // dd.alert({
+    //   content: dd.ExtSDKVersion || dd.SDKVersion,
+    // });
   },
   didUpdate() {
   },
@@ -180,7 +183,7 @@ Component({
     },
 
     updateComponents() {
-      if (!dd.canIUse('createMapContext.return.updateComponents')) {
+      if (!dd.canIUse('createMapContext.return.updateComponents') && dd.canIUse('map.makers.customCallout')) {
         ddUtils.showToast({
           title: mapV2Message
         });
@@ -205,7 +208,7 @@ Component({
                   "desc": item.projectName,
                   "descColor": "#333333" 
               }],
-              "isShow": this.data.currentItem === item.index? 1:0
+              isShow: this.data.currentItem === item.index? 1:0
           },
           markerLevel: 2
           };
@@ -230,9 +233,11 @@ Component({
         currentItem:e.detail.current
       })
       this.updateComponents();
+
       // const newMarkers = this.data.projectList
       // .filter(i => i.cityCapitalX && i.cityCapitalY)
       // .map(item => {
+      //   if(this.data.currentItem === item.index){
       //     return {
       //       id:item.id,
       //       width: 64,
@@ -240,17 +245,29 @@ Component({
       //       longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
       //       latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
       //       iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
-      //       customCallout: { 
-      //         "type": 2,
-      //         "descList": [{ 
-      //             "desc": item.projectName,
-      //             "descColor": "#333333" 
-      //         }],
-      //         "isShow": e.detail.current === item.index? 1:0
-      //     },
-      //     markerLevel: 2
+      //       markerLevel: 2,
+      //       label:{
+      //         content:item.projectName,
+      //         color:"#000000",
+      //         fontSize:16,
+      //         borderRadius:8,
+      //         bgColor:"#ffffff",
+      //         padding:10,
+      //       },
       //     };
-          
+      //   }else{
+      //     return {
+      //       id:item.id,
+      //       width: 64,
+      //       height: 64,
+      //       longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+      //       latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+      //       iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
+      //       callout: {
+      //         content: item.projectName
+      //       },
+      //     };
+      //   } 
       //   });
       //     this.mapCtx.changeMarkers({
       //       update:newMarkers,
@@ -258,7 +275,7 @@ Component({
     },
     // 点击 Marker 时触发
     markertap(e) {
-     let index = this.data.projectList.findIndex(item=>item.id===e.markerId)
+      let index = this.data.projectList.findIndex(item=>item.id===e.markerId)
       this.setData({
         currentItem:index
       })
