@@ -52,7 +52,6 @@
         label="申请日期"
         name="applicationTime"
         placeholder="请选择"
-        allowClear
         disabled
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
       </view>
@@ -83,7 +82,7 @@
       name="netAccountAmount"
       placeholder="请输入"
       type="number"
-        allowClear
+      allowClear
       style="text-align:left"
       ref="handleRef" />
       <form-input

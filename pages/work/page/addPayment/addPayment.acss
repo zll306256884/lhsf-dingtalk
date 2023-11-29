@@ -3,6 +3,7 @@
 }
 .ant-input-placeholder{
   font-size: 30rpx;
+  color: #d3d3d3;
 }
 .ant-form-item-label-horizontal{
   width: 150px;

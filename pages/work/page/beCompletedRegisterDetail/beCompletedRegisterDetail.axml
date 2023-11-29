@@ -14,7 +14,7 @@
       </view> -->
       <form onSubmit="bindFormSubmit">
         <view class="box-shadow">
-          <layout-field-cell hidden="{{false}}" borderTop name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
+          <layout-field-cell hidden="{{false}}"  name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
           <layout-field-cell hidden="{{false}}" borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName}}"></layout-field-cell>
           <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)"  placeholder="选择合同后自动带入"  value="{{infoData.contractAmount}}"></layout-field-cell>
           <layout-field-cell hidden={{false}} borderTop name="承包商名称"  placeholder="选择合同后自动带入"  value="{{infoData.contractorName}}"></layout-field-cell>
