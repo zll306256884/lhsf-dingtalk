@@ -14,6 +14,9 @@ font-weight: 500;
 color: rgba(0,0,0,0.9);
 line-height: 40rpx;
 }
+.ant-tabs-bar-underline{
+  border-bottom: none;
+}
 .title{
 font-size: 28rpx;
 font-weight: 400;

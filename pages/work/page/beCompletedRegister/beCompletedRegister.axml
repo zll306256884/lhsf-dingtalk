@@ -52,7 +52,6 @@
         label="申请日期"
         name="applicationTime"
         placeholder="请选择"
-        allowClear
         disabled
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
       </view>
@@ -83,7 +82,7 @@
       name="netAccountAmount"
       placeholder="请输入"
       type="number"
-        allowClear
+      allowClear
       style="text-align:left"
       ref="handleRef" />
       <form-input
@@ -102,8 +101,8 @@
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
     <view class="buttons flex f-between">
-      <button class="btn" catchTap="bindCancelTap">取  消</button>
-      <button class="btn active" form-type="submit" onTap="submit">保  存</button>
+      <button class="btn" catchTap="bindCancelTap">取消</button>
+      <button class="btn active" form-type="submit" onTap="submit">保存</button>
   </view>
   </form>
 </view>
