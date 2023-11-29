@@ -131,6 +131,7 @@ font-weight: 400;
   line-height: 60rpx;
   border-radius: 4rpx 4rpx 4rpx 4rpx;
   opacity: 1;
+  font-size:28rpx;
   color:#606266
 }
 .isActive{
