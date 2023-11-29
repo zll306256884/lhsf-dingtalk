@@ -2,6 +2,6 @@
 
 <view class="container">
   <image class="image"  src="../../../../assets/images/login.png" />
-    <button class="btn-login" catchTap="bindAuthLoginTap">授权登录</button>
+    <ant-button loading="{{isLoading}}" class="btn-login" catchTap="bindAuthLoginTap">授权登录</ant-button>
     <view class="description">点击授权，将获取您的钉钉手机号进行登录</view>
 </view>
