@@ -76,6 +76,7 @@ Page({
   dialogLogTypeRef: null, //日志类型
   uploadImgRefList: null, // 上传照片
   uploadFileRef: null, // 上传附件
+  uploadImageList: null, // 上传附件
 
   onLoad(options) {
     console.log(options)
@@ -182,7 +183,8 @@ Page({
 
   },
   onSaveUploadFileRef: function (ref) {
-    this.uploadFileRef = ref;
+    // this.uploadFileRef = ref;
+    this.uploadImageList = ref;
     console.log('文件上传', ref)
   },
   // 照片----end
@@ -208,8 +210,8 @@ Page({
     }
     this.data.logPhotoList = logPhotoList
     let logFileList
-    if (this.uploadFileRef._getUploadImgId().imgList.length) {
-      logFileList = this.uploadFileRef._getUploadImgId().imgList
+    if (this.uploadImageList._getUploadImgId().imgList.length) {
+      logFileList = this.uploadImageList._getUploadImgId().imgList
     } else {
       logFileList = [];
     }
