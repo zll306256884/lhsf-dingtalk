@@ -240,10 +240,18 @@ Component({
       });
     },
     deleteClose(e){
-      let index = e.currentTarget.dataset.index;
-      this.data.imgList.splice(index, 1);
-      this.setData({
-        imgList: this.data.imgList
+      ddUtils.showModal({
+        title:'确认删除所选数据？',
+        content: "删除后不可恢复，请确认",
+        success: res => {
+          if (res.confirm) {
+            let index = e.currentTarget.dataset.index;
+            this.data.imgList.splice(index, 1);
+            this.setData({
+              imgList: this.data.imgList
+            })
+          }
+        }
       })
     },
     //deal choose image
