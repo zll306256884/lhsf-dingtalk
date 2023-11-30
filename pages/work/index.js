@@ -476,7 +476,7 @@ Page({
               break;
             case 4:
               ddUtils.navigateTo({
-                url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}`
+                url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}&examineId=${examineId}`
               });
             // case 5:
             //   ddUtils.navigateTo({
@@ -570,7 +570,7 @@ Page({
         break;
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${item.id}`
         });
         break;
     }

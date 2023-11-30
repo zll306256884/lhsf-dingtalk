@@ -1,4 +1,4 @@
-<view class="flex f-column approvalMain">
+<!-- <view class="flex f-column approvalMain"> -->
   <nav-bar navbarData="{{navbarData}}"></nav-bar>
   <!--  -->
   <view class="approvalTop flex f-start">
@@ -15,12 +15,13 @@
     </view>
     <view class="funnel">
       <view class="imgbox">
-        <image class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
+        <image a:if="{{ belongModule.length > 0 }}" mode="scaleToFill" src="../../../../assets/images/common/filter-o.png"class="funnelimg" onTap="tapName" />
+        <image a:if="{{ belongModule.length===0 }}" class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
       </view>
     </view>
   </view>
   <!--  -->
-  <view style="height: 70rpx; width:1rpx"></view>
+  <view style="height: 70rpx; width:1rpx;background: #EBEDF0;"></view>
   <!--  -->
   <view class="searchInput box-sizing-box">
     <input placeholder="请输入申请人" onChange="onChange" value="{{userName}}" className="search-bar" focusClassName="search-bar-focus" 
@@ -79,4 +80,4 @@
   <error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>
   <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog" onBindSureTap="onBindSureTap"></dialog-filter>
   
-</view>
+<!-- </view> -->

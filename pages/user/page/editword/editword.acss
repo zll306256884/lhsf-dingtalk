@@ -73,7 +73,7 @@
   padding-bottom:46rpx;
   /* background-color: pink; */
   background-color: #fff;
-  border-top: 1rpx solid #DBDADF;
+  border-top: 1rpx solid #EBEDF0;
 }
 
 #editword .bottomBtn .bottom {

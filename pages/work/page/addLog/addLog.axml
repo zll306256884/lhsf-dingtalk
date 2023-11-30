@@ -27,7 +27,7 @@
     <!-- 日志日期 -->
     <view catchTap="_bindLogTime">
       <!--<form-picker label="日志日期" arrow disabled name="logDate" placeholder="请选择" ref="handleRef"></form-picker> -->
-      <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#ccc;opacity:1;" 
+      <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#ccc;opacity:1;font-size:16px" 
         disabled ref="handleRef">
         <icon slot="suffix" type="RightOutline" /></form-input>
       
@@ -49,7 +49,7 @@
       <view class='redStart' a:if="{{logTypeName=='重大事件'}}">*</view>
       照片
     </view>
-    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef">
+    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef" onlyUploadImage="{{true}}">
     </layout-upload-img>
   </view>
   <!--  -->

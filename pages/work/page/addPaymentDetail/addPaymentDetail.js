@@ -27,7 +27,7 @@ Page({
   uploadContractImage: null,
   onLoad(option) {
     console.log(option,111111111);
-    if (option.id) {
+    // if (option.id) {
       this.setData({
         examineId:option.examineId,
         id:option.id,
@@ -38,7 +38,7 @@ Page({
         showType:option.showType || ''
       })
       this.getDetail(option.id)
-    }
+    // }
     
   },
   onSaveUploadContractImgRef(ref) {
