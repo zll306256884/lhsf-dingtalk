@@ -1,6 +1,6 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
+<tabs items="{{tabs}}" current="{{currentTabIndex}}" scrollMode="center" onChange="onTabChange" style="position:fixed;z-index:200" />
 <view class="map-container">
-  <tabs items="{{tabs}}" current="{{currentTabIndex}}" scrollMode="center" onChange="onTabChange" />
   <!-- 项目概览 -->
   <project-info-map ref="onSaveMapRef" projectInfo="{{projectInfo}}" a:if="{{currentTabIndex === 0}}"></project-info-map>
   <view a:if="{{currentTabIndex === 1}}">

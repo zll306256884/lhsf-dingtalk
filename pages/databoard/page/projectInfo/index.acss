@@ -7,4 +7,7 @@
   color: #606266;
   font-size: 28rpx;
 }
+.map-container{
+  margin-top: 88rpx;
+}
 
