@@ -23,11 +23,26 @@
 .ant-input-disabled{
   opacity: 1.4!important;
 }
+input[disabled] {  
+    background-color: #fff; /* 或者你想要的其他颜色 */  
+    color: #333; /* 或者你想要的其他颜色 */  
+    opacity: 1; /* 或者你想要的其他透明度 */  
+    /* -webkit-text-fill-color: #333; 如果你需要的话 */  
+}
 .box-shadow.field-cell {
   margin: 30rpx auto 0;
   padding: 30rpx 30rpx;
 }
-
+.annex{
+  position: relative;
+}
+.annexTitle{
+  position: absolute;
+  top: 31rpx;
+left: 15rpx;
+color:red;
+font-size: 15px;
+}
 .field-cell .value,
 .field-cell .input {
   font-size: 24rpx;
@@ -48,7 +63,7 @@
   color: #525966;
 }
 .buttons{
-  border-top: 1px solid #DBDADF;
+  border-top: 1px solid #EBEDF0;
   padding: 16rpx 18rpx;
   margin-top: 16rpx;
   width: 718rpx;
@@ -76,8 +91,8 @@
 }
 .buttons .active {
   margin-left: 20rpx;
-  color: white;
-  background-color: #377DFF;
+  color: #fff;
+  background: #1A6AFF;
 }
 .bottom-shadow{
   padding-bottom: 20rpx;

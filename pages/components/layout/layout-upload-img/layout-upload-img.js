@@ -11,7 +11,7 @@ Component({
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
+    webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
   },
   props: {
     cssStyle: "",
@@ -20,7 +20,8 @@ Component({
     maxCount: defaultCount,
     disabled: false,
     itemIndex: -1,
-    onlyUploadImage: false
+    onlyUploadImage: false,
+    type: '' //招标用1.招标文件，2.其他
   },
   didMount() {
     this.setData({
@@ -36,20 +37,20 @@ Component({
   },
   didUnmount() { },
   methods: {
-    onMessage:function(e) {
-      if(e.detail.hidden) {
-        this.setData({
-          isWebView : false
-        })
-      }
-      if(e.detail.imgList){
-        this.setData({
-          isWebView : false,
-          imgList: this.data.imgList.concat(e.detail.imgList)
-        })
-      }
-      console.log('接受消息',e.detail)
-    },
+    // onMessage:function(e) {
+    //   if(e.detail.hidden) {
+    //     this.setData({
+    //       isWebView : e.detail.hidden
+    //     })
+    //   }
+    //   if(e.detail.imgList){
+    //     this.setData({
+    //       isWebView : false,
+    //       imgList: this.data.imgList.concat(e.detail.imgList)
+    //     })
+    //   }
+    //   console.log('接受消息',e.detail)
+    // },
     //获取上传的图片信息
     _getUploadImgId: function () {
       console.log('this.data.imgList',this.data.imgList)
@@ -117,6 +118,7 @@ Component({
           progress: 100,
           url: getImgUrl(item.url),
           id: item.id,
+          size: item.size,
           name: item.name
         });
       }
@@ -125,7 +127,18 @@ Component({
         imgList: tempList
       });
     },
-
+    catchAddTap(e){
+      if (this.data.imgList.length > this.props.maxCount-1){
+        ddUtils.showToast({
+          title: '上传文件不能超过10个'
+        })
+        return
+      } 
+      if (this.props.disabled) return;
+      ddUtils.navigateTo({
+        url: `/pages/components/upload-file/upload-file?type=${this.props.type}`
+      });
+    },
     //选择图片
     _bindAddTap: function (e) {
       console.log(e)

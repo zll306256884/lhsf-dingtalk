@@ -124,7 +124,7 @@
     disabled
     ref="handleRef"/> -->
   <view>
-    <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
+    <layout-upload-img type="1" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadTenderImgRef"></layout-upload-img>
   </view>
 </view>
 
@@ -137,7 +137,7 @@
     <list>
       <list-item>其他附件</list-item>
     </list>
-  <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
+  <layout-upload-img type="2" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
 </view>
 
 <!-- <form-item a:if="{{countersignLeader_dictText}}" label="选择会签分管领导" name="projectName" required >

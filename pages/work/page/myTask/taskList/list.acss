@@ -39,7 +39,7 @@ background: #F7F8FA;
 }
 .list-item {
   padding: 24rpx 0;
-  border-bottom: 2rpx solid #ebeef5;
+  /* border-bottom: 2rpx solid #ebeef5; */
 }
 .item-title {
   font-size: 34rpx;
@@ -104,6 +104,11 @@ background: #FFF2E6;
     bottom:0;
     background: #ffffff;
     padding: 12px 12px 24px 12px;
+  }
+  .buttons .ant-button{
+    height: 80rpx;
+    line-height: 40rpx;
+    font-size: 28rpx;
   }
   .ant-empty-image-element {
     width: 67px!important;

@@ -24,7 +24,7 @@ Page({
   }),
   data: {
     navbarData:{
-      title: "合同签订信息登记"
+      title: "新增合同审批流程"
     },
     radioGroupOptions: [
       { value: 1, label: '是' },
@@ -61,13 +61,14 @@ Page({
     listIndex: null,
     projectListOptions: [],
     developmentOrganizationOptions: [],
-    unitPartyOptions: []
+    unitPartyOptions: [],
+    executeUser: [],
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
   dialogScreenEcologicalUnit: null,
   dialogScreenConstructUnit: null,
-  uploadImgRefList: null,
+  uploadImageList: null,
   dialogScreenConstructUnit2: null,
   pickerDateRef: null,
 
@@ -97,7 +98,8 @@ Page({
     this.getCodeList()
     if(options.id){
       this.setData({
-        contractId: options.id
+        contractId: options.id,
+        navbarData: {title: '编辑合同审批流程'}
       })
       this.getDetail()
     }else{
@@ -114,7 +116,7 @@ Page({
     this.pickerDateRef = ref
   },
   onSaveUploadContractImgRef: function (ref) {
-    this.uploadImgRefList = ref;
+    this.uploadImageList = ref;
   },
   onSaveDialogScreenprojecteRef(ref){
     this.dialogScreenProject = ref
@@ -139,7 +141,7 @@ Page({
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
   chooseLeader(){
-    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog()
+    if(this.dialogSScreenExecuteUser) this.dialogSScreenExecuteUser._showDialog(this.data.executeUser)
   },
   chooseEcologicalUnit(){
     if(this.dialogScreenEcologicalUnit) this.dialogScreenEcologicalUnit._showDialog()
@@ -214,6 +216,11 @@ Page({
     this.setData({
       countersignLeader: data.map(e => e.userId).toString()
     })
+    this.setData({
+      executeUser: data && data.map(e => {
+        return { userId: e.userId, username: e.username,disabled:e.disabled };
+      })
+    });
   },
   bindScreenConstructUnitCallBack2(data){
     console.log('第三',data);
@@ -407,8 +414,8 @@ Page({
     }
     
     let workAuditFile = [];
-    if (this.uploadImgRefList) {
-      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     // if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
     
@@ -457,8 +464,8 @@ Page({
     params.ecUnitId = this.data.ecUnitId
     params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
     let workAuditFile = [];
-    if (this.uploadImgRefList) {
-      workAuditFile = this.uploadImgRefList._getUploadImgId().imgList;
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
     
@@ -543,8 +550,17 @@ Page({
           })
         }
         setTimeout(() => {
-          this.uploadImgRefList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
+          this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
         }, 0);
+
+        
+        if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
+          const nameList = paramsdata.countersignLeader_dictText.split(',')
+          const idList = paramsdata.countersignLeader.split(',')
+          this.setData({
+            executeUser: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+          })
+        }
 
         this.getEcological()
       }

@@ -43,7 +43,7 @@ Page({
     dialogScreenpslowUnitRef:null,
     dialogScreenpProceedsUnitRef:null,
     dialogScreenApplyDateRef:null, // 申请日期
-    uploadImgRef: null,// 上传
+    uploadImageList: null,// 上传
     projectTypeData:{},// 项目类型,
     projectData:{},// 项目名称,
     contractData:{},// 合同名称
@@ -89,7 +89,6 @@ Page({
     }
   },
   handleRef(ref) {
-    console.log(ref);
     this.form.addItem(ref);
   },
   // 合同名称
@@ -157,7 +156,6 @@ bindChooseProjectCallBack: function (data) {
     this.dialogScreenprojectTypeRef = ref;
 },
   bindChooseProjectTypeCallBack: function (data) {
-    console.log(data,1222222222222222222);
     this.setData({
       projectTypeData: data || {}
     });
@@ -200,7 +198,6 @@ onSaveDialogScreenApplyDateRef:function(ref){
   this.dialogScreenApplyDateRef = ref
 },
 bindChooseApplyDateCallBack(data){
-  console.log('时间',data)
   this.form.setFieldValue('applicationTime', data.startDate);
   // this.setData({
   //   applicationTime: data.startDate || '',
@@ -208,9 +205,7 @@ bindChooseApplyDateCallBack(data){
 },
 // 上传
 onSaveUploadImgRef: function (ref) {
-  console.log(ref,'qwqwqwqwqwqwqw');
-  this.uploadImgRef = ref;
-  console.log(this.uploadImgRef);
+  this.uploadImageList = ref;
 },
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
@@ -246,7 +241,6 @@ bindScreenExecuteUserCallBack: function (list) {
   this.form.setFieldValue('countersignLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
   this.form.setFieldValue('countersignLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
 
-  // console.log(this.form.getFieldsValue('countersignLeader'))
 },
 //所属单位
 _bindChooseShiGongUnitTap: function (e) {
@@ -271,7 +265,6 @@ getEdit(id){
      id:id
     },
     success: res => {
-      console.log(res);
       this.setData({
         'projectTypeData.itemText':res.data.projectType_dictText,
         'projectTypeData.itemValue':res.data.projectType,
@@ -320,14 +313,12 @@ getEdit(id){
         }
       })
       setTimeout(() => {
-        this.uploadImgRef._setImageList(files) 
+        this.uploadImageList._setImageList(files) 
       }, 0);
     }
   })
 },
 async submit(){
- console.log( this.form.getFieldValue('countersignLeader_text'));
- console.log( this.form.getFieldValue('countersignLeader'));
   const params = await this.form.submit();
   console.log(params);
   params.projectId = this.data.projectData.id,
@@ -342,8 +333,8 @@ params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
+if (this.uploadImageList) {
+  temFileList = this.uploadImageList.data.imgList;
   if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
   temFileList.forEach(e => {
     e.fileName = e.name
@@ -386,8 +377,8 @@ params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]
-if (this.uploadImgRef) {
-  temFileList = this.uploadImgRef.data.imgList;
+if (this.uploadImageList) {
+  temFileList = this.uploadImageList.data.imgList;
   // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
   temFileList.forEach(e => {
     e.fileName = e.name

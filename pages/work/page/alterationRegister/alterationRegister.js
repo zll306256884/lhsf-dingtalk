@@ -46,7 +46,7 @@ Page({
     dialogScreenExecuteUserRef:null,
     contractData:{},//合同名称
   },
-  uploadImgRef:null,/// 上传
+  uploadImageList:null,/// 上传
   onLoad(option) {
     // let date = new Date().toLocaleString()
     // for (var i = 0; i < date.length; i++) {
@@ -251,7 +251,7 @@ bindChooseBuildDateCallBack(data){
 // 上传
 onSaveUploadImgRef: function (ref) {
   console.log(ref,232323232323);
-  this.uploadImgRef = ref;
+  this.uploadImageList = ref;
 },
 // 编辑 
 getDetail(id){
@@ -311,7 +311,7 @@ getDetail(id){
         }
       })
       setTimeout(() => {
-        this.uploadImgRef._setImageList(files) 
+        this.uploadImageList._setImageList(files) 
       }, 0);
     }
   })
@@ -328,8 +328,8 @@ async submit(){
   params.person = this.data.person
   params.id= this.data.id?this.data.id:''
   let temFileList=[]
-  if (this.uploadImgRef) {
-    temFileList = this.uploadImgRef.data.imgList;
+  if (this.uploadImageList) {
+    temFileList = this.uploadImageList.data.imgList;
     if (ddUtils.showEmptyArrayTips(temFileList, "请上传相关附件")) return;
     temFileList.forEach(e => {
       e.fileName = e.name

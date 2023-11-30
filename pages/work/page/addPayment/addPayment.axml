@@ -32,20 +32,21 @@
           label="项目负责人"
           name="projectLeader"
           placeholder="选择项目后自动带入"
-         disabled
+          disabled
           ref="handleRef"></form-input>  
           <form-input
           label="所属单位"
           name="affiliateUnit"
+          style="margin-right:20rpx"
           placeholder="选择项目后自动带入"
-         disabled
+          disabled
           ref="handleRef"></form-input>  
           <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">
             <form-input
             label="合同名称"
             name="contractName"
             placeholder="请选择"
-           disabled
+            disabled
             ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
            </view>
            <view a:else>
@@ -136,8 +137,8 @@
       <layout-field-cell borderTop name="申请日期" mustFill placeholder="请选择" value="{{ }}" onArrowTap="bindChooseApplyDateTap"></layout-field-cell>
     </view> -->
   </form>
-  <view class="box-shadow" style="padding-bottom: 30rpx;">
-    <layout-field-cell  mustFill hidden={{false}} name="上传附件"></layout-field-cell>
+  <view class="box-shadow annex" style="padding-bottom: 30rpx;"><text class="annexTitle">*</text>
+    <layout-field-cell cssStyle="margin-left:45rpx"   hidden={{false}} name="上传附件"></layout-field-cell>
      <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
   </view>
   <view class="box-shadow bottom-shadow">
@@ -152,7 +153,7 @@
     <!-- <layout-field-cell  name="会签分管领导" mustFill placeholder="请选择" value="{{countersignLeader_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
   </view>
   <view class="buttons flex f-between">
-          <button class="btn" catchTap="bindCancelTap">取  消</button>
+          <button class="btn" catchTap="bindCancelTap">取消</button>
           <button class="btn zancun" data-flag="{{1}}" form-type="submit" onTap="workingStorage">暂存</button>
           <button class="btn active" data-flag="{{2}}"  form-type="submit" onTap="submit">提交审批</button>
       </view>
