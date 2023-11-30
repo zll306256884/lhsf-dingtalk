@@ -94,7 +94,7 @@
         <image a:if="{{ item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <view>
           <view class="name">{{item.fileName}}</view>
-          <view class="size">{{item.size || '-'}}</view>
+          <!-- <view class="size">{{item.size || '-'}}</view> -->
         </view>
       </view>
       <image class="down-icon" data-url="{{item.url}}" mode="scaleToFill" src="/assets/images/common/download.png" catchTap="downloadFile" />
