@@ -46,7 +46,8 @@ Page({
       "projectId": this.data.projectId,
       'flagNode': this.data.flagNode,
       'planId': this.data.planId,
-      'enable': ''
+      'enable': '',
+      'clientType':2
     }
     return new Promise((resolve, reject) => {
       request.doPostRequest({
