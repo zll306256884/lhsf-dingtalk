@@ -63,13 +63,14 @@ Page({
         break;
     }
   },
-  // 打印事件
-  printTop(){
-    ddUtils.showToast({
-      title: '暂不支持打印！'
-    })
-    // window.open(`http://192.168.6.41/prod-api/file/jasper/pdf/payment/${this.data.id}`)
-  },
+  // // 打印事件
+  // printTop(){
+  //   ddUtils.showToast({
+  //     title: '暂不支持打印！'
+  //   })
+  //   window.open(`http://192.168.6.41/prod-api/file/jasper/pdf/payment/${this.data.id}`)
+  //   console.log(`http://192.168.6.41/prod-api/file/jasper/pdf/payment/${this.data.id}`);
+  // },
   withdrawApplication() {
     request.doPostRequest({
       url: workService.API_JFLOWAUDIT_SELET_INFO,
