@@ -161,6 +161,7 @@ _bindErrorRefreshTap: function (e) {
     // 事项类型 1-进度计划 2-招标文件会签 3-合同审批流程 4-款项支付 5-项目资金计划 6-生态伙伴 7-档案管理
     console.log(e);
     let item = e.target.dataset.item
+    let examineId = e.target.dataset.item.id //审批组件用
     let pId = JSON.parse(item.urlParameter)
     let ID = e.target.dataset.item.belongModule
     request.doPostRequest({
@@ -174,7 +175,7 @@ _bindErrorRefreshTap: function (e) {
     switch (ID) {
       case 4:
         ddUtils.navigateTo({
-          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}&type=${item.type}`
+          url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${pId.id}&showType=${1}&projectId=${item.projectId}&type=${item.type}&examineId=${examineId}`
         });
         break;
       case 10:
