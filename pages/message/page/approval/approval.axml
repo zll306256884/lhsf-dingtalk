@@ -15,8 +15,8 @@
     </view>
     <view class="funnel">
       <view class="imgbox">
-        <image a:if="{{ belongModule.length }}" mode="scaleToFill" src="../../../../assets/images/common/filter-o.png"class="funnelimg" onTap="tapName" />
-        <image a:else class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
+        <image a:if="{{ belongModule.length > 0 }}" mode="scaleToFill" src="../../../../assets/images/common/filter-o.png"class="funnelimg" onTap="tapName" />
+        <image a:if="{{ belongModule.length===0 }}" class="funnelimg" onTap="tapName" mode="scaleToFill" src="../../../../assets/images/common/funnel.png" />
       </view>
     </view>
   </view>

@@ -135,7 +135,7 @@ Page({
     this.pageNum = 1
     this.setData({
       'funnelParam.belongModule': belongModule[0],
-      belongModule: belongModule[0]
+      belongModule: belongModule
       // 'funnelParam.userName': userName,
     });
     this.onDialog(false)
