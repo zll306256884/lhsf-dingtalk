@@ -13,13 +13,9 @@
 .approvalTop{
   width: 100%;
   position: fixed;
-  top: 175rpx;
+  /* top: 175rpx; */
   z-index: 8;
-  /* position: fixed;
-  top: 90rpx;
-  left: 0;
-  z-index: 1000; */
-  
+  width: 100%;
 }
 
 .funnel {
@@ -52,7 +48,7 @@
   /* margin-bottom: 20rpx; */
   padding:0 24rpx;
   position: fixed;
-  top: 243rpx;
+  /* top: 243rpx; */
   z-index: 8;
   width: 100%;
 }
