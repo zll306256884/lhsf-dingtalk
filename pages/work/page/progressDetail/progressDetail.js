@@ -125,7 +125,8 @@ Page({
       "projectId": '12019020004',
       'status': this.data.status,
       'flagNode': this.data.flagNode,
-      'enable': 1
+      'enable': 1,
+      'clientType':2
     }
     return new Promise((resolve, reject) => {
       request.doPostRequest({
