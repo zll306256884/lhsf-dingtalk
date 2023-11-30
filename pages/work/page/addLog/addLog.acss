@@ -90,7 +90,8 @@
 }
 .ant-input-suffix{
   /* margin: 0 0 0 4px; */
-  margin: 0;
+  /* margin: 0; */
+  margin: 0 0 0 3rpx;
 }
 
 /* .ant-textarea{
