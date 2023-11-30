@@ -205,17 +205,6 @@ Component({
             longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
             latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
             iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
-            callout: {
-              content: item.projectName
-            },
-            customCallout: { 
-              "type": 2,
-              "descList": [{ 
-                  "desc": item.projectName,
-                  "descColor": "#333333" 
-              }],
-              isShow: this.data.currentItem === item.index? 1:0
-          },
           markerLevel: 2
           };
         });
@@ -234,50 +223,48 @@ Component({
         includePoints: newIncludePoints
       });
     },
+    changeMarkers(){
+      const newMarkers = this.data.projectList
+      .filter(i => i.cityCapitalX && i.cityCapitalY)
+      .map(item => {
+        if(this.data.currentItem === item.index){
+          return {
+            id:item.id,
+            width: 64,
+            height: 64,
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+            iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
+            markerLevel: 2,
+            label:{
+              content:item.projectName,
+              color:"#000000",
+              fontSize:16,
+              borderRadius:8,
+              bgColor:"#ffffff",
+              padding:10,
+            },
+          };
+        }else{
+          return {
+            id:item.id,
+            width: 64,
+            height: 64,
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+            iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
+          };
+        } 
+        });
+          this.mapCtx.changeMarkers({
+            update:newMarkers,
+          });
+    },
     handleSwiper(e){
       this.setData({
         currentItem:e.detail.current
       })
-      this.updateComponents();
-
-      // const newMarkers = this.data.projectList
-      // .filter(i => i.cityCapitalX && i.cityCapitalY)
-      // .map(item => {
-      //   if(this.data.currentItem === item.index){
-      //     return {
-      //       id:item.id,
-      //       width: 64,
-      //       height: 64,
-      //       longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
-      //       latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
-      //       iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
-      //       markerLevel: 2,
-      //       label:{
-      //         content:item.projectName,
-      //         color:"#000000",
-      //         fontSize:16,
-      //         borderRadius:8,
-      //         bgColor:"#ffffff",
-      //         padding:10,
-      //       },
-      //     };
-      //   }else{
-      //     return {
-      //       id:item.id,
-      //       width: 64,
-      //       height: 64,
-      //       longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
-      //       latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
-      //       iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
-      //       callout: {
-      //         content: item.projectName
-      //       },
-      //     };
-      //   } 
-      //   });
-      //     this.mapCtx.changeMarkers({
-      //       update:newMarkers,
-      //     });
+      this.changeMarkers();
     },
     // 点击 Marker 时触发
     markertap(e) {
@@ -285,6 +272,7 @@ Component({
       this.setData({
         currentItem:index
       })
+      this.changeMarkers();
     },
    // 手势的放大与缩小
     demoGesture() {
