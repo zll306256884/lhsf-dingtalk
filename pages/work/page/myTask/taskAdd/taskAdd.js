@@ -38,21 +38,21 @@ Page({
   },
   onLoad(option) {
     const params = option.json && JSON.parse(option.json);
+    this.getProjectList();
     if (params && params.id) {
       this.setData({
         currentId:params.id,
       })
+      this.getInfo(this.data.currentId);
     }
   },
   onShow(){
     console.log(this.data.currentId);
-    this.getProjectList();
     if(this.data.currentId){
       let title=this.data.currentId?"编辑任务":'新增任务'
       this.setData({
         "navbarData.title":title
       })
-      this.getInfo(this.data.currentId);
     }
   },
   handleRef(ref) {

@@ -136,7 +136,7 @@ Component({
       } 
       if (this.props.disabled) return;
       ddUtils.navigateTo({
-        url: `/pages/components/upload-file/upload-file?type=${this.props.type}&imgList=${JSON.stringify(this.data.imgList)}`
+        url: `/pages/components/upload-file/upload-file?type=${this.props.type}&imgList=${this.data.imgList.length}`
       });
     },
     //选择图片

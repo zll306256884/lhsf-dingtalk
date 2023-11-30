@@ -30,7 +30,7 @@
       <view class="flex f-start" style="align-items:center">
         <image a:if="{{ item.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-        <image a:if="{{ item.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <image a:if="{{ item.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1 || item.url.indexOf('.jpeg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.url.indexOf('.xlsx') !== -1 || item.url.indexOf('.xls') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_excel.png" class="img" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <view>
