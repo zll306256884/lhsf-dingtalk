@@ -104,9 +104,18 @@ Page({
         this.setData({
           infoData: res.data
         })
+        const files= res.data.investmentFileList.map((item)=>{
+          return {
+            ...item,
+            name:item.fileName,
+          }
+        })
         setTimeout(() => {
-          this.uploadContractImage._setImageList(res.data.investmentFileList ? res.data.investmentFileList : '')
+          this.uploadContractImage._setImageList(files) 
         }, 0);
+        // setTimeout(() => {
+        //   this.uploadContractImage._setImageList(res.data.investmentFileList ? res.data.investmentFileList : '')
+        // }, 0);
       }
     })
   },
