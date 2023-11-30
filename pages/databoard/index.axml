@@ -1,8 +1,8 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view>
-<tabs items="{{tabs}}" current="{{currentTabIndex}}" onChange="onTabChange"/>
-<project-map ref="onSaveMapRef" a:if="{{currentTabIndex === 0}}"/>
-<annual-bidding-progress a:if="{{currentTabIndex === 2}}" />
-<dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
-<year-capital-control a:if="{{currentTabIndex === 1}}"></year-capital-control>
+<tabs items="{{tabs}}" current="{{currentTabIndex}}" onChange="onTabChange" style="position:fixed;z-index:200"/>
+<view style="margin-top:94rpx;">
+  <project-map ref="onSaveMapRef" a:if="{{currentTabIndex === 0}}"/>
+  <annual-bidding-progress a:if="{{currentTabIndex === 2}}" />
+  <dialog-filter showDialog="{{visibel}}" options="{{options}}" onDialog="onDialog"  onBindSureTap="onBindSureTap"></dialog-filter>
+  <year-capital-control a:if="{{currentTabIndex === 1}}"></year-capital-control>
 </view>

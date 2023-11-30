@@ -1,5 +1,9 @@
+.container{
+  padding: 24rpx;
+}
 .container .top-money{
-  margin: 24rpx 24rpx 48rpx 24rpx;
+  /* margin: 24rpx 24rpx 48rpx 24rpx; */
+  margin-bottom: 48rpx;
 }
 .top-money{
   height: 520rpx;
@@ -24,10 +28,10 @@
 }
 .budget-money{
   font-family: DIN Alternate, DIN Alternate;
-color: #FFFFFF;
-font-weight: bold;
-font-size: 56rpx;
-margin-bottom: 50rpx;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 56rpx;
+  margin-bottom: 50rpx;
 }
 .bo-money{
   display:flex;
@@ -35,9 +39,9 @@ margin-bottom: 50rpx;
   flex-wrap: wrap;
   align-items: center;
   width: 622rpx;
-height: 294rpx;
-border-radius: 42rpx 42rpx 42rpx 42rpx;
-opacity: 1;
+  height: 294rpx;
+  border-radius: 42rpx 42rpx 42rpx 42rpx;
+  opacity: 1;
 }
 .pay{
  width:240rpx; 
@@ -58,11 +62,11 @@ white-space: nowrap;
 }
 .bottom-content-year{
   padding: 28rpx;
- margin: 24rpx;
-min-height: 762rpx;
-background: #FFFFFF;
-border-radius: 40rpx 40rpx 0rpx 0rpx;
-opacity: 1;
+  /* margin: 24rpx; */
+  min-height: 762rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+  opacity: 1;
 }
 .bottom-content-year .search{
   margin-top: 20px;

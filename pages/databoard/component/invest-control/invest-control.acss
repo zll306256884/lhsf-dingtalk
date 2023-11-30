@@ -1,5 +1,6 @@
- .top-money{
-  margin: 24rpx 24rpx 48rpx 24rpx;
+.top-money{
+  /* margin: 24rpx 24rpx 48rpx 24rpx; */
+  margin-bottom: 48rpx;
 }
 .top-money{
   height: 600rpx;
@@ -35,9 +36,9 @@ margin-bottom: 50rpx;
   flex-wrap: wrap;
   align-items: center;
   width: 622rpx;
-height: 294rpx;
-border-radius: 42rpx 42rpx 42rpx 42rpx;
-opacity: 1;
+  height: 294rpx;
+  border-radius: 42rpx 42rpx 42rpx 42rpx;
+  opacity: 1;
 }
 .pay{
  width:220rpx; 
@@ -48,22 +49,22 @@ opacity: 1;
   font-size: 24rpx;
 }
 .sum{
-color: #FFFFFF;
-font-weight: bold;
-font-size: 40rpx; 
-font-family: DIN Alternate, DIN Alternate;
-text-overflow: ellipsis; /* 溢出显示省略号 */
-overflow: hidden; /* 溢出隐藏 */
-white-space: nowrap;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 40rpx; 
+  font-family: DIN Alternate, DIN Alternate;
+  text-overflow: ellipsis; /* 溢出显示省略号 */
+  overflow: hidden; /* 溢出隐藏 */
+  white-space: nowrap;
 }
 .bottom-content-year{
   position: relative;
   padding: 28rpx;
- margin: 24rpx;
-min-height: 762rpx;
-background: #FFFFFF;
-border-radius: 40rpx 40rpx 0rpx 0rpx;
-opacity: 1;
+  /* margin: 24rpx; */
+  min-height: 762rpx;
+  background: #FFFFFF;
+  border-radius: 40rpx 40rpx 0rpx 0rpx;
+  opacity: 1;
 }
 .bottom-content-year .search{
   margin-top: 20px;

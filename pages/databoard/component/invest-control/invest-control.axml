@@ -1,4 +1,4 @@
-<view >
+<view style="padding:24rpx;">
   <view class="top-money">
     <image class="image" mode="scaleToFill" src="/assets/images/databoard/bg2x.png" />
    <view class="content-money">
