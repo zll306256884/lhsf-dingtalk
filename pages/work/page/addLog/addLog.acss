@@ -41,7 +41,8 @@
 .btn-wrap{
   margin-top: 16rpx;
   padding: 16rpx 18rpx;
-  border-top: 1rpx solid #DBDADF;
+  /* border-top: 1rpx solid #DBDADF; */
+  border-top: 1rpx solid #EBEDF0;
   position: fixed;
   bottom: 0;
   background: #fff;
