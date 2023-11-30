@@ -97,7 +97,7 @@
           <view class="size">{{item.size || '-'}}</view>
         </view>
       </view>
-      <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
+      <image class="down-icon" data-url="{{item.url}}" mode="scaleToFill" src="/assets/images/common/download.png" catchTap="downloadFile" />
     </view>
   </view>
   <list>
