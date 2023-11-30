@@ -86,7 +86,7 @@
   </view>
 
   <view a:if="{{ requestType === '2' }}" class="bottom-content flex f-between">
-    <button class="bottom-button active" size="default" type="primary" style="width:714rpx;background: #1A6AFF;color:#fff" catchTap="printThis">打印</button>
+    <!-- <button class="bottom-button active" size="default" type="primary" style="width:714rpx;background: #1A6AFF;color:#fff" catchTap="printThis">打印</button> -->
   </view>
 
   <!-- 有参数才显示 -->
