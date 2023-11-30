@@ -1198,7 +1198,34 @@ function showEmptyModalTips(value, content, isNavBack) {
     }
 
     return false;
+}   
+
+// 解析
+ function urlParams(url)  {
+    var Params = new Object()
+    var index = url.indexOf('?')
+    var strs = url.slice(index+1)
+    var str = strs.split('&')
+    for(let i = 0; i < str.length; i++) { 
+        Params[str[i].split("=")[0]]=str[i].split("=")[1];
+    } 
+    return Params
 }
+
+// 文件下载
+function ddDownFile(e) {
+    dd.previewFileInDingTalk({
+        spaceId: e.spaceId,
+        fileName: e.fileName,
+        corpId: e.dentryUuid,
+        fileSize: e.fileSize,
+        fileType: e.extension,
+        fileId: e.fileId,
+        success: () => {},
+        fail: () => {},
+        complete: () => {},
+      });
+  }
 
 module.exports = {
     showToast,
@@ -1243,5 +1270,7 @@ module.exports = {
     showEmptyModalTips,
     showEmptyArrayTips,
     showEmptyArrayIndexOutOfBoundsTips,
-    judgeIsLogin
+    judgeIsLogin,
+    urlParams,
+    ddDownFile
 }

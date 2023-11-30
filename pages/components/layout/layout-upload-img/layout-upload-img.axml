@@ -3,16 +3,16 @@
 <view>
   <!-- a:if="{{!disabled && imgList.length < maxCount}}" -->
   <view style="margin:0 32rpx 8rpx;">
-    <image a:if="{{!disabled}}"
+    <image a:if="{{!disabled && !onlyUploadImage}}"
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
       class="item add" 
       src="/assets/images/common/icon_add_img.png" catchTap="catchAddTap">
     </image>
-    <!-- <image a:if="{{!disabled}}"
+    <image a:if="{{!disabled && onlyUploadImage}}"
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
       class="item add" 
       src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
-    </image> -->
+    </image>
     <image 
       a:if="{{disabled && imgList.length <= 0}}" 
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
@@ -35,15 +35,15 @@
         <image a:if="{{ item.url.indexOf('.xlsx') !== -1 || item.url.indexOf('.xls') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_excel.png" class="img" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <view>
           <view class="name">{{item.name}}</view>
-          <view class="size">{{item.size || '-'}}kb</view>
+          <!-- <view class="size">{{item.size || '-'}}kb</view> -->
         </view>
       </view>
       <view class="flex">
         <image a:if="{{!disabled}}" class="down-icon" mode="scaleToFill" src="/assets/images/common/delete.png" catchTap="deleteClose"  data-index="{{index}}" />
-        <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" style="margin-left:16rpx" />
+        <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png"  style="margin-left:16rpx" catchTap="ddDownFile" data-index="{{index}}"/>
       </view>
     </view>
   </view>
 
-  <!-- <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>  -->
+  <!-- <web-view a:if="{{true}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>  -->
 </view>

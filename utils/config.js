@@ -39,4 +39,9 @@ module.exports = {
     API_GET_SIGN: API_HOST + "/file/file/getSign",
     //获取菜单权限
     API_MENU_LIST: API_HOST + "/platform/account/getPermissionByToken",
+
+    //oss文件下载到钉盘
+    API_FILE_SETURL: API_HOST + "/platform/ddInfo/uploadFileOss",
+    //文件下载钉盘地址获取
+    API_FILE_GETURL: API_HOST + "/platform/ddInfo/uploadFileDingTalk",
 }
