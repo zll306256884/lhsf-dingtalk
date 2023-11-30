@@ -5,17 +5,17 @@ Page({
     navbarData:{
       title: "文件上传"
     },
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
+    webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
   },
   onLoad(option) {
     console.log(option);
     this.setData({
-      webViewUrl: `http://192.168.6.41/#/share/viewFile?imgListLength=${option.imgListLength}`
+      webViewUrl: `http://192.168.8.104:8080/#/share/viewFile?imgList=${option.imgList}`
     })
 
     if(option.type){
       this.setData({
-        webViewUrl: `http://192.168.6.41/#/share/viewFile?type=${option.type}&imgListLength=${option.imgListLength}` 
+        webViewUrl: `http://192.168.8.104:8080/#/share/viewFile?type=${option.type}&imgList=${option.imgList}` 
       })
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
@@ -28,23 +28,11 @@ Page({
     console.log('prevPage',prevPage)
     
     if(e.detail.type === '1'){
-      if(prevPage.uploadTenderImageList.data.imgList){
-        prevPage.uploadTenderImageList._setImageList(prevPage.uploadTenderImageList.data.imgList.concat(e.detail.imgList))
-      }else{
-        prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
-      }
+      prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
     }else if(e.detail.type === '2'){
-      if(prevPage.uploadOtherImgList.data.imgList){
-        prevPage.uploadOtherImgList._setImageList(prevPage.uploadOtherImgList.data.imgList.concat(e.detail.imgList))
-      }else{
-        prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
-      }
+      prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
     }else{
-      if(prevPage.uploadImageList.data.imgList){
-        prevPage.uploadImageList._setImageList(prevPage.uploadImageList.data.imgList.concat(e.detail.imgList))
-      }else{
-        prevPage.uploadImageList._setImageList(e.detail.imgList)
-      }
+      prevPage.uploadImageList._setImageList(e.detail.imgList)
     }
     dd.navigateBack()
   },
