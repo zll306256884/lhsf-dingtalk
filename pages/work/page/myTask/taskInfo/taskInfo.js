@@ -1,6 +1,8 @@
 import workServer from "../../../../../server/workServer/index";
 import request from "../../../../../utils/request"
 import ddUtils from "../../../../../utils/ddUtils"
+import config from "../../../../../utils/config";
+
 const app = getApp();
 
 Page({
@@ -139,6 +141,7 @@ Page({
     this.setData({
       activeTab:e
     })
+    this.getInfo(this.data.currentId);
   },
   delete(e){
     if(this.data.infoData.subMissionList.length===1){
@@ -195,17 +198,32 @@ Page({
       });
       return
     }else{
+      let fileName
       missionFileList.map(item=>{
-        dd.saveFileToDingTalk({
-          name:item.fileName,
-          url:item.fileUrl,
-          success: (res) => {
-            console.log(res);
-            // const { data } = res;
+        // ddUtils.downloadFile(item.fileUrl)
+        request.doPostRequest({
+          url: config.API_FILE_SETURL,
+          data:{
+            fileName: item.fileUrl,
           },
-          fail: () => {},
-          complete: () => {},
-        });
+          success: result => {
+            if(result.code == 1000) {
+              fileName = result.data.split('/')
+              // 获取钉盘文件信息
+              request.doPostRequest({
+                url: config.API_FILE_GETURL,
+                data: {
+                  targetPath: result.data,
+                },
+                success: res => {
+                let ddDownFileParams =  ddUtils.urlParams(res.data)
+                // 获取钉盘文件信息
+                ddUtils.ddDownFile(ddDownFileParams)
+                }
+              })
+            }
+          }
+        })
       })
     } 
   }
