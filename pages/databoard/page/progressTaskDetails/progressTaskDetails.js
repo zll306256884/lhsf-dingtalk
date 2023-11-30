@@ -81,12 +81,38 @@ Page({
       });
     })
   },
-  toDownLoad() {
-    this.webViewContext = dd.createWebViewContext('web-view-1')
-    this.setData({
-      isWebView: true
+  toDownLoad(e) {
+    console.log(e.currentTarget.dataset.item)
+    let fileName
+    let url = e.currentTarget.dataset.item.url
+    request.doPostRequest({
+      url: config.API_FILE_SETURL,
+      data:{
+        fileName: url,
+      },
+      success: result => {
+        if(result.code == 1000) {
+          fileName = result.data.split('/')
+          // 获取钉盘文件信息
+          request.doPostRequest({
+            url: config.API_FILE_GETURL,
+            data: {
+              targetPath: result.data,
+            },
+            success: res => {
+            let ddDownFileParams =  ddUtils.urlParams(res.data)
+            // 获取钉盘文件信息
+            ddUtils.ddDownFile(ddDownFileParams)
+            }
+          })
+        }
+      }
     })
-    this.webViewContext.postMessage({ tokenStr: app.globalData.userInfo.userToken })
+    // this.webViewContext = dd.createWebViewContext('web-view-1')
+    // this.setData({
+    //   isWebView: true
+    // })
+    // this.webViewContext.postMessage({ tokenStr: app.globalData.userInfo.userToken })
   },
   // 下载接收到的数据
   onMessage: function (e) {
