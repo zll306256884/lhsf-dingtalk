@@ -89,7 +89,8 @@
   font-size: 28rpx;
 }
 .ant-input-suffix{
-  margin: 0 0 0 4px;
+  /* margin: 0 0 0 4px; */
+  margin: 0;
 }
 
 /* .ant-textarea{
