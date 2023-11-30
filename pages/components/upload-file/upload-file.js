@@ -5,17 +5,17 @@ Page({
     navbarData:{
       title: "文件上传"
     },
-    webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
   },
   onLoad(option) {
     console.log(option);
     this.setData({
-      webViewUrl: `http://192.168.8.104:8080/#/share/viewFile?imgList=${option.imgList}`
+      webViewUrl: `http://192.168.6.41/#/share/viewFile?imgList=${option.imgList}`
     })
 
     if(option.type){
       this.setData({
-        webViewUrl: `http://192.168.8.104:8080/#/share/viewFile?type=${option.type}&imgList=${option.imgList}` 
+        webViewUrl: `http://192.168.6.41/#/share/viewFile?type=${option.type}&imgList=${option.imgList}` 
       })
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
