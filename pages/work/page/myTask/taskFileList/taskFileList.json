@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "nav-bar": "/pages/components/nav-bar/nav-bar",
+    "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img"
+
+
+  }
+}

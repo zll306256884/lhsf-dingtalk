@@ -2,6 +2,14 @@
   padding: 16rpx 38rpx;
   margin-top: 16rpx;
 }
+.card-tabs{
+  width: 100%;
+  background: #fff;
+  padding:0 24rpx;
+  position: fixed;
+  /* top:84px; */
+  box-sizing: border-box;
+}
 .list-item {
   padding: 24rpx 0;
 }
