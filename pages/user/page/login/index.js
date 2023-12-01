@@ -69,6 +69,7 @@ Page({
 
                         this.getAllInfo();
                         this.getPermissionByToken()
+                        this.getRoleProjectList()
                         
                     },
                     fail: res => {
@@ -165,14 +166,10 @@ Page({
             });
         })
     },
-    getProjectList(){
+    getRoleProjectList(){
       request.doPostRequest({
         url: config.API_PROJECT_NAME,
         success: res => {
-          res.data.forEach(e => {
-            e.label = e.name
-            e.value = e.id
-          })
           app.globalData.userInfo.projectList=res.data || []
         }
       })
