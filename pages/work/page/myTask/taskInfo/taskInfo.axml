@@ -1,8 +1,10 @@
 <import-sjs from="../../../../../utils/utils.sjs" name="utils" />
 
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<tabs items="{{tabs}}" current="{{activeTab}}" onChange="onTaskChange" />
-<view>
+<view class="card-tabs">
+<tabs  items="{{tabs}}" current="{{activeTab}}" onChange="onTaskChange" />
+</view>
+<view style="margin-top:38px">
   <!-- 任务详情 -->
   <view a:if="{{activeTab===0}}">
     <view style="margin-bottom:86px">
