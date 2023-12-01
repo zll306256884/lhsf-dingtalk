@@ -3,8 +3,6 @@ import request from "./request"
 import ddUtils from "./ddUtils"
 
 function downloadFile(url){
-  console.log(request);
-    // let {url} = e.currentTarget.dataset
     let fileName
     request.doPostRequest({
       url: config.API_FILE_SETURL,
