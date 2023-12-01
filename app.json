@@ -46,7 +46,8 @@
     "pages/work/page/requestProgressDetail/requestProgressDetail",
     "pages/message/systemAnnouncement/systemAnnouncement",
     "pages/work/page/addNewProject/addNewProject",
-    "pages/components/upload-file/upload-file"
+    "pages/components/upload-file/upload-file",
+    "pages/work/page/myTask/taskFileList/taskFileList"
   ],
   "window": {
     "defaultTitle": "",
