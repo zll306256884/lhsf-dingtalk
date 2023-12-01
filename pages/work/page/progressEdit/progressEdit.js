@@ -31,6 +31,7 @@ Page({
   // dialogLogTypeRef: null, //日志类型
   // uploadImgRef: null, // 上传照片
   uploadFileRef: null, // 上传附件
+  uploadImageList: null, // 上传附件
 
   onLoad(query) {
     console.log('query', query)
@@ -70,7 +71,7 @@ Page({
           });
           // 附件的附着
           setTimeout(() => {
-            this.uploadFileRef._setImgList(JSON.parse(res.data.annexFile))
+            this.uploadImageList._setImgList(JSON.parse(res.data.annexFile))
           }, 0)
           resolve(res.data)
         },
@@ -124,8 +125,10 @@ Page({
     // console.log('onSaveUploadImgRef',this.uploadImgRef,ref)
   },
   onSaveUploadFileRef: function (ref) {
-    this.uploadFileRef = ref;
-    console.log('onSaveUploadFileRef', this.uploadFileRef, ref)
+    // this.uploadFileRef = ref;
+    this.uploadImageList = ref;
+    
+    console.log('onSaveUploadFileRef', this.uploadImageList, ref)
   },
   // 照片----end
 
@@ -133,10 +136,10 @@ Page({
   progressAddSubmit(e) {
     // 
     console.log('触发了表单', e.detail.value)
-    console.log('附件的数据', this.uploadFileRef._getUploadImgId().imgList)
+    console.log('附件的数据', this.uploadImageList._getUploadImgId().imgList)
     let annexFile
-    if (this.uploadFileRef._getUploadImgId().imgList.length) {
-      annexFile = this.uploadFileRef._getUploadImgId().imgList
+    if (this.uploadImageList._getUploadImgId().imgList.length) {
+      annexFile = this.uploadImageList._getUploadImgId().imgList
     } else {
       annexFile = [];
     }
