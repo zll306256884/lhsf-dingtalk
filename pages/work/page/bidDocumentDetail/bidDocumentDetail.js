@@ -139,6 +139,7 @@ Page({
   downloadFile(e){
     let fileName;
     let {url} = e.currentTarget.dataset
+    console.log('url', url)
     request.doPostRequest({
       url: config.API_FILE_SETURL,
       data:{
