@@ -9,7 +9,6 @@
     "pages/user/page/personalinfo/index",
     "pages/user/page/userinfo/index",
     "pages/user/page/login/index",
-    "pages/message/page/list/list",
     "pages/message/page/approval/approval",
     "pages/work/page/addPayment/addPayment",
     "pages/work/page/addProject/addProject",
