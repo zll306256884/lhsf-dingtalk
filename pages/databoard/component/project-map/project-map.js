@@ -264,7 +264,29 @@ Component({
       this.setData({
         currentItem:e.detail.current
       })
+      const newMarkers = this.data.projectList
+      .filter(i => i.cityCapitalX && i.cityCapitalY)
+      .map(item => {
+          return {
+            id:item.id,
+            width: 64,
+            height: 64,
+            longitude: Number(parseFloat(item.xy.lng).toFixed(6)),
+            latitude: Number(parseFloat(item.xy.lat).toFixed(6)),
+            iconPath: `/assets/images/map/${item.projectType}-${item.projectStatus}.png`,
+          };
+        });
+          this.mapCtx.changeMarkers({
+            update:newMarkers,
+          });
+      if(!(this.data.projectList[e.detail.current].cityCapitalX && this.data.projectList[e.detail.current].cityCapitalY)){
+        ddUtils.showToast({
+          title: '当前项目无坐标，请于项目信息中录入'
+        });
+        return
+      }else{
       this.changeMarkers();
+      }
     },
     // 点击 Marker 时触发
     markertap(e) {
