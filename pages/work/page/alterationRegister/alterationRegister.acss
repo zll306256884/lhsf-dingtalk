@@ -70,6 +70,7 @@ font-size: 15px;
   bottom: 0rpx;
   background: #fff;
   padding-bottom: 42rpx;
+  z-index: 999;
 }
 .bottom-shadow{
   margin-bottom: 150rpx!important;
