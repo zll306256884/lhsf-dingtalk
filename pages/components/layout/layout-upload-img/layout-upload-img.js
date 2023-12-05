@@ -13,7 +13,7 @@ Component({
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
-    webViewUrl: 'http://192.168.8.104:8080/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
+    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
   },
   props: {
     cssStyle: "",

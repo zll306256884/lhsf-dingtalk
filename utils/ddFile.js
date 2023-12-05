@@ -3,7 +3,7 @@ import request from "./request"
 import ddUtils from "./ddUtils"
 
 function downloadFile(url){
-    let fileName
+    // let fileName
     request.doPostRequest({
       url: config.API_FILE_SETURL,
       data:{
@@ -11,7 +11,7 @@ function downloadFile(url){
       },
       success: result => {
         if(result.code == 1000) {
-         fileName = result.data.split('/')
+        //  fileName = result.data.split('/')
           // 获取钉盘文件信息
           request.doPostRequest({
             url: config.API_FILE_GETURL,
