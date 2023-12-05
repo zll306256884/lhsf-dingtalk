@@ -18,8 +18,7 @@ Component({
     nextNode: [],
     // 上传&&下载
     isWebView: false,
-    webViewContext: '',
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile' //  'http://localhost:5173/viewFile'
+    webViewContext: ''
   },
   props: {
     projectId: '12019020004',//项目id
