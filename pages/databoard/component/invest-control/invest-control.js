@@ -29,6 +29,7 @@ Component({
     if(this.props.alter === '5'){
       this.data.checkoutPage = 5
        this.getAlteration()
+       this.getTopMoney(1)
     }else{
       this.getTopMoney(1)
     this.getList(2)
