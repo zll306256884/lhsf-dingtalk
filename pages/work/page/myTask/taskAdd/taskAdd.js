@@ -207,6 +207,8 @@ Page({
     values.executeUser =JSON.stringify(this.data.executeUser);
     values.annexList = this.data.annexList;
     values.projectName = this.data.projectName;
+    values.vueUrl = 'MyTaskDetail'
+    values.singleUrl="/pages/work/page/myTask/taskInfo/taskInfo"
     let url
     if(this.data.currentId){
       values.id = this.data.currentId
