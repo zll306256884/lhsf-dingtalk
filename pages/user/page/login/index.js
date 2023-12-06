@@ -90,6 +90,7 @@ Page({
             .then(results => {
                 if (results.length != 2) return;
                 let tempUserInfo = results[0] || {};
+                    app.globalData.userInfo.projectList=results[1] || []
                     app.globalData.userInfo.userAccount = tempUserInfo.account;
                     app.globalData.userInfo.avatar = tempUserInfo.avatar;
                     app.globalData.userInfo.nickName = tempUserInfo.name;
@@ -127,12 +128,17 @@ Page({
         })
     },
     getRoleProjectList(){
+      return new Promise((resolve, reject) => {
       request.doPostRequest({
         url: config.API_PROJECT_NAME,
         success: res => {
-          app.globalData.userInfo.projectList=res.data || []
+          resolve(res.data)
+        },
+        fail: res => {
+          reject(res)
         }
       })
+    })
     },
     getPermissionByToken(){
       request.doPostRequest({
