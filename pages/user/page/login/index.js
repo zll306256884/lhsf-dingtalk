@@ -94,6 +94,7 @@ Page({
                     app.globalData.userInfo.userAccount = tempUserInfo.account;
                     app.globalData.userInfo.avatar = tempUserInfo.avatar;
                     app.globalData.userInfo.nickName = tempUserInfo.name;
+                    app.globalData.userInfo.userId= tempUserInfo.userId
                     ddUtils.setStorage({
                         key: app.globalData.keyUserInfo,
                         data: app.globalData.userInfo
