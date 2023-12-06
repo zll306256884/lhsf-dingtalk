@@ -61,7 +61,7 @@ overflow: hidden; /* 溢出隐藏 */
 white-space: nowrap;
 }
 .bottom-content-year{
-  padding: 28rpx;
+  padding: 32rpx;
   /* margin: 24rpx; */
   min-height: 762rpx;
   background: #FFFFFF;
@@ -71,6 +71,7 @@ white-space: nowrap;
 .bottom-content-year .search{
   margin-top: 20px;
   /* width: 638rpx; */
+  margin-bottom: 15rpx;
   height: 64rpx;
   background: #F3F4F5;
   border-radius: 72rpx 72rpx 72rpx 72rpx;
@@ -165,4 +166,7 @@ font-weight: 400;
 }
 .sum-money{
   color: #FFD643;
+}
+.ant-list-item-line{
+  padding-left: 0rpx!important;
 }
