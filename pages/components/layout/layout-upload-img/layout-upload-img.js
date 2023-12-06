@@ -1,6 +1,6 @@
 import config from "../../../../utils/config";
 import request from "../../../../utils/request";
-import { isEmpty, isEmptyArray, getImgUrl } from "../../../../utils/utils";
+import { isEmpty, getImgUrl } from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
 import ddFile from "../../../../utils/ddFile";
 
@@ -13,7 +13,7 @@ Component({
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
+    webViewUrl:config.BASE_API_HOST + '/#/share/viewFile'
   },
   props: {
     cssStyle: "",

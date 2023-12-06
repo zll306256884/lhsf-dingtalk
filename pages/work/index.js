@@ -158,7 +158,7 @@ Page({
   // 获取全部待办列表
   getAwaitList: function () {
     let data = {
-      projectId: app.globalData.userInfo.projectId || ''
+      projectId: ''
     };
     request.doPostRequest({
       url: apiApprovalManage.API_ALL_WAIT_LIST,

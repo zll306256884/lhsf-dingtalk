@@ -1,4 +1,3 @@
-import { isEqual, isEmptyArray } from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
@@ -68,13 +67,11 @@ Page({
                         app.globalData.userInfo.userId= loginData.userId
 
                         this.getAllInfo();
-                        this.getPermissionByToken()
-                        this.getRoleProjectList()
-                        
+                      
                     },
                     fail: res => {
                       this.setData({
-                        isLoading:true
+                        isLoading:false
                       })
                     },
                     
@@ -82,40 +79,28 @@ Page({
             },
             fail: () => {
               this.setData({
-                isLoading:true
+                isLoading:false
               })
             },
         });
     },
     getAllInfo: function () {
         Promise
-            .all([this.getUserInfo(), this.getMyProjectList()])
+            .all([this.getUserInfo(),this.getRoleProjectList()])
             .then(results => {
                 if (results.length != 2) return;
                 let tempUserInfo = results[0] || {};
-                let tempProjectList = results[1].records || [];
-                let defaultPeoject;
-
-                for (let item of tempProjectList) {
-                    if (isEqual(item.flagDefault, '1')) {
-                        defaultPeoject = item;
-                        break;
-                    }
-                }
-
-                if (!defaultPeoject && !isEmptyArray(tempProjectList))
-                    defaultPeoject = tempProjectList[0];
                     app.globalData.userInfo.userAccount = tempUserInfo.account;
-                    app.globalData.userInfo.userId = tempUserInfo.userId;
                     app.globalData.userInfo.avatar = tempUserInfo.avatar;
                     app.globalData.userInfo.nickName = tempUserInfo.name;
-                    app.globalData.userInfo.sex = "";
-                    app.globalData.userInfo.projectId = defaultPeoject ? defaultPeoject.projectId : '';
-                    app.globalData.userInfo.projectName = defaultPeoject ? defaultPeoject.projectName : '';
                     ddUtils.setStorage({
                         key: app.globalData.keyUserInfo,
                         data: app.globalData.userInfo
                     });
+                    this.getPermissionByToken()
+                    this.setData({
+                      isLoading:false
+                    })
                     ddUtils.switchTab({
                         url: "/pages/work/index"
                     });
@@ -125,39 +110,14 @@ Page({
     },
 
     getUserInfo: function () {
-      console.log('app.globalData.userInfo.userToken',app.globalData.userInfo.userToken);
         return new Promise((resolve, reject) => {
             request.doPostRequest({
                 url: userServer.API_GET_USER_INFO + `?token=${app.globalData.userInfo.userToken}`,
                 showLoading: false,
                 data: {
-                    projectId: app.globalData.userInfo.projectId
+                    projectId: ""
                 },
                 success: res => {
-                    resolve(res.data)
-                },
-                fail: res => {
-                    reject(res)
-                }
-            });
-        })
-    },
-
-    getMyProjectList: function () {
-        return new Promise((resolve, reject) => {
-            request.doPostRequest({
-
-                url: userServer.API_PROJECT_LIST,
-                showLoading: false,
-                data: {
-                    pageNum: 1,
-                    pageSize: 999,
-                    params: {
-                        projectName: ""
-                    },
-                },
-                success: res => {
-                  console.log("???????????",res);
                     resolve(res.data)
                 },
                 fail: res => {
@@ -178,7 +138,6 @@ Page({
       request.doPostRequest({
         url: config.API_MENU_LIST,
         success: res => {
-          console.log('菜单',res)
           let list = res.data.find(e =>e.title === '移动端') || {}
           app.globalData.menuList = list
           ddUtils.setStorage({
