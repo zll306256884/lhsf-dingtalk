@@ -1,10 +1,13 @@
 
-//  测试配置
-const BASE_API_HOST = "http://192.168.6.41";
-const API_HOST = BASE_API_HOST + "/prod-api";
-// 线上配置
-// const BASE_API_HOST = "https://xmgk.lhbigdata.com";
+// //  测试配置
+// const BASE_API_HOST = "http://192.168.6.41";
 // const API_HOST = BASE_API_HOST + "/prod-api";
+
+// const BASE_API_HOST = "http://36.140.119.76";
+
+// 线上配置
+const BASE_API_HOST = "https://xmgk.lhbigdata.com";
+const API_HOST = BASE_API_HOST + "/prod-api";
 
 
 const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
@@ -14,6 +17,7 @@ const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
 module.exports = {
     API_HOST: API_HOST,
     API_IMG_URL: API_IMG_URL,
+    BASE_API_HOST: BASE_API_HOST,
     //查询oa组织下人员列表
     API_OA_COMPANY_STAFF_LIST: API_HOST + "/platform/organize/queryStaffList",
     // 筛选模糊查询oa组织下人员列表

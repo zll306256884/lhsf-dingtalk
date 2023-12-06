@@ -59,7 +59,7 @@ margin-bottom: 50rpx;
 }
 .bottom-content-year{
   position: relative;
-  padding: 28rpx;
+  padding: 32rpx;
   /* margin: 24rpx; */
   min-height: 762rpx;
   background: #FFFFFF;
@@ -68,6 +68,7 @@ margin-bottom: 50rpx;
 }
 .bottom-content-year .search{
   margin-top: 20px;
+  margin-bottom: 15rpx;
   /* width: 638rpx; */
   height: 64rpx;
   background: #F3F4F5;
@@ -159,6 +160,7 @@ opacity: 1;
   line-height: 48rpx;
   border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
+  font-size: 28rpx;
 }
 .isActiveBacg{
   background: #4B90F1;
@@ -191,4 +193,7 @@ opacity: 1;
   width: 172rpx;
   height: 156rpx;
 
+}
+.ant-list-item-line{
+  padding-left: 0rpx!important;
 }

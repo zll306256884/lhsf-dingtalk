@@ -1,25 +1,26 @@
 const app = getApp();
-
+import config from "../../../utils/config";
 Page({
   data: {
     navbarData:{
       title: "文件上传"
     },
-    webViewUrl: 'http://192.168.6.41/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
+    webViewUrl: config.BASE_API_HOST+'/#/share/viewFile'//'http://192.168.8.168:8080/#/share/viewFile'
   },
   onLoad(option) {
     console.log(option);
     this.setData({
-      webViewUrl: `http://192.168.6.41/#/share/viewFile?imgList=${option.imgList}`
+      webViewUrl: `${config.BASE_API_HOST}/#/share/viewFile?imgList=${option.imgList}`
     })
 
     if(option.type){
       this.setData({
-        webViewUrl: `http://192.168.6.41/#/share/viewFile?type=${option.type}&imgList=${option.imgList}` 
+        webViewUrl: `${config.BASE_API_HOST}/#/share/viewFile?type=${option.type}&imgList=${option.imgList}` 
       })
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
+    console.log('this.setData.webViewUrl',this.setData.webViewUrl, config.BASE_API_HOST)
   },
   onMessage:function(e) {
     console.log('接受消息',e.detail)
