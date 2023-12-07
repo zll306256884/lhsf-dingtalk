@@ -15,11 +15,14 @@ Component({
   },
   props: {
     examineId: '',
-    keyId:'' //审批需要用的keyId
+    keyId:'', //审批需要用的keyId
     // onApprovalOperate: function (reason, isAgree) { },
+    specialUserIds: ''
   },
   uploadApproval: null,
-  didMount() {},
+  didMount() {
+    
+  },
   didUpdate() {},
   didUnmount() {},
   
@@ -95,7 +98,9 @@ Component({
         let params = this.data.paramsData
         params.content = reason
         params.annexesUrl = JSON.stringify(workAuditFile)
-
+        if (this.props.specialUserIds) {
+          params.auditUserIdList = this.props.specialUserIds.split(',')
+        }
         console.log(params);
         if(this.data.isApprovalAgree){
           request.doPostRequest({
@@ -150,6 +155,7 @@ Component({
           form.urlParameter = res.data.urlParameter
           form.projectId = res.data.projectId
           form.projectName = res.data.projectName
+          form.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
           this.setData({
             paramsData: form
           })
