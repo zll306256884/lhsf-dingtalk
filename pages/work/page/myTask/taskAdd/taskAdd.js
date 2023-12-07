@@ -39,17 +39,17 @@ Page({
   },
   onLoad(option) {
   const params = option.json && JSON.parse(option.json);
-    // this.getProjectList();
-   const projectList = app.globalData.userInfo.projectList.map(e => {
-     return{
-       ...e,
-       label: e.name,
-       value: e.id
-     }
-    });
-    this.setData({
-      projectList: projectList  || []
-    });
+    this.getProjectList();
+  //  const projectList = app.globalData.userInfo.projectList.map(e => {
+  //    return{
+  //      ...e,
+  //      label: e.name,
+  //      value: e.id
+  //    }
+  //   });
+    // this.setData({
+    //   projectList: projectList  || []
+    // });
     if (params && params.id) {
       this.setData({
         currentId:params.id,
@@ -175,20 +175,20 @@ Page({
       }
     });
   },
-  // getProjectList() {
-  //   request.doPostRequest({
-  //     url: config.API_PROJECT_NAME,
-  //     success: res => {
-  //       res.data.forEach(e => {
-  //         e.label = e.name;
-  //         e.value = e.id;
-  //       });
-  //       this.setData({
-  //         projectList: res.data || []
-  //       });
-  //     }
-  //   });
-  // },
+  getProjectList() {
+    request.doPostRequest({
+      url: config.API_PROJECT_NAME,
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name;
+          e.value = e.id;
+        });
+        this.setData({
+          projectList: res.data || []
+        });
+      }
+    });
+  },
   async submit() {
     let values = await this.form.submit();
     if (this.uploadImageList) {

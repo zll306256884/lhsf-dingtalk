@@ -1,11 +1,11 @@
 import utils from './utils';
 import ddUtils from './ddUtils';
 import config from './config';
+let app = getApp();
 
 //签名 sign
 const constKey = "qCW2FJpPrW";
 function doPostRequest(obj) {
-  let app = getApp();
   let option = Object.assign({
     headers: {
       'Content-Type': "application/json",
@@ -81,12 +81,9 @@ function doPostRequest(obj) {
 
       if (typeof option.fail == "function")
         option.fail(res);
-
       if (res.status === 401 && !app.globalData.tokenInvalid) { //token失效
         app.globalData.tokenInvalid = true;
-
         ddUtils.clearLoginStorage();
-
         ddUtils.reLaunch({
           url: "/pages/user/page/login/index"
         })
@@ -102,7 +99,6 @@ function doPostRequest(obj) {
 
 //get 请求
 function doGetRequest(obj) {
-  let app = getApp();
   let option = Object.assign({
     headers: {
       'Content-Type': "application/json",

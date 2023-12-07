@@ -1,5 +1,7 @@
 App({
     onLaunch(options) {
+      dd.onAppHide(this.onAppHideHandler)
+      dd.onAppShow(this.onAppShowHandler)
         // //获取用户token
         this.globalData.userInfo = dd.getStorageSync({
             key: this.globalData.keyUserInfo
@@ -14,6 +16,12 @@ App({
     },
     onShow(options) {
     },
+    onAppHideHandler() {
+      console.log('监听切换到后台方法',dd.getStorageSync({key: 'keyUserInfo'}).data,dd.getStorageSync({key: 'buttonList'}).data)
+    },
+    onAppShowHandler() {
+      console.log('前台',dd.getStorageSync({key: 'keyUserInfo'}).data)
+  },
 
     //小程序技术支持：https://cschannel.alipay.com/newPortal.htm?scene=mt_zczx
 

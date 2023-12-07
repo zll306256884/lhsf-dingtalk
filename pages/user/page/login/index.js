@@ -86,11 +86,17 @@ Page({
     },
     getAllInfo: function () {
         Promise
-            .all([this.getUserInfo(),this.getRoleProjectList()])
+            .all([this.getUserInfo(),this.getPermissionByToken()])
             .then(results => {
                 if (results.length != 2) return;
                 let tempUserInfo = results[0] || {};
-                    app.globalData.userInfo.projectList=results[1] || []
+                    // app.globalData.userInfo.projectList=results[1] || []
+                   let list = results[1].find(e =>e.title === '移动端') || {}
+                    app.globalData.menuList = list
+                    ddUtils.setStorage({
+                      key: app.globalData.buttonList,
+                      data: list
+                    });
                     app.globalData.userInfo.userAccount = tempUserInfo.account;
                     app.globalData.userInfo.avatar = tempUserInfo.avatar;
                     app.globalData.userInfo.nickName = tempUserInfo.name;
@@ -99,7 +105,7 @@ Page({
                         key: app.globalData.keyUserInfo,
                         data: app.globalData.userInfo
                     });
-                    this.getPermissionByToken()
+                    
                     this.setData({
                       isLoading:false
                     })
@@ -142,16 +148,16 @@ Page({
     })
     },
     getPermissionByToken(){
+      return new Promise((resolve, reject) => {
       request.doPostRequest({
         url: config.API_MENU_LIST,
         success: res => {
-          let list = res.data.find(e =>e.title === '移动端') || {}
-          app.globalData.menuList = list
-          ddUtils.setStorage({
-            key: app.globalData.buttonList,
-            data: list
-          });
+          resolve(res.data)
+        },
+        fail: res => {
+          reject(res)
         }
       })
+    })
     }
 });
