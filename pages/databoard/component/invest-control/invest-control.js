@@ -201,13 +201,15 @@ Component({
    clickCapital(value){
      console.log(value);
     let item = value.target.dataset.item
-   ddUtils.navigateTo({
-    url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.id}&projectId=${item.projectId}`
-  });
+    if(this.data.changeType===2 || this.data.changeType===4){
+      ddUtils.navigateTo({
+        url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${item.id}&projectId=${item.projectId}&keyId=${item.id}`
+      });
+    }
   if(this.data.changeType===5){
     console.log(121212121212);
     ddUtils.navigateTo({
-      url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.id}&isShow=${false}`
+      url: `/pages/work/page/alterationRegisterDetail/alterationRegisterDetail?id=${item.id}&isShow=${false}&keyId=${item.id}`
     });
   }
    }
