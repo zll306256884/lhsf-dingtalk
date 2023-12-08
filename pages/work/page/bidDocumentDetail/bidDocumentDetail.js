@@ -5,7 +5,7 @@ import workService from "../../../../server/workServer";
 import messageServer from "../../../../server/messageServer"
 import config from "../../../../utils/config";
 import ddFile from "../../../../utils/ddFile";
-
+const app = getApp();
 Page({
   data: {
     navbarData: {
@@ -47,11 +47,16 @@ Page({
       // this.getDetail(options.id)
     }
     if(options.account){
-      if(options.account.find(e => e === app.globalData.userInfo.userAccount)){
-        this.setData({
-          isCurrentAudit : true
-        })
-      }
+      let userAccount = app.globalData.userInfo.userAccount
+      let list = JSON.parse(options.account)
+      list.forEach(e => {
+        if(e === userAccount){
+          this.setData({
+            isCurrentAudit: true
+          })
+        }
+      })
+      console.log(this.data.isCurrentAudit)
     }
   },
   onShow(){

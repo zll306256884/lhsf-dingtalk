@@ -1,6 +1,7 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
+const app = getApp();
 Page({
   data: {
     navbarData: {
