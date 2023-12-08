@@ -22,6 +22,9 @@ Component({
         //bind input change
         _bindInputChange: function (e) {
             this.props.onSearchInputChange(e.detail.value);
+        },
+        _bindBlurChange(){
+
         }
     },
 });
