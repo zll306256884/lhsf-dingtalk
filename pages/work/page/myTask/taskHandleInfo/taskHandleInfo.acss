@@ -3,13 +3,18 @@
   position: absolute;
   box-sizing: border-box;
   bottom:0;
-  padding: 12px 12px 48px 12px;
+  background: #ffffff;
+  padding: 12px 12px 24px 12px;
 }
 .buttons .ant-button{
-  width:48%
+  width:48%;
+  margin:0 10rpx;
+  font-size: 28rpx;
 }
-.ant-button-default{
+.ant-button-default {
+  color: #323233;
   box-shadow: none;
+  border: 2rpx solid #EBEDF0!important
 }
 .form-title{
   width: 100%;
