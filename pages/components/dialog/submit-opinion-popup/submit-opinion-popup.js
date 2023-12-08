@@ -178,7 +178,7 @@ Component({
           form.urlParameter = res.data.urlParameter
           form.projectId = res.data.projectId
           form.projectName = res.data.projectName
-          form.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
+          form.singleUrl = res.data.singleUrl
           this.setData({
             paramsData: form
           })

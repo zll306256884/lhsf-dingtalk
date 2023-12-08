@@ -56,6 +56,8 @@ Component({
             this.setData({
               dataList: this.ergodic(list, this.data.selectedStaff)
             });
+
+          console.log('人员数据',this.data.dataList)
         }
       });
     },
