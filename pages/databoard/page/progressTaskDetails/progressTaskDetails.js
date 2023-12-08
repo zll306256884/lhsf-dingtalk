@@ -2,6 +2,7 @@ import utils from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
+import ddFile from "../../../../utils/ddFile";
 import progressServer from "../../../../server/workServer/progressServer";
 
 Page({
@@ -84,6 +85,8 @@ Page({
     console.log(e.currentTarget.dataset.item)
     let fileName
     let url = e.currentTarget.dataset.item.url
+    ddFile.downloadFile(url)
+    return
     request.doPostRequest({
       url: config.API_FILE_SETURL,
       data:{

@@ -1,13 +1,13 @@
 
 //  测试配置
-const BASE_API_HOST = "http://192.168.6.41";
-const API_HOST = BASE_API_HOST + "/prod-api";
+// const BASE_API_HOST = "http://192.168.6.41";
+// const API_HOST = BASE_API_HOST + "/prod-api";
 
 // const BASE_API_HOST = "http://36.140.119.76";
 
 // 线上配置
-// const BASE_API_HOST = "https://xmgk.lhbigdata.com";
-// const API_HOST = BASE_API_HOST + "/prod-api";
+const BASE_API_HOST = "https://xmgk.lhbigdata.com";
+const API_HOST = BASE_API_HOST + "/prod-api";
 
 
 const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";

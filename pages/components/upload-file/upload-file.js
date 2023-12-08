@@ -20,7 +20,7 @@ Page({
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-    console.log('this.setData.webViewUrl',this.setData.webViewUrl, config.BASE_API_HOST)
+    console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST)
   },
   onMessage:function(e) {
     console.log('接受消息',e.detail)

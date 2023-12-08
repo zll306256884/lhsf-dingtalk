@@ -87,7 +87,7 @@ Page({
           if (res.confirm) {
             request.doPostRequest({
               url:workServer.API_FINISH_TASK,
-              data: {id:this.data.currentId},
+              data: {id:this.data.currentId,singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo'},
               success: res => {
                 if (res.code===1000) {
                   ddUtils.showToast({
@@ -176,7 +176,8 @@ Page({
   remind(e){
     const params={
       executeUserId: e.currentTarget.dataset.item.executeUserId,
-      id: e.currentTarget.dataset.item.id
+      id: e.currentTarget.dataset.item.id,
+      singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo'
     }
     request.doPostRequest({
       url: workServer.API_REMIND_TASK,
