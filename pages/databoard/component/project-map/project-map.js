@@ -29,11 +29,11 @@ const settings ={
   // 交通路况展示
   trafficEnabled: 0,
   // 地图 POI 信息
-  showMapText: 0,
+  showMapText: 1,
   // 高德地图 logo 位置
   logoPosition: {
-   centerX: 150,
-   centerY: 90
+   centerX: -100,
+   centerY: -100
   }
  }
 const longitude = 121.131229;
