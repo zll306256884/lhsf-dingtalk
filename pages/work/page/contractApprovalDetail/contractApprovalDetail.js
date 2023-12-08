@@ -26,7 +26,8 @@ Page({
     examineId: null,
     approvalType: null,
     deleteId: null,
-    supplementList: []
+    supplementList: [],
+    isCurrentAudit: false
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -47,6 +48,13 @@ Page({
         deleteId: options.deleteId
       })
       // this.getDetail(options.id)
+    }
+    if(options.account){
+      if(options.account.find(e => e === app.globalData.userInfo.userAccount)){
+        this.setData({
+          isCurrentAudit: true
+        })
+      }
     }
   },
   onShow(){

@@ -30,13 +30,13 @@ Page({
     
     if(e.detail.type === '1'){
       if(prevPage.uploadTenderImageList.data.imgList){
-        prevPage.uploadTenderImageList._setImageList(prevPage.uploadTenderImageList.data.imgList.concat(e.detail.imgList))
+        prevPage.uploadTenderImageList._setImageList([...prevPage.uploadTenderImageList.data.imgList, ...e.detail.imgList])
       }else{
         prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
       }
     }else if(e.detail.type === '2'){
       if(prevPage.uploadOtherImgList.data.imgList){
-        prevPage.uploadOtherImgList._setImageList(prevPage.uploadOtherImgList.data.imgList.concat(e.detail.imgList))
+        prevPage.uploadOtherImgList._setImageList([...prevPage.uploadOtherImgList.data.imgList, ...e.detail.imgList ])
       }else{
         prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
       }
