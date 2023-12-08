@@ -90,7 +90,6 @@ Page({
             .then(results => {
                 if (results.length != 2) return;
                 let tempUserInfo = results[0] || {};
-                    // app.globalData.userInfo.projectList=results[1] || []
                    let list = results[1].find(e =>e.title === '移动端') || {}
                     app.globalData.menuList = list
                     ddUtils.setStorage({
