@@ -20,7 +20,7 @@ Page({
     }
     this.webViewContext = dd.createWebViewContext('web-view-1')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-    console.log('this.setData.webViewUrl',this.setData.webViewUrl, config.BASE_API_HOST)
+    console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST)
   },
   onMessage:function(e) {
     console.log('接受消息',e.detail)
@@ -30,13 +30,13 @@ Page({
     
     if(e.detail.type === '1'){
       if(prevPage.uploadTenderImageList.data.imgList){
-        prevPage.uploadTenderImageList._setImageList(prevPage.uploadTenderImageList.data.imgList.concat(e.detail.imgList))
+        prevPage.uploadTenderImageList._setImageList([...prevPage.uploadTenderImageList.data.imgList, ...e.detail.imgList])
       }else{
         prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
       }
     }else if(e.detail.type === '2'){
       if(prevPage.uploadOtherImgList.data.imgList){
-        prevPage.uploadOtherImgList._setImageList(prevPage.uploadOtherImgList.data.imgList.concat(e.detail.imgList))
+        prevPage.uploadOtherImgList._setImageList([...prevPage.uploadOtherImgList.data.imgList, ...e.detail.imgList ])
       }else{
         prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
       }

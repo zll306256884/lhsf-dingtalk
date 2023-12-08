@@ -4,6 +4,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import workService from "../../../../server/workServer";
 import messageServer from "../../../../server/messageServer"
 import config from "../../../../utils/config";
+import ddFile from "../../../../utils/ddFile";
 
 Page({
   data: {
@@ -23,7 +24,8 @@ Page({
     tenderId: null,
     examineId: null,
     approvalType: null,
-    deleteId: null
+    deleteId: null,
+    isCurrentAudit: false
   },
   onLoad(options) {
     if(options.examineId){//审批
@@ -43,6 +45,13 @@ Page({
         deleteId: options.deleteId
       })
       // this.getDetail(options.id)
+    }
+    if(options.account){
+      if(options.account.find(e => e === app.globalData.userInfo.userAccount)){
+        this.setData({
+          isCurrentAudit : true
+        })
+      }
     }
   },
   onShow(){
@@ -137,31 +146,7 @@ Page({
     })
   },
   downloadFile(e){
-    let fileName;
     let {url} = e.currentTarget.dataset
-    console.log('url', url)
-    request.doPostRequest({
-      url: config.API_FILE_SETURL,
-      data:{
-        fileName: url,
-      },
-      success: result => {
-        if(result.code == 1000) {
-          fileName = result.data.split('/')
-          // 获取钉盘文件信息
-          request.doPostRequest({
-            url: config.API_FILE_GETURL,
-            data: {
-              targetPath: result.data,
-            },
-            success: res => {
-            let ddDownFileParams =  ddUtils.urlParams(res.data)
-            // 获取钉盘文件信息
-            ddUtils.ddDownFile(ddDownFileParams)
-            }
-          })
-        }
-      }
-    })
+    ddFile.downloadFile(url)
   }
 });

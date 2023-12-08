@@ -142,6 +142,11 @@
   font-weight: 400;
   color: #323233;
   line-height: 23rpx;
+  display: block;
+  width: 470rpx;
+  text-overflow: ellipsis; /* 溢出显示省略号 */
+  overflow: hidden; /* 溢出隐藏 */
+  white-space: nowrap;  /* 强制不换行 */
 }
 .file-list .list-item .size{
   font-size: 20rpx;

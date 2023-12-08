@@ -11,7 +11,8 @@ Component({
   data: {
     showDialog: false,
     isApprovalAgree: true,
-    paramsData: {}
+    paramsData: {},
+    isLoading: false
   },
   props: {
     examineId: '',
@@ -84,6 +85,9 @@ Component({
 
     //提交
     async _bindFormSunmit(e) {
+      this.setData({
+        isLoading: true
+      })
       let reason = e.detail.value.reason;
       console.log(reason, this.data.isApprovalAgree)
       // if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
@@ -93,8 +97,12 @@ Component({
         workAuditFile = this.uploadApproval._getUploadImgId().imgList;
       }
       console.log(workAuditFile);
+      let debounce = null;
+      if(debounce){
+        clearTimeout(debounce);
+      }
       await this.getDetail()
-      setTimeout(() => {
+      debounce = setTimeout(() => {
         let params = this.data.paramsData
         params.content = reason
         params.annexesUrl = JSON.stringify(workAuditFile)
@@ -112,12 +120,24 @@ Component({
                 ddUtils.showToast({
                   title: '下一节点未配置审批人员，已发送消息至系统管理员，请在配置审批人员后进行审批'
                 })
+                this.setData({
+                  isLoading: false
+                })
               }else{
                 ddUtils.showToast({
                   title: "通过成功"
                 });
+                this.setData({
+                  isLoading: false
+                })
+                this._hideDialog();
                 ddUtils.navigateBack();
               }
+            },
+            fail:res => {
+              this.setData({
+                isLoading: false
+              })
             }
           })
         }else{
@@ -129,11 +149,20 @@ Component({
               ddUtils.showToast({
                 title: "拒绝成功"
               });
+              this.setData({
+                isLoading: false
+              })
+              this._hideDialog();
               ddUtils.navigateBack();
+            },
+            fail:res => {
+              this.setData({
+                isLoading: false
+              })
             }
           })
         }
-      }, 1000);
+      }, 10000);
       
     },
     getDetail(){
@@ -155,7 +184,7 @@ Component({
           form.urlParameter = res.data.urlParameter
           form.projectId = res.data.projectId
           form.projectName = res.data.projectName
-          form.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
+          form.singleUrl = res.data.singleUrl
           this.setData({
             paramsData: form
           })
