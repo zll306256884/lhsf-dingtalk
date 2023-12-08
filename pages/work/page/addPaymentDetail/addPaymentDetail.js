@@ -2,6 +2,7 @@ import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import workService from "../../../../server/workServer";
 import ddUtils from "../../../../utils/ddUtils"
+const app = getApp();
 Page({
   data: {
     navbarData: {
@@ -22,7 +23,8 @@ Page({
     projectId:'',
     showType:"",
     current: 0,
-    infoData: {}
+    infoData: {},
+    isCurrentAudit: false
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -39,7 +41,18 @@ Page({
       })
       this.getDetail(option.id)
     // }
-    
+    if(options.account){
+      let userAccount = app.globalData.userInfo.userAccount
+      let list = JSON.parse(options.account)
+      list.forEach(e => {
+        if(e === userAccount){
+          this.setData({
+            isCurrentAudit: true
+          })
+        }
+      })
+      console.log(this.data.isCurrentAudit)
+    }
   },
   onSaveUploadContractImgRef(ref) {
     this.uploadContractImage = ref
