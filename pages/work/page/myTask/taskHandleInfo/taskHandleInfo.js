@@ -51,6 +51,7 @@ Page({
     }
     values.finishFile = this.data.finishFile;
     values.id = this.data.currentId
+    values.singleUrl= '/pages/work/page/myTask/taskInfo/taskInfo'
     request.doPostRequest({
       url:workServer.API_FINISH_TASK,
       data: values,
