@@ -130,6 +130,7 @@ Component({
                 this.setData({
                   isLoading: false
                 })
+                this._hideDialog();
                 ddUtils.navigateBack();
               }
             },
@@ -151,6 +152,7 @@ Component({
               this.setData({
                 isLoading: false
               })
+              this._hideDialog();
               ddUtils.navigateBack();
             },
             fail:res => {
