@@ -1,8 +1,6 @@
 import {
-  isEmpty,
   isEmptyArray,
-  isEqual,
-  isArrayIndexOutOfBounds
+  isEqual
 } from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
 import config from "../../../../utils/config";
@@ -38,32 +36,37 @@ Component({
         scrollHeight: app.globalData.appSystemInfo.screenHeight * 0.65
       });
     });
-    this.getDate();
-    this.chooseList = [];
+    // this.getDate();
+    // this.chooseList = [];
   },
   didUpdate(prevProps, prevData) {},
   didUnmount() {},
   onError(e) {},
   methods: {
     getDate() {
+      console.log("this.data.selectedStaff",this.data.selectedStaff);
       request.doPostRequest({
         url: config.API_OA_COMPANY_STAFF_LIST,
         data: {},
         success: res => {
           let list = res.data || [];
           list[0].isCheck = true;
-          if (!isEmptyArray(list))
+          if (!isEmptyArray(list)){
+            console.log("？？",this.ergodic(list, this.data.selectedStaff));
             this.setData({
-              dataList: this.ergodic(list, this.data.selectedStaff)
+              dataList:!isEmptyArray(this.data.selectedStaff)? this.ergodic(list, this.data.selectedStaff):list
             });
-
-          console.log('人员数据',this.data.dataList)
+          }
         }
       });
     },
     _bindCancelTap: function(e) {
       this._hideDialog();
-      this.props.onScreenCallBack();
+      let newList =arr=>{
+        let list = [];
+        return arr.filter(item => !list.includes(item.userId) && list.push(item.userId))
+      }
+      this.props.onScreenCallBack(newList(this.chooseList));
     },
 
     _bindTouchMove: function(e) {},
@@ -111,15 +114,9 @@ Component({
         },
         success: res => {
           let list =openOrganizeList(res.data) || [];
-          if (this.data.selectedStaff && this.data.selectedStaff.length !== 0) {
-            this.setData({
-              dataList: this.ergodic(list, this.data.selectedStaff)
-            });
-          }else{
-            this.setData({
-              dataList: list
-            });
-          }
+          this.setData({
+          dataList:!isEmptyArray(this.data.selectedStaff)? this.ergodic(list, this.data.selectedStaff):list
+          });
         }
       });
     },
@@ -221,7 +218,7 @@ Component({
       this.getDate()
     },
     ergodic(list, selected) {
-      const newList = list.map(item => {
+      return list.map(item => {
         if (item.organizeList && item.organizeList.length !== 0) {
           this.ergodic(item.organizeList, selected);
         }
@@ -242,7 +239,6 @@ Component({
           return item;
         }
       });
-      return newList;
     },
 
     //hide modal dialog

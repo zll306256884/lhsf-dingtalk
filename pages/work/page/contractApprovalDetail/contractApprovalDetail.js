@@ -5,7 +5,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import messageServer from "../../../../server/messageServer"
 import config from "../../../../utils/config";
 import ddFile from "../../../../utils/ddFile";
-
+const app = getApp();
 Page({
   data: {
     items: [
@@ -26,7 +26,8 @@ Page({
     examineId: null,
     approvalType: null,
     deleteId: null,
-    supplementList: []
+    supplementList: [],
+    isCurrentAudit: false
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -47,6 +48,18 @@ Page({
         deleteId: options.deleteId
       })
       // this.getDetail(options.id)
+    }
+    if(options.account){
+      let userAccount = app.globalData.userInfo.userAccount
+      let list = JSON.parse(options.account)
+      list.forEach(e => {
+        if(e === userAccount){
+          this.setData({
+            isCurrentAudit: true
+          })
+        }
+      })
+      console.log(this.data.isCurrentAudit)
     }
   },
   onShow(){

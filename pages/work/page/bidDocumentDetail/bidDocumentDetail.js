@@ -5,7 +5,7 @@ import workService from "../../../../server/workServer";
 import messageServer from "../../../../server/messageServer"
 import config from "../../../../utils/config";
 import ddFile from "../../../../utils/ddFile";
-
+const app = getApp();
 Page({
   data: {
     navbarData: {
@@ -24,7 +24,8 @@ Page({
     tenderId: null,
     examineId: null,
     approvalType: null,
-    deleteId: null
+    deleteId: null,
+    isCurrentAudit: false
   },
   onLoad(options) {
     if(options.examineId){//审批
@@ -44,6 +45,18 @@ Page({
         deleteId: options.deleteId
       })
       // this.getDetail(options.id)
+    }
+    if(options.account){
+      let userAccount = app.globalData.userInfo.userAccount
+      let list = JSON.parse(options.account)
+      list.forEach(e => {
+        if(e === userAccount){
+          this.setData({
+            isCurrentAudit: true
+          })
+        }
+      })
+      console.log(this.data.isCurrentAudit)
     }
   },
   onShow(){

@@ -1,4 +1,4 @@
 <view class="flex f-align-center search-wrap box-sizing-box" style="{{cssStyle}}">
     <image class="icon-search" src="/assets/images/icon_search_gray.png" />
-    <input class="flex1 input" placeholder-class="placeholder-class" placeholder="{{placeholder}}" confirm-type="search" onBlur="_bindInputChange" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
+    <input class="flex1 input" placeholder-class="placeholder-class" placeholder="{{placeholder}}" confirm-type="search" onBlur="_bindBlurChange" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
 </view>

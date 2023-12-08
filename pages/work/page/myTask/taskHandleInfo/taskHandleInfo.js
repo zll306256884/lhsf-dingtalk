@@ -63,10 +63,8 @@ Page({
         }
         let pages = getCurrentPages();
         let page = pages[pages.length - 2];
-        if (page && page.setNeedRefreshList) {
-          page.setRefreshList(2);
-        }
-        ddUtils.navigateBack(2);
+        page.getInfo(this.data.currentId);
+        ddUtils.navigateBack();
       }
     });
 
