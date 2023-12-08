@@ -7,6 +7,7 @@
 import approvalServer from "../../../server/approvalServer/approvalServer"
 import request from "../../../utils/request"
 import config from "../../../utils/config"
+import ddFile from "../../../utils/ddFile";
 const app = getApp();
 
 Component({
@@ -165,6 +166,8 @@ Component({
       console.log(e.currentTarget.dataset.item)
       let fileName
       let url = e.currentTarget.dataset.item.url
+      ddFile.downloadFile(url)
+      return
       request.doPostRequest({
         url: config.API_FILE_SETURL,
         data:{
