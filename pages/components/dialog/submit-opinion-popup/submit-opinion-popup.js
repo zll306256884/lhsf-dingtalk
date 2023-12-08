@@ -97,8 +97,12 @@ Component({
         workAuditFile = this.uploadApproval._getUploadImgId().imgList;
       }
       console.log(workAuditFile);
+      let debounce = null;
+      if(debounce){
+        clearTimeout(debounce);
+      }
       await this.getDetail()
-      setTimeout(() => {
+      debounce = setTimeout(() => {
         let params = this.data.paramsData
         params.content = reason
         params.annexesUrl = JSON.stringify(workAuditFile)
@@ -156,7 +160,7 @@ Component({
             }
           })
         }
-      }, 1000);
+      }, 10000);
       
     },
     getDetail(){
