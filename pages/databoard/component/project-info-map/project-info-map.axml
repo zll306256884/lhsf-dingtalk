@@ -23,7 +23,7 @@
       <view>
         <view class="item-title two-lines">{{projectInfo.projectName}}</view>
         <view class="{{'item-status ' +['', 'success', 'error', 'warning', 'primary'][info.projectStatus]}}">
-          {{['','在建项目','延期项目','投入未使用','投入使用'][info.projectStatus]}}
+          {{['','在建项目','延期项目','未投入使用','投入使用'][info.projectStatus]}}
         </view>
       </view>
     </view>

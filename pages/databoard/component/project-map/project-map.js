@@ -70,7 +70,7 @@ Component({
         value: 0
       },
       {
-        title: "投入未使用",
+        title: "未投入使用",
         value: 0
       },
       {
