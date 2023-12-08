@@ -11,7 +11,8 @@ Component({
   data: {
     showDialog: false,
     isApprovalAgree: true,
-    paramsData: {}
+    paramsData: {},
+    isLoading: false
   },
   props: {
     examineId: '',
@@ -84,6 +85,9 @@ Component({
 
     //提交
     async _bindFormSunmit(e) {
+      this.setData({
+        isLoading: true
+      })
       let reason = e.detail.value.reason;
       console.log(reason, this.data.isApprovalAgree)
       // if (ddUtils.showEmptyToastTips(reason, "请输入审批意见")) return;
@@ -112,12 +116,23 @@ Component({
                 ddUtils.showToast({
                   title: '下一节点未配置审批人员，已发送消息至系统管理员，请在配置审批人员后进行审批'
                 })
+                this.setData({
+                  isLoading: false
+                })
               }else{
                 ddUtils.showToast({
                   title: "通过成功"
                 });
+                this.setData({
+                  isLoading: false
+                })
                 ddUtils.navigateBack();
               }
+            },
+            fail:res => {
+              this.setData({
+                isLoading: false
+              })
             }
           })
         }else{
@@ -129,7 +144,15 @@ Component({
               ddUtils.showToast({
                 title: "拒绝成功"
               });
+              this.setData({
+                isLoading: false
+              })
               ddUtils.navigateBack();
+            },
+            fail:res => {
+              this.setData({
+                isLoading: false
+              })
             }
           })
         }

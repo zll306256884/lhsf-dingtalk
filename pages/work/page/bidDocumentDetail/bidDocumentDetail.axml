@@ -90,7 +90,7 @@
   </view>
 
   <!-- 有参数才显示 -->
-  <view a:if="{{examineId && approvalType === '1'}}" style="position:fixed;bottom:18rpx;width:100%">
+  <view a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2)}}" style="position:fixed;bottom:18rpx;width:100%">
     <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}"></submit-opinion-popup>
   </view>
 </view>

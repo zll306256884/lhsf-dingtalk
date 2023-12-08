@@ -122,17 +122,17 @@ Page({
         buttonList = menuList[0].subList[0].buttonList
       }
     }
-    console.log(buttonList)
-    let list = this.data.iconList
-    let listList = []
-    list.forEach(e => {
-      if( buttonList.find(k => k.optKey === e.showType)){
-        listList.push(e)
-      }
-    })
-    this.setData({
-      iconList: listList
-    })
+    // console.log(buttonList)
+    // let list = this.data.iconList
+    // let listList = []
+    // list.forEach(e => {
+    //   if( buttonList.find(k => k.optKey === e.showType)){
+    //     listList.push(e)
+    //   }
+    // })
+    // this.setData({
+    //   iconList: listList
+    // })
   },
   onShow() {
     this.setData({
