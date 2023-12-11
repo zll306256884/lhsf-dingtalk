@@ -136,7 +136,7 @@ Component({
       let obj
       if (data2["auditUserNameList"] && data2["auditUserNameList"].length) {
         obj = {
-          operatorsName: data2["auditUserNameList"][0],
+          operatorsName: data2["auditUserNameList"].join(),
           operatorsContent: '进行审核',
           content: '',
           type: 99
