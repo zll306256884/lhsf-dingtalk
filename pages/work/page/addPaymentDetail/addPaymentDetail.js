@@ -41,9 +41,10 @@ Page({
       })
       this.getDetail(option.id)
     // }
-    if(options.account){
+    console.log(option.account);
+    if(option.account){
       let userAccount = app.globalData.userInfo.userAccount
-      let list = JSON.parse(options.account)
+      let list = JSON.parse(option.account)
       list.forEach(e => {
         if(e === userAccount){
           this.setData({
