@@ -44,7 +44,6 @@ Component({
   onError(e) {},
   methods: {
     getDate() {
-      console.log("this.data.selectedStaff",this.data.selectedStaff);
       request.doPostRequest({
         url: config.API_OA_COMPANY_STAFF_LIST,
         data: {},
@@ -212,7 +211,7 @@ Component({
       if (this._isShowDialog()) return;
       this.setData({
         showDialog: true,
-        selectedStaff: defaultList
+        selectedStaff: defaultList || []
       });
       this.chooseList = [];
       this.getDate()
