@@ -16,9 +16,9 @@
     </view>
     <view class="flex f-align-center box-sizing-box nav-back-home" style="height: {{navbarHeight}}px;"  a:if="{{navbarData.showNavbarBackHome}}"
     onTap="_bindNavBackHome">
-    <image class="icon-back"
-        style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"
-        src="/assets/images/icon-work-default.png">
+    <image class="icon-back-home"
+        style="{{utils.isEmpty(navbarData.backHomeWidth) ? '' : 'width:' + navbarData.backHomeWidth + 'px'}};{{utils.isEmpty(navbarData.backHomeHeight) ? '' : 'height:' + navbarData.backHomeHeight + 'px'}};"
+        src="/assets/images/common/back-home.png">
     </image>
 </view>
 </view>

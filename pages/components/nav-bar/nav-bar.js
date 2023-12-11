@@ -21,7 +21,9 @@ Component({
         noPlaceholder: false, //导航栏不占顶部位置
         isCatchtap: false, //catch tap by navgationbar back
         backWidth: 16,
-        backHeight: 16
+        backHeight: 16,
+        backHomeWidth: 44,
+        backHomeHeight: 32
     },
         _isNavClick: false, //防止返回按钮快速点击
     },
