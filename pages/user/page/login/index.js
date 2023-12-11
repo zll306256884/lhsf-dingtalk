@@ -10,6 +10,7 @@ Page({
         isLoading:false,
         navbarData: {
             title: "授权登录",
+            showNavbarBackHome:false,
         },
     },
 
