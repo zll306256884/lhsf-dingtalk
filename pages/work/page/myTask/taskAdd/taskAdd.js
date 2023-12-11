@@ -129,7 +129,14 @@ Page({
     });
   },
   cancel() {
-    ddUtils.navigateBack();
+    ddUtils.showModal({
+      content: "确认取消吗?",
+      success: res => {
+        if (res.confirm) {
+        ddUtils.navigateBack()
+        }
+      }
+    });
   },
   getInfo(id) {
     request.doPostRequest({
