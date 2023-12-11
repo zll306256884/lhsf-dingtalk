@@ -1,7 +1,4 @@
-import {
-  isEmptyArray,
-  isEqual
-} from "../../../../utils/utils";
+import { isEmptyArray, isEqual} from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
 import config from "../../../../utils/config";
 import request from "../../../../utils/request";
@@ -51,7 +48,6 @@ Component({
           let list = res.data || [];
           list[0].isCheck = true;
           if (!isEmptyArray(list)){
-            console.log("？？",this.ergodic(list, this.data.selectedStaff));
             this.setData({
               dataList:!isEmptyArray(this.data.selectedStaff)? this.ergodic(list, this.data.selectedStaff):list
             });
@@ -217,10 +213,12 @@ Component({
       this.getDate()
     },
     ergodic(list, selected) {
-      return list.map(item => {
+      list.map(item => {
         if (item.organizeList && item.organizeList.length !== 0) {
-          this.ergodic(item.organizeList, selected);
+        item.organizeList= this.ergodic(item.organizeList, selected)
         }
+      })
+      list.map(item => {
         if (item.staffList && item.staffList.length !== 0) {
           return item.staffList.map(s => {
             selected.map(sed => {
@@ -237,7 +235,9 @@ Component({
         } else {
           return item;
         }
+    
       });
+      return list
     },
 
     //hide modal dialog
