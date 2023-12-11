@@ -8,7 +8,7 @@
 }
 
 .nav-wrap .nav-title {
-    max-width: 250px;
+    max-width: 210px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -16,8 +16,8 @@
     font-size: 18px;
     font-weight: bold;
     position: absolute;
-    left: 51px;
-    right: 51px;
+    left: 40px;
+    right: 40px;
     bottom: 0px;
 }
 
@@ -35,7 +35,12 @@
     position: absolute;
     left: 0px;
     bottom: 0px;
-    z-index: 100000;
+}
+.nav-wrap .nav-back-home {
+  padding: 0 15px;
+  position: absolute;
+  right: 90px;
+  bottom: 0px;
 }
 
 .nav-back .icon-back {

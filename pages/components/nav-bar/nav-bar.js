@@ -82,6 +82,11 @@ Component({
                     delta: 1
                 });
             }
+        },
+        _bindNavBackHome: function (e) {
+          ddUtils.reLaunch({
+            url: `/pages/work/index`
+          });
         }
     }
 })

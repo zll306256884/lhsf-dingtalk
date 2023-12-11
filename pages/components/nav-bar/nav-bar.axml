@@ -4,15 +4,22 @@
 <view class="box-sizing-box nav-wrap"
     style="height: {{navbarHeight + statusBarHeight}}px; {{navbarData.noBackgroundColor ? 'background: none' : utils.isEmpty(navbarData.navBackgroundColor) ? 'background-color: white' : 'background-color:' + navbarData.navBackgroundColor}};">
     <view class="flex f-align-center box-sizing-box nav-back" style="height: {{navbarHeight}}px;"
-        a:if="{{navbarData.showNavbarBack}}" catchtap="_bindNavBack">
+        a:if="{{navbarData.showNavbarBack}}" onTap="_bindNavBack">
         <image class="icon-back"
             style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"
-            src="{{utils.isEmpty(navbarData.navBackRes) ? '/assets/images/arrow-left.png' : navbarData.navBackRes}}">
+            src="{{utils.isEmpty(navbarData.navBackRes)? '/assets/images/arrow-left.png' : navbarData.navBackRes}}">
         </image>
     </view>
     <view class="nav-title {{navbarData.titleLeft ? '' : 'center'}} {{navbarData.hideNavbarBack ? 'active' : ''}}"
         style="height: {{navbarHeight}}px; line-height: {{navbarHeight}}px; {{utils.isEmpty(navbarData.titleColor) ? '' : 'color:' + navbarData.titleColor}}">
         {{navbarData.title}}
     </view>
+    <view class="flex f-align-center box-sizing-box nav-back-home" style="height: {{navbarHeight}}px;"
+    onTap="_bindNavBackHome">
+    <image class="icon-back"
+        style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"
+        src="/assets/images/icon-work-default.png">
+    </image>
+</view>
 </view>
 <view style="height: {{navbarHeight + statusBarHeight}}px;" a:if="{{navbarData.noPlaceholder ? false : true}}"></view>

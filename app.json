@@ -50,7 +50,7 @@
   "window": {
     "defaultTitle": "",
     "transparentTitle": "always",
-    "titlePenetrate": "NO",
+    "titlePenetrate": "YES",
     "backgroundTextStyle": "light",
     "backgroundColor": "#fff",
     "navigationBarBackgroundColor": "#ff9700",
