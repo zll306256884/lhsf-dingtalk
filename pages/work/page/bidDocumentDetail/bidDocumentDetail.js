@@ -46,6 +46,7 @@ Page({
       })
       // this.getDetail(options.id)
     }
+    console.log(options.account);
     if(options.account){
       let userAccount = app.globalData.userInfo.userAccount
       let list = JSON.parse(options.account)
