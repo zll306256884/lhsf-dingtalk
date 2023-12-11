@@ -12,11 +12,12 @@ Component({
       navbarData: {
         title: "小程序",
         showNavbarBack:false,
+        showNavbarBackHome:true,
         titleColor: "#333333",
         navBackgroundColor: "white",
         navBackRes: "/assets/images/arrow-left.png",
         noBackgroundColor: false,
-        titleLeft: false,
+        titleLeft: true,
         noPlaceholder: false, //导航栏不占顶部位置
         isCatchtap: false, //catch tap by navgationbar back
         backWidth: 16,

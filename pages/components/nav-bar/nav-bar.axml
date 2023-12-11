@@ -14,7 +14,7 @@
         style="height: {{navbarHeight}}px; line-height: {{navbarHeight}}px; {{utils.isEmpty(navbarData.titleColor) ? '' : 'color:' + navbarData.titleColor}}">
         {{navbarData.title}}
     </view>
-    <view class="flex f-align-center box-sizing-box nav-back-home" style="height: {{navbarHeight}}px;"
+    <view class="flex f-align-center box-sizing-box nav-back-home" style="height: {{navbarHeight}}px;"  a:if="{{navbarData.showNavbarBackHome}}"
     onTap="_bindNavBackHome">
     <image class="icon-back"
         style="{{utils.isEmpty(navbarData.backWidth) ? '' : 'width:' + navbarData.backWidth + 'px'}};{{utils.isEmpty(navbarData.backHeight) ? '' : 'height:' + navbarData.backHeight + 'px'}};"
