@@ -53,7 +53,7 @@
       <!-- </view> -->
       </list-item>
       <!-- <submit-opinion-popup a:if="{{status!=='2'&&infoData.approvalStatus === 2&&examineId&&isCurrentAudit}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}"></submit-opinion-popup> -->
-            <submit-opinion-popup a:if="{{showType==='1'||(infoData.approvalStatus === 2&&examineId&&isCurrentAudit)}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}"></submit-opinion-popup>
+            <submit-opinion-popup a:if="{{(examineId &&showType==='1')||(infoData.approvalStatus === 2&&examineId&&isCurrentAudit)}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}"></submit-opinion-popup>
     </view>
   </view>
   
