@@ -179,7 +179,8 @@
       lon = 1/(nf*Math.cos(bf))*Y -(1/(6*nf*nf*nf*Math.cos(bf)))*(1+2*tf*tf +n2)*Y*Y*Y + (1/(120*nf*nf*nf*nf*nf*Math.cos(bf)))*(5+28*tf*tf+24*tf*tf*tf*tf)*Y*Y*Y*Y*Y;
       result[0] = L0 + lon / iPI;
       result[1] = lat / iPI;
-      return result
+      return { lng: result[0], lat: result[1]}
+      // return result
   }
 
     module.exports = {wgs84togcj02,Gauss_to_LogLat}

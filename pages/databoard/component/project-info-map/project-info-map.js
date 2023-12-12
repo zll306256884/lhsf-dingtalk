@@ -48,7 +48,7 @@ Component({
         url: projectService.API_SELECTPROJECT_INFO_BYID,
         data:{id},
         success: res => {
-          const data={...res.data,xy:map.wgs84togcj02(res.data.coorX,res.data.coorY)}
+          const data={...res.data,xy:map.Gauss_to_LogLat(res.data.coorX,res.data.coorY)}
           this.setData({
             info:data
           })
