@@ -176,7 +176,7 @@ Component({
             return{
               ...item,
               index:index,
-              xy: map.Gauss_to_LogLat(item.cityCapitalX, item.cityCapitalY),
+              xy: map.Gauss_to_LogLat(item.cityCapitalY,item.cityCapitalX),
               mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
             }
           })

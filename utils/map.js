@@ -179,8 +179,20 @@
       lon = 1/(nf*Math.cos(bf))*Y -(1/(6*nf*nf*nf*Math.cos(bf)))*(1+2*tf*tf +n2)*Y*Y*Y + (1/(120*nf*nf*nf*nf*nf*Math.cos(bf)))*(5+28*tf*tf+24*tf*tf*tf*tf)*Y*Y*Y*Y*Y;
       result[0] = L0 + lon / iPI;
       result[1] = lat / iPI;
-      return { lng: result[0], lat: result[1]}
-      // return result
+      // wgs84togcj02(result[0], result[1])
+      // return { lng: result[0], lat: result[1]}
+      
+            let dlat = transformlat(result[0] - 105.0, result[1] - 35.0)
+            let dlng = transformlng(result[0] - 105.0, result[1] - 35.0)
+            let radlat = (result[1] / 180.0) * PI
+            let magic = Math.sin(radlat)
+            magic = 1 - ee * magic * magic
+            let sqrtmagic = Math.sqrt(magic)
+            dlat = (dlat * 180.0) / (((a * (1 - ee)) / (magic * sqrtmagic)) * PI)
+            dlng = (dlng * 180.0) / ((a / sqrtmagic) * Math.cos(radlat) * PI)
+            let mglat = Number(result[1]) + Number(dlat)
+            let mglng = Number(result[0]) + Number(dlng)
+            return { lng: mglng, lat: mglat }
   }
 
     module.exports = {wgs84togcj02,Gauss_to_LogLat}
