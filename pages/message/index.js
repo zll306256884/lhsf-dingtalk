@@ -191,7 +191,7 @@ _bindErrorRefreshTap: function (e) {
           });
         }else{
           ddUtils.navigateTo({
-            url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${item.keyId}`
+            url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${JSON.parse(item.urlParameter).id}`
           });
         }   
         break;
