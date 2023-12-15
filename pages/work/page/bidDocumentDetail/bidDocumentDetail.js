@@ -25,8 +25,10 @@ Page({
     examineId: null,
     approvalType: null,
     deleteId: null,
-    isCurrentAudit: false
+    isCurrentAudit: false,
+    dingTalkFormList: [],
   },
+  
   onLoad(options) {
     if(options.examineId){//审批
       this.setData({
@@ -76,6 +78,15 @@ Page({
         console.log(res.data)
         this.setData({
           detailInfo: res.data
+        })
+        let dingTalkFormList = [
+          { '事项类型': '招标文件会签' },
+          { '所属项目': res.data.projectName },
+          { '合同名称': res.data.tenderName },
+          { '招标标的额': res.data.tenderAmount+'万元' }
+        ]
+        this.setData({
+          dingTalkFormList
         })
         // setTimeout(() => {
         //   this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 

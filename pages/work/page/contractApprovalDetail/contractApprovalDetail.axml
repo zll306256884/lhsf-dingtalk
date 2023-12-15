@@ -127,7 +127,7 @@
 
   <!-- 有参数才显示 -->
   <view a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
-    <submit-opinion-popup keyId="" examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}"></submit-opinion-popup>
+    <submit-opinion-popup keyId="" examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}"></submit-opinion-popup>
   </view>
 </view>
 <block a:if="{{ current === 1 }}">

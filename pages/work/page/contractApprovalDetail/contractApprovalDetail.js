@@ -27,7 +27,8 @@ Page({
     approvalType: null,
     deleteId: null,
     supplementList: [],
-    isCurrentAudit: false
+    isCurrentAudit: false,
+    dingTalkFormList: [],
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -114,6 +115,15 @@ Page({
         this.setData({
           detailInfo: res.data,
           list
+        })
+        let dingTalkFormList = [
+          { '事项类型': '合同审批流程' },
+          { '所属项目': res.data.projectName },
+          { '合同名称': res.data.contractName },
+          { '合同金额': res.data.contractAmount+'万元' }
+        ]
+        this.setData({
+          dingTalkFormList
         })
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 

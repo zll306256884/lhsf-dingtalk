@@ -395,7 +395,7 @@ Page({
     let params = this.form.getFieldsValue()
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
     params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
-
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
     if(this.data.contractId){
       params.id = this.data.contractId
       params.urlParameter = JSON.stringify({id: this.data.contractId})
@@ -457,6 +457,7 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
     params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
 
     params.unitPartyName  = this.data.unitPartyName 
     params.countersignLeader = this.data.countersignLeader
