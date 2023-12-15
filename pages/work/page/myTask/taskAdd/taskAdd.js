@@ -216,6 +216,7 @@ Page({
     values.projectName = this.data.projectName;
     values.vueUrl = 'MyTaskDetail'
     values.singleUrl="/pages/work/page/myTask/taskInfo/taskInfo"
+    values.pcUrl=config.BASE_API_HOST + "/#/myTask/detail"
     let url
     if(this.data.currentId){
       values.id = this.data.currentId

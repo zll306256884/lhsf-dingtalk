@@ -87,7 +87,11 @@ Page({
           if (res.confirm) {
             request.doPostRequest({
               url:workServer.API_FINISH_TASK,
-              data: {id:this.data.currentId,singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo'},
+              data: {
+                id:this.data.currentId,
+                singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo',
+                pcUrl:config.BASE_API_HOST + "/#/myTask/detail"
+              },
               success: res => {
                 if (res.code===1000) {
                   ddUtils.showToast({
@@ -177,7 +181,8 @@ Page({
     const params={
       executeUserId: e.currentTarget.dataset.item.executeUserId,
       id: e.currentTarget.dataset.item.id,
-      singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo'
+      singleUrl: '/pages/work/page/myTask/taskInfo/taskInfo',
+      pcUrl:config.BASE_API_HOST + "/#/myTask/detail"
     }
     request.doPostRequest({
       url: workServer.API_REMIND_TASK,

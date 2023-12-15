@@ -579,7 +579,7 @@ Page({
   selectTaskInfo(e) {
   
     ddUtils.navigateTo({
-      url: `/pages/work/page/myTask/taskInfo/taskInfo??id=${e.currentTarget.dataset.item.id}`
+      url: `/pages/work/page/myTask/taskInfo/taskInfo?id=${e.currentTarget.dataset.item.id}`
     });
   },
   getCount() {
