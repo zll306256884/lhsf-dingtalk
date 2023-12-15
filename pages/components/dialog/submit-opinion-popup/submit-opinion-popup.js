@@ -18,7 +18,8 @@ Component({
     examineId: '',
     keyId:'', //审批需要用的keyId
     // onApprovalOperate: function (reason, isAgree) { },
-    specialUserIds: ''
+    specialUserIds: '',
+    dingTalkFormList: []
   },
   uploadApproval: null,
   didMount() {
@@ -106,6 +107,7 @@ Component({
         let params = this.data.paramsData
         params.content = reason
         params.annexesUrl = JSON.stringify(workAuditFile)
+        params.dingTalkFormList = this.props.dingTalkFormList
         if (this.props.specialUserIds) {
           params.auditUserIdList = this.props.specialUserIds.split(',')
         }
@@ -185,6 +187,7 @@ Component({
           form.projectId = res.data.projectId
           form.projectName = res.data.projectName
           form.singleUrl = res.data.singleUrl
+          form.pcUrl = res.data.pcUrl
           this.setData({
             paramsData: form
           })

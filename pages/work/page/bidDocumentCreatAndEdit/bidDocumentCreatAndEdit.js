@@ -266,6 +266,7 @@ Page({
 
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'
     params.projectName = this.data.projectName
     params.tenderingAgencyName = this.data.tenderingAgencyName
     params.countersignLeader = this.data.countersignLeader
@@ -294,6 +295,7 @@ Page({
     }
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'
     params.projectName = this.data.projectName
     // params.urlParameter = JSON.stringify({}),
     params.tenderingAgencyName = this.data.tenderingAgencyName
