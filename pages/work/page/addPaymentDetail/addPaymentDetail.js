@@ -121,11 +121,11 @@ Page({
           infoData: res.data
         })
         let dingTalkFormList = [
-          { '事项类型：': '款项支付' },
-        { '所属项目：': res.data.projectName },
-        { '合同名称：': res.data.contractName },
-        { '支付金额：': res.data.payAmount + '万元' },
-        { '收款单位：': res.data.receiverUnit }
+          { key:'事项类型：', value: '款项支付' },
+          { key:'所属项目：', value: res.data.projectName },
+          { key:'合同名称：', value: res.data.contractName },
+          { key:'支付金额：', value: res.data.payAmount + '万元' },
+          { key:'收款单位：', value: res.data.receiverUnit }
         ]
         this.setData({
           dingTalkFormList

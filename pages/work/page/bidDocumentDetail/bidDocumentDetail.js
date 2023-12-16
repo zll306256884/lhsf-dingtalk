@@ -80,10 +80,10 @@ Page({
           detailInfo: res.data
         })
         let dingTalkFormList = [
-          { '事项类型：': '招标文件会签' },
-          { '所属项目：': res.data.projectName },
-          { '合同名称：': res.data.tenderName },
-          { '招标标的额：': res.data.tenderAmount+'万元' }
+          { key:'事项类型：', value:'招标文件会签' },
+          { key:'所属项目：', value: res.data.projectName },
+          { key:'合同名称：', value: res.data.tenderName },
+          { key:'招标标的额：', value: res.data.tenderAmount+'万元' }
         ]
         this.setData({
           dingTalkFormList
