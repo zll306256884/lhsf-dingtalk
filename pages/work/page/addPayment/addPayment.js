@@ -329,7 +329,8 @@ async submit(){
  params.id= this.data.id?this.data.id:''
  params.applicationTime=params.applicationTime?params.applicationTime+ ' 00:00:00':'',
 params.vueUrl='approveMoneyPaymentDetails',
-params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
+params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
+params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]
@@ -373,7 +374,8 @@ workingStorage(){
  params.id= this.data.id?this.data.id:''
  params.applicationTime=params.applicationTime?params.applicationTime+ ' 00:00:00':'',
 params.vueUrl='approveMoneyPaymentDetails',
-params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail'
+params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
+params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
 params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
 params.countersignLeader = this.data.countersignLeader
 let temFileList=[]

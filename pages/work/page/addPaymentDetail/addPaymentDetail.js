@@ -24,7 +24,8 @@ Page({
     showType:"",
     current: 0,
     infoData: {},
-    isCurrentAudit: false
+    isCurrentAudit: false,
+    dingTalkFormList: [],
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -118,6 +119,16 @@ Page({
         console.log(res.data)
         this.setData({
           infoData: res.data
+        })
+        let dingTalkFormList = [
+          { '事项类型': '款项支付' },
+        { '所属项目': res.data.projectName },
+        { '合同名称': res.data.contractName },
+        { '支付金额': res.data.payAmount + '万元' },
+        { '收款单位': res.data.receiverUnit }
+        ]
+        this.setData({
+          dingTalkFormList
         })
         const files= res.data.investmentFileList.map((item)=>{
           return {
