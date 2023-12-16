@@ -117,10 +117,10 @@ Page({
           list
         })
         let dingTalkFormList = [
-          { '事项类型': '合同审批流程' },
-          { '所属项目': res.data.projectName },
-          { '合同名称': res.data.contractName },
-          { '合同金额': res.data.contractAmount+'万元' }
+          { '事项类型：': '合同审批流程' },
+          { '所属项目：': res.data.projectName },
+          { '合同名称：': res.data.contractName },
+          { '合同金额：': res.data.contractAmount+'万元' }
         ]
         this.setData({
           dingTalkFormList
