@@ -45,7 +45,7 @@
       <list-item className="bottom">
         <!-- <button a:if="{{status=== '3'||showType ==='3' }}" class="flex1 btn active"  catchTap="printTop">打印</button> -->
         <button a:if="{{(status=== '2'&&infoData.approvalStatus === 2)&&(type!=='3')}}" class="flex1 btn active"  catchTap="withdrawApplication">撤回申请</button>
-        <view a:if="{{(infoData.approvalStatus === 1||infoData.approvalStatus === 3)}}" class="flex-display flex-align-center btn-wrap">
+        <view a:if="{{(infoData.approvalStatus === 1||infoData.approvalStatus === 3)&&infoData.createName===app.globalData.userInfo.userName}}" class="flex-display flex-align-center btn-wrap">
           <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
           <button class="flex1 btn active" catchTap="editTap">编辑</button>
       </view>
