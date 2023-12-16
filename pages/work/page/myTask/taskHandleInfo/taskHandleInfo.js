@@ -2,6 +2,8 @@ import request from "../../../../../utils/request"
 import workServer from "../../../../../server/workServer/index";
 import ddUtils from "../../../../../utils/ddUtils"
 import { Form } from "antd-mini/es/Form/form";
+import config from "../../../../../utils/config";
+
 
 Page({
   form: new Form({
