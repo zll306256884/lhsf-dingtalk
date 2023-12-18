@@ -40,7 +40,7 @@ Page({
         projectId:option.projectId,
         showType:option.showType || ''
       })
-      this.getDetail(option.id)
+      // this.getDetail(option.id)
     // }
     console.log(option.account);
     if(option.account){
