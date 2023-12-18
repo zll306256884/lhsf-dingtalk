@@ -149,8 +149,8 @@ Component({
     // 获取监控列表
     getFileList: function () {
       let param = {
-        // "projectId": this.props.projectId,
-        "projectId": '12019020004',
+        "projectId": this.props.projectId,
+        // "projectId": '12019020004',
         'type': 1 //1 项目监控 2数字监理
       }
       return new Promise((resolve, reject) => {
