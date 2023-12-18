@@ -17,7 +17,7 @@ Component({
   props: {
     examineId: '',
     keyId:'', //审批需要用的keyId
-    // onApprovalOperate: function (reason, isAgree) { },
+    onApprovalOperate: function (reason, isAgree) { },
     specialUserIds: '',
     dingTalkFormList: []
   },
@@ -58,6 +58,7 @@ Component({
     bindAgreeTap: function (e) {
       console.log('通过')
       this.showSureDialog(true);
+      
     },
 
     // saveDialogApprovalManageSure: function (ref) {
@@ -129,6 +130,7 @@ Component({
                 ddUtils.showToast({
                   title: "通过成功"
                 });
+                 this.props.onApprovalOperate(true);
                 this.setData({
                   isLoading: false
                 })
@@ -151,6 +153,7 @@ Component({
               ddUtils.showToast({
                 title: "拒绝成功"
               });
+              this.props.onApprovalOperate(true);
               this.setData({
                 isLoading: false
               })

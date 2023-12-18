@@ -80,6 +80,9 @@ Page({
         break;
     }
   },
+  bindApprovalOperateTap(){
+    this.getDetail(this.data.id)
+  },
   // // 打印事件
   // printTop(){
   //   ddUtils.showToast({
