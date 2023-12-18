@@ -30,7 +30,6 @@ Page({
   },
   uploadContractImage: null,
   onLoad(option) {
-    console.log(option,111111111);
     // if (option.id) {
       this.setData({
         examineId:option.examineId,
@@ -68,7 +67,6 @@ Page({
   },
   // 切换我的请求tab
   onQueryChange(e) {
-    console.log(e);
     this.setData({
       current: e
     })
@@ -95,7 +93,6 @@ Page({
       url: workService.API_JFLOWAUDIT_SELET_INFO,
       data: { keyId: this.data.id },
       success: res => {
-        console.log(res.data)
         let params = {
           account: res.data.account,
           no: res.data.jflowNo,
@@ -120,7 +117,6 @@ Page({
       url: confing.API_PAY_DETAIL_POST,
       data: { id: tenderId },
       success: res => {
-        console.log(res.data)
         this.setData({
           infoData: res.data
         })
