@@ -10,7 +10,8 @@ Page({
   infoData:{},
   id:'',
   keyId:'',
-  type:true
+  type:true,
+  dingTalkFormList: [],
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -38,6 +39,16 @@ Page({
         console.log(res.data)
         this.setData({
           infoData: res.data
+        })
+        let dingTalkFormList = [
+          { key:'事项类型：', value: '工程联系单' },
+          { key:'所属项目：', value: res.data.projectName },
+          { key:'合同名称：', value: res.data.contractName },
+          { key:'合同金额', value: res.data.contractAmount + '万元' },
+          { key:'变更金额', value: res.data.changeAmount + '万元' },
+        ]
+        this.setData({
+          dingTalkFormList
         })
         const files= res.data.investmentFileList.map((item)=>{
           return {

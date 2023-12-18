@@ -325,6 +325,7 @@ async submit(){
   params.constructionUnitReportDate=this.data.constructionUnitReportDate?this.data.constructionUnitReportDate+ ' 00:00:00':''
   params.vueUrl='approveAlterationAccount,editAlterationContent',
   params.singleUrl = '/pages/work/page/alterationRegisterDetail/alterationRegisterDetail'
+  params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/alterationAccount'
   params.person = this.data.person
   params.id= this.data.id?this.data.id:''
   let temFileList=[]
