@@ -24,7 +24,7 @@ Page({
     // }
     this.setData({
       webViewUrl: `${config.BASE_API_HOST}/#/share/monitor?cameraIndexCode=${option.cameraIndexCode}`
-      // webViewUrl: `http://192.168.8.81:8080/#/share/monitor?cameraIndexCode=${encodeURIComponent(option.cameraIndexCode)}`
+      //  webViewUrl: `http://192.168.8.81:8080/#/share/monitor?cameraIndexCode=${encodeURIComponent(option.cameraIndexCode)}`
     })
     this.webViewContext = dd.createWebViewContext('web-view-2')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})

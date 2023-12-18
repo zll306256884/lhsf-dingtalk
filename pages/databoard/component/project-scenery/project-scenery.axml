@@ -5,12 +5,13 @@
       <view class="part flex f-column" a:for="{{fileData}}">
         <block>
           <view class="canvasNav">
-            <block a:if="{{item.fileType===1}}">
+            <!-- <block a:if="{{item.fileType===1}}">
               <video class="videoShow" src="{{item.url}}"></video>
-            </block>
-            <block a:else>
+            </block> -->
+            <block>
               <!-- aspectFit scaleToFill -->
-              <image catchTap="_bindFileTap" data-obj="{{item}}" class="imgShow" mode="aspectFit" src="{{item.image}}" />
+              <image a:if="{{item.image}}" catchTap="_bindFileTap" data-obj="{{item}}" class="imgShow" mode="aspectFit" src="{{item.image}}" />
+              <image a:else catchTap="_bindFileTap" data-obj="{{item}}" class="imgShow" mode="aspectFit" src="../../../../assets/images/progress/default.png" />
             </block>
           </view>
           <view class="bottomNav flex f-between">
