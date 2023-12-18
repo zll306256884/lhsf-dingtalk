@@ -67,6 +67,10 @@ Page({
     this.getDetail(this.data.contractId)
     this.getMinContract()
   },
+  bindApprovalOperateTap(data){
+    console.log(data)
+    this.getDetail(this.data.contractId)
+  },
   onNavTabChange(e){
     console.log(e);
     this.setData({

@@ -91,7 +91,7 @@
 
   <!-- 有参数才显示 -->
   <view a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
-    <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}"></submit-opinion-popup>
+    <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
   </view>
 </view>
 <block a:else>

@@ -65,6 +65,10 @@ Page({
   onShow(){
     this.getDetail(this.data.tenderId)
   },
+  bindApprovalOperateTap(data){
+    console.log(data)
+    this.getDetail(this.data.tenderId)
+  },
   onNavTabChange(e){
     this.setData({
       current: e
