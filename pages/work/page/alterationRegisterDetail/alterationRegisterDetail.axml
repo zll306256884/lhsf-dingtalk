@@ -67,7 +67,7 @@
   <view style="margin-top:20rpx" class="bottom-shadow">
     <list-item extraBrief="{{infoData.person_dictText}}">抄送人员</list-item>
   </view>
-  <view a:if="{{type ===true&&app.globalData.userInfo.userId === infoData.createBy}}" class="buttons flex f-between">
+  <view a:if="{{type ===true&&userId === infoData.createBy}}" class="buttons flex f-between">
     <button class="flex1 btn" catchTap="bindCancelTap">删除</button>
     <button class="flex1 btn active" catchTap="editTap">编辑</button>
 </view>

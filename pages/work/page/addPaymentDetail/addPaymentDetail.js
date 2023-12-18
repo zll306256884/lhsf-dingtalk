@@ -21,6 +21,7 @@ Page({
     type:'',
     status:"",
     projectId:'',
+    userId:'',
     showType:"",
     current: 0,
     infoData: {},
@@ -55,6 +56,9 @@ Page({
       })
       console.log(this.data.isCurrentAudit)
     }
+    this.setData({
+      userId:app.globalData.userInfo.userId
+    })
   },
   onSaveUploadContractImgRef(ref) {
     this.uploadContractImage = ref

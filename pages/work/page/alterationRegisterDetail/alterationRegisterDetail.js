@@ -8,6 +8,7 @@ Page({
       title: "工程联系单",
   },
   infoData:{},
+  userId:'',
   id:'',
   keyId:'',
   type:true,
@@ -22,8 +23,10 @@ Page({
     this.setData({
       id:option.id,
       type:option.type || true,
-      keyId:option.keyId
+      keyId:option.keyId,
+      userId:app.globalData.userInfo.userId
     })
+    
   },
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
