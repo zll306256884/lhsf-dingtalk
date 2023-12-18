@@ -22,4 +22,13 @@ module.exports = {
   // 通过id查询电话id
   API_CALL_CODE: API_HOST + "/platform/user/selectUserDetailById",
 
+  // 查询监控
+  API_FILE_INFO: API_HOST + "/integratedService/projectHkVedioFileInfo/queryProjectVedioFileInfo",
+
+    // 获取监控信息
+    API_INTER_FACE_INFO: API_HOST + "/integratedService/projectHkVedioFileInfo/interfaceInfo",
+    // 获取监控url
+    API_INTER_URL: API_HOST + "/integratedService/projectHkVedioFileInfo/queryProjectVedioByProtocolInfo",
+
+
 }
