@@ -13,7 +13,8 @@ Component({
     navbarData: {
       title: "项目实景",
     },
-    listData: [],
+    fileData:[],//监控列表数据
+    listData: [],//静态列表数据
     fileIdList: [],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
@@ -29,6 +30,7 @@ Component({
   //此时页面已经渲染，通常在这时请求服务端数据。
   didMount() {
     this.getList()
+    this.getFileList()
   },
   //组件更新完毕时触发
   //每次组件数据变更的时候都会调用。
@@ -119,7 +121,7 @@ Component({
       })
 
     },
-    // 
+    // 获取预览图片的数据
     _bindPreviewTap(e) {
       console.log(e)
       let index = e.currentTarget.dataset.index;
@@ -144,6 +146,114 @@ Component({
         // urls: urlList
       });
     },
+    // 获取监控列表
+    getFileList: function () {
+      let param = {
+        // "projectId": this.props.projectId,
+        "projectId": '12019020004',
+        'type': 1 //1 项目监控 2数字监理
+      }
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_FILE_INFO,
+          showLoading: true,
+          data: param,
+          success: res => {
+            console.log('res.data-fileData', res.data)
+            // var list = []
+            // res.data.map((item) => {
+            //   list.push(item.fileIdList[0])
+            // })
+            // console.log('fileIdList', list)
+            this.setData({
+              fileData: res.data
+              // fileIdList: list
+            });
+
+            resolve(res.data)
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    },
+    // 点击监控的
+    _bindFileTap(e){
+      console.log('我是监控的数据')
+      // console.log(e)
+      let obj = e.currentTarget.dataset.obj;
+      console.log(obj)
+      // return
+      // let projectId = obj.projectId
+      let cameraIndexCode = obj.cameraIndexCode
+      dd.navigateTo({
+        // url: '/pages/databoard/page/preview-page/preview-page?projectId=' +  obj.projectId + '&cameraIndexCode=' + cameraIndexCode,
+        url: '/pages/databoard/page/preview-page/preview-page?cameraIndexCode=' + cameraIndexCode,
+      })
+      return
+
+      var param = {
+        cameraIndexCode: obj.cameraIndexCode,
+        // 'cameraIndexCode': 'c29769a70edf42dfaa6327eea5e5ebe3',
+        urlType: 1 //1预览;2回放;3对讲
+      }
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_INTER_URL,
+          showLoading: true,
+          data: param,
+          success: res => {
+            console.log('res.data', res.data)
+            dd.navigateTo({
+              // url: '/pages/databoard/page/preview-page/preview-page?projectId=' +  obj.projectId + '&cameraIndexCode=' + cameraIndexCode,
+              url: '/pages/databoard/page/preview-page/preview-page?url=' + res.data.wsUrl,
+            })
+
+            resolve(res.data)
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+
+     
+
+    },
+    // 获取监控视频
     // 
+     getUrl: function () {
+      let param = {
+        "projectId": this.props.projectId,
+        // "projectId": '12019020004',
+        "type": 9 //	9现场进度10效果设计11模型12红线图
+      }
+      return new Promise((resolve, reject) => {
+        request.doPostRequest({
+          url: progressServer.API_INTER_URL,
+          showLoading: true,
+          data: param,
+          success: res => {
+            console.log('res.data', res.data)
+            // var list = []
+            // res.data.map((item) => {
+            //   list.push(item.fileIdList[0])
+            // })
+            // console.log('fileIdList', list)
+            this.setData({
+              listData: res.data
+              // fileIdList: list
+            });
+
+            resolve(res.data)
+          },
+          fail: res => {
+            reject(res)
+          }
+        });
+      })
+    },
+  
   },
 });

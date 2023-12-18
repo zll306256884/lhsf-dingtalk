@@ -1,5 +1,27 @@
 <view id="projectScenery" class="box-sizing-box">
   <view class="listArr">
+    <!-- 监控的list -->
+    <block a:if="{{fileData.length}}">
+      <view class="part flex f-column" a:for="{{fileData}}">
+        <block>
+          <view class="canvasNav">
+            <block a:if="{{item.fileType===1}}">
+              <video class="videoShow" src="{{item.url}}"></video>
+            </block>
+            <block a:else>
+              <!-- aspectFit scaleToFill -->
+              <image catchTap="_bindFileTap" data-obj="{{item}}" class="imgShow" mode="aspectFit" src="{{item.image}}" />
+            </block>
+          </view>
+          <view class="bottomNav flex f-between">
+            <view class="name single-line">{{item.name|| '-'}}</view>
+            <view class="name online"  a:if="{{item.online}}">在线</view>
+          </view>
+          <view class="time" a:if="{{false}}">{{item.createTime|| '-'}}</view>
+        </block>
+      </view>
+    </block>
+    <!-- 现场实景的list -->
     <block a:if="{{listData.length}}">
       <view class="part flex f-column" a:for="{{listData}}">
         <block>
@@ -21,7 +43,7 @@
         </block>
       </view>
     </block>
-    <block a:else>
+    <block a:if="{{listData.length===0&&fileData.length==0}}">
       <empty title="" message="" image="/assets/images/common/empty.png" />
     </block>
     
@@ -31,4 +53,5 @@
     <image class="mayfly" src="/assets/images/progress/callpic.png" />
   </view>
   <!--  -->
+  
 </view>
