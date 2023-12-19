@@ -16,14 +16,19 @@
           </view>
           <view class="bottomNav flex f-between">
             <view class="name single-line">{{item.name|| '-'}}</view>
-            <view class="name online"  a:if="{{item.online}}">在线</view>
+            <view class="name online"  a:if="{{item.online}}">
+              <view class="greenTypeBtn">在线</view>
+            </view>
+            <view class="name online"  a:if="{{!item.online}}">
+              <view class="grayTypeBtn" style="display: inline-block;">离线</view>
+            </view>
           </view>
           <view class="time" a:if="{{false}}">{{item.createTime|| '-'}}</view>
         </block>
       </view>
     </block>
     <!-- 现场实景的list -->
-    <block a:if="{{listData.length}}">
+    <block a:if="{{fileData.length==0&&listData.length}}">
       <view class="part flex f-column" a:for="{{listData}}">
         <block>
           <view class="canvasNav">
@@ -50,7 +55,7 @@
     
   </view>
   <!--  -->
-  <view class="mayflyBox" catchTap="callIt" a:if="{{listData.length}}">
+  <view class="mayflyBox" catchTap="callIt" a:if="{{fileData.length||listData.length}}">
     <image class="mayfly" src="/assets/images/progress/callpic.png" />
   </view>
   <!--  -->
