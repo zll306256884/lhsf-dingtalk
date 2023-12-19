@@ -53,6 +53,27 @@
   font-weight: 500;
   color: #1D1D1F;
 }
+#projectScenery .listArr .bottomNav .name .greenSpot{
+  width: 12rpx;
+  height: 12rpx;
+  background: #00B42A;
+  border-radius: 50%;
+  opacity: 1;
+  display: inline-block;
+  line-height: 96rpx;
+  margin-right: 10rpx;
+}
+
+#projectScenery .listArr .bottomNav .name .graySpot{
+  width: 12rpx;
+  height: 12rpx;
+  background: #909399;
+  border-radius: 50%;
+  opacity: 1;
+  display: inline-block;
+  line-height: 96rpx;
+  margin-right: 10rpx;
+}
 
 #projectScenery .listArr .time{
   font-size: 24rpx;
