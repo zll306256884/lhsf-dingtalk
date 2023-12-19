@@ -17,10 +17,16 @@
           <view class="bottomNav flex f-between">
             <view class="name single-line">{{item.name|| '-'}}</view>
             <view class="name online"  a:if="{{item.online}}">
-              <view class="greenTypeBtn">在线</view>
+              <view class="greenTypeBtn">
+                <view class="greenSpot"></view>
+                在线
+              </view>
             </view>
             <view class="name online"  a:if="{{!item.online}}">
-              <view class="grayTypeBtn" style="display: inline-block;">离线</view>
+              <view class="grayTypeBtn" style="display: inline-block;">
+                <view class="graySpot"></view>
+                离线
+              </view>
             </view>
           </view>
           <view class="time" a:if="{{false}}">{{item.createTime|| '-'}}</view>
