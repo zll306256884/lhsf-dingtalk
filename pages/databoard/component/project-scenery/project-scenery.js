@@ -187,10 +187,17 @@ Component({
       // return
       // let projectId = obj.projectId
       let cameraIndexCode = obj.cameraIndexCode
-      dd.navigateTo({
-        // url: '/pages/databoard/page/preview-page/preview-page?projectId=' +  obj.projectId + '&cameraIndexCode=' + cameraIndexCode,
-        url: '/pages/databoard/page/preview-page/preview-page?cameraIndexCode=' + cameraIndexCode,
-      })
+      if(obj.online){
+        dd.navigateTo({
+          // url: '/pages/databoard/page/preview-page/preview-page?projectId=' +  obj.projectId + '&cameraIndexCode=' + cameraIndexCode,
+          url: '/pages/databoard/page/preview-page/preview-page?cameraIndexCode=' + cameraIndexCode,
+        })
+      }else{
+        ddUtils.showToast({
+          title: '离线状态下无法查看监控'
+        });
+
+      }
       return
 
       var param = {
