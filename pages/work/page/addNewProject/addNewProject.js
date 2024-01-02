@@ -27,6 +27,7 @@ Page({
       isOutPut: [{required: true, message: '请选择'}],
       outPutTime: [{required: true, message: '请选择'}],
       affiliatedUnitId: [{required: true, message: '请选择'}],
+      proType: [{required: true, message: '请选择'}]
     },
   }),
   data: {
@@ -41,7 +42,10 @@ Page({
       { label:'否',value:'0' },
       { label:'是',value:'1' },
     ],
-    
+    proTypeList: [
+      { label:'工程项目',value:0 },
+      { label:'非工程项目',value:1 }
+    ],
     affiliatedUnitName: '',//所属单位
     projectLeaderName: '',//项目负责人
     personId: '',

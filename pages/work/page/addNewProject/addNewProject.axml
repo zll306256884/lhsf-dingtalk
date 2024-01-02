@@ -9,6 +9,9 @@
     <form-input label="项目编号" name="proNumber" placeholder="请输入" type="text" disabled ref="handleRef" />
     <form-input label="项目名称" name="name" placeholder="请输入" type="text" ref="handleRef" />
     <form-input label="项目简称" name="projectProgram" placeholder="请输入" type="text" ref="handleRef" />
+
+    <form-picker label="项目类型" arrow name="proType" options="{{proTypeList}}" ref="handleRef" labelWidth="280rpx" />
+
     <form-picker label="是否考核项目" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
     <form-picker label="项目分类" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
     <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" disabled />
