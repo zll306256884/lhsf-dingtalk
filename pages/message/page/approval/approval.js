@@ -66,6 +66,11 @@ Page({
             selected: false,
           },
           {
+            id: "8",
+            label: '新增项目',
+            selected: false,
+          },
+          {
             id: "9",
             label: '竣工结算会签',
             selected: false,

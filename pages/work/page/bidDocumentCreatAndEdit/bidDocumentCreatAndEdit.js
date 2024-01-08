@@ -30,6 +30,8 @@ Page({
     applicationTime: formatTimeToDay(new Date()),
     tenderingAgencyOptions: [],
     executeUser: [],
+    projectLeaderId: '',
+    isShow: false
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -103,6 +105,7 @@ Page({
   bindScreenExecuteUserCallBack(data){
     console.log(data)
     this.form.setFieldValue('countersignLeader_dictText', data.map(e => e.username).toString());
+    
     // this.form.setFieldValue('countersignLeader', data.map(e => e.userId).toString());
     // this.form.getFieldValue('countersignLeader')
     this.setData({
@@ -118,9 +121,10 @@ Page({
   bindScreenQuesFromCallBack(data){
     console.log("单位", data)
     // this.form.setFieldValue('tenderingAgencyName', data.name);
+    
     this.setData({
       // tenderingAgency: data.id,
-      tenderingAgencyName: data.name
+      tenderingAgencyName: data.name,
     })
     this.form.setFieldValue('tenderingAgency', data.id);
   },
@@ -138,9 +142,13 @@ Page({
   bindChooseProjectCallBack(data){
     console.log(data)
     this.form.setFieldValue('projectId',data.id)
+    this.form.setFieldValue('projectLeader', data.projectLeaderName);
+    this.form.setFieldValue('affiliateUnit', data.affiliatedUnitName);
+    this.form.setFieldValue('projectLeaderId', data.personId);
     this.setData({
       projectId: data.id,
-      projectName: data.name
+      projectName: data.name,
+      projectLeaderId: data.personId
     })
     let tenderName = this.form.getFieldValue('tenderName') || ''
     this.form.setFieldValue('title', data.name+tenderName)
@@ -191,7 +199,8 @@ Page({
           tenderingAgencyName: paramsdata.tenderingAgencyName,
           countersignLeader: paramsdata.countersignLeader,
           projectName: paramsdata.projectName,
-          applicationTime: paramsdata.startDate
+          applicationTime: paramsdata.startDate,
+          projectLeaderId: paramsdata.projectLeaderId
         })
         if(res.data.tenderDocumentList && res.data.tenderDocumentList.length){
           res.data.tenderDocumentList.forEach(e => {
@@ -264,6 +273,7 @@ Page({
     }
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
 
+    params.projectLeaderId = this.data.projectLeaderId
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'
@@ -293,6 +303,7 @@ Page({
     }else{
       params.urlParameter = JSON.stringify({})
     }
+    params.projectLeaderId = this.data.projectLeaderId
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'
@@ -338,6 +349,19 @@ Page({
         ddUtils.navigateBack();
       }
     })
+  },
+  tenderAmountOnChange: function (value, e) {
+    console.log(value, e);
+    let aaa = parseInt(value).toString()
+    if(aaa.length > 4){
+      this.setData({
+        isShow: true
+      })
+    }else{
+      this.setData({
+        isShow: false
+      })
+    }
   },
   getCodeList(){
     //招标方式

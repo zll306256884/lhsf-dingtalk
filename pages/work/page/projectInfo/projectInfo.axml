@@ -1,76 +1,92 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
-  <form onSubmit="bindFormSubmit">
-    <view class="containerinner">
-      <view class="title">
-        项目信息
+
+<tabs items="{{items}}" current="{{current}}" onChange="onNavTabChange" />
+
+<view a:if="{{ current===0 }}" style="margin-bottom:20rpx;">
+  <view class="container">
+    <form onSubmit="bindFormSubmit">
+      <view class="containerinner">
+        <view class="title">
+          项目信息
+        </view>
+        <layout-field-input borderBottom name="项目码" mustFillTransparent disabled inputName="projectCode" value="{{formData.projectCode || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="项目编号" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{formData.proNumber || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="项目名称" mustFillTransparent inputName="name" value="{{formData.name}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="项目简称" mustFillTransparent disabled inputName="projectProgram" value="{{formData.projectProgram || '-' }}" placeholder="请输入"></layout-field-input>
+        <layout-field-cell borderBottom name="项目类型" mustFillTransparent disabled hidden="{{false}}" value="{{['工程项目','非工程项目'][formData.proType] || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="项目分类" mustFillTransparent disabled hidden="{{false}}" value="{{projectClassification.name || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled hidden="{{false}}" value="{{constructionPhase.name || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="是否投入使用" mustFillTransparent disabled hidden="{{false}}" value="{{isOutPut.name || '-'}}"></layout-field-cell>
+        <layout-field-cell a:if="{{ isOutPut.value === '1' }}" borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
+        
+        <layout-field-cell borderBottom name="所属单位" mustFillTransparent disabled hidden="{{false}}" value="{{formData.affiliatedUnitName || '-'}}"></layout-field-cell>
+
+        <layout-field-cell borderBottom name="建设性质" mustFillTransparent disabled hidden="{{false}}" value="{{constructionNature.name || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="工程性质" mustFillTransparent disabled hidden="{{false}}" value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
+        
+        <layout-field-cell borderBottom name="项目负责人" mustFillTransparent disabled hidden="{{false}}" value="{{formData.projectLeaderName || '-'}}"></layout-field-cell>
+        <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
+        <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
       </view>
-      <layout-field-input borderBottom name="项目码" mustFillTransparent disabled inputName="projectCode" value="{{formData.projectCode || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="项目编号" disabled mustFillTransparent itemIndex="1" inputName="proNumber" value="{{formData.proNumber || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="项目名称" mustFillTransparent inputName="name" value="{{formData.name}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="项目简称" mustFillTransparent disabled inputName="projectProgram" value="{{formData.projectProgram || '-' }}" placeholder="请输入"></layout-field-input>
-      <layout-field-cell borderBottom name="项目类型" mustFillTransparent disabled hidden="{{false}}" value="{{['工程项目','非工程项目'][formData.proType] || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="项目分类" mustFillTransparent disabled hidden="{{false}}" value="{{projectClassification.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled hidden="{{false}}" value="{{constructionPhase.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="是否投入使用" mustFillTransparent disabled hidden="{{false}}" value="{{isOutPut.name || '-'}}"></layout-field-cell>
-      <layout-field-cell a:if="{{ isOutPut.value === '1' }}" borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
+
+      <view class="containerinner" style="margin-top:16rpx">
+        <layout-field-input borderBottom name="建筑面积(平方米)" disabled mustFillTransparent inputName="structureArea" value="{{formData.structureArea || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="占地面积(平方米)" disabled mustFillTransparent inputName="floorArea" value="{{formData.floorArea || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="拟建位置" mustFillTransparent disabled inputName="proposedLocation" value="{{formData.proposedLocation || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="拟用土地" mustFillTransparent disabled inputName="proposedLand" value="{{formData.proposedLand || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="座数" mustFillTransparent disabled inputName="blockNumber" value="{{formData.blockNumber || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.planConstructionStartTime || ''}}-{{formData.planConstructionEndTime || '' }}"></layout-field-cell>
+        <layout-field-input borderBottom name="计划施工工期(天)" mustFillTransparent value="{{formData.duration || '-'}}" disabled></layout-field-input>
+        <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.actualConstructionStartTime || ''}}-{{formData.actualConstructionEndTime || ''}}"></layout-field-cell>
+      </view>
+      <view class="containerinner" style="margin-top:16rpx">
+        <view class="redline-title">
+          项目红线图
+        </view>
+        <layout-upload-img ref="onSaveUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"></layout-upload-img>
+      </view>
+      <view class="containerinner" style="margin-top:16rpx">
+        <view class="title">
+          项目坐标
+        </view>
+        <layout-field-input borderBottom name="X" mustFillTransparent disabled inputName="coorX" value="{{formData.coorX || '-'}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
+        <layout-field-input borderBottom name="Y" mustFillTransparent disabled inputName="coorY" value="{{formData.coorY || '-'}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
+      </view>
+
+      <view class="containerinner" style="margin-top:16rpx">
+        <view class="title">
+          投资信息
+        </view>
+        <layout-field-input borderBottom name="总投资金额(万元)" mustFillTransparent disabled inputName="totalInvestment" value="{{formData.totalInvestment || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="建安费用(万元)" mustFillTransparent disabled inputName="jianAnMoney" value="{{formData.jianAnMoney || '-'}}" placeholder="请输入"></layout-field-input>
+        <layout-field-input borderBottom name="资金来源" mustFillTransparent disabled inputName="sourceFunds" value="{{formData.sourceFunds || '-'}}" placeholder="请输入"></layout-field-input>
+      </view>
+
+      <!-- <view class="bottom-space"></view> -->
+
+      <!-- <view class="flex f-between btn-wrap">
+        <button class="btn" catchTap="bindCancelTap">取消</button>
+        <button class="btn active" form-type="submit">保存</button>
+      </view> -->
       
-      <layout-field-cell borderBottom name="所属单位" mustFillTransparent disabled hidden="{{false}}" value="{{formData.affiliatedUnitName || '-'}}"></layout-field-cell>
+      <view class="bottom-space"></view>
+    </form>
 
-      <layout-field-cell borderBottom name="建设性质" mustFillTransparent disabled hidden="{{false}}" value="{{constructionNature.name || '-'}}"></layout-field-cell>
-      <layout-field-cell borderBottom name="工程性质" mustFillTransparent disabled hidden="{{false}}" value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
-      
-      <layout-field-cell borderBottom name="项目负责人" mustFillTransparent disabled hidden="{{false}}" value="{{formData.projectLeaderName || '-'}}"></layout-field-cell>
-      <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
-      <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
+    <view a:if="{{ requestType === '0' &&  (formData.status === 0 || formData.status == 3)}}" class="bottom-content flex f-between btn-wrap">
+      <button class="btn" size="default" type="primary" catchTap="deletThis">删除</button>
+      <button class="btn active" size="default" type="primary" catchTap="editThis">编辑</button>
+    </view>
+    <!-- 项目状态:0暂存,1审批中,2审批完成,3待审批 -->
+    <view a:if="{{(examineId && approvalType === '1') || (examineId && formData.status === 1 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
+      <submit-opinion-popup examineId="{{examineId}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
     </view>
 
-    <view class="containerinner" style="margin-top:16rpx">
-      <layout-field-input borderBottom name="建筑面积(平方米)" disabled mustFillTransparent inputName="structureArea" value="{{formData.structureArea || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="占地面积(平方米)" disabled mustFillTransparent inputName="floorArea" value="{{formData.floorArea || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="拟建位置" mustFillTransparent disabled inputName="proposedLocation" value="{{formData.proposedLocation || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="拟用土地" mustFillTransparent disabled inputName="proposedLand" value="{{formData.proposedLand || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="座数" mustFillTransparent disabled inputName="blockNumber" value="{{formData.blockNumber || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-cell borderBottom name="计划施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.planConstructionStartTime || ''}}-{{formData.planConstructionEndTime || '' }}"></layout-field-cell>
-      <layout-field-input borderBottom name="计划施工工期(天)" mustFillTransparent value="{{formData.duration || '-'}}" disabled></layout-field-input>
-      <layout-field-cell borderBottom name="实际施工工期" mustFillTransparent disabled hidden="{{false}}" value="{{formData.actualConstructionStartTime || ''}}-{{formData.actualConstructionEndTime || ''}}"></layout-field-cell>
+    <view a:if="{{ requestType === '1' &&  formData.status === 1}}" class="bottom-content flex f-between">
+      <button class="bottom-button" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
     </view>
-    <view class="containerinner" style="margin-top:16rpx">
-      <view class="redline-title">
-        项目红线图
-      </view>
-      <layout-upload-img ref="onSaveUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;"></layout-upload-img>
-    </view>
-    <view class="containerinner" style="margin-top:16rpx">
-      <view class="title">
-        项目坐标
-      </view>
-      <layout-field-input borderBottom name="X" mustFillTransparent disabled inputName="coorX" value="{{formData.coorX || '-'}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
-      <layout-field-input borderBottom name="Y" mustFillTransparent disabled inputName="coorY" value="{{formData.coorY || '-'}}" placeholder="请按照国标2000坐标填写"></layout-field-input>
-    </view>
-
-    <view class="containerinner" style="margin-top:16rpx">
-      <view class="title">
-        投资信息
-      </view>
-      <layout-field-input borderBottom name="总投资金额(万元)" mustFillTransparent disabled inputName="totalInvestment" value="{{formData.totalInvestment || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="建安费用(万元)" mustFillTransparent disabled inputName="jianAnMoney" value="{{formData.jianAnMoney || '-'}}" placeholder="请输入"></layout-field-input>
-      <layout-field-input borderBottom name="资金来源" mustFillTransparent disabled inputName="sourceFunds" value="{{formData.sourceFunds || '-'}}" placeholder="请输入"></layout-field-input>
-    </view>
-
-    <!-- <view class="bottom-space"></view> -->
-
-    <!-- <view class="flex f-between btn-wrap">
-      <button class="btn" catchTap="bindCancelTap">取消</button>
-      <button class="btn active" form-type="submit">保存</button>
-    </view> -->
-    
-    <view class="bottom-space"></view>
-  </form>
-
-  <view a:if="{{ requestType === '2' }}" class="bottom-content flex f-center btn-wrap">
-    <!-- <button class="btn" size="default" type="primary" catchTap="deletThis">删除</button> -->
-    <button class="btn active" size="default" type="primary" catchTap="editThis">编辑</button>
   </view>
 </view>
+<block a:else>
+  <approval-item projectId={{formData.id}} keyId={{formData.id}}></approval-item>
+</block>

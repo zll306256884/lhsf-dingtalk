@@ -61,7 +61,7 @@
   z-index: 8;
 }
 .btn-wrap .btn{
-  width: 349rpx;
+  width: 227rpx;
   height: 80rpx;
   background: #FFFFFF;
   border-radius: 8rpx 8rpx 8rpx 8rpx;
@@ -74,7 +74,7 @@
   line-height: 80rpx;
 }
 .btn-wrap .active{
-  width: 349rpx;
+  width: 227rpx;
   height: 80rpx;
   background: #1A6AFF;
   border-radius: 8rpx 8rpx 8rpx 8rpx;

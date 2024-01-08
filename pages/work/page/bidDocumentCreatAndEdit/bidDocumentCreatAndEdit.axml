@@ -30,14 +30,11 @@
 </view> -->
 
 <view catchTap="chooseProject">
-  <form-picker
-    label="项目名称"
-    arrow
-    disabled
-    name="projectId"
-    options="{{projectListOptions}}"
-    ref="handleRef" />
+  <form-picker label="项目名称" arrow disabled name="projectId" options="{{projectListOptions}}" ref="handleRef" />
 </view>
+
+<form-input label="项目负责任人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
+<form-input label="项目所属单位" required labelWidth="280rpx" name="affiliateUnit" disabled placeholder="自动生成" ref="handleRef" />
 
 <form-input
   label="招标名称"
@@ -96,7 +93,12 @@
   placeholder="请输入,注意'万元'单位"
   allowClear
   type="number"
-  ref="handleRef" />
+  ref="handleRef"
+  onChange="tenderAmountOnChange"
+  />
+  <view a:if="{{isShow}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
+    请核对招标标的额(万元单位)填写是否正确
+  </view>
 <form-picker
   label="决策依据"
   arrow
@@ -135,7 +137,7 @@
     disabled
     ref="handleRef"/> -->
     <list>
-      <list-item>其他附件</list-item>
+      <list-item>委托依据</list-item>
     </list>
   <layout-upload-img type="2" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploaOtherImgRef"></layout-upload-img>
 </view>
@@ -179,6 +181,17 @@
     ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
   <!-- <layout-field-cell borderBottom name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="chooseTime"></layout-field-cell> -->
 </view>
+
+<form-textarea
+  label="备注"
+  position='vertical'
+  name="remark"
+  placeholder="请输入"
+  allowClear
+  autoHeight
+  maxLength="300"
+  ref="handleRef" />
+
 <view class="bottom-space" style="height:150rpx"></view>
 <view class="buttons flex f-between">
   <button class="btn" onTap="reset">取消</button>

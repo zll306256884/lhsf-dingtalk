@@ -6,6 +6,9 @@
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
-    "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker"
+    "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker",
+    "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
+    "approval-item": "/pages/components//approval-item/approval-item",
+    "tabs": "antd-mini/es/Tabs/index"
   }
 }

@@ -483,6 +483,11 @@ Page({
             //     url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
             //   });
             //   break;
+            case 8:
+              ddUtils.navigateTo({
+                url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=1`
+              });
+              break;
           }
           // return res
         },
@@ -532,7 +537,7 @@ Page({
           break;
         case 6:
           ddUtils.navigateTo({
-            url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=0`
+            url: `/pages/work/page/projectInfo/projectInfo?id=${item.keyId}&requestType=0&deleteId=${item.id}`
           });
           break;
         case 7:
@@ -571,6 +576,11 @@ Page({
       case 4:
         ddUtils.navigateTo({
           url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${item.id}`
+        });
+        break;
+      case 8:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?examineId=${item.id}&id=${item.keyId}&approvalType=${this.data.approvalStatus + 2}`
         });
         break;
     }

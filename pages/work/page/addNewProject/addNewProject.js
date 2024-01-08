@@ -11,24 +11,7 @@ Page({
     initialValues: {
       constructionPhase: "0"
     },
-    rules: {
-      name: [{required: true, message: '请输入'}],
-      constructionNature: [{required: true, message: '请选择'}],
-      constructionContent: [{required: true, message: '请输入'}],
-      structureArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
-      floorArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
-      totalInvestment: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
-      blockNumber: [{required: false, max: 6, message: '请输入(最多6位的整数)',pattern: /^[1-9]\d{0,5}$/}],
-      jianAnMoney: [{ required: false, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
-      coorX: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
-      coorY: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
-      projectClassification: [{required: true, message: '请选择'}],
-      constructionPhase: [{required: true, message: '请选择'}],
-      isOutPut: [{required: true, message: '请选择'}],
-      outPutTime: [{required: true, message: '请选择'}],
-      affiliatedUnitId: [{required: true, message: '请选择'}],
-      proType: [{required: true, message: '请选择'}]
-    },
+    rules: {},
   }),
   data: {
     navbarData:{
@@ -66,10 +49,6 @@ Page({
     planConstructionStartTime: '',
     planConstructionEndTime: '',
   },
-
-
-  
-  
   dialogPickerDateRef: null,
   dialogPickerDateRangeRef: null,
   dialogActualDatRangeRef: null,
@@ -79,6 +58,24 @@ Page({
 
   onLoad(options) {
     console.log(options)
+    this.form.rules = {
+      name: [{required: true, message: '请输入'}],
+      constructionNature: [{required: true, message: '请选择'}],
+      constructionContent: [{required: true, message: '请输入'}],
+      structureArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
+      floorArea: [{ required: true, message: '请输入(最多15位整数2位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,2})?$/ }],
+      totalInvestment: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
+      blockNumber: [{required: false, max: 6, message: '请输入(最多6位的整数)',pattern: /^[1-9]\d{0,5}$/}],
+      jianAnMoney: [{ required: false, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
+      coorX: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
+      coorY: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
+      projectClassification: [{required: true, message: '请选择'}],
+      constructionPhase: [{required: true, message: '请选择'}],
+      isOutPut: [{required: true, message: '请选择'}],
+      outPutTime: [{required: true, message: '请选择'}],
+      affiliatedUnitId: [{required: true, message: '请选择'}],
+      proType: [{required: true, message: '请选择'}]
+    }
     this.getCodeList()
     if(options.id){
       this.setData({
@@ -251,13 +248,17 @@ Page({
         console.log(fields);
         for (let item in fields) {
           if ({}.hasOwnProperty.call(fields, item)) {
-            fields[item] = paramsdata[item] || ''
+            if(paramsdata[item] !== 0){
+              fields[item] = paramsdata[item] || ''
+            }
           }
         }
         this.form.setFieldsValue({
           ...fields,
         })
+        console.log('fields,fields',fields);
         this.form.setFieldValue('isAccess', paramsdata.isAccess )
+        this.form.setFieldValue('proType', paramsdata.proType)
         setTimeout(() => {
           this.uploadImageList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
         }, 0);
@@ -354,6 +355,50 @@ Page({
       }
     })
   },
+  //暂存
+  async stagingForm(){
+    this.form.rules = {}
+    const params = this.form.getFieldsValue()
+    params.affiliatedUnitName = this.data.affiliatedUnitName
+    params.actualConstructionEndTime = this.data.actualConstructionEndTime
+    params.actualConstructionStartTime = this.data.actualConstructionStartTime
+
+    params.projectLeaderName = this.data.projectLeaderName
+    params.personId = this.data.personId
+
+    params.duration = this.data.duration,
+    params.planConstructionStartTime = this.data.planConstructionStartTime,
+    params.planConstructionEndTime = this.data.planConstructionEndTime,
+
+    params.outPutTime = this.data.outPutTime
+    params.projectEndTime = this.data.projectEndTime
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/projectDetails'
+    params.singleUrl = '/pages/work/page/projectInfo/projectInfo'
+    params.vueUrl = 'ApproveProjectDetail, ApproveCreateProject'
+
+    let workAuditFile = [];
+    if (this.uploadImageList) {
+      workAuditFile = this.uploadImageList._getUploadImgId().imgList;
+    }
+    params.projectRedLineList = workAuditFile
+    if(this.data.projectId){
+      params.id = this.data.projectId
+      params.urlParameter = JSON.stringify({ id: this.data.projectId })
+    }else{
+      params.urlParameter = JSON.stringify({})
+    }
+
+    request.doPostRequest({
+      url: projectService.API_STORAGE_PROJECT,
+      data: params,
+      success: res => {
+        ddUtils.showToast({
+          title: "暂存成功！"
+        });
+        ddUtils.navigateBack();
+      },
+    })
+  },
   async bindFormSubmit(e){
     const params = await this.form.submit();
     params.affiliatedUnitName = this.data.affiliatedUnitName
@@ -371,25 +416,6 @@ Page({
     params.projectEndTime = this.data.projectEndTime
     
     console.log('新增', params)
-    
-
-    // if (ddUtils.showEmptyToastTips(e.detail.value.name, "项目名称不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.projectClassification.value, "项目分类不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionPhase.value, "建设阶段不能为空")) return;
-    // if(this.data.constructionPhase.value === '3'){
-    //   if (ddUtils.showEmptyToastTips(this.data.isOutPut.value, "是否投入使用不能为空")) return;
-    // }
-    // if(this.data.isOutPut.value === '1'){
-    //   if (ddUtils.showEmptyToastTips(this.data.outPutTime, "投入使用日期不能为空")) return;
-    // }
-    // if (ddUtils.showEmptyToastTips(this.data.formData.affiliatedUnitName, "所属单位不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.constructionNature.value, "建设性质不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.formData.projectLeaderName, "项目负责人不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.constructionContent, "建设规模及内容不能为空")) return;
-
-    // if (ddUtils.showEmptyToastTips(e.detail.value.structureArea, "建筑面积不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(e.detail.value.floorArea, "占地面积不能为空")) return;
-    // if (ddUtils.showEmptyToastTips(this.data.formData.totalInvestment, "总投资金额不能为空")) return;
 
     let workAuditFile = [];
     if (this.uploadImageList) {
@@ -397,30 +423,50 @@ Page({
     }
     params.projectRedLineList = workAuditFile
 
+    params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/projectDetails'
+    params.singleUrl = '/pages/work/page/projectInfo/projectInfo'
+    params.vueUrl = 'ApproveProjectDetail, ApproveCreateProject'
+
     if(this.data.projectId){
       params.id = this.data.projectId
-      request.doPostRequest({
-        url: projectService.API_EDIT_PROJECT,
-        data: params,
-        success: res => {
-          ddUtils.showToast({
-            title: "编辑成功！"
-          });
-          ddUtils.navigateBack();
-        },
-      })
+      params.urlParameter = JSON.stringify({ id: this.data.projectId, chooseid: this.data.projectId, proId: this.data.projectId, fromtype: 'workbench' })
     }else{
-      request.doPostRequest({
-        url: projectService.API_PROJECTINFON_SAVE,
-        data: params,
-        success: res => {
-          ddUtils.showToast({
-            title: "新增成功！"
-          });
-          ddUtils.navigateBack();
-        },
-      })
+      params.urlParameter = JSON.stringify({})
     }
+    request.doPostRequest({
+      url: projectService.API_PROJECT_COMMITAPPROVAL,
+      data: params,
+      success: res => {
+        ddUtils.showToast({
+          title: "操作成功！"
+        });
+        ddUtils.navigateBack();
+      },
+    })
+    // if(this.data.projectId){
+    //   params.id = this.data.projectId
+    //   request.doPostRequest({
+    //     url: projectService.API_EDIT_PROJECT,
+    //     data: params,
+    //     success: res => {
+    //       ddUtils.showToast({
+    //         title: "编辑成功！"
+    //       });
+    //       ddUtils.navigateBack();
+    //     },
+    //   })
+    // }else{
+    //   request.doPostRequest({
+    //     url: projectService.API_PROJECTINFON_SAVE,
+    //     data: params,
+    //     success: res => {
+    //       ddUtils.showToast({
+    //         title: "新增成功！"
+    //       });
+    //       ddUtils.navigateBack();
+    //     },
+    //   })
+    // }
   },
   bindCancelTap(){
     ddUtils.showModal({

@@ -9,8 +9,15 @@ module.exports = {
   API_SELECTPROJECT_INFO_BYID: API_HOST + "/integratedService/projectInfo/selectProjectInfoById",
   //编辑项目
   API_EDIT_PROJECT: API_HOST + "/integratedService/projectInfo/editProject",
+  //暂存
+  API_STORAGE_PROJECT: API_HOST + "/integratedService/projectInfo/storageSave",
   //所属单位
   API_ORGANIZE_QUERYTOPLIST: API_HOST + "/platform/organize/queryTopList",
+  //新增项目提交审批
+  API_PROJECT_COMMITAPPROVAL: API_HOST + "/integratedService/projectInfo/commitProjectApproval",
+  //删除项目
+  API_PROJECT_DELETEPROJECT: API_HOST + "/integratedService/projectInfo/deleteProjectById",
+  
   
 
   ////根据审核状态/单位类型/单位名称分页查询生态伙伴单位信息

@@ -78,7 +78,9 @@
 
   <view class="flex f-between btn-wrap">
     <button class="btn" catchTap="bindCancelTap">取消</button>
-    <button class="btn active" onTap="bindFormSubmit">保存</button>
+    <button class="btn" type="primary" catchTap="stagingForm">暂存</button>
+    <button class="btn active" onTap="bindFormSubmit">提交审批</button>
+    <!-- <button class="btn active" onTap="bindFormSubmit">保存</button> -->
   </view>
 
   <view class="bottom-space"></view>

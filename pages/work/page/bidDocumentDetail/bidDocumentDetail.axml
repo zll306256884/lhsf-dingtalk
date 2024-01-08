@@ -17,6 +17,9 @@
     
     <list-item extraBrief="{{detailInfo.title}}">标题</list-item>
     <list-item extraBrief="{{detailInfo.projectName}}">项目名称</list-item>
+    <list-item extraBrief="{{detailInfo.projectLeader}}">项目负责人</list-item>
+    <list-item extraBrief="{{detailInfo.affiliateUnit}}">项目所属单位</list-item>
+
     <list-item extraBrief="{{detailInfo.tenderingAgencyName}}">招标代理单位</list-item>
     <list-item extraBrief="{{detailInfo.biddingType_dictText}}">招标方式</list-item>
 
@@ -55,7 +58,7 @@
   </view>
 
   <view class="file-list">
-    <view class="title">其他附件</view>
+    <view class="title">委托依据</view>
     <block a:if="{{ otherDocumentList }}">
       <view class="flex f-between list-item" a:for="{{ detailInfo.otherDocumentList }}" a:key="index">
         <view class="flex f-start" style="align-items:center">
@@ -75,6 +78,11 @@
       <image mode="scaleToFill" src="/assets/images/common/empty.png" style="width:134rpx;height:200rpx;" />
     </view>
   </view>
+
+  <list-item>
+    备注内容
+    <view style="margin-top:10rpx;color: #969799;">{{detailInfo.remark}}</view>
+  </list-item>
 
   <view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
     <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
