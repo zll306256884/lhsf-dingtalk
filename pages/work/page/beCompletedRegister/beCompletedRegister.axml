@@ -18,6 +18,10 @@
         disabled
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
        </view>
+
+       <form-input label="项目负责任人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
+       <form-input label="项目所属单位" required labelWidth="280rpx" name="affiliateUnit" disabled placeholder="自动生成" ref="handleRef" />
+
        <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">
         <form-input
         label="合同名称"
@@ -41,12 +45,24 @@
        type="number"
        disabled
        ref="handleRef" />
-       <form-input
+
+       <!-- <form-input
        label="承包商名称"
        name="contractorName"
        placeholder="选择合同后自动带入"
        disabled
-       ref="handleRef" />
+       ref="handleRef" /> -->
+       
+
+       <form-picker
+        label="承包商名称"
+        placeholder="请选择"
+        labelWidth="220rpx"
+        arrow
+        name="contractorName"
+        options="{{unitList}}"
+        ref="handleRef" />
+
        <view catchTap="bindChooseApplyDateTap">
         <form-input
         label="申请日期"
@@ -55,14 +71,18 @@
         disabled
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
       </view>
+
       <form-input
       label="送审定价(万元)"
       name="pricingTrial"
       placeholder="请输入"
       type="number"
-        allowClear
+      allowClear
       style="text-align:left"
+      onChange="pricingTrialChange"
       ref="handleRef" />
+
+
       <!-- <layout-field-cell disabled="{{disabled}}"  name="项目名称" mustFill placeholder="请选择" value="{{projectData.name}}" 
       onArrowTap="bindChooseProjectTap"></layout-field-cell>
       <layout-field-cell disabled="{{disabled}}" borderTop name="合同名称" mustFill placeholder="请选择"  value="{{contractData.contractName}}"  onArrowTap="bindChooseContractNameTap"></layout-field-cell>
@@ -71,41 +91,80 @@
       <layout-field-cell borderTop name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="bindChooseApplyDateTap"></layout-field-cell>
       <layout-field-input borderTop borderBottom name="送审定价(万元)" inputType="number" inputName="pricingTrial" mustFill disabled="{{isEdit}}" value="{{pricingTrial}}" placeholder="请输入"></layout-field-input> -->
       <form-radio-group
-      onChange="onChange"
       required
       label="净核算金额(万元)"
       name="adjust"
       value="{{adjust}}"
       options="{{radioGroupOptions}}"
+      onChange="adjustChange"
       ref="handleRef" />
+
       <form-input
       name="netAccountAmount"
       placeholder="请输入"
       type="number"
       allowClear
       style="text-align:left"
+      onChange="netAccountAmountChange"
       ref="handleRef" />
+
       <form-input
       label="审定总价(万元)"
       name="approveTotalPrice"
       placeholder="请输入"
       type="number"
-        allowClear
+      allowClear
+      disabled
       style="text-align:left"
       ref="handleRef" />
+
+      <form-input
+      label="签约价节超率(%)"
+      name="priceRate"
+      placeholder="请输入"
+      type="number"
+      allowClear
+      disabled
+      style="text-align:left"
+      ref="handleRef" />
+
       <!-- <layout-field-input inputType="number"  inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{netAccountAmount}}" placeholder="请输入"></layout-field-input>
       <layout-field-input  name="审定总价(万元)" inputType="number" borderTop mustFill inputName="approveTotalPrice"  disabled="{{isEdit}}" value="{{approveTotalPrice}}" placeholder="请输入"></layout-field-input> -->
     </view>
-    <view class="bottom-shadow annex" ><text class="annexTitle">*</text>
+    <view class="bottom-shadow annex" style="margin-bottom:20rpx" ><text class="annexTitle">*</text>
       <layout-field-cell hidden={{false}} cssStyle="margin-left:50rpx"  name="相关附件"></layout-field-cell>
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
+    <view catchTap="chooseManager">
+      <form-input
+      label="选择技术部经办人"
+      labelWidth="290rpx"
+      name="departmentManager_dictText"
+      placeholder="请选择"
+      disabled
+      ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+    </view>
+    <view catchTap="chooseLeader" class="bottom-shadow" style="margin-top:0rpx">
+      <form-input
+      label="选择会签分管领导"
+      labelWidth="290rpx"
+      name="countersignLeader_dictText"
+      placeholder="请选择"
+      disabled
+      ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+    </view>
+
     <view class="buttons flex f-between">
       <button class="btn" catchTap="bindCancelTap">取消</button>
-      <button class="btn active" form-type="submit" onTap="submit">保存</button>
+      <button class="btn active" form-type="submit" onTap="staging">暂存</button>
+      <!-- <button class="btn active" form-type="submit" onTap="submit">保存</button> -->
+      <button class="btn active" form-type="submit" onTap="submit">提交审批</button>
   </view>
   </form>
 </view>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" formatDate='YYYY-MM-DD'selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>
+
+<dialog-screen-company-staff ref="onSaveDialogScreenDepartmentManagerRef" multiChoose  onScreenCallBack="bindScreenDepartmentManagerCallBack"></dialog-screen-company-staff>
+<dialog-screen-company-staff ref="onSaveDialogScreenCountersignLeaderRef" multiChoose  onScreenCallBack="bindScreenCountersignLeaderCallBack"></dialog-screen-company-staff>

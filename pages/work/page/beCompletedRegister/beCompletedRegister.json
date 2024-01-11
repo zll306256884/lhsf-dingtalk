@@ -1,7 +1,6 @@
 {
-  "component": true,
   "transparentTitle": "always",
-  "titlePenetrate":"NO",
+  "titlePenetrate": "NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
@@ -17,6 +16,7 @@
       "dialog-picker-date":"/pages/components/dialog/dialog-picker-date/dialog-picker-date",
       "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
       "form-input": "antd-mini/es/Form/FormInput/index",
-      "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index"
+      "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index",
+      "form-picker": "antd-mini/es/Form/FormPicker/index"
   }
 }

@@ -231,8 +231,8 @@ Page({
         
         this.setData({
           outPutTime:res.data.outPutTime,
-          planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
-          actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
+          // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
+          // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
           projectLeaderName: res.data.projectLeaderName,
           personId: res.data.personId,
           duration: res.data.duration,
@@ -243,6 +243,24 @@ Page({
           planConstructionEndTime: res.data.planConstructionEndTime,
           projectEndTime: res.data.projectEndTime
         })
+        if(res.data.startDate && res.data.endDate){
+          this.setData({
+            planConstructionDate: res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime
+          })
+        }else{
+          this.setData({
+            planConstructionDate: ''
+          })
+        }
+        if(res.data.actualConstructionStartTime && res.data.actualConstructionEndTime){
+          this.setData({
+            actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime
+          })
+        }else{
+          this.setData({
+            actualConstruction: ''
+          })
+        }
         const paramsdata = res.data
         const fields = this.form.getFieldsValue()
         console.log(fields);

@@ -488,6 +488,11 @@ Page({
                 url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=1`
               });
               break;
+            case 9:
+              ddUtils.navigateTo({
+                url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=1`
+              });
+              break;
           }
           // return res
         },
@@ -581,6 +586,11 @@ Page({
       case 8:
         ddUtils.navigateTo({
           url: `/pages/work/page/projectInfo/projectInfo?examineId=${item.id}&id=${item.keyId}&approvalType=${this.data.approvalStatus + 2}`
+        });
+        break;
+      case 9:
+        ddUtils.navigateTo({
+          url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${item.id}&id=${item.keyId}&approvalType=${this.data.approvalStatus + 2}`
         });
         break;
     }

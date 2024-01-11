@@ -1,43 +1,67 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
-<view class="container">
-  <!-- <view style="margin-top:20rpx">
-    <list>
-      <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
-      <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
-      <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
-      <list-item extraBrief="{{infoData.contractorName}}">承包商名称</list-item>
-      <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
-      <list-item extraBrief="{{infoData.pricingTrial}}">送审定价</list-item>
-      <list-item extraBrief="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}">净核算金额</list-item>
-      <list-item extraBrief="{{infoData.approveTotalPrice}}">审定总价</list-item>
-    </list>
-      </view> -->
-      <form onSubmit="bindFormSubmit">
-        <view class="box-shadow">
-          <layout-field-cell hidden="{{false}}"  name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
-          <layout-field-cell hidden="{{false}}" borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName}}"></layout-field-cell>
-          <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)"  placeholder="选择合同后自动带入"  value="{{infoData.contractAmount}}"></layout-field-cell>
-          <layout-field-cell hidden={{false}} borderTop name="承包商名称"  placeholder="选择合同后自动带入"  value="{{infoData.contractorName}}"></layout-field-cell>
-          <layout-field-cell hidden="{{false}}" borderTop name="申请日期"  placeholder="请选择" value="{{infoData.applicationTime}}" ></layout-field-cell>
-          <layout-field-cell hidden="{{false}}" borderTop name="送审定价(万元)" disabled="" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial}}" placeholder="请输入"></layout-field-cell>
-          <layout-field-cell hidden="{{false}}" name="净核算金额(万元)"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}" placeholder="请输入"></layout-field-cell>
-          <layout-field-cell hidden="{{false}}" name="审定总价(万元)" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.approveTotalPrice}}" placeholder="请输入"></layout-field-cell>
-        </view>
-        <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
-          <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>
-           <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
+<tabs items="{{items}}" current="{{current}}" onChange="onNavTabChange" />
+<view a:if="{{ current===0 }}" style="margin-bottom:150rpx;">
+  <view class="container">
+    <!-- <view style="margin-top:20rpx">
+      <list>
+        <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
+        <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
+        <list-item extraBrief="{{infoData.contractAmount}}">合同金额</list-item>
+        <list-item extraBrief="{{infoData.contractorName}}">承包商名称</list-item>
+        <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
+        <list-item extraBrief="{{infoData.pricingTrial}}">送审定价</list-item>
+        <list-item extraBrief="{{infoData.adjust===1?'核减':'核增'}}{{infoData.netAccountAmount}}">净核算金额</list-item>
+        <list-item extraBrief="{{infoData.approveTotalPrice}}">审定总价</list-item>
+      </list>
         </view> -->
-      </form>
-      <view style="margin-top:20rpx" class="bottom-shadow">
-        <list>
-          <list-item>
-            相关材料
-            <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
-          </list-item>
-          </list>
-      </view>
-      <view class="buttons flex f-between">
-        <button class="btn" catchTap="bindCancelTap">删除</button>
-        <button class="btn active" catchTap="editTap">编辑</button>
-    </view>
+        <form onSubmit="bindFormSubmit">
+          <view class="box-shadow">
+            <layout-field-cell hidden="{{false}}"  name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop  name="项目负责任人"  placeholder="请选择" value="{{infoData.projectLeader}}" ></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop  name="项目所属单位"  placeholder="请选择" value="{{infoData.affiliateUnit}}" ></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)" value="{{infoData.contractAmount || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden={{false}} borderTop name="承包商名称"  value="{{infoData.contractorName || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop name="申请日期"  placeholder="请选择" value="{{infoData.applicationTime}}" ></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop name="送审定价(万元)" disabled="" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" name="净核算金额(万元)"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.adjust===1?'核减':infoData.adjust===2?'核增':''}}{{infoData.netAccountAmount || '/'}}" placeholder="请输入"></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" name="审定总价(万元)" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.approveTotalPrice || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" name="签约价节超率(%)" borderTop  inputName="infoData.priceRate"  disabled="{{isEdit}}" value="{{infoData.priceRate || '-'}}"></layout-field-cell>
+          </view>
+          <!-- <view class="box-shadow" style="padding-bottom: 30rpx;">
+            <layout-field-cell hidden={{false}} borderTop mustFill name="相关附件"></layout-field-cell>
+            <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
+          </view> -->
+        </form>
+        <view style="margin:20rpx 0" class="bottom-shadow">
+          <list>
+            <list-item>
+              相关材料
+              <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
+            </list-item>
+            </list>
+        </view>
+        <view style="background:#fff">
+          <layout-field-cell hidden="{{false}}" name="选择技术部经办人" borderTop  inputName="infoData.departmentManager_dictText"  disabled="{{isEdit}}" value="{{infoData.departmentManager_dictText || '-'}}"></layout-field-cell>
+        </view>
+        <view class="bottom-shadow" style="background:#fff">
+          <layout-field-cell hidden="{{false}}" name="选择分管领导" borderTop  inputName="infoData.countersignLeader_dictText"  disabled="{{isEdit}}" value="{{infoData.countersignLeader_dictText || '-'}}"></layout-field-cell>
+        </view>
+        <!-- 1:未提交 2:审批中 3:已驳回 4:已完结 -->
+        <view a:if="{{ infoData.approvalStatus === 1 || infoData.approvalStatus === 3}}" class="buttons flex f-between">
+          <button class="btn" catchTap="bindCancelTap">删除</button>
+          <button class="btn active" catchTap="editTap">编辑</button>
+        </view>
+
+        <view a:if="{{ infoData.approvalStatus === 2 &&  !examineId}}" class="buttons flex f-between">
+          <button class="btn" size="default" style="width:714rpx;" catchTap="withdrawApplication">撤回申请</button>
+        </view>
+
+        <view a:if="{{ examineId && infoData.approvalStatus === 2 && approvalType !== '2' }}"  style="position:fixed;bottom:0rpx;width:100%;padding-bottom:18rpx;background:#fff;">
+          <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" departmentManager="{{infoData.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" moduleName="investment-jungong" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+        </view>
+  </view>
 </view>
+<block a:else>
+  <approval-item projectId={{infoData.id}} keyId={{infoData.id}}></approval-item>
+</block>

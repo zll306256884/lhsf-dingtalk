@@ -29,12 +29,18 @@ module.exports = {
     API_ALTER_POST:API_HOST + '/investment/changeManagement/projectChangeManagement',
     // 项目资金管控
     API_CONTROL_POST:API_HOST + '/investment/investmentControlFund/investmentControlFund',
-     // 项目资金管控支付
-     API_ROUTE_POST:API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/page',
-      // 项目资金管控变更
-      API_CHANGE_POST:API_HOST + '/investment/changeManagement/page',
-       // 变更删除
-       API_DELETE_POST:API_HOST + '/platform/userMatter/deleteByArray',
-       //资金附件
-       API_ASSESSORY_POST:API_HOST + '/investment/investmentFile/queryList'
+    // 项目资金管控支付
+    API_ROUTE_POST:API_HOST + '/investment/icMeasurementPaymentEngineeringDetailed/page',
+    // 项目资金管控变更
+    API_CHANGE_POST:API_HOST + '/investment/changeManagement/page',
+    // 变更删除
+    API_DELETE_POST:API_HOST + '/platform/userMatter/deleteByArray',
+    //资金附件
+    API_ASSESSORY_POST:API_HOST + '/investment/investmentFile/queryList',
+    //根据合同id查询承包商
+    API_SELECT_BYID_WITHUNIT:API_HOST + '/tender/contract/selectByContractIdWithUnit',
+    //竣工暂存
+    API_TEMPORARY_STORAGE:API_HOST + '/investment/completionSettlement/temporaryStorage',
+    //竣工结算新增并审批
+    API_COMPLETION_SAVEANDSUBMIT:API_HOST + '/investment/completionSettlement/saveAndSubmit',
 }

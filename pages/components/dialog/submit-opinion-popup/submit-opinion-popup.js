@@ -19,7 +19,9 @@ Component({
     keyId:'', //审批需要用的keyId
     onApprovalOperate: function (reason, isAgree) { },
     specialUserIds: '',
-    dingTalkFormList: []
+    dingTalkFormList: [],
+    departmentManager: '',
+    moduleName: ''
   },
   uploadApproval: null,
   didMount() {
@@ -109,9 +111,29 @@ Component({
         params.content = reason
         params.annexesUrl = JSON.stringify(workAuditFile)
         params.dingTalkFormList = this.props.dingTalkFormList
-        if (this.props.specialUserIds) {
-          params.auditUserIdList = this.props.specialUserIds.split(',')
+        //todo待完成
+        if(this.props.moduleName === 'investment-jungong'){
+          if(params.progressStatus === 1){
+            if (this.props.specialUserIds) {
+              params.auditUserIdList = this.props.specialUserIds.split(',')
+            }
+          }
+          if(params.progressStatus === 2){
+            if (this.props.specialUserIds) {
+              params.auditUserIdList = []
+            }
+          }
+          if(params.progressStatus === 3){
+            if (this.props.departmentManager) {
+              params.auditUserIdList = this.props.departmentManager.split(',')
+            }
+          }
+        }else{
+          if (this.props.specialUserIds) {
+            params.auditUserIdList = this.props.specialUserIds.split(',')
+          }
         }
+        
         console.log(params);
         if(this.data.isApprovalAgree){
           request.doPostRequest({
@@ -191,6 +213,7 @@ Component({
           form.projectName = res.data.projectName
           form.singleUrl = res.data.singleUrl
           form.pcUrl = res.data.pcUrl
+          form.progressStatus = res.data.progressStatus
           this.setData({
             paramsData: form
           })

@@ -7,7 +7,7 @@
     
     <form-input label="项目码" name="projectCode" placeholder="请输入" type="text" ref="handleRef" />
     <form-input label="项目编号" name="proNumber" placeholder="请输入" type="text" disabled ref="handleRef" />
-    <form-input label="项目名称" name="name" placeholder="请输入" type="text" ref="handleRef" />
+    <form-input label="项目名称" name="name" placeholder="请填写项目名称全称" type="text" ref="handleRef" />
     <form-input label="项目简称" name="projectProgram" placeholder="请输入" type="text" ref="handleRef" />
 
     <form-picker label="项目类型" arrow name="proType" options="{{proTypeList}}" ref="handleRef" labelWidth="280rpx" />

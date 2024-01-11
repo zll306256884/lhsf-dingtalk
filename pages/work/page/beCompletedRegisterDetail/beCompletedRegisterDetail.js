@@ -1,23 +1,47 @@
 import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
+import workService from "../../../../server/workServer";
 Page({
   data: {
     navbarData: {
       title: "竣工结算登记",
-  },
-  infoData:{},
-  id:'',
-  keyId:'',
+    },
+    infoData:{},
+    id:'',
+    keyId:'',
+    examineId: '',
+    approvalType: null,
+    items: [
+      {
+        title:"详细信息",
+      },{
+        title:"审批记录",
+      }
+    ],
+    requestType: null,
+    current: 0,
+    dingTalkFormList: []
   },
   uploadContractImage: null,
   onLoad(option) {
     if(option.id){
-      this.getDetail(option.id)
+      // this.getDetail(option.id)
+      this.setData({
+        id:option.id,
+        keyId:option.keyId
+      })
     }
+    if(option.examineId){//审批
+      this.setData({
+        examineId: option.examineId,
+        approvalType: option.approvalType
+      })
+    }
+  },
+  onNavTabChange(e){
     this.setData({
-      id:option.id,
-      keyId:option.keyId
+      current: e
     })
   },
   onSaveUploadContractImgRef(ref){
@@ -44,6 +68,15 @@ Page({
         setTimeout(() => {
           this.uploadContractImage._setImageList(files) 
         }, 0);
+        let dingTalkFormList = [
+          { key:'事项类型：', value:'竣工结算会签' },
+          { key:'所属项目：', value: res.data.projectName },
+          { key:'合同名称：', value: res.data.tenderName },
+          { key:'审定总价：', value: res.data.approveTotalPrice+'万元' }
+        ]
+        this.setData({
+          dingTalkFormList
+        })
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
         // }, 0);
@@ -78,5 +111,38 @@ Page({
     ddUtils.navigateTo({
       url: `/pages/work/page/beCompletedRegister/beCompletedRegister??id=${this.data.id}&sort=${1}`
     }); 
-  }
+  },
+  //撤回申请
+  withdrawApplication(){
+    ddUtils.showModal({
+      content: "确认撤回申请吗?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: workService.API_JFLOWAUDIT_SELET_INFO,
+            data: {keyId: this.data.id},
+            success: res => {
+              console.log(res.data)
+              let params = {
+                account: res.data.account,
+                no: res.data.jflowNo,
+                workId: res.data.jflowWorkid
+              }
+              request.doPostRequest({
+                url: workService.API_AUDIT_WITHDRAW,
+                data: params,
+                success: res => {
+                  console.log(res.data)
+                  ddUtils.showToast({
+                    title: "操作成功"
+                  });
+                  ddUtils.navigateBack();
+                }
+              })
+            }
+          })
+        }
+      }
+    });
+  },
 });

@@ -425,6 +425,16 @@ Page({
               url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}`
             });
             break;
+          case 8:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            });
+            break;
+          case 9:
+            ddUtils.navigateTo({
+              url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=${showType}`
+            });
+            break;
         }
       },
       complete: res => {
