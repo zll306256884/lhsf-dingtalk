@@ -111,7 +111,7 @@
       <form-input
       label="审定总价(万元)"
       name="approveTotalPrice"
-      placeholder="请输入"
+      placeholder="自动计算"
       type="number"
       allowClear
       disabled
@@ -121,7 +121,7 @@
       <form-input
       label="签约价节超率(%)"
       name="priceRate"
-      placeholder="请输入"
+      placeholder="自动计算"
       type="number"
       allowClear
       disabled
@@ -144,7 +144,7 @@
       disabled
       ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
     </view>
-    <view catchTap="chooseLeader" class="bottom-shadow" style="margin-top:0rpx">
+    <view catchTap="chooseLeader"  class="bottom-shadow" style="margin-top:0rpx">
       <form-input
       label="选择会签分管领导"
       labelWidth="290rpx"
@@ -152,6 +152,12 @@
       placeholder="请选择"
       disabled
       ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+
+      <!-- <selector
+      label="选择会签分管领导"
+      name="countersignLeader"
+      options="{{leaderList}}"
+      multiple /> -->
     </view>
 
     <view class="buttons flex f-between">

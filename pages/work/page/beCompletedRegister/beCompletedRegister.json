@@ -17,6 +17,7 @@
       "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
       "form-input": "antd-mini/es/Form/FormInput/index",
       "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index",
-      "form-picker": "antd-mini/es/Form/FormPicker/index"
+      "form-picker": "antd-mini/es/Form/FormPicker/index",
+      "selector": "antd-mini/es/Selector/index"
   }
 }

@@ -44,17 +44,19 @@ Page({
     executeUser: [],
     projectLeaderId: '',
     departmentManager: '',
-    countersignLeader: ''
+    countersignLeader: '',
+    leaderList: []
   },
   dialogScreenDepartmentManager: null,
   dialogScreenCountersignLeader: null,
   onLoad(option) {
+    this.getLeaderList()
     let date = new Date().toLocaleString()
-          for (var i = 0; i < date.length; i++) {
-            if (date[i] === '/') {
-              date = date.replace('/', '-') // 替换之后就变成新数组了
-            }
-          }
+    for (var i = 0; i < date.length; i++) {
+      if (date[i] === '/') {
+        date = date.replace('/', '-') // 替换之后就变成新数组了
+      }
+    }
     this.data.applicationTime = date.substr(0,10)
     this.setData({
       id:option.id
@@ -83,6 +85,23 @@ Page({
       countersignLeader_dictText: [{ required: true, message: '请输入' }]
      }
   },
+  getLeaderList(){
+    request.doPostRequest({
+      url: config.API_QUERY_USER_BYROLE,
+      data: { },
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.username
+          e.text = e.username
+          e.value = e.id
+        })
+        this.setData({
+          leaderList: res.data || [],
+        });
+        console.log(res.data)
+      }
+    })
+  },
   handleRef(ref) {
     this.form.addItem(ref);
   },
@@ -108,7 +127,7 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(6))
+    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   pricingTrialChange(data){
     console.log(data)
@@ -118,7 +137,7 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(6))
+    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   netAccountAmountChange(data){
     let adjust = this.form.getFieldValue('adjust')
@@ -127,7 +146,7 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(6))
+    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   // onFocus(){
   //   this.blur() 

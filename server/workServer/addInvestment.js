@@ -43,4 +43,6 @@ module.exports = {
     API_TEMPORARY_STORAGE:API_HOST + '/investment/completionSettlement/temporaryStorage',
     //竣工结算新增并审批
     API_COMPLETION_SAVEANDSUBMIT:API_HOST + '/investment/completionSettlement/saveAndSubmit',
+    //分管领导
+    API_QUERY_USER_BYROLE:API_HOST + '/platform/user/queryUserByRole',
 }
