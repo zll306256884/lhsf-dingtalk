@@ -234,7 +234,8 @@
     ref="handleRef" />
   </view>
   
-<view catchTap="chooseTime">
+  <!-- catchTap="chooseTime" -->
+<view>
   <form-input
   label="申请日期"
   name="applicationTime"

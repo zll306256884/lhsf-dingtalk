@@ -169,8 +169,8 @@
 <!-- <form-item a:if="{{applicationTime}}" label="项目名称" name="projectName" required >
   <view class="f-item" catchTap="chooseTime"> {{applicationTime?applicationTime:'请选择'}} <icon type="RightOutline" /></view>
 </form-item> -->
-
-<view catchTap="chooseTime">
+<!-- catchTap="chooseTime" -->
+<view>
   <form-input
     label="申请日期"
     name="applicationTime"
