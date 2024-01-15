@@ -255,7 +255,7 @@
 
 <dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
-<dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
+<dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
 
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-construct-unit>

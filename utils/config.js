@@ -47,4 +47,6 @@ module.exports = {
     API_FILE_SETURL: API_HOST + "/platform/ddInfo/uploadFileOss",
     //文件下载钉盘地址获取
     API_FILE_GETURL: API_HOST + "/platform/ddInfo/uploadFileDingTalk",
+    //根据分管领导平台角色查询用户
+    API_QUERY_USER_BY_ROLR: API_HOST + "/platform/user/queryUserByRole",
 }
