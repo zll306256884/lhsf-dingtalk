@@ -41,7 +41,8 @@ Page({
     dialogScreenApplyDateRef:null,//申请会签批准日期
     contractData:{},//合同名称
     unitList: [],
-    executeUser: [],
+    executeUser1: [],
+    executeUser2: [],
     projectLeaderId: '',
     departmentManager: '',
     countersignLeader: '',
@@ -112,10 +113,10 @@ Page({
     this.dialogScreenCountersignLeader = ref
   },
   chooseManager(){
-    if(this.dialogScreenDepartmentManager) this.dialogScreenDepartmentManager._showDialog(this.data.dialogScreenDepartmentManager)
+    if(this.dialogScreenDepartmentManager) this.dialogScreenDepartmentManager._showDialog(this.data.executeUser1)
   },
   chooseLeader(){
-    if(this.dialogScreenCountersignLeader) this.dialogScreenCountersignLeader._showDialog(this.data.dialogScreenCountersignLeader)
+    if(this.dialogScreenCountersignLeader) this.dialogScreenCountersignLeader._showDialog(this.data.executeUser2)
   },
   adjustChange(row,e){
     console.log(row,e);
@@ -256,7 +257,7 @@ bindScreenDepartmentManagerCallBack(data){
     departmentManager: data.map(e => e.userId).toString()
   })
   this.setData({
-    executeUser: data && data.map(e => {
+    executeUser1: data && data.map(e => {
       return { userId: e.userId, username: e.username,disabled:e.disabled };
     })
   });
@@ -267,7 +268,7 @@ bindScreenCountersignLeaderCallBack(data){
     countersignLeader: data.map(e => e.userId).toString()
   })
   this.setData({
-    executeUser: data && data.map(e => {
+    executeUser2: data && data.map(e => {
       return { userId: e.userId, username: e.username,disabled:e.disabled };
     })
   });

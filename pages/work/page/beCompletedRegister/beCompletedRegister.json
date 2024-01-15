@@ -6,6 +6,7 @@
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "icon": "antd-mini/es/Icon/index",
       "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
+      "dialog-screen-leader": "/pages/components/dialog/dialog-screen-leader/dialog-screen-leader",
       "dialog-screen-suoshu-danwei":"/pages/components/dialog/dialog-screen-suoshu-danwei/dialog-screen-suoshu-danwei",
       "dialog-screen-xiangmu-leixiang":"/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang",
       "dialog-screen-xiangmu-mingcheng":"/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",

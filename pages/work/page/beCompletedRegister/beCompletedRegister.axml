@@ -173,4 +173,4 @@
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" formatDate='YYYY-MM-DD'selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>
 
 <dialog-screen-company-staff ref="onSaveDialogScreenDepartmentManagerRef" multiChoose  onScreenCallBack="bindScreenDepartmentManagerCallBack"></dialog-screen-company-staff>
-<dialog-screen-company-staff ref="onSaveDialogScreenCountersignLeaderRef" multiChoose  onScreenCallBack="bindScreenCountersignLeaderCallBack"></dialog-screen-company-staff>
+<dialog-screen-leader ref="onSaveDialogScreenCountersignLeaderRef" multiChoose  onScreenCallBack="bindScreenCountersignLeaderCallBack"></dialog-screen-leader>
