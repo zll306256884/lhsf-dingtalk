@@ -14,7 +14,7 @@ Page({
   data: {
     navbarData: {
       title: "新增支付申请",
-  },
+    },
     supplementaryAgreement:[],
     sort:'0',
     disabled:false,
@@ -53,7 +53,8 @@ Page({
     icMeasurementPaymentId:'',
     transitAmount:'',
     accumulatedPaymentAmount:'', // 累计支付金额
-    remark:'' // 备注
+    remark:'', // 备注
+    executeUser: []
   },
   onLoad(option) {
     // let date = new Date().toLocaleString()
@@ -292,7 +293,7 @@ onSaveUploadImgRef: function (ref) {
   //   this.setData({
   //     showDialog: true
   // });
-    if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog()
+    if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog(this.data.executeUser)
 },
  onSaveDialogScreenExecuteUserRef: function (ref) {
   this.dialogScreenExecuteUserRef = ref;
@@ -320,7 +321,11 @@ bindScreenExecuteUserCallBack: function (list) {
   });
   this.form.setFieldValue('countersignLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
   this.form.setFieldValue('countersignLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
-
+  this.setData({
+    executeUser: list && list.map(e => {
+      return { userId: e.userId, username: e.username,disabled:e.disabled };
+    })
+  });
 },
 //所属单位
 _bindChooseShiGongUnitTap: function (e) {
@@ -400,6 +405,14 @@ getEdit(id){
       setTimeout(() => {
         this.uploadImageList._setImageList(files) 
       }, 0);
+
+      if(res.data.countersignLeader_dictText && res.data.countersignLeader){
+        const nameList = res.data.countersignLeader_dictText.split(',')
+        const idList = res.data.countersignLeader.split(',')
+        this.setData({
+          executeUser: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+        })
+      }
     }
   })
 },

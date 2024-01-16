@@ -134,12 +134,13 @@ Component({
       this.setData({
         showDialog: true,
       });
-
-      defaultList.forEach(e => {
-        e.isCheck = true
-        // e.disabled = true
-      })
-      this.chooseList = defaultList;
+      if(defaultList){
+        defaultList.forEach(e => {
+          e.isCheck = true
+          // e.disabled = true
+        })
+        this.chooseList = defaultList;
+      }
       this.getDate()
     },
 
