@@ -178,7 +178,7 @@
     placeholder-class="placeholderClassName"
     placeholder-style="color:#000;opacity:1;"
     disabled
-    ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+    ref="handleRef"></form-input>
   <!-- <layout-field-cell borderBottom name="申请日期" mustFill placeholder="请选择" value="{{applicationTime}}" onArrowTap="chooseTime"></layout-field-cell> -->
 </view>
 
