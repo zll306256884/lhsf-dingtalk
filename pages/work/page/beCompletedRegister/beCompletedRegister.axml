@@ -113,7 +113,6 @@
       name="approveTotalPrice"
       placeholder="自动计算"
       type="number"
-      allowClear
       disabled
       style="text-align:left"
       ref="handleRef" />
@@ -123,7 +122,6 @@
       name="priceRate"
       placeholder="自动计算"
       type="number"
-      allowClear
       disabled
       style="text-align:left"
       ref="handleRef" />
