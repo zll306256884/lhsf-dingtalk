@@ -32,10 +32,17 @@ module.exports = {
       API_INIT_PROJECT_NAME :API_HOST +'/control/plan/queryEnableProejctInfo',
       // 合同名称
       API_CONTRACT_NAME :API_HOST +'/tender/contractLedger/list',
-        // 合同下累计金额
-        API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
-        // 款项类型
-        API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
+      // 合同下累计金额
+      API_CONTRACT_TO_MONEY :API_HOST +'/investment/icMeasurementPayment/payment',
+   
+    // 获取补充协议
+    API_SELECT_SUPPLEMENTAL_AGREEMENT :API_HOST +'/tender/contract/selectSupplementalAgreement',
+   
+    // 获取在途资金
+    API_AmountPaid :API_HOST +'/investment/icMeasurementPaymentEngineeringDetailed/amountPaid',
+    
+    // 款项类型
+    API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
     //数据字典列表
     API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
     //上传获取签名

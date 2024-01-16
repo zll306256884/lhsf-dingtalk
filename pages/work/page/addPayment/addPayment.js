@@ -15,6 +15,7 @@ Page({
     navbarData: {
       title: "新增支付申请",
   },
+    supplementaryAgreement:[],
     sort:'0',
     disabled:false,
   // showDialog:false,
@@ -49,7 +50,10 @@ Page({
     contractData:{},// 合同名称
     slowUnitData:{},//付款单位
     proceedsData:{},//收款单位
-    icMeasurementPaymentId:''
+    icMeasurementPaymentId:'',
+    transitAmount:'',
+    accumulatedPaymentAmount:'', // 累计支付金额
+    remark:'' // 备注
   },
   onLoad(option) {
     // let date = new Date().toLocaleString()
@@ -91,15 +95,55 @@ Page({
   handleRef(ref) {
     this.form.addItem(ref);
   },
+  // 获取补充协议
+  getSelectSupplementalAgreement:function(e) {
+    request.doPostRequest({
+      url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
+      data: {
+        contractId:this.data.contractData.contractId,
+      },
+      success: res => {
+        console.log(res,2323232323);
+        this.supplementaryAgreement = res.data
+      }
+    }) 
+    // 获取在途金额
+    request.doPostRequest({
+      url: config.API_AmountPaid,
+      data: {
+        contractId:this.data.contractData.contractId,
+      },
+      success: res => {
+        console.log(res,2323232323);
+        this.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0)
+        this.supplementaryAgreement = res.data
+      }
+    })
+  },
+    // 获取在途金额
+    // transitAmount:function(e) {
+    //   request.doPostRequest({
+    //     url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
+    //     data: {
+    //       contractId:this.data.contractData.contractId,
+    //     },
+    //     success: res => {
+    //       console.log(res,2323232323);
+    //       this.transitAmount = res.data
+    //     }
+    //   })
+    // },
   // 合同名称
   bindChooseContractNameTap:function(e){
     if (this.data.isEdit) return;
     if (this.dialogScreenpcontractRef) this.dialogScreenpcontractRef._showDialog(this.data.contractData.contractId)
+
   },
   onSaveDialogScreencontractRef:function (ref) {
     this.dialogScreenpcontractRef = ref;
   },
   bindChooseContractCallBack: function (data) {
+
     this.setData({
       contractData: data || {},
       contractAmount:data.contractAmount,
@@ -108,19 +152,51 @@ Page({
     this.form.setFieldValue('contractAmount',data.contractAmount)
     this.form.setFieldValue('payUnit','')
     this.form.setFieldValue('receiverUnit','')
+    // request.doPostRequest({
+    //   url: config.API_CONTRACT_TO_MONEY,
+    //   data: {
+    //     contractId:data.contractId,
+    //   },
+    //   success: res => {
+    //     console.log(res,2323232323);
+    //     this.setData({
+    //       cumulativePayment: res.data || 0,
+    //     });
+    //     this.form.setFieldValue('cumulativePayment',res.data)
+    //   }
+    // })
+
     request.doPostRequest({
-      url: config.API_CONTRACT_TO_MONEY,
+      url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
         contractId:data.contractId,
       },
       success: res => {
-        console.log(res,2323232323);
-        this.setData({
-          cumulativePayment: res.data || 0,
-        });
-        this.form.setFieldValue('cumulativePayment',res.data)
+        console.log(res,'补充协议');
+        this.supplementaryAgreement = res.data
+      }
+    }) 
+    // 获取在途金额
+    request.doPostRequest({
+      url: config.API_AmountPaid,
+      data: {
+        contractId:data.contractId,
+      },
+      success: res => {
+        console.log(res,232323132132132323);
+        this.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0)
+
+        console.log(' this.accumulatedPaymentAmount', this.accumulatedPaymentAmount)
+
+        this.form.setFieldValue('cumulativePayment',res.data.cumulativePayment)
+        this.form.setFieldValue('accumulatedPaymentAmount',this.accumulatedPaymentAmount)
+        this.form.setFieldValue('transitAmount',res.data.transitAmount)
       }
     })
+  },
+  accumulatedPaymentAmountFn:function (e) {
+    this.accumulatedPaymentAmount = Number(this.form.getFieldValue('payAmount') || 0) + Number(this.form.getFieldValue('cumulativePayment') || 0)
+    this.form.setFieldValue('accumulatedPaymentAmount',this.accumulatedPaymentAmount)
   },
 // 项目名称
 bindChooseProjectTap:function (e) {
@@ -131,6 +207,7 @@ onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
 bindChooseProjectCallBack: function (data) {
+
   this.setData({
     projectData: data || {},
     projectLeader:data.projectLeaderName,
@@ -159,8 +236,9 @@ bindChooseProjectCallBack: function (data) {
     this.setData({
       projectTypeData: data || {}
     });
-    this.form.setFieldValue('projectType_text',data.itemText)
-
+    if(data) {
+      this.form.setFieldValue('projectType_text',data.itemText)
+    }
 },
 // 付款单位
 bindChooseSlowUnitTap:function(e){
@@ -174,7 +252,9 @@ bindChooseSlowUnitCallBack:function(data){
   this.setData({
     slowUnitData: data || {},
   });
-  this.form.setFieldValue('payUnit',data.unitName)
+  if(data) {
+    this.form.setFieldValue('payUnit',data.unitName)
+  }
 },
 //收款单位
 bindChooseProceedsUnitTap:function(e){
@@ -287,7 +367,9 @@ getEdit(id){
         applicationTime:res.data.applicationTime,
         countersignLeader:res.data.countersignLeader,
         countersignLeader_text:res.data.countersignLeader_dictText,
-        investmentFileList:res.data.investmentFileList
+        investmentFileList:res.data.investmentFileList,
+        transitAmount:res.data.transitAmount,
+        remark:res.data.remark,
       })
       this.form.setFieldValue('projectType_text', res.data.projectType_dictText || '')
       this.form.setFieldValue('projectName', res.data.projectName)
@@ -306,6 +388,9 @@ getEdit(id){
       this.form.setFieldValue('paymentContent', res.data.paymentContent || '')
       this.form.setFieldValue('applicationTime', res.data.applicationTime || '')
       this.form.setFieldValue('countersignLeader_text', res.data.countersignLeader_dictText || '')
+      this.form.setFieldValue('transitAmount', res.data.transitAmount || '')
+      this.form.setFieldValue('remark', res.data.remark || '')
+      this.getSelectSupplementalAgreement()
       const files= res.data.investmentFileList.map((item)=>{
         return {
           ...item,
@@ -320,7 +405,7 @@ getEdit(id){
 },
 async submit(){
   const params = await this.form.submit();
-  console.log(params);
+  console.log('params--------',params);
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
    params.projectType = this.data.projectTypeData.itemValue
@@ -366,6 +451,7 @@ request.doPostRequest({
 workingStorage(){
   this.form.rules = {}
   let params = this.form.getFieldsValue()
+  // params.remark = this.data.remark,
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
  params.projectType = this.data.projectTypeData.itemValue

@@ -15,10 +15,17 @@
     <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
     <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
     <list-item extraBrief="{{infoData.contractAmount}}">合同金额(万元)</list-item>
+    <list-item extraBrief="{{infoData.contractAmount}}">补充协议</list-item>
     <list-item extraBrief="{{infoData.cumulativePayment}}">累计已付款(万元)</list-item>
+    <list-item extraBrief="{{infoData.transitAmount}}">在途支付金额</list-item>
     <list-item extraBrief="{{infoData.payUnit}}">付款单位</list-item>
     <list-item extraBrief="{{infoData.receiverUnit}}">收款单位</list-item>
     <list-item extraBrief="{{infoData.payAmount}}">本次应付金额(万元)</list-item>
+    <list-item extraBrief="{{infoData.payAmount}}">累计支付金额</list-item>
+    <list-item>
+      备注
+      <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>
+    </list-item>
     <list-item>
       支付节点（或形象进度）
       <view style="margin-top:10rpx;color: #969799;">{{infoData.paymentNode}}</view>

@@ -63,12 +63,38 @@
           placeholder="选择合同后自动带入"
          disabled
           ref="handleRef"></form-input> 
+
+          <view style="margin-left: 15px;
+          color: #939393;" a:if="{{supplementaryAgreement && supplementaryAgreement.length > 0}}"> 补充协议
+           <view a:for="(item,index) of supplementaryAgreement">
+            <form-input
+            label="合同名称"
+            name="item.contractName"
+            placeholder="选择合同后自动带入"
+            disabled
+            ref="handleRef"></form-input> 
+            <form-input
+            label="合同金额"
+            name="item.contractAmount"
+            placeholder="选择合同后自动带入"
+            disabled
+            ref="handleRef"></form-input> 
+          </view>
+        </view>
           <form-input
           label="累计已付款(万元)"
           name="cumulativePayment"
           placeholder="选择合同后自动带入"
          disabled
           ref="handleRef"></form-input> 
+
+          <form-input
+          label="在途支付金额"
+          name="transitAmount"
+          placeholder="选择合同后自动带入"
+          disabled
+          ref="handleRef"></form-input> 
+
           <view  catchTap="bindChooseSlowUnitTap">
             <form-input
             label="付款单位"
@@ -91,7 +117,25 @@
            placeholder="请输入"
            type="number"
            style="text-align:left"
+           onBlur="accumulatedPaymentAmountFn"
            ref="handleRef" /> 
+           <form-input
+           label="累计支付金额"
+           name="accumulatedPaymentAmount"
+           placeholder="自动带出"
+           type="number"
+           disabled
+           style="text-align:left"
+           ref="handleRef" /> 
+
+           <form-textarea
+           label="备注"
+            position='vertical'
+            name="remark"
+            placeholder="请输入"
+             maxLength="50"
+             autoHeight
+             ref="handleRef" />
            <form-textarea
            label="支付节点（或形象进度）"
             position='vertical'
