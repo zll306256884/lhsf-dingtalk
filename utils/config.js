@@ -43,6 +43,8 @@ module.exports = {
     
     // 款项类型
     API_FUKUAN_TYPE :API_HOST +'/integratedService/currentUnit/queryAllCurrentUnit',
+    // 款项类型
+    API_SELECT_BYCONTRACT_ID_WITHUNIT :API_HOST +'/tender/contract/selectByContractIdWithUnit',
     //数据字典列表
     API_SCREEN_STATUS_BY_CODE: API_HOST + "/platform/sysDictItem/queryListByCode?dictCode=",
     //上传获取签名

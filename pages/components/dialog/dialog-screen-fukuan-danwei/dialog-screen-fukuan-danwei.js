@@ -10,6 +10,7 @@ Component({
      * 组件的属性列表
      */
     props: {
+      dataList:[],
       projectId:"",
         marginTop: 0,
         positionBottom: false,
@@ -125,7 +126,41 @@ Component({
                 })
                 return;
             }
+            if(this.props.contractId) {
+              this.data.dataList = [];
+              request.doPostRequest({
+                url: config.API_SELECT_BYCONTRACT_ID_WITHUNIT,
+                data: {
+                  contractId: this.props.contractId,
+                },
+                success: res => {
+                    this.data.dataList = [];
+                console.log(res);
+                
+                    this.data.dataList = this.data.dataList.concat(res.data || []);
+
+                    this.setData({
+                        chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
+                        showDialog: true,
+                        dataList: this.data.dataList
+                    })
+                }
+            });
+          }
+            if(this.props.dataList) {
+              this.data.dataList = [];
+              console.log(this.props.dataList);
+              
+                  this.data.dataList = this.data.dataList.concat(this.props.dataList || []);
+
+                  this.setData({
+                      chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
+                      showDialog: true,
+                      dataList: this.data.dataList
+                  })
+          }
             if(this.props.projectId){
+              console.log('',this.props.projectId);
               request.doPostRequest({
                 url: config.API_FUKUAN_TYPE,
                 data: {
@@ -145,7 +180,6 @@ Component({
                 }
             });
             }
-           
         },
 
         //hide modal dialog

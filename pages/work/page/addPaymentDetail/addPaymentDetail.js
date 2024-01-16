@@ -27,6 +27,7 @@ Page({
     infoData: {},
     isCurrentAudit: false,
     dingTalkFormList: [],
+    accumulatedPaymentAmount: 0
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -121,7 +122,10 @@ Page({
       data: { id: tenderId },
       success: res => {
         this.setData({
-          infoData: res.data
+          infoData: {
+            accumulatedPaymentAmount:Number(res.data.payAmount) + Number(res.data.cumulativePayment),
+            ...res.data
+          }
         })
         let dingTalkFormList = [
           { key:'事项类型：', value: '款项支付' },

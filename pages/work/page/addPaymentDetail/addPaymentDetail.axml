@@ -21,7 +21,7 @@
     <list-item extraBrief="{{infoData.payUnit}}">付款单位</list-item>
     <list-item extraBrief="{{infoData.receiverUnit}}">收款单位</list-item>
     <list-item extraBrief="{{infoData.payAmount}}">本次应付金额(万元)</list-item>
-    <list-item extraBrief="{{infoData.payAmount}}">累计支付金额</list-item>
+    <list-item extraBrief="{{infoData.accumulatedPaymentAmount}}">累计支付金额</list-item>
     <list-item>
       备注
       <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>
