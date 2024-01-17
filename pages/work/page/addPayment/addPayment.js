@@ -120,8 +120,12 @@ Page({
       },
       success: res => {
         console.log(res,2323232323);
-        this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0)
-        this.data.supplementaryAgreement = res.data
+        this.setData({
+          accumulatedPaymentAmount: Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0),
+          supplementaryAgreement: res.data
+        })
+        // this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0)
+        // this.data.supplementaryAgreement = res.data
       }
     })
   },
@@ -178,7 +182,10 @@ Page({
         contractId:data.contractId,
       },
       success: res => {
-        this.data.supplementaryAgreement = res.data
+        this.setData({
+          supplementaryAgreement: res.data
+        })
+        // this.data.supplementaryAgreement = res.data
         console.log(res,'补充协议',this.data.supplementaryAgreement);
       }
     }) 
@@ -189,8 +196,9 @@ Page({
         contractId:data.contractId,
       },
       success: res => {
-        this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0)
+        // this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0)
         this.setData({
+          accumulatedPaymentAmount: Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0),
           transitAmount: res.data.transitAmount || 0,
           cumulativePayment:  res.data.cumulativePayment || 0,
         });
@@ -223,7 +231,9 @@ Page({
   },
   accumulatedPaymentAmountFn: function (value, e) {
     console.log(value, e);
-    this.data.accumulatedPaymentAmount = Number(value) + Number(this.form.getFieldValue('cumulativePayment') || 0)
+    this.setData({
+      accumulatedPaymentAmount: Number(value) + Number(this.form.getFieldValue('cumulativePayment') || 0)
+    })
     this.form.setFieldValue('accumulatedPaymentAmount',  this.data.accumulatedPaymentAmount )
     let aaa = parseInt(value).toString()
     if(aaa.length > 4) {
