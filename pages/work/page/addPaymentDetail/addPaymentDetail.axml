@@ -15,7 +15,38 @@
     <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
     <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
     <list-item extraBrief="{{infoData.contractAmount}}">合同金额(万元)</list-item>
-    <list-item extraBrief="{{infoData.contractAmount}}">补充协议</list-item>
+    <!-- <list-item >
+      补充协议
+      <view a:for="{{supplementaryAgreement}}">
+        <list-item extraBrief="{{item.contractName}}">合同名称</list-item>
+        <list-item extraBrief="{{item.contractAmount}}">合同金额(万元)</list-item>
+      </view>
+    </list-item> -->
+
+    <view style="margin: 10px">
+      <view style="margin: 10px 0;color: #969799" a:if="{{supplementaryAgreement && supplementaryAgreement.length > 0}}">
+        补充协议
+      </view>
+      <view a:for="{{supplementaryAgreement}}"  a:key="{{item.id}}" >
+        <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+          <view style="padding:10px 0">
+            合同名称
+          </view>
+          <view style="padding:10px 0;color: #1A6AFF">
+            {{ item.contractName }}
+          </view>
+        </view>
+        <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+          <view style="padding:10px 0">
+          合同金额 (万元)
+          </view>
+          <view style="padding:10px 0;color: rgb(193 193 193)">
+            {{ item.contractAmount }} 
+          </view>
+        </view>
+      </view>
+   </view>
+    
     <list-item extraBrief="{{infoData.cumulativePayment}}">累计已付款(万元)</list-item>
     <list-item extraBrief="{{infoData.transitAmount}}">在途支付金额</list-item>
     <list-item extraBrief="{{infoData.payUnit}}">付款单位</list-item>

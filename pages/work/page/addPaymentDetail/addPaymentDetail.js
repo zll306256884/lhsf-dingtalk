@@ -27,7 +27,8 @@ Page({
     infoData: {},
     isCurrentAudit: false,
     dingTalkFormList: [],
-    accumulatedPaymentAmount: 0
+    accumulatedPaymentAmount: 0,
+    supplementaryAgreement: []
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -125,6 +126,19 @@ Page({
           infoData: {
             accumulatedPaymentAmount:Number(res.data.payAmount) + Number(res.data.cumulativePayment),
             ...res.data
+          }
+        }) 
+        // 获取补充协议
+        request.doPostRequest({
+          url: confing.API_SELECT_SUPPLEMENTAL_AGREEMENT,
+          data: {
+            contractId: res.data.contractId,
+          },
+          success: res2 => {
+            this.data.supplementaryAgreement = res2.data
+            this.setData({
+              supplementaryAgreement:res2.data
+            })
           }
         })
         let dingTalkFormList = [
