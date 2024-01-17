@@ -238,7 +238,7 @@ Page({
     let aaa = parseInt(value).toString()
     if(aaa.length > 4) {
       this.setData({
-        payAmountTitle: '金额填写超过亿元'
+        payAmountTitle: '请核对本次应付金额（万元单位）填写是否正确'
       })
     }else{
       this.setData({
@@ -247,7 +247,7 @@ Page({
     }
     if(this.data.accumulatedPaymentAmount > Number(this.form.getFieldValue('contractAmount') || 0)) {
       this.setData({
-        accumulatedPaymentAmountTitle: '支付金额超过合同金额'
+        accumulatedPaymentAmountTitle: '累计支付金额超过主合同的合同金额，请注意'
       })
     }else{
       this.setData({
@@ -373,7 +373,6 @@ bindScreenExecuteUserCallBack: function (list) {
   this.setData({
     countersignLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
     countersignLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
-
   });
   this.form.setFieldValue('countersignLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
   this.form.setFieldValue('countersignLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));

@@ -65,7 +65,7 @@
           ref="handleRef"></form-input> 
 
           <view style="margin: 10px">
-          <view style="margin: 10px 0;color: #969799">
+          <view style="margin: 10px 0;color: #969799" a:if="{{supplementaryAgreement && supplementaryAgreement.length > 0}}">
             补充协议
           </view>
            <view a:for="{{supplementaryAgreement}}"  a:key="{{item.id}}" >
@@ -73,7 +73,7 @@
               <view style="padding:10px 0">
                 合同名称
               </view>
-              <view style="padding:10px 0">
+              <view style="padding:10px 0;color: rgb(193 193 193)">
                 {{ item.contractName }}
               </view>
             </view>
@@ -81,7 +81,7 @@
               <view style="padding:10px 0">
               合同金额 (万元)
               </view>
-              <view style="padding:10px 0">
+              <view style="padding:10px 0;color: rgb(193 193 193)">
                 {{ item.contractAmount }} 
               </view>
             </view>
@@ -160,17 +160,23 @@
            <view a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
             {{ accumulatedPaymentAmountTitle }}
            </view>
-           <form-textarea
-           label="备注"
-            position='vertical'
-            name="remark"
-            placeholder="请输入"
-             maxLength="50"
-             autoHeight
-             ref="handleRef" />
-             <view a:if="{{remarkTitle}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
-              支付金额超过合同金额请填写备注
-             </view>
+           
+           <view style="display:flex;flex-direction: row;">
+            <view  a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="width: 15px;color:rgb(238 10 36 / 79%);transform:translateX(8px)translateY(10px)">*</view>
+            <view style="width:100%">
+              <form-textarea
+            label="备注"
+              position='vertical'
+              name="remark"
+              placeholder="请输入"
+              maxLength="50"
+              autoHeight
+              ref="handleRef" />
+              <view a:if="{{remarkTitle}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
+                支付金额超过合同金额请填写备注
+              </view>
+              </view>
+          </view>
            <form-textarea
            label="支付节点（或形象进度）"
             position='vertical'
