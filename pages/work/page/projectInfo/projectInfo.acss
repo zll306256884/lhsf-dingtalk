@@ -91,7 +91,7 @@
   color: #323233;
   line-height: 80rpx;
 }
-.bottom-content .bottom-button .active{
+.bottom-content .active{
   background: #1A6AFF;
   color: #FFFFFF;
 }

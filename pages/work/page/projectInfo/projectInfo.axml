@@ -83,7 +83,7 @@
     </view>
 
     <view a:if="{{ requestType === '1' &&  formData.status === 1}}" class="bottom-content flex f-between">
-      <button class="bottom-button" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
+      <button class="bottom-button active" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
     </view>
   </view>
 </view>
