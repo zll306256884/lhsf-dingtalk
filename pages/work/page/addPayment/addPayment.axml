@@ -64,21 +64,39 @@
          disabled
           ref="handleRef"></form-input> 
 
-          <view style="margin-left: 15px;
-          color: #939393;" > 补充协议
-           <view a:for="{{supplementaryAgreement}}">
-              <form-input
+          <view style="margin: 10px">
+          <view style="margin: 10px 0;color: #969799">
+            补充协议
+          </view>
+           <view a:for="{{supplementaryAgreement}}"  a:key="{{item.id}}" >
+            <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+              <view style="padding:10px 0">
+                合同名称
+              </view>
+              <view style="padding:10px 0">
+                {{ item.contractName }}
+              </view>
+            </view>
+            <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+              <view style="padding:10px 0">
+              合同金额 (万元)
+              </view>
+              <view style="padding:10px 0">
+                {{ item.contractAmount }} 
+              </view>
+            </view>
+              <!-- <form-input
               label="合同名称"
-              name="item.contractName"
+              name="{{item.contractName}}"
               placeholder="选择合同后自动带入"
               disabled
               ref="handleRef"></form-input> 
               <form-input
               label="合同金额"
-              name="item.contractAmount"
+              name="{{item.contractAmount}}"
               placeholder="选择合同后自动带入"
               disabled
-              ref="handleRef"></form-input> 
+              ref="handleRef"></form-input>  -->
           </view>
         </view>
           <form-input
