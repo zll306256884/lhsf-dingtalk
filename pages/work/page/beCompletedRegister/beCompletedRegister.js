@@ -357,6 +357,21 @@ request.doPostRequest({
     setTimeout(() => {
       this.uploadImageList._setImageList(files) 
     }, 0);
+    if(res.data.departmentManager_dictText && res.data.departmentManager){
+      const nameList = res.data.departmentManager_dictText.split(',')
+      const idList = res.data.departmentManager.split(',')
+      this.setData({
+        executeUser1: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+      })
+    }
+    if(res.data.countersignLeader_dictText && res.data.countersignLeader){
+      const nameList = res.data.countersignLeader_dictText.split(',')
+      const idList = res.data.countersignLeader.split(',')
+      this.setData({
+        executeUser2: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+      })
+    }
+    
   }
 })
 },
