@@ -13,8 +13,7 @@
       class="item add" 
       src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
     </image>
-    <image 
-      a:if="{{disabled && imgList.length <= 0}}" 
+    <image a:if="{{disabled && imgList.length <= 0}}" 
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
       src="/assets/images/common/icon_placeholder.png" />
     <view a:if="{{!disabled && !onlyUploadImage}}" style="font-size: 24rpx;color: #969799;margin:8rpx 0 14rpx">{{descriptionText}}</view>
