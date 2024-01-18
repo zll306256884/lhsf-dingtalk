@@ -57,9 +57,9 @@
            disabled
             ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
            </view>
-           <view  a:if="{{contractName}}" style="text-align: right;
+           <view  a:if="{{contractData.contractId}}" style="text-align: right;
            padding: 10px;
-           color: #1A6AFF;">
+           color: #1A6AFF;"data-index="{{contractData.contractId}}" onTap="paymentApplication" >
              查看合同
            </view>
            <form-input
