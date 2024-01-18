@@ -57,48 +57,40 @@
            disabled
             ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
            </view>
+           <view  a:if="{{contractName}}" style="text-align: right;
+           padding: 10px;
+           color: #1A6AFF;">
+             查看合同
+           </view>
            <form-input
           label="合同金额(万元)"
           name="contractAmount"
           placeholder="选择合同后自动带入"
          disabled
           ref="handleRef"></form-input> 
-
           <view style="margin: 10px">
-          <view style="margin: 10px 0;color: #969799" a:if="{{supplementaryAgreement && supplementaryAgreement.length > 0}}">
-            补充协议
-          </view>
-           <view a:for="{{supplementaryAgreement}}"  a:key="{{item.id}}" >
-            <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
-              <view style="padding:10px 0">
-                合同名称
+            <view style="margin: 10px 0;color: #969799" a:if="{{supplementaryAgreement && supplementaryAgreement.length > 0}}">
+              补充协议
+            </view>
+            <view a:for="{{supplementaryAgreement}}"  a:key="{{item.id}}" >
+              <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+                <view style="padding:10px 0">
+                  合同名称
+                </view>
+                <view style="padding:10px 0;color: #1A6AFF" data-index="{{item.id}}" onTap="paymentApplication">
+                  {{ item.contractName }}
+                </view>
               </view>
-              <view style="padding:10px 0;color: rgb(193 193 193)">
-                {{ item.contractName }}
+              <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
+                <view style="padding:10px 0">
+                合同金额 (万元)
+                </view>
+                <view style="padding:10px 0;color: rgb(193 193 193)">
+                  {{ item.contractAmount }} 
+                </view>
               </view>
             </view>
-            <view style="display:flex;justify-content: space-between;padding-right: 10px; color: rgb(80 80 80);border-bottom: 1px solid rgb(237 237 237 / 83%);">  
-              <view style="padding:10px 0">
-              合同金额 (万元)
-              </view>
-              <view style="padding:10px 0;color: rgb(193 193 193)">
-                {{ item.contractAmount }} 
-              </view>
-            </view>
-              <!-- <form-input
-              label="合同名称"
-              name="{{item.contractName}}"
-              placeholder="选择合同后自动带入"
-              disabled
-              ref="handleRef"></form-input> 
-              <form-input
-              label="合同金额"
-              name="{{item.contractAmount}}"
-              placeholder="选择合同后自动带入"
-              disabled
-              ref="handleRef"></form-input>  -->
-          </view>
-        </view>
+         </view>
           <form-input
           label="累计已付款(万元)"
           name="cumulativePayment"

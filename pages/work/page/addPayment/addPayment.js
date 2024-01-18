@@ -110,6 +110,9 @@ Page({
       success: res => {
         console.log(res,2323232323);
         this.data.supplementaryAgreement = res.data
+        this.setData({
+          supplementaryAgreement:res.data
+        })
       }
     }) 
     // 获取在途金额
@@ -397,6 +400,99 @@ _bindScreenShiGongUnitCallBack: function (data) {
 
   // this._getLastSubmitInfo();
 },
+// 
+paymentApplication(e){
+  console.log(e.currentTarget.dataset.index)
+//   ddUtils.setStorage({
+//     key: 'paymentApplication',
+//     data: {
+//       'projectTypeData.itemText': this.data.projectTypeData.itemText,
+//       'projectTypeData.itemValue': this.data.projectTypeData.itemValue,
+//       'projectData.name':this.data.projectData.name,
+//       'projectData.id':this.data.projectData.id,
+//       projectId:this.data.projectId,
+//       projectLeader:this.data.projectLeader,
+//       affiliateUnit:this.data.affiliateUnit,
+//       'contractData.contractName':this.data.contractData.contractName,
+//       'contractData.contractId':this.data.contractData.contractId,
+//       contractAmount:this.data.contractAmount,
+//       cumulativePayment:this.data.cumulativePayment,
+//       // 'slowUnitData.id':res.data.payUnitId,
+//       'slowUnitData.unitName':this.data.slowUnitData.unitName,
+//       'proceedsData.unitName':this.data.proceedsData.unitName,
+//       icMeasurementPaymentId:this.data.icMeasurementPaymentId,
+//       payAmount:this.data.payAmount,
+//       paymentNode:this.data.paymentNode,
+//       paymentContent:this.data.paymentContent,
+//       applicationTime:this.data.applicationTime,
+//       countersignLeader:this.data.countersignLeader,
+//       countersignLeader_text:this.data.countersignLeader_text,
+//       investmentFileList:this.data.investmentFileList,
+//       transitAmount:this.data.transitAmount,
+//       remark:this.data.remark,
+//     }
+// });
+ddUtils.navigateTo({
+  url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${e.currentTarget.dataset.index}&approvalType=1`
+});
+},
+// 缓存跳转
+// cacheJump() {
+//   let res = dd.getStorageSync({ key: 'paymentApplication' });
+//   if(res && JSON.stringify(res) !== '{data:{}}'){
+//     this.setData({
+//       'projectTypeData.itemText':res.data['projectTypeData.itemText'],
+//       'projectTypeData.itemValue':res.data['projectTypeData.itemValue'],
+//       'projectData.name':res.data['projectData.name'],
+//       'projectData.id':res.data['projectData.id'],
+//       projectId:res.data.projectId,
+//       projectLeader:res.data.projectLeader,
+//       affiliateUnit:res.data.affiliateUnit,
+//       'contractData.contractName':res.data['contractData.contractName'],
+//       'contractData.contractId':res.data['contractData.contractId'],
+//       contractAmount:res.data.contractAmount,
+//       cumulativePayment:res.data.cumulativePayment,
+//       // 'slowUnitData.id':res.data.payUnitId,
+//       'slowUnitData.unitName':res.data['slowUnitData.unitName'],
+//       'proceedsData.unitName':res.data['proceedsData.unitName'],
+//       icMeasurementPaymentId:res.data.icMeasurementPaymentId,
+//       payAmount:res.data.payAmount,
+//       paymentNode:res.data.paymentNode,
+//       paymentContent:res.data.paymentContent,
+//       applicationTime:res.data.applicationTime,
+//       countersignLeader:res.data.countersignLeader,
+//       countersignLeader_text:res.data.countersignLeader_text,
+//       investmentFileList:res.data.investmentFileList,
+//       transitAmount:res.data.transitAmount,
+//       remark:res.data.remark,
+//       accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0)
+//     })
+//     this.form.setFieldValue('projectType_text',res.data['proceedsData.unitName'] || '')
+//     this.form.setFieldValue('projectName', res.data['projectTypeData.itemValue'])
+//     this.form.setFieldValue('projectId', res.data['projectData.id'])
+//     this.form.setFieldValue('projectLeader', res.data.projectLeader)
+//     this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit || '')
+//     this.form.setFieldValue('contractName', res.data['contractData.contractName'])
+//     this.form.setFieldValue('contractId', res.data['contractData.contractId'])
+//     this.form.setFieldValue('contractAmount', res.data.contractAmount)
+//     this.form.setFieldValue('cumulativePayment', res.data.cumulativePayment)
+//     this.form.setFieldValue('payUnit', res.data['slowUnitData.unitName'] || '')
+//     this.form.setFieldValue('receiverUnit', res.data['proceedsData.unitName'] || '')
+//     this.form.setFieldValue('icMeasurementPaymentId', res.data.icMeasurementPaymentId || '')
+//     this.form.setFieldValue('payAmount', res.data.payAmount || '')
+//     this.form.setFieldValue('paymentNode', res.data.paymentNode || '')
+//     this.form.setFieldValue('paymentContent', res.data.paymentContent || '')
+//     this.form.setFieldValue('applicationTime', res.data.applicationTime || '')
+//     this.form.setFieldValue('countersignLeader_text', res.data.countersignLeader_dictText || '')
+//     this.form.setFieldValue('transitAmount', res.data.transitAmount || '')
+//     this.form.setFieldValue('remark', res.data.remark || '')
+//     this.form.setFieldValue('accumulatedPaymentAmount',  Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0))
+//     ddUtils.setStorage({
+//       key: 'paymentApplication',
+//       data: {}
+//     })
+//   }
+// },
 // 编辑
 getEdit(id){
   request.doPostRequest({
@@ -461,6 +557,9 @@ getEdit(id){
       success: res => {
         console.log(res,2323232323);
         this.data.supplementaryAgreement = res.data
+        this.setData({
+          supplementaryAgreement: res.data
+        })
       }
     }) 
       const files= res.data.investmentFileList.map((item)=>{

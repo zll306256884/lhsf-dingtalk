@@ -1,5 +1,8 @@
 import { API_HOST } from "../../utils/config.js"
 module.exports = {
+  // 获取补充协议
+  API_SELECT_SUPPLEMENTAL_AGREEMENT: API_HOST +'/tender/contract/selectSupplementalAgreement',
+   
   // 项目累计金额
   API_PROJECT_TO_POST: API_HOST + "/investment/changeManagement/selectProjectCumulativeChange",
   //合同累计金额及变更率
