@@ -8,17 +8,18 @@ const app = getApp();
 
 Page({
   data: {
-    iconList: [{
-      url: "../../../../assets/images/work/Group-1.png",
-      name: "新增项目",
-      path: '/pages/work/page/addNewProject/addNewProject',
-      showType:'xzxm'
-    },
+    iconList: [
     {
       url: "../../../../assets/images/work/Group-2.png",
       name: "新增日志",
       path: '/pages/work/page/addLog/addLog',
       showType: 'xzrz'
+    },
+    {
+      url: "../../../../assets/images/work/Group-1.png",
+      name: "新增项目",
+      path: '/pages/work/page/addNewProject/addNewProject',
+      showType:'xzxm'
     },
     {
       url: "../../../../assets/images/work/Group-3.png",
@@ -27,16 +28,16 @@ Page({
       showType: 'jdtb'
     },
     {
-      url: "../../../../assets/images/work/Group-4.png",
-      name: "招标文件会签",
-      path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit',
-      showType: 'zbwjhq'
-    },
-    {
       url: "../../../../assets/images/work/Group-5.png",
       name: "合同审批流程",
       path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit',
       showType: 'htsplc'
+    },
+    {
+      url: "../../../../assets/images/work/Group-4.png",
+      name: "招标文件会签",
+      path: '/pages/work/page/bidDocumentCreatAndEdit/bidDocumentCreatAndEdit',
+      showType: 'zbwjhq'
     },
     {
       url: "../../../../assets/images/work/Group-6.png",
