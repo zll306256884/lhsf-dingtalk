@@ -71,11 +71,15 @@ Page({
       this.mapRef.initMap()
     }
   },
-  // onPageScroll(){
-  // this.mapRef.onShowUnit()
-  // },
+  onPageScroll(){
+  if(this.data.currentTabIndex === 0 && this.mapRef){
+  this.mapRef.onShowUnit()
+  }
+  },
   onPullDownRefresh(){
+  if(this.data.currentTabIndex === 0 && this.mapRef){
   this.mapRef.onHideUnit()
   dd.stopPullDownRefresh()
+ }
   },
 });
