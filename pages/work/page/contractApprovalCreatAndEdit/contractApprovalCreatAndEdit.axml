@@ -186,7 +186,8 @@
     <list><list-item extraBrief="删除"></list-item></list>
   </view> -->
 
-  <view class="addunit" catchTap="addUnit">+添加单位</view>
+  <view a:if="{{ list.length < 6 }}" class="addunit" catchTap="addUnit">+添加单位</view>
+  <view a:if="{{ list.length > 5 }}" class="bottom-space" style="height:16rpx"></view>
 
   <form-textarea
     label="合同内容"
