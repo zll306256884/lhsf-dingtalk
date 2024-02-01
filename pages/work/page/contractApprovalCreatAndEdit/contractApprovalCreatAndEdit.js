@@ -49,6 +49,7 @@ Page({
     ],
     paymentMethodOptions: [],
     unitTypeOption: [],
+    unitTypeOptionLis: [],
     contractList:[],
     biddingListOptions: [],
     countersignLeader: null,
@@ -167,7 +168,7 @@ Page({
     console.log(data);
     let list = this.data.list
     list[this.data.listIndex].thirdPartyType = data
-    // list[this.data.listIndex].thirdPartyTypeName = this.data.unitTypeOption.find(e => e.id === data).type_dictText
+    // list[this.data.listIndex].thirdPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === data).label
     console.log('list', list);
     this.setData({
       list
@@ -303,12 +304,11 @@ Page({
         proId: this.data.projectId
       },
       success: res => {
-        res.data.forEach(e => {
-          e.label = e.type_dictText
-          e.value = e.type_dictText
-        })
+        const optionsList = res.data.map(e => {return { label: e.type_dictText, value: e.type_dictText, id:e.id}})
+        const list = res.data.map(e => {return { label: e.type_dictText, value: e.id, id:e.id}})
         this.setData({
-          unitTypeOption: res.data || []
+          unitTypeOption: optionsList || [],
+          unitTypeOptionList: list || []
         })
       }
     })
@@ -413,8 +413,9 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.ecUnitId = this.data.ecUnitId
+    console.log(params)
     if(params.unitPartyType){
-      params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+      params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
     }
     
     let workAuditFile = [];
@@ -467,7 +468,7 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.ecUnitId = this.data.ecUnitId
-    params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+    params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
     let workAuditFile = [];
     if (this.uploadImageList) {
       workAuditFile = this.uploadImageList._getUploadImgId().imgList;
@@ -544,7 +545,7 @@ Page({
           projectName: paramsdata.projectName,
           developmentOrganizationName: paramsdata.developmentOrganizationName,
           ecUnitId: paramsdata.ecUnitId,
-          unitPartyTypeName: paramsdata.projeunitPartyTypeNamectId,
+          unitPartyTypeName: paramsdata.unitPartyTypeName,
           contractShow: paramsdata.supplementAgreement===1?true:false,
           tenderShow: paramsdata.contractNeedTender===1?true:false,
           list

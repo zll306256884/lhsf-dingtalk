@@ -142,7 +142,7 @@
   labelWidth="260rpx"
   arrow
   name="unitPartyType"
-  options="{{unitTypeOption}}"
+  options="{{unitTypeOptionList}}"
   ref="handleRef" />
   
   <list a:for="{{list}}" a:key="id">
