@@ -1,7 +1,4 @@
 {
-  "component": true,
-  "transparentTitle": "always",
-  "titlePenetrate":"NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",

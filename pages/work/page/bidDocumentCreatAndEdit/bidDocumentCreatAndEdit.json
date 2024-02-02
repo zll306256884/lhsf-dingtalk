@@ -1,6 +1,4 @@
 {
-  "transparentTitle": "always",
-  "titlePenetrate": "NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "form-input": "antd-mini/es/Form/FormInput/index",

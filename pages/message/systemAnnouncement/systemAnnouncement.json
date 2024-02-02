@@ -1,7 +1,4 @@
 {
-  "component": true,
-  "transparentTitle": "always",
-  "titlePenetrate":"NO",
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "empty": "antd-mini/es/Empty/index"
