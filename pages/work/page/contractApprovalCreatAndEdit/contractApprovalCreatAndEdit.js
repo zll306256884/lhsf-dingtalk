@@ -49,6 +49,7 @@ Page({
     ],
     paymentMethodOptions: [],
     unitTypeOption: [],
+    unitTypeOptionLis: [],
     contractList:[],
     biddingListOptions: [],
     countersignLeader: null,
@@ -167,7 +168,7 @@ Page({
     console.log(data);
     let list = this.data.list
     list[this.data.listIndex].thirdPartyType = data
-    list[this.data.listIndex].thirdPartyTypeName = this.data.unitTypeOption.find(e => e.id === data).type_dictText
+    // list[this.data.listIndex].thirdPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === data).label
     console.log('list', list);
     this.setData({
       list
@@ -303,12 +304,11 @@ Page({
         proId: this.data.projectId
       },
       success: res => {
-        res.data.forEach(e => {
-          e.label = e.type_dictText
-          e.value = e.id
-        })
+        const optionsList = res.data.map(e => {return { label: e.type_dictText, value: e.type_dictText, id:e.id}})
+        const list = res.data.map(e => {return { label: e.type_dictText, value: e.id, id:e.id}})
         this.setData({
-          unitTypeOption: res.data || []
+          unitTypeOption: optionsList || [],
+          unitTypeOptionList: list || []
         })
       }
     })
@@ -344,25 +344,29 @@ Page({
     })
   },
   numberToChinese(num) {
-    const chineseNums = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
-    const chineseUnits = ['', '十', '百', '千']
-    if (num === 0) {
-      return chineseNums[0]
-    }
+    // const chineseNums = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+    // const chineseUnits = ['', '十', '百', '千']
+    // if (num === 0) {
+    //   return chineseNums[0]
+    // }
+    // let chineseStr = ''
+    // let unitIndex = 0
+    // while (num > 0) {
+    //   const digit = num % 10
+    //   if (digit !== 0) {
+    //     // 处理非零数字
+    //     chineseStr = chineseNums[digit] + chineseUnits[unitIndex] + chineseStr
+    //   } else if (chineseStr.charAt(0) !== chineseNums[0]) {
+    //     // 处理连续的零，只保留一个零
+    //     chineseStr = chineseNums[0] + chineseStr
+    //   }
+    //   num = Math.floor(num / 10)
+    //   unitIndex++
+    // }
+    // return chineseStr
+    const arr = ['', '甲', '乙', '丙', '丁', '戊', '己', '庚', '辛']
     let chineseStr = ''
-    let unitIndex = 0
-    while (num > 0) {
-      const digit = num % 10
-      if (digit !== 0) {
-        // 处理非零数字
-        chineseStr = chineseNums[digit] + chineseUnits[unitIndex] + chineseStr
-      } else if (chineseStr.charAt(0) !== chineseNums[0]) {
-        // 处理连续的零，只保留一个零
-        chineseStr = chineseNums[0] + chineseStr
-      }
-      num = Math.floor(num / 10)
-      unitIndex++
-    }
+    chineseStr = arr[num]
     return chineseStr
   },
   deleteThis(e){
@@ -409,8 +413,9 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.ecUnitId = this.data.ecUnitId
+    console.log(params)
     if(params.unitPartyType){
-      params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+      params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
     }
     
     let workAuditFile = [];
@@ -463,7 +468,7 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.ecUnitId = this.data.ecUnitId
-    params.unitPartyTypeName = this.data.unitTypeOption.find(e => e.id === params.unitPartyType).type_dictText
+    params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
     let workAuditFile = [];
     if (this.uploadImageList) {
       workAuditFile = this.uploadImageList._getUploadImgId().imgList;
@@ -540,7 +545,7 @@ Page({
           projectName: paramsdata.projectName,
           developmentOrganizationName: paramsdata.developmentOrganizationName,
           ecUnitId: paramsdata.ecUnitId,
-          unitPartyTypeName: paramsdata.projeunitPartyTypeNamectId,
+          unitPartyTypeName: paramsdata.unitPartyTypeName,
           contractShow: paramsdata.supplementAgreement===1?true:false,
           tenderShow: paramsdata.contractNeedTender===1?true:false,
           list
