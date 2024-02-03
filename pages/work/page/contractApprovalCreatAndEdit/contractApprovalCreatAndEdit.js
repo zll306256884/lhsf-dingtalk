@@ -69,8 +69,8 @@ Page({
   dialogSScreenExecuteUser: null,
   dialogScreenEcologicalUnit: null,
   dialogScreenConstructUnit: null,
-  uploadImageList: null,
   dialogScreenConstructUnit2: null,
+  uploadImageList: null,
   pickerDateRef: null,
 
   onLoad(options) {
@@ -227,7 +227,7 @@ Page({
     console.log('第三',data);
     let list = this.data.list
     list[this.data.listIndex].thirdParty = data.id
-    list[this.data.listIndex].thirdPartyName = data.unitName
+    list[this.data.listIndex].thirdPartyName = data.name
     console.log(list);
     this.setData({
       list:list
