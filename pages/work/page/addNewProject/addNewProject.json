@@ -1,6 +1,4 @@
 {
-  "transparentTitle": "always",
-  "titlePenetrate": "NO",
   "usingComponents": {
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
     "layout-field-input": "/pages/components/layout/layout-field-input/layout-field-input",

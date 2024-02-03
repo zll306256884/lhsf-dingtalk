@@ -1,5 +1,4 @@
 {
-  "transparentTitle": "always",
   "titlePenetrate":"NO",
   "usingComponents": {
     "tabs": "antd-mini/es/Tabs/index",

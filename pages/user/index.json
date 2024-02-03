@@ -1,6 +1,4 @@
 {
-  "transparentTitle": "always",
-  "titlePenetrate": "NO",
   "usingComponents": {
     "sub-tab":"/pages/components/sub-tab/sub-tab",
     "nav-bar": "/pages/components/nav-bar/nav-bar",

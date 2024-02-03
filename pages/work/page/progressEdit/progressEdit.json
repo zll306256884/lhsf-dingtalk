@@ -1,6 +1,4 @@
 {
-  "transparentTitle": "always",
-  "titlePenetrate": "NO",
   "usingComponents": {
     "form-input": "antd-mini/es/Form/FormInput/index",
     "form-picker": "antd-mini/es/Form/FormPicker/index",
