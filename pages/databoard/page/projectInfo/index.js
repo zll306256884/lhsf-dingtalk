@@ -6,7 +6,7 @@ Page({
     scrollTop: 0,
     tabs: [
       {
-        title: "项目概览"
+        title: "工程项目概览"
       },
       {
         title: "项目进度"

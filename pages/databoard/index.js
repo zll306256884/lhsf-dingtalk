@@ -8,7 +8,7 @@ Page({
     },
     tabs: [
       {
-        title: "项目概览"
+        title: "工程项目概览"
       },
       {
         title: "年度资金管控"
