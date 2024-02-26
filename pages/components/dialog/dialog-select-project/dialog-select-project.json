@@ -1,7 +1,8 @@
 {
   "component": true,
   "usingComponents": {
-    "layout-search": "/pages/components/layout/layout-search/layout-search"
+    "layout-search": "/pages/components/layout/layout-search/layout-search",
+    "ant-icon": "antd-mini/es/Icon/index"
 
 }
 

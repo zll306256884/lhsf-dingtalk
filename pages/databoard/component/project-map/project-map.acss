@@ -14,11 +14,14 @@
   z-index: 99;
 }
 .search-list{
-  width: 128rpx;
-  height: 135rpx;
+  /* width: 128rpx;
+  height: 135rpx; */
+  width: 90%;
+  height: 90rpx;
   position: absolute;
-  top: 57%;
-  left:26rpx;
+  top: 70%;
+  left:50%;
+  transform: translateX(-50%);
   z-index: 99;
 }
 .blow-up{

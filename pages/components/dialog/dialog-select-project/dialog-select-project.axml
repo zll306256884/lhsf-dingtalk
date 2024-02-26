@@ -4,9 +4,11 @@
   <block>
       <view  class="box-sizing-box modal-content dialog-picker" style="margin-top:50rpx" animation="{{animationData}}">
           <view class="box-title flex f-between">
-           <text style="color:#999999" catchTap="_bindCloseTap">取消</text>
+           <!-- <text style="color:#999999" catchTap="_bindCloseTap">取消</text> -->
            {{title}}
-          <text style="color:#1A6AFF" catchTap="onSureTap">确定</text>
+           <text style="color:#999999" catchTap="_bindCloseTap">
+            <ant-icon type="CloseOutline"/></text>
+          <!-- <text style="color:#1A6AFF" catchTap="onSureTap">确定</text> -->
           </view>
           <view style="margin-bottom:30rpx">
             <layout-search onSearchInputChange="onSearchConfirm"  onSearchConfirm="onSearchConfirm" placeholder="请输入项目名称"></layout-search>
@@ -20,4 +22,4 @@
               </block>
           </scroll-view>
       </view>
-  </block>
+</block>
