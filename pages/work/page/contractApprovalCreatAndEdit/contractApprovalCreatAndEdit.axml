@@ -152,7 +152,7 @@
       <view class="flex f-between" data-index="{{index}}" catchTap="chooseThirdParty">
         <view class="flex f-start" style="align-items:center;margin-left:-10rpx"> <view style="color:red">*</view><view>{{list[index].label1}} </view></view>
         <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" disabled /> -->
-        <picker disabled slot="extra" options="{{developmentOrganizationOptions}}" value="{{list[index].thirdParty}}" data-index="{{index}}" onVisibleChange="chooseUnitType"><icon slot="suffix" type="RightOutline" /></picker>
+        <picker disabled slot="extra" options="{{unitPartyOptions}}" value="{{list[index].thirdParty}}" data-index="{{index}}" onVisibleChange="chooseUnitType"><icon slot="suffix" type="RightOutline" /></picker>
       </view>
     </list-item>
     <list-item> 
@@ -259,5 +259,5 @@
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
 <dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
 
-<dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-construct-unit>
+<dialog-screen-ecological-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-ecological-unit>
 <dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
