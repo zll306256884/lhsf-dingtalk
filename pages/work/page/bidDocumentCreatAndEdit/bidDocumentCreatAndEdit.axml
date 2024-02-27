@@ -9,12 +9,11 @@
   </form>
 </view> -->
 
-<form-input
-  label="标题"
-  name="title"
-  disabled
-  placeholder="自动生成"
-  ref="handleRef" />
+<form-input label="标题" name="title" disabled="{{proType === 0}}" placeholder="{{proType === 0?'自动生成':'请输入'}}" ref="handleRef" />
+
+<!-- <form-input a:elif="{{ proType === 1 }}" label="标题" name="title" placeholder="请输入" ref="handleRef" />
+
+<form-input a:else label="标题" name="title" placeholder="请输入" ref="handleRef" /> -->
 
 <!-- <form-item a:if="{{projectName}}" label="项目名称" name="projectName" required >
   <view class="choose" catchTap="chooseProject"> {{projectName?projectName:'请选择'}} <icon type="RightOutline" /></view>
@@ -43,7 +42,9 @@
   allowClear
   maxLength="100"
   onBlur="changeTenderName"
-  ref="handleRef" />
+  ref="handleRef">
+  <view class="ant-input-content-left" slot="prefix" a:if="{{ projectName }}"> {{projectName}} - </view>
+</form-input>
 <form-input
   label="招标人"
   name="biddingPerson"

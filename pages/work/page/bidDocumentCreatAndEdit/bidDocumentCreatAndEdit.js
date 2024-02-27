@@ -4,6 +4,7 @@ import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import { formatTimeToDay } from "../../../../utils/utils";
 import projectService from "../../../../server/workServer/projectServer";
+import { dateRangePicker } from 'dingtalk-jsapi/api/apiObj';
 
 Page({
   form: new Form({
@@ -31,7 +32,8 @@ Page({
     tenderingAgencyOptions: [],
     executeUser: [],
     projectLeaderId: '',
-    isShow: false
+    isShow: false,
+    proType: null, //0工程，1非工程
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -148,10 +150,16 @@ Page({
     this.setData({
       projectId: data.id,
       projectName: data.name,
-      projectLeaderId: data.personId
+      projectLeaderId: data.personId,
+      proType: data.proType
     })
     let tenderName = this.form.getFieldValue('tenderName') || ''
-    this.form.setFieldValue('title', data.name+tenderName)
+    if( data.proType === 0){
+      this.form.setFieldValue('title', data.name+tenderName)
+    }else{
+      this.form.setFieldValue('title', '')
+    }
+    
   },
   getProjectList(){
     request.doPostRequest({
@@ -175,6 +183,20 @@ Page({
       success: res => {
         console.log(res.data)
         const paramsdata = res.data
+        if(paramsdata.projectId){
+          request.doPostRequest({
+            url: projectService.API_SELECTPROJECT_INFO_BYID,
+            data: {id: paramsdata.projectId},
+            success: res => {
+              this.setData({
+                proType: res.data.proType
+              })
+            }
+          })
+        }
+        if(paramsdata.title){
+          paramsdata.title = paramsdata.title.replace('招标文件会签-', '')
+        }
         if(paramsdata.biddingType){
           paramsdata.biddingType = paramsdata.biddingType.toString()
         }
@@ -224,6 +246,7 @@ Page({
             executeUser: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
           })
         }
+        
         
       }
     })

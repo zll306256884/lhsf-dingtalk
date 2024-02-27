@@ -3,6 +3,18 @@
   font-size: 28rpx;
   color: #000;
 }
+.ant-input-content-left{
+  text-align: left;
+  font-size: 28rpx;
+  color: #000;
+  max-width: 400rpx;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-break: break-all;
+}
 .buttons{
   border-top: 1px solid #EBEDF0;
   padding: 16rpx 18rpx;
