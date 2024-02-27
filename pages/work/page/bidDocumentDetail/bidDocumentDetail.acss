@@ -107,11 +107,11 @@
   padding: 0 16rpx;
 }
 .file-list .list-item .name{
-  font-size: 20rpx;
+  font-size: 28rpx;
   font-family: PingFang SC, PingFang SC;
   font-weight: 400;
   color: #323233;
-  line-height: 23rpx;
+  line-height: 32rpx;
   display: block;
   width: 470rpx;
   text-overflow: ellipsis; /* 溢出显示省略号 */
@@ -127,6 +127,6 @@
   margin-top: 8rpx;
 }
 .file-list .list-item .down-icon{
-  width: 32rpx;
-  height: 32rpx;
+  width: 48rpx;
+  height: 48rpx;
 }
