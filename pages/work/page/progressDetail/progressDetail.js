@@ -121,8 +121,8 @@ Page({
   // 获取基本信息
   getList: function () {
     let param = {
-      // "projectId": this.data.projectId,
-      "projectId": '12019020004',
+      "projectId": this.data.projectId,
+      // "projectId": '12019020004',
       'status': this.data.status,
       'flagNode': this.data.flagNode,
       'enable': 1,

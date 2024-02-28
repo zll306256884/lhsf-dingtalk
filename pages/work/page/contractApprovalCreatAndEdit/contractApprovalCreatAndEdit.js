@@ -36,7 +36,18 @@ Page({
     ],
     radioGroupOptionsTwo: [
       { value: 0, label: '待定' },
-      { value: 1, label: '已定' },
+      { value: 1, label: '已定(含暂定合同价)' },
+    ],
+    radioGroupOptionsData: [
+      { value: 1, label: '天' },
+      { value: 2, label: '月' },
+      { value: 3, label: '截止日期' },
+    ],
+    unitPartyModeOptions: [
+      { value: 0, label: '' },
+      { value: 1, label: '政府单位(含市属企业)' },
+      { value: 2, label: '非政府单位' },
+      { value: 3, label: '个人' },
     ],
     list:[
       // {thirdPartyName: '', thirdParty: '', thirdPartyType: '', label1: '第' + '3' + '方:', label2: '第' + 3 + '方服务类型:' },
@@ -57,6 +68,7 @@ Page({
     projectName:'',
     contractShow: false,
     tenderShow: false,
+    showOther: false,
     contractId: null,
     unitPartyName: null,
     listIndex: null,
@@ -64,6 +76,8 @@ Page({
     developmentOrganizationOptions: [],
     unitPartyOptions: [],
     executeUser: [],
+    contractPeriodType: null,
+    unitPartyMode: null,//乙方单位
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -185,12 +199,32 @@ Page({
       tenderShow: data===1?true:false
     })
   },
+  modeContractChange(data){
+    console.log(data)
+    this.setData({
+      showOther: data==='2'?true:false
+    })
+  },
+  contractPeriodTypeChange(data){
+    this.setData({
+      contractPeriodType: data
+    })
+  },
+  unitPartyModeChange(value, column, e){
+    console.log("乙方选择",value, column, e)
+    this.setData({
+      unitPartyMode: value
+    })
+  },
   handleRef(ref) {
     this.form.addItem(ref);
   },
   bindChooseProjectCallBack(data){
     // this.form.setFieldValue('projectName',data.name)
     this.form.setFieldValue('projectId', data.id)
+    this.form.setFieldValue('projectLeader', data.projectLeaderName);
+    this.form.setFieldValue('affiliateUnit', data.affiliatedUnitName);
+    this.form.setFieldValue('projectLeaderId', data.personId);
     this.setData({
       projectId: data.id,
       projectName: data.name
@@ -239,6 +273,13 @@ Page({
     console.log(value,e);
     this.setData({
       listIndex: e.currentTarget.dataset.index
+    })
+  },
+  contractThirdModeChange(value){
+    let list = this.data.list
+    list[this.data.listIndex].contractThirdMode = value
+    this.setData({
+      list:list
     })
   },
   bindScreenConstructUnitCallBack(data){
