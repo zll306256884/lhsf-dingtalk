@@ -88,7 +88,8 @@ Page({
     developmentOrganizationModeList: [],
     contractType: null,
     proType: null, //0工程，1非工程
-    projectLeaderId: ''
+    projectLeaderId: '',
+    loading: false
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -570,6 +571,7 @@ Page({
   },
   async submit(){
     console.log(this.data.list)
+    this.setData({ loading: true })
     const params = await this.form.submit();
     if(this.data.contractId){
       params.id = this.data.contractId
@@ -631,6 +633,7 @@ Page({
       data: params,
       success: res => {
         console.log(res.data)
+        this.setData({ loading: false })
         ddUtils.showToast({
           title: "保存成功！"
         });

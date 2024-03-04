@@ -139,7 +139,12 @@ Page({
   changeTenderName(data){
     console.log(data);
     // let projectName = this.form.getFieldValue('projectName')
-    this.form.setFieldValue('title', this.data.projectName+data)
+    // this.form.setFieldValue('title', this.data.projectName+data)
+    if( data.proType === 0){
+      this.form.setFieldValue('title', this.data.projectName+data)
+    }else{
+      this.form.setFieldValue('title', '')
+    }
   },
   bindChooseProjectCallBack(data){
     console.log(data)
