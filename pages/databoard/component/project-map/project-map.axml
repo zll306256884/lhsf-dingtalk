@@ -9,7 +9,9 @@
     </view>
       </tabs>
   </view>
-  <image style="{{projectList.length===0?'top:85%':''}}" class="search-list" src="/assets/images/map/icon-search.png" onTap="onSearchProject"/>
+  <view  class="search-list"  style="{{projectList.length===0?'top:85%':''}}">
+  <image class="search-image" style="background-size:200% 50%" src="/assets/images/map/icon-search.png" onTap="onSearchProject"/>
+  </view>
   <!-- <image style="{{projectList.length===0?'top:85%':''}}" class="search-list" src="/assets/images/map/search.png" onTap="onSearchProject"/> -->
   <!-- <image class="blow-up" src="/assets/images/map/blow-up.png" onTap="onBlowUp"/>
   <image class="blow-down" src="/assets/images/map/blow-down.png" onTap="onBlowDown"/> -->

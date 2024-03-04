@@ -8,22 +8,27 @@
           <view class="flex f-between">
             <!-- 是否为里程碑节点 -->
             <block a:if="{{ item.flagNode==0 }}">
-              <image a:if="{{ item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/green.png" />
-              <image a:if="{{ item.status==3 }}" class="greenTypeSpot" src="/assets/images/progress/orange.png" />
-              <image a:if="{{ item.status==2 }}" class="greenTypeSpot" src="/assets/images/progress/blue.png" />
-              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/gray.png" />
+              <image a:if="{{ item.status==5 }}" class="greenTypeSpot" src="/assets/images/progress/green.png" />
+              <image a:if="{{ item.status==3 || item.status==2 || item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/orange.png" />
+              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/blue.png" />
+              <image a:if="{{ item.status==0 }}" class="greenTypeSpot" src="/assets/images/progress/gray.png" />
             </block>
             <block a:if="{{ item.flagNode==1 }}">
-              <image a:if="{{ item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/greenhas.png" />
-              <image a:if="{{ item.status==3 }}" class="greenTypeSpot" src="/assets/images/progress/orangehas.png" />
-              <image a:if="{{ item.status==2 }}" class="greenTypeSpot" src="/assets/images/progress/bluehas.png" />
-              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/grayhas.png" />
+              <image a:if="{{ item.status==5 }}" class="greenTypeSpot" src="/assets/images/progress/greenhas.png" />
+              <image a:if="{{ item.status==3 || item.status==2 || item.status==4 }}" class="greenTypeSpot" src="/assets/images/progress/orangehas.png" />
+              <image a:if="{{ item.status==1 }}" class="greenTypeSpot" src="/assets/images/progress/bluehas.png" />
+              <image a:if="{{ item.status==0 }}" class="greenTypeSpot" src="/assets/images/progress/grayhas.png" />
             </block>
             <!-- 按钮状态  -->
-            <view a:if="{{ item.status==4 }}" class="greenTypeBtn">已完成</view>
+            <!-- 0-未开始 1-进行中 2-延期未开始 3-延期未完成 4-延期完成 5-已完成 -->
+            <!-- <view a:if="{{ item.status==4 }}" class="greenTypeBtn">已完成</view>
             <view a:if="{{ item.status==3 }}" class="orangeTypeBtn">延期</view>
             <view a:if="{{ item.status==2 }}" class="blueTypeBtn">进行中</view>
-            <view a:if="{{ item.status==1 }}" class="grayTypeBtn">未开始</view>
+            <view a:if="{{ item.status==1 }}" class="grayTypeBtn">未开始</view> -->
+            <view a:if="{{ item.status==5 }}" class="greenTypeBtn">已完成</view>
+            <view a:if="{{ item.status==3 || item.status==2 || item.status==4 }}" class="orangeTypeBtn">延期</view>
+            <view a:if="{{ item.status==1 }}" class="blueTypeBtn">进行中</view>
+            <view a:if="{{ item.status==0 }}" class="grayTypeBtn">未开始</view>
             <view class="name single-line">{{item.taskName}}</view>
           </view>
           <view>
