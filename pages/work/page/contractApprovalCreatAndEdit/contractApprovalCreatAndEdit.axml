@@ -3,8 +3,8 @@
 <form-input
   label="标题"
   name="title"
-  placeholder="自动生成"
-  disabled
+  placeholder="{{proType === 0?'自动生成':'请输入'}}"
+  disabled="{{proType === 0}}"
   ref="handleRef" />
 
 <view catchTap="chooseProject">
@@ -25,7 +25,9 @@
   allowClear
   maxLength="100"
   onBlur="changeContractName"
-  ref="handleRef" />
+  ref="handleRef">
+  <view class="ant-input-content-left" slot="prefix" a:if="{{ projectName }}"> {{projectName}} - </view>
+</form-input>
 
 <form-input
   label="合同号"
@@ -59,6 +61,7 @@
   ref="handleRef" />
 
   <form-radio-group
+  a:if="{{ contractType !== '2' }}"
   label="此合同是否需要招标"
   labelWidth="320rpx"
   name="contractNeedTender"
@@ -126,44 +129,73 @@
     
     
 
-  <form-radio-group
+  <form-picker
     label="合同金额(万元)"
     labelWidth="220rpx"
     name="makeSure"
+    arrow
     options="{{radioGroupOptionsTwo}}"
     ref="handleRef" />
 
   <form-input
-  name="contractAmount"
-  placeholder="请输入合同金额，注意“万元”单位"
-  type="number"
-  allowClear
-  style="text-align:left"
-  ref="handleRef" />
-
-<view catchTap="chooseUnit">
-  <form-picker
-    label="建设单位(甲方)"
-    labelWidth="280rpx"
-    name="developmentOrganization"
-    placeholder="请选择"
-    disabled
-    arrow
-    options="{{developmentOrganizationOptions}}"
+    name="contractAmount"
+    placeholder="请输入合同金额，注意“万元”单位"
+    type="number"
+    allowClear
+    style="text-align:left"
     ref="handleRef" />
-</view>
+
+  <form-input
+    a:if="{{ contractType === '2' }}"
+    label="已支付金额(万元)"
+    labelWidth="258rpx"
+    name="amountPaid"
+    placeholder="注意“万元”单位"
+    type="number"
+    allowClear
+    style="text-align:left"
+    ref="handleRef" />
+
+  <view class="bottom-space" style="height:16rpx"></view>
+  <form-checkbox-group label="建设单位(甲方)" name="developmentOrganizationModeList" onChange="developmentOrganizationModeChange" options="{{unitPartyModeOptions2}}" ref="handleRef" labelWidth="280rpx" ></form-checkbox-group>
   
+  <!-- <form-selector label="建设单位(甲方)" name="developmentOrganizationModeList" options="{{ unitPartyModeOptions2 }}" multiple labelWidth="280rpx" onChange="developmentOrganizationModeChange"  ref="handleRef" /> -->
+
+  <view a:if="{{ developmentOrganizationModeList.includes('1') }}">
+    <form-input label="政府单位名称" labelWidth="280rpx" name="developmentOrganizationName" placeholder="请选择" allowClear ref="handleRef" />
+  </view>
+ 
+  <view a:if="{{ developmentOrganizationModeList.includes('2') }}" catchTap="chooseUnit">
+    <form-picker
+      label="单位"
+      labelWidth="280rpx"
+      name="developmentOrganization"
+      placeholder="请选择"
+      disabled
+      arrow
+      options="{{developmentOrganizationOptions}}"
+      ref="handleRef" />
+  </view>
+
+  <view a:if="{{ developmentOrganizationModeList.includes('3') }}">
+    <form-input label="个人姓名" name="developmentOrganizationPerson" placeholder="请选择" allowClear ref="handleRef"/>
+    <form-input label="个人身份证号" name="developmentOrganizationNumber" placeholder="请选择" allowClear ref="handleRef" labelWidth="280px"/>
+  </view>
+
+  
+
+<!-- 乙方单位 -->
 <view>
   <view class="bottom-space" style="height:16rpx"></view>
-  <form-picker label="乙方单位" name="unitPartyMode" options="{{unitPartyModeOptions}}" ref="handleRef" onChange="unitPartyModeChange" />
+  <form-picker label="乙方单位" name="unitPartyMode" options="{{unitPartyModeOptions}}" arrow ref="handleRef" onChange="unitPartyModeChange" />
   <view a:if="{{ unitPartyMode === 1 }}">
-    <form-input label="单位名称" name="123" placeholder="请选择" allowClear ref="handleRef"/>
+    <form-input label="单位名称" name="unitPartyName" placeholder="请选择" allowClear ref="handleRef"/>
   </view>
   <view a:if="{{ unitPartyMode === 2 }}">
     <view catchTap="chooseEcologicalUnit">
       <form-picker label="单位名称" name="unitParty" placeholder="请选择" arrow disabled options="{{unitPartyOptions}}" ref="handleRef" />
     </view>
-    <form-picker label="单位类型" labelWidth="260rpx" arrow name="unitPartyType" options="{{unitTypeOptionList}}" ref="handleRef" />
+    <form-picker label="单位类型" name="unitPartyType" placeholder="请选择" arrow options="{{unitTypeOptionList}}" ref="handleRef" />
   </view>
   <view a:if="{{ unitPartyMode === 3 }}">
     <form-input label="姓名" name="unitPartyPerson" placeholder="请选择" allowClear ref="handleRef"/>
@@ -171,7 +203,7 @@
   </view>
 </view>
   
-  
+  <!-- 第三方 -->
   <list a:for="{{list}}" a:key="id">
     <view class="bottom-space" style="height:16rpx"></view>
     <list-item class="flex f-between">
@@ -182,7 +214,7 @@
     <list-item a:if="{{ list[index].contractThirdMode === 1 }}">
       <view class="flex f-between">
         <view class="flex f-start" style="align-items:center;margin-left:-10rpx"> <view style="color:red">*</view><view>名称</view></view>
-        <input value="{{list[index].thirdPartyName}}" placeholder="请选择" allowClear />
+        <input value="{{list[index].thirdPartyName}}" placeholder="请选择" allowClear  data-index="{{index}}" onChange="thirdPartyNameChange" onFocus="chooseUnitType" />
       </view>
     </list-item>
 
@@ -201,19 +233,43 @@
     <list-item a:if="{{ list[index].contractThirdMode === 3 }}">
       <view class="flex f-between">
         <view class="flex f-start" style="align-items:center;margin-left:-10rpx"> <view style="color:red">*</view><view>姓名</view></view>
-        <input value="{{list[index].contractThirdPerson}}" placeholder="请选择" allowClear />
+        <input value="{{list[index].contractThirdPerson}}" placeholder="请选择" allowClear type="text" data-index="{{index}}" onFocus="chooseUnitType" onChange="contractThirdPersonInput" />
       </view>
     </list-item>
     <list-item a:if="{{ list[index].contractThirdMode === 3 }}">
       <view class="flex f-between">
         <view class="flex f-start" style="align-items:center;margin-left:-10rpx"> <view style="color:red">*</view><view>身份证</view></view>
-        <input value="{{list[index].contractThirdNumber}}" placeholder="请选择" allowClear />
+        <input value="{{list[index].contractThirdNumber}}" placeholder="请选择" allowClear data-index="{{index}}" onFocus="chooseUnitType" onChange="contractThirdNumberInput"  />
       </view>
     </list-item>
 
     <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item>
   </list>
 
+
+  <!-- <list a:for="{{list}}" a:key="id" a:for-index="index" a:for-item="item">
+    <view class="bottom-space" style="height:16rpx"></view>
+    
+    <form-picker label="{{list[index].label1}}" name="contractThirdMode{{list[index].id}}" required message="请选择" placeholder="请选择" arrow options="{{unitPartyModeOptions}}" ref="handleRef" />
+   
+    <block>
+      <form-picker label="{{list[index].label1}}" name="thirdParty{{index+list[index].id}}" required message="请选择" placeholder="请选择" arrow options="{{unitPartyOptions}}" ref="handleRef" />
+    </block>
+
+    <block>
+      <form-picker label="{{list[index].label2}}" name="thirdPartyType{{index+list[index].thirdPartyType}}" required message="请选择" placeholder="请选择" arrow options="{{unitTypeOption}}"  labelWidth="280px" ref="handleRef"  />
+    </block>
+
+    <block a:if="{{ 'contractThirdMode'+index+list[index].contractThirdMode === 'contractThirdMode'+index+3 }}">
+      <form-input label="姓名" name="unitPartyPerson{{index+list[index].contractThirdPerson}}" required message="请选择" placeholder="请选择" allowClear ref="handleRef"/>
+    </block>
+
+    <block a:if="{{ 'contractThirdMode'+index+list[index].contractThirdMode === 'contractThirdMode'+index+3 }}">
+      <form-input label="身份证号" name="unitPartyNumber{{index+list[index].unitPartyNumber}}" required message="请选择"  placeholder="请选择" allowClear ref="handleRef"/>
+    </block>
+
+    <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item>
+  </list> -->
   <!-- <view style="margin-top:16rpx" a:for="{{list}}" a:key="id">
     <form-input
       label="{{list[index].label1}}"

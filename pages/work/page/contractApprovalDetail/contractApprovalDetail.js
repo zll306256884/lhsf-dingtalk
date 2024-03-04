@@ -29,6 +29,11 @@ Page({
     supplementList: [],
     isCurrentAudit: false,
     dingTalkFormList: [],
+    unitPartyModeOptions2: [
+      // { value: '1', label: '政府单位(含市属企业)', text: '政府单位(含市属企业)'},
+      { value: '2', label: '单位', text: '单位' },
+      { value: '3', label: '个人', text:'个人' },
+    ],
   },
   uploadContractImage: null,
   onLoad(options) {
@@ -112,12 +117,13 @@ Page({
       data: {id: contractId},
       success: res => {
         console.log(res.data)
+        res.data.developmentOrganizationListName = res.data.developmentOrganizationList.map(e => e.developmentOrganizationName).join()
         let list = res.data.contractThirdPartyRepList
         if(list){
           list.forEach((e, index)=> {
             e.thirdPartyType = e.thirdPartyType.toString()
-            e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
-            e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
+            e.label1 = this.numberToChinese(index + 3) + '方单位:'
+            e.label2 = this.numberToChinese(index + 3) + '方服务类型:'
           });
         }
         this.setData({

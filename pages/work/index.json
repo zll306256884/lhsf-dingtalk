@@ -3,6 +3,10 @@
     "tabs": "antd-mini/es/Tabs/index",
     "avatar": "antd-mini/es/Avatar/index",
     "icon": "antd-mini/es/Icon/index",
-    "empty": "antd-mini/es/Empty/index"
+    "empty": "antd-mini/es/Empty/index",
+    "ant-modal": "antd-mini/es/Modal/index",
+    "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index",
+    "ant-container": "antd-mini/es/Container/index",
+    "button": "antd-mini/es/Button/index"
   }
 }

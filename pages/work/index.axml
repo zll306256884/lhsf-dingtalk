@@ -145,3 +145,26 @@
     </view>
   </view>
 </view>
+
+<ant-modal
+  title="合同审批流程"
+  visible="{{ basicTwoVisible }}"
+  onClose="handleClose"
+  primaryButtonText="确认"
+  secondaryButtonText="取消"
+  onPrimaryButtonTap="handlePrimaryButtonTap"
+  onSecondaryButtonTap="handleSecondaryButtonTap">
+
+  <ant-container title="合同审批流程" class="modalbody">
+    <form-radio-group
+      label="选择类型:"
+      name="contractType"
+      labelWidth="124rpx"
+      options="{{ radioGroupOptions }}"
+      ref="handleRef" />
+    <view class="buttons flex f-between">
+      <button class="btn" onTap="reset">取消</button>
+      <button class="btn active" type="primary" onTap="submit" style="margin-bottom: 12px">确认</button>
+    </view>
+  </ant-container>
+</ant-modal>

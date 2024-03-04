@@ -34,17 +34,31 @@
     
     <list-item extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
 
-    <list-item extraBrief="{{detailInfo.contractPeriod}}">合同工期（天）</list-item>
+    <list-item extraBrief="{{detailInfo.contractPeriodType === 1?(detailInfo.contractPeriod+'天'):detailInfo.contractPeriodType === 2?(detailInfo.contractPeriodMonth+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+detailInfo.contractEndTime): ''}}">合同工期</list-item>
 
-    <list-item extraBrief="{{detailInfo.contractAmount}}">合同金额（万元）</list-item>
+    <list-item extraBrief="{{detailInfo.contractAmount}}">合同金额(万元)</list-item>
 
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
   <list>
-    <list-item extraBrief="{{detailInfo.developmentOrganizationName}}">建设单位（甲方)</list-item>
-    <list-item extraBrief="{{detailInfo.unitPartyName}}">乙方单位</list-item>
-    <list-item extraBrief="{{detailInfo.unitPartyTypeName}}">乙方单位类型</list-item>
+    <list-item extraBrief="{{}}">
+      <view> 建设单位(甲方)</view>
+      <!-- <ant-checkbox-group  slot="extra" options="{{ unitPartyModeOptions2 }}" value="{{ detailInfo.developmentOrganizationModeList }}" disabled /> -->
+      <ant-selector slot="extra" style="width:100px"  value="{{ detailInfo.developmentOrganizationModeList }}" options="{{ unitPartyModeOptions2 }}" disabled multiple />
+    </list-item>
+    <!-- <list-item extraBrief="{{detailInfo.developmentOrganizationName}}">政府单位名称：</list-item> -->
+    <list-item a:if="{{ detailInfo.developmentOrganizationModeList?(detailInfo.developmentOrganizationModeList.includes('2')):false }}" extraBrief="{{detailInfo.developmentOrganizationListName}}">单位名称：</list-item>
+    <list-item a:if="{{ detailInfo.developmentOrganizationModeList?(detailInfo.developmentOrganizationModeList.includes('3')):false }}" extraBrief="{{detailInfo.developmentOrganizationPerson}}">个人姓名</list-item>
+    <list-item a:if="{{ detailInfo.developmentOrganizationModeList?(detailInfo.developmentOrganizationModeList.includes('3')):false }}" extraBrief="{{detailInfo.developmentOrganizationNumber}}">个人身份证号：</list-item>
+  </list>
 
+  <view class="bottom-space" style="height:16rpx"></view>
+  <list>
+    <list-item extraBrief="{{['','单位','单位','个人'][detailInfo.unitPartyMode]}}">乙方单位</list-item>
+    <list-item a:if="{{ detailInfo.unitPartyMode === 2 }}" extraBrief="{{detailInfo.unitPartyName}}">单位名称：</list-item>
+    <list-item a:if="{{ detailInfo.unitPartyMode === 2 }}" extraBrief="{{detailInfo.unitPartyType_dictText}}">单位类型：</list-item>
+    <list-item a:if="{{ detailInfo.unitPartyMode === 3 }}" extraBrief="{{detailInfo.unitPartyPerson}}">姓名：</list-item>
+    <list-item a:if="{{ detailInfo.unitPartyMode === 3 }}" extraBrief="{{detailInfo.unitPartyNumber}}">身份证号码：</list-item>
     <!-- <list-item extraBrief="{{detailInfo.projectName}}">第三方单位</list-item>
     <list-item extraBrief="{{detailInfo.contractName}}">第三方单位类型</list-item> -->
   </list>
@@ -54,30 +68,52 @@
     <list-item>
       <view class="flex f-between">
         <view> {{list[index].label1}} </view>
+        <view class="ant-list-item-extra-brief">{{['','政府单位','单位','个人'][list[index].contractThirdMode]}}</view>
+        <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" data-index="{{index}}" onFocus="chooseThirdParty" /> -->
+      </view>
+    </list-item>
+    <list-item a:if="{{ list[index].contractThirdMode === 2 }}">
+      <view class="flex f-between">
+        <view>单位名称：</view>
         <view class="ant-list-item-extra-brief">{{list[index].thirdPartyName}}</view>
         <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" data-index="{{index}}" onFocus="chooseThirdParty" /> -->
       </view>
     </list-item>
-    <list-item>
+    <list-item a:if="{{ list[index].contractThirdMode === 2 }}">
       <view class="flex f-between">
-        <view>{{list[index].label2}}</view>
-        <view class="ant-list-item-extra-brief">{{list[index].thirdPartyType}}</view>
+        <!-- <view>{{list[index].label2}}</view> -->
+        <view>单位类型：</view>
+        <view class="ant-list-item-extra-brief">{{list[index].thirdPartyType_dictText}}</view>
       </view>
       <!-- <picker slot="extra" options="{{unitTypeOption}}" value="{{list[index].thirdPartyType}}" data-index="{{index}}" onVisibleChange="chooseUnitType" onOk="chooseUnitTypeCallBack"></picker> -->
+    </list-item>
+    <list-item a:if="{{ list[index].contractThirdMode === 3 }}">
+      <view class="flex f-between">
+        <view>姓名：</view>
+        <view class="ant-list-item-extra-brief">{{list[index].contractThirdPerson}}</view>
+        <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" data-index="{{index}}" onFocus="chooseThirdParty" /> -->
+      </view>
+    </list-item>
+    <list-item a:if="{{ list[index].contractThirdMode === 3 }}">
+      <view class="flex f-between">
+        <view>身份证号码：</view>
+        <view class="ant-list-item-extra-brief">{{list[index].contractThirdNumber}}</view>
+        <!-- <input style="width:80%" placeholder="请选择" value="{{list[index].thirdPartyName}}" data-index="{{index}}" onFocus="chooseThirdParty" /> -->
+      </view>
     </list-item>
     <!-- <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item> -->
   </list>
 
-  <list>
+  <!-- <list>
     <view class="bottom-space" style="height:16rpx"></view>
     <list-item>
       合同内容
       <view style="margin-top:10rpx;color: #969799;">{{detailInfo.contractContent}}</view>
     </list-item>
-  </list>
+  </list> -->
   <view class="bottom-space" style="height:16rpx"></view>
   <list>
-    <list-item extraBrief="{{detailInfo.paymentMethod_dictText}}">付款方式</list-item>
+    <!-- <list-item extraBrief="{{detailInfo.paymentMethod_dictText}}">付款方式</list-item> -->
     <list-item>
       备注内容
       <view style="margin-top:10rpx;color: #969799;">{{detailInfo.remark}}</view>
@@ -111,13 +147,13 @@
     <view class="bottom-space" style="height:16rpx"></view>
   </list>
   <!-- <view a:if="{{examineId && approvalType === '1'}}" class="bottom-space" style="height:150rpx"></view> -->
-
-  <view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
+  <!-- 1:未提交 2:审批中 3:已驳回 4:已完结 5草稿 -->
+  <view a:if="{{ requestType === '0' || (detailInfo.approvalStatus !== 2 && detailInfo.approvalStatus !== 4) }}" class="bottom-content flex f-between">
     <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
     <button class="bottom-button active" size="default" type="primary" catchTap="editThis" style="background: #1A6AFF;color:#fff">编辑</button>
   </view>
 
-  <view a:if="{{ requestType === '1' }}" class="bottom-content flex f-between">
+  <view a:if="{{ requestType === '1' || detailInfo.approvalStatus === 2 }}" class="bottom-content flex f-between">
     <button class="bottom-button active" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
   </view>
 

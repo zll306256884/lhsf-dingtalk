@@ -4,6 +4,7 @@ import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import projectService from "../../../../server/workServer/projectServer";
 import { formatTimeToDay } from "../../../../utils/utils";
+
 const validateMessages = {
   required: '请输入',
   string: {
@@ -18,7 +19,8 @@ Page({
   form: new Form({
     validateMessages,
     initialValues: {
-      applicationTime: formatTimeToDay(new Date())
+      applicationTime: formatTimeToDay(new Date()),
+      unitPartyMode: 2
     },
     rules: {}
   }),
@@ -45,9 +47,14 @@ Page({
     ],
     unitPartyModeOptions: [
       { value: 0, label: '' },
-      { value: 1, label: '政府单位(含市属企业)' },
-      { value: 2, label: '非政府单位' },
+      // { value: 1, label: '政府单位(含市属企业)' },
+      { value: 2, label: '单位' },
       { value: 3, label: '个人' },
+    ],
+    unitPartyModeOptions2: [
+      // { value: '1', label: '政府单位(含市属企业)', text: '政府单位(含市属企业)'},
+      { value: '2', label: '单位', text: '单位' },
+      { value: '3', label: '个人', text:'个人' },
     ],
     list:[
       // {thirdPartyName: '', thirdParty: '', thirdPartyType: '', label1: '第' + '3' + '方:', label2: '第' + 3 + '方服务类型:' },
@@ -77,7 +84,11 @@ Page({
     unitPartyOptions: [],
     executeUser: [],
     contractPeriodType: null,
-    unitPartyMode: null,//乙方单位
+    unitPartyMode: 2,//乙方单位
+    developmentOrganizationModeList: [],
+    contractType: null,
+    proType: null, //0工程，1非工程
+    projectLeaderId: ''
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -96,19 +107,31 @@ Page({
       masterContract: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       contractNeedTender: [{ required: true, message: '请选择' }],
-      tenderDocumentId: [{ required: true, message: '请选择' }],
+      // tenderDocumentId: [{ required: true, message: '请选择' }],
       biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
       contractPeriod: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
+      contractPeriodMonth: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
+      contractEndTime: [{ required: true, message: '请选择' }],
       makeSure: [{ required: true, message: '请选择' }],
       contractAmount: [{ required: true,message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
+      amountPaid: [{ required: true,message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/ }],
       developmentOrganization: [{ required: true, message: '请选择' }],
+      unitPartyMode: [{ required: true, message: '请选择' }],
+      unitPartyName: [{ required: true, message: '请选择' }],
       unitPartyType: [{ required: true, message: '请选择' }],
+      unitPartyPerson: [{ required: true, message: '请选择' }],
+      unitPartyNumber: [{ required: true, message: '请选择' }],
       unitParty: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      applicationTime: [{ required: true, message: '请选择' }]
+      applicationTime: [{ required: true, message: '请选择' }],
+      developmentOrganizationName: [{ required: true, message: '请选择' }],
+      developmentOrganizationPerson: [{ required: true, message: '请选择' }],
+      developmentOrganizationNumber: [{ required: true, message: '请选择' }],
+      developmentOrganizationModeList: [{ required: true, message: '请选择' }],
+      contractPeriodType: [{ required: true, message: '请选择' }]
     }
     this.getCodeList()
     if(options.id){
@@ -123,6 +146,11 @@ Page({
       })
     }
     this.getProjectList()
+    if(options.contractType){
+      this.setData({
+        contractType:options.contractType
+      })
+    }
   },
   onReady(){
     
@@ -227,10 +255,17 @@ Page({
     this.form.setFieldValue('projectLeaderId', data.personId);
     this.setData({
       projectId: data.id,
-      projectName: data.name
+      projectName: data.name,
+      proType: data.proType,
+      projectLeaderId: data.personId
     })
     let contractName = this.form.getFieldValue('contractName') || ''
-    this.form.setFieldValue('title', data.name+contractName)
+    if( data.proType === 0){
+      this.form.setFieldValue('title', data.name+contractName)
+    }else{
+      this.form.setFieldValue('title', '')
+    }
+    
     setTimeout(() => {
       this.getQueryCurrentUnitType()
       this.getBiddingData()
@@ -269,6 +304,13 @@ Page({
     console.log(this.form.getFieldsValue());
     
   },
+  developmentOrganizationModeChange(value){
+    console.log('甲方',value)
+    this.form.setFieldValue('developmentOrganizationModeList', value);
+    this.setData({
+      developmentOrganizationModeList: value
+    })
+  },
   chooseUnitType(value,e){
     console.log(value,e);
     this.setData({
@@ -278,6 +320,27 @@ Page({
   contractThirdModeChange(value){
     let list = this.data.list
     list[this.data.listIndex].contractThirdMode = value
+    this.setData({
+      list:list
+    })
+  },
+  thirdPartyNameChange(value){
+    let list = this.data.list
+    list[this.data.listIndex].thirdPartyName = value
+    this.setData({
+      list:list
+    })
+  },
+  contractThirdPersonInput(value){
+    let list = this.data.list
+    list[this.data.listIndex].contractThirdPerson = value
+    this.setData({
+      list:list
+    })
+  },
+  contractThirdNumberInput(value){
+    let list = this.data.list
+    list[this.data.listIndex].contractThirdNumber = value
     this.setData({
       list:list
     })
@@ -298,10 +361,21 @@ Page({
     let length = this.data.list.length
     let number = length + 3
     let listList = this.data.list
-    listList.push({ thirdPartyName: '', thirdParty: '', thirdPartyType: '', label1: '第' + this.numberToChinese(number) + '方:', label2: '第' + this.numberToChinese(number) + '方服务类型:' })
+    listList.push({
+      contractThirdMode: '',
+      thirdPartyNum: length + 1,
+      contractThirdNumber: '',
+      contractThirdPerson: '',
+      thirdPartyName: '',
+      thirdParty: '',
+      thirdPartyType: '',
+      label1: this.numberToChinese(number) + '方单位:',
+      label2: this.numberToChinese(number) + '方服务类型:',
+    })
     this.setData({
       list: listList
     })
+    console.log(this.data.list)
   },
   getBiddingData(){
     request.doPostRequest({
@@ -345,8 +419,8 @@ Page({
         proId: this.data.projectId
       },
       success: res => {
-        const optionsList = res.data.map(e => {return { label: e.type_dictText, value: e.type_dictText, id:e.id}})
-        const list = res.data.map(e => {return { label: e.type_dictText, value: e.id, id:e.id}})
+        const optionsList = res.data.map(e => {return { label: e.type_dictText, value: e.type, id:e.id}})
+        const list = res.data.map(e => {return { label: e.type_dictText, value: e.type, id:e.id}})
         this.setData({
           unitTypeOption: optionsList || [],
           unitTypeOptionList: list || []
@@ -416,8 +490,8 @@ Page({
     list.splice(index, 1);
     list.forEach((e,index) => {
       e.thirdPartyType = e.thirdPartyType.toString()
-      e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
-      e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
+      e.label1 = this.numberToChinese(index + 3) + '方单位:'
+      e.label2 = this.numberToChinese(index + 3) + '方服务类型:'
     })
     this.setData({
       list: JSON.parse(JSON.stringify(list))
@@ -438,9 +512,18 @@ Page({
   staging(){
     this.form.rules = {}
     let params = this.form.getFieldsValue()
-    params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+    // params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
     params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
-    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
+    // params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
+
+    if(params.supplementAgreement === 1){
+      params.vueUrl = 'ApproveSupplementContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+      params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/supplementContractApprovalDetail'
+    }else{
+      params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+      params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/contractApprovalDetail'
+    }
+
     if(this.data.contractId){
       params.id = this.data.contractId
       params.urlParameter = JSON.stringify({id: this.data.contractId})
@@ -448,16 +531,19 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     console.log('this.data.list',this.data.list);
+    params.projectLeaderId = this.data.projectLeaderId
+    params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
     params.unitPartyName = this.data.unitPartyName
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
+    params.developmentOrganizationModeList = params.developmentOrganizationModeList || this.data.developmentOrganizationModeList
     params.ecUnitId = this.data.ecUnitId
     console.log(params)
-    if(params.unitPartyType){
-      params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
-    }
+    // if(params.unitPartyType){
+    //   params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.value === params.unitPartyType).label
+    // }
     
     let workAuditFile = [];
     if (this.uploadImageList) {
@@ -483,6 +569,7 @@ Page({
     })
   },
   async submit(){
+    console.log(this.data.list)
     const params = await this.form.submit();
     if(this.data.contractId){
       params.id = this.data.contractId
@@ -492,24 +579,41 @@ Page({
     }
     if (this.data.list && this.data.list.length) {
       this.data.list.map(e => {
-        if (e.thirdPartyName === '' || e.thirdPartyType === '') {
-          ddUtils.showToast({title: '第三方和第三方服务类型必填！'})
-          throw Error()
+        if(e.contractThirdMode === 2){
+          if (e.thirdPartyName === '' || e.thirdPartyType === '') {
+            ddUtils.showToast({title: '选择单位时，单位信息必填'})
+            throw Error()
+          }
+        }else if(e.contractThirdMode === 3){
+          if (e.contractThirdPerson === '' || e.contractThirdNumber === '') {
+            ddUtils.showToast({title: '选择个人时，个人信息必填！'})
+            throw Error()
+          }
         }
       })
     }
+    params.projectLeaderId = this.data.projectLeaderId
+    params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
     params.countersignLeader = this.data.countersignLeader
-    params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+    // params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
     params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
-    params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
+    // params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'
+
+    if(params.supplementAgreement === 1){
+      params.vueUrl = 'ApproveSupplementContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+      params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/supplementContractApprovalDetail'
+    }else{
+      params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
+      params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/contractApprovalDetail'
+    }
 
     params.unitPartyName  = this.data.unitPartyName 
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.ecUnitId = this.data.ecUnitId
-    params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.id === params.unitPartyType).label
+    // params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.value === params.unitPartyType).label
     let workAuditFile = [];
     if (this.uploadImageList) {
       workAuditFile = this.uploadImageList._getUploadImgId().imgList;
@@ -540,6 +644,19 @@ Page({
       data: {id: this.data.contractId},
       success: res => {
         const paramsdata = res.data
+        //查项目状态
+        if(paramsdata.projectId){
+          request.doPostRequest({
+            url: projectService.API_SELECTPROJECT_INFO_BYID,
+            data: {id: paramsdata.projectId},
+            success: res => {
+              this.setData({
+                proType: res.data.proType
+              })
+            }
+          })
+        }
+
         if(paramsdata.projectType){
           paramsdata.projectType = paramsdata.projectType.toString()
         }
@@ -569,17 +686,22 @@ Page({
         this.form.setFieldValue('contractNeedTender', paramsdata.contractNeedTender)
         this.form.setFieldValue('supplementAgreement', paramsdata.supplementAgreement)
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
+
+        
+        
+
         console.log(this.form.getFieldsValue())
         let list = paramsdata.contractThirdPartyRepList
         if(list && list.length){
           list.forEach((e, index)=> {
             e.thirdPartyType = e.thirdPartyType.toString()
-            e.label1 = '第' + this.numberToChinese(index + 3) + '方:'
-            e.label2 = '第' + this.numberToChinese(index + 3) + '方服务类型:'
+            e.label1 = this.numberToChinese(index + 3) + '方单位:'
+            e.label2 = this.numberToChinese(index + 3) + '方服务类型:'
           });
         }
         
         this.setData({
+          contractType: paramsdata.contractType,
           unitPartyName: paramsdata.unitPartyName,
           countersignLeader: paramsdata.countersignLeader,
           projectId: paramsdata.projectId,
@@ -589,6 +711,10 @@ Page({
           unitPartyTypeName: paramsdata.unitPartyTypeName,
           contractShow: paramsdata.supplementAgreement===1?true:false,
           tenderShow: paramsdata.contractNeedTender===1?true:false,
+          projectLeaderId: paramsdata.projectLeaderId,
+          unitPartyMode: paramsdata.unitPartyMode,
+          developmentOrganizationModeList: paramsdata.developmentOrganizationModeList,
+          contractPeriodType: paramsdata.contractPeriodType,
           list
         })
         if(paramsdata.fileList && paramsdata.fileList){
@@ -598,6 +724,20 @@ Page({
         }
         setTimeout(() => {
           this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
+
+          this.form.setFieldValue('developmentOrganizationPerson', paramsdata.developmentOrganizationPerson)
+          this.form.setFieldValue('developmentOrganizationNumber', paramsdata.developmentOrganizationNumber)
+
+          this.form.setFieldValue('contractThirdPerson', paramsdata.contractThirdPerson)
+          this.form.setFieldValue('contractThirdNumber', paramsdata.contractThirdNumber)
+          this.form.setFieldValue('unitParty', paramsdata.unitParty)
+          this.form.setFieldValue('unitPartyType', paramsdata.unitPartyType)
+
+          this.form.setFieldValue('contractPeriodMonth', paramsdata.contractPeriodMonth)
+          this.form.setFieldValue('contractPeriod', paramsdata.contractPeriod)
+          this.form.setFieldValue('contractEndTime', paramsdata.contractEndTime)
+          
+
         }, 0);
 
         

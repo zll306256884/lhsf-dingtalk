@@ -1,3 +1,4 @@
+import { Form } from 'antd-mini/es/Form/form';
 import request from "../../utils/request"
 import apiApprovalManage from "../../server/workServer"
 import ddUtils from "../../utils/ddUtils"
@@ -7,6 +8,11 @@ import approvalServer from "../../server/approvalServer/approvalServer"
 const app = getApp();
 
 Page({
+  form: new Form({
+    rules: {
+      contractType: [{ required: true, message: '请选择' }],
+    }
+  }),
   data: {
     iconList: [
     {
@@ -107,7 +113,12 @@ Page({
     }],
     listquery: [],
     requestStatus: 0,
-    approvalStatus: null
+    approvalStatus: null,
+    radioGroupOptions:[
+      {value:1, label: '合同审批流程'},
+      {value:2, label: '直接添加合同'},
+    ],
+    basicTwoVisible: false
   },
   onLoad(option) {
     // this.getAwaitList()
@@ -135,6 +146,27 @@ Page({
       iconList: listList
     })
   },
+  handleRef(ref) {
+    console.log(ref)
+    this.form.addItem(ref);
+  },
+  reset(){
+    this.setData({
+      basicTwoVisible: false
+    })
+  },
+  async submit() {
+    console.log(this.form)
+    // this.form.addItem(ref)
+    const params = await this.form.submit();
+    console.log(params)
+    ddUtils.navigateTo({
+      url: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit?contractType='+ params.contractType
+    });
+    this.setData({
+      basicTwoVisible: false
+    })
+  },
   onShow() {
     this.setData({
       currentAwait: 0,
@@ -152,9 +184,16 @@ Page({
   onItemTap(e) {
     console.log(e);
     let { path } = e.currentTarget.dataset
-    ddUtils.navigateTo({
-      url: path
-    });
+    if(e.currentTarget.dataset.index === 3){
+      this.setData({
+        basicTwoVisible: true
+      })
+    }else{
+      ddUtils.navigateTo({
+        url: path
+      });
+    }
+    
   },
   // 获取全部待办列表
   getAwaitList: function () {

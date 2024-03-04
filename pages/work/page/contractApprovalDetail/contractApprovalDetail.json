@@ -8,6 +8,8 @@
     "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
-    "approval-item": "/pages/components//approval-item/approval-item"
+    "approval-item": "/pages/components//approval-item/approval-item",
+    "ant-selector": "antd-mini/es/Selector/index",
+    "ant-checkbox-group": "antd-mini/es/Checkbox/CheckboxGroup/index"
   }
 }

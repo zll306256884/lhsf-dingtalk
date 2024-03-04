@@ -16,6 +16,9 @@
     "dialog-screen-construct-unit": "../../component/dialog-screen-construct-unit/dialog-screen-construct-unit",
     "picker": "antd-mini/es/Picker/index",
     "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
-    "icon": "antd-mini/es/Icon/index"
+    "icon": "antd-mini/es/Icon/index",
+    "form-checkbox-group": "antd-mini/es/Form/FormCheckboxGroup/index",
+    "ant-checkbox-group": "antd-mini/es/Checkbox/CheckboxGroup/index",
+    "form-selector": "antd-mini/es/Form/FormSelector/index"
   }
 }
