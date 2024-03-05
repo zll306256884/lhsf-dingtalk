@@ -3,6 +3,9 @@ import request from "./request"
 import ddUtils from "./ddUtils"
 
 function downloadFile (url) {
+  if(url.indexOf('https://') == -1) {
+    url = 'https://'+url
+  }
     request.doPostRequest({
         url: config.API_FILE_SETURL,
         data: {

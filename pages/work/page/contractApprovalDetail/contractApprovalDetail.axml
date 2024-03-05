@@ -87,7 +87,7 @@
   <view class="file-list">
     <view class="title">合同正式稿及相关附件</view>
     <view class="flex f-between list-item" a:for="{{ detailInfo.fileList }}" a:key="index">
-      <view class="flex f-start" style="align-items:center" >
+      <view class="flex f-start" style="align-items:center" catchTap="downloadFile" data-url="{{item.url}}">
         <image a:if="{{ item.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1 || item.url.indexOf('.jpeg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
