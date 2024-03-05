@@ -35,7 +35,7 @@ Page({
     },
     {
       url: "../../../../assets/images/work/Group-5.png",
-      name: "合同审批流程",
+      name: "新增合同",
       path: '/pages/work/page/contractApprovalCreatAndEdit/contractApprovalCreatAndEdit',
       showType: 'htsplc'
     },

@@ -27,10 +27,10 @@
     <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}">主合同</list-item>
     <list-item extraBrief="{{detailInfo.projectType_dictText}}">项目类型</list-item>
 
-    <list-item extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item>
 
-    <list-item a:if="{{ detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.contractName}}">选择招标文件</list-item>
-    <list-item a:if="{{ detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.biddingTypeName}}">招标方式</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.contractName}}">选择招标文件</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.biddingTypeName}}">招标方式</list-item>
     
     <list-item extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
 

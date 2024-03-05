@@ -98,6 +98,7 @@ Page({
   dialogScreenConstructUnit2: null,
   uploadImageList: null,
   pickerDateRef: null,
+  pickerEndDateRef: null,
 
   onLoad(options) {
     this.form.rules = {
@@ -159,6 +160,9 @@ Page({
   onSavePickerDateRef(ref){
     this.pickerDateRef = ref
   },
+  onSavePickerEndDateRef(ref){
+    this.pickerEndDateRef = ref
+  },
   onSaveUploadContractImgRef: function (ref) {
     this.uploadImageList = ref;
   },
@@ -181,6 +185,9 @@ Page({
     my.hideKeyboard();
     if(this.pickerDateRef) this.pickerDateRef._showDialog()
   },
+  chooseEndTime(){
+    if(this.pickerEndDateRef) this.pickerEndDateRef._showDialog()
+  },
   chooseProject(){
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
   },
@@ -195,6 +202,9 @@ Page({
   },
   bindPickerDateCannBack(data){
     this.form.setFieldValue('applicationTime', data.startDate);
+  },
+  bindPickerEndDateCannBack(data){
+    this.form.setFieldValue('contractEndTime', data.startDate)
   },
   changeContractName(data){
     // let projectName = this.form.getFieldValue('projectName')

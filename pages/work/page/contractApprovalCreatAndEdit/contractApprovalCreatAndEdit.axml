@@ -87,7 +87,7 @@
   />
 
   <form-picker
-    a:if="{{!tenderShow}}"
+    a:if="{{!tenderShow && contractType === 1}}"
     label="发包方式"
     arrow
     name="modeContract"
@@ -123,7 +123,7 @@
     <form-input a:if="{{ contractPeriodType === 2}}" label=""  name="contractPeriodMonth" placeholder="请输入" type="number" allowClear ref="handleRef"><view slot="suffix">月</view></form-input>
     <view a:if="{{ contractPeriodType === 3 }}" class="flex f-end" style="background:#fff">
       <view style="width:55%">
-        <form-input label="" name="contractEndTime" placeholder="请选择" allowClear ref="handleRef"><view class="ant-input-content" slot="prefix">截止日期： </view></form-input>
+        <form-input label="" name="contractEndTime" placeholder="请选择" allowClear onFocus="chooseEndTime" ref="handleRef"><view class="ant-input-content" slot="prefix">截止日期： </view></form-input>
       </view>
     </view>
     
@@ -179,7 +179,7 @@
 
   <view a:if="{{ developmentOrganizationModeList.includes('3') }}">
     <form-input label="个人姓名" name="developmentOrganizationPerson" placeholder="请选择" allowClear ref="handleRef"/>
-    <form-input label="个人身份证号" name="developmentOrganizationNumber" placeholder="请选择" allowClear ref="handleRef" labelWidth="280px"/>
+    <form-input label="个人身份证号" name="developmentOrganizationNumber" placeholder="请选择" allowClear ref="handleRef" labelWidth="170px"/>
   </view>
 
   
@@ -368,3 +368,5 @@
 
 <dialog-screen-ecological-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-ecological-unit>
 <dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
+
+<dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCannBack"></dialog-picker-date>
