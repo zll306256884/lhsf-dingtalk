@@ -131,7 +131,7 @@ Page({
           list
         })
         let dingTalkFormList = [
-          { key:'事项类型：', value: ['','合同审批流程','直接添加合同'][res.data.contractType] },
+          { key:'事项类型：', value: ['','新增合同流程','直接添加合同'][res.data.contractType] },
           { key:'所属项目：', value: res.data.projectName },
           { key:'合同名称：', value: res.data.contractName },
           { key:'合同金额：', value: res.data.contractAmount+'万元' }
