@@ -21,26 +21,34 @@ Page({
       {
         title: '全部',
         options: [
-          {
-            text: '全部',
-            value: '',
-          },
-          {
-            text: '延期',
-            value: 3,
-          },
-          {
-            text: '进行中',
-            value: 2,
-          },
-          {
-            text: '未开始',
-            value: 1,
-          },
-          {
-            text: '已完成',
-            value: 4,
-          },
+          // {
+          //   text: '全部',
+          //   value: '',
+          // },
+          // {
+          //   text: '延期',
+          //   value: 3,
+          // },
+          // {
+          //   text: '进行中',
+          //   value: 2,
+          // },
+          // {
+          //   text: '未开始',
+          //   value: 1,
+          // },
+          // {
+          //   text: '已完成',
+          //   value: 4,
+          // },
+          // 0-未开始 1-进行中 2-延期未开始 3-延期未完成 4-延期完成 5-已完成
+          { text: '全部', value: '', },
+          { text: '未开始', value: 0, },
+          { text: '进行中', value: 1, },
+          { text: '延期未开始', value: 2, },
+          { text: '延期未完成', value: 3, },
+          { text: '延期完成', value: 4, },
+          { text: '已完成', value: 5, },
         ],
       },
       {
@@ -121,8 +129,8 @@ Page({
   // 获取基本信息
   getList: function () {
     let param = {
-      // "projectId": this.data.projectId,
-      "projectId": '12019020004',
+      "projectId": this.data.projectId,
+      // "projectId": '12019020004',
       'status': this.data.status,
       'flagNode': this.data.flagNode,
       'enable': 1,

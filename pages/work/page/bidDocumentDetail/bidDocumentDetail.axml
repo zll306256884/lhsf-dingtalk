@@ -54,7 +54,7 @@
         </view>
       </view>
       <!-- <image class="down-icon" data-url="{{item.url}}" mode="scaleToFill" src="/assets/images/common/download.png" catchTap="downloadFile"/> -->
-      <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" />
+      <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png" catchTap="downloadFile" data-url="{{item.url}}"/>
     </view>
   </view>
 
