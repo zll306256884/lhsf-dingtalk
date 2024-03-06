@@ -15,7 +15,8 @@ Component({
       marginTop: 0,
       dataList: [], //[{name: '', value: ''}]
       onScreenCallBack: function (item) { },
-      projectId: null
+      projectId: null,
+      selectedList: []
     },
 
     /**
@@ -26,9 +27,10 @@ Component({
         chooseIndex: -1,
         topHeight: 0,
         scrollHeight: 0,
-        title:"选择相关单位",
+        title:"选择相关单位1",
         inputValue: '',
-        dataList: []
+        dataList: [],
+        chooseList: []
     },
 
     //组件创建时触发
@@ -77,6 +79,12 @@ Component({
      * 组件的方法列表
      */
     methods: {
+      onChange(v, items, e) {
+        console.log('当前选中的值为：', v, items, e);
+        this.setData({
+          chooseList: items
+        })
+      },
       getEcological(name){
         request.doPostRequest({
           url: projectService.API_CURRENTUNIT,
@@ -88,6 +96,10 @@ Component({
             unitName: name
           },
           success: res => {
+            res.data.records.forEach(e => {
+              e.title = e.unitName
+              e.value = e.id
+            })
             this.setData({
               dataList: res.data.records || []
             })
@@ -138,7 +150,7 @@ Component({
         },
         _bindSureTap(){
           this._hideDialog();
-          this.props.onScreenCallBack(this.data.dataList[this.data.chooseIndex])
+          this.props.onScreenCallBack(this.data.chooseList)
         },
 
         //judge is show dialog

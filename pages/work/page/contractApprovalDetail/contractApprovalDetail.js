@@ -19,7 +19,7 @@ Page({
     detailInfo: {},
     list: [],
     navbarData: {
-      title: "合同审批流程详情"
+      title: "合同详情"
     },
     requestType: null,
     contractId: null,

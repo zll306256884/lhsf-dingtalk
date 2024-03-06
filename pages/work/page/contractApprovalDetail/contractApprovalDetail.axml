@@ -32,7 +32,7 @@
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.contractName}}">选择招标文件</list-item>
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.biddingTypeName}}">招标方式</list-item>
     
-    <list-item extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
 
     <list-item extraBrief="{{detailInfo.contractPeriodType === 1?(detailInfo.contractPeriod+'天'):detailInfo.contractPeriodType === 2?(detailInfo.contractPeriodMonth+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+detailInfo.contractEndTime): ''}}">合同工期</list-item>
 

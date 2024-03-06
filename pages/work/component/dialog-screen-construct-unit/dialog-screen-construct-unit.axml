@@ -14,16 +14,16 @@
     <input class="flex1 search-input" value="{{inputValue}}" placeholder-class="placeholder-class" adjust-position="{{false}}" placeholder="请输入单位名称" confirm-type="search" onInput="_bindInputChange" onConfirm="_bindOnConfirm"/>
   </view>
 
-  <scroll-view style="max-height: 100vh;" scroll-y="{{true}}" onScroll="_bindScroll">
-      <block a:for="{{dataList}}">
+  <scroll-view style="max-height: 1000rpx;padding-bottom:50rpx" scroll-y="{{true}}" onScroll="_bindScroll">
+      <!-- <block a:for="{{dataList}}">
           <view class="content-content border-top" data-index="{{index}}" data-id="{{item.id}}" catchTap="_bindItemTap">
             <view class="dialog-name {{chooseIndex === index ? 'active' : ''}}">
               {{item.unitName}}
             </view>
-            <!-- <view class="dialog-code {{chooseIndex === index ? 'active' : ''}}">
-              社会信用代码：{{item.code}}
-            </view> -->
           </view>
-      </block>
+      </block> -->
+      
+      <ant-checklist defaultValue="{{selectedList}}" options="{{ dataList }}" multiple onChange="onChange" />
+      
   </scroll-view>
 </view>

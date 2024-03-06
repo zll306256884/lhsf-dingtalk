@@ -141,7 +141,7 @@ Page({
     // let projectName = this.form.getFieldValue('projectName')
     // this.form.setFieldValue('title', this.data.projectName+data)
     if( data.proType === 0){
-      this.form.setFieldValue('title', this.data.projectName+data)
+      this.form.setFieldValue('title', this.data.projectName+'-'+data)
     }else{
       this.form.setFieldValue('title', '')
     }
@@ -160,7 +160,7 @@ Page({
     })
     let tenderName = this.form.getFieldValue('tenderName') || ''
     if( data.proType === 0){
-      this.form.setFieldValue('title', data.name+tenderName)
+      this.form.setFieldValue('title', data.name+'-'+tenderName)
     }else{
       this.form.setFieldValue('title', '')
     }
@@ -200,7 +200,7 @@ Page({
           })
         }
         if(paramsdata.title){
-          paramsdata.title = paramsdata.title.replace('招标文件会签-', '')
+          paramsdata.title = paramsdata.title.replace('招标文件会签：', '')
         }
         if(paramsdata.biddingType){
           paramsdata.biddingType = paramsdata.biddingType.toString()
@@ -300,7 +300,7 @@ Page({
       })
     }
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
-
+    params.title = params.title.replace('招标文件会签：', '')
     params.projectLeaderId = this.data.projectLeaderId
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
@@ -332,6 +332,7 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     params.projectLeaderId = this.data.projectLeaderId
+    params.title = params.title.replace('招标文件会签：', '')
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'

@@ -2,6 +2,8 @@
   "component": true,
   "usingComponents": {
     "icon": "antd-mini/es/Icon/index",
-    "layout-search": "/pages/components/layout/layout-search/layout-search"
+    "layout-search": "/pages/components/layout/layout-search/layout-search",
+    "ant-checklist": "antd-mini/es/Checklist/index",
+    "ant-container": "antd-mini/es/Container/index"
   }
 }

@@ -122,8 +122,8 @@
     <form-input a:if="{{ contractPeriodType === 1 }}" label=""  name="contractPeriod" placeholder="请输入" type="number" allowClear ref="handleRef"><view slot="suffix">天</view></form-input>
     <form-input a:if="{{ contractPeriodType === 2}}" label=""  name="contractPeriodMonth" placeholder="请输入" type="number" allowClear ref="handleRef"><view slot="suffix">月</view></form-input>
     <view a:if="{{ contractPeriodType === 3 }}" class="flex f-end" style="background:#fff">
-      <view style="width:55%">
-        <form-input label="" name="contractEndTime" placeholder="请选择" allowClear onFocus="chooseEndTime" ref="handleRef"><view class="ant-input-content" slot="prefix">截止日期： </view></form-input>
+      <view style="width:55%" catchTap="chooseEndTime">
+        <form-input label="" name="contractEndTime" disabled placeholder="请选择" allowClear ref="handleRef"><view class="ant-input-content" slot="prefix">截止日期： </view></form-input>
       </view>
     </view>
     
@@ -162,11 +162,12 @@
   <!-- <form-selector label="建设单位(甲方)" name="developmentOrganizationModeList" options="{{ unitPartyModeOptions2 }}" multiple labelWidth="280rpx" onChange="developmentOrganizationModeChange"  ref="handleRef" /> -->
 
   <view a:if="{{ developmentOrganizationModeList.includes('1') }}">
-    <form-input label="政府单位名称" labelWidth="280rpx" name="developmentOrganizationName" placeholder="请选择" allowClear ref="handleRef" />
+    <form-input label="政府单位名称" labelWidth="280rpx" name="developmentOrganizationName" placeholder="请选择" allowClear ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
   </view>
  
   <view a:if="{{ developmentOrganizationModeList.includes('2') }}" catchTap="chooseUnit">
-    <form-picker
+    <form-input label="单位" name="developmentOrganizationListName" disabled placeholder="请选择" allowClear ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+    <!-- <form-picker
       label="单位"
       labelWidth="280rpx"
       name="developmentOrganization"
@@ -174,7 +175,7 @@
       disabled
       arrow
       options="{{developmentOrganizationOptions}}"
-      ref="handleRef" />
+      ref="handleRef" /> -->
   </view>
 
   <view a:if="{{ developmentOrganizationModeList.includes('3') }}">
@@ -364,7 +365,7 @@
 <dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
-<dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
+<dialog-screen-construct-unit ref="onSaveDialogScreenConstructUnitRef" projectId="{{projectId}}" selectedList="{{selectedList}}" onScreenCallBack="bindScreenConstructUnitCallBack"></dialog-screen-construct-unit>
 
 <dialog-screen-ecological-unit ref="onSaveDialogScreenConstructUnitRef2" projectId="{{projectId}}" onScreenCallBack="bindScreenConstructUnitCallBack2"></dialog-screen-ecological-unit>
 <dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>

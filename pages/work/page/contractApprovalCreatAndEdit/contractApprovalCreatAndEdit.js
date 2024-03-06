@@ -20,13 +20,14 @@ Page({
     validateMessages,
     initialValues: {
       applicationTime: formatTimeToDay(new Date()),
-      unitPartyMode: 2
+      unitPartyMode: 2,
+      developmentOrganizationModeList: ['2']
     },
     rules: {}
   }),
   data: {
     navbarData:{
-      title: "新增合同审批流程"
+      title: "新增合同"
     },
     radioGroupOptions: [
       { value: 1, label: '是' },
@@ -85,11 +86,13 @@ Page({
     executeUser: [],
     contractPeriodType: null,
     unitPartyMode: 2,//乙方单位
-    developmentOrganizationModeList: [],
+    developmentOrganizationModeList: ['2'],
+    developmentOrganizationListName: '',
     contractType: null,
     proType: null, //0工程，1非工程
     projectLeaderId: '',
-    loading: false
+    loading: false,
+    selectedList: []
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -139,7 +142,7 @@ Page({
     if(options.id){
       this.setData({
         contractId: options.id,
-        navbarData: {title: '编辑合同审批流程'}
+        navbarData: {title: '编辑合同'}
       })
       this.getDetail()
     }else{
@@ -208,7 +211,11 @@ Page({
   },
   changeContractName(data){
     // let projectName = this.form.getFieldValue('projectName')
-    this.form.setFieldValue('title', this.data.projectName+data)
+    if(this.data.proType === 0){
+      this.form.setFieldValue('title', this.data.projectName+'-'+data)
+    }else{
+      this.form.setFieldValue('title', '')
+    }
   },
   chooseThirdParty(value,e){
     console.log(value,e);
@@ -272,7 +279,7 @@ Page({
     })
     let contractName = this.form.getFieldValue('contractName') || ''
     if( data.proType === 0){
-      this.form.setFieldValue('title', data.name+contractName)
+      this.form.setFieldValue('title', data.name+'-'+contractName)
     }else{
       this.form.setFieldValue('title', '')
     }
@@ -356,12 +363,24 @@ Page({
       list:list
     })
   },
+  //建设单位（甲方）
   bindScreenConstructUnitCallBack(data){
     this.form.setFieldValue('developmentOrganization', data.id);
+    this.form.setFieldValue('developmentOrganizationListName',data.map(e => e.unitName).join())
+    let list = data.map(e => {
+      return {
+        developmentOrganizationName: e.unitName,
+        developmentOrganization: e.id,
+        ecUnitId: e.ecUnitId
+      }
+    })
     this.setData({
-      developmentOrganizationName: data.unitName,
-      developmentOrganization: data.id,
-      ecUnitId: data.ecUnitId
+      // developmentOrganizationName: data.unitName,
+      // developmentOrganization: data.id,
+      // ecUnitId: data.ecUnitId,
+      developmentOrganizationList: list,
+      developmentOrganizationListName: data.map(e => e.unitName).join(),
+      selectedList: data.map(e => e.id)
     })
   },
   chooseTenderDocument(data){
@@ -542,6 +561,7 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     console.log('this.data.list',this.data.list);
+    params.title = params.title.replace('合同审批流程：', '')
     params.projectLeaderId = this.data.projectLeaderId
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
@@ -550,6 +570,7 @@ Page({
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
     params.developmentOrganizationModeList = params.developmentOrganizationModeList || this.data.developmentOrganizationModeList
+    params.developmentOrganizationList = this.data.developmentOrganizationList
     params.ecUnitId = this.data.ecUnitId
     console.log(params)
     // if(params.unitPartyType){
@@ -624,6 +645,7 @@ Page({
     params.unitPartyName  = this.data.unitPartyName 
     params.countersignLeader = this.data.countersignLeader
     params.developmentOrganizationName  = this.data.developmentOrganizationName 
+    params.developmentOrganizationList = this.data.developmentOrganizationList
     params.ecUnitId = this.data.ecUnitId
     // params.unitPartyTypeName = this.data.unitTypeOptionList.find(e => e.value === params.unitPartyType).label
     let workAuditFile = [];
@@ -700,7 +722,7 @@ Page({
         this.form.setFieldValue('supplementAgreement', paramsdata.supplementAgreement)
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
 
-        
+        this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
         
 
         console.log(this.form.getFieldsValue())
@@ -728,6 +750,9 @@ Page({
           unitPartyMode: paramsdata.unitPartyMode,
           developmentOrganizationModeList: paramsdata.developmentOrganizationModeList,
           contractPeriodType: paramsdata.contractPeriodType,
+          developmentOrganizationList: paramsdata.developmentOrganizationList,
+          developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
+          selectedList:paramsdata.developmentOrganizationList.map(e => e.developmentOrganization).join(),
           list
         })
         if(paramsdata.fileList && paramsdata.fileList){
@@ -749,7 +774,7 @@ Page({
           this.form.setFieldValue('contractPeriodMonth', paramsdata.contractPeriodMonth)
           this.form.setFieldValue('contractPeriod', paramsdata.contractPeriod)
           this.form.setFieldValue('contractEndTime', paramsdata.contractEndTime)
-          
+          this.form.setFieldValue('developmentOrganizationListName', paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),)
 
         }, 0);
 
