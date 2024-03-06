@@ -561,7 +561,12 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     console.log('this.data.list',this.data.list);
-    params.title = params.title.replace('合同审批流程：', '')
+    if(this.data.contractType === 1){
+      params.title = params.title.replace('合同审批流程：', '')
+    }else{
+      params.title = params.title.replace('直接添加合同：', '')
+    }
+    
     params.projectLeaderId = this.data.projectLeaderId
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
@@ -624,6 +629,11 @@ Page({
           }
         }
       })
+    }
+    if(this.data.contractType === 1){
+      params.title = params.title.replace('合同审批流程：', '')
+    }else{
+      params.title = params.title.replace('直接添加合同：', '')
     }
     params.projectLeaderId = this.data.projectLeaderId
     params.contractType = this.data.contractType
@@ -721,8 +731,14 @@ Page({
         this.form.setFieldValue('contractNeedTender', paramsdata.contractNeedTender)
         this.form.setFieldValue('supplementAgreement', paramsdata.supplementAgreement)
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
+        this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
 
-        this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
+        if(paramsdata.contractType === 1){
+          this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
+        }else{
+          this.form.setFieldValue('title',paramsdata.title.replace('直接添加合同：',''))
+        }
+        
         
 
         console.log(this.form.getFieldsValue())
