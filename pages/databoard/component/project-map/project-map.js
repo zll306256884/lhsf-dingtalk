@@ -153,7 +153,26 @@ Component({
       this.data.params.projectName = data.name;
       this.getProjectList();
     },
-    getProjectList() {
+   async getProjectList() {
+     request.doPostRequest({
+        url: apiDataBoardServer.API_MAP_PROJECT_LIST,
+        data: this.data.params,
+        success: res => {
+         const list = res.data.map((item,index)=>{
+            return{
+              ...item,
+              index:index,
+              xy:item.cityCapitalY && item.cityCapitalX? map.Gauss_to_LogLat(item.cityCapitalY,item.cityCapitalX) : null,
+              mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
+            }
+          })
+          this.setData({
+            currentItem:0,
+            projectList: list
+          });
+          this.updateComponents();
+        }
+      });
       request.doPostRequest({
         url: apiDataBoardServer.API_MAP_PROJECT_COUNT_STAGE,
         data: this.data.params,
@@ -167,25 +186,6 @@ Component({
           });
         }
       })
-     
-      request.doPostRequest({
-        url: apiDataBoardServer.API_MAP_PROJECT_LIST,
-        data: this.data.params,
-        success: res => {
-         const list = res.data.map((item,index)=>{
-            return{
-              ...item,
-              index:index,
-              xy: map.Gauss_to_LogLat(item.cityCapitalY,item.cityCapitalX),
-              mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
-            }
-          })
-          this.setData({
-            projectList: list
-          });
-          this.updateComponents();
-        }
-      });
     },
 
     updateComponents() {
@@ -279,14 +279,13 @@ Component({
           this.mapCtx.changeMarkers({
             update:newMarkers,
           });
-      if(!(this.data.projectList[e.detail.current].cityCapitalX && this.data.projectList[e.detail.current].cityCapitalY)){
+      if(!(this.data.projectList[this.data.currentItem].xy)){
         ddUtils.showToast({
           title: '当前项目无坐标，请于项目信息中录入'
         });
         return
-      }else{
-      this.changeMarkers();
       }
+      this.changeMarkers();
     },
     // 点击 Marker 时触发
     markertap(e) {
