@@ -36,7 +36,7 @@
 
     <list-item>
       招标内容
-      <view style="margin-top:10rpx;color: #969799;">{{detailInfo.biddingContent}}</view>
+      <view style="margin-top:10rpx;color:#323233;">{{detailInfo.biddingContent}}</view>
       <!-- <textarea style="margin-top:10rpx;" value="{{detailInfo.biddingContent}}" autoHeight disabled /> -->
     </list-item>
   </list>
@@ -82,7 +82,7 @@
 
   <list-item>
     备注内容
-    <view style="margin-top:10rpx;color: #969799;">{{detailInfo.remark}}</view>
+    <view style="margin-top:10rpx;color:#323233;">{{detailInfo.remark}}</view>
   </list-item>
 
   <view a:if="{{ requestType === '0' }}" class="bottom-content flex f-between">
