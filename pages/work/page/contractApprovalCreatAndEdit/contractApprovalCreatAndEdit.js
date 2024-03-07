@@ -92,7 +92,9 @@ Page({
     proType: null, //0工程，1非工程
     projectLeaderId: '',
     loading: false,
-    selectedList: []
+    selectedList: [],
+    isShow: false,
+    isShow2: false
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -113,7 +115,7 @@ Page({
       projectType: [{ required: true, message: '请选择' }],
       contractNeedTender: [{ required: true, message: '请选择' }],
       // tenderDocumentId: [{ required: true, message: '请选择' }],
-      biddingTypeName: [{ required: true, message: '请选择' }],
+      // biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
       contractPeriod: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
       contractPeriodMonth: [{ required: true, max: 5, message: '请输入(最多5位的整数)',pattern: /^[1-9]\d{0,4}$/ }],
@@ -261,6 +263,30 @@ Page({
     this.setData({
       unitPartyMode: value
     })
+  },
+  contractAmountChange(value){
+    let aaa = parseInt(value).toString()
+    if(aaa.length > 4){
+      this.setData({
+        isShow: true
+      })
+    }else{
+      this.setData({
+        isShow: false
+      })
+    }
+  },
+  amountPaidChange(value){
+    let aaa = parseInt(value).toString()
+    if(aaa.length > 4){
+      this.setData({
+        isShow2: true
+      })
+    }else{
+      this.setData({
+        isShow2: false
+      })
+    }
   },
   handleRef(ref) {
     this.form.addItem(ref);

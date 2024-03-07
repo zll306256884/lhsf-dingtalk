@@ -117,7 +117,7 @@ Page({
       data: {id: contractId},
       success: res => {
         console.log(res.data)
-        res.data.developmentOrganizationListName = res.data.developmentOrganizationList.map(e => e.developmentOrganizationName).join()
+        res.data.developmentOrganizationListName = res.data.developmentOrganizationList.map(e => e.developmentOrganizationName).join('、')
         let list = res.data.contractThirdPartyRepList
         if(list){
           list.forEach((e, index)=> {

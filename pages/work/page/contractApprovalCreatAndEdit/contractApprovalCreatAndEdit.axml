@@ -16,7 +16,7 @@
     options="{{projectListOptions}}"
     ref="handleRef" />
 </view>
-<form-input label="项目负责任人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
+<form-input label="项目负责人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
 <form-input label="项目所属单位" required labelWidth="280rpx" name="affiliateUnit" disabled placeholder="自动生成" ref="handleRef" />
 <form-input
   label="合同名称"
@@ -87,7 +87,7 @@
   />
 
   <form-picker
-    a:if="{{!tenderShow && contractType === 1}}"
+    a:if="{{!tenderShow && contractType === '1'}}"
     label="发包方式"
     arrow
     name="modeContract"
@@ -119,8 +119,8 @@
     onChange="contractPeriodTypeChange"
     ref="handleRef" />
 
-    <form-input a:if="{{ contractPeriodType === 1 }}" label=""  name="contractPeriod" placeholder="请输入" type="number" allowClear ref="handleRef"><view slot="suffix">天</view></form-input>
-    <form-input a:if="{{ contractPeriodType === 2}}" label=""  name="contractPeriodMonth" placeholder="请输入" type="number" allowClear ref="handleRef"><view slot="suffix">月</view></form-input>
+    <form-input a:if="{{ contractPeriodType === 1 }}" label=""  name="contractPeriod" placeholder="请输入" allowClear ref="handleRef"><view slot="suffix">天</view></form-input>
+    <form-input a:if="{{ contractPeriodType === 2}}" label=""  name="contractPeriodMonth" placeholder="请输入" allowClear ref="handleRef"><view slot="suffix">月</view></form-input>
     <view a:if="{{ contractPeriodType === 3 }}" class="flex f-end" style="background:#fff">
       <view style="width:55%" catchTap="chooseEndTime">
         <form-input label="" name="contractEndTime" disabled placeholder="请选择" allowClear ref="handleRef"><view class="ant-input-content" slot="prefix">截止日期： </view></form-input>
@@ -136,14 +136,18 @@
     arrow
     options="{{radioGroupOptionsTwo}}"
     ref="handleRef" />
-
+  
   <form-input
     name="contractAmount"
     placeholder="请输入合同金额，注意“万元”单位"
     type="number"
     allowClear
     style="text-align:left"
+    onChange="contractAmountChange"
     ref="handleRef" />
+    <view a:if="{{isShow}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
+      请核对合同金额(万元单位)填写是否正确
+    </view>
 
   <form-input
     a:if="{{ contractType === '2' }}"
@@ -154,7 +158,11 @@
     type="number"
     allowClear
     style="text-align:left"
+    onChange="amountPaidChange"
     ref="handleRef" />
+    <view a:if="{{isShow2}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
+      请核对已支付金额(万元单位)填写是否正确
+    </view>
 
   <view class="bottom-space" style="height:16rpx"></view>
   <form-checkbox-group label="建设单位(甲方)" name="developmentOrganizationModeList" onChange="developmentOrganizationModeChange" options="{{unitPartyModeOptions2}}" ref="handleRef" labelWidth="280rpx" ></form-checkbox-group>

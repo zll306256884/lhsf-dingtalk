@@ -27,7 +27,7 @@ Component({
         chooseIndex: -1,
         topHeight: 0,
         scrollHeight: 0,
-        title:"选择相关单位1",
+        title:"选择相关单位",//建设单位
         inputValue: '',
         dataList: [],
         chooseList: []
