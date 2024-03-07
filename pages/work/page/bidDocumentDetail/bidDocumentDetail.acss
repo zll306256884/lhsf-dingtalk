@@ -130,3 +130,9 @@
   width: 48rpx;
   height: 48rpx;
 }
+.ant-list-item-extra-container .ant-list-item-extra-brief{
+  color: #323233;
+}
+.ant-list-item-content-main .ant-list-item-extra-brief{
+  color: #323233;
+}
