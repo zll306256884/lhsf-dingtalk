@@ -32,7 +32,7 @@
       <view class="card-list">
         <swiper current="{{currentItem}}" onChange="handleSwiper"  circular="true">
         <block a:for="{{projectList}}">
-          <swiper-item key="swiper-item-{{index}}" >
+          <swiper-item key="swiper-item-{{index}}">
             <view class="card-item flex f-between" data-item="{{item}}" data-index="{{index}}" onTap="onSelectItem">
               <image a:if="{{item.mainImgUrl}}" class="item-img" mode="aspectFit"  src="{{item.mainImgUrl}}" />
               <image a:else class="item-img item-img-default" mode="aspectFit"  src="/assets/images/common/default-img.png" />
