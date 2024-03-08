@@ -312,7 +312,7 @@ Page({
     
     setTimeout(() => {
       this.getQueryCurrentUnitType()
-      this.getBiddingData()
+      this.getBiddingData(data.id)
       this.getContractList()
       this.getEcological()
     },1000)
@@ -433,15 +433,16 @@ Page({
     })
     console.log(this.data.list)
   },
-  getBiddingData(){
+  getBiddingData(projectId){
     request.doPostRequest({
       url: projectService.API_TENDERDOCUMENT_LIST,
       data: {
-        pageNum: 1,pageSize: 999,approvalStatus:4,
+        pageNum: 1,pageSize: 999,approvalStatus:4,projectId
       },
       success: res => {
         res.data.records.forEach(e => {
-          e.label = e.tenderName+'-'+e.createBy_dictText+'-'+e.tenderAmount+'万元'
+          // e.label = e.tenderName+'-'+e.createBy_dictText+'-'+(e.tenderAmount?e.tenderAmount:0)+'万元'
+          e.label = e.tenderName
           e.value = e.id
         })
         this.setData({
@@ -737,7 +738,7 @@ Page({
 
         setTimeout(() => {
           this.getQueryCurrentUnitType()
-          this.getBiddingData()
+          this.getBiddingData(paramsdata.projectId)
           this.getContractList()
           this.form.setFieldValue('biddingTypeName',paramsdata.biddingType_dictText)
           this.form.setFieldValue('tenderDocumentId',paramsdata.tenderDocumentId)
@@ -758,6 +759,7 @@ Page({
         this.form.setFieldValue('supplementAgreement', paramsdata.supplementAgreement)
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
         this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
+        this.form.setFieldValue('contractAmount', paramsdata.contractAmount)
 
         if(paramsdata.contractType === 1){
           this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))

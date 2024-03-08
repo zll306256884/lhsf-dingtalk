@@ -36,7 +36,7 @@
 
     <list-item extraBrief="{{detailInfo.contractPeriodType === 1?(detailInfo.contractPeriod+'天'):detailInfo.contractPeriodType === 2?(detailInfo.contractPeriodMonth+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+detailInfo.contractEndTime): ''}}">合同工期</list-item>
 
-    <list-item extraBrief="{{detailInfo.contractAmount+(['待定','已定(含暂定合同价)'][detailInfo.makeSure])}}">合同金额(万元)</list-item>
+    <list-item extraBrief="{{detailInfo.contractAmount?detailInfo.contractAmount:0+(['待定','已定(含暂定合同价)'][detailInfo.makeSure])}}">合同金额(万元)</list-item>
 
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
