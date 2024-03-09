@@ -265,6 +265,7 @@ Page({
     })
   },
   contractAmountChange(value){
+    console.log('合同金额', value)
     let aaa = parseInt(value).toString()
     if(aaa.length > 4){
       this.setData({
@@ -569,6 +570,7 @@ Page({
   staging(){
     this.form.rules = {}
     let params = this.form.getFieldsValue()
+    console.log("获取表单值：", params)
     // params.vueUrl = 'ApproveContractApprovalDetail,ApproveContractApprovalCreatAndEdit'
     params.singleUrl = '/pages/work/page/contractApprovalDetail/contractApprovalDetail'
     // params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/contractApproval/contractApproval/detail'

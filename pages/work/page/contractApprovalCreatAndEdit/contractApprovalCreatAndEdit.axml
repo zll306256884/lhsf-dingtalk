@@ -131,7 +131,7 @@
 
   <form-picker
     label="合同金额(万元)"
-    labelWidth="220rpx"
+    labelWidth="230rpx"
     name="makeSure"
     arrow
     options="{{radioGroupOptionsTwo}}"
@@ -341,7 +341,7 @@
     </view>
   </view>
 
-  <view catchTap="chooseLeader">
+  <view a:if="{{ contractType === '1' }}" catchTap="chooseLeader">
     <form-input
     label="选择会签分管领导"
     labelWidth="293rpx"
