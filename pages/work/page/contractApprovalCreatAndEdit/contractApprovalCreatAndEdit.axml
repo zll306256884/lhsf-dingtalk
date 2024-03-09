@@ -248,7 +248,7 @@
     <list-item a:if="{{ list[index].contractThirdMode === 3 }}">
       <view class="flex f-between">
         <view class="flex f-start" style="align-items:center;margin-left:-10rpx"> <view style="color:red">*</view><view>身份证</view></view>
-        <input value="{{list[index].contractThirdNumber}}" placeholder="请选择" allowClear data-index="{{index}}" onFocus="chooseUnitType" onChange="contractThirdNumberInput"  />
+        <input value="{{list[index].contractThirdNumber}}" placeholder="请选择" maxlength="18" allowClear data-index="{{index}}" onFocus="chooseUnitType" onChange="contractThirdNumberInput"  />
       </view>
     </list-item>
 

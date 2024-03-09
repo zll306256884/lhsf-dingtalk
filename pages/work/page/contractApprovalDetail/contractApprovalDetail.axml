@@ -34,7 +34,7 @@
     
     <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
 
-    <list-item extraBrief="{{detailInfo.contractPeriodType === 1?(detailInfo.contractPeriod+'天'):detailInfo.contractPeriodType === 2?(detailInfo.contractPeriodMonth+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+detailInfo.contractEndTime): ''}}">合同工期</list-item>
+    <list-item extraBrief="{{detailInfo.contractPeriodType === 1?((detailInfo.contractPeriod?detailInfo.contractPeriod:'/')+'天'):detailInfo.contractPeriodType === 2?((detailInfo.contractPeriodMonth?detailInfo.contractPeriodMonth:'/')+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+(detailInfo.contractEndTime?detailInfo.contractEndTime:'/')): ''}}">合同工期</list-item>
 
     <list-item extraBrief="{{detailInfo.contractAmount?detailInfo.contractAmount:0+(['待定','已定(含暂定合同价)'][detailInfo.makeSure])}}">合同金额(万元)</list-item>
 
@@ -143,7 +143,7 @@
       <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
     </list-item> -->
 
-    <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">选择会签分管领导：</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{detailInfo.countersignLeader_dictText}}">选择会签分管领导：</list-item>
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期：</list-item>
     <view class="bottom-space" style="height:16rpx"></view>
   </list>

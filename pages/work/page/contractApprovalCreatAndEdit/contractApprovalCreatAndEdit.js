@@ -128,7 +128,7 @@ Page({
       unitPartyName: [{ required: true, message: '请选择' }],
       unitPartyType: [{ required: true, message: '请选择' }],
       unitPartyPerson: [{ required: true, message: '请选择' }],
-      unitPartyNumber: [{ required: true, message: '请选择' }],
+      unitPartyNumber: [{ required: true, message: '请输入(最多18位的整数)',pattern: /^[1-9]\d{0,17}$/ }],
       unitParty: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
@@ -136,7 +136,7 @@ Page({
       applicationTime: [{ required: true, message: '请选择' }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
       developmentOrganizationPerson: [{ required: true, message: '请选择' }],
-      developmentOrganizationNumber: [{ required: true, message: '请选择' }],
+      developmentOrganizationNumber: [{ required: true, message: '请输入(最多18位的整数)',pattern: /^[1-9]\d{0,17}$/ }],
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
       contractPeriodType: [{ required: true, message: '请选择' }]
     }
