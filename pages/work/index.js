@@ -562,12 +562,12 @@ Page({
           break;
         case 2:
           ddUtils.navigateTo({
-            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&requestType=0`
+            url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?id=${item.keyId}&deleteId=${item.id}&requestType=0`
           });
           break;
         case 3:
           ddUtils.navigateTo({
-            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&requestType=0`
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${item.keyId}&deleteId=${item.id}&requestType=0`
           });
           break;
         case 4:
