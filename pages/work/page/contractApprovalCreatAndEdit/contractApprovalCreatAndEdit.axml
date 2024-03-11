@@ -306,7 +306,7 @@
   <view a:if="{{ list.length < 6 }}" class="addunit" catchTap="addUnit">+添加单位</view>
   <view a:if="{{ list.length > 5 }}" class="bottom-space" style="height:16rpx"></view>
 
-  <!-- <form-textarea
+  <form-textarea
     label="合同内容"
     position='vertical'
     name="contractContent"
@@ -315,7 +315,7 @@
     autoHeight
     maxLength="800"
     ref="handleRef" />
-  <form-picker
+  <!-- <form-picker
     label="付款方式"
     arrow
     name="paymentMethod"

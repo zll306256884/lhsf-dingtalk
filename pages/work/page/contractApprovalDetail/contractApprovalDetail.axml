@@ -104,13 +104,13 @@
     <!-- <list-item data-index="{{index}}" onTap="deleteThis" extraBrief="删除"></list-item> -->
   </list>
 
-  <!-- <list>
+  <list>
     <view class="bottom-space" style="height:16rpx"></view>
     <list-item>
       合同内容：
       <view style="margin-top:10rpx;color: #323233;">{{detailInfo.contractContent}}</view>
     </list-item>
-  </list> -->
+  </list>
   <view class="bottom-space" style="height:16rpx"></view>
   <list>
     <!-- <list-item extraBrief="{{detailInfo.paymentMethod_dictText}}">付款方式</list-item> -->
