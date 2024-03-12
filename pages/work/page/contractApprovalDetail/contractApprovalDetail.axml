@@ -16,7 +16,7 @@
   <list>
     <list-item extraBrief="{{detailInfo.projectName}}">项目名称:</list-item>
     <list-item extraBrief="{{detailInfo.contractName}}">合同名称:</list-item>
-    <list-item extraBrief="{{detailInfo.contractNumber}}">合同号:</list-item>
+    <list-item extraBrief="{{detailInfo.contractNumber || '-'}}">合同号:</list-item>
   </list>
 
   <view class="bottom-space" style="height:16rpx"></view>
@@ -25,14 +25,14 @@
     <list-item extraBrief="{{detailInfo.projectLeader}}">项目负责人:</list-item>
     <list-item extraBrief="{{['否','是'][detailInfo.supplementAgreement]}}">是否补充协议:</list-item>
     <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}">主合同:</list-item>
-    <list-item extraBrief="{{detailInfo.projectType_dictText}}">项目类型:</list-item>
+    <list-item extraBrief="{{detailInfo.projectType_dictText || '-'}}">项目类型:</list-item>
 
     <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item>
 
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.contractName}}">选择招标文件</list-item>
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.biddingTypeName}}">招标方式</list-item>
     
-    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 0}}" extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
 
     <list-item extraBrief="{{detailInfo.contractPeriodType === 1?((detailInfo.contractPeriod?detailInfo.contractPeriod:'/')+'天'):detailInfo.contractPeriodType === 2?((detailInfo.contractPeriodMonth?detailInfo.contractPeriodMonth:'/')+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+(detailInfo.contractEndTime?detailInfo.contractEndTime:'/')): ''}}">合同工期</list-item>
 
@@ -108,7 +108,7 @@
     <view class="bottom-space" style="height:16rpx"></view>
     <list-item>
       合同内容：
-      <view style="margin-top:10rpx;color: #323233;">{{detailInfo.contractContent}}</view>
+      <view style="margin-top:10rpx;color: #323233;">{{detailInfo.contractContent || "-"}}</view>
     </list-item>
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
@@ -116,7 +116,7 @@
     <!-- <list-item extraBrief="{{detailInfo.paymentMethod_dictText}}">付款方式</list-item> -->
     <list-item>
       备注内容：
-      <view style="margin-top:10rpx;color: #323233;">{{detailInfo.remark}}</view>
+      <view style="margin-top:10rpx;color: #323233;">{{detailInfo.remark || "-"}}</view>
     </list-item>
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
@@ -143,7 +143,7 @@
       <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
     </list-item> -->
 
-    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{detailInfo.countersignLeader_dictText}}">选择会签分管领导：</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{detailInfo.countersignLeader_dictText || '-'}}">选择会签分管领导：</list-item>
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期：</list-item>
     <view class="bottom-space" style="height:16rpx"></view>
   </list>

@@ -87,7 +87,7 @@
   />
 
   <form-picker
-    a:if="{{!tenderShow && contractType === '1'}}"
+    a:if="{{!tenderShow && (contractType === '1' || contractType === 1)}}"
     label="发包方式"
     arrow
     name="modeContract"
