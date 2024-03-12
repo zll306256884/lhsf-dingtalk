@@ -189,8 +189,7 @@ Component({
             }
           })
         }
-      }, 10000);
-      
+      }, 1000);
     },
     getDetail(){
       request.doPostRequest({
