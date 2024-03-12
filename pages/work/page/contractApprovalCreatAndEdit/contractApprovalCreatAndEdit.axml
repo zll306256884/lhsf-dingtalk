@@ -78,8 +78,16 @@
   onOk="chooseTenderDocument"
   ref="handleRef" />
 
+  <form-picker
+    a:if="{{tenderShow && isChooseTenderDocumentId === '1'}}"
+    label="招标方式"
+    arrow
+    name="biddingType"
+    options="{{biddingTypeOptions}}"
+    ref="handleRef" />
+
   <form-input
-    a:if="{{tenderShow}}"
+    a:if="{{tenderShow && isChooseTenderDocumentId !== '1'}}"
     label="招标方式"
     disabled
     name="biddingTypeName"
