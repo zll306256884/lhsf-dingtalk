@@ -115,6 +115,7 @@ Page({
       masterContract: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       contractNeedTender: [{ required: true, message: '请选择' }],
+      biddingType: [{ required: true, message: '请选择' }],
       // tenderDocumentId: [{ required: true, message: '请选择' }],
       // biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],

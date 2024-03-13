@@ -154,7 +154,7 @@
     <button class="bottom-button active" size="default" type="primary" catchTap="editThis" style="background: #1A6AFF;color:#fff">编辑</button>
   </view>
 
-  <view a:if="{{ requestType === '1' || detailInfo.approvalStatus === 2 }}" class="bottom-content flex f-between">
+  <view a:if="{{ (requestType === '1' || detailInfo.approvalStatus === 2) && !examineId }}" class="bottom-content flex f-between">
     <button class="bottom-button active" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
   </view>
 

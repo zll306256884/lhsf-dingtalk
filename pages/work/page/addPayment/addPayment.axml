@@ -174,7 +174,7 @@
             position='vertical'
             name="paymentNode"
             placeholder="请输入"
-             maxLength="50"
+             maxLength="500"
              autoHeight
              ref="handleRef" />
              <form-textarea
