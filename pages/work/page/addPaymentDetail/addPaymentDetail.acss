@@ -67,3 +67,7 @@ position: relative;
   bottom: 0;
   background: #fff;
 }
+
+.ant-list-item-content-container{
+  min-width: 120px !important;
+}
