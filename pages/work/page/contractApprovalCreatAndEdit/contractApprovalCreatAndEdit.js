@@ -111,7 +111,6 @@ Page({
     this.form.rules = {
       projectId: [{ required: true, message: '请输入' }],
       contractName: [{ required: true, message: '请输入' }],
-      contractNumber: [{ required: true, message: '请输入' }],
       supplementAgreement: [{ required: true, message: '请选择' }],
       masterContract: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
@@ -159,6 +158,9 @@ Page({
       this.setData({
         contractType:options.contractType
       })
+      if(options.contractType === '1'){
+        this.form.rules.contractNumber = [{ required: true, message: '请输入' }]
+      }
     }
   },
   onReady(){
