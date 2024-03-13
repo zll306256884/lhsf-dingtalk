@@ -488,5 +488,24 @@ Page({
 
   //   console.log('targetValue', targetValue)
   // },
-
+  backAudit(e){
+    let item = e.currentTarget.dataset.item
+    ddUtils.showModal({
+      title:'请确认',
+      content: "确定撤回审批?",
+      success: res => {
+        if (res.confirm) {
+          request.doPostRequest({
+            url: approvalServer.API_BACK_AUDIT,
+            data: {account: app.globalData.userInfo.userAccount,no:item.no, workId:item.workId},
+            success: res => {
+              this.pageNum = 1
+              this.getList()
+              this.getCount()
+            }
+          })
+        }
+      }
+    });
+  }
 });

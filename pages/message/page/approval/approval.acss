@@ -86,7 +86,7 @@
 }
 
 .approvalPart .title{
-  width: 538rpx;
+  width: 700rpx;
   height: 40rpx;
   font-size: 34rpx;
   color: rgba(0,0,0,0.4);
@@ -101,19 +101,25 @@
   line-height: 56rpx;
   font-size:28rpx;
 }
-
-.approvalPart .person{
-  width: 538rpx;
+.approvalPart .btnSize1{
+  width: 100rpx;
   height: 40rpx;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  line-height: 40rpx;
+  font-size:24rpx;
+}
+.approvalPart .person{
+  /* width: 538rpx;
+  height: 40rpx; */
   font-size: 28rpx;
   color: rgba(0,0,0,0.5);
   line-height: 33rpx;
-  margin-bottom: 16rpx;
+  margin-bottom: 12rpx;
 }
 
 .approvalPart .time{
-  width: 538rpx;
-  height: 34rpx;
+  /* width: 538rpx;
+  height: 34rpx; */
   font-size: 24rpx;
   color: rgba(0,0,0,0.4 );
   line-height: 28rpx;
