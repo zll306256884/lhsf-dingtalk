@@ -518,6 +518,7 @@ Page({
               ddUtils.navigateTo({
                 url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${1}&examineId=${examineId}`
               });
+              break;
             // case 5:
             //   ddUtils.navigateTo({
             //     url: `/pages/work/page/projectCapital/capitalPlan/capitalPlan?json=${JSON.stringify(item)}`
