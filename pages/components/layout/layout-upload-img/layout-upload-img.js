@@ -10,6 +10,7 @@ const app = getApp();
 Component({
   mixins: [],
   data: {
+    loding:false,
     imgList: [], //{id: "", url: "", name: "", size: "", status: "success", createTime: "", progress: 0}
     isWebView: false, 
     webViewContext:'',
@@ -92,6 +93,9 @@ Component({
     },
 
     _setImgList: function (list) {
+      this.setData({
+        loding: true
+      })
       list = list || [];
 
       let tempList = [];
@@ -105,29 +109,58 @@ Component({
       }
 
       this.setData({
-        imgList: tempList
+        imgList: tempList,
+        loding: false
       });
     },
     //图片所有数据（带id）
-    _setImageList: function (list) {
+    _setImageList: async function (list) {
+      this.setData({
+        loding: true
+      })
       list = list || [];
 
       let tempList = [];
 
       for (let item of list) {
-        tempList.push({
+        let a = await this.preImage({
           url: item,
           progress: 100,
           url: getImgUrl(item.url),
           id: item.id,
           size: item.size,
           name: item.name
-        });
+        })
+        console.log('a',a)
+        tempList.push(a);
       }
-
+     
       this.setData({
-        imgList: tempList
+        imgList: tempList,
+        loding: false
       });
+      console.log(' this.data.imgList111', tempList, this.data.imgList)
+    },
+    preImage (e){
+      return new Promise(res=>{
+        if(e.url.indexOf('https://') == -1) {
+            e.url = 'https://' + e.url
+          }
+          request.doPostRequest({
+            url: config.API_FILE_SETURL,
+            data: {
+                fileName: e.url,
+            },
+            success: result => {
+                if (result.code == 1000) {
+                   e.status = true
+                   e.url = result.data
+                }
+                res(e)
+              }
+          })
+   
+      })
     },
     catchAddTap(e){
       if (this.data.imgList.length > this.props.maxCount-1){
@@ -264,7 +297,7 @@ Component({
     },
     //deal choose image
     _dealChooseImage: function (files) {
-      console.log(files)
+      console.log('files',files)
       if (!files.filePaths) {
         ddUtils.showToast({
           title: "无效的图片"
