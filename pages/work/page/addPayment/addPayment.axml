@@ -169,6 +169,14 @@
               </view>
               </view>
           </view>
+
+          <form-picker
+            label="关联资金计划"
+            arrow
+            name="monthType"
+            options="{{monthTypeOptions}}"
+            ref="handleRef" />
+
            <form-textarea
            label="支付节点（或形象进度）"
             position='vertical'
