@@ -23,6 +23,7 @@ Page({
     console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST)
   },
   onMessage:function(e) {
+    let type = 'up'
     console.log('接受消息',e.detail)
     let pages = getCurrentPages()
     let prevPage = pages[pages.length - 2]
@@ -30,21 +31,21 @@ Page({
     
     if(e.detail.type === '1'){
       if(prevPage.uploadTenderImageList.data.imgList){
-        prevPage.uploadTenderImageList._setImageList([...prevPage.uploadTenderImageList.data.imgList, ...e.detail.imgList])
+        prevPage.uploadTenderImageList._setImageList([...prevPage.uploadTenderImageList.data.imgList, ...e.detail.imgList],type)
       }else{
-        prevPage.uploadTenderImageList._setImageList(e.detail.imgList)
+        prevPage.uploadTenderImageList._setImageList(e.detail.imgList,type)
       }
     }else if(e.detail.type === '2'){
       if(prevPage.uploadOtherImgList.data.imgList){
-        prevPage.uploadOtherImgList._setImageList([...prevPage.uploadOtherImgList.data.imgList, ...e.detail.imgList ])
+        prevPage.uploadOtherImgList._setImageList([...prevPage.uploadOtherImgList.data.imgList, ...e.detail.imgList ],type)
       }else{
-        prevPage.uploadOtherImgList._setImageList(e.detail.imgList)
+        prevPage.uploadOtherImgList._setImageList(e.detail.imgList,type)
       }
     }else{
       if(prevPage.uploadImageList.data.imgList){
-        prevPage.uploadImageList._setImageList([...prevPage.uploadImageList.data.imgList, ...e.detail.imgList])
+        prevPage.uploadImageList._setImageList([...prevPage.uploadImageList.data.imgList, ...e.detail.imgList],type)
       }else{
-        prevPage.uploadImageList._setImageList(e.detail.imgList)
+        prevPage.uploadImageList._setImageList(e.detail.imgList,type)
       } 
     }
     dd.navigateBack()

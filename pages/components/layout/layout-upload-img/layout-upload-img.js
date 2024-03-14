@@ -116,7 +116,7 @@ Component({
       });
     },
     //图片所有数据（带id）
-    _setImageList: async function (list) {
+    _setImageList: async function (list,type) {
       this.setData({
         loding: true
       })
@@ -124,19 +124,31 @@ Component({
 
       let tempList = [];
 
-      for (let item of list) {
-        let a = await this.preImage({
-          url: item,
-          progress: 100,
-          url: getImgUrl(item.url),
-          id: item.id,
-          size: item.size,
-          name: item.name
-        })
-        console.log('a',a)
-        tempList.push(a);
+      if(type == 'up'){
+        for (let item of list) {
+          tempList.push({
+            url: item,
+            progress: 100,
+            url: getImgUrl(item.url),
+            id: item.id,
+            size: item.size,
+            name: item.name
+          });
+        }
+      }else{
+        for (let item of list) {
+          let a = await this.preImage({
+            url: item,
+            progress: 100,
+            url: getImgUrl(item.url),
+            id: item.id,
+            size: item.size,
+            name: item.name
+          })
+          console.log('a',a)
+          tempList.push(a);
+        }
       }
-     
       this.setData({
         imgList: tempList,
         loding: false
