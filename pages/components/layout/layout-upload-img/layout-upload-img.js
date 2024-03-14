@@ -92,7 +92,7 @@ Component({
       }
     },
 
-    _setImgList: function (list) {
+    _setImgList: async function (list) {
       this.setData({
         loding: true
       })
@@ -101,11 +101,13 @@ Component({
       let tempList = [];
 
       for (let item of list) {
-        tempList.push({
+        let a = await this.preImage({
           url: item,
           progress: 100,
           url: getImgUrl(item.url),
-        });
+        })
+        console.log('a',a)
+        tempList.push(a);
       }
 
       this.setData({
