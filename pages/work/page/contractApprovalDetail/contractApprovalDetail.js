@@ -36,6 +36,7 @@ Page({
     ],
   },
   uploadContractImage: null,
+  uploadImgRefList:null,
   onLoad(options) {
     if(options.examineId){
       this.setData({
@@ -81,6 +82,10 @@ Page({
     this.setData({
       current: e
     })
+  },
+  onSaveUploadImgRef: function (ref) {
+    this.uploadImgRefList = ref;
+    console.log(this.uploadImgRefList)
   },
   // onSaveUploadContractImgRef(ref){
   //   this.uploadContractImage = ref
@@ -139,6 +144,14 @@ Page({
         this.setData({
           dingTalkFormList
         })
+        if(res.data.fileList){
+          res.data.fileList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
+        setTimeout(() => {
+          this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:'') 
+        }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
         // }, 0);

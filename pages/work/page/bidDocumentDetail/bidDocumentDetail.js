@@ -28,6 +28,8 @@ Page({
     isCurrentAudit: false,
     dingTalkFormList: [],
   },
+  tenderDocumentRef: null,
+  otherDocumentRef: null,
   
   onLoad(options) {
     if(options.examineId){//审批
@@ -65,6 +67,12 @@ Page({
   onShow(){
     this.getDetail(this.data.tenderId)
   },
+  onSaveTenderDocumentRef(ref){
+    this.tenderDocumentRef = ref
+  },
+  onSaveOtherDocumentRef(ref){
+    this.otherDocumentRef = ref
+  },
   bindApprovalOperateTap(data){
     console.log(data)
     this.getDetail(this.data.tenderId)
@@ -92,10 +100,20 @@ Page({
         this.setData({
           dingTalkFormList
         })
-        // setTimeout(() => {
-        //   this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
-        //   this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
-        // }, 0);
+        if(res.data.tenderDocumentList){
+          res.data.tenderDocumentList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
+        if(res.data.otherDocumentList){
+          res.data.otherDocumentList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
+        setTimeout(() => {
+          this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
+          this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
+        }, 0);
       }
     })
   },
