@@ -38,6 +38,8 @@
 
     <list-item extraBrief="{{detailInfo.contractAmount?detailInfo.contractAmount:0+(['待定','已定(含暂定合同价)'][detailInfo.makeSure])}}">合同金额(万元)</list-item>
 
+    <list-item a:if="{{ detailInfo.contractType === 2 }}" extraBrief="{{detailInfo.amountPaid || '-'}}">已支付金额(万元)</list-item>
+
   </list>
   <view class="bottom-space" style="height:16rpx"></view>
   <list>

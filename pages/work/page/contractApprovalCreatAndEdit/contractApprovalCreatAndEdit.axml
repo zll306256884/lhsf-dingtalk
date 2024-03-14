@@ -61,7 +61,7 @@
   ref="handleRef" />
 
   <form-radio-group
-  a:if="{{ contractType !== '2' }}"
+  a:if="{{ contractType !== '2' || contractType !== 2 }}"
   label="此合同是否需要招标"
   labelWidth="320rpx"
   name="contractNeedTender"
@@ -158,7 +158,7 @@
     </view>
 
   <form-input
-    a:if="{{ contractType === '2' }}"
+    a:if="{{ contractType === '2' || contractType === 2 }}"
     label="已支付金额(万元)"
     labelWidth="258rpx"
     name="amountPaid"
@@ -349,7 +349,7 @@
     </view>
   </view>
 
-  <view a:if="{{ contractType === '1' }}" catchTap="chooseLeader">
+  <view a:if="{{ contractType === '1' || contractType === 1 }}" catchTap="chooseLeader">
     <form-input
     label="选择会签分管领导"
     labelWidth="293rpx"
