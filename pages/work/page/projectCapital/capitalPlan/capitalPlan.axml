@@ -24,22 +24,30 @@
         {{annualCumulativePlanPaymentAmount?annualCumulativePlanPaymentAmount+'万元':'-'}}
       </view>
     </view>
-   <view class="content-data" a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="click">
-     <view class="data-text">
+
+    <list>
+      <list-item extraBrief="{{['','按项目','按合同'][planType]}}">计划填写方式：</list-item>
+    </list>
+    <view class="bottom-space" style="height:16rpx"></view>
+    <block  a:if="{{ planType === 1 }}">
       <list>
-        <list-item
-        arrow="right"
-       >{{item.contractName?item.contractName:'-'}}
-       <view class="plan-money">
-        计划支付金额：{{item.plannedPaymentAmount}}
-       </view>
-      </list-item>
+        <list-item extraBrief="{{monthPlanTotal || '-'}}">月度资金计划总额(万元):</list-item>
       </list>
-     </view>
-   <view class="bbbb">
-    <divider  />
-   </view>
-    </view>
+    </block>
+    <block a:if="{{ planType === 2 }}">
+      <view class="content-data" a:for="{{recordList}}" data-index={{index}} data-item="{{item}}" onTap="click">
+        <view class="data-text">
+          <list>
+            <list-item arrow="right" >
+              {{item.contractName?item.contractName:'-'}}
+              <view class="plan-money"> 计划支付金额：{{item.plannedPaymentAmount}} </view>
+            </list-item>
+          </list>
+        </view>
+        <view class="bbbb"><divider /></view>
+      </view>
+    </block>
+    
   </view>
   <view a:if="{{isShow}}">
     <view class="bottom-container">

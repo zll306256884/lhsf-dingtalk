@@ -5,23 +5,24 @@ Page({
   data: {
     navbarData: {
       title: "资金计划",
-  },
-  monthAnnualFundPlanId:"",
-  projectName:"",
-  title:"",
-  isShow:0,
-  annualCumulativePlanPaymentAmount:"",
-  yearAnnualFundPlanTotal:"",
-  items: [
-    {
-      title:"资金计划",
-    
-    },{
-      title:"附件",
-    
-    }
-  ],
-  recordList:[]
+    },
+    monthAnnualFundPlanId:"",
+    projectName:"",
+    title:"",
+    isShow:0,
+    annualCumulativePlanPaymentAmount:"",
+    yearAnnualFundPlanTotal:"",
+    items: [
+      {
+        title:"资金计划",
+      
+      },{
+        title:"附件",
+      
+      }
+    ],
+    recordList:[],
+    planType: 2
   },
   uploadImgRef:null,
   onLoad(option) {
@@ -59,6 +60,7 @@ Page({
           title:res.data.title,
           annualCumulativePlanPaymentAmount:res.data.annualCumulativePlanPaymentAmount,
           yearAnnualFundPlanTotal:res.data.yearAnnualFundPlanTotal,
+          planType: res.data.planType
         })
         console.log(res.data);
       },
