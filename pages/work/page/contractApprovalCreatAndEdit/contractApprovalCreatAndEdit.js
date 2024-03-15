@@ -501,7 +501,7 @@ Page({
   getCodeList(){
     //项目类型
     request.doPostRequest({
-      url: config.API_SCREEN_STATUS_BY_CODE + 'contract_project_type',
+      url: config.API_SCREEN_STATUS_BY_CODE + 'item_classification',
       success: res => {
         res.data.forEach(e => {
           e.label = e.itemText
