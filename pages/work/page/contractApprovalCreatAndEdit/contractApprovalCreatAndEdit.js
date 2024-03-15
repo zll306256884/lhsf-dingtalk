@@ -398,12 +398,12 @@ Page({
   //建设单位（甲方）
   bindScreenConstructUnitCallBack(data){
     this.form.setFieldValue('developmentOrganization', data.id);
-    this.form.setFieldValue('developmentOrganizationListName',data.map(e => e.unitName).join())
+    this.form.setFieldValue('developmentOrganizationListName',data.map(e => e.name).join())
     let list = data.map(e => {
       return {
-        developmentOrganizationName: e.unitName,
-        developmentOrganization: e.id,
-        ecUnitId: e.ecUnitId
+        developmentOrganizationName: e.name,
+        // developmentOrganization: e.id,
+        ecUnitId: e.id
       }
     })
     this.setData({
@@ -411,7 +411,7 @@ Page({
       // developmentOrganization: data.id,
       // ecUnitId: data.ecUnitId,
       developmentOrganizationList: list,
-      developmentOrganizationListName: data.map(e => e.unitName).join(),
+      developmentOrganizationListName: data.map(e => e.name).join(),
       selectedList: data.map(e => e.id)
     })
   },
@@ -825,7 +825,7 @@ Page({
           contractPeriodType: paramsdata.contractPeriodType,
           developmentOrganizationList: paramsdata.developmentOrganizationList,
           developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
-          selectedList:paramsdata.developmentOrganizationList.map(e => e.developmentOrganization).join(),
+          selectedList:paramsdata.developmentOrganizationList.map(e => e.ecUnitId).join(),
           isChooseTenderDocumentId: paramsdata.tenderDocumentId,
           list
         })

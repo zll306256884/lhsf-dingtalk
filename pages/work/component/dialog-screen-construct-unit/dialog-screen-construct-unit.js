@@ -87,17 +87,19 @@ Component({
       },
       getEcological(name){
         request.doPostRequest({
-          url: projectService.API_CURRENTUNIT,
+          url: projectService.API_GET_UNIT_BIDING,
           data: {
             pageSize: 9999,
             pageNum: 1,
-            unitTypeId: '1710172427167727616',
-            proId: this.props.projectId,
-            unitName: name
+            // unitTypeId: '1710172427167727616',
+            // proId: this.props.projectId,
+            // unitName: name
+            auditStatus: 3,
+            name: name
           },
           success: res => {
             res.data.records.forEach(e => {
-              e.title = e.unitName
+              e.title = e.name
               e.value = e.id
             })
             this.setData({
