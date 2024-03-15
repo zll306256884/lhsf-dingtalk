@@ -150,7 +150,7 @@ Page({
           })
         }
         setTimeout(() => {
-          this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:'') 
+          this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:[]) 
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 

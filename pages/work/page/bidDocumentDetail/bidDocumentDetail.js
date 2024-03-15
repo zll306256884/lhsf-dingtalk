@@ -111,8 +111,8 @@ Page({
           })
         }
         setTimeout(() => {
-          this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
-          this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
+          this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:[]) 
+          this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:[]) 
         }, 0);
       }
     })
