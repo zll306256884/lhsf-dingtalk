@@ -57,6 +57,7 @@
       备注
       <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>
     </list-item>
+    <list-item extraBrief="{{['','当月','下月'][infoData.monthType]}}">关联资金计划</list-item>
     <list-item>
       支付节点（或形象进度）
       <view style="margin-top:10rpx;color: #969799;">{{infoData.paymentNode}}</view>

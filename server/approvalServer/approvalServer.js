@@ -11,6 +11,8 @@ module.exports = {
   API_APPROVAL_LIST: API_HOST + "/jflow/jflowAuditRecord/selAllByKeyId",
   // 获取下一个审批节点
   API_NEXT_APPROVAL_NODE: API_HOST + "/jflow/jflowAuditRecord/selectFlowInfoByKeyId",
-   // 设置为  已读
-   API_UPLATE_READ: API_HOST + "/jflow/audit/updateIsRead",
+  // 设置为  已读
+  API_UPLATE_READ: API_HOST + "/jflow/audit/updateIsRead",
+  //返回上一步审批--------公共调用接口
+  API_BACK_AUDIT: API_HOST + "/jflow/audit/backAudit",
 }

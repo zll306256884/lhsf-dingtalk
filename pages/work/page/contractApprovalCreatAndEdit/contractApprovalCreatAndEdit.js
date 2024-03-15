@@ -94,7 +94,9 @@ Page({
     loading: false,
     selectedList: [],
     isShow: false,
-    isShow2: false
+    isShow2: false,
+    biddingTypeOptions: [],
+    isChooseTenderDocumentId: null
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -109,11 +111,11 @@ Page({
     this.form.rules = {
       projectId: [{ required: true, message: '请输入' }],
       contractName: [{ required: true, message: '请输入' }],
-      contractNumber: [{ required: true, message: '请输入' }],
       supplementAgreement: [{ required: true, message: '请选择' }],
       masterContract: [{ required: true, message: '请选择' }],
       projectType: [{ required: true, message: '请选择' }],
       contractNeedTender: [{ required: true, message: '请选择' }],
+      biddingType: [{ required: true, message: '请选择' }],
       // tenderDocumentId: [{ required: true, message: '请选择' }],
       // biddingTypeName: [{ required: true, message: '请选择' }],
       modeContract: [{ required: true, message: '请选择' }],
@@ -157,6 +159,9 @@ Page({
       this.setData({
         contractType:options.contractType
       })
+      if(options.contractType === '1'){
+        this.form.rules.contractNumber = [{ required: true, message: '请输入' }]
+      }
     }
   },
   onReady(){
@@ -411,8 +416,14 @@ Page({
     })
   },
   chooseTenderDocument(data){
-    let text = this.data.biddingListOptions.find(e =>e.id === data).biddingType_dictText
-    this.form.setFieldValue('biddingTypeName', text);
+    console.log('招标文件',data)
+    if(data !== '1'){
+      let text = this.data.biddingListOptions.find(e =>e.id === data).biddingType_dictText
+      this.form.setFieldValue('biddingTypeName', text);
+    }
+    this.setData({
+      isChooseTenderDocumentId: data
+    })
   },
   addUnit(){
     let length = this.data.list.length
@@ -441,6 +452,7 @@ Page({
         pageNum: 1,pageSize: 999,approvalStatus:4,projectId
       },
       success: res => {
+        res.data.records.unshift({label:'格式招标文件',value:'1',tenderName: '格式招标文件', id: '1', createBy_dictText: ''})
         res.data.records.forEach(e => {
           // e.label = e.tenderName+'-'+e.createBy_dictText+'-'+(e.tenderAmount?e.tenderAmount:0)+'万元'
           e.label = e.tenderName
@@ -512,6 +524,19 @@ Page({
         console.log(res.data)
         this.setData({
           paymentMethodOptions: res.data || []
+        })
+      }
+    })
+    request.doPostRequest({
+      url: config.API_SCREEN_STATUS_BY_CODE + 'bidding_type',
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.itemText
+          e.value = e.itemValue
+        })
+        console.log(res.data)
+        this.setData({
+          biddingTypeOptions: res.data || []
         })
       }
     })
@@ -762,6 +787,7 @@ Page({
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
         this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
         this.form.setFieldValue('contractAmount', paramsdata.contractAmount)
+        
 
         if(paramsdata.contractType === 1){
           this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
@@ -799,6 +825,7 @@ Page({
           developmentOrganizationList: paramsdata.developmentOrganizationList,
           developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
           selectedList:paramsdata.developmentOrganizationList.map(e => e.developmentOrganization).join(),
+          isChooseTenderDocumentId: paramsdata.tenderDocumentId,
           list
         })
         if(paramsdata.fileList && paramsdata.fileList){
@@ -822,6 +849,7 @@ Page({
           this.form.setFieldValue('contractEndTime', paramsdata.contractEndTime)
           this.form.setFieldValue('developmentOrganizationListName', paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),)
 
+          this.form.setFieldValue('biddingType', paramsdata.biddingType.toString())
         }, 0);
 
         
@@ -887,6 +915,7 @@ Page({
         this.setData({
           unitPartyOptions: res.data.records || []
         })
+        
       }
     })
   }

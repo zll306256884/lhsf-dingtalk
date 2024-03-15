@@ -2,19 +2,19 @@
   "usingComponents": {
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "layout-field-cell": "/pages/components/layout/layout-field-cell/layout-field-cell",
-      "dialog-screen-leader": "/pages/components/dialog/dialog-screen-leader/dialog-screen-leader",
-      "dialog-screen-suoshu-danwei":"/pages/components/dialog/dialog-screen-suoshu-danwei/dialog-screen-suoshu-danwei",
-      "dialog-screen-xiangmu-leixiang":"/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang",
-      "dialog-screen-xiangmu-mingcheng":"/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
-      "dialog-screen-hetong-mingcheng":"/pages/components/dialog/dialog-screen-hetong-mingcheng/dialog-screen-hetong-mingcheng",
-      "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project",
-      "layout-field-input":"/pages/components/layout/layout-field-input/layout-field-input",
-      "dialog-screen-fukuan-danwei":"/pages/components/dialog/dialog-screen-fukuan-danwei/dialog-screen-fukuan-danwei",
-      "dialog-picker-date":"/pages/components/dialog/dialog-picker-date/dialog-picker-date",
-      "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
-      "form-input": "antd-mini/es/Form/FormInput/index",
-      "icon": "antd-mini/es/Icon/index",
-      "form-textarea": "antd-mini/es/Form/FormTextarea/index"
-
+    "dialog-screen-leader": "/pages/components/dialog/dialog-screen-leader/dialog-screen-leader",
+    "dialog-screen-suoshu-danwei":"/pages/components/dialog/dialog-screen-suoshu-danwei/dialog-screen-suoshu-danwei",
+    "dialog-screen-xiangmu-leixiang":"/pages/components/dialog/dialog-screen-xiangmu-leixiang/dialog-screen-xiangmu-leixiang",
+    "dialog-screen-xiangmu-mingcheng":"/pages/components/dialog/dialog-screen-xiangmu-mingcheng/dialog-screen-xiangmu-mingcheng",
+    "dialog-screen-hetong-mingcheng":"/pages/components/dialog/dialog-screen-hetong-mingcheng/dialog-screen-hetong-mingcheng",
+    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project",
+    "layout-field-input":"/pages/components/layout/layout-field-input/layout-field-input",
+    "dialog-screen-fukuan-danwei":"/pages/components/dialog/dialog-screen-fukuan-danwei/dialog-screen-fukuan-danwei",
+    "dialog-picker-date":"/pages/components/dialog/dialog-picker-date/dialog-picker-date",
+    "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
+    "form-input": "antd-mini/es/Form/FormInput/index",
+    "icon": "antd-mini/es/Icon/index",
+    "form-textarea": "antd-mini/es/Form/FormTextarea/index",
+    "form-picker": "antd-mini/es/Form/FormPicker/index"
   }
 }

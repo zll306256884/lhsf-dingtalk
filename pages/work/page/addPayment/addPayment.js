@@ -57,7 +57,11 @@ Page({
     executeUser: [],
     accumulatedPaymentAmountTitle: '',
     payAmountTitle: '',
-    remarkTitle: false // 
+    remarkTitle: false, // 
+    monthTypeOptions: [
+      {label: '当月',value: 1},
+      {label: '下月',value: 2},
+    ]
    
   },
   onLoad(option) {
@@ -95,6 +99,7 @@ Page({
       paymentContent: [{ required: true, message: '请输入付款内容' }],
       applicationTime: [{ required: true, message: '请选择申请日期' }],
       countersignLeader_text: [{ required: true, message: '请选择会签分管领导' }],
+      monthType: [{ required: true, message: '请选择关联资金计划' }]
     }
   },
   handleRef(ref) {
@@ -548,6 +553,7 @@ getEdit(id){
       this.form.setFieldValue('transitAmount', res.data.transitAmount || '')
       this.form.setFieldValue('remark', res.data.remark || '')
       this.form.setFieldValue('accumulatedPaymentAmount',  Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0))
+      this.form.setFieldValue('monthType', res.data.monthType || '')
         // 获取补充协议
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
@@ -642,44 +648,44 @@ workingStorage(){
   // params.remark = this.data.remark,
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
- params.projectType = this.data.projectTypeData.itemValue
+  params.projectType = this.data.projectTypeData.itemValue
   params.payUnitId= this.data.slowUnitData.id,
- params.receiverUnitId=this.data.proceedsData.id,
- params.id= this.data.id?this.data.id:''
- params.applicationTime=params.applicationTime?params.applicationTime+ ' 00:00:00':'',
-params.vueUrl='approveMoneyPaymentDetails',
-params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
-params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
-params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
-params.countersignLeader = this.data.countersignLeader
-let temFileList=[]
-if (this.uploadImageList) {
-  temFileList = this.uploadImageList.data.imgList;
-  // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
-  temFileList.forEach(e => {
-    e.fileName = e.name
-    e.type= 3
-  })
-// for (let item of temFileList) {
-//   this.data.investmentFileList.push({
-//       type: 4,
-//       fileName: item.name,
-//       size: item.size,
-//       url: item.url,
-//   })
-// }
-params.investmentFileList =  temFileList
-request.doPostRequest({
-  url: connector.API_TS_TO_POST,
-  data: params,
-  success: res => {
-    ddUtils.showToast({
-      title:"暂存成功"
-      })
-   ddUtils.navigateBack();
+  params.receiverUnitId=this.data.proceedsData.id,
+  params.id= this.data.id?this.data.id:''
+  params.applicationTime=params.applicationTime?params.applicationTime+ ' 00:00:00':'',
+  params.vueUrl='approveMoneyPaymentDetails',
+  params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
+  params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
+  params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
+  params.countersignLeader = this.data.countersignLeader
+  let temFileList=[]
+  if (this.uploadImageList) {
+    temFileList = this.uploadImageList.data.imgList;
+    // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
+    temFileList.forEach(e => {
+      e.fileName = e.name
+      e.type= 3
+    })
+    // for (let item of temFileList) {
+    //   this.data.investmentFileList.push({
+    //       type: 4,
+    //       fileName: item.name,
+    //       size: item.size,
+    //       url: item.url,
+    //   })
+    // }
+    params.investmentFileList =  temFileList
+    request.doPostRequest({
+      url: connector.API_TS_TO_POST,
+      data: params,
+      success: res => {
+        ddUtils.showToast({
+          title:"暂存成功"
+          })
+      ddUtils.navigateBack();
+      }
+    })
   }
-})
-}
 },
 bingFocusChange(){
   this.setData({
