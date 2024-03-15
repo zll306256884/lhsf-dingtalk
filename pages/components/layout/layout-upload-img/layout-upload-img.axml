@@ -24,6 +24,7 @@
     </view>
     
       
+   
     <view a:if="{{!disabled && !onlyUploadImage}}" style="font-size: 24rpx;color: #969799;margin:8rpx 0 14rpx">{{descriptionText}}</view>
   </view>
 
@@ -42,6 +43,7 @@
         <image a:if="{{ item.name.indexOf('.png') !== -1 || item.name.indexOf('.jpg') !== -1 || item.name.indexOf('.jpeg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.name.indexOf('doc') !== -1 || item.name.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <image a:if="{{ item.name.indexOf('.xlsx') !== -1 || item.name.indexOf('.xls') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_excel.png" class="img" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
+        <image a:if="{{ item.name.indexOf(['.pdf','.ppt','.png','.jpeg','.jpg','doc','docx','.xlsx','.xls']) == -1 }}" mode="scaleToFill" src="/assets/images/file/fujianziliao.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
         <view catchTap="ddDownFile"  data-index="{{index}}">
           <view class="name">{{item.name}}</view>
           <!-- <view class="size">{{item.size || '-'}}kb</view> -->
