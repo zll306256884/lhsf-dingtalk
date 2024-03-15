@@ -770,6 +770,7 @@ Page({
           this.form.setFieldValue('biddingTypeName',paramsdata.biddingType_dictText)
           this.form.setFieldValue('tenderDocumentId',paramsdata.tenderDocumentId)
           this.form.setFieldValue('masterContract',paramsdata.masterContract)
+          this.form.setFieldValue('amountPaid',paramsdata.amountPaid)
         },1000)
 
         const fields = this.form.getFieldsValue()
