@@ -589,7 +589,8 @@ getEdit(id){
   })
 },
 async submit() {
-if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumulatedPaymentAmount') && !this.form.getFieldValue('remark') ) {
+  
+  if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumulatedPaymentAmount') && !this.form.getFieldValue('remark') ) {
       this.setData({
         remarkTitle: true
       })
@@ -619,26 +620,38 @@ if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumu
         e.fileName = e.name
         e.type= 3
       })
-    // for (let item of temFileList) {
-    //   this.data.investmentFileList.push({
-    //       type: 4,
-    //       fileName: item.name,
-    //       size: item.size,
-    //       url: item.url,
-    //   })
-    // }
-    params.investmentFileList =  temFileList
+      params.investmentFileList =  temFileList
     }
-    request.doPostRequest({
-      url: connector.API_PAY_BUT_POST,
-      data: params,
-      success: res => {
-        ddUtils.showToast({
-          title:"保存成功"
-          })
-      ddUtils.navigateBack();
-      }
-    })
+    if(params.accumulatedPaymentAmount > params.contractAmount){
+      ddUtils.showModal({
+        content: "累计支付金额已超过主合同金额,确定提交审批",
+        success: res => {
+          if (res.confirm) {
+            request.doPostRequest({
+              url: connector.API_PAY_BUT_POST,
+              data: params,
+              success: res => {
+                ddUtils.showToast({
+                  title:"保存成功"
+                  })
+              ddUtils.navigateBack();
+              }
+            })
+          }
+        }  
+      })
+    }else{
+      request.doPostRequest({
+        url: connector.API_PAY_BUT_POST,
+        data: params,
+        success: res => {
+          ddUtils.showToast({
+            title:"保存成功"
+            })
+        ddUtils.navigateBack();
+        }
+      })
+    }
   }
 },
 // 暂存
