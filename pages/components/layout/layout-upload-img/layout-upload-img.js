@@ -124,30 +124,17 @@ Component({
 
       let tempList = [];
 
-      if(type == 'up'){
-        for (let item of list) {
-          tempList.push({
-            url: item,
-            progress: 100,
-            url: getImgUrl(item.url),
-            id: item.id,
-            size: item.size,
-            name: item.name
-          });
-        }
-      }else{
-        for (let item of list) {
-          let a = await this.preImage({
-            url: item,
-            progress: 100,
-            url: getImgUrl(item.url),
-            id: item.id,
-            size: item.size,
-            name: item.name
-          })
-          console.log('a',a)
-          tempList.push(a);
-        }
+      for (let item of list) {
+        let a = await this.preImage({
+          url: item,
+          progress: 100,
+          url: getImgUrl(item.url),
+          id: item.id,
+          size: item.size,
+          name: item.name
+        })
+        console.log('a',a)
+        tempList.push(a);
       }
       this.setData({
         imgList: tempList,
@@ -156,7 +143,7 @@ Component({
       console.log(' this.data.imgList111', tempList, this.data.imgList)
     },
     preImage (e){
-      return new Promise(res=>{
+      return new Promise(res=> {
         if(e.url.indexOf('https://') == -1) {
             e.url = 'https://' + e.url
           }
@@ -167,8 +154,7 @@ Component({
             },
             success: result => {
                 if (result.code == 1000) {
-                   e.status = true
-                   e.url = result.data
+                   e.preUrl = result.data
                 }
                 res(e)
               }
@@ -306,7 +292,7 @@ Component({
     // 下载
     ddDownFile(e) {
       let index = e.currentTarget.dataset.index;
-      let url = this.data.imgList[index].url;
+      let url = this.data.imgList[index].preUrl || this.data.imgList[index].url;
       ddFile.downloadFile(url)
     },
     //deal choose image
