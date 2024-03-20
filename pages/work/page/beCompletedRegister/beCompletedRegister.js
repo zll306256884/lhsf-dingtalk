@@ -128,7 +128,12 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
+      this.form.setFieldValue('priceRate', 0)
+    }else {
+      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    }
+   
   },
   pricingTrialChange(data){
     console.log(data)
@@ -138,7 +143,12 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
+      this.form.setFieldValue('priceRate', 0)
+    }else {
+      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    }
+    // this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   netAccountAmountChange(data){
     let adjust = this.form.getFieldValue('adjust')
@@ -147,7 +157,12 @@ Page({
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
+      this.form.setFieldValue('priceRate', 0)
+    }else {
+      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+    }
+    // this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   // onFocus(){
   //   this.blur() 
