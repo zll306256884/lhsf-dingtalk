@@ -212,7 +212,7 @@ Component({
           form.projectName = res.data.projectName
           form.singleUrl = res.data.singleUrl
           form.pcUrl = res.data.pcUrl
-          form.progressStatus = res.data.progressStatus
+          form.progressStatus = res.data.currentFlowNode.approveProgressStatus
           this.setData({
             paramsData: form
           })
