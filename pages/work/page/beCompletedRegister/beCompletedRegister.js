@@ -231,7 +231,12 @@ bindChooseContractCallBack: function (data) {
 
   // 签约价节超率=（审定总价-合同金额）/合同金额
   if(this.form.getFieldValue('approveTotalPrice')){
-    this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - data.contractAmount) / data.contractAmount)*100).toFixed(6))
+    if( data.contractAmount == 0) {
+      this.form.setFieldValue('priceRate', 0)
+    }else {
+      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice')||0) - data.contractAmount) / data.contractAmount)*100).toFixed(2))
+    }
+   // this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice')||0) - data.contractAmount) / data.contractAmount)*100).toFixed(2))
   }
 
   // this.form.setFieldValue('contractorName',data.unitPartyName)
