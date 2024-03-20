@@ -126,7 +126,7 @@ Page({
         let list = res.data.contractThirdPartyRepList
         if(list){
           list.forEach((e, index)=> {
-            e.thirdPartyType = e.thirdPartyType.toString()
+            e.thirdPartyType = e.thirdPartyType?e.thirdPartyType.toString(): ''
             e.label1 = this.numberToChinese(index + 3) + '方单位:'
             e.label2 = this.numberToChinese(index + 3) + '方服务类型:'
           });
