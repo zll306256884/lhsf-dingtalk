@@ -15,7 +15,7 @@
         审批意见：
     </view>
     <form onSubmit="_bindFormSunmit">
-        <textarea class="reason" name="reason" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
+        <textarea class="reason" name="reason" maxlength="2000" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
         <!-- attachment -->
         <view class="file">
             <view class="dialog-name" style="margin: 0rpx;">
