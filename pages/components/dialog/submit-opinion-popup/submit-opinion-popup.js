@@ -135,6 +135,7 @@ Component({
         }
         
         console.log(params);
+
         if(this.data.isApprovalAgree){
           request.doPostRequest({
             url: workService.API_JFLOW_ADOPTAUDIT,
@@ -164,6 +165,7 @@ Component({
               this.setData({
                 isLoading: false
               })
+              ddUtils.navigateBack();
             }
           })
         }else{
@@ -186,6 +188,7 @@ Component({
               this.setData({
                 isLoading: false
               })
+              ddUtils.navigateBack();
             }
           })
         }
