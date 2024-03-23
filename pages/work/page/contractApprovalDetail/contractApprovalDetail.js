@@ -75,7 +75,7 @@ Page({
   },
   bindApprovalOperateTap(data){
     console.log(data)
-    this.getDetail(this.data.contractId)
+    // this.getDetail(this.data.contractId)
   },
   onNavTabChange(e){
     console.log(e);
