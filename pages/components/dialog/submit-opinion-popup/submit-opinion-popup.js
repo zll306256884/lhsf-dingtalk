@@ -165,7 +165,7 @@ Component({
               this.setData({
                 isLoading: false
               })
-              ddUtils.navigateBack();
+              // ddUtils.navigateBack();
             }
           })
         }else{
