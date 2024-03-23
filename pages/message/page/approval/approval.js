@@ -372,7 +372,7 @@ Page({
           // 'tabList[1].total': completedNum,
           // 'tabList[2].total': overNum,
         });
-        resolve(res.data)
+        // resolve(res.data)
       },
       complete: res => {
         this._loadDone(res);

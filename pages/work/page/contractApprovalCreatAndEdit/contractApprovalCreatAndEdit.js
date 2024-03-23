@@ -501,7 +501,7 @@ Page({
   getCodeList(){
     //项目类型
     request.doPostRequest({
-      url: config.API_SCREEN_STATUS_BY_CODE + 'item_classification',
+      url: config.API_SCREEN_STATUS_BY_CODE + 'contract_project_type',
       success: res => {
         res.data.forEach(e => {
           e.label = e.itemText
@@ -771,6 +771,8 @@ Page({
           this.form.setFieldValue('tenderDocumentId',paramsdata.tenderDocumentId)
           this.form.setFieldValue('masterContract',paramsdata.masterContract)
           this.form.setFieldValue('amountPaid',paramsdata.amountPaid)
+          this.form.setFieldValue('modeContract',paramsdata.modeContract)
+          this.form.setFieldValue('countersignLeader_dictText',paramsdata.countersignLeader_dictText)
         },1000)
 
         const fields = this.form.getFieldsValue()
