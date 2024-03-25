@@ -34,10 +34,14 @@ Page({
       { value: '2', label: '单位', text: '单位' },
       { value: '3', label: '个人', text:'个人' },
     ],
+    currentAccount: null
   },
   uploadContractImage: null,
   uploadImgRefList:null,
   onLoad(options) {
+    this.setData({
+      currentAccount: app.globalData.userInfo.userId
+    })
     if(options.examineId){
       this.setData({
         examineId: options.examineId,

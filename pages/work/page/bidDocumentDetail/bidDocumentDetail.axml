@@ -5,7 +5,7 @@
 <view a:if="{{ current===0 }}" style="margin-bottom:150rpx;">
   <view class="top-card flex f-between f-align-center">
     <view class="top-card-left">
-      <view class="name">由{{detailInfo.createName}}创建</view>
+      <view class="name">由{{detailInfo.createName}}创建 当前账户：{{currentAccount}}</view>
       <view class="time">{{detailInfo.createTime}}</view>
     </view>
     <view class="top-card-status {{detailInfo.approvalStatus === 3?'red-bg': detailInfo.approvalStatus=== 4?'green-bg':''}} ">
@@ -83,22 +83,21 @@
     备注内容
     <view style="margin-top:10rpx;color:#323233;">{{detailInfo.remark}}</view>
   </list-item>
-
-  <view a:if="{{ detailInfo.approvalStatus !== 2 && detailInfo.approvalStatus !== 4 }}" class="bottom-content flex f-between">
+  <!-- a:if="{{ requestType === '0' || (detailInfo.approvalStatus !== 2 && detailInfo.approvalStatus !== 4) }}" -->
+  <view a:if="{{ detailInfo.approvalStatus !== 2 && detailInfo.approvalStatus !== 4 && detailInfo.createName === currentAccount }}" class="bottom-content flex f-between">
     <button class="bottom-button" size="default" type="primary" catchTap="deletThis">删除</button>
     <button class="bottom-button active" size="default" type="primary" catchTap="editThis" style="background: #1A6AFF;color:#fff">编辑</button>
   </view>
 
+  <!-- a:if="{{ (requestType === '1' || detailInfo.approvalStatus === 2) && !examineId }}" -->
   <view a:if="{{ detailInfo.approvalStatus === 2 && !examineId }}" class="bottom-content flex f-between">
     <button class="bottom-button active" size="default" type="primary" style="width:714rpx" catchTap="withdrawApplication">撤回申请</button>
   </view>
 
-  <view a:if="{{ requestType === '2' }}" class="bottom-content flex f-between">
-    <!-- <button class="bottom-button active" size="default" type="primary" style="width:714rpx;background: #1A6AFF;color:#fff" catchTap="printThis">打印</button> -->
-  </view>
 
   <!-- 有参数才显示 -->
-  <view a:if="{{(examineId && detailInfo.approvalStatus === 2) || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
+  <!-- a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" -->
+  <view a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
     <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
   </view>
 </view>

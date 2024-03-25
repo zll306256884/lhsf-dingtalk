@@ -27,11 +27,15 @@ Page({
     deleteId: null,
     isCurrentAudit: false,
     dingTalkFormList: [],
+    currentAccount: null
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
   
   onLoad(options) {
+    this.setData({
+      currentAccount: app.globalData.userInfo.userAccount
+    })
     if(options.examineId){//审批
       this.setData({
         examineId: options.examineId,

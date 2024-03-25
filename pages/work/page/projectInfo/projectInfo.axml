@@ -73,12 +73,12 @@
       <view class="bottom-space"></view>
     </form>
 
-    <view a:if="{{ requestType === '0' &&  (formData.status === 0 || formData.status == 3)}}" class="bottom-content flex f-between btn-wrap">
+    <view a:if="{{ requestType === '0' &&  (formData.status === 0 || formData.status == 3) && formData.createBy === currentAccount }}" class="bottom-content flex f-between btn-wrap">
       <button class="btn" size="default" type="primary" catchTap="deletThis">删除</button>
       <button class="btn active" size="default" type="primary" catchTap="editThis">编辑</button>
     </view>
     <!-- 项目状态:0暂存,1审批中,2审批完成,3待审批 -->
-    <view a:if="{{(examineId && approvalType === '1') || (examineId && formData.status === 1 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
+    <view a:if="{{(examineId && approvalType === '1' && formData.status === 1) || (examineId && formData.status === 1 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
       <submit-opinion-popup examineId="{{examineId}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
     </view>
 

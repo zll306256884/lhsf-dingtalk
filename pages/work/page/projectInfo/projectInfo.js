@@ -45,6 +45,7 @@ Page({
     dingTalkFormList: [],
     deleteId: null,
     examineId: null,
+    currentAccount: null
   },
   onNavTabChange(e){
     this.setData({
@@ -56,6 +57,9 @@ Page({
     console.log(this.uploadImgRefList)
   },
   onLoad(options) {
+    this.setData({
+      currentAccount: app.globalData.userInfo.userId
+    })
     if(options.examineId){//审批
       this.setData({
         examineId: options.examineId,
