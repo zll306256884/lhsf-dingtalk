@@ -5,7 +5,7 @@
 <view a:if="{{ current === 0 }}" style="margin-bottom:140rpx">
   <view class="top-card flex f-between f-align-center">
     <view class="top-card-left">
-      <view class="name">由{{detailInfo.createBy_dictText}}创建 当前账户：{{currentAccount}}</view>
+      <view class="name">由{{detailInfo.createBy_dictText}}创建</view>
       <view class="time">{{detailInfo.createTime}}</view>
     </view>
     <view class="top-card-status {{detailInfo.approvalStatus === 3?'red-bg': detailInfo.approvalStatus=== 4?'green-bg':''}} " >
