@@ -136,18 +136,26 @@ Page({
         belongModule.push(item.id)
       }
     })
-    // if (belongModule.length > 1) {
-    //   ddUtils.showToast({
-    //     title: '类型不支持多选'
-    //   })
-    //   return
-    // }
     this.pageNum = 1
     this.setData({
       'funnelParam.belongModule': belongModule,
       belongModule: belongModule
       // 'funnelParam.userName': userName,
     });
+    if(belongModule.length < 1){
+      this.setData({
+        'funnelParam.belongModule': null,
+        belongModule: null
+        // 'funnelParam.userName': userName,
+      });
+    }
+    // if (belongModule.length > 1) {
+    //   ddUtils.showToast({
+    //     title: '类型不支持多选'
+    //   })
+    //   return
+    // }
+    
     this.onDialog(false)
     this.getList()
   },
