@@ -4,7 +4,7 @@ import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import { formatTimeToDay } from "../../../../utils/utils";
-
+import Decimal from 'decimal'
 Page({
   form: new Form({
     initialValues: {
@@ -123,15 +123,24 @@ Page({
     this.setData({
       adjust: row,
     })
+    let pricingTrial = Decimal(Number(this.form.getFieldValue('pricingTrial') || 0))
+    let netAccountAmount = Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))
     if(row === 1){
-      this.form.setFieldValue('approveTotalPrice', this.form.getFieldValue('pricingTrial') -  this.form.getFieldValue('netAccountAmount'))
+      console.log('1111',Number(this.form.getFieldValue('pricingTrial') || 0), pricingTrial, pricingTrial.sub(netAccountAmount).internal)
+      this.form.setFieldValue('approveTotalPrice',  pricingTrial.sub(netAccountAmount).internal)
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
     if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
       this.form.setFieldValue('priceRate', 0)
     }else {
-      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
+      let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
+      let contractAmount = Decimal(Number(this.form.getFieldValue('contractAmount') || 0))
+
+      this.form.setFieldValue('priceRate', ((
+        approveTotalPrice.sub(contractAmount)
+        ).div(contractAmount).internal
+        *100).toFixed(2))
     }
    
   },
@@ -139,29 +148,34 @@ Page({
     console.log(data)
     let adjust = this.form.getFieldValue('adjust')
     if(adjust === 1){
-      this.form.setFieldValue('approveTotalPrice', this.form.getFieldValue('pricingTrial') -  this.form.getFieldValue('netAccountAmount'))
+      this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).sub(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
-      this.form.setFieldValue('priceRate', 0)
-    }else {
-      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
-    }
+
+    let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
+    let contractAmount = Decimal(Number(this.form.getFieldValue('contractAmount') || 0))
+
+    this.form.setFieldValue('priceRate', ((
+      approveTotalPrice.sub(contractAmount)
+      ).div(contractAmount).internal
+      *100).toFixed(2))
     // this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   netAccountAmountChange(data){
     let adjust = this.form.getFieldValue('adjust')
     if(adjust === 1){
-      this.form.setFieldValue('approveTotalPrice', this.form.getFieldValue('pricingTrial') -  this.form.getFieldValue('netAccountAmount'))
+      this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).sub(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }else{
       this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
     }
-    if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
-      this.form.setFieldValue('priceRate', 0)
-    }else {
-      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice') || 0) - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
-    }
+    let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
+    let contractAmount = Decimal(Number(this.form.getFieldValue('contractAmount') || 0))
+
+    this.form.setFieldValue('priceRate', ((
+      approveTotalPrice.sub(contractAmount)
+      ).div(contractAmount).internal
+      *100).toFixed(2))
     // this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
   // onFocus(){
@@ -234,7 +248,13 @@ bindChooseContractCallBack: function (data) {
     if( data.contractAmount == 0) {
       this.form.setFieldValue('priceRate', 0)
     }else {
-      this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice')||0) - data.contractAmount) / data.contractAmount)*100).toFixed(2))
+      let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
+      let contractAmount = Decimal(Number(data.contractAmoun) || 0)
+
+      this.form.setFieldValue('priceRate', ((
+        approveTotalPrice.sub(contractAmount)
+        ).div(contractAmount).internal
+        *100).toFixed(2))
     }
    // this.form.setFieldValue('priceRate', (((Number(this.form.getFieldValue('approveTotalPrice')||0) - data.contractAmount) / data.contractAmount)*100).toFixed(2))
   }
