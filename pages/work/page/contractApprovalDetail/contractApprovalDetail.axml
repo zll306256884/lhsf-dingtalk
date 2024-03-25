@@ -164,7 +164,7 @@
   </view>
 
   <!-- 有参数才显示 -->
-  <view a:if="{{examineId && detailInfo.approvalStatus === 2 && isCurrentAudit}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
+  <view a:if="{{(examineId && detailInfo.approvalStatus === 2) || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
     <submit-opinion-popup keyId="" examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
   </view>
 </view>

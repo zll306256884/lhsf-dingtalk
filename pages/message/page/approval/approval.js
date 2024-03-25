@@ -87,7 +87,7 @@ Page({
     listData: [],//获取列表数据
     userName: '',//申请人
     funnelParam: {//漏斗参数
-      belongModule: '',
+      belongModule: null,
       userName: '',
     },
     belongModule: [],
@@ -136,15 +136,15 @@ Page({
         belongModule.push(item.id)
       }
     })
-    if (belongModule.length > 1) {
-      ddUtils.showToast({
-        title: '类型不支持多选'
-      })
-      return
-    }
+    // if (belongModule.length > 1) {
+    //   ddUtils.showToast({
+    //     title: '类型不支持多选'
+    //   })
+    //   return
+    // }
     this.pageNum = 1
     this.setData({
-      'funnelParam.belongModule': belongModule[0],
+      'funnelParam.belongModule': belongModule,
       belongModule: belongModule
       // 'funnelParam.userName': userName,
     });
