@@ -129,7 +129,8 @@ Page({
       console.log('1111',Number(this.form.getFieldValue('pricingTrial') || 0), pricingTrial, pricingTrial.sub(netAccountAmount).internal)
       this.form.setFieldValue('approveTotalPrice',  pricingTrial.sub(netAccountAmount).internal)
     }else{
-      this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
+      this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).add(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
+
     }
     if(!this.form.getFieldValue('contractAmount') || this.form.getFieldValue('contractAmount') == 0) {
       this.form.setFieldValue('priceRate', 0)
@@ -150,7 +151,7 @@ Page({
     if(adjust === 1){
       this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).sub(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }else{
-      this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
+      this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).add(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }
 
     let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
@@ -167,7 +168,7 @@ Page({
     if(adjust === 1){
       this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).sub(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }else{
-      this.form.setFieldValue('approveTotalPrice', parseInt(this.form.getFieldValue('pricingTrial')) +  parseInt(this.form.getFieldValue('netAccountAmount')))
+      this.form.setFieldValue('approveTotalPrice', Decimal(Number(this.form.getFieldValue('pricingTrial') || 0)).add(Decimal(Number(this.form.getFieldValue('netAccountAmount') || 0))).internal)
     }
     let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
     let contractAmount = Decimal(Number(this.form.getFieldValue('contractAmount') || 0))
