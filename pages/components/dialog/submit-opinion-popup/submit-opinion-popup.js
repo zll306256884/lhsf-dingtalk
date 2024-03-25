@@ -113,19 +113,18 @@ Component({
         params.dingTalkFormList = this.props.dingTalkFormList
         //todo待完成
         if(this.props.moduleName === 'investment-jungong'){
+          //1级项目负责人 2级技术部经办人 3.三级技术部前期负责人 4.项目分管领导(传下一级审批人)
           if(params.progressStatus === 1){
-            if (this.props.specialUserIds) {
-              params.auditUserIdList = this.props.specialUserIds.split(',')
+            if (this.props.departmentManager) {
+              params.auditUserIdList = this.props.departmentManager.split(',')
             }
           }
           if(params.progressStatus === 2){
-            if (this.props.specialUserIds) {
-              params.auditUserIdList = []
-            }
+            params.auditUserIdList = []
           }
           if(params.progressStatus === 3){
-            if (this.props.departmentManager) {
-              params.auditUserIdList = this.props.departmentManager.split(',')
+            if (this.props.specialUserIds) {
+              params.auditUserIdList = this.props.specialUserIds.split(',')
             }
           }
         }else{
