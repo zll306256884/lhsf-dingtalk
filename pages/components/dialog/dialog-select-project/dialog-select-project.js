@@ -2,6 +2,7 @@ import config from "../../../../utils/config";
 import request from "../../../../utils/request";
 import { isEmpty, isEmptyArray, isEqual } from "../../../../utils/utils";
 import ddUtils from "../../../../utils/ddUtils";
+import apiDataBoardServer from "../../../../server/dataBoardServer";
 
 const app = getApp();
 
@@ -9,6 +10,7 @@ Component({
   mixins: [],
   props: {
     fromProgress: false,//判断是否是进度里面调用的
+    isScreen:false,
     marginTop: 0,
     title: "选择项目",
     onScreenCallBack: function (item) { }
@@ -91,6 +93,12 @@ Component({
           projectName: this.data.keyWords
         }
       }
+      // if(this.props.isScreen){
+      //   baseUrl= apiDataBoardServer.API_MAP_PROJECT_LIST
+      //   param = {
+      //     projectName: this.data.keyWords
+      //   }
+      // }
       request.doPostRequest({
         url: baseUrl,
         data: param,

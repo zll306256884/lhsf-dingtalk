@@ -166,6 +166,12 @@ Component({
               mainImgUrl:item.mainImg?JSON.parse(item.mainImg).url:null
             }
           })
+          if(list.length===1 && !list[0].xy){
+              ddUtils.showToast({
+                title: '当前项目无坐标，请于项目信息中录入'
+              });
+              return
+          }
           this.setData({
             currentItem:0,
             projectList: list
