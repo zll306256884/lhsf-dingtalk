@@ -137,6 +137,7 @@ Page({
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
       applicationTime: [{ required: true, message: '请选择' }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
+      developmentOrganizationListName: [{ required: true, message: '请选择' }],
       developmentOrganizationPerson: [{ required: true, message: '请选择' }],
       developmentOrganizationNumber: [{ required: true, message: '请输入(最多18位的整数)',pattern: /^[1-9]\d{0,17}$/ }],
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
