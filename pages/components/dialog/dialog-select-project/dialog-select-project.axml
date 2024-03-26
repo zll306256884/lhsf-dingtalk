@@ -17,7 +17,7 @@
               <block a:for="{{dataList}}">
                   <view class="dialog-name border-top {{chooseIndex === index ? 'active' : ''}}" data-index="{{index}}"
                       catchTap="_bindItemTap">
-                      {{item.name}}
+                      {{item.name || item.projectName}}
                   </view>
               </block>
           </scroll-view>
