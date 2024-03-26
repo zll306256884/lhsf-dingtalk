@@ -56,4 +56,4 @@
       </view>
   </view>
 
-  <dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
+  <dialog-select-project isScreen ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
