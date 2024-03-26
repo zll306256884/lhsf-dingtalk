@@ -828,7 +828,7 @@ Page({
           contractPeriodType: paramsdata.contractPeriodType,
           developmentOrganizationList: paramsdata.developmentOrganizationList,
           developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
-          selectedList:paramsdata.developmentOrganizationList.map(e => e.ecUnitId).join(),
+          selectedList:paramsdata.developmentOrganizationList.map(e => e.ecUnitId),
           isChooseTenderDocumentId: paramsdata.tenderDocumentId,
           list
         })
