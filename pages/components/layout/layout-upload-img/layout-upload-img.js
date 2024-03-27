@@ -125,14 +125,16 @@ Component({
       let tempList = [];
 
       for (let item of list) {
-        let a = await this.preImage({
+        let a = {
           url: item,
           progress: 100,
           url: getImgUrl(item.url),
           id: item.id,
           size: item.size,
           name: item.name
-        })
+        } 
+        await this.preImage(a)
+        
         console.log('a',a)
         tempList.push(a);
       }
