@@ -130,7 +130,7 @@ Page({
       unitPartyName: [{ required: true, message: '请选择' }],
       unitPartyType: [{ required: true, message: '请选择' }],
       unitPartyPerson: [{ required: true, message: '请选择' }],
-      unitPartyNumber: [{ required: true, message: '请输入(最多18位的整数)',pattern: /^[1-9]\d{0,17}$/ }],
+      unitPartyNumber: [{ required: true, message: '身份证号格式有误！',pattern: /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(([0-2][1-9])|10|20|30|31)\d{3}(\d|X|x)$/ }],
       unitParty: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
@@ -139,7 +139,7 @@ Page({
       developmentOrganizationName: [{ required: true, message: '请选择' }],
       developmentOrganizationListName: [{ required: true, message: '请选择' }],
       developmentOrganizationPerson: [{ required: true, message: '请选择' }],
-      developmentOrganizationNumber: [{ required: true, message: '请输入(最多18位的整数)',pattern: /^[1-9]\d{0,17}$/ }],
+      developmentOrganizationNumber: [{ required: true, message: '身份证号格式有误！',pattern: /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(([0-2][1-9])|10|20|30|31)\d{3}(\d|X|x)$/ }],
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
       contractPeriodType: [{ required: true, message: '请选择' }]
     }
@@ -681,6 +681,13 @@ Page({
           if (e.contractThirdPerson === '' || e.contractThirdNumber === '') {
             ddUtils.showToast({title: '选择个人时，个人信息必填！'})
             throw Error()
+          }else{
+            const reg = /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(([0-2][1-9])|10|20|30|31)\d{3}(\d|X|x)$/
+            const card = reg.test(e.contractThirdNumber)
+            if (!card) {
+              ddUtils.showToast({title: e.label1+'身份证号格式有误！'})
+              throw Error()
+            }
           }
         }
       })
