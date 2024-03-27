@@ -93,12 +93,12 @@ Component({
           projectName: this.data.keyWords
         }
       }
-      // if(this.props.isScreen){
-      //   baseUrl= apiDataBoardServer.API_MAP_PROJECT_LIST
-      //   param = {
-      //     projectName: this.data.keyWords
-      //   }
-      // }
+      if(this.props.isScreen){
+        baseUrl= apiDataBoardServer.API_MAP_PROJECT_LIST
+        param = {
+          projectName: this.data.keyWords
+        }
+      }
       request.doPostRequest({
         url: baseUrl,
         data: param,

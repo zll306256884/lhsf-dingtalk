@@ -150,7 +150,7 @@ Component({
       });
     },
     bindChooseProjectCallBack(data) {
-      this.data.params.projectName = data.name;
+      this.data.params.projectName = data.projectName;
       this.getProjectList();
     },
    async getProjectList() {
