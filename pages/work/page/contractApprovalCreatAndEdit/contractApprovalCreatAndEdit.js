@@ -662,8 +662,8 @@ Page({
   },
   async submit(){
     console.log(this.data.list)
-    this.setData({ loading: true })
     const params = await this.form.submit();
+    this.setData({ loading: true })
     if(this.data.contractId){
       params.id = this.data.contractId
       params.urlParameter = JSON.stringify({id: this.data.contractId})
@@ -742,6 +742,12 @@ Page({
           title: "保存成功！"
         });
         ddUtils.navigateBack();
+      },
+      fail: error => {
+        ddUtils.showToast({
+          title: error.message
+        });
+        this.setData({ loading: false })
       }
     })
   },
