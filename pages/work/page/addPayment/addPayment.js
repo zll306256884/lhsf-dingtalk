@@ -649,6 +649,8 @@ async submit() {
                 this.setData({ loading: false })
               }
             })
+          }else{
+            this.setData({ loading: false })
           }
         }  
       })
