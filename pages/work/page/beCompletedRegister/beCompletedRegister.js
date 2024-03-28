@@ -46,7 +46,8 @@ Page({
     projectLeaderId: '',
     departmentManager: '',
     countersignLeader: '',
-    leaderList: []
+    leaderList: [],
+    loading: false
   },
   dialogScreenDepartmentManager: null,
   dialogScreenCountersignLeader: null,
@@ -459,6 +460,9 @@ async staging(){
 },
 async submit(){
   const params = await this.form.submit();
+  this.setData({
+    loading: true
+  })
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
   params.id= this.data.id?this.data.id:''
@@ -509,7 +513,16 @@ async submit(){
       ddUtils.showToast({
         title:"提交审批成功"
       })
-    ddUtils.navigateBack();
+      this.setData({
+        loading: false
+      })
+      ddUtils.navigateBack();
+    },
+    fail: error => {
+      ddUtils.showToast({
+        title: error.message
+      });
+      this.setData({ loading: false })
     }
   })
 },

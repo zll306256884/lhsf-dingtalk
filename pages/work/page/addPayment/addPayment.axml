@@ -244,9 +244,9 @@
     <!-- <layout-field-cell  name="会签分管领导" mustFill placeholder="请选择" value="{{countersignLeader_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
   </view>
   <view class="buttons flex f-between">
-          <button class="btn" catchTap="bindCancelTap">取消</button>
-          <button class="btn zancun" data-flag="{{1}}" form-type="submit" onTap="workingStorage">暂存</button>
-          <button class="btn active" data-flag="{{2}}"  form-type="submit" onTap="submit">提交审批</button>
+          <button class="btn" loading="{{loading}}" catchTap="bindCancelTap">取消</button>
+          <button class="btn zancun" data-flag="{{1}}" form-type="submit" loading="{{loading}}" onTap="workingStorage">暂存</button>
+          <button class="btn active" data-flag="{{2}}"  form-type="submit" loading="{{loading}}" onTap="submit">提交审批</button>
       </view>
 </view>
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef"  multiChoose onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
