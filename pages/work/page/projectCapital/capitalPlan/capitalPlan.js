@@ -132,7 +132,7 @@ onSaveUploadImgRef: function (ref) {
      console.log(value);
      let item = value.target.dataset.item
     ddUtils.navigateTo({
-      url: `/pages/work/page/projectCapital/fundParticulars/fundParticulars?json=${JSON.stringify(item)}`
+      url: `/pages/work/page/projectCapital/fundParticulars/fundParticulars?json=${encodeURIComponent(JSON.stringify(item))}`//decodeURIComponent
     });
      console.log(item,"click");
    }
