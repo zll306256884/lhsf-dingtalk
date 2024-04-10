@@ -13,6 +13,7 @@
     "tabs": "antd-mini/es/Tabs/index",
     "empty": "antd-mini/es/Empty/index",
     "error-view": "/pages/components/error-view/error-view",
-    "list-item": "antd-mini/es/List/ListItem/index"
+    "list-item": "antd-mini/es/List/ListItem/index",
+    "ant-loading": "antd-mini/es/Loading/index"
   }
 }

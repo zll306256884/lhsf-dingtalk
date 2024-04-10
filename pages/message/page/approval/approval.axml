@@ -32,7 +32,10 @@
   <!--  -->
   <view style="height: 110rpx; width:1rpx"></view>
   <!--  -->
-  <view class="navbox">
+  <view class="flex f-center" a:if="{{ isSearchLoading }}">
+    <ant-loading type="spin" color="#000000" />
+  </view>
+  <view a:if="{{ !isSearchLoading }}" class="navbox">
     <view>
       <list header="" radius="{{ radius }}">
         <block a:if="{{listData.length}}">

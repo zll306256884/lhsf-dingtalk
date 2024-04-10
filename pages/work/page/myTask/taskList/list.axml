@@ -14,7 +14,12 @@
     <icon slot="prefix" type="SearchOutline" />
   </input>
 </view>
-<view class="container">
+
+<view class="flex f-center" a:if="{{ isSearchLoading }}" style="margin-top:112px">
+  <ant-loading type="spin" color="#000000" />
+</view>
+
+<view a:if="{{ !isSearchLoading }}" class="container">
   <view class="card card-list"  a:if="{{listTask.length}}">
     <list>
       <list-item>

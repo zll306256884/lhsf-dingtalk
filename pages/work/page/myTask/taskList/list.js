@@ -25,7 +25,8 @@ Page({
     total:0,
     listTask:[],
     currentTask:0,
-    showButton: false
+    showButton: false,
+    isSearchLoading: false
   },
   page: 1,
   // hasMore: false,
@@ -78,6 +79,7 @@ Page({
 },
   //获取任务列表
  getTaskList: function (params) {
+  this.setData({isSearchLoading: true})
   let data = {
       pageNum: 1,
       pageSize: 10,
@@ -105,7 +107,11 @@ Page({
           listTask:list,
           total:res.data.total
         })
+        this.setData({isSearchLoading: false})
       },
+      fail: res => {
+        this.setData({isSearchLoading: false})
+      }
   });
 },
 getMoreList(params) {
@@ -159,13 +165,13 @@ searchTask(title){
     return [1,2,5]
     }
   }
- let params={
+  let params={
     executeUserId:this.data.currentTask === 0? app.globalData.userInfo.userId :"",
     createById:this.data.currentTask === 1? app.globalData.userInfo.userId : "",
     status:status(),
     title,
   }
-this.getTaskList(params)
+  this.getTaskList(params)
 },
 // 切换我的任务tab
 onTaskChange(e){

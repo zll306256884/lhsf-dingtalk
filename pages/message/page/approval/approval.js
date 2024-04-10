@@ -93,7 +93,7 @@ Page({
     belongModule: [],
     dialogScreenDateRef: null,
     // 
-
+    isSearchLoading: false
   },
   pageNum: 1,
   errorView: null,
@@ -243,6 +243,7 @@ Page({
   },
   // 获取基本信息
   getList: function () {
+    this.setData({isSearchLoading: true})
     let param = {
       "asc": true,
       "pageNum": this.pageNum,
@@ -273,11 +274,13 @@ Page({
           // pageNum: page
         });
         // resolve(res.data)
+        this.setData({isSearchLoading: false})
       },
       complete: res => {
         this._loadDone(res);
       },
       fail: res => {
+        this.setData({isSearchLoading: false})
         reject(res)
       }
     });
