@@ -214,6 +214,8 @@ Page({
     this.setData({
       userName: value
     })
+    this.pageNum = 1
+    this.getList()
   },
   // 搜索确认
   onConfirm(value) {
