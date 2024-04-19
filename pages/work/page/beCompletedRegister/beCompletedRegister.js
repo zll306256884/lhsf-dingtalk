@@ -421,6 +421,7 @@ async staging(){
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   console.log(params)
+  params.approvalStatus = 2,
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
   params.id= this.data.id?this.data.id:''
