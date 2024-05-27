@@ -421,7 +421,7 @@ async staging(){
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   console.log(params)
-  params.approvalStatus = 2,
+  params.approvalStatus = 1, // 暂存是未提交1，提交审批传2
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
   params.id= this.data.id?this.data.id:''
@@ -464,6 +464,7 @@ async submit(){
   this.setData({
     loading: true
   })
+  params.approvalStatus = 2, // 暂存是未提交1，提交审批传2
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
   params.id= this.data.id?this.data.id:''
