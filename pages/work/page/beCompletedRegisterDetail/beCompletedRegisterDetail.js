@@ -68,10 +68,11 @@ Page({
         setTimeout(() => {
           this.uploadContractImage._setImageList(files) 
         }, 0);
+
         let dingTalkFormList = [
           { key:'事项类型：', value:'竣工结算会签' },
           { key:'所属项目：', value: res.data.projectName },
-          { key:'合同名称：', value: res.data.tenderName },
+          { key:'合同名称：', value: res.data.contractName },
           { key:'审定总价：', value: res.data.approveTotalPrice+'万元' }
         ]
         this.setData({

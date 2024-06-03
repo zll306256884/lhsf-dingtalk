@@ -141,7 +141,7 @@ Page({
   getunReadMessageTotal(){
     request.doPostRequest({
       url: apiApprovalManage.API_UNMESSAGE_TO_POST,
-      data:{},
+      data:{subType:2,typeList:[3,5]},
       success: res => {
         console.log(res);
         let list = this.data.items
@@ -157,10 +157,17 @@ Page({
     });
   },
  // 消息列表点击详情
- selectTap(e){
+ selectTap(e) {
     // 事项类型 1-进度计划 2-招标文件会签 3-合同审批流程 4-款项支付 5-项目资金计划 6-生态伙伴 7-档案管理
     console.log(e);
     let item = e.target.dataset.item
+
+    if(item.type === 5 ) {
+      return ddUtils.showToast({
+        title:"暂不支持移动端访问，请在电脑端进行查看！"
+      })
+    }
+
     let examineId = e.target.dataset.item.id //审批组件用
     let pId = JSON.parse(item.urlParameter)
     let ID = e.target.dataset.item.belongModule
@@ -333,6 +340,10 @@ Page({
     }
   }else if(item.type === 4){//4系统公告
      ddUtils.navigateTo({url:`/pages/message/systemAnnouncement/systemAnnouncement?id=${item.keyId}`})
+  }else if(item.type === 5 ) {
+    ddUtils.showToast({
+      title:"暂不支持移动端访问，请在电脑端进行查看！"
+    })
   }
 }
 });
