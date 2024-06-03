@@ -161,8 +161,9 @@ Page({
     // 事项类型 1-进度计划 2-招标文件会签 3-合同审批流程 4-款项支付 5-项目资金计划 6-生态伙伴 7-档案管理
     console.log(e);
     let item = e.target.dataset.item
-
-    if(item.type === 5 ) {
+    
+    // 议题消息不能在钉钉打开
+    if(item.type === 5 && item.subType === 2 ) {
       return ddUtils.showToast({
         title:"暂不支持移动端访问，请在电脑端进行查看！"
       })
