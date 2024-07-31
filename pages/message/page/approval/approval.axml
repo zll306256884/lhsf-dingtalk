@@ -24,8 +24,7 @@
   <view style="height: 70rpx; width:1rpx;background: #EBEDF0;"></view>
   <!--  -->
   <view class="searchInput box-sizing-box">
-    <input placeholder="请输入申请人" onChange="onChange" value="{{userName}}" className="search-bar" focusClassName="search-bar-focus" 
-      confirm-type="search" allowClear onConfirm="onConfirm">
+    <input placeholder="请输入" onChange="onChange" value="{{taskName}}" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" allowClear onConfirm="onConfirm">
       <icon slot="prefix" type="SearchOutline" />
     </input>
   </view>
