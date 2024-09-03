@@ -14,7 +14,7 @@
 
     <form-picker label="是否考核项目" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
     <form-picker label="项目分类" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
-    <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" disabled />
+    <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" />
 
     <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
     <form-picker a:if="{{ constructionPhase=== '3' }}" label="是否投入使用" arrow name="isOutPut" options="{{isOutPutOption}}" ref="handleRef" />
