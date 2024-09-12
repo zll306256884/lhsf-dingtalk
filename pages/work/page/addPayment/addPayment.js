@@ -61,8 +61,8 @@ Page({
     monthTypeOptions: [
       {label: '当月',value: 1},
       {label: '下月',value: 2},
-    ]
-   
+    ],
+    loading: false
   },
   onLoad(option) {
     // let date = new Date().toLocaleString()
@@ -599,6 +599,9 @@ async submit() {
       remarkTitle: false
     })
     const params = await this.form.submit();
+    this.setData({
+      loading: true
+    })
     console.log('params--------',params);
     params.projectId = this.data.projectData.id,
     params.contractId = this.data.contractData.contractId,
@@ -633,10 +636,21 @@ async submit() {
               success: res => {
                 ddUtils.showToast({
                   title:"保存成功"
-                  })
-              ddUtils.navigateBack();
+                })
+                this.setData({
+                  loading: false
+                })
+                ddUtils.navigateBack();
+              },
+              fail: error => {
+                ddUtils.showToast({
+                  title: error.message
+                });
+                this.setData({ loading: false })
               }
             })
+          }else{
+            this.setData({ loading: false })
           }
         }  
       })
@@ -647,8 +661,17 @@ async submit() {
         success: res => {
           ddUtils.showToast({
             title:"保存成功"
-            })
-        ddUtils.navigateBack();
+          })
+          this.setData({
+            loading: false
+          })
+          ddUtils.navigateBack();
+        },
+        fail: error => {
+          ddUtils.showToast({
+            title: error.message
+          });
+          this.setData({ loading: false })
         }
       })
     }

@@ -48,6 +48,7 @@ Page({
     duration:'',
     planConstructionStartTime: '',
     planConstructionEndTime: '',
+    loading: false
   },
   dialogPickerDateRef: null,
   dialogPickerDateRangeRef: null,
@@ -419,6 +420,9 @@ Page({
   },
   async bindFormSubmit(e){
     const params = await this.form.submit();
+    this.setData({
+      loading: true
+    })
     params.affiliatedUnitName = this.data.affiliatedUnitName
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
@@ -455,11 +459,20 @@ Page({
       url: projectService.API_PROJECT_COMMITAPPROVAL,
       data: params,
       success: res => {
+        this.setData({
+          loading: false
+        })
         ddUtils.showToast({
           title: "操作成功！"
         });
         ddUtils.navigateBack();
       },
+      fail: error => {
+        ddUtils.showToast({
+          title: error.message
+        });
+        this.setData({ loading: false })
+      }
     })
     // if(this.data.projectId){
     //   params.id = this.data.projectId

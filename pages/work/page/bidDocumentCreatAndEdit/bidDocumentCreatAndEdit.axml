@@ -195,9 +195,9 @@
 
 <view class="bottom-space" style="height:150rpx"></view>
 <view class="buttons flex f-between">
-  <button class="btn" onTap="reset">取消</button>
-  <button class="btn" onTap="staging">暂存</button>
-  <button class="btn active" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
+  <button class="btn" loading="{{loading}}" onTap="reset">取消</button>
+  <button class="btn" loading="{{loading}}" onTap="staging">暂存</button>
+  <button class="btn active" loading="{{loading}}" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
 </view>
 
 <dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>

@@ -190,7 +190,7 @@ Component({
       if(obj.online){
         dd.navigateTo({
           // url: '/pages/databoard/page/preview-page/preview-page?projectId=' +  obj.projectId + '&cameraIndexCode=' + cameraIndexCode,
-          url: '/pages/databoard/page/preview-page/preview-page?cameraIndexCode=' + cameraIndexCode,
+          url: '/pages/databoard/page/preview-page/preview-page?cameraIndexCode=' + cameraIndexCode+'&source='+ obj.source,
         })
       }else{
         ddUtils.showToast({

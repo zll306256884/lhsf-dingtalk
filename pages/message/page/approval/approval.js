@@ -85,7 +85,7 @@ Page({
       // },
     ],
     listData: [],//获取列表数据
-    userName: '',//申请人
+    taskName: '',//申请人
     funnelParam: {//漏斗参数
       belongModule: null,
       userName: '',
@@ -93,7 +93,7 @@ Page({
     belongModule: [],
     dialogScreenDateRef: null,
     // 
-
+    isSearchLoading: false
   },
   pageNum: 1,
   errorView: null,
@@ -212,13 +212,15 @@ Page({
   // 任务名称搜索
   onChange(value) {
     this.setData({
-      userName: value
+      taskName: value
     })
+    this.pageNum = 1
+    this.getList()
   },
   // 搜索确认
   onConfirm(value) {
     this.setData({
-      userName: value
+      taskName: value
     })
     this.pageNum = 1
     this.getList()
@@ -243,17 +245,19 @@ Page({
   },
   // 获取基本信息
   getList: function () {
+    this.setData({isSearchLoading: true})
     let param = {
       "asc": true,
       "pageNum": this.pageNum,
       "pageSize": 10,
       "account": app.globalData.userInfo.userAccount,
-      "userName": "",
+      taskName: this.data.taskName,
+      // "userName": "",
       // "belongModule": this.data.options[0].value,//事项类型
       // "userName": this.data.options[1].value,//申请人
       "showType": this.data.targetValue, //状态
       'belongModule': this.data.funnelParam.belongModule,
-      'userName': this.data.userName,
+      // 'userName': this.data.userName,
       // ...this.data.funnelParam
     }
     console.log('param', param)
@@ -273,11 +277,13 @@ Page({
           // pageNum: page
         });
         // resolve(res.data)
+        this.setData({isSearchLoading: false})
       },
       complete: res => {
         this._loadDone(res);
       },
       fail: res => {
+        this.setData({isSearchLoading: false})
         reject(res)
       }
     });
@@ -301,7 +307,8 @@ Page({
       "pageNum": this.pageNum,
       "pageSize": 10,
       "account": app.globalData.userInfo.userAccount,
-      "userName": "",
+      taskName: this.data.taskName,
+      // "userName": "",
       // "belongModule": this.data.options[0].value,//事项类型
       // "userName": this.data.options[1].value,//申请人
       "showType": this.data.targetValue, //状态

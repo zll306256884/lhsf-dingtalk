@@ -1,5 +1,6 @@
 <import-sjs from="../../../../utils/utils.sjs" name="utils" />
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
+
 <view class="top-navbar flex f-between" style="align-items:center">
   <view style="width:90%;">
     <!-- <nav-tab-bar tabList="{{tabList}}" onNavTabChange="onNavTabChange" navWidth={{90}}></nav-tab-bar> -->
@@ -20,23 +21,27 @@
 </view>
 
 <view style="height:67rpx;"></view>
-<list a:if="{{ dataList && dataList.length }}">
-  <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
-    <view class="flex f-between">
-      <view style="width:80%">
-        <view class="request-name">{{item.title}}</view>
-        <view class="request-time">{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</view>
-      </view>
-      <view a:if="{{ tabIndex===0 && item.tagType === 2 }}" class="request-status">
-        已驳回
-      </view>
-    </view>
-  </list-item>
-</list>
-
-<view a:else class="flex f-center">
-  <image mode="scaleToFill" src="/assets/images/common/empty.png" style="margin: 50rpx auto;width:69px;height:104px;" />
+<view class="flex f-center" a:if="{{ isSearchLoading }}" style="margin-top:0px">
+  <ant-loading type="spin" color="#000000" />
 </view>
+<block a:if="{{ !isSearchLoading }}">
+  <list a:if="{{ dataList && dataList.length }}">
+    <list-item a:for="{{ dataList }}" a:key="index" onTap="ToDetail" data-item="{{item}}">
+      <view class="flex f-between">
+        <view style="width:80%">
+          <view class="request-name">{{item.title}}</view>
+          <view class="request-time">{{utils.parseTime(item.createTime,'{y}-{m}-{d} {h}:{i}')}}</view>
+        </view>
+        <view a:if="{{ tabIndex===0 && item.tagType === 2 }}" class="request-status">
+          已驳回
+        </view>
+      </view>
+    </list-item>
+  </list>
+  <view a:else class="flex f-center">
+    <image mode="scaleToFill" src="/assets/images/common/empty.png" style="margin: 50rpx auto;width:69px;height:104px;" />
+  </view>
+</block>
 
 <view style="display: none">
   <error-view ref="_onSaveErrorViewRef" onErrorRefreshTap="_bindErrorRefreshTap"></error-view>

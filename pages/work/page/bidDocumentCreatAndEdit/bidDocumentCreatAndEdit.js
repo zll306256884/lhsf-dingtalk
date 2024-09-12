@@ -34,6 +34,7 @@ Page({
     projectLeaderId: '',
     isShow: false,
     proType: null, //0工程，1非工程
+    loading: false
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -140,7 +141,7 @@ Page({
     console.log(data);
     // let projectName = this.form.getFieldValue('projectName')
     // this.form.setFieldValue('title', this.data.projectName+data)
-    if( data.proType === 0){
+    if( this.data.proType === 0){
       this.form.setFieldValue('title', this.data.projectName+'-'+data)
     }else{
       this.form.setFieldValue('title', '')
@@ -325,6 +326,7 @@ Page({
     console.log(this.form)
     // this.form.addItem(ref)
     const params = await this.form.submit();
+    this.setData({loading: true})
     if(this.data.tenderId){
       params.id = this.data.tenderId
       params.urlParameter = JSON.stringify({id: this.data.tenderId})
@@ -371,11 +373,18 @@ Page({
       url: projectService.API_SAVEANDSUBMIT,
       data: params,
       success: res => {
+        this.setData({loading: false})
         console.log(res.data)
         ddUtils.showToast({
           title: "保存成功！"
         });
         ddUtils.navigateBack();
+      },
+      fail: error => {
+        ddUtils.showToast({
+          title: error.message
+        });
+        this.setData({ loading: false })
       }
     })
   },

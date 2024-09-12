@@ -7,6 +7,7 @@
     "error-view": "/pages/components/error-view/error-view",
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
     "tabs": "antd-mini/es/Tabs/index",
-    "badge": "antd-mini/es/Badge/index"
+    "badge": "antd-mini/es/Badge/index",
+    "ant-loading": "antd-mini/es/Loading/index"
   }
 }

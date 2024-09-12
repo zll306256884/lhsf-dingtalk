@@ -182,7 +182,7 @@
   </view>
  
   <view a:if="{{ developmentOrganizationModeList.includes('2') }}" catchTap="chooseUnit">
-    <form-input label="单位" name="developmentOrganizationListName" disabled placeholder="请选择" allowClear ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+    <form-input label="单位" name="developmentOrganizationListName" disabled placeholder="请选择" ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
     <!-- <form-picker
       label="单位"
       labelWidth="280rpx"
@@ -373,9 +373,9 @@
   <view class="bottom-space" style="height:150rpx"></view>
 
   <view class="buttons flex f-between">
-    <button class="btn" onTap="reset">取消</button>
-    <button class="btn" :loading="loading" onTap="staging">暂存</button>
-    <button class="btn active" :loading="loading" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
+    <button class="btn" loading="{{loading}}" onTap="reset">取消</button>
+    <button class="btn" loading="{{loading}}" onTap="staging">暂存</button>
+    <button class="btn active" loading="{{loading}}" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
   </view>
 
 <dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>

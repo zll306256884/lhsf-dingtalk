@@ -159,10 +159,10 @@
     </view>
 
     <view class="buttons flex f-between">
-      <button class="btn" catchTap="bindCancelTap">取消</button>
-      <button class="btn active" form-type="submit" onTap="staging">暂存</button>
+      <button class="btn" disabled={{loading}} loading="{{loading}}" catchTap="bindCancelTap">取消</button>
+      <button class="btn active" form-type="submit" disabled={{loading}} loading="{{loading}}" onTap="staging">暂存</button>
       <!-- <button class="btn active" form-type="submit" onTap="submit">保存</button> -->
-      <button class="btn active" form-type="submit" onTap="submit">提交审批</button>
+      <button class="btn active" form-type="submit" disabled={{loading}} loading="{{loading}}" onTap="submit">提交审批</button>
   </view>
   </form>
 </view>

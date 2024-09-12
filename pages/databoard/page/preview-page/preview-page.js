@@ -23,8 +23,8 @@ Page({
     //   })
     // }
     this.setData({
-      webViewUrl: `${config.BASE_API_HOST}/#/share/monitor?cameraIndexCode=${option.cameraIndexCode}`
-      //  webViewUrl: `http://192.168.8.81:8080/#/share/monitor?cameraIndexCode=${encodeURIComponent(option.cameraIndexCode)}`
+      webViewUrl: `${config.BASE_API_HOST}/#/share/monitor?cameraIndexCode=${option.cameraIndexCode}&source=${option.source}`
+      //  webViewUrl: `http://192.168.8.51:8080/#/share/monitor?cameraIndexCode=${encodeURIComponent(option.cameraIndexCode)}&source=${option.source}`
     })
     this.webViewContext = dd.createWebViewContext('web-view-2')
     this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})

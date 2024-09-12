@@ -125,17 +125,32 @@ Component({
       let tempList = [];
 
       for (let item of list) {
-        let a = await this.preImage({
+        let a = {
           url: item,
           progress: 100,
           url: getImgUrl(item.url),
           id: item.id,
           size: item.size,
           name: item.name
+        } 
+        request.doPostRequest({
+          url: config.API_FILE_SETURL,
+          data: {
+              fileName: a.url,
+          },
+          success: result => {
+              if (result.code == 1000) {
+                 a.preUrl = result.data
+              }
+            },
+            fail: error => {
+              console.log('11111',error,a)
+            },
         })
-        console.log('a',a)
+
         tempList.push(a);
       }
+      console.log('tempList',tempList)
       this.setData({
         imgList: tempList,
         loding: false

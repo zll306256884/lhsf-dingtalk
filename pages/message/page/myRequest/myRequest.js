@@ -79,7 +79,8 @@ Page({
         ],
       }
     ],
-    type: []
+    type: [],
+    isSearchLoading: false
   },
 
   page: 1,
@@ -147,6 +148,7 @@ Page({
     }
   },
   getDataList(type){
+    this.setData({isSearchLoading: true})
     let params = {
       asc: false,
       pageNum: this.page,
@@ -165,9 +167,13 @@ Page({
         this.setData({
           dataList: res.data.records || []
         })
+        this.setData({isSearchLoading: false})
       },
       complete: res => {
         this._loadDone(res);
+      },
+      fail: res => {
+        this.setData({isSearchLoading: false})
       }
     })
   },
