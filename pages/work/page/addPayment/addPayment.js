@@ -164,7 +164,7 @@ Page({
     this.setData({
       contractData: data || {},
       contractAmount:data.contractAmount,
-      contractId:data.contractId,
+      // contractId:data.contractId,
     });
     this.form.setFieldValue('contractName',data.contractName)
     this.form.setFieldValue('contractAmount',data.contractAmount)

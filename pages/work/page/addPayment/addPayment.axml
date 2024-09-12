@@ -255,5 +255,5 @@
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-screen-fukuan-danwei ref="onSaveDialogScreenslowunitRef" projectId="{{projectId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseSlowUnitCallBack"></dialog-screen-fukuan-danwei>
-<dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" contractId="{{contractId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
+<dialog-screen-fukuan-danwei ref="onSaveDialogScreenproceedsunitRef" contractId="{{contractData.contractId}}" positionBottom="{{true}}" onScreenCallBack="bindChooseProceedsUnitCallBack"></dialog-screen-fukuan-danwei>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef"   selectionMode="single" formatDate='YYYY-MM-DD'  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>
