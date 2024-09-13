@@ -36,11 +36,11 @@ Page({
         value: [],
         type: 'select',
         option: [
-          {
-            id: "1",
-            label: '进度计划',
-            selected: false,
-          },
+          // {
+          //   id: "1",
+          //   label: '进度计划',
+          //   selected: false,
+          // },
           {
             id: "2",
             label: '招标文件会签',
@@ -55,11 +55,11 @@ Page({
             label: '款项支付',
             selected: false,
           },
-          {
-            id: "5",
-            label: '项目资金计划',
-            selected: false,
-          },
+          // {
+          //   id: "5",
+          //   label: '项目资金计划',
+          //   selected: false,
+          // },
           {
             id: "6",
             label: '生态伙伴',
@@ -87,7 +87,7 @@ Page({
     listData: [],//获取列表数据
     taskName: '',//申请人
     funnelParam: {//漏斗参数
-      belongModule: null,
+      belongModule: [2, 3, 4, 6, 8, 9],
       userName: '',
     },
     belongModule: [],
@@ -368,7 +368,7 @@ Page({
   // 获取点数 
   getCount: function () {
     let param = {
-
+      belongModule: [2, 3, 4, 6, 8, 9]
     }
     console.log('param', param)
     // return

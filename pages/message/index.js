@@ -62,6 +62,7 @@ Page({
       pageNum: this.page,
       pageSize: 10,
       "status": s,
+      subType: 1
     };
     request.doPostRequest({
       url: apiApprovalManage.API_MESSAGE_POST,
