@@ -144,8 +144,8 @@ Page({
     });
     if(belongModule.length < 1){
       this.setData({
-        'funnelParam.belongModule': null,
-        belongModule: null
+        'funnelParam.belongModule': [2, 3, 4, 6, 8, 9],
+        belongModule: [2, 3, 4, 6, 8, 9]
         // 'funnelParam.userName': userName,
       });
     }
