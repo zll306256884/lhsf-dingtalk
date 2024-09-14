@@ -92,7 +92,8 @@ Page({
       pageNum: this.page,
       pageSize: 10,
       status:this.data.tabIndex,
-      sort: 'createTime'
+      sort: 'createTime',
+      subType: 1
     }
     request.doPostRequest({
       url: apiApprovalManage.API_MESSAGE_POST,
@@ -142,7 +143,7 @@ Page({
   getunReadMessageTotal(){
     request.doPostRequest({
       url: apiApprovalManage.API_UNMESSAGE_TO_POST,
-      data:{subType:2,typeList:[3,5]},
+      data:{subType:1,typeList:[3,5]},
       success: res => {
         console.log(res);
         let list = this.data.items
