@@ -48,10 +48,10 @@
 .annexTitle{
   position: absolute;
   top: 31rpx;
-left: 15rpx;
-color:red;
-font-size: 15px;
-}
+  left: 15rpx;
+  color:red;
+  font-size: 15px;
+ }
 /* 任务描述 */
 .box-shadow .desc {
   margin: 10rpx 30rpx 0;
@@ -102,4 +102,26 @@ font-size: 15px;
   height: 100rpx;
   font-size: 28rpx;
   color: #525966;
+}
+.personlist{
+  background-color: #fff;
+  padding: 12px 12px 12px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.personlist .personTitle{
+  width: 300rpx;
+  color: #525966;
+}
+.personlist .personContent{
+  color: #B8BFCC;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+}
+.ant-picker-value{
+  color: #B8BFCC;
+  font-size: 28rpx;
 }

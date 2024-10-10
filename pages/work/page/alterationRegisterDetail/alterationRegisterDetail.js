@@ -15,6 +15,8 @@ Page({
   dingTalkFormList: [],
   },
   uploadContractImage: null,
+  uploadTenderImageList: null,//变更小组会议纪要
+  uploadOtherImgList: null,//变更内容
   onLoad(option) {
     console.log(option);
     if(option.id){
@@ -30,6 +32,12 @@ Page({
   },
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
+  },
+  onSaveUploadSummaryRef: function (ref) {
+    this.uploadTenderImageList = ref;
+  },
+  onSaveUploadAlterRef: function(ref){
+     this.uploadOtherImgList = ref
   },
   onShow(){
     this.getDetail(this.data.id)
@@ -59,8 +67,22 @@ Page({
             name:item.fileName,
           }
         })
+        const summaryFiles = res.data.summaryFileList.map((item) => {
+          return {
+            ...item,
+            name: item.fileName,
+          }
+        })
+        const alterFiles = res.data.alterFileList.map((item) => {
+          return {
+            ...item,
+            name: item.fileName,
+          }
+        })
         setTimeout(() => {
-          this.uploadContractImage._setImageList(files) 
+          this.uploadContractImage._setImageList(files)
+          this.uploadTenderImageList._setImageList(summaryFiles)
+          this.uploadOtherImgList._setImageList(alterFiles)
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.investmentFileList?res.data.investmentFileList:'') 
