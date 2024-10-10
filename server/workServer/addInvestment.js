@@ -48,4 +48,8 @@ module.exports = {
     API_COMPLETION_SAVEANDSUBMIT:API_HOST + '/investment/completionSettlement/saveAndSubmit',
     //分管领导
     API_QUERY_USER_BYROLE:API_HOST + '/platform/user/queryUserByRole',
+    // 默认抄送人信息列表
+    API_QUERY_ROLE_LIST: API_HOST + '/platform/role/queryRoleList',
+    // 项目负责人员信息
+    API_QUERY_PROJECT_LEADER_INFO: API_HOST + '/integratedService/personManagementInfo/queryProjectLeaderInfo',
 }

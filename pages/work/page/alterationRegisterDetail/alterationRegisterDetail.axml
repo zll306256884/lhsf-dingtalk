@@ -30,6 +30,7 @@
   <form onSubmit="bindFormSubmit">
     <view class="box-shadow">
       <layout-field-cell  name="联系单名称" hidden="{{false}}" placeholder="请选择" value="{{infoData.contactNoticeName}}" ></layout-field-cell>
+      <layout-field-cell  name="联系单编号" hidden="{{false}}" placeholder="请选择" value="{{infoData.code}}" ></layout-field-cell>
       <layout-field-cell borderTop name="项目名称" hidden="{{false}}"  placeholder="请选择"  value="{{infoData.projectName}}"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="项目负责人"    value="{{infoData.projectLeader}}"></layout-field-cell>
       <layout-field-cell hidden={{false}} borderTop name="所属单位"    value="{{infoData.affiliateUnit}}"></layout-field-cell>
@@ -61,6 +62,25 @@
       <list-item>
         合同正式稿及相关附件
         <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
+      </list-item>
+      </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list-item extraBrief="{{infoData.subLeader_dictText}}">分管领导</list-item>
+  </view>
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item>
+        变更小组会议纪要
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" type="1" disabled ref="onSaveUploadSummaryRef"></layout-upload-img>
+      </list-item>
+      </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item>
+        变更内容
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" type="2" disabled ref="onSaveUploadAlterRef"></layout-upload-img>
       </list-item>
       </list>
   </view>

@@ -14,6 +14,8 @@
       "layout-upload-img":"/pages/components/layout/layout-upload-img/layout-upload-img",
       "form-input": "antd-mini/es/Form/FormInput/index",
       "icon": "antd-mini/es/Icon/index",
-      "form-textarea": "antd-mini/es/Form/FormTextarea/index"
+      "form-textarea": "antd-mini/es/Form/FormTextarea/index",
+      "am-icon": "antd-mini/es/Icon/index",
+      "form-picker": "antd-mini/es/Form/FormPicker/index"
   }
 }
