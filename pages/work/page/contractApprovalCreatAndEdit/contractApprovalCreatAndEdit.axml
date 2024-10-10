@@ -16,7 +16,9 @@
     options="{{projectListOptions}}"
     ref="handleRef" />
 </view>
-<form-input label="项目负责人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
+<!-- <form-input label="项目负责人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" /> -->
+<form-picker label="项目负责任人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
+
 <form-input label="项目所属单位" required labelWidth="280rpx" name="affiliateUnit" disabled placeholder="自动生成" ref="handleRef" />
 <form-input
   label="合同名称"
@@ -60,14 +62,31 @@
   options="{{projectTypeOptions}}"
   ref="handleRef" />
 
-  <form-radio-group
+  <!-- <form-radio-group
   a:if="{{ contractType !== '2' || contractType !== 2 }}"
   label="此合同是否需要招标"
   labelWidth="320rpx"
   name="contractNeedTender"
   options="{{radioGroupOptionss}}"
   onChange="contractNeedTenderChange"
-  ref="handleRef" />
+  ref="handleRef" /> -->
+
+  <form-picker
+    label="合同签订依据"
+    arrow
+    labelWidth="220rpx"
+    name="basisSigning"
+    options="{{ basisSigningOptions }}"
+    onOk="chooseSigningOptions"
+    ref="handleRef" />
+  
+    
+  <form-input
+    a:if="{{showOther}}"
+    label=""
+    placeholder="请输入具体依据方式"
+    name="modeContractRemark"
+    ref="handleRef" />
 
   <form-picker
   a:if="{{tenderShow}}"
@@ -94,7 +113,7 @@
     ref="handleRef"
   />
 
-  <form-picker
+  <!-- <form-picker
     a:if="{{!tenderShow && (contractType === '1' || contractType === 1)}}"
     label="发包方式"
     arrow
@@ -102,14 +121,16 @@
     options="{{modeContractOptions}}"
     ref="handleRef"
     onChange="modeContractChange"
-   />
+   /> -->
 
-  <form-input
-    a:if="{{showOther}}"
-    label=""
-    placeholder="请输入具体发包方式"
-    name="modeContractRemark"
-    ref="handleRef" />
+   <view a:if="{{ basisShow }}" style="margin:16rpx 0;background:#fff">
+    <list>
+      <list-item class="flex f-center-start"><view style="color:#EE0A24;display:inline-block">*</view><view style="display:inline-block">决策依据证明文件:</view></list-item>
+    </list>
+    <view>
+      <layout-upload-img type="1" cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadBasisImgRef"></layout-upload-img>
+    </view>
+  </view>
 
   <!-- <form-input
     label="合同工期(天)"

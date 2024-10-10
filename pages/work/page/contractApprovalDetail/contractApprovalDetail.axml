@@ -27,12 +27,19 @@
     <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}">主合同</list-item>
     <list-item extraBrief="{{detailInfo.projectType_dictText || '-'}}">项目类型</list-item>
 
-    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item>
-
-    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.tenderDocumentId === '1'?'格式招标文件':detailInfo.tenderName}}">选择招标文件</list-item>
-    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 1 }}" extraBrief="{{detailInfo.biddingTypeName?detailInfo.biddingTypeName:detailInfo.biddingType_dictText?detailInfo.biddingType_dictText:'-'}}">招标方式</list-item>
+    <!-- <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item> -->
+    <list-item extraBrief="{{detailInfo.basisSigning || '-'}}">合同签订依据</list-item>
     
-    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.contractNeedTender === 0}}" extraBrief="{{['','直接','其他'][detailInfo.modeContract]}}">发包方式</list-item>
+
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.basisSigning == 1 }}" extraBrief="{{detailInfo.tenderDocumentId === '1'?'格式招标文件':detailInfo.tenderName}}">选择招标文件</list-item>
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.basisSigning == 1 }}" extraBrief="{{detailInfo.biddingTypeName?detailInfo.biddingTypeName:detailInfo.biddingType_dictText?detailInfo.biddingType_dictText:'-'}}">招标方式</list-item>
+    
+    <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.basisSigning == 5}}" extraBrief="{{detailInfo.modeContract}}">具体签订依据</list-item>
+
+    <view class="file-list">
+      <view class="title">决策依据证明文件</view>
+      <layout-upload-img ref="onSaveBasisUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;"></layout-upload-img>
+    </view>
 
     <list-item extraBrief="{{detailInfo.contractPeriodType === 1?((detailInfo.contractPeriod?detailInfo.contractPeriod:'/')+'天'):detailInfo.contractPeriodType === 2?((detailInfo.contractPeriodMonth?detailInfo.contractPeriodMonth:'/')+'月'):detailInfo.contractPeriodType === 3?('截止日期：'+(detailInfo.contractEndTime?detailInfo.contractEndTime:'/')): ''}}">合同工期</list-item>
 
@@ -125,18 +132,6 @@
   <view class="file-list">
     <view class="title">合同正式稿及相关附件</view>
     <layout-upload-img ref="onSaveUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;"></layout-upload-img>
-    <!-- <view class="flex f-between list-item" a:for="{{ detailInfo.fileList }}" a:key="index">
-      <view class="flex f-start" style="align-items:center" catchTap="downloadFile" data-url="{{item.url}}">
-        <image a:if="{{ item.url.indexOf('.pdf') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_pdf.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-        <image a:if="{{ item.url.indexOf('.ppt') !== -1 }}" mode="scaleToFill" src="/assets/images/file/icon_file_ppt.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-        <image a:if="{{ item.url.indexOf('.png') !== -1 || item.url.indexOf('.jpg') !== -1 || item.url.indexOf('.jpeg') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_image.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-        <image a:if="{{ item.url.indexOf('doc') !== -1 || item.url.indexOf('docx') !== -1}}" mode="scaleToFill" src="/assets/images/file/icon_file_word.png" style="width: 72rpx; height: 72rpx;margin-right:18rpx;" />
-        <view>
-          <view class="name">{{item.fileName}}</view>
-        </view>
-      </view>
-      <image class="down-icon" mode="scaleToFill" src="/assets/images/common/download.png"  catchTap="downloadFile" data-url="{{item.url}}"/>
-    </view> -->
   </view>
   <list>
     <!-- <list-item>

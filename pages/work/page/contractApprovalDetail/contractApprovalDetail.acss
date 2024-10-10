@@ -125,6 +125,7 @@
   background: #fff;
   margin-top: 18rpx;
   padding: 32rpx;
+  margin-bottom: 1px;
 }
 .file-list .title{
   font-size: 28rpx;

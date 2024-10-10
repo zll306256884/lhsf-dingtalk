@@ -31,6 +31,7 @@ Page({
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
+  uploadImageList: null,
   
   onLoad(options) {
     this.setData({
@@ -77,6 +78,9 @@ Page({
   onSaveOtherDocumentRef(ref){
     this.otherDocumentRef = ref
   },
+  onSaveBasisDocumentRef(ref){
+    this.basisDocumentRef = ref
+  },
   bindApprovalOperateTap(data){
     console.log(data)
     this.getDetail(this.data.tenderId)
@@ -117,6 +121,7 @@ Page({
         setTimeout(() => {
           this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:[]) 
           this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:[]) 
+          this.basisDocumentRef._setImageList(res.data.decisionBasisFileList?res.data.decisionBasisFileList:[])
         }, 0);
       }
     })

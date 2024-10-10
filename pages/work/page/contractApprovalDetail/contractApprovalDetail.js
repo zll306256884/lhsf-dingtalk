@@ -38,6 +38,8 @@ Page({
   },
   uploadContractImage: null,
   uploadImgRefList:null,
+  uploadBasisImgRefList: null,
+
   onLoad(options) {
     this.setData({
       currentAccount: app.globalData.userInfo.userId
@@ -90,6 +92,9 @@ Page({
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRefList = ref;
     console.log(this.uploadImgRefList)
+  },
+  onSaveBasisUploadImgRef: function (ref) {
+    this.uploadBasisImgRefList = ref;
   },
   // onSaveUploadContractImgRef(ref){
   //   this.uploadContractImage = ref
@@ -153,8 +158,14 @@ Page({
             e.name = e.fileName
           })
         }
+        if(res.data.basisSigning){
+          res.data.basisSigning.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:[]) 
+          this.uploadBasisImgRefList._setImageList(res.data.basisSigning?res.data.basisSigning:[]) 
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 

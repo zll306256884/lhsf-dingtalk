@@ -26,6 +26,7 @@ Page({
     countersignLeader: '',
     tenderDocumentList: [],
     otherDocumentList: [],
+    basisDocumentList: [],
     projectId: null,
     projectName: '',
     applicationTime: formatTimeToDay(new Date()),
@@ -34,7 +35,8 @@ Page({
     projectLeaderId: '',
     isShow: false,
     proType: null, //0工程，1非工程
-    loading: false
+    loading: false,
+    projectLeaderListOptions: []
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -42,6 +44,7 @@ Page({
   uploadOtherImgList: null,
   pickerDateRef: null,
   dialogScreenProject: null,
+  uploadImageList: null,
 
   onLoad(options) {
     this.form.rules = {
@@ -56,7 +59,9 @@ Page({
       biddingContent: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请选择' }],
       tenderDocumentList: [{required: true,message: '请上传'}],
-      applicationTime: [{ required: true, message: '请选择' }]
+      applicationTime: [{ required: true, message: '请选择' }],
+      projectLeaderId: [{ required: true, message: '请选择' }],
+      meetingTime:[{ required: true, message: '请选择' }]
     }
     console.log(options)
     if(options.id){
@@ -89,8 +94,11 @@ Page({
   onSaveUploadTenderImgRef(ref){
     this.uploadTenderImageList = ref
   },
-  onSaveUploaOtherImgRef(ref){
+  onSaveUploadOtherImgRef(ref){
     this.uploadOtherImgList = ref
+  },
+  onSaveUploadBasisImgRef(ref){
+    this.uploadImageList = ref
   },
   chooseProject(){
     if(this.dialogScreenProject) this.dialogScreenProject._showDialog()
@@ -131,11 +139,16 @@ Page({
     })
     this.form.setFieldValue('tenderingAgency', data.id);
   },
+  chooseMeetingTime(){
+    if(this.pickerDateRef) this.pickerDateRef._showDialog()
+  },
   bindPickerDateCannBack(data){
     this.setData({
-      applicationTime: data.startDate
+      // applicationTime: data.startDate
+      meetingTime: data.startDate
     })
-    this.form.setFieldValue('applicationTime', data.startDate);
+    // this.form.setFieldValue('applicationTime', data.startDate);
+    this.form.setFieldValue('meetingTime', data.startDate);
   },
   changeTenderName(data){
     console.log(data);
@@ -150,13 +163,13 @@ Page({
   bindChooseProjectCallBack(data){
     console.log(data)
     this.form.setFieldValue('projectId',data.id)
-    this.form.setFieldValue('projectLeader', data.projectLeaderName);
+    // this.form.setFieldValue('projectLeader', data.projectLeaderName);
     this.form.setFieldValue('affiliateUnit', data.affiliatedUnitName);
-    this.form.setFieldValue('projectLeaderId', data.personId);
+    // this.form.setFieldValue('projectLeaderId', data.personId);
     this.setData({
       projectId: data.id,
       projectName: data.name,
-      projectLeaderId: data.personId,
+      // projectLeaderId: data.personId,
       proType: data.proType
     })
     let tenderName = this.form.getFieldValue('tenderName') || ''
@@ -165,7 +178,30 @@ Page({
     }else{
       this.form.setFieldValue('title', '')
     }
-    
+    this.getProjectLeader()
+  },
+  chooseProjectLeader(data, column){
+    console.log(data, column)
+    this.setData({
+      projectLeaderId: column.personId
+    })
+    this.form.setFieldValue('projectLeader', column.name)
+  },
+  getProjectLeader(){
+    request.doPostRequest({
+      url: projectService.API_PROJECT_LEADER,
+      data: {projectId: this.data.projectId},
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.personId
+        })
+        console.log('项目负责人',res.data)
+        this.setData({
+          projectLeaderListOptions: res.data || []
+        })
+      }
+    })
   },
   getProjectList(){
     request.doPostRequest({
@@ -240,9 +276,15 @@ Page({
             e.name = e.fileName
           })
         }
+        if(res.data.basisDocumentList && res.data.basisDocumentList.length){
+          res.data.basisDocumentList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
           this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
+          this.uploadImageList._setImageList(res.data.uploadImageList?res.data.uploadImageList:'') 
         }, 0);
 
         if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
@@ -300,9 +342,21 @@ Page({
         otherDocumentList: list
       })
     }
+    if (this.uploadImageList) {
+      let list = this.uploadImageList._getUploadImgId().imgList
+      list.forEach(e => {
+        e.fileName = e.name
+        e.type= 4
+      })
+      this.setData({
+        basisDocumentList: list
+      })
+    }
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
+    params.basisDocumentList = this.data.basisDocumentList
     params.title = params.title.replace('招标文件会签：', '')
     params.projectLeaderId = this.data.projectLeaderId
+    params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/biddingManage/bidDocument/bidDocument/detail'
@@ -334,6 +388,7 @@ Page({
       params.urlParameter = JSON.stringify({})
     }
     params.projectLeaderId = this.data.projectLeaderId
+    params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
     params.title = params.title.replace('招标文件会签：', '')
     params.vueUrl = 'ApproveBidDocumentDetail,ApproveBidDocumentCreatAndEdit'
     params.singleUrl = '/pages/work/page/bidDocumentDetail/bidDocumentDetail'
@@ -366,9 +421,20 @@ Page({
         otherDocumentList: list
       })
     }
+    if (this.uploadImageList) {
+      let list = this.uploadImageList._getUploadImgId().imgList
+      list.forEach(e => {
+        e.fileName = e.name
+        e.type = 4
+      })
+      this.setData({
+        basisDocumentList: list
+      })
+    }
+    if(ddUtils.showEmptyArrayTips(this.data.basisDocumentList,"请上传决策依据证明文件！")) return
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
     console.log(params)
-    
+    params.basisDocumentList = this.data.basisDocumentList
     request.doPostRequest({
       url: projectService.API_SAVEANDSUBMIT,
       data: params,
