@@ -332,7 +332,7 @@ Page({
       this.getContractList()
       this.getEcological()
       this.getProjectLeader()
-    },1000)
+    },500)
   },
   chooseProjectLeader(data, column){
     console.log(data, column)
@@ -483,6 +483,12 @@ Page({
         this.setData({
           projectLeaderListOptions: res.data || []
         })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId
+          })
+        }
       }
     })
   },

@@ -200,6 +200,12 @@ Page({
         this.setData({
           projectLeaderListOptions: res.data || []
         })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId
+          })
+        }
       }
     })
   },
