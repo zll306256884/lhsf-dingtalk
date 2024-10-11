@@ -27,6 +27,10 @@ Page({
     },
     projectId: "",
     dialogScreenprojectRef: null, //项目名称
+    planStageOptions:  [
+      { value: 1, label: '前期计划' },
+      { value: 2, label: '施工计划' },
+    ],
   },
   onLoad(options) {
     console.log(options)
