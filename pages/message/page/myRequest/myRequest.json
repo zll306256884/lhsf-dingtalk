@@ -8,6 +8,8 @@
     "dialog-filter": "/pages/components/dialog/dialog-filter/dialog-filter",
     "tabs": "antd-mini/es/Tabs/index",
     "badge": "antd-mini/es/Badge/index",
-    "ant-loading": "antd-mini/es/Loading/index"
+    "ant-loading": "antd-mini/es/Loading/index",
+    "input": "antd-mini/es/Input/index",
+    "icon": "antd-mini/es/Icon/index"
   }
 }

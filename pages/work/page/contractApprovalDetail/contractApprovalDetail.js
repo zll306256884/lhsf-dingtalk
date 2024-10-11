@@ -13,6 +13,8 @@ Page({
         title:"详细信息",
       },{
         title:"审批记录",
+      },{
+        title:"流程图",
       }
     ],
     current: 0,
@@ -34,7 +36,8 @@ Page({
       { value: '2', label: '单位', text: '单位' },
       { value: '3', label: '个人', text:'个人' },
     ],
-    currentAccount: null
+    currentAccount: null,
+    imageUrl: ''
   },
   uploadContractImage: null,
   uploadImgRefList:null,
@@ -88,6 +91,9 @@ Page({
     this.setData({
       current: e
     })
+    if(e == 2){
+      this.getImage()
+    }
   },
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRefList = ref;
@@ -193,6 +199,8 @@ Page({
             title:"详细信息",
           },{
             title:"审批记录",
+          },{
+            title:"流程图",
           }]
           this.setData({
             items: list,
@@ -285,5 +293,16 @@ Page({
   downloadFile(e){
     let {url} = e.currentTarget.dataset
     ddFile.downloadFile(url)
+  },
+  async getImage() {
+    request.doPostRequest({
+      url: config.API_JFLOW_IMAGE,
+      data: {templateDict: this.data.detailInfo.contractType==1?'contract_audit_img' : 'contract_jflow_img'},
+      success: res => {
+        this.setData({
+          imageUrl: config.API_IMG_URL2+res.data.url
+        })
+      }
+    })
   }
 });

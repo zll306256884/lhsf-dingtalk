@@ -62,6 +62,10 @@
         </view>
   </view>
 </view>
-<block a:else>
+<block a:if="{{ current == 1 }}">
   <approval-item projectId={{infoData.id}} keyId={{infoData.id}}></approval-item>
 </block>
+
+<view a:if="{{ current===2 }}">
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
+</view>

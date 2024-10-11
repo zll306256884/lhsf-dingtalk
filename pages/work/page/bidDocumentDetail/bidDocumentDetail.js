@@ -16,6 +16,8 @@ Page({
         title:"详细信息",
       },{
         title:"审批记录",
+      },{
+        title:"流程图",
       }
     ],
     requestType: null,
@@ -27,7 +29,8 @@ Page({
     deleteId: null,
     isCurrentAudit: false,
     dingTalkFormList: [],
-    currentAccount: null
+    currentAccount: null,
+    imageUrl: ''
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
@@ -89,6 +92,9 @@ Page({
     this.setData({
       current: e
     })
+    if(e == 2){
+      this.getImage()
+    }
   },
   getDetail(tenderId){
     request.doPostRequest({
@@ -196,5 +202,16 @@ Page({
   downloadFile(e){
     let {url} = e.currentTarget.dataset
     ddFile.downloadFile(url)
+  },
+  async getImage() {
+    request.doPostRequest({
+      url: config.API_JFLOW_IMAGE,
+      data: {templateDict: 'tender_jflow_img'},
+      success: res => {
+        this.setData({
+          imageUrl: config.API_IMG_URL2+res.data.url
+        })
+      }
+    })
   }
 });

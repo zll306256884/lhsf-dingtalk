@@ -79,6 +79,10 @@
     <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
   </view>
 </view>
-<block a:else>
+<block a:if="{{ current===1 }}">
   <approval-item projectId={{detailInfo.projectId}} keyId={{detailInfo.id}}></approval-item>
 </block>
+
+<view a:if="{{ current===2 }}">
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
+</view>

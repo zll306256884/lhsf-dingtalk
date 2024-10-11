@@ -2,6 +2,7 @@ import confing from "../../../../server/workServer/addInvestment"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
 import workService from "../../../../server/workServer";
+import config from "/utils/config";
 Page({
   data: {
     navbarData: {
@@ -17,11 +18,14 @@ Page({
         title:"详细信息",
       },{
         title:"审批记录",
+      },{
+        title:"流程图",
       }
     ],
     requestType: null,
     current: 0,
-    dingTalkFormList: []
+    dingTalkFormList: [],
+    imageUrl:''
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -43,6 +47,9 @@ Page({
     this.setData({
       current: e
     })
+    if(e == 2){
+      this.getImage()
+    }
   },
   onSaveUploadContractImgRef(ref){
     this.uploadContractImage = ref
@@ -146,4 +153,15 @@ Page({
       }
     });
   },
+  async getImage() {
+    request.doPostRequest({
+      url: config.API_JFLOW_IMAGE,
+      data: {templateDict: 'completed_jflow_img '},
+      success: res => {
+        this.setData({
+          imageUrl: config.API_IMG_URL2+res.data.url
+        })
+      }
+    })
+  }
 });

@@ -97,9 +97,12 @@
   </view>
   
 </view>
-<view a:else>
+<view a:if="{{ current===1 }}">
   <view>
     <!--projectId-- 项目id  12019020004  keyId --- 列表中的keyid 1722516061045305346 -->
     <approval-item projectId={{projectId}} keyId={{id}}></approval-item>
   </view>
+</view>
+<view a:if="{{ current ==2 }}">
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
 </view>

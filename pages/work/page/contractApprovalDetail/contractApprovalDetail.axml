@@ -166,7 +166,7 @@
   <approval-item projectId={{detailInfo.projectId}} keyId={{detailInfo.id}}></approval-item>
 </block>
 
-<block a:if="{{ current === 2 }}">
+<block a:if="{{ current === 3 }}">
   <view class="supplement-list flex f-between" a:for="{{ supplementList }}" a:key="index" data-item="{{item}}"  catchTap="toDetail">
     <view>
       <view class="title">{{item.contractName}}</view>
@@ -177,3 +177,8 @@
     <image mode="scaleToFill" src="/assets/images/common/arrow-right.png" />
   </view>
 </block>
+
+<view a:if="{{ current === 2 }}">
+  <!-- https://linhaishefa.eos-shanghai-2.cmecloud.cn/bidding/1728617639957-%E8%BF%9B%E5%BA%A6%E5%9B%BE%20%282%29.png -->
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
+</view>
