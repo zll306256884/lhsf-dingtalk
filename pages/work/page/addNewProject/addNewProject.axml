@@ -14,6 +14,12 @@
 
     <form-picker label="是否考核项目" a:if="{{ proType== 0 }}" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
     <form-picker label="项目分类" a:if="{{ proType== 0 }}" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
+
+    <form-item label="项目来源" labelWidth="260rpx" name="sourceListName" required>
+      <view class="f-item" catchTap="_bindChooseSourceListName" style="{{sourceListName?'':'color:#ccc;font-size: 30rpx;'}}"> {{sourceListName?sourceListName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
+   
+    <form-textarea label="项目来源说明" maxLength="1000" position='vertical' allowClear name="projectSourceDescription" placeholder="请输入" autoHeight ref="handleRef" />
     <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" />
 
     <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
@@ -101,3 +107,5 @@
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 
 <dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>
+<!-- <dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef"  onScreenCallBack="bindScreenSourceListNameCallBack"></dialog-screen-project-source> -->
+<dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef"  onScreenCallBack="bindScreenSourceListNameCallBack"  bind:toggle="handleToggle" bind:select="handleSelect"></dialog-screen-project-source>

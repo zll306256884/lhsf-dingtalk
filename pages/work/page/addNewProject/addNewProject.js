@@ -36,6 +36,7 @@ Page({
     personId: '',
     carryPersonId:"",
     operatePersonId:"",
+    sourceListName:'',
 
     projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
@@ -59,6 +60,7 @@ Page({
   dialogActualDatRangeRef: null,
   dialogSuoshuUnit: null,
   dialogScreenExecuteUser: null,
+  dialogSourceListName:null,
   uploadImageList: null,
   userType:0,
   onLoad(options) {
@@ -124,6 +126,9 @@ Page({
   onSaveDialogScreenExecuteUserRef(ref){
     this.dialogScreenExecuteUser = ref
   },
+  onSaveDialogScreenSourceListNameRef(ref){
+    this.dialogSourceListName=ref
+  },
   _bindChooseProjectEndTime(){
     if(this.pickEndDate) this.pickEndDate._showDialog();
   },
@@ -153,6 +158,9 @@ Page({
     console.log('e-------------',e);
     this.userType=e.target.dataset.value
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
+  },
+  _bindChooseSourceListName(){
+    if(this.dialogSourceListName) this.dialogSourceListName._showDialog()
   },
   bindInputChange(e){
     // console.log('qweqw', e)
@@ -221,6 +229,12 @@ Page({
       affiliatedUnitName:data.name
     })
   },
+  bindScreenSourceListNameCallBack(data){
+    console.log('data',data);
+    this.setData({
+      sourceListName: data.map(i=>i.name).join(','),
+    })
+  },
   bindScreenExecuteUserCallBack(data){
     console.log('项目负责人',data)
     if(this.userType==0){
@@ -256,6 +270,7 @@ Page({
           outPutTime:res.data.outPutTime,
           // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
           // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
+          sourceListName:res.data.sourceListName,
           // 前期阶段负责人
           projectLeaderName: res.data.projectLeaderName,
           personId: res.data.personId,
@@ -411,7 +426,7 @@ Page({
     params.affiliatedUnitName = this.data.affiliatedUnitName
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
-
+    params.sourceListName= this.data.sourceListName
     // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId
@@ -463,6 +478,8 @@ Page({
     params.affiliatedUnitName = this.data.affiliatedUnitName
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
+    params.sourceListName= this.data.sourceListName
+
     // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId

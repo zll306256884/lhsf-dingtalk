@@ -1,0 +1,13 @@
+<view  class="item-company-staff-wrap">
+  <!-- a:if="{{isShow}}" -->
+  <block a:for="{{dataList}}">
+      <view class="flex f-align-center item" data-item="{{item}}" data-index="{{index}}" catchTap="_bindItemTap">
+          <view class="flex1 nickname single-line">
+              {{item.name}}
+          </view>
+          <block a:if="{{multiChoose}}">
+            <checkbox checked="{{item.isCheck}}" disabled="{{item.disabled}}"/>
+          </block> 
+      </view>
+  </block>
+</view>

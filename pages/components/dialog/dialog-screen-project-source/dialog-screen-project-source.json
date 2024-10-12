@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "item-project-source": "./item-project-source/item-project-source",
+    "layout-search": "/pages/components/layout/layout-search/layout-search"
+  }
+}
