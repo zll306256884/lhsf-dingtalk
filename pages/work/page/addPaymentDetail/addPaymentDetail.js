@@ -71,6 +71,27 @@ Page({
   onShow(){
     this.getDetail(this.data.id)
   },
+  onSelectInfo(e) {
+    let string=e.target.dataset.string
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.infoData.projectId}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.infoData.projectLeaderId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.infoData.contractId}`
+        }); 
+      break;
+
+    }
+  },
   // 切换我的请求tab
   onQueryChange(e) {
     this.setData({

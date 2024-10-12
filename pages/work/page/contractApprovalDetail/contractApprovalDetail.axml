@@ -14,7 +14,7 @@
   </view>
 
   <list>
-    <list-item extraBrief="{{detailInfo.projectName}}">项目名称</list-item>
+    <list-item data-string="project" onTap="onSelectInfo" arrow="right" extraBrief="{{detailInfo.projectName}}">项目名称</list-item>
     <list-item extraBrief="{{detailInfo.contractName}}">合同名称</list-item>
     <list-item extraBrief="{{detailInfo.contractNumber || '-'}}">合同号</list-item>
   </list>
@@ -22,7 +22,7 @@
   <view class="bottom-space" style="height:16rpx"></view>
   <list>
     <list-item extraBrief="{{detailInfo.projectAffiliation}}">项目所属单位</list-item>
-    <list-item extraBrief="{{detailInfo.projectLeader}}">项目负责人</list-item>
+    <list-item data-string="leader" onTap="onSelectInfo" arrow="right" extraBrief="{{detailInfo.projectLeader}}">项目负责人</list-item>
     <list-item extraBrief="{{['否','是'][detailInfo.supplementAgreement]}}">是否补充协议</list-item>
     <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}">主合同</list-item>
     <list-item extraBrief="{{detailInfo.projectType_dictText || '-'}}">项目类型</list-item>

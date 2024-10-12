@@ -163,6 +163,9 @@ Page({
     //   // })
     // }
   },
+  // onValueChange('proType'){
+  //   console.log(e)
+  // },
   onValuesChange(e){
     console.log(e)
   },
@@ -222,7 +225,7 @@ Page({
   //详情
   getDetail(id){
     const fields = this.form.getFieldsValue()
-    console.log(fields);
+    console.log('详情',fields);
     // this.form.setFieldValue('', )
 
     request.doPostRequest({
