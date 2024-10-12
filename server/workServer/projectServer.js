@@ -57,4 +57,6 @@ module.exports = {
   API_CONTRACT_DELETE: API_HOST + "/tender/contract/deleteByKeyIds",
   //合同分页 (和流程中心公用,项目里需要传项目id)
   API_CONTRACT_PAGE: API_HOST + "/tender/contract/page",
+  //查询项目负责人员信息
+  API_PROJECT_LEADER: API_HOST + "/integratedService/personManagementInfo/queryProjectLeaderInfo",
 }

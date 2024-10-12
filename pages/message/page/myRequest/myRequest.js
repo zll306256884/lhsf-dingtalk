@@ -80,7 +80,8 @@ Page({
       }
     ],
     type: [],
-    isSearchLoading: false
+    isSearchLoading: false,
+    taskName: ''
   },
 
   page: 1,
@@ -109,6 +110,20 @@ Page({
       //   url: '/pages/work/index'
       // })
     },
+  },
+  onConfirm(value) {
+    this.setData({
+      taskName: value
+    })
+    this.page = 1
+    this.getDataList(this.data.type)
+  },
+  onChange(value) {
+    this.setData({
+      taskName: value
+    })
+    this.page = 1
+    // this.getDataList(this.data.type)
   },
   onReachBottom() {
     this.getMoreDataList();
@@ -153,7 +168,7 @@ Page({
       asc: false,
       pageNum: this.page,
       pageSize: 10,
-      params: {status: this.data.tabIndex + 1, type: type},
+      params: {status: this.data.tabIndex + 1, type: type, title: this.data.taskName},
       sort: 'createTime'
     }
     request.doPostRequest({

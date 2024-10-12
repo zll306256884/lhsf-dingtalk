@@ -45,3 +45,6 @@
 .ant-input-placeholder{
   font-size: 28rpx;
 }
+.ant-list-body{
+  float: right;
+}

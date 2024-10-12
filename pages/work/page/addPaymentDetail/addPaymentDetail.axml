@@ -10,10 +10,10 @@
   </view>
   <list>
     <list-item extraBrief="{{infoData.projectType_dictText}}">项目类型</list-item>
-    <list-item extraBrief="{{infoData.projectName}}">项目名称</list-item>
-    <list-item extraBrief="{{infoData.projectLeader}}">项目负责人</list-item>
+    <list-item data-string="project" onTap="onSelectInfo" arrow="right" extraBrief="{{infoData.projectName}}">项目名称</list-item>
+    <list-item data-string="leader" onTap="onSelectInfo" arrow="right" extraBrief="{{infoData.projectLeader}}">项目负责人</list-item>
     <list-item extraBrief="{{infoData.affiliateUnit}}">所属单位</list-item>
-    <list-item extraBrief="{{infoData.contractName}}">合同名称</list-item>
+    <list-item data-string="contract" onTap="onSelectInfo" arrow="right" extraBrief="{{infoData.contractName}}">合同名称</list-item>
     <list-item extraBrief="{{infoData.contractAmount}}">合同金额(万元)</list-item>
     <!-- <list-item >
       补充协议
@@ -97,9 +97,12 @@
   </view>
   
 </view>
-<view a:else>
+<view a:if="{{ current===1 }}">
   <view>
     <!--projectId-- 项目id  12019020004  keyId --- 列表中的keyid 1722516061045305346 -->
     <approval-item projectId={{projectId}} keyId={{id}}></approval-item>
   </view>
+</view>
+<view a:if="{{ current ==2 }}">
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
 </view>

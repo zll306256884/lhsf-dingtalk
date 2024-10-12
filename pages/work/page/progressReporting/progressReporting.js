@@ -15,6 +15,7 @@ Page({
     },
     rules: {
       projectId: [{ required: true, message: '请选择' }],
+      planType: [{ required: true, message: '请选择' }],
     },
   }),
   data: {
@@ -27,6 +28,10 @@ Page({
     },
     projectId: "",
     dialogScreenprojectRef: null, //项目名称
+    planStageOptions:  [
+      { value: 1, label: '前期计划' },
+      { value: 2, label: '施工计划' },
+    ],
   },
   onLoad(options) {
     console.log(options)
@@ -54,22 +59,30 @@ Page({
   // 点击确定
   async bindSaveTap(e) {
     console.log(e);
-    console.log(this.form)
+    console.log('111', this.form)
     const params = await this.form.submit();
-    console.log(params)
+    console.log('222', params)
     // 
-    console.log(this.data.projectData.name);
-    console.log(this.data.projectId);
-    if (this.data.projectId && this.data.projectData.name) {
+    console.log('333', this.data.projectData.name);
+    console.log('444', this.data.projectId);
+    if (this.data.projectId && this.data.projectData.name && params.planType) {
       dd.navigateTo({
-        url: '/pages/work/page/progressDetail/progressDetail?id=' + this.data.projectId + '&name=' + this.data.projectData.name,
+        url: '/pages/work/page/progressDetail/progressDetail?id=' + this.data.projectId + '&name=' + this.data.projectData.name + '&planType=' + params.planType,
       })
     } else {
-      ddUtils.showModal({
-        content: "请选择项目",
-        success: res => {
-        }
-      });
+      if(!this.data.projectId) {
+        ddUtils.showModal({
+          content: "请选择项目",
+          success: res => {
+          }
+        });
+      }else{
+        ddUtils.showModal({
+          content: "请选择计划阶段",
+          success: res => {
+          }
+        });
+      }
     }
   },
   // 项目名称----组件start

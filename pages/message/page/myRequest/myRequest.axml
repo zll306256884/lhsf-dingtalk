@@ -19,8 +19,15 @@
     <image a:else mode="scaleToFill" src="/assets/images/common/funnel.png" style="width:32rpx;height:32rpx" catchTap="filterDialog" />
   </view>
 </view>
-
 <view style="height:67rpx;"></view>
+
+<view class="searchInput box-sizing-box">
+  <input placeholder="请输入" onChange="onChange" value="{{taskName}}" className="search-bar" focusClassName="search-bar-focus" confirm-type="search" allowClear onConfirm="onConfirm">
+    <icon slot="prefix" type="SearchOutline" />
+  </input>
+</view>
+<view style="height:58px;"></view>
+
 <view class="flex f-center" a:if="{{ isSearchLoading }}" style="margin-top:0px">
   <ant-loading type="spin" color="#000000" />
 </view>

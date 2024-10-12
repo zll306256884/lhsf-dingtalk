@@ -24,6 +24,7 @@ Page({
       remark: ""//情况说明,延期情况说明
 
     },
+    showDelayDetail: false
   },
   dialogStartDateRef: null, //实际开始时间 
   dialogEndDateRef: null, //实际结束时间 
@@ -69,6 +70,15 @@ Page({
           this.setData({
             detailData: res.data
           });
+          if (this.data.detailData.actualBeginTime > this.data.detailData.beginTime || this.data.detailData.actualEndTime > this.data.detailData.endTime) {
+            this.setData({
+              showDelayDetail: true
+            });
+          } else {
+            this.setData({
+              showDelayDetail: false
+            });
+          }
           // 附件的附着
           setTimeout(() => {
             this.uploadImageList._setImgList(JSON.parse(res.data.annexFile))
@@ -96,6 +106,15 @@ Page({
     this.setData({
       'detailData.actualBeginTime': data.startDate
     })
+    if (this.data.detailData.actualBeginTime > this.data.detailData.beginTime || this.data.detailData.actualEndTime > this.data.detailData.endTime) {
+      this.setData({
+        showDelayDetail: true
+      });
+    } else {
+      this.setData({
+        showDelayDetail: false
+      });
+    }
   },
   ///实际开始时间  ---end 
   //实际结束时间  ---start
@@ -111,6 +130,16 @@ Page({
     this.setData({
       'detailData.actualEndTime': data.startDate
     })
+
+    if (this.data.detailData.actualBeginTime > this.data.detailData.beginTime || this.data.detailData.actualEndTime > this.data.detailData.endTime) {
+      this.setData({
+        showDelayDetail: true
+      });
+    } else {
+      this.setData({
+        showDelayDetail: false
+      });
+    }
   },
   ///实际结束时间  ---end 
 
@@ -180,12 +209,12 @@ Page({
         });
         return
       }
-      if (!annexFile.length) {
-        ddUtils.showToast({
-          title: "请添加证明材料"
-        });
-        return
-      }
+      // if (!annexFile.length) {
+      //   ddUtils.showToast({
+      //     title: "请添加证明材料"
+      //   });
+      //   return
+      // }
     }
 
     // return

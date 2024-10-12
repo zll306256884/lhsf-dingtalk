@@ -11,12 +11,12 @@ const API_HOST = BASE_API_HOST + "/prod-api";
 
 
 const API_IMG_URL = "https://eos-shanghai-2.cmecloud.cn/";
-
-
+const API_IMG_URL2 = "https://linhaishefa.eos-shanghai-2.cmecloud.cn";
 
 module.exports = {
     API_HOST: API_HOST,
     API_IMG_URL: API_IMG_URL,
+    API_IMG_URL2: API_IMG_URL2,
     BASE_API_HOST: BASE_API_HOST,
     //查询oa组织下人员列表
     API_OA_COMPANY_STAFF_LIST: API_HOST + "/platform/organize/queryStaffList",
@@ -58,4 +58,6 @@ module.exports = {
     API_FILE_GETURL: API_HOST + "/platform/ddInfo/uploadFileDingTalk",
     //根据分管领导平台角色查询用户
     API_QUERY_USER_BY_ROLR: API_HOST + "/platform/user/queryUserByRole",
+    //查流程图
+    API_JFLOW_IMAGE: API_HOST + "/platform/templateImportDoc/selectImportTemplateByTypeDict"
 }

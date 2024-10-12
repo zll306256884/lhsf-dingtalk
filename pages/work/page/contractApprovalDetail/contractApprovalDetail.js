@@ -13,6 +13,8 @@ Page({
         title:"详细信息",
       },{
         title:"审批记录",
+      },{
+        title:"流程图",
       }
     ],
     current: 0,
@@ -34,10 +36,13 @@ Page({
       { value: '2', label: '单位', text: '单位' },
       { value: '3', label: '个人', text:'个人' },
     ],
-    currentAccount: null
+    currentAccount: null,
+    imageUrl: ''
   },
   uploadContractImage: null,
   uploadImgRefList:null,
+  uploadBasisImgRefList: null,
+
   onLoad(options) {
     this.setData({
       currentAccount: app.globalData.userInfo.userId
@@ -77,6 +82,27 @@ Page({
     this.getDetail(this.data.contractId)
     this.getMinContract()
   },
+  onSelectInfo(e) {
+    let string=e.target.dataset.string
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.detailInfo.projectId}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.detailInfo.projectLeaderId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.detailInfo.contractId}`
+        }); 
+      break;
+
+    }
+  },
   bindApprovalOperateTap(data){
     console.log(data)
     // this.getDetail(this.data.contractId)
@@ -86,10 +112,16 @@ Page({
     this.setData({
       current: e
     })
+    if(e == 2){
+      this.getImage()
+    }
   },
   onSaveUploadImgRef: function (ref) {
     this.uploadImgRefList = ref;
     console.log(this.uploadImgRefList)
+  },
+  onSaveBasisUploadImgRef: function (ref) {
+    this.uploadBasisImgRefList = ref;
   },
   // onSaveUploadContractImgRef(ref){
   //   this.uploadContractImage = ref
@@ -153,8 +185,14 @@ Page({
             e.name = e.fileName
           })
         }
+        if(res.data.basisSigning){
+          res.data.basisSigning.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:[]) 
+          this.uploadBasisImgRefList._setImageList(res.data.basisSigning?res.data.basisSigning:[]) 
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 
@@ -182,6 +220,8 @@ Page({
             title:"详细信息",
           },{
             title:"审批记录",
+          },{
+            title:"流程图",
           }]
           this.setData({
             items: list,
@@ -274,5 +314,16 @@ Page({
   downloadFile(e){
     let {url} = e.currentTarget.dataset
     ddFile.downloadFile(url)
+  },
+  async getImage() {
+    request.doPostRequest({
+      url: config.API_JFLOW_IMAGE,
+      data: {templateDict: this.data.detailInfo.contractType==1?'contract_audit_img' : 'contract_jflow_img'},
+      success: res => {
+        this.setData({
+          imageUrl: config.API_IMG_URL2+res.data.url
+        })
+      }
+    })
   }
 });

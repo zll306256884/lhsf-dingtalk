@@ -29,18 +29,21 @@
       
       <layout-field-cell a:if="{{ type===0 }}" name="情况说明" mustFillTransparent value="{{}}" hidden="{{false}}">
       </layout-field-cell>
-      <layout-field-cell a:if="{{ type!==0 }}" name="延期情况说明" mustFill value="{{}}" hidden="{{false}}">
-      </layout-field-cell>
+      <textarea a:if="{{ type===0 }}" class="reason" name="remark" maxlength="300" value="{{detailData.remark?detailData.remark:''}}" placeholder="请输入内容" 
+        placeholder-class="placeholder-class" style="padding-left:30rpx; margin-right:32rpx">
+      </textarea>
       
-      <textarea class="reason" name="remark" maxlength="300" value="{{detailData.remark?detailData.remark:''}}" placeholder="请输入内容" 
+      <layout-field-cell a:if="{{ type!==0 && showDelayDetail }}" name="延期情况说明" mustFill value="{{}}" hidden="{{false}}">
+      </layout-field-cell>      
+      <textarea a:if="{{ type!==0 && showDelayDetail }}" class="reason" name="remark" maxlength="300" value="{{detailData.remark?detailData.remark:''}}" placeholder="请输入内容" 
         placeholder-class="placeholder-class" style="padding-left:30rpx; margin-right:32rpx">
       </textarea>
     </view>
     
     <!--  -->
-    <view class="containerinner" style="margin-top:16rpx">
+    <view a:if="{{ showDelayDetail }}" class="containerinner" style="margin-top:16rpx">
       <view class="redline-title">
-        <view class='redStart' a:if="{{ type!==0 }}">*</view>
+        <!-- <view class='redStart' a:if="{{ type!==0 }}">*</view> -->
         证明材料:
       </view>
       <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef" maxCount='10' 

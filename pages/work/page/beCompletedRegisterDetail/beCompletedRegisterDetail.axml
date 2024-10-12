@@ -16,14 +16,14 @@
         </view> -->
         <form onSubmit="bindFormSubmit">
           <view class="box-shadow">
-            <layout-field-cell hidden="{{false}}"  name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" ></layout-field-cell>
-            <layout-field-cell hidden="{{false}}" borderTop  name="项目负责任人"  placeholder="请选择" value="{{infoData.projectLeader}}" ></layout-field-cell>
+            <layout-field-cell name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" datasetValue="project"  onArrowTap="onSelectInfo"></layout-field-cell>
+            <layout-field-cell borderTop  name="项目负责任人"  placeholder="请选择" value="{{infoData.projectLeader}}" datasetValue="leader" onArrowTap="onSelectInfo" ></layout-field-cell>
             <layout-field-cell hidden="{{false}}" borderTop  name="项目所属单位"  placeholder="请选择" value="{{infoData.affiliateUnit}}" ></layout-field-cell>
-            <layout-field-cell hidden="{{false}}" borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName || '-'}}"></layout-field-cell>
-            <layout-field-cell hidden={{false}} borderTop name="合同金额(万元)" value="{{infoData.contractAmount || '-'}}"></layout-field-cell>
-            <layout-field-cell hidden={{false}} borderTop name="承包商名称"  value="{{infoData.contractorName || '-'}}"></layout-field-cell>
+            <layout-field-cell borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName || '-'}}" datasetValue="contract" onArrowTap="onSelectInfo"></layout-field-cell>
+            <layout-field-cell hidden='{{false}}' borderTop name="合同金额(万元)" value="{{infoData.contractAmount || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden='{{false}}' borderTop name="承包商名称"  value="{{infoData.contractorName || '-'}}"></layout-field-cell>
             <layout-field-cell hidden="{{false}}" borderTop name="申请日期"  placeholder="请选择" value="{{infoData.applicationTime}}" ></layout-field-cell>
-            <layout-field-cell hidden="{{false}}" borderTop name="送审定价(万元)" disabled="" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial || '-'}}"></layout-field-cell>
+            <layout-field-cell hidden="{{false}}" borderTop name="送审定价(万元)" inputName="infoData.pricingTrial"  disabled="{{isEdit}}" value="{{infoData.pricingTrial || '-'}}"></layout-field-cell>
             <layout-field-cell hidden="{{false}}" name="净核算金额(万元)"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.adjust===1?'核减':infoData.adjust===2?'核增':''}}{{infoData.netAccountAmount || '/'}}" placeholder="请输入"></layout-field-cell>
             <layout-field-cell hidden="{{false}}" name="审定总价(万元)" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.approveTotalPrice || '-'}}"></layout-field-cell>
             <layout-field-cell hidden="{{false}}" name="签约价节超率(%)" borderTop  inputName="infoData.priceRate"  disabled="{{isEdit}}" value="{{infoData.priceRate || '-'}}"></layout-field-cell>
@@ -62,6 +62,10 @@
         </view>
   </view>
 </view>
-<block a:else>
+<block a:if="{{ current == 1 }}">
   <approval-item projectId={{infoData.id}} keyId={{infoData.id}}></approval-item>
 </block>
+
+<view a:if="{{ current===2 }}">
+  <image mode="scaleToFill" src="{{imageUrl}}" style="width:100%" />
+</view>

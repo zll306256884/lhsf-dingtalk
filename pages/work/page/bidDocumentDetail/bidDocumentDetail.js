@@ -16,6 +16,8 @@ Page({
         title:"详细信息",
       },{
         title:"审批记录",
+      },{
+        title:"流程图",
       }
     ],
     requestType: null,
@@ -27,10 +29,12 @@ Page({
     deleteId: null,
     isCurrentAudit: false,
     dingTalkFormList: [],
-    currentAccount: null
+    currentAccount: null,
+    imageUrl: ''
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
+  uploadImageList: null,
   
   onLoad(options) {
     this.setData({
@@ -77,14 +81,41 @@ Page({
   onSaveOtherDocumentRef(ref){
     this.otherDocumentRef = ref
   },
+  onSaveBasisDocumentRef(ref){
+    this.basisDocumentRef = ref
+  },
   bindApprovalOperateTap(data){
     console.log(data)
     this.getDetail(this.data.tenderId)
+  },
+  onSelectInfo(e) {
+    let string=e.target.dataset.string
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.detailInfo.projectId}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.detailInfo.projectLeaderId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.detailInfo.contractId}`
+        }); 
+      break;
+
+    }
   },
   onNavTabChange(e){
     this.setData({
       current: e
     })
+    if(e == 2){
+      this.getImage()
+    }
   },
   getDetail(tenderId){
     request.doPostRequest({
@@ -117,6 +148,7 @@ Page({
         setTimeout(() => {
           this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:[]) 
           this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:[]) 
+          this.basisDocumentRef._setImageList(res.data.decisionBasisFileList?res.data.decisionBasisFileList:[])
         }, 0);
       }
     })
@@ -191,5 +223,16 @@ Page({
   downloadFile(e){
     let {url} = e.currentTarget.dataset
     ddFile.downloadFile(url)
+  },
+  async getImage() {
+    request.doPostRequest({
+      url: config.API_JFLOW_IMAGE,
+      data: {templateDict: 'tender_jflow_img'},
+      success: res => {
+        this.setData({
+          imageUrl: config.API_IMG_URL2+res.data.url
+        })
+      }
+    })
   }
 });

@@ -13,6 +13,7 @@ Page({
     },
     listData: [1, 2, 3, 4, 5],
     projectId: '',
+    planType: null,
     flagNode: '',//是否为里程碑节点
     status: '',//筛选的状态
     // new
@@ -103,6 +104,7 @@ Page({
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
       projectId: query.id,
+      planType: query.planType,
       'navbarData.title': query.name,
     });
     console.log(this.data.projectId);
@@ -130,6 +132,7 @@ Page({
   getList: function () {
     let param = {
       "projectId": this.data.projectId,
+      "planType": this.data.planType,
       // "projectId": '12019020004',
       'status': this.data.status,
       'flagNode': this.data.flagNode,

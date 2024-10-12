@@ -96,7 +96,10 @@ Page({
     isShow: false,
     isShow2: false,
     biddingTypeOptions: [],
-    isChooseTenderDocumentId: null
+    isChooseTenderDocumentId: null,
+    projectLeaderListOptions: [],
+    basisSigningOptions: [],
+    basisShow: false
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -106,6 +109,7 @@ Page({
   uploadImageList: null,
   pickerDateRef: null,
   pickerEndDateRef: null,
+  uploadTenderImageList: null,
 
   onLoad(options) {
     this.form.rules = {
@@ -141,7 +145,9 @@ Page({
       developmentOrganizationPerson: [{ required: true, message: '请选择' }],
       developmentOrganizationNumber: [{ required: true, message: '身份证号格式有误！',pattern: /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[0-2])(([0-2][1-9])|10|20|30|31)\d{3}(\d|X|x)$/ }],
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
-      contractPeriodType: [{ required: true, message: '请选择' }]
+      contractPeriodType: [{ required: true, message: '请选择' }],
+      projectLeaderId: [{ required: true, message: '请选择' }],
+      basisSigning: [{ required: true, message: '请选择' }]
     }
     this.getCodeList()
     if(options.id){
@@ -176,6 +182,9 @@ Page({
   },
   onSaveUploadContractImgRef: function (ref) {
     this.uploadImageList = ref;
+  },
+  onSaveUploadBasisImgRef(ref){
+    this.uploadTenderImageList = ref
   },
   onSaveDialogScreenprojecteRef(ref){
     this.dialogScreenProject = ref
@@ -301,9 +310,9 @@ Page({
   bindChooseProjectCallBack(data){
     // this.form.setFieldValue('projectName',data.name)
     this.form.setFieldValue('projectId', data.id)
-    this.form.setFieldValue('projectLeader', data.projectLeaderName);
+    // this.form.setFieldValue('projectLeader', data.projectLeaderName);
     this.form.setFieldValue('affiliateUnit', data.affiliatedUnitName);
-    this.form.setFieldValue('projectLeaderId', data.personId);
+    // this.form.setFieldValue('projectLeaderId', data.personId);
     this.setData({
       projectId: data.id,
       projectName: data.name,
@@ -322,7 +331,22 @@ Page({
       this.getBiddingData(data.id)
       this.getContractList()
       this.getEcological()
-    },1000)
+      this.getProjectLeader()
+    },500)
+  },
+  chooseProjectLeader(data, column){
+    console.log(data, column)
+    this.setData({
+      projectLeaderId: column.personId
+    })
+    this.form.setFieldValue('projectLeader', column.name)
+  },
+  chooseSigningOptions(data, column){
+    this.setData({
+      tenderShow: data == 1?true: false,
+      showOther: data== 5?true:false,
+      basisShow: data != 1?true: false
+    })
   },
   bindScreenEcologicalUnitCallBack(data){
     this.form.setFieldValue('unitPartyName', data.name);
@@ -446,6 +470,28 @@ Page({
     })
     console.log(this.data.list)
   },
+  getProjectLeader(){
+    request.doPostRequest({
+      url: projectService.API_PROJECT_LEADER,
+      data: {projectId: this.data.projectId},
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.personId
+        })
+        console.log('项目负责人',res.data)
+        this.setData({
+          projectLeaderListOptions: res.data || []
+        })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId
+          })
+        }
+      }
+    })
+  },
   getBiddingData(projectId){
     request.doPostRequest({
       url: projectService.API_TENDERDOCUMENT_LIST,
@@ -540,6 +586,19 @@ Page({
           biddingTypeOptions: res.data || []
         })
       }
+    }),
+    request.doPostRequest({
+      url: config.API_SCREEN_STATUS_BY_CODE + 'basis_of_signing',
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.itemText
+          e.value = e.itemValue
+        })
+        console.log(res.data)
+        this.setData({
+          basisSigningOptions: res.data || []
+        })
+      }
     })
   },
   numberToChinese(num) {
@@ -623,6 +682,7 @@ Page({
     }
     
     params.projectLeaderId = this.data.projectLeaderId
+    params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
@@ -648,6 +708,16 @@ Page({
       e.type = 3
     })
     params.fileList = workAuditFile
+
+    let workAuditFile2 = [];
+    if (this.uploadTenderImageList) {
+      workAuditFile2 = this.uploadTenderImageList._getUploadImgId().imgList;
+    }
+    workAuditFile2.forEach(e => {
+      e.fileName = e.name
+      e.type = 4
+    })
+    params.decisionBasisFileList = workAuditFile2
 
     request.doPostRequest({
       url: projectService.API_CONTRACT_TEMPORARY_STORAGE,
@@ -698,6 +768,7 @@ Page({
       params.title = params.title.replace('直接添加合同：', '')
     }
     params.projectLeaderId = this.data.projectLeaderId
+    params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
@@ -725,12 +796,22 @@ Page({
       workAuditFile = this.uploadImageList._getUploadImgId().imgList;
     }
     if(ddUtils.showEmptyArrayTips(workAuditFile,"请上传合同正式稿及相关附件！")) return
-    
     workAuditFile.forEach(e => {
       e.fileName = e.name
       e.type = 3
     })
     params.fileList = workAuditFile
+
+    let workAuditFile2 = [];
+    if (this.uploadTenderImageList) {
+      workAuditFile2 = this.uploadTenderImageList._getUploadImgId().imgList;
+    }
+    workAuditFile2.forEach(e => {
+      e.fileName = e.name
+      e.type = 4
+    })
+    params.decisionBasisFileList = workAuditFile2
+    if(ddUtils.showEmptyArrayTips(workAuditFile2,"请上传合同正式稿及相关附件！")) return
 
     request.doPostRequest({
       url: projectService.API_CONTRACT_SAVEANDSUBMIT,
@@ -852,6 +933,7 @@ Page({
         }
         setTimeout(() => {
           this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
+          this.uploadTenderImageList._setImageList(paramsdata.decisionBasisFileList?paramsdata.decisionBasisFileList:[])
 
           this.form.setFieldValue('developmentOrganizationPerson', paramsdata.developmentOrganizationPerson)
           this.form.setFieldValue('developmentOrganizationNumber', paramsdata.developmentOrganizationNumber)
