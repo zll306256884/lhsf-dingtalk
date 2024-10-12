@@ -28,7 +28,7 @@
     <list-item extraBrief="{{detailInfo.projectType_dictText || '-'}}">项目类型</list-item>
 
     <!-- <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item> -->
-    <list-item extraBrief="{{detailInfo.basisSigning || '-'}}">合同签订依据</list-item>
+    <list-item extraBrief="{{detailInfo.basisSigning_dictText || '-'}}">合同签订依据</list-item>
     
 
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.basisSigning == 1 }}" extraBrief="{{detailInfo.tenderDocumentId === '1'?'格式招标文件':detailInfo.tenderName}}">选择招标文件</list-item>
