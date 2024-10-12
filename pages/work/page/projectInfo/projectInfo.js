@@ -82,6 +82,28 @@ Page({
   onShow(){
     this.getDetail(this.data.projectId)
   },
+  onSelectInfo(e) {
+    console.log('????????????????????????????????????????');
+    let string=e.target.dataset.value
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.formData.id}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.formData.personId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.formData.contractId}`
+        }); 
+      break;
+
+    }
+  },
   getDetail(id){
     request.doPostRequest({
       url: projectService.API_SELECTPROJECT_INFO_BYID,

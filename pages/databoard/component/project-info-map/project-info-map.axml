@@ -31,7 +31,7 @@
       <view class="item-info f-between">
         <view class="item-lable">总投资额:
           <text class="item-value">{{info.totalInvestment || '-'}}万元</text></view>
-        <view class="item-lable">建筑面积:
+        <view class="item-lable" a:if="{{info.proType == 0}}">建筑面积:
           <text class="item-value">{{info.structureArea || '-'}}平方米</text></view>
         <view class="item-lable">建安费用:
           <text class="item-value">{{info.jianAnMoney || '-'}}万元</text></view>

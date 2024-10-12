@@ -5,15 +5,15 @@
       项目信息
     </view>
     
-    <form-input label="项目码" name="projectCode" placeholder="请输入" type="text" ref="handleRef" />
+    <form-input label="项目码" a:if="{{ proType== 0 }}" name="projectCode" placeholder="请输入" type="text" ref="handleRef" />
     <form-input label="项目编号" name="proNumber" placeholder="请输入" type="text" disabled ref="handleRef" />
     <form-input label="项目名称" name="name" placeholder="请填写项目名称全称" type="text" ref="handleRef" />
-    <form-input label="项目简称" name="projectProgram" placeholder="请输入" type="text" ref="handleRef" />
+    <form-input label="项目简称" a:if="{{ proType== 0 }}" name="projectProgram" placeholder="请输入" type="text" ref="handleRef" />
 
-    <form-picker label="项目类型" arrow name="proType" options="{{proTypeList}}" ref="handleRef" labelWidth="280rpx" />
+    <form-picker label="项目类型" arrow name="proType" options="{{proTypeList}}" ref="handleRef" labelWidth="280rpx" onValueChange="onValueChange"/>
 
-    <form-picker label="是否考核项目" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
-    <form-picker label="项目分类" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
+    <form-picker label="是否考核项目" a:if="{{ proType== 0 }}" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
+    <form-picker label="项目分类" a:if="{{ proType== 0 }}" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
     <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" />
 
     <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
@@ -24,8 +24,8 @@
       <form-picker label="所属单位" arrow name="affiliatedUnitId" options="{{affiliatedUnitOption}}" disabled ref="handleRef" />
     </view>
 
-    <form-picker label="建设性质" arrow name="constructionNature" options="{{constructionNatureOptions}}" ref="handleRef" />
-    <form-picker label="工程性质" arrow name="engineeringProperties" options="{{engineeringPropertiesOptions}}" ref="handleRef" />
+    <form-picker label="建设性质" a:if="{{ proType== 0 }}" arrow name="constructionNature" options="{{constructionNatureOptions}}" ref="handleRef" />
+    <!-- <form-picker label="工程性质" arrow name="engineeringProperties" options="{{engineeringPropertiesOptions}}" ref="handleRef" /> -->
     <!-- <layout-field-cell borderBottom name="项目负责人" mustFill value="{{projectLeaderName}}" placeholder="请选择" onArrowTap="_bindChooseProjectLeaderName"></layout-field-cell> -->
     <!-- <view catchTap="_bindChooseProjectLeaderName">
       <form-input label="项目负责人" name="projectLeaderName" placeholder="请输入" ref="handleRef" disabled>{{projectLeaderName}}<icon slot="suffix" type="RightOutline" /></form-input>
@@ -37,7 +37,7 @@
 
     <form-textarea label="建设规模及内容" position='vertical' name="constructionContent" placeholder="请输入" allowClear maxLength="1000" autoHeight ref="handleRef" />
   </view>
-  <view class="containerinner" style="margin-top:16rpx">
+  <view class="containerinner" style="margin-top:16rpx"  a:if="{{ proType== 0 }}">
     <form-input label="建筑面积(平方米)" labelWidth="280rpx" name="structureArea" placeholder="请输入" type="number" ref="handleRef" />
     <form-input label="占地面积(平方米)" labelWidth="280rpx" name="floorArea" placeholder="请输入" type="number" ref="handleRef" />
 
@@ -57,13 +57,13 @@
       <view class="f-item" catchTap="_bindChooseActualConstruction" style="{{actualConstruction?'':'color:#ccc;font-size: 30rpx;'}}"> {{actualConstruction?actualConstruction:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;"/></view>
     </form-item>
   </view>
-  <view class="containerinner" style="margin-top:16rpx">
+  <view class="containerinner" style="margin-top:16rpx" a:if="{{ proType== 0 }}">
     <view class="redline-title">
       项目红线图
     </view>
     <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadImgRef"></layout-upload-img>
   </view>
-  <view class="containerinner" style="margin-top:16rpx">
+  <view class="containerinner" style="margin-top:16rpx" a:if="{{ proType== 0 }}">
     <view class="title"> 项目坐标 </view>
     <form-input label="X" name="coorX" placeholder="请按照国标2000坐标填写" type="number" ref="handleRef" />
     <form-input label="Y" name="coorY" placeholder="请按照国标2000坐标填写" type="number" ref="handleRef" />

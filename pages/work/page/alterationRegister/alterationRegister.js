@@ -49,7 +49,7 @@ Page({
     dialogScreenExecuteUserRef: null,
     contractData: {},//合同名称
     defaultPerson: [],//默认抄送人员
-    currentType: '1',
+    currentType: '',
     pickerVisible:false,
     leaderList: [],
   },
@@ -70,9 +70,8 @@ Page({
     if (option.id) {
       this.data.disabled = true
       this.getDetail(option.id)
-    } else {
-      this.getRoleList()
     }
+    this.getRoleList()
     if (option.sort === '1') {
       this.data.navbarData.title = '编辑工程联系单'
     } else {
@@ -253,10 +252,10 @@ Page({
       }
       this.setData({
         subLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
-        person: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
+        subLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
       });
       this.form.setFieldValue('subLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
-      this.form.setFieldValue('person', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
+      this.form.setFieldValue('subLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
     } else if (this.data.currentType === '1') {
       const seenIds = new Map();
       this.chooseExecuteUserList = this.data.defaultPerson.concat(list).filter(item => {
@@ -329,7 +328,9 @@ Page({
           person_text: res.data.person_dictText,
           person: res.data.person,
           subLeader_text: res.data.subLeader_dictText,
-          subLeader: res.data.subLeader
+          subLeader: res.data.subLeader,
+          projectId: res.data.projectId,
+          code: res.data.code
         });
         this.form.setFieldValue('projectName', res.data.projectName)
         this.form.setFieldValue('projectId', res.data.projectId)
@@ -353,6 +354,8 @@ Page({
         this.form.setFieldValue('person', res.data.person)
         this.form.setFieldValue('subLeader_text', res.data.subLeader_dictText)
         this.form.setFieldValue('subLeader', res.data.subLeader)
+        this.form.setFieldValue('code', res.data.code)
+        this.getProjectLeaderInfo()
         const files = res.data.investmentFileList.map((item) => {
           return {
             ...item,
@@ -418,7 +421,7 @@ Page({
       if (ddUtils.showEmptyArrayTips(alterList, "请上传相关附件")) return;
       alterList.forEach(e => {
         e.fileName = e.name
-        e.type = 5
+        e.type = 6
       })
       params.alterFileList = alterList
     }

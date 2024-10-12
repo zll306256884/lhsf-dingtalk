@@ -16,8 +16,8 @@
   <list>
     
     <list-item extraBrief="{{detailInfo.title}}">标题</list-item>
-    <list-item extraBrief="{{detailInfo.projectName}}">项目名称</list-item>
-    <list-item extraBrief="{{detailInfo.projectLeader}}">项目负责人</list-item>
+    <list-item extraBrief="{{detailInfo.projectName}}" data-string="project" onTap="onSelectInfo" arrow="right">项目名称</list-item>
+    <list-item extraBrief="{{detailInfo.projectLeader}}" data-string="leader" onTap="onSelectInfo" arrow="right">项目负责人</list-item>
     <list-item extraBrief="{{detailInfo.affiliateUnit}}">项目所属单位</list-item>
 
     <list-item extraBrief="{{detailInfo.tenderingAgencyName}}">招标代理单位</list-item>
