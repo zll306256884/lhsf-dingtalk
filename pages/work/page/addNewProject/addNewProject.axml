@@ -30,10 +30,16 @@
     <!-- <view catchTap="_bindChooseProjectLeaderName">
       <form-input label="项目负责人" name="projectLeaderName" placeholder="请输入" ref="handleRef" disabled>{{projectLeaderName}}<icon slot="suffix" type="RightOutline" /></form-input>
     </view> -->
-    <form-item label="项目负责人" labelWidth="260rpx" name="projectLeaderName" required>
-      <view class="f-item" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    <form-item label="前期阶段负责人" labelWidth="260rpx" name="projectLeaderName" required>
+      <view class="f-item" data-value="{{0}}" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
+    <form-item label="实施阶段负责人" labelWidth="260rpx" name="carryLeaderName">
+      <view class="f-item" data-value="{{1}}" catchTap="_bindChooseProjectLeaderName" style="{{carryLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{carryLeaderName?carryLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
     </form-item>
 
+    <form-item label="运营阶段负责人" labelWidth="260rpx" name="operateLeaderName">
+      <view class="f-item" data-value="{{2}}" catchTap="_bindChooseProjectLeaderName" style="{{operateLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{operateLeaderName?operateLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
 
     <form-textarea label="建设规模及内容" position='vertical' name="constructionContent" placeholder="请输入" allowClear maxLength="1000" autoHeight ref="handleRef" />
   </view>

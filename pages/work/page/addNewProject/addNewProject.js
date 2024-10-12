@@ -31,7 +31,11 @@ Page({
     ],
     affiliatedUnitName: '',//所属单位
     projectLeaderName: '',//项目负责人
+    carryLeaderName:"",
+    operateLeaderName:"",
     personId: '',
+    carryPersonId:"",
+    operatePersonId:"",
 
     projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
@@ -56,7 +60,7 @@ Page({
   dialogSuoshuUnit: null,
   dialogScreenExecuteUser: null,
   uploadImageList: null,
-
+  userType:0,
   onLoad(options) {
     console.log(options)
     this.form.rules = {
@@ -145,7 +149,9 @@ Page({
   _bindChooseAffiliatedUnit(){
     if(this.dialogSuoshuUnit) this.dialogSuoshuUnit._showDialog()
   },
-  _bindChooseProjectLeaderName(){
+  _bindChooseProjectLeaderName(e){
+    console.log('e-------------',e);
+    this.userType=e.target.dataset.value
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   bindInputChange(e){
@@ -217,10 +223,23 @@ Page({
   },
   bindScreenExecuteUserCallBack(data){
     console.log('项目负责人',data)
-    this.setData({
-      projectLeaderName: data[0].username,
-      personId: data[0].userId
-    })
+    if(this.userType==0){
+      this.setData({
+        projectLeaderName: data[0].username,
+        personId: data[0].userId
+      })
+    }else if(this.userType==1){
+      this.setData({
+        carryLeaderName: data[0].username,
+        carryPersonId: data[0].userId
+      })
+    }else if(this.userType==2){
+      this.setData({
+        operateLeaderName: data[0].username,
+        operatePersonId: data[0].userId
+      })
+    }
+    console.log('data------',this.data);
   },
   //详情
   getDetail(id){
@@ -237,8 +256,16 @@ Page({
           outPutTime:res.data.outPutTime,
           // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
           // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
+          // 前期阶段负责人
           projectLeaderName: res.data.projectLeaderName,
           personId: res.data.personId,
+          // 实施阶段负责人
+          carryLeaderName: res.data.carryLeaderName,
+          carryPersonId: res.data.carryPersonId,
+          // 运营阶段负责人
+          operateLeaderName: res.data.operateLeaderName,
+          operatePersonId: res.data.operatePersonId,
+
           duration: res.data.duration,
           affiliatedUnitName: res.data.affiliatedUnitName,
           actualConstructionEndTime: res.data.actualConstructionEndTime,
@@ -385,8 +412,15 @@ Page({
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
 
+    // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId
+    // 实施阶段负责人
+    params.carryLeaderName= this.data.carryLeaderName,
+    params.carryPersonId=this.data.carryPersonId,
+    // 运营阶段负责人
+    params.operateLeaderName= this.data.operateLeaderName,
+    params.operatePersonId= this.data.operatePersonId,
 
     params.duration = this.data.duration,
     params.planConstructionStartTime = this.data.planConstructionStartTime,
@@ -429,9 +463,15 @@ Page({
     params.affiliatedUnitName = this.data.affiliatedUnitName
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
-
+    // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId
+     // 实施阶段负责人
+     params.carryLeaderName= this.data.carryLeaderName,
+     params.carryPersonId=this.data.carryPersonId,
+     // 运营阶段负责人
+     params.operateLeaderName= this.data.operateLeaderName,
+     params.operatePersonId= this.data.operatePersonId,
 
     params.duration = this.data.duration,
     params.planConstructionStartTime = this.data.planConstructionStartTime,

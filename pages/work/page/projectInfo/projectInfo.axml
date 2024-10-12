@@ -25,7 +25,10 @@
         <layout-field-cell  a:if="{{ formData.proType== 0 }}"  borderBottom name="建设性质" mustFillTransparent disabled hidden="{{false}}" value="{{constructionNature.name || '-'}}"></layout-field-cell>
         <layout-field-cell  a:if="{{ formData.proType== 0 }}" borderBottom name="工程性质" mustFillTransparent disabled hidden="{{false}}" value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
         
-        <layout-field-cell borderBottom name="项目负责人" mustFillTransparent value="{{formData.projectLeaderName || '-'}}" datasetValue="leader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="前期阶段负责人" mustFillTransparent value="{{formData.projectLeaderName || '-'}}" datasetValue="projectLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="实施阶段负责人" mustFillTransparent value="{{formData.carryLeaderName || '-'}}"  datasetValue="carryLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="运营阶段负责人" mustFillTransparent value="{{formData.operateLeaderName || '-'}}"  datasetValue="operateLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+
         <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
         <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
       </view>

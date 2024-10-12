@@ -83,7 +83,6 @@ Page({
     this.getDetail(this.data.projectId)
   },
   onSelectInfo(e) {
-    console.log('????????????????????????????????????????');
     let string=e.target.dataset.value
     switch (string) {
       case 'project':
@@ -91,9 +90,12 @@ Page({
           url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.formData.id}`
         });
       break;
-      case 'leader':
+      case 'projectLeader':
+      case 'carryLeader':
+      case 'operateLeader':
+        let userId=string=='projectLeader'?this.data.formData.personId:string=='carryLeader'?this.data.formData.carryPersonId:this.data.formData.operatePersonId
         ddUtils.navigateTo({
-          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.formData.personId}`
+          url: `/pages/user/page/baseinfo/baseinfo?id=${userId}`
         });
       break;
       case 'contract':
