@@ -1,8 +1,9 @@
 <!--<nav-bar navbarData="{{navbarData}}"></nav-bar> -->
+<!--  -->
 <view class="container box-sizing-box">
   <!--  -->
   <view>
-    <selector defaultValue="1" value="{{logType}}" onChange="handleChange" options="{{items1}}" className='topSelect' activeItemClassName='bac' />
+    <selector defaultValue="{{logType}}" value="{{logType}}" onChange="handleChange" options="{{items1}}"  ref="_onSaveTabsRef" className='topSelect' activeItemClassName='bac' />
   </view>
   <!--  -->
   <view class="listBox box-sizing-box">
@@ -13,7 +14,7 @@
           <image class="bottomImg" mode="aspectFill" src="../../../../assets/images/log/Rectangle.png" />
         </view>
         <!--  -->
-        <view class="navContent flex f-column" a:for="{{item.appProjectLogResponseList}}" a:for-item="itemDay" a:for-index="dayIndex">
+        <view class="navContent flex f-column" a:for="{{item.appProjectLogResponseList}}" a:for-item="itemDay" a:for-index="dayIndex"> 
           <view class="navPark flex f-start">
             <view class="timeCell flex f-start">
               <view class="day">{{itemDay.day}}</view>
