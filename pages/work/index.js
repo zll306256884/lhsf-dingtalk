@@ -202,7 +202,7 @@ Page({
     };
     request.doPostRequest({
       url: apiApprovalManage.API_ALL_WAIT_LIST,
-      data,
+      data: { belongModule: [2, 3, 4, 6, 8, 9]},
       success: res => {
         this.data.tabs1[0].count = res.data.waitAuditNum,
           this.data.tabs1[1].count = res.data.waitMissionNum,
