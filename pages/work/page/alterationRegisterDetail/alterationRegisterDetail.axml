@@ -29,17 +29,17 @@
 
   <form onSubmit="bindFormSubmit">
     <view class="box-shadow">
-      <layout-field-cell  name="联系单名称" hidden="{{false}}" placeholder="请选择" value="{{infoData.contactNoticeName}}" ></layout-field-cell>
-      <layout-field-cell borderTop name="项目名称" hidden="{{false}}"  placeholder="请选择"  value="{{infoData.projectName}}"></layout-field-cell>
-      <layout-field-cell hidden={{false}} borderTop name="项目负责人"    value="{{infoData.projectLeader}}"></layout-field-cell>
-      <layout-field-cell hidden={{false}} borderTop name="所属单位"    value="{{infoData.affiliateUnit}}"></layout-field-cell>
+      <layout-field-cell name="联系单名称" hidden="{{false}}" placeholder="请选择" value="{{infoData.contactNoticeName}}" ></layout-field-cell>
+      <layout-field-cell borderTop name="项目名称" placeholder="请选择"  value="{{infoData.projectName}}"  datasetValue="project"  onArrowTap="onSelectInfo"></layout-field-cell>
+      <layout-field-cell borderTop name="项目负责人"  value="{{infoData.projectLeader}}" datasetValue="leader"  onArrowTap="onSelectInfo"></layout-field-cell>
+      <layout-field-cell hidden="{{false}}" borderTop name="所属单位"  value="{{infoData.affiliateUnit}}"></layout-field-cell>
       <layout-field-cell borderTop hidden="{{false}}" name="项目累计变更(万元)"   value="{{infoData.projectChangeAmount}}" ></layout-field-cell>
-      <layout-field-cell borderTop hidden="{{false}}" name="合同名称"   disabled="{{isEdit}}" value="{{infoData.contractName}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell borderTop name="合同名称"  disabled="{{isEdit}}" value="{{infoData.contractName}}" placeholder="请输入" datasetValue="contract"  onArrowTap="onSelectInfo"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="合同金额(万元)"  borderTop   disabled="{{isEdit}}" value="{{infoData.contractAmount}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="变更金额(万元)" borderTop    disabled="{{isEdit}}" value="{{infoData.changeAmount}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" borderTop name="合同累计变更(万元)"   disabled="{{isEdit}}" value="{{infoData.contractCumulativeChange}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="合同变更率"  borderTop   disabled="{{isEdit}}" value="{{infoData.contractChangeRate}}" placeholder="请输入"></layout-field-cell>
-      <layout-field-cell  hidden="{{false}}" name="申请会签批准日期" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.countersignDate}}" placeholder="请输入"></layout-field-cell>
+      <layout-field-cell hidden="{{false}}" name="申请会签批准日期" borderTop  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.countersignDate}}" placeholder="请输入"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="变更内容完成时间"  borderTop inputName="netAccountAmount"  disabled="{{isEdit}}" value="{{infoData.changeContentTime}}"></layout-field-cell>
       <layout-field-cell hidden="{{false}}" name="施工单位上报日期" borderTop borderBottom  inputName="infoData.approveTotalPrice"  disabled="{{isEdit}}" value="{{infoData.constructionUnitReportDate}}" placeholder="请输入"></layout-field-cell>
        <view class="ReportDate">

@@ -77,6 +77,27 @@ Page({
     this.getDetail(this.data.contractId)
     this.getMinContract()
   },
+  onSelectInfo(e) {
+    let string=e.target.dataset.string
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.detailInfo.projectId}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.detailInfo.projectLeaderId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.detailInfo.contractId}`
+        }); 
+      break;
+
+    }
+  },
   bindApprovalOperateTap(data){
     console.log(data)
     // this.getDetail(this.data.contractId)

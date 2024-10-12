@@ -108,6 +108,28 @@ Page({
       }
     });
   },
+  onSelectInfo(e) {
+    console.log('触发',e);
+    let string=e.target.dataset.value
+    switch (string) {
+      case 'project':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.infoData.projectId}`
+        });
+      break;
+      case 'leader':
+        ddUtils.navigateTo({
+          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.infoData.projectLeaderId}`
+        });
+      break;
+      case 'contract':
+        ddUtils.navigateTo({
+          url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.infoData.contractId}`
+        }); 
+      break;
+
+    }
+  },
   editTap:function(){
     ddUtils.navigateTo({
       url: `/pages/work/page/beCompletedRegister/beCompletedRegister??id=${this.data.id}&sort=${1}`
