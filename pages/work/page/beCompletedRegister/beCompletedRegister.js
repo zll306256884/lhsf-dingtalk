@@ -1,3 +1,4 @@
+const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
@@ -48,11 +49,24 @@ Page({
     departmentManager: '',
     countersignLeader: '',
     leaderList: [],
-    loading: false
+    loading: false,
+    earlyStageLeaderId: '',
+    earlyStageLeader: '',
+    carryPersonId: '',
+    carryLeaderName: '',
+    operatePersonId: '',
+    operateLeaderName: '',
+    projectTypeId: '',
+    userId: '',
+    projectListOptions: []
   },
   dialogScreenDepartmentManager: null,
   dialogScreenCountersignLeader: null,
   onLoad(option) {
+    this.setData({
+      userId: app.globalData.userInfo.userId
+    })
+    this.getProjectList()
     this.getLeaderList()
     let date = new Date().toLocaleString()
     for (var i = 0; i < date.length; i++) {
@@ -64,9 +78,11 @@ Page({
     this.setData({
       id:option.id
     })
-    if(option.id){
-      this.getEdit(option.id) 
-    }
+    setTimeout(() => {
+      if(option.id){
+        this.getEdit(option.id) 
+      }
+    }, 500)
     if(option.sort === '1'){
        this.data.disabled = true
       this.data.navbarData.title = '编辑竣工结算登记'
@@ -233,8 +249,21 @@ bindChooseProjectCallBack: function (data) {
     'contractData.contractName':'',
     "contractData.contractId":'',
     contractAmount:'',
-    contractorName:''
+    contractorName:'',
+    earlyStageLeaderId: data.personId,
+    earlyStageLeader: data.projectLeaderName,
+    carryPersonId: data.carryPersonId,
+    carryLeaderName: data.carryLeaderName,
+    operatePersonId: data.operatePersonId,
+    operateLeaderName: data.operateLeaderName,
   });
+  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.setFieldValue('projectName',data.name)
   this.form.setFieldValue('projectId',data.id)
   this.form.setFieldValue('contractName','')
@@ -365,6 +394,21 @@ bindChooseApplyDateCallBack(data){
 onSaveUploadImgRef: function (ref) {
   this.uploadImageList = ref;
 },
+getProjectList(){
+  request.doPostRequest({
+    url: config.API_PROJECT_NAME,
+    success: res => {
+      res.data.forEach(e => {
+        e.label = e.name
+        e.value = e.id
+      })
+      console.log(res.data)
+      this.setData({
+        projectListOptions: res.data || []
+      })
+    }
+  })
+},
 // 编辑
 getEdit(id){
 request.doPostRequest({
@@ -388,7 +432,13 @@ request.doPostRequest({
       investmentFileList:res.data.investmentFileList,
       projectLeaderId: res.data.projectLeaderId,
       departmentManager: res.data.departmentManager,
-      countersignLeader: res.data.countersignLeader
+      countersignLeader: res.data.countersignLeader,
+      earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+      earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+      carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+      carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+      operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+      operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
     })
     this.form.setFieldValue('projectName', res.data.projectName)
     this.form.setFieldValue('contractName', res.data.contractName)
@@ -450,6 +500,13 @@ request.doPostRequest({
 })
 },
 async staging(){
+  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   console.log(params)
@@ -492,6 +549,13 @@ async staging(){
   })
 },
 async submit(){
+  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   const params = await this.form.submit();
   this.setData({
     loading: true

@@ -104,7 +104,7 @@ Page({
     // query 参数为 dd.navigateTo 和 dd.redirectTo 中传递的 query 对象。
     this.setData({
       projectId: query.id,
-      planType: query.planType,
+      planType: parseInt(query.planType),
       'navbarData.title': query.name,
     });
     console.log(this.data.projectId);

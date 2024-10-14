@@ -1,3 +1,4 @@
+const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
@@ -99,7 +100,16 @@ Page({
     isChooseTenderDocumentId: null,
     projectLeaderListOptions: [],
     basisSigningOptions: [],
-    basisShow: false
+    basisShow: false,
+    earlyStageLeaderId: '',
+    earlyStageLeader: '',
+    carryPersonId: '',
+    carryLeaderName: '',
+    operatePersonId: '',
+    operateLeaderName: '',
+    projectTypeId: '',
+    userId: '',
+    disabledType: false
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -112,6 +122,10 @@ Page({
   uploadTenderImageList: null,
 
   onLoad(options) {
+    this.setData({
+      userId: app.globalData.userInfo.userId
+    })
+    this.getProjectList()
     this.form.rules = {
       projectId: [{ required: true, message: '请输入' }],
       contractName: [{ required: true, message: '请输入' }],
@@ -150,18 +164,19 @@ Page({
       basisSigning: [{ required: true, message: '请选择' }]
     }
     this.getCodeList()
-    if(options.id){
-      this.setData({
-        contractId: options.id,
-        navbarData: {title: '编辑合同'}
-      })
-      this.getDetail()
-    }else{
-      this.setData({
-        list: []
-      })
-    }
-    this.getProjectList()
+    setTimeout(() => {
+      if(options.id){
+        this.setData({
+          contractId: options.id,
+          navbarData: {title: '编辑合同'}
+        })
+        this.getDetail()
+      }else{
+        this.setData({
+          list: []
+        })
+      }
+    }, 500)
     if(options.contractType){
       this.setData({
         contractType:options.contractType
@@ -317,8 +332,24 @@ Page({
       projectId: data.id,
       projectName: data.name,
       proType: data.proType,
-      projectLeaderId: data.personId
+      projectLeaderId: data.personId,
+      earlyStageLeaderId: data.personId,
+      earlyStageLeader: data.projectLeaderName,
+      carryPersonId: data.carryPersonId,
+      carryLeaderName: data.carryLeaderName,
+      operatePersonId: data.operatePersonId,
+      operateLeaderName: data.operateLeaderName,
+      projectTypeId: (data.projectType).toString(),
+      disabledType: true
     })
+    this.form.setFieldValue('projectType', (data.projectType).toString() || '')
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     let contractName = this.form.getFieldValue('contractName') || ''
     if( data.proType === 0){
       this.form.setFieldValue('title', data.name+'-'+contractName)
@@ -653,6 +684,13 @@ Page({
     });
   },
   staging(){
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     this.form.rules = {}
     let params = this.form.getFieldsValue()
     console.log("获取表单值：", params)
@@ -731,6 +769,13 @@ Page({
     })
   },
   async submit(){
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     console.log(this.data.list)
     const params = await this.form.submit();
     this.setData({ loading: true })
@@ -854,6 +899,7 @@ Page({
         if(paramsdata.projectType){
           paramsdata.projectType = paramsdata.projectType.toString()
         }
+        this.form.setFieldValue('projectType', paramsdata.projectType || '')
         if(paramsdata.paymentMethod){
           paramsdata.paymentMethod = paramsdata.paymentMethod.toString()
         }
@@ -924,6 +970,14 @@ Page({
           developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
           selectedList:paramsdata.developmentOrganizationList.map(e => e.ecUnitId),
           isChooseTenderDocumentId: paramsdata.tenderDocumentId,
+          earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+          earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+          carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+          carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+          operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+          operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+          projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
+          disabledType: true,
           list
         })
         if(paramsdata.fileList && paramsdata.fileList){
