@@ -2,6 +2,7 @@ import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty} from "../../../../utils/utils"
 import config from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
+import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
 import { formatTimeToDay } from "../../../../utils/utils";
 import Decimal from 'decimal'
@@ -86,6 +87,35 @@ Page({
       departmentManager_dictText: [{ required: true, message: '请输入' }],
       countersignLeader_dictText: [{ required: true, message: '请输入' }]
      }
+  },
+  chooseProjectLeader(data, column){
+    console.log(data, column)
+    this.setData({
+      projectLeaderId: column.personId
+    })
+    this.form.setFieldValue('projectLeader', column.name)
+  },
+  getProjectLeader(){
+    request.doPostRequest({
+      url: projectService.API_PROJECT_LEADER,
+      data: {projectId: this.data.projectId},
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.personId
+        })
+        console.log('项目负责人',res.data)
+        this.setData({
+          projectLeaderListOptions: res.data || []
+        })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId
+          })
+        }
+      }
+    })
   },
   getLeaderList(){
     request.doPostRequest({
@@ -223,6 +253,8 @@ bindChooseProjectCallBack: function (data) {
       this.setData({
         projectChangeAmount: res.data.projectCumulativeChange || 0,
       });
+    this.getProjectLeader()
+
     }
   })
 },
