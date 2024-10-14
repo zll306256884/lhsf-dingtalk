@@ -108,4 +108,4 @@
 
 <dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>
 <!-- <dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef"  onScreenCallBack="bindScreenSourceListNameCallBack"></dialog-screen-project-source> -->
-<dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef"  onScreenCallBack="bindScreenSourceListNameCallBack"  bind:toggle="handleToggle" bind:select="handleSelect"></dialog-screen-project-source>
+<dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef" defaultSelectList="{{defaultList}}"  onScreenCallBack="bindScreenSourceListNameCallBack"></dialog-screen-project-source>

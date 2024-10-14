@@ -37,7 +37,7 @@ Page({
     carryPersonId:"",
     operatePersonId:"",
     sourceListName:'',
-
+    defaultSourceList:[],
     projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
     constructionPhaseOptions: [],
@@ -160,7 +160,7 @@ Page({
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   _bindChooseSourceListName(){
-    if(this.dialogSourceListName) this.dialogSourceListName._showDialog()
+    if(this.dialogSourceListName) this.dialogSourceListName._showDialog(this.data.defaultSourceList)
   },
   bindInputChange(e){
     // console.log('qweqw', e)
@@ -232,6 +232,7 @@ Page({
   bindScreenSourceListNameCallBack(data){
     console.log('data',data);
     this.setData({
+      defaultSourceList:data,
       sourceListName: data.map(i=>i.name).join(','),
     })
   },

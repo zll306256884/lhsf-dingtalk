@@ -10,23 +10,21 @@
       </view>
       <text a:if="{{multiChoose}}" class="sure" catchTap="_bindSureTap">确定</text>
     </view>
-    <layout-search onSearchInputChange="onSearchConfirm" onSearchConfirm="onSearchConfirm" placeholder="请输入人员"></layout-search>
     <scroll-view class="scroll" style="height: {{scrollHeight}}px;margin-top:20rpx" scroll-y="{{true}}">
-      
       <view class="tree-container">
         <block a:for="{{dataList}}" a:key="id">
-          <view class="tree-node" onTap="toggleNode" data-id="{{item.id}}">
-            <checkbox-group bindchange="checkboxChange">
+          <!-- <view class="tree-node" onTap="toggleNode" data-item="{{item}}"> -->
+            <checkbox-group onChange="checkboxChange" data-item="{{item}}">
               <label>
                 <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
               </label>
             </checkbox-group>
             <icon type="right" hidden="{{!item.projectSourceConfigTreeRepList  || item.projectSourceConfigTreeRepList.length == 0}}"></icon>
-          </view>
+          <!-- </view> -->
           <block a:if="{{item.projectSourceConfigTreeRepList.length}}">
             <view class="sub-tree" style="margin-left:64rpx">
               <block a:for="{{item.projectSourceConfigTreeRepList}}" a:key="id" >
-                <checkbox-group onChange="checkboxChange">
+                <checkbox-group onChange="checkboxChange" data-item="{{item}}">
                   <label>
                     <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
                   </label>

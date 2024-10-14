@@ -1,8 +1,8 @@
-import { isEmptyArray, isEqual} from "../../../../utils/utils";
-import ddUtils from "../../../../utils/ddUtils";
-import config from "../../../../utils/config";
-import projectService from "../../../../server/workServer/projectServer";
-import request from "../../../../utils/request";
+import { isEmptyArray, isEqual} from "/utils/utils";
+import ddUtils from "/utils/ddUtils";
+import config from "/utils/config";
+import projectService from "/server/workServer/projectServer";
+import request from "/utils/request";
 
 const app = getApp();
 
@@ -11,7 +11,8 @@ Component({
   data: {
     showDialog: false,
     scrollHeight: 0,
-    dataList: []
+    dataList: [],
+    selectedList:[]
   },
   props: {
     title: "选择项目来源",
@@ -35,28 +36,41 @@ Component({
   didUnmount() {},
   methods: {
     toggleNode(e) {
-      console.log('e--------------------------1111111<',e);
-
+      console.log('e',e);
       const id = e.currentTarget.dataset.id;
     },
     checkboxChange(e) {
-      console.log('e--------------------------22222222<',e);
-      const ids = e.detail.value;
+      console.log('e--------------------------',e);
+      const item =e.currentTarget.dataset.item;
+      if(e.detail.value.length){
+        this.data.selectedList.push(item)
+      }else{
+        this.data.selectedList=this.data.selectedList.filter(i=>i.id!==item.id)
+      }
+      this.setData({
+        selectedList:this.data.selectedList
+      })
     },
-    getDate(username) {
+    getDate() {
+      const handleData=(list)=>{
+        list.forEach(e => {
+          if(this.chooseList.find(s => s.id === e.id)){
+            e.checked = true
+          }
+          if(e.projectSourceConfigTreeRepList && e.projectSourceConfigTreeRepList.lenght){
+            e.projectSourceConfigTreeRepList=handleData(e.projectSourceConfigTreeRepList)
+          }
+        })
+        return list
+      }
       request.doPostRequest({
         url: projectService.API_PROJECT_SOURCE,
         success: res => {
           let list = res.data || [];          
           if (!isEmptyArray(list)){
             if(!isEmptyArray(this.chooseList)){
-              list.forEach(e => {
-                if(this.chooseList.find(s => s.id === e.id)){
-                  e.isCheck = true
-                }
-              })
               this.setData({
-                dataList: list
+                dataList: handleData(list)
               })
             }else{
               this.setData({
@@ -67,36 +81,16 @@ Component({
         }
       });
     },
-    _bindItemTap: function(e) {
-      let list = this.data.dataList.concat([]);
-      let index = e.currentTarget.dataset.index;
-      let item = list[index];
-      item.isCheck = !item.isCheck;
-      this.setData({
-        dataList: list
-      });
-    },
     _bindCancelTap: function(e) {
       this._hideDialog();
-      let list = this.data.dataList.filter(e => e.isCheck === true)
+      let list = this.data.dataList.filter(e => e.checked === true)
       this.props.onScreenCallBack(list);
     },
-    _bindTouchMove: function(e) {},
-
     //bind sure tap
     _bindSureTap: function(e) {
-      console.log(this.data.dataList)
-      let list = this.data.dataList.filter(e => e.isCheck === true)
-      console.log(list)
-      this.props.onScreenCallBack(list);
+      console.log('this.data.selectedList--------------',this.data.selectedList);
+      this.props.onScreenCallBack(this.data.selectedList);
       this._hideDialog();
-    },
-    //搜索
-    seachHandle(value){
-      this.getDate(value)
-    },
-    onSearchConfirm: function(value) {
-      this.seachHandle(value)
     },
 
     //judge is show dialog
@@ -112,7 +106,7 @@ Component({
       });
       if(defaultList){
         defaultList.forEach(e => {
-          e.isCheck = true
+          e.checked = true
         })
         this.chooseList = defaultList;
       }
