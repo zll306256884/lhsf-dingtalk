@@ -29,6 +29,7 @@ Page({
       { label:'工程项目',value:0 },
       { label:'非工程项目',value:1 }
     ],
+    proType:'',
     affiliatedUnitName: '',//所属单位
     projectLeaderName: '',//项目负责人
     carryLeaderName:"",
@@ -63,9 +64,12 @@ Page({
   dialogSourceListName:null,
   uploadImageList: null,
   userType:0,
+  tipVisible:false,
   onLoad(options) {
     console.log(options)
     this.form.rules = {
+      sourceListName:[{required: true, message: '请选择'}],
+      projectLeaderName:[{required: true, message: '请选择'}],
       name: [{required: true, message: '请输入'}],
       constructionNature: [{required: true, message: '请选择'}],
       constructionContent: [{required: true, message: '请输入'}],
@@ -163,25 +167,20 @@ Page({
     if(this.dialogSourceListName) this.dialogSourceListName._showDialog(this.data.projectSourceConfigTreeDtoList)
   },
   bindInputChange(e){
-    // console.log('qweqw', e)
-
     // if(e.detail.value.length > 6){
-    //   console.log(1232321, e.detail.value.slice(0,6))
     //   this.setData({
     //     'formData.blockNumber': ''
     //   })
       
-    //   console.log(this.data.formData.blockNumber)
     //   // this.setData({
     //   //   'formData.blockNumber': JSON.parse(JSON.stringify(e.value.slice(0,6)))
     //   // })
     // }
   },
-  // onValueChange('proType'){
-  //   console.log(e)
-  // },
-  onValuesChange(e){
-    console.log(e)
+  onValueChange(e){
+    this.setData({
+      proType:e
+    })
   },
   bindPickerEndDateCallBack(data){
     this.setData({
@@ -430,7 +429,6 @@ Page({
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
     params.sourceListName= this.data.sourceListName
     params.projectSourceConfigTreeDtoList=this.data.projectSourceConfigTreeDtoList,
-
     // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId
@@ -475,10 +473,27 @@ console.log(params,'params------------------------------');
     })
   },
   async bindFormSubmit(e){
+    if(utils.isEmpty(this.data.projectLeaderName)){
+      // this.tipVisible=true
+      ddUtils.showToast({
+        title: '请输入项目前期负责人'
+      });
+      return
+    }
+    if(utils.isEmpty(this.data.sourceListName)){
+      // this.tipVisible=true
+      ddUtils.showToast({
+        title: '请输入项目来源'
+      });
+      return
+    }
+
+
     const params = await this.form.submit();
     this.setData({
       loading: true
     })
+  
     params.affiliatedUnitName = this.data.affiliatedUnitName
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
@@ -514,7 +529,6 @@ console.log(params,'params------------------------------');
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/projectDetails'
     params.singleUrl = '/pages/work/page/projectInfo/projectInfo'
     params.vueUrl = 'ApproveProjectDetail, ApproveCreateProject'
-
     if(this.data.projectId){
       params.id = this.data.projectId
       params.urlParameter = JSON.stringify({ id: this.data.projectId, chooseid: this.data.projectId, proId: this.data.projectId, fromtype: 'workbench' })

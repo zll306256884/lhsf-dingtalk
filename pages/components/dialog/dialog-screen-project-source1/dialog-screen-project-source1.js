@@ -54,10 +54,10 @@ Component({
     getDate() {
       const handleData=(list)=>{
         list.forEach(e => {
-          if(this.chooseList.find(s => s.id === e.id)){
+          if(this.chooseList.find(s => s.id == e.id)){
             e.checked = true
           }
-          if(e.projectSourceConfigTreeRepList && e.projectSourceConfigTreeRepList.lenght){
+          if(e.projectSourceConfigTreeRepList && e.projectSourceConfigTreeRepList.length){
             e.projectSourceConfigTreeRepList=handleData(e.projectSourceConfigTreeRepList)
           }
         })
