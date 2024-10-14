@@ -28,6 +28,7 @@ Page({
       { name:'是',value:'1' },
     ],
     formData:{},
+    sourceListName:'',
     isAccess: {},//考核
     projectClassification: {},//分类
     constructionPhase: {},//建设阶段
@@ -123,6 +124,7 @@ Page({
         }
         this.setData({
           formData: res.data,
+          sourceListName:res.data.projectSourceConfigTreeRepList.map(item=>item.name).join(","),
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
           outPutTime:{shortDate:res.data.outPutTime},
