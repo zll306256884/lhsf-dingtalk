@@ -270,8 +270,10 @@ Page({
           outPutTime:res.data.outPutTime,
           // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
           // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
-          sourceListName:res.data.sourceListName,
+          sourceListName:res.data.projectSourceConfigTreeRepList.map(i=>i.name).join(','),
           projectSourceConfigTreeDtoList:res.data.projectSourceConfigTreeDtoList,
+          projectSourceConfigTreeRepList:res.data.projectSourceConfigTreeRepList,
+
           // 前期阶段负责人
           projectLeaderName: res.data.projectLeaderName,
           personId: res.data.personId,

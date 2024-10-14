@@ -24,7 +24,7 @@
     <list-item extraBrief="{{detailInfo.projectAffiliation}}">项目所属单位</list-item>
     <list-item data-string="leader" onTap="onSelectInfo" arrow="right" extraBrief="{{detailInfo.projectLeader}}">项目负责人</list-item>
     <list-item extraBrief="{{['否','是'][detailInfo.supplementAgreement]}}">是否补充协议</list-item>
-    <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}">主合同</list-item>
+    <list-item a:if="{{ detailInfo.supplementAgreement=== 1 }}" extraBrief="{{detailInfo.masterContractName}}" arrow="right" data-string="masterContract" onTap="onSelectInfo" >主合同</list-item>
     <list-item extraBrief="{{detailInfo.projectType_dictText || '-'}}">项目类型</list-item>
 
     <!-- <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{['否','是'][detailInfo.contractNeedTender]}}">此合同是否需要招标</list-item> -->

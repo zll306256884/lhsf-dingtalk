@@ -99,6 +99,10 @@ Page({
         ddUtils.navigateTo({
           url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.detailInfo.contractId}`
         }); 
+      case 'masterContract':
+          ddUtils.navigateTo({
+            url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${this.data.detailInfo.masterContract}`
+      }); 
       break;
 
     }
