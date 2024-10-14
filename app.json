@@ -46,7 +46,8 @@
     "pages/work/page/addNewProject/addNewProject",
     "pages/components/upload-file/upload-file",
     "pages/work/page/myTask/taskFileList/taskFileList",
-    "pages/databoard/page/preview-page/preview-page"
+    "pages/databoard/page/preview-page/preview-page",
+    "pages/databoard/page/gantt/gantt"
   ],
   "window": {
     "defaultTitle": "",

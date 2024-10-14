@@ -168,15 +168,18 @@ Component({
     // 横道图和进度监控切换
     handleTabChange() {
       if(this.data.tabText === '横道图') {
-        this.setData({
-          tabText: '进度监控'
-        })
-        this.setData({
-          webViewUrl: `${config.BASE_API_HOST}/#/share/gantt?projectId=${this.props.projectId}&type=miniProgram`
-        }) //http://192.168.6.41/#/share/gantt?projectId=12019020001&type=miniProgram
-        this.webViewContext = dd.createWebViewContext('web-view-1')
-        this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-        console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST, app.globalData.userInfo.userToken)
+        ddUtils.navigateTo({
+          url: `/pages/databoard/page/gantt/gantt?projectId=${this.props.projectId}`
+        });
+        // this.setData({
+        //   tabText: '进度监控'
+        // })
+        // this.setData({
+        //   webViewUrl: `${config.BASE_API_HOST}/#/share/gantt?projectId=${this.props.projectId}`
+        // }) //http://192.168.6.41/#/share/gantt?projectId=12019020001&type=miniProgram
+        // this.webViewContext = dd.createWebViewContext('web-view-1')
+        // this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
+        // console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST, app.globalData.userInfo.userToken)
       } else {
         this.setData({
           tabText: '横道图'

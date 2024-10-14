@@ -59,6 +59,6 @@
     <view class="listBox" a:if="{{tabText === '横道图'}}">
       <progress-item listData={{listData}} projectId={{projectId}} formPage='databoard' ref='progressItemRef'></progress-item>
     </view>
-    <web-view a:else id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>
+    <!-- <web-view a:else id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view> -->
   </view>
 </view>
