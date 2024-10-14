@@ -49,9 +49,9 @@ Page({
     dialogScreenExecuteUserRef: null,
     contractData: {},//合同名称
     defaultPerson: [],//默认抄送人员
-    currentType: '',
     pickerVisible:false,
     leaderList: [],
+    executeLeader: []
   },
   uploadImageList: null,/// 上传
   uploadTenderImageList: null,//变更小组会议纪要
@@ -92,6 +92,7 @@ Page({
       countersignDate: [{ required: true, message: '请选择申请会签日期' }],
       constructionUnitReportDate: [{ required: true, message: '请选择施工单位上报日期' }],
       contactChange: [{ required: true, message: '请输入联系单变更内容' }],
+      subLeader_text: [{ required: true, message: '请选择分管领导' }],
     }
   },
   handleRef(ref) {
@@ -229,9 +230,6 @@ Page({
   },
   //抄送人
   bindChooseExecuteUserTap: function (e) {
-    this.setData({
-      currentType: e.target.dataset.type
-    });
     if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog()
   },
   onSaveDialogScreenExecuteUserRef: function (ref) {
@@ -239,24 +237,6 @@ Page({
     this.dialogScreenExecuteUserRef = ref;
   },
   bindScreenExecuteUserCallBack: function (list) {
-    if (this.data.currentType === '2') {
-      this.chooseExecuteUserList = list
-      console.log(this.chooseExecuteUserList);
-      let str = "";
-      let strId = ""
-      for (let item of this.chooseExecuteUserList) {
-        str += item.username;
-        strId += item.userId
-        str += ",";
-        strId += ","
-      }
-      this.setData({
-        subLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
-        subLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
-      });
-      this.form.setFieldValue('subLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
-      this.form.setFieldValue('subLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
-    } else if (this.data.currentType === '1') {
       const seenIds = new Map();
       this.chooseExecuteUserList = this.data.defaultPerson.concat(list).filter(item => {
         // 如果 Map 中还没有这个 id，则添加它并返回 true（保留该元素）  
@@ -279,12 +259,9 @@ Page({
       this.setData({
         person_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
         person: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
-
       });
       this.form.setFieldValue('person_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
       this.form.setFieldValue('person', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
-    }
-
   },
   // 上传
   onSaveUploadImgRef: function (ref) {
@@ -297,6 +274,36 @@ Page({
   },
   onSaveUploadAlterRef: function(ref){
      this.uploadOtherImgList = ref
+  },
+  onSaveDialogScreenExecuteLeaderRef: function (ref) {
+    this.dialogScreenExecuteLeaderRef = ref;
+  },
+   //分管领导
+   bindChooseExecuteLeaderTap: function (e) {
+      if (this.dialogScreenExecuteLeaderRef) this.dialogScreenExecuteLeaderRef._showDialog(this.data.executeLeader)
+  },
+  bindScreenExecuteLeaderCallBack: function (list) {
+    this.chooseExecuteLeaderList = list;
+    let str = "";
+    let strId = ""
+    for (let item of this.chooseExecuteLeaderList) {
+        str += item.username;
+        str += ",";
+        strId += item.userId;
+        strId += ','
+    }
+  
+    this.setData({
+      subLeader_text: isEmpty(str) ? '' : str.substring(0, str.length - 1),
+      subLeader: isEmpty(strId) ? '' : strId.substring(0, strId.length - 1)
+    });
+    this.form.setFieldValue('subLeader_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
+    this.form.setFieldValue('subLeader', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
+    this.setData({
+      executeLeader: list && list.map(e => {
+        return { userId: e.userId, username: e.username,disabled:e.disabled };
+      })
+    });
   },
   // 编辑 
   getDetail(id) {
@@ -356,6 +363,13 @@ Page({
         this.form.setFieldValue('subLeader', res.data.subLeader)
         this.form.setFieldValue('code', res.data.code)
         this.getProjectLeaderInfo()
+        if(res.data.subLeader_dictText && res.data.subLeader){
+          const nameList = res.data.subLeader_dictText.split(',')
+          const idList = res.data.subLeader.split(',')
+          this.setData({
+            executeLeader: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+          })
+        }
         const files = res.data.investmentFileList.map((item) => {
           return {
             ...item,
@@ -513,9 +527,9 @@ Page({
     request.doPostRequest({
       url: config.API_QUERY_ROLE_LIST,
       success: res => {
-        this.setData({
-          defaultPerson: res.data
-        })
+        // this.setData({
+        //   defaultPerson: res.data
+        // })
         this.bindScreenExecuteUserCallBack([])
       }
     })

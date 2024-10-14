@@ -9,7 +9,6 @@
          label="项目类型"
          name="projectType_text"
          placeholder="请选择"
-        disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
         </view>
         <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTap">
@@ -171,7 +170,11 @@
               </view>
               </view>
           </view>
-
+          <view class="box-shadow annex" style="padding-bottom: 30rpx;">
+            <text class="annexTitle" a:if="{{accumulatedPaymentAmount < contractAmount*0.75}}">*</text>
+            <layout-field-cell cssStyle="margin-left:45rpx"   hidden={{false}} name="验收文件"></layout-field-cell>
+             <layout-upload-img ref="onSaveUploadFileRef" type="1" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
+          </view>
           <form-picker
             label="关联资金计划"
             arrow

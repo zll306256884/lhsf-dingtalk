@@ -1,3 +1,4 @@
+const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty,isEqual} from "../../../../utils/utils"
 import config from "../../../../utils/config"
@@ -63,8 +64,18 @@ Page({
       {label: '当月',value: 1},
       {label: '下月',value: 2},
     ],
-    loading: false
+    loading: false,
+    earlyStageLeaderId: '',
+    earlyStageLeader: '',
+    carryPersonId: '',
+    carryLeaderName: '',
+    operatePersonId: '',
+    operateLeaderName: '',
+    projectTypeId: '',
+    userId: '',
+    projectListOptions: []
   },
+  uploadTenderImageList: null,
   onLoad(option) {
     // let date = new Date().toLocaleString()
     // for (var i = 0; i < date.length; i++) {
@@ -74,11 +85,17 @@ Page({
     // }
     // this.data.applicationTime = date.substr(0,10)
     this.setData({
+      userId: app.globalData.userInfo.userId
+    })
+    this.getProjectList()
+    this.setData({
       id:option.id,
     })
-    if(option.id){
-      this.getEdit(option.id) 
-    }
+    setTimeout(() => {
+      if(option.id){
+        this.getEdit(option.id) 
+      }
+    }, 500)
     if(option.sort === '1'){
       this.data.disabled = true
      this.data.navbarData.title = '编辑支付申请'
@@ -308,7 +325,28 @@ bindChooseProjectCallBack: function (data) {
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
     projectId:data.id || '',
+    earlyStageLeaderId: data.personId,
+    earlyStageLeader: data.projectLeaderName,
+    carryPersonId: data.carryPersonId,
+    carryLeaderName: data.carryLeaderName,
+    operatePersonId: data.operatePersonId,
+    operateLeaderName: data.operateLeaderName,
+    projectTypeId: (data.projectType).toString(),
+    'projectTypeData.itemText':(data.projectType).toString() === '1' ? '集团项目（政府投资、地产类项目）' : '子公司项目',
+    'projectTypeData.itemValue':(data.projectType).toString(),
   });
+  if(this.data.projectTypeId === '1') {
+    this.form.setFieldValue('projectType_text', '集团项目（政府投资、地产类项目）')
+  } else {
+    this.form.setFieldValue('projectType_text', '子公司项目')
+  }
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.setFieldValue('projectName',data.name)
   this.form.setFieldValue('projectLeader',data.projectLeaderName)
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
@@ -383,6 +421,9 @@ bindChooseApplyDateCallBack(data){
 // 上传
 onSaveUploadImgRef: function (ref) {
   this.uploadImageList = ref;
+},
+onSaveUploadFileRef: function (ref) {
+  this.uploadTenderImageList = ref;
 },
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
@@ -530,6 +571,21 @@ ddUtils.navigateTo({
 //     })
 //   }
 // },
+getProjectList(){
+  request.doPostRequest({
+    url: config.API_PROJECT_NAME,
+    success: res => {
+      res.data.forEach(e => {
+        e.label = e.name
+        e.value = e.id
+      })
+      console.log(res.data)
+      this.setData({
+        projectListOptions: res.data || []
+      })
+    }
+  })
+},
 // 编辑
 getEdit(id){
   request.doPostRequest({
@@ -563,7 +619,14 @@ getEdit(id){
         investmentFileList:res.data.investmentFileList,
         transitAmount:res.data.transitAmount,
         remark:res.data.remark,
-        accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0)
+        accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
+        earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+        earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+        carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+        carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+        operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+        operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+        projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
       })
       this.form.setFieldValue('projectType_text', res.data.projectType_dictText || '')
       this.form.setFieldValue('projectName', res.data.projectName)
@@ -606,8 +669,15 @@ getEdit(id){
           name:item.fileName,
         }
       })
+      const files1= res.data.acceptanceFileList.map((item)=>{
+        return {
+          ...item,
+          name:item.fileName,
+        }
+      })
       setTimeout(() => {
         this.uploadImageList._setImageList(files) 
+        this.uploadTenderImageList._setImageList(files1)
       }, 0);
 
       if(res.data.countersignLeader_dictText && res.data.countersignLeader){
@@ -621,7 +691,13 @@ getEdit(id){
   })
 },
 async submit() {
-  
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumulatedPaymentAmount') && !this.form.getFieldValue('remark') ) {
       this.setData({
         remarkTitle: true
@@ -656,6 +732,17 @@ async submit() {
         e.type= 3
       })
       params.investmentFileList =  temFileList
+    }
+    if(this.uploadTenderImageList){
+      temFileList = this.uploadTenderImageList.data.imgList;
+      if(params.accumulatedPaymentAmount < params.contractAmount*0.75){
+        if (ddUtils.showEmptyArrayTips(temFileList, "请上传验收文件")) return;
+      }
+      temFileList.forEach(e => {
+        e.fileName = e.name
+        e.type= 7
+      })
+      params.acceptanceFileList =  temFileList
     }
     if(params.accumulatedPaymentAmount > params.contractAmount){
       ddUtils.showModal({
@@ -711,6 +798,13 @@ async submit() {
 },
 // 暂存
 workingStorage(){
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   // params.remark = this.data.remark,
@@ -734,6 +828,14 @@ workingStorage(){
       e.fileName = e.name
       e.type= 3
     })
+    if(this.uploadTenderImageList){
+      temFileList = this.uploadTenderImageList.data.imgList;
+      temFileList.forEach(e => {
+        e.fileName = e.name
+        e.type= 7
+      })
+      params.acceptanceFileList =  temFileList
+    }
     // for (let item of temFileList) {
     //   this.data.investmentFileList.push({
     //       type: 4,
