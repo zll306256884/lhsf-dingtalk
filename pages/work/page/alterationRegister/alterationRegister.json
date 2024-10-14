@@ -16,6 +16,7 @@
       "icon": "antd-mini/es/Icon/index",
       "form-textarea": "antd-mini/es/Form/FormTextarea/index",
       "am-icon": "antd-mini/es/Icon/index",
+      "dialog-screen-leader": "/pages/components/dialog/dialog-screen-leader/dialog-screen-leader",
       "form-picker": "antd-mini/es/Form/FormPicker/index"
   }
 }
