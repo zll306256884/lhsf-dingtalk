@@ -65,6 +65,7 @@ Page({
     ],
     loading: false
   },
+  uploadTenderImageList: null,
   onLoad(option) {
     // let date = new Date().toLocaleString()
     // for (var i = 0; i < date.length; i++) {
@@ -384,6 +385,9 @@ bindChooseApplyDateCallBack(data){
 onSaveUploadImgRef: function (ref) {
   this.uploadImageList = ref;
 },
+onSaveUploadFileRef: function (ref) {
+  this.uploadTenderImageList = ref;
+},
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
   //   this.setData({
@@ -606,8 +610,15 @@ getEdit(id){
           name:item.fileName,
         }
       })
+      const files1= res.data.acceptanceFileList.map((item)=>{
+        return {
+          ...item,
+          name:item.fileName,
+        }
+      })
       setTimeout(() => {
         this.uploadImageList._setImageList(files) 
+        this.uploadTenderImageList._setImageList(files1)
       }, 0);
 
       if(res.data.countersignLeader_dictText && res.data.countersignLeader){
@@ -656,6 +667,17 @@ async submit() {
         e.type= 3
       })
       params.investmentFileList =  temFileList
+    }
+    if(this.uploadTenderImageList){
+      temFileList = this.uploadTenderImageList.data.imgList;
+      if(params.accumulatedPaymentAmount < params.contractAmount*0.75){
+        if (ddUtils.showEmptyArrayTips(temFileList, "请上传验收文件")) return;
+      }
+      temFileList.forEach(e => {
+        e.fileName = e.name
+        e.type= 7
+      })
+      params.acceptanceFileList =  temFileList
     }
     if(params.accumulatedPaymentAmount > params.contractAmount){
       ddUtils.showModal({
@@ -734,6 +756,14 @@ workingStorage(){
       e.fileName = e.name
       e.type= 3
     })
+    if(this.uploadTenderImageList){
+      temFileList = this.uploadTenderImageList.data.imgList;
+      temFileList.forEach(e => {
+        e.fileName = e.name
+        e.type= 7
+      })
+      params.acceptanceFileList =  temFileList
+    }
     // for (let item of temFileList) {
     //   this.data.investmentFileList.push({
     //       type: 4,
