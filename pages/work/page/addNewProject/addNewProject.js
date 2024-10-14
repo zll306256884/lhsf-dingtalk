@@ -37,7 +37,7 @@ Page({
     carryPersonId:"",
     operatePersonId:"",
     sourceListName:'',
-    defaultSourceList:[],
+    projectSourceConfigTreeDtoList:[],
     projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
     constructionPhaseOptions: [],
@@ -160,7 +160,7 @@ Page({
     if(this.dialogScreenExecuteUser) this.dialogScreenExecuteUser._showDialog()
   },
   _bindChooseSourceListName(){
-    if(this.dialogSourceListName) this.dialogSourceListName._showDialog(this.data.defaultSourceList)
+    if(this.dialogSourceListName) this.dialogSourceListName._showDialog(this.data.projectSourceConfigTreeDtoList)
   },
   bindInputChange(e){
     // console.log('qweqw', e)
@@ -232,7 +232,7 @@ Page({
   bindScreenSourceListNameCallBack(data){
     console.log('data',data);
     this.setData({
-      defaultSourceList:data,
+      projectSourceConfigTreeDtoList:data,
       sourceListName: data.map(i=>i.name).join(','),
     })
   },
@@ -272,6 +272,7 @@ Page({
           // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
           // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
           sourceListName:res.data.sourceListName,
+          projectSourceConfigTreeDtoList:res.data.projectSourceConfigTreeDtoList,
           // 前期阶段负责人
           projectLeaderName: res.data.projectLeaderName,
           personId: res.data.personId,
@@ -428,6 +429,8 @@ Page({
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
     params.sourceListName= this.data.sourceListName
+    params.projectSourceConfigTreeDtoList=this.data.projectSourceConfigTreeDtoList,
+
     // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
     params.personId = this.data.personId
@@ -459,7 +462,7 @@ Page({
     }else{
       params.urlParameter = JSON.stringify({})
     }
-
+console.log(params,'params------------------------------');
     request.doPostRequest({
       url: projectService.API_STORAGE_PROJECT,
       data: params,
@@ -480,6 +483,8 @@ Page({
     params.actualConstructionEndTime = this.data.actualConstructionEndTime
     params.actualConstructionStartTime = this.data.actualConstructionStartTime
     params.sourceListName= this.data.sourceListName
+    params.projectSourceConfigTreeDtoList=this.data.projectSourceConfigTreeDtoList,
+
 
     // 前期阶段负责人
     params.projectLeaderName = this.data.projectLeaderName
