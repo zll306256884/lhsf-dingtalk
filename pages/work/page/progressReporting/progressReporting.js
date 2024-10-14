@@ -32,6 +32,7 @@ Page({
       { value: 1, label: '前期计划' },
       { value: 2, label: '施工计划' },
     ],
+    disableSave: false
   },
   onLoad(options) {
     console.log(options)
@@ -76,7 +77,7 @@ Page({
           success: res => {
           }
         });
-      }else{
+      }else if(!params.planType){
         ddUtils.showModal({
           content: "请选择计划阶段",
           success: res => {
@@ -104,6 +105,30 @@ Page({
       projectId: data.projectId || ''
     });
     this.form.setFieldValue('projectId', data.projectId)
+    if(data.isplan === '0') {
+      ddUtils.showToast({
+        title: "该项目还没有任何计划"
+      });
+      this.form.setFieldValue('planType', null)
+      this.setData({
+        disableSave: true
+      })
+    } else if(data.isplan === '1') {
+      this.form.setFieldValue('planType', 1)
+      this.setData({
+        disableSave: false
+      })
+    } else if(data.isplan === '2') {
+      this.form.setFieldValue('planType', 2)
+      this.setData({
+        disableSave: false
+      })
+    } else {
+      this.form.setFieldValue('planType', null)
+      this.setData({
+        disableSave: false
+      })
+    } 
     console.log(this.data.projectData, 'this.data.projectData');
   },
   // 项目名称----组件end

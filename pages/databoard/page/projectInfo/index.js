@@ -18,10 +18,10 @@ Page({
         title: "投资管控"
       },
       {
-        title: "招标进度"
+        title: "招标管理"
       },
       {
-        title: "工作日志"
+        title: "项目日志"
       }
     ],
     currentTabIndex: 0,
@@ -31,7 +31,7 @@ Page({
     userName: "",
     childrenTab: null
   },
-  mapRef: null,
+  mapRef: '',
 
   onLoad(option) {
     console.log(option);
@@ -68,18 +68,22 @@ Page({
       currentTabIndex: e
     });
     if (e === 0) {
-      this.mapRef.initMap();
+      setTimeout(() => {
+        this.mapRef.initMap();
+      }, 0);
+     
     }
   },
   onPageScroll(ev) {
-    if (this.data.currentTabIndex === 0 && this.mapRef) {
-      var _this = this;
-      //当滚动的top值最大或者最小时，由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值
-      if (ev.scrollTop <= 0) {
-        ev.scrollTop = 0;
-      } else if (ev.scrollTop > dd.getSystemInfoSync().windowHeight) {
-        ev.scrollTop = dd.getSystemInfoSync().windowHeight;
-      }
+    if (this.data.currentTabIndex === 0 ) {//&& this.mapRef
+      console.log("页面滚动");
+      let _this = this;
+      // //当滚动的top值最大或者最小时，由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值
+      // if (ev.scrollTop <= 0) {
+      //   ev.scrollTop = 0;
+      // } else if (ev.scrollTop > dd.getSystemInfoSync().windowHeight) {
+      //   ev.scrollTop = dd.getSystemInfoSync().windowHeight;
+      // }
       //判断浏览器滚动条上下滚动
       if (
         ev.scrollTop > this.data.scrollTop ||

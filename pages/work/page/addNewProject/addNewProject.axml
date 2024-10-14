@@ -14,6 +14,12 @@
 
     <form-picker label="是否考核项目" a:if="{{ proType== 0 }}" arrow name="isAccess" options="{{screenFromList}}" ref="handleRef" labelWidth="280rpx" />
     <form-picker label="项目分类" a:if="{{ proType== 0 }}" arrow name="projectClassification" options="{{projectClassificationOptions}}" ref="handleRef" />
+
+    <form-item label="项目来源" labelWidth="260rpx" name="sourceListName" required>
+      <view class="f-item" catchTap="_bindChooseSourceListName" style="{{sourceListName?'':'color:#ccc;font-size: 30rpx;'}}"> {{sourceListName?sourceListName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
+   
+    <form-textarea label="项目来源说明" maxLength="1000" position='vertical' allowClear name="projectSourceDescription" placeholder="请输入" autoHeight ref="handleRef" />
     <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" />
 
     <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
@@ -30,10 +36,16 @@
     <!-- <view catchTap="_bindChooseProjectLeaderName">
       <form-input label="项目负责人" name="projectLeaderName" placeholder="请输入" ref="handleRef" disabled>{{projectLeaderName}}<icon slot="suffix" type="RightOutline" /></form-input>
     </view> -->
-    <form-item label="项目负责人" labelWidth="260rpx" name="projectLeaderName" required>
-      <view class="f-item" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    <form-item label="前期阶段负责人" labelWidth="260rpx" name="projectLeaderName" required>
+      <view class="f-item" data-value="{{0}}" catchTap="_bindChooseProjectLeaderName" style="{{projectLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{projectLeaderName?projectLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
+    <form-item label="实施阶段负责人" labelWidth="260rpx" name="carryLeaderName">
+      <view class="f-item" data-value="{{1}}" catchTap="_bindChooseProjectLeaderName" style="{{carryLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{carryLeaderName?carryLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
     </form-item>
 
+    <form-item label="运营阶段负责人" labelWidth="260rpx" name="operateLeaderName">
+      <view class="f-item" data-value="{{2}}" catchTap="_bindChooseProjectLeaderName" style="{{operateLeaderName?'':'color:#ccc;font-size: 30rpx;'}}"> {{operateLeaderName?operateLeaderName:'请选择'}} <icon type="RightOutline" style="color:#ccc;margin-left:8rpx;font-size:36rpx;font-weight:550"/></view>
+    </form-item>
 
     <form-textarea label="建设规模及内容" position='vertical' name="constructionContent" placeholder="请输入" allowClear maxLength="1000" autoHeight ref="handleRef" />
   </view>
@@ -95,3 +107,5 @@
 <dialog-screen-company-staff ref="onSaveDialogScreenExecuteUserRef"  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-company-staff>
 
 <dialog-picker-date ref="onSavePickerEndDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerEndDateCallBack"></dialog-picker-date>
+<!-- <dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef"  onScreenCallBack="bindScreenSourceListNameCallBack"></dialog-screen-project-source> -->
+<dialog-screen-project-source multiChoose ref="onSaveDialogScreenSourceListNameRef" defaultSelectList="{{defaultList}}"  onScreenCallBack="bindScreenSourceListNameCallBack"></dialog-screen-project-source>

@@ -60,6 +60,7 @@
   arrow
   name="projectType"
   options="{{projectTypeOptions}}"
+  disabled="disabledType"
   ref="handleRef" />
 
   <!-- <form-radio-group

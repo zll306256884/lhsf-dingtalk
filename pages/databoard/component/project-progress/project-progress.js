@@ -1,9 +1,10 @@
+const app = getApp();
+
 import utils from "../../../../utils/utils"
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import progressServer from "../../../../server/workServer/progressServer";
-
 
 Component({
   mixins: [],
@@ -14,6 +15,7 @@ Component({
     listData: [1, 2, 3, 4, 5],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
+    planType: null,//前期计划、施工计划
     status: '',//筛选的状态
     // new
     currentOpen: -1,
@@ -41,13 +43,15 @@ Component({
           //   text: '已完成',
           //   value: 4,
           // },
-          { text: '全部', value: '', },
-          { text: '未开始', value: 0, },
-          { text: '进行中', value: 1, },
-          { text: '延期未开始', value: 2, },
-          { text: '延期未完成', value: 3, },
-          { text: '延期完成', value: 4, },
-          { text: '已完成', value: 5, },
+          { text: '全部', value: null, },
+          { text: '前期进度计划', value: 1, },
+          { text: '施工进度计划', value: 2, },
+          // { text: '未开始', value: 0, },
+          // { text: '进行中', value: 1, },
+          // { text: '延期未开始', value: 2, },
+          // { text: '延期未完成', value: 3, },
+          // { text: '延期完成', value: 4, },
+          // { text: '已完成', value: 5, },
         ],
       },
       {
@@ -68,6 +72,8 @@ Component({
         ],
       },
     ],
+    tabText: '横道图',
+    webViewUrl: config.BASE_API_HOST+'/#/share/gantt'
   },
   props: {
     projectId: '12019020004',//项目id
@@ -91,8 +97,9 @@ Component({
     // 二级选项更改
     handleChange(value, items, e) {
       console.log(value, items, e, 1);
-      this.data.status = value
-      this.setData({ status: value });
+      // this.data.status = value
+      // this.setData({ status: value });
+      this.setData({ planType: value });
       this.getList()
       // this.data.currentOpen = -1;
       this.setData({ currentOpen: -1 });
@@ -118,9 +125,9 @@ Component({
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
-        'status': this.data.status,
-        // "projectId": '12019020004',
+        // 'status': this.data.status,
         'flagNode': this.data.flagNode,
+        'planType': this.data.planType,
         'enable': 1,
         'clientType':2
       }
@@ -158,7 +165,29 @@ Component({
       }
       this.getList()
     },
-    // 
+    // 横道图和进度监控切换
+    handleTabChange() {
+      if(this.data.tabText === '横道图') {
+        this.setData({
+          tabText: '进度监控'
+        })
+        this.setData({
+          webViewUrl: `${config.BASE_API_HOST}/#/share/gantt?projectId=${this.props.projectId}&type=miniProgram`
+        }) //http://192.168.6.41/#/share/gantt?projectId=12019020001&type=miniProgram
+        this.webViewContext = dd.createWebViewContext('web-view-1')
+        this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
+        console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST, app.globalData.userInfo.userToken)
+      } else {
+        this.setData({
+          tabText: '横道图'
+        })
+      }
+    },
+    onMessage:function(e) {
+      console.log('接受消息',e.detail)
+      dd.navigateBack()
+      return
+    },
 
   },
 });

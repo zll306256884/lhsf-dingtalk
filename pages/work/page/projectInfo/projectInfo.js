@@ -28,6 +28,7 @@ Page({
       { name:'是',value:'1' },
     ],
     formData:{},
+    sourceListName:'',
     isAccess: {},//考核
     projectClassification: {},//分类
     constructionPhase: {},//建设阶段
@@ -83,7 +84,6 @@ Page({
     this.getDetail(this.data.projectId)
   },
   onSelectInfo(e) {
-    console.log('????????????????????????????????????????');
     let string=e.target.dataset.value
     switch (string) {
       case 'project':
@@ -91,9 +91,12 @@ Page({
           url: `/pages/work/page/projectInfo/projectInfo?id=${this.data.formData.id}`
         });
       break;
-      case 'leader':
+      case 'projectLeader':
+      case 'carryLeader':
+      case 'operateLeader':
+        let userId=string=='projectLeader'?this.data.formData.personId:string=='carryLeader'?this.data.formData.carryPersonId:this.data.formData.operatePersonId
         ddUtils.navigateTo({
-          url: `/pages/user/page/baseinfo/baseinfo?id=${this.data.formData.personId}`
+          url: `/pages/user/page/baseinfo/baseinfo?id=${userId}`
         });
       break;
       case 'contract':
@@ -121,6 +124,7 @@ Page({
         }
         this.setData({
           formData: res.data,
+          sourceListName:res.data.projectSourceConfigTreeRepList.map(item=>item.name).join(","),
           projectClassification:{name:res.data.projectClassification_dictText,value:res.data.projectClassification},
           constructionPhase:{name:res.data.constructionPhase_dictText,value:res.data.constructionPhase},
           outPutTime:{shortDate:res.data.outPutTime},

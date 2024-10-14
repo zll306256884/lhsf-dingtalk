@@ -1,8 +1,10 @@
+const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
 import {isEmpty,isEqual} from "../../../../utils/utils"
 import config from "../../../../utils/config"
 import connector from "../../../../server/workServer/addInvestment"
 import ddUtils from "../../../../utils/ddUtils"
+import projectService from "../../../../server/workServer/projectServer";
 import request from "../../../../utils/request"
 import { formatTimeToDay } from "../../../../utils/utils";
 Page({
@@ -62,7 +64,16 @@ Page({
       {label: '当月',value: 1},
       {label: '下月',value: 2},
     ],
-    loading: false
+    loading: false,
+    earlyStageLeaderId: '',
+    earlyStageLeader: '',
+    carryPersonId: '',
+    carryLeaderName: '',
+    operatePersonId: '',
+    operateLeaderName: '',
+    projectTypeId: '',
+    userId: '',
+    projectListOptions: []
   },
   onLoad(option) {
     // let date = new Date().toLocaleString()
@@ -73,11 +84,17 @@ Page({
     // }
     // this.data.applicationTime = date.substr(0,10)
     this.setData({
+      userId: app.globalData.userInfo.userId
+    })
+    this.getProjectList()
+    this.setData({
       id:option.id,
     })
-    if(option.id){
-      this.getEdit(option.id) 
-    }
+    setTimeout(() => {
+      if(option.id){
+        this.getEdit(option.id) 
+      }
+    }, 500)
     if(option.sort === '1'){
       this.data.disabled = true
      this.data.navbarData.title = '编辑支付申请'
@@ -104,6 +121,35 @@ Page({
   },
   handleRef(ref) {
     this.form.addItem(ref);
+  },
+  chooseProjectLeader(data, column){
+    console.log(data, column)
+    this.setData({
+      projectLeaderId: column.personId
+    })
+    this.form.setFieldValue('projectLeader', column.name)
+  },
+  getProjectLeader(){
+    request.doPostRequest({
+      url: projectService.API_PROJECT_LEADER,
+      data: {projectId: this.data.projectId},
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.personId
+        })
+        console.log('项目负责人',res.data)
+        this.setData({
+          projectLeaderListOptions: res.data || []
+        })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId
+          })
+        }
+      }
+    })
   },
   // 获取补充协议
   getSelectSupplementalAgreement:function(e) {
@@ -278,7 +324,28 @@ bindChooseProjectCallBack: function (data) {
     projectLeader:data.projectLeaderName,
     affiliateUnit:data.affiliatedUnitName,
     projectId:data.id || '',
+    earlyStageLeaderId: data.personId,
+    earlyStageLeader: data.projectLeaderName,
+    carryPersonId: data.carryPersonId,
+    carryLeaderName: data.carryLeaderName,
+    operatePersonId: data.operatePersonId,
+    operateLeaderName: data.operateLeaderName,
+    projectTypeId: (data.projectType).toString(),
+    'projectTypeData.itemText':(data.projectType).toString() === '1' ? '集团项目（政府投资、地产类项目）' : '子公司项目',
+    'projectTypeData.itemValue':(data.projectType).toString(),
   });
+  if(this.data.projectTypeId === '1') {
+    this.form.setFieldValue('projectType_text', '集团项目（政府投资、地产类项目）')
+  } else {
+    this.form.setFieldValue('projectType_text', '子公司项目')
+  }
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.setFieldValue('projectName',data.name)
   this.form.setFieldValue('projectLeader',data.projectLeaderName)
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
@@ -288,6 +355,8 @@ bindChooseProjectCallBack: function (data) {
   this.form.setFieldValue('cumulativePayment','')
   this.form.setFieldValue('payUnit','')
   this.form.setFieldValue('receiverUnit','')
+  this.getProjectLeader()
+
 },
 //项目类型
   bindChooseProjectTypeTap: function (e) {
@@ -498,6 +567,21 @@ ddUtils.navigateTo({
 //     })
 //   }
 // },
+getProjectList(){
+  request.doPostRequest({
+    url: config.API_PROJECT_NAME,
+    success: res => {
+      res.data.forEach(e => {
+        e.label = e.name
+        e.value = e.id
+      })
+      console.log(res.data)
+      this.setData({
+        projectListOptions: res.data || []
+      })
+    }
+  })
+},
 // 编辑
 getEdit(id){
   request.doPostRequest({
@@ -531,7 +615,14 @@ getEdit(id){
         investmentFileList:res.data.investmentFileList,
         transitAmount:res.data.transitAmount,
         remark:res.data.remark,
-        accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0)
+        accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
+        earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+        earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+        carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+        carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+        operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+        operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+        projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
       })
       this.form.setFieldValue('projectType_text', res.data.projectType_dictText || '')
       this.form.setFieldValue('projectName', res.data.projectName)
@@ -589,7 +680,13 @@ getEdit(id){
   })
 },
 async submit() {
-  
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumulatedPaymentAmount') && !this.form.getFieldValue('remark') ) {
       this.setData({
         remarkTitle: true
@@ -679,6 +776,13 @@ async submit() {
 },
 // 暂存
 workingStorage(){
+  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
+  }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   // params.remark = this.data.remark,

@@ -1,0 +1,41 @@
+<import-sjs from="../../../../utils/utils.sjs" name="utils" />
+
+<block a:if="{{showDialog}}">
+  <view class="modal-mask" style="top: {{topHeight}}px; marginTop:{{marginTop}}rpx;" catchTap="_bindCancelTap" catchTouchMove="_bindTouchMove"></view>
+  <view class="dialog-scroll" animation="{{animation}}">
+    <view class='flex f-between picker-view-header box-sizing-box'>
+      <text a:if="{{multiChoose}}" class="cancel" catchTap="_bindCancelTap">取消</text>
+      <view class="flex1 dialog-picker-title">
+        {{title}}
+      </view>
+      <text a:if="{{multiChoose}}" class="sure" catchTap="_bindSureTap">确定</text>
+    </view>
+    <scroll-view class="scroll" style="height: {{scrollHeight}}px;margin-top:20rpx" scroll-y="{{true}}">
+      <view class="tree-container">
+        <block a:for="{{dataList}}" a:key="id">
+          <!-- <view class="tree-node" onTap="toggleNode" data-item="{{item}}"> -->
+            <checkbox-group onChange="checkboxChange" data-item="{{item}}">
+              <label>
+                <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+              </label>
+            </checkbox-group>
+            <icon type="right" hidden="{{!item.projectSourceConfigTreeRepList  || item.projectSourceConfigTreeRepList.length == 0}}"></icon>
+          <!-- </view> -->
+          <block a:if="{{item.projectSourceConfigTreeRepList.length}}">
+            <view class="sub-tree" style="margin-left:64rpx">
+              <block a:for="{{item.projectSourceConfigTreeRepList}}" a:key="id" >
+                <checkbox-group onChange="checkboxChange" data-item="{{item}}">
+                  <label>
+                    <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
+                  </label>
+                </checkbox-group>
+              </block>
+            </view>
+          </block>
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</block>
+
+

@@ -9,7 +9,6 @@
          label="项目类型"
          name="projectType_text"
          placeholder="请选择"
-        disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
         </view>
         <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTap">
@@ -28,12 +27,14 @@
          disabled
           ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
          </view>
-          <form-input
+          <!-- <form-input
           label="项目负责人"
           name="projectLeader"
           placeholder="选择项目后自动带入"
           disabled
-          ref="handleRef"></form-input>  
+          ref="handleRef"></form-input>   -->
+<form-picker label="项目负责任人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
+
           <form-input
           label="所属单位"
           name="affiliateUnit"

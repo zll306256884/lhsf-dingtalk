@@ -14,7 +14,11 @@
         <layout-field-input borderBottom name="项目名称" mustFillTransparent inputName="name" value="{{formData.name}}" placeholder="请输入"></layout-field-input>
         <layout-field-input a:if="{{ formData.proType== 0 }}" borderBottom name="项目简称" mustFillTransparent disabled inputName="projectProgram" value="{{formData.projectProgram || '-' }}" placeholder="请输入"></layout-field-input>
         <layout-field-cell borderBottom name="项目类型" mustFillTransparent disabled hidden="{{false}}" value="{{['工程项目','非工程项目'][formData.proType] || '-'}}"></layout-field-cell>
-        <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
+        <layout-field-cell borderBottom name="项目来源" mustFillTransparent disabled hidden="{{false}}" value="{{sourceListName || '-'}}"></layout-field-cell>
+        <view class="flex f-start cellcontent"><view class="celltitle">项目来源说明</view></view>
+        <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.projectSourceDescription || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
+      
+        <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom borderTop  name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
         <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom name="项目分类" mustFillTransparent disabled hidden="{{false}}" value="{{projectClassification.name || '-'}}"></layout-field-cell>
         <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled hidden="{{false}}" value="{{constructionPhase.name || '-'}}"></layout-field-cell>
         <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom name="是否投入使用" mustFillTransparent disabled hidden="{{false}}" value="{{isOutPut.name || '-'}}"></layout-field-cell>
@@ -25,7 +29,10 @@
         <layout-field-cell  a:if="{{ formData.proType== 0 }}"  borderBottom name="建设性质" mustFillTransparent disabled hidden="{{false}}" value="{{constructionNature.name || '-'}}"></layout-field-cell>
         <layout-field-cell  a:if="{{ formData.proType== 0 }}" borderBottom name="工程性质" mustFillTransparent disabled hidden="{{false}}" value="{{engineeringProperties.name || '-'}}"></layout-field-cell>
         
-        <layout-field-cell borderBottom name="项目负责人" mustFillTransparent value="{{formData.projectLeaderName || '-'}}" datasetValue="leader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="前期阶段负责人" mustFillTransparent value="{{formData.projectLeaderName || '-'}}" datasetValue="projectLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="实施阶段负责人" mustFillTransparent value="{{formData.carryLeaderName || '-'}}"  datasetValue="carryLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+        <layout-field-cell borderBottom name="运营阶段负责人" mustFillTransparent value="{{formData.operateLeaderName || '-'}}"  datasetValue="operateLeader" onArrowTap="onSelectInfo"></layout-field-cell>
+
         <view class="flex f-start cellcontent"><view class="celltitle">建设规模及内容</view></view>
         <textarea class="textarea" disabled name="constructionContent" maxlength="300" value="{{formData.constructionContent || '-'}}" placeholder="请输入内容" placeholder-class="placeholder-class" style="padding-left:30rpx;"></textarea>
       </view>

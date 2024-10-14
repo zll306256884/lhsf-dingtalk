@@ -19,7 +19,8 @@
         ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
        </view>
 
-       <form-input label="项目负责任人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" />
+       <!-- <form-input label="项目负责任人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" /> -->
+<form-picker label="项目负责任人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
        <form-input label="项目所属单位" required labelWidth="280rpx" name="affiliateUnit" disabled placeholder="自动生成" ref="handleRef" />
 
        <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">

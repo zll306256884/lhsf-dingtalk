@@ -94,7 +94,7 @@ Page({
     if (code == 0) {
       // 我的信息
       dd.navigateTo({
-        url: './page/baseinfo/baseinfo'
+        url: `/pages/user/page/baseinfo/baseinfo?id=${app.globalData.userInfo.userId}`
       })
     }
     if (code == 1) {

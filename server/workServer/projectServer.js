@@ -17,8 +17,9 @@ module.exports = {
   API_PROJECT_COMMITAPPROVAL: API_HOST + "/integratedService/projectInfo/commitProjectApproval",
   //删除项目
   API_PROJECT_DELETEPROJECT: API_HOST + "/integratedService/projectInfo/deleteProjectById",
-  
-  
+
+  //项目来源
+  API_PROJECT_SOURCE: API_HOST + "/integratedService/projectSourceConfig/projectSourceConfigTree",
 
   ////根据审核状态/单位类型/单位名称分页查询生态伙伴单位信息
   API_GET_UNIT_BIDING: API_HOST + "/platform/ecologicalUnit/pageQueryUnitByTypeAndName",
