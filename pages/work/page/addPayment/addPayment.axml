@@ -9,7 +9,6 @@
          label="项目类型"
          name="projectType_text"
          placeholder="请选择"
-        disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
         </view>
         <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTap">

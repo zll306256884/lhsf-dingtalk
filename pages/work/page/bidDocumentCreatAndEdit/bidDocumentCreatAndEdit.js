@@ -1,3 +1,4 @@
+const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
 import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
@@ -33,6 +34,14 @@ Page({
     tenderingAgencyOptions: [],
     executeUser: [],
     projectLeaderId: '',
+    earlyStageLeaderId: '',
+    earlyStageLeader: '',
+    carryPersonId: '',
+    carryLeaderName: '',
+    operatePersonId: '',
+    operateLeaderName: '',
+    projectTypeId: '',
+    userId: '',
     isShow: false,
     proType: null, //0工程，1非工程
     loading: false,
@@ -63,16 +72,21 @@ Page({
       projectLeaderId: [{ required: true, message: '请选择' }],
       meetingTime:[{ required: true, message: '请选择' }]
     }
-    console.log(options)
-    if(options.id){
-      this.setData({
-        tenderId: options.id,
-        navbarData: { title: '编辑招标文件'}
-      })
-      this.getDetail(options.id)
-    }
-    this.getCodeList()
+    console.log('option', options, app.globalData.userInfo)
+    this.setData({
+      userId: app.globalData.userInfo.userId
+    })
     this.getProjectList()
+    setTimeout(() => {
+      if(options.id){
+        this.setData({
+          tenderId: options.id,
+          navbarData: { title: '编辑招标文件'}
+        })
+        this.getDetail(options.id)
+      }
+    }, 500)
+    this.getCodeList()
     this.getEcological()
   },
   handleRef(ref) {
@@ -170,8 +184,22 @@ Page({
       projectId: data.id,
       projectName: data.name,
       // projectLeaderId: data.personId,
-      proType: data.proType
+      proType: data.proType,
+      earlyStageLeaderId: data.personId,
+      earlyStageLeader: data.projectLeaderName,
+      carryPersonId: data.carryPersonId,
+      carryLeaderName: data.carryLeaderName,
+      operatePersonId: data.operatePersonId,
+      operateLeaderName: data.operateLeaderName,
+      projectTypeId: (data.projectType).toString(),
     })
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     let tenderName = this.form.getFieldValue('tenderName') || ''
     if( data.proType === 0){
       this.form.setFieldValue('title', data.name+'-'+tenderName)
@@ -181,9 +209,15 @@ Page({
     this.getProjectLeader()
   },
   chooseProjectLeader(data, column){
-    console.log(data, column)
+    console.log(data, column, this.data.projectLeaderListOptions.find(e => e.stage === '1'))
     this.setData({
-      projectLeaderId: column.personId
+      projectLeaderId: column.personId,
+      earlyStageLeaderId: this.data.projectLeaderListOptions.find(e => e.stage === '1').personId,
+      earlyStageLeader: this.data.projectLeaderListOptions.find(e => e.stage === '1').name,
+      carryPersonId: this.data.projectLeaderListOptions.find(e => e.stage === '2').personId,
+      carryLeaderName: this.data.projectLeaderListOptions.find(e => e.stage === '2').name,
+      operatePersonId: this.data.projectLeaderListOptions.find(e => e.stage === '3').personId,
+      operateLeaderName: this.data.projectLeaderListOptions.find(e => e.stage === '3').name
     })
     this.form.setFieldValue('projectLeader', column.name)
   },
@@ -203,7 +237,13 @@ Page({
         if(res.data && res.data.length === 1){
           this.form.setFieldValue('projectLeaderId', res.data[0].personId)
           this.setData({
-            projectLeaderId: res.data[0].personId
+            projectLeaderId: res.data[0].personId,
+            earlyStageLeaderId: this.data.projectLeaderListOptions.find(e => e.stage === '1').personId,
+            earlyStageLeader: this.data.projectLeaderListOptions.find(e => e.stage === '1').name,
+            carryPersonId: this.data.projectLeaderListOptions.find(e => e.stage === '2').personId,
+            carryLeaderName: this.data.projectLeaderListOptions.find(e => e.stage === '2').name,
+            operatePersonId: this.data.projectLeaderListOptions.find(e => e.stage === '3').personId,
+            operateLeaderName: this.data.projectLeaderListOptions.find(e => e.stage === '3').name
           })
         }
       }
@@ -270,7 +310,14 @@ Page({
           countersignLeader: paramsdata.countersignLeader,
           projectName: paramsdata.projectName,
           applicationTime: paramsdata.startDate,
-          projectLeaderId: paramsdata.projectLeaderId
+          projectLeaderId: paramsdata.projectLeaderId,
+          earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+          earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+          carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+          carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+          operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+          operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+          projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
         })
         if(res.data.tenderDocumentList && res.data.tenderDocumentList.length){
           res.data.tenderDocumentList.forEach(e => {
@@ -319,6 +366,13 @@ Page({
   },
   //暂存
   staging(){
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     this.form.rules = {}
     let params = this.form.getFieldsValue()
     console.log(params)
@@ -383,6 +437,13 @@ Page({
   },
 
   async submit() {
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     console.log(this.form)
     // this.form.addItem(ref)
     const params = await this.form.submit();
