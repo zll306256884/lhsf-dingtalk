@@ -104,3 +104,12 @@
 .ant-textarea-placeholder {
   font-size: 17px;
 }
+
+.tips {
+  font-size: 16px;
+  color: #ccc;
+}
+.tips-right {
+  text-align: right;
+  padding-right: 30rpx;
+}
