@@ -51,7 +51,8 @@ Page({
     defaultPerson: [],//默认抄送人员
     pickerVisible:false,
     projectLeaderListOptions: [],
-    executeLeader: []
+    executeLeader: [],
+    personList: []
   },
   uploadImageList: null,/// 上传
   uploadTenderImageList: null,//变更小组会议纪要
@@ -230,7 +231,7 @@ Page({
   },
   //抄送人
   bindChooseExecuteUserTap: function (e) {
-    if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog()
+    if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog(this.data.personList)
   },
   onSaveDialogScreenExecuteUserRef: function (ref) {
     console.log(ref);
@@ -262,6 +263,11 @@ Page({
       });
       this.form.setFieldValue('person_text', isEmpty(str) ? '' : str.substring(0, str.length - 1));
       this.form.setFieldValue('person', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
+      this.setData({
+        personList: list && list.map(e => {
+          return { userId: e.userId, username: e.username,};
+        })
+      });
   },
   // 上传
   onSaveUploadImgRef: function (ref) {
@@ -369,7 +375,14 @@ Page({
           const nameList = res.data.subLeader_dictText.split(',')
           const idList = res.data.subLeader.split(',')
           this.setData({
-            executeLeader: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || []
+            executeLeader: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || [],
+          })
+        }
+        if(res.data.person_dictText && res.data.person){
+          const nameList = res.data.person_dictText.split(',')
+          const idList = res.data.person.split(',')
+          this.setData({
+            personList: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || [],
           })
         }
         const files = res.data.investmentFileList.map((item) => {

@@ -101,15 +101,18 @@ Page({
       approveTotalPrice: [{ required: true, message: '请输入' }],
       priceRate: [{ required: true, message: '请输入' }],
       departmentManager_dictText: [{ required: true, message: '请输入' }],
-      countersignLeader_dictText: [{ required: true, message: '请输入' }]
+      countersignLeader_dictText: [{ required: true, message: '请输入' }],
+      projectLeaderId: [{ required: true, message: '请选择项目负责人' }],
      }
   },
   chooseProjectLeader(data, column){
     console.log(data, column)
     this.setData({
-      projectLeaderId: column.personId
+      projectLeaderId: column.personId,
+      projectLeader:  column.name
     })
     this.form.setFieldValue('projectLeader', column.name)
+    this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(){
     request.doPostRequest({

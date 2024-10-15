@@ -52,7 +52,7 @@
             </form-input> 
 
            </view> -->
-           <form-picker label="项目负责任人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
+           <form-picker label="项目负责人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
            <view a:if="{{disabled  ===false}}" catchTap="bindChooseContractNameTap">
             <form-input
             label="合同名称"

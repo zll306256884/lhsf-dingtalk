@@ -107,7 +107,7 @@ Page({
     this.form.rules = {
       projectType_text: [{ required: true, message: '请选择项目类型' }],
       projectName: [{ required: true, message: '请选择项目名称' }],
-      projectLeader: [{ required: true, message: '请选择项目负责人' }],
+      projectLeaderId: [{ required: true, message: '请选择项目负责人' }],
       affiliateUnit: [{ required: true, message: '请选择所属单位' }],
       contractName: [{ required: true, message: '请选择合同名称' }],
       contractAmount: [{ required: true, message: '请选择合同金额' }],
@@ -132,6 +132,7 @@ Page({
       projectLeader: column.name
     })
     this.form.setFieldValue('projectLeader', column.name)
+    this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(){
     request.doPostRequest({
@@ -625,10 +626,13 @@ getEdit(id){
       })
       request.doPostRequest({
         url: config.API_PROJECT_NAME,
-        success: res => {
-          res.data.forEach(e => {
+        success: result => {
+          result.data.forEach(e => {
             e.label = e.name
             e.value = e.id
+          })
+          this.setData({
+            projectListOptions: result.data || []
           })
           this.setData({
             accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
@@ -663,6 +667,7 @@ getEdit(id){
       this.form.setFieldValue('remark', res.data.remark || '')
       this.form.setFieldValue('accumulatedPaymentAmount',  Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0))
       this.form.setFieldValue('monthType', res.data.monthType || '')
+      this.form.setFieldValue('projectLeaderId', res.data.projectLeaderId || '')
         // 获取补充协议
       this.getProjectLeader()
     request.doPostRequest({
@@ -835,7 +840,9 @@ workingStorage(){
   params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
   params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
   params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
-  params.countersignLeader = this.data.countersignLeader
+  params.countersignLeader = this.data.countersignLeader,
+  params.projectLeaderId = this.data.projectLeaderId,
+  params.projectLeader = this.data.projectLeader
   if (this.uploadImageList) {
     let temFileLists=[]
     temFileLists = this.uploadImageList.data.imgList;
