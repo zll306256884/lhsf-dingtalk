@@ -52,7 +52,14 @@ Page({
     pickerVisible:false,
     projectLeaderListOptions: [],
     executeLeader: [],
-    personList: []
+    personList: [],
+    leaderList: [],
+    executeLeader: [],
+    earlyStageLeaderId: '',
+    carryPersonId: '',
+    operatePersonId: '',
+    projectTypeId: '',
+    userId: ''
   },
   uploadImageList: null,/// 上传
   uploadTenderImageList: null,//变更小组会议纪要
@@ -66,7 +73,8 @@ Page({
     // }
     // this.data.countersignDate = date.substr(0,10)
     this.setData({
-      id: option.id
+      id: option.id,
+      userId: app.globalData.userInfo.userId
     })
     if (option.id) {
       this.data.disabled = true
@@ -127,6 +135,10 @@ Page({
       // contractAmount:'',
       // contractCumulativeChange:'',
       // contractChangeRate:''
+      earlyStageLeaderId: data.personId,
+      carryPersonId: data.carryPersonId,
+      operatePersonId: data.operatePersonId,
+      projectTypeId: (data.projectType).toString()
     });
     this.form.setFieldValue('projectName', data.name)
     this.form.setFieldValue('projectLeader', data.projectLeaderName)
@@ -150,6 +162,13 @@ Page({
     })
     this.getProjectLeaderInfo()
     console.log(this.data.projectData, 'this.data.projectData');
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
   },
   // 合同名称
   bindChooseContractNameTap: function (e) {
@@ -413,6 +432,13 @@ Page({
   },
   //保存
   async submit() {
+    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
     const params = await this.form.submit();
     params.projectId = this.data.projectData.id,
     params.contractId = this.data.contractData.contractId

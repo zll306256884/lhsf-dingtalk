@@ -164,11 +164,11 @@ Page({
 
   progressAddSubmit(e) {
     // 
-    console.log('触发了表单', e.detail.value)
-    console.log('附件的数据', this.uploadImageList._getUploadImgId().imgList)
+    console.log('触发了表单', e.detail.value, this.uploadImageList)
+    console.log('附件的数据', this.uploadImageList && this.uploadImageList._getUploadImgId().imgList)
     let annexFile
-    if (this.uploadImageList._getUploadImgId().imgList.length) {
-      annexFile = this.uploadImageList._getUploadImgId().imgList
+    if (this.uploadImageList && this.uploadImageList._getUploadImgId().imgList.length) {
+      annexFile = this.uploadImageList && this.uploadImageList._getUploadImgId().imgList
     } else {
       annexFile = [];
     }
