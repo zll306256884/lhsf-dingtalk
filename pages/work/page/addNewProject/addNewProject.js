@@ -42,6 +42,7 @@ Page({
     projectRedLineList: [],//项目红线图
     projectClassificationOptions: [],
     constructionPhaseOptions: [],
+    projectTypeOptions:[],
     engineeringPropertiesOptions: [],
     constructionNatureOptions: [],
     affiliatedUnitOption: [],
@@ -82,6 +83,8 @@ Page({
       coorY: [{ required: false, message: '请输入(最多10位整数3位小数)',pattern: /^(0|\+?[1-9][0-9]{0,9})(\.\d{1,3})?$/ }],
       projectClassification: [{required: true, message: '请选择'}],
       constructionPhase: [{required: true, message: '请选择'}],
+      projectType: [{required: true, message: '请选择'}],
+
       isOutPut: [{required: true, message: '请选择'}],
       outPutTime: [{required: true, message: '请选择'}],
       affiliatedUnitId: [{required: true, message: '请选择'}],
@@ -350,6 +353,7 @@ Page({
         })
       }
     })
+
     //建设阶段
     request.doPostRequest({
       url: config.API_SCREEN_STATUS_BY_CODE + 'construction_phase',
@@ -363,6 +367,20 @@ Page({
         this.setData({
           constructionPhaseOptions: res.data || [],
           constructionPhase: {name: '前期阶段', value:'0'}
+        })
+      }
+    })
+    request.doPostRequest({
+      url: config.API_SCREEN_STATUS_BY_CODE + 'contract_project_type',
+      data: { dictCode: 'contract_project_type'},
+      success: res => {
+        res.data.forEach(e => {
+          e.label = e.itemText
+          e.value = e.itemValue
+        })
+        console.log(res.data)
+        this.setData({
+          projectTypeOptions: res.data || [],
         })
       }
     })

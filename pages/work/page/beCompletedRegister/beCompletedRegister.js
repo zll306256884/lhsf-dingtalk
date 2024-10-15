@@ -57,7 +57,7 @@ Page({
     // carryLeaderName: '',
     // operatePersonId: '',
     // operateLeaderName: '',
-    // projectTypeId: '',
+    projectType: '',
     userId: '',
     projectListOptions: [],
     projectLeaderListOptions:[]
@@ -246,6 +246,7 @@ bindChooseProjectCallBack: function (data) {
     projectLeader:data.projectLeaderName,
     projectLeaderId: data.personId,
     affiliateUnit:data.affiliatedUnitName,
+    projectType: data.projectType,
     projectId:data.id || '',
     'contractData.contractName':'',
     "contractData.contractId":'',
@@ -260,7 +261,14 @@ bindChooseProjectCallBack: function (data) {
 
   this.form.setFieldValue('projectLeader',data.projectLeaderName)
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
-
+  const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
+  if(!isLeader && this.data.projectType ==1){
+     ddUtils.showToast({
+       title: '注意：仅项目负责人可发起流程',
+       duration: 2000
+     });
+     return
+  }
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,
     data: {
@@ -491,7 +499,7 @@ request.doPostRequest({
 },
 async staging(){
  const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
- if(!isLeader){
+ if(!isLeader && this.data.projectType ==1){
     ddUtils.showToast({
       title: '注意：仅项目负责人可发起流程',
       duration: 2000
@@ -542,7 +550,7 @@ async staging(){
 },
 async submit(){
   const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
-  if(!isLeader){
+  if(!isLeader && this.data.projectType ==1){
      ddUtils.showToast({
        title: '注意：仅项目负责人可发起流程',
        duration: 2000
