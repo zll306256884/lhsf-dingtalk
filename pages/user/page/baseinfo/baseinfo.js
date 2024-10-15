@@ -12,6 +12,7 @@ Page({
     username: '',
     deptName: "",
     station: "",
+    mobile: '',
     projectList: [],
     userId:''
 
@@ -40,6 +41,7 @@ Page({
             username: res.data.username,
             deptName: res.data.deptName,
             station: res.data.station,
+            mobile: res.data.mobile,
           });
           resolve(res.data)
         },
@@ -71,5 +73,28 @@ Page({
         }
       });
     })
-  }
+  },
+  callMobile(e) {
+    console.log('e', e, this.data.mobile)
+    // ddUtils.makePhoneCall({phoneNumber: this.data.mobile});
+    ddUtils.showModal({
+      title:  `您即将呼叫: ${this.data.username}？`,
+      content: "请确认",
+      success: res => {
+        if (res.confirm) {
+          dd.makePhoneCall({
+            phoneNumber: this.data.mobile,
+            success: (res) => {
+              console.log('makePhoneCall', res);
+            },
+            fail: (res) => {
+              console.log(res)
+            },
+            complete: () => { },
+          });
+          return
+        }
+      }
+    })
+  },
 });

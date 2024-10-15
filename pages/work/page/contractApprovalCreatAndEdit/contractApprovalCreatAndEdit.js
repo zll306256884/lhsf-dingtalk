@@ -161,7 +161,8 @@ Page({
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
       contractPeriodType: [{ required: true, message: '请选择' }],
       projectLeaderId: [{ required: true, message: '请选择' }],
-      basisSigning: [{ required: true, message: '请选择' }]
+      basisSigning: [{ required: true, message: '请选择' }],
+      affiliateUnit: [{ required: true, message: '请选择项目' }]
     }
     this.getCodeList()
     setTimeout(() => {
@@ -720,7 +721,9 @@ Page({
     }
     
     params.projectLeaderId = this.data.projectLeaderId
+    
     params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
+
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
@@ -883,14 +886,27 @@ Page({
       data: {id: this.data.contractId},
       success: res => {
         const paramsdata = res.data
+        console.log('我看看', res.data)
+        this.setData({
+          projectId: res.data.projectId
+        })
+        this.getProjectLeader()
         //查项目状态
         if(paramsdata.projectId){
+          console.log("项目id",paramsdata.projectId)
           request.doPostRequest({
             url: projectService.API_SELECTPROJECT_INFO_BYID,
             data: {id: paramsdata.projectId},
             success: res => {
               this.setData({
-                proType: res.data.proType
+                proType: res.data.proType,
+                earlyStageLeaderId: res.data.personId,
+                earlyStageLeader: res.data.projectLeaderName,
+                carryPersonId: res.data.carryPersonId,
+                carryLeaderName: res.data.carryLeaderName,
+                operatePersonId: res.data.operatePersonId,
+                operateLeaderName: res.data.operateLeaderName,
+                projectTypeId: res.data.projectType.toString(),
               })
             }
           })
@@ -931,7 +947,7 @@ Page({
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
         this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
         this.form.setFieldValue('contractAmount', paramsdata.contractAmount)
-        
+        this.form.setFieldValue('basisSigning', paramsdata.basisSigning.toString())
 
         if(paramsdata.contractType === 1){
           this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
@@ -939,7 +955,11 @@ Page({
           this.form.setFieldValue('title',paramsdata.title.replace('直接添加合同：',''))
         }
         
-        
+        this.setData({
+          tenderShow: paramsdata.basisSigning == 1?true: false,
+          showOther: paramsdata.basisSigning== 5?true:false,
+          basisShow: paramsdata.basisSigning != 1?true: false
+        })
 
         console.log(this.form.getFieldsValue())
         let list = paramsdata.contractThirdPartyRepList
@@ -970,13 +990,13 @@ Page({
           developmentOrganizationListName: paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),
           selectedList:paramsdata.developmentOrganizationList.map(e => e.ecUnitId),
           isChooseTenderDocumentId: paramsdata.tenderDocumentId,
-          earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
-          earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
-          carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
-          carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
-          operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
-          operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
-          projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
+          // earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+          // earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+          // carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+          // carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+          // operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+          // operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+          // projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
           disabledType: true,
           list
         })
@@ -985,6 +1005,12 @@ Page({
             e.name = e.fileName
           })
         }
+        if(paramsdata.decisionBasisFileList && paramsdata.decisionBasisFileList){
+          paramsdata.decisionBasisFileList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
+        console.log(paramsdata.decisionBasisFileList)
         setTimeout(() => {
           this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
           this.uploadTenderImageList._setImageList(paramsdata.decisionBasisFileList?paramsdata.decisionBasisFileList:[])
@@ -1002,10 +1028,13 @@ Page({
           this.form.setFieldValue('contractEndTime', paramsdata.contractEndTime)
           this.form.setFieldValue('developmentOrganizationListName', paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),)
 
-          this.form.setFieldValue('biddingType', paramsdata.biddingType.toString())
+          this.form.setFieldValue('biddingType', paramsdata.biddingType?paramsdata.biddingType.toString():'')
+          this.form.setFieldValue('projectLeaderId', paramsdata.projectLeaderId)
         }, 0);
+        console.log('这里')
+        console.log(this.data.projectLeaderListOptions)
+        console.log(this.data.projectLeaderId)
 
-        
         if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
           const nameList = paramsdata.countersignLeader_dictText.split(',')
           const idList = paramsdata.countersignLeader.split(',')

@@ -103,7 +103,8 @@ Page({
       approveTotalPrice: [{ required: true, message: '请输入' }],
       priceRate: [{ required: true, message: '请输入' }],
       departmentManager_dictText: [{ required: true, message: '请输入' }],
-      countersignLeader_dictText: [{ required: true, message: '请输入' }]
+      countersignLeader_dictText: [{ required: true, message: '请输入' }],
+      projectLeaderId: [{ required: true, message: '请选择项目负责人' }],
      }
   },
   chooseProjectLeader(data, column){

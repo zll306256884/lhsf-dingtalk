@@ -2,8 +2,6 @@
 
 <view class="container">
   <form onSubmit="bindFormSubmit">
-    <view >
-      <view class="box-shadow" >
         <view  catchTap="bindChooseProjectTypeTap">
          <form-input
          label="项目类型"
@@ -33,8 +31,7 @@
           placeholder="选择项目后自动带入"
           disabled
           ref="handleRef"></form-input>   -->
-<form-picker label="项目负责任人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
-
+         <form-picker label="项目负责人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
           <form-input
           label="所属单位"
           name="affiliateUnit"

@@ -75,7 +75,7 @@ Page({
   dialogProjectNameRef: null, //项目名称弹框实例
   dialogLogTypeRef: null, //日志类型
   uploadImgRefList: null, // 上传照片
-  uploadFileRef: null, // 上传附件
+  // uploadFileRef: null, // 上传附件
   uploadImageList: null, // 上传附件
 
   onLoad(options) {
@@ -202,37 +202,44 @@ Page({
 
     // console.log(this.data.logData, 'this.data.logData');
     // console.log(this.data.logContent, 'this.data.logContent');
+    // let logPhotoList
+    // if (this.uploadImgRefList._getUploadImgId().imgList.length) {
+    //   logPhotoList = this.uploadImgRefList._getUploadImgId().imgList
+    // } else {
+    //   logPhotoList = [];
+    // }
+    // this.data.logPhotoList = logPhotoList
+    // let logFileList
+    // if (this.uploadImageList._getUploadImgId().imgList.length) {
+    //   logFileList = this.uploadImageList._getUploadImgId().imgList
+    // } else {
+    //   logFileList = [];
+    // }
+    // 照片/附件合并为证明材料
     let logPhotoList
-    if (this.uploadImgRefList._getUploadImgId().imgList.length) {
-      logPhotoList = this.uploadImgRefList._getUploadImgId().imgList
+    if (this.uploadImageList._getUploadImgId().imgList.length) {
+      logPhotoList = this.uploadImageList._getUploadImgId().imgList
     } else {
       logPhotoList = [];
     }
     this.data.logPhotoList = logPhotoList
-    let logFileList
-    if (this.uploadImageList._getUploadImgId().imgList.length) {
-      logFileList = this.uploadImageList._getUploadImgId().imgList
-    } else {
-      logFileList = [];
-    }
-    this.data.logFileList = logFileList
 
     let projectId
-    if (this.data.logTypeName == '重大事件') {
-      projectId = this.data.projectId
-    } else {
-      projectId = this.data.projectIdNext
-    }
+    // if (this.data.logTypeName == '重大事件') {
+    //   projectId = this.data.projectId
+    // } else {
+    //   projectId = this.data.projectIdNext
+    // }
     let param = {
       id: '',
       name: this.data.projectName, //名称
-      projectId: projectId, //项目id
+      projectId: this.data.projectId, //项目id
       logDate: this.data.logDate, //日志日期
       logTypeName: this.data.logTypeName, //日志类型名字
       logType: this.data.logType, //日志类型id
       content: this.data.logContent,//日志内容
       logPhotoList: this.data.logPhotoList, //照片
-      logFileList: this.data.logFileList, //附件
+      // logFileList: this.data.logFileList, //附件
       // ...this.data.logData,
 
     }
@@ -257,22 +264,28 @@ Page({
     //   });
     //   return
     // }
-    if (this.data.logTypeName == '重大事件') {
-      // if (!this.data.logData.name) {
-      //   ddUtils.showToast({
-      //     title: "请选择项目名称"
-      //   });
-      //   return
-      // }
+    // if (this.data.logTypeName == '重大事件') {
+    //   // if (!this.data.logData.name) {
+    //   //   ddUtils.showToast({
+    //   //     title: "请选择项目名称"
+    //   //   });
+    //   //   return
+    //   // }
+    //   if (!this.data.logPhotoList.length) {
+    //     ddUtils.showToast({
+    //       title: "重大事件的时候 图片必填",
+
+    //     });
+    //     return
+    //   }
+    // }
+    // return
       if (!this.data.logPhotoList.length) {
         ddUtils.showToast({
-          title: "重大事件的时候 图片必填",
-
+          title: "证明材料必填",
         });
         return
       }
-    }
-    // return
     request.doPostRequest({
       url: logService.API_CREATE_LOG,
       data: param,

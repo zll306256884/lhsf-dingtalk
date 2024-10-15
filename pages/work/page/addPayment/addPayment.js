@@ -73,7 +73,7 @@ Page({
     operateLeaderName: '',
     projectTypeId: '',
     userId: '',
-    projectListOptions: []
+    projectLeaderListOptions: []
   },
   uploadTenderImageList: null,
   onLoad(option) {
@@ -87,15 +87,17 @@ Page({
     this.setData({
       userId: app.globalData.userInfo.userId
     })
-    this.getProjectList()
     this.setData({
       id:option.id,
     })
-    setTimeout(() => {
-      if(option.id){
-        this.getEdit(option.id) 
-      }
-    }, 500)
+    // setTimeout(() => {
+     
+    // }, 500)
+    if(option.id){
+      this.getEdit(option.id) 
+    }else{
+      this.getProjectList()
+    }
     if(option.sort === '1'){
       this.data.disabled = true
      this.data.navbarData.title = '编辑支付申请'
@@ -105,7 +107,7 @@ Page({
     this.form.rules = {
       projectType_text: [{ required: true, message: '请选择项目类型' }],
       projectName: [{ required: true, message: '请选择项目名称' }],
-      projectLeader: [{ required: true, message: '请选择项目负责人' }],
+      projectLeaderId: [{ required: true, message: '请选择项目负责人' }],
       affiliateUnit: [{ required: true, message: '请选择所属单位' }],
       contractName: [{ required: true, message: '请选择合同名称' }],
       contractAmount: [{ required: true, message: '请选择合同金额' }],
@@ -126,9 +128,11 @@ Page({
   chooseProjectLeader(data, column){
     console.log(data, column)
     this.setData({
-      projectLeaderId: column.personId
+      projectLeaderId: column.personId,
+      projectLeader: column.name
     })
     this.form.setFieldValue('projectLeader', column.name)
+    this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(){
     request.doPostRequest({
@@ -579,7 +583,6 @@ getProjectList(){
         e.label = e.name
         e.value = e.id
       })
-      console.log(res.data)
       this.setData({
         projectListOptions: res.data || []
       })
@@ -619,14 +622,29 @@ getEdit(id){
         investmentFileList:res.data.investmentFileList,
         transitAmount:res.data.transitAmount,
         remark:res.data.remark,
-        accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
-        earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
-        earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
-        carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
-        carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
-        operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
-        operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
-        projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
+        'projectLeaderId':res.data.projectLeaderId
+      })
+      request.doPostRequest({
+        url: config.API_PROJECT_NAME,
+        success: result => {
+          result.data.forEach(e => {
+            e.label = e.name
+            e.value = e.id
+          })
+          this.setData({
+            projectListOptions: result.data || []
+          })
+          this.setData({
+            accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
+            earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
+            earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
+            carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
+            carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
+            operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
+            operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
+            projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
+          })
+        }
       })
       this.form.setFieldValue('projectType_text', res.data.projectType_dictText || '')
       this.form.setFieldValue('projectName', res.data.projectName)
@@ -649,32 +667,34 @@ getEdit(id){
       this.form.setFieldValue('remark', res.data.remark || '')
       this.form.setFieldValue('accumulatedPaymentAmount',  Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0))
       this.form.setFieldValue('monthType', res.data.monthType || '')
+      this.form.setFieldValue('projectLeaderId', res.data.projectLeaderId || '')
         // 获取补充协议
+      this.getProjectLeader()
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
         contractId:this.data.contractData.contractId,
       },
       success: res => {
-        console.log(res,2323232323);
+        console.log('2323232323', res);
         this.data.supplementaryAgreement = res.data
         this.setData({
           supplementaryAgreement: res.data
         })
       }
     }) 
-      const files= res.data.investmentFileList.map((item)=>{
+      const files = res.data.investmentFileList?res.data.investmentFileList.map((item)=>{
         return {
           ...item,
           name:item.fileName,
         }
-      })
-      const files1= res.data.acceptanceFileList.map((item)=>{
+      }): []
+      const files1 = res.data.acceptanceFileList?res.data.acceptanceFileList.map((item)=>{
         return {
           ...item,
           name:item.fileName,
         }
-      })
+      }):[]
       setTimeout(() => {
         this.uploadImageList._setImageList(files) 
         this.uploadTenderImageList._setImageList(files1)
@@ -723,26 +743,27 @@ async submit() {
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
     params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
     params.countersignLeader = this.data.countersignLeader
-    let temFileList=[]
     if (this.uploadImageList) {
-      temFileList = this.uploadImageList.data.imgList;
-      if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
-      temFileList.forEach(e => {
+      let temsFileList=[]
+      temsFileList = this.uploadImageList.data.imgList;
+      if (ddUtils.showEmptyArrayTips(temsFileList, "请上传合同正式稿及相关附件")) return;
+      temsFileList.forEach(e => {
         e.fileName = e.name
         e.type= 3
       })
-      params.investmentFileList =  temFileList
+      params.investmentFileList =  temsFileList
     }
     if(this.uploadTenderImageList){
-      temFileList = this.uploadTenderImageList.data.imgList;
+      let temFileLists=[]
+      temFileLists = this.uploadTenderImageList.data.imgList;
       if(params.accumulatedPaymentAmount < params.contractAmount*0.75){
-        if (ddUtils.showEmptyArrayTips(temFileList, "请上传验收文件")) return;
+        if (ddUtils.showEmptyArrayTips(temFileLists, "请上传验收文件")) return;
       }
-      temFileList.forEach(e => {
+      temFileLists.forEach(e => {
         e.fileName = e.name
         e.type= 7
       })
-      params.acceptanceFileList =  temFileList
+      params.acceptanceFileList =  temFileLists
     }
     if(params.accumulatedPaymentAmount > params.contractAmount){
       ddUtils.showModal({
@@ -819,22 +840,27 @@ workingStorage(){
   params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
   params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
   params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
-  params.countersignLeader = this.data.countersignLeader
-  let temFileList=[]
+  params.countersignLeader = this.data.countersignLeader,
+  params.projectLeaderId = this.data.projectLeaderId,
+  params.projectLeader = this.data.projectLeader
   if (this.uploadImageList) {
-    temFileList = this.uploadImageList.data.imgList;
+    let temFileLists=[]
+    temFileLists = this.uploadImageList.data.imgList;
     // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
-    temFileList.forEach(e => {
+    temFileLists.forEach(e => {
       e.fileName = e.name
       e.type= 3
     })
+    params.investmentFileList =  temFileLists
+   }
     if(this.uploadTenderImageList){
-      temFileList = this.uploadTenderImageList.data.imgList;
-      temFileList.forEach(e => {
+      let temsFileList=[]
+      temsFileList = this.uploadTenderImageList.data.imgList;
+      temsFileList.forEach(e => {
         e.fileName = e.name
         e.type= 7
       })
-      params.acceptanceFileList =  temFileList
+      params.acceptanceFileList =  temsFileList
     }
     // for (let item of temFileList) {
     //   this.data.investmentFileList.push({
@@ -844,7 +870,6 @@ workingStorage(){
     //       url: item.url,
     //   })
     // }
-    params.investmentFileList =  temFileList
     request.doPostRequest({
       url: connector.API_TS_TO_POST,
       data: params,
@@ -855,7 +880,6 @@ workingStorage(){
       ddUtils.navigateBack();
       }
     })
-  }
 },
 bingFocusChange(){
   this.setData({

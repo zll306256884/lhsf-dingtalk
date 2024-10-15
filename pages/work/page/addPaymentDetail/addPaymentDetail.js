@@ -35,6 +35,7 @@ Page({
     imageUrl: ''
   },
   uploadContractImage: null,
+  uploadTenderImageList: null,
   onLoad(option) {
     // if (option.id) {
       this.setData({
@@ -67,6 +68,9 @@ Page({
   },
   onSaveUploadContractImgRef(ref) {
     this.uploadContractImage = ref
+  },
+  onSaveUploadFileRef: function (ref) {
+    this.uploadTenderImageList = ref;
   },
   onShow(){
     this.getDetail(this.data.id)
@@ -185,8 +189,15 @@ Page({
             name:item.fileName,
           }
         })
+        const files1 = res.data.acceptanceFileList?res.data.acceptanceFileList.map((item)=>{
+          return {
+            ...item,
+            name:item.fileName,
+          }
+        }):[]
         setTimeout(() => {
           this.uploadContractImage._setImageList(files) 
+          this.uploadTenderImageList._setImageList(files1)
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.investmentFileList ? res.data.investmentFileList : '')
