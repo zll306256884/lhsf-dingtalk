@@ -238,7 +238,7 @@ Page({
   },
   bindScreenExecuteUserCallBack: function (list) {
       const seenIds = new Map();
-      this.chooseExecuteUserList = this.data.defaultPerson.concat(list).filter(item => {
+      let chooseExecuteUserList = this.data.defaultPerson.concat(list).filter(item => {
         // 如果 Map 中还没有这个 id，则添加它并返回 true（保留该元素）  
         // 否则，返回 false（不保留该元素）  
         if (!seenIds.has(item.userId)) {
@@ -247,10 +247,10 @@ Page({
         }
         return false;
       });
-      console.log(this.chooseExecuteUserList);
+      console.log(chooseExecuteUserList);
       let str = "";
       let strId = ""
-      for (let item of this.chooseExecuteUserList) {
+      for (let item of chooseExecuteUserList) {
         str += item.username;
         strId += item.userId
         str += ",";
@@ -533,7 +533,9 @@ Page({
         // this.setData({
         //   defaultPerson: res.data
         // })
-        this.bindScreenExecuteUserCallBack([])
+        if(!this.data.id){
+          this.bindScreenExecuteUserCallBack([])
+        }
       }
     })
   },
