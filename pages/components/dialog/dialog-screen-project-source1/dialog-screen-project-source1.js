@@ -83,8 +83,8 @@ Component({
     },
     _bindCancelTap: function(e) {
       this._hideDialog();
-      let list = this.data.dataList.filter(e => e.checked === true)
-      this.props.onScreenCallBack(list);
+      // let list = this.data.dataList.filter(e => e.checked === true)
+      // this.props.onScreenCallBack(list);
     },
     //bind sure tap
     _bindSureTap: function(e) {
