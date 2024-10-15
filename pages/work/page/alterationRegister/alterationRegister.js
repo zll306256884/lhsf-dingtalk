@@ -50,7 +50,7 @@ Page({
     contractData: {},//合同名称
     defaultPerson: [],//默认抄送人员
     pickerVisible:false,
-    leaderList: [],
+    projectLeaderListOptions: [],
     executeLeader: []
   },
   uploadImageList: null,/// 上传
@@ -83,7 +83,7 @@ Page({
       projectName: [{ required: true, message: '请选择项目名称' }],
       affiliateUnit: [{ required: true, message: '请选择所属单位' }],
       projectChangeAmount: [{ required: true, message: '请输入项目累计变更' }],
-      projectLeader: [{ required: true, message: '请选择项目负责人' }],
+      projectLeaderId: [{ required: true, message: '请选择项目负责人' }],
       contractName: [{ required: true, message: '请选择合同名称' }],
       contractAmount: [{ required: true, message: '请输入合同金额' }],
       changeAmount: [{ required: true, message: '请输入变更金额' }],
@@ -337,7 +337,8 @@ Page({
           subLeader_text: res.data.subLeader_dictText,
           subLeader: res.data.subLeader,
           projectId: res.data.projectId,
-          code: res.data.code
+          code: res.data.code,
+          projectLeaderId: res.data.projectLeaderId
         });
         this.form.setFieldValue('projectName', res.data.projectName)
         this.form.setFieldValue('projectId', res.data.projectId)
@@ -362,6 +363,7 @@ Page({
         this.form.setFieldValue('subLeader_text', res.data.subLeader_dictText)
         this.form.setFieldValue('subLeader', res.data.subLeader)
         this.form.setFieldValue('code', res.data.code)
+        this.form.setFieldValue('projectLeaderId',res.data.projectLeaderId)
         this.getProjectLeaderInfo()
         if(res.data.subLeader_dictText && res.data.subLeader){
           const nameList = res.data.subLeader_dictText.split(',')
@@ -409,6 +411,7 @@ Page({
     params.person = this.data.person
     params.subLeader = this.data.subLeader
     params.id = this.data.id ? this.data.id : ''
+    params.projectLeader = this.data.projectLeader
     let temFileList = []
     if (this.uploadImageList) {
       temFileList = this.uploadImageList.data.imgList;
@@ -541,14 +544,31 @@ Page({
         projectId:this.data.projectId
       },
       success: res => {
-        let list = []
-        res.data.forEach(item=>{
-          list.push(item.name)
+        res.data.forEach(e => {
+          e.label = e.name
+          e.value = e.personId
         })
+        console.log('项目负责人',res.data)
         this.setData({
-          leaderList: list
+          projectLeaderListOptions: res.data || []
         })
+        if(res.data && res.data.length === 1){
+          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+          this.setData({
+            projectLeaderId: res.data[0].personId,
+            projectLeader: res.data[0].name
+          })
+        }
       }
     })
-  }
+  },
+  chooseProjectLeader(data, column){
+    console.log(data, column)
+    this.setData({
+      projectLeaderId: column.personId,
+      projectLeader: column.name
+    })
+    this.form.setFieldValue('projectLeader', column.name)
+    this.form.setFieldValue('projectLeaderId', column.personId)
+  },
 });
