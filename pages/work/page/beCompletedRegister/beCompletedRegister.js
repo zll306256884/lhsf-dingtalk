@@ -51,15 +51,16 @@ Page({
     countersignLeader: '',
     leaderList: [],
     loading: false,
-    earlyStageLeaderId: '',
-    earlyStageLeader: '',
-    carryPersonId: '',
-    carryLeaderName: '',
-    operatePersonId: '',
-    operateLeaderName: '',
-    projectTypeId: '',
+    // earlyStageLeaderId: '',
+    // earlyStageLeader: '',
+    // carryPersonId: '',
+    // carryLeaderName: '',
+    // operatePersonId: '',
+    // operateLeaderName: '',
+    // projectTypeId: '',
     userId: '',
-    projectListOptions: []
+    projectListOptions: [],
+    projectLeaderListOptions:[]
   },
   dialogScreenDepartmentManager: null,
   dialogScreenCountersignLeader: null,
@@ -108,9 +109,11 @@ Page({
   chooseProjectLeader(data, column){
     console.log(data, column)
     this.setData({
-      projectLeaderId: column.personId
+      projectLeaderId: column.personId,
+      projectLeader:column.name
     })
     this.form.setFieldValue('projectLeader', column.name)
+    this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(projectId){
     request.doPostRequest({
@@ -227,9 +230,6 @@ Page({
       *100).toFixed(2))
     // this.form.setFieldValue('priceRate', (((this.form.getFieldValue('approveTotalPrice') - this.form.getFieldValue('contractAmount')) / this.form.getFieldValue('contractAmount'))*100).toFixed(2))
   },
-  // onFocus(){
-  //   this.blur() 
-  // },
 // 项目名称
 bindChooseProjectTap:function (e) {
   console.log(e);
@@ -240,7 +240,6 @@ onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
 bindChooseProjectCallBack: function (data) {
-  console.log(data)
   this.setData({
     projectData: data || {},
     projectLeader:data.projectLeaderName,
@@ -251,20 +250,7 @@ bindChooseProjectCallBack: function (data) {
     "contractData.contractId":'',
     contractAmount:'',
     contractorName:'',
-    earlyStageLeaderId: data.personId,
-    earlyStageLeader: data.projectLeaderName,
-    carryPersonId: data.carryPersonId,
-    carryLeaderName: data.carryLeaderName,
-    operatePersonId: data.operatePersonId,
-    operateLeaderName: data.operateLeaderName,
   });
-  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-    ddUtils.showToast({
-      title: '注意：仅项目负责人可发起流程',
-      duration: 2000
-    });
-    return
-  }
   this.form.setFieldValue('projectName',data.name)
   this.form.setFieldValue('projectId',data.id)
   this.form.setFieldValue('contractName','')
@@ -455,14 +441,9 @@ request.doPostRequest({
       // adjust:res.data.adjust,
       investmentFileList:res.data.investmentFileList,
       projectLeaderId: res.data.projectLeaderId,
+      projectLeader: res.data.projectLeader,
       departmentManager: res.data.departmentManager,
       countersignLeader: res.data.countersignLeader,
-      earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
-      earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
-      carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
-      carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
-      operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
-      operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
     })
     const files= res.data.investmentFileList.map((item)=>{
       return {
@@ -508,13 +489,14 @@ request.doPostRequest({
 })
 },
 async staging(){
-  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+ const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
+ if(!isLeader){
     ddUtils.showToast({
       title: '注意：仅项目负责人可发起流程',
       duration: 2000
     });
     return
-  }
+ }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
   console.log(params)
@@ -526,6 +508,7 @@ async staging(){
   params.departmentManager = this.data.departmentManager
   params.countersignLeader = this.data.countersignLeader
   params.projectLeaderId = this.data.projectLeaderId
+  params.projectLeader = this.data.projectLeader
   params.vueUrl = 'ApproveBeCompletedDetails, ApproveBeCompletedDetails'
   params.singleUrl = '/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail'
   params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/beCompletedDetails'
@@ -557,12 +540,13 @@ async staging(){
   })
 },
 async submit(){
-  if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-    ddUtils.showToast({
-      title: '注意：仅项目负责人可发起流程',
-      duration: 2000
-    });
-    return
+  const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
+  if(!isLeader){
+     ddUtils.showToast({
+       title: '注意：仅项目负责人可发起流程',
+       duration: 2000
+     });
+     return
   }
   const params = await this.form.submit();
   this.setData({
@@ -576,6 +560,7 @@ async submit(){
   params.departmentManager = this.data.departmentManager
   params.countersignLeader = this.data.countersignLeader
   params.projectLeaderId = this.data.projectLeaderId
+  params.projectLeader = this.data.projectLeader
   let temFileList=[]
   params.vueUrl = 'ApproveBeCompletedDetails, ApproveBeCompletedDetails'
   params.singleUrl = '/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail'
