@@ -20,7 +20,6 @@ Page({
     supplementaryAgreement:[],
     sort:'0',
     disabled:false,
-  // showDialog:false,
     projectId:"",
     screenExecuteUser: "",
     contractAmount:'',//合同金额
@@ -77,22 +76,14 @@ Page({
   },
   uploadTenderImageList: null,
   onLoad(option) {
-    // let date = new Date().toLocaleString()
-    // for (var i = 0; i < date.length; i++) {
-    //   if (date[i] === '/') {
-    //     date = date.replace('/', '-') // 替换之后就变成新数组了
-    //   }
-    // }
-    // this.data.applicationTime = date.substr(0,10)
+
     this.setData({
       userId: app.globalData.userInfo.userId
     })
     this.setData({
       id:option.id,
     })
-    // setTimeout(() => {
-     
-    // }, 500)
+  
     if(option.id){
       this.getEdit(option.id) 
     }else{
@@ -164,7 +155,6 @@ Page({
         contractId:this.data.contractData.contractId,
       },
       success: res => {
-        console.log(res,2323232323);
         this.data.supplementaryAgreement = res.data
         this.setData({
           supplementaryAgreement:res.data
@@ -178,29 +168,15 @@ Page({
         contractId:this.data.contractData.contractId,
       },
       success: res => {
-        console.log(res,2323232323);
         this.setData({
           accumulatedPaymentAmount: Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0),
           supplementaryAgreement: res.data
         })
-        // this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(this.data.contractData.cumulativePayment || 0)
-        // this.data.supplementaryAgreement = res.data
+     
       }
     })
   },
-  // 获取在途金额
-  // transitAmount:function(e) {
-  //   request.doPostRequest({
-  //     url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
-  //     data: {
-  //       contractId:this.data.contractData.contractId,
-  //     },
-  //     success: res => {
-  //       console.log(res,2323232323);
-  //       this.transitAmount = res.data
-  //     }
-  //   })
-  // },
+
   // 合同名称
   bindChooseContractNameTap:function(e){
     if (this.data.isEdit) return;
@@ -215,25 +191,12 @@ Page({
     this.setData({
       contractData: data || {},
       contractAmount:data.contractAmount,
-      // contractId:data.contractId,
     });
     this.form.setFieldValue('contractName',data.contractName)
     this.form.setFieldValue('contractAmount',data.contractAmount)
     this.form.setFieldValue('payUnit','')
     this.form.setFieldValue('receiverUnit','')
-    // request.doPostRequest({
-    //   url: config.API_CONTRACT_TO_MONEY,
-    //   data: {
-    //     contractId:data.contractId,
-    //   },
-    //   success: res => {
-    //     console.log(res,2323232323);
-    //     this.setData({
-    //       cumulativePayment: res.data || 0,
-    //     });
-    //     this.form.setFieldValue('cumulativePayment',res.data)
-    //   }
-    // })
+
 
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
@@ -244,8 +207,7 @@ Page({
         this.setData({
           supplementaryAgreement: res.data
         })
-        // this.data.supplementaryAgreement = res.data
-        console.log(res,'补充协议',this.data.supplementaryAgreement);
+      
       }
     }) 
     // 获取在途金额
@@ -255,7 +217,6 @@ Page({
         contractId:data.contractId,
       },
       success: res => {
-        // this.data.accumulatedPaymentAmount = Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0)
         this.setData({
           accumulatedPaymentAmount: Number(this.data.contractData.payAmount || 0) + Number(res.data.cumulativePayment || 0),
           transitAmount: res.data.transitAmount || 0,
@@ -268,25 +229,7 @@ Page({
         this.form.setFieldValue('transitAmount',res.data.transitAmount)
       }
     })
-  //   // 获取收款单位
-  //   request.doPostRequest({
-  //     url: config.API_SELECT_BYID_WITHUNIT,
-  //     data: {
-  //      proId: data.contractId,
-  //     },
-  //     success: res => {
-  //         this.data.dataList = [];
-  //     console.log(res);
-      
-  //         this.data.dataList = this.data.dataList.concat(res.data || []);
 
-  //         this.setData({
-  //             chooseIndex: this._getDefaultChooseIndex(this.data.dataList, defaultValue),
-  //             showDialog: true,
-  //             dataList: this.data.dataList
-  //         })
-  //     }
-  // });
   },
   accumulatedPaymentAmountFn: function (value, e) {
     console.log(value, e);
@@ -418,9 +361,7 @@ onSaveDialogScreenApplyDateRef:function(ref){
 },
 bindChooseApplyDateCallBack(data){
   this.form.setFieldValue('applicationTime', data.startDate);
-  // this.setData({
-  //   applicationTime: data.startDate || '',
-  // });
+
 },
 // 上传
 onSaveUploadImgRef: function (ref) {
@@ -431,9 +372,7 @@ onSaveUploadFileRef: function (ref) {
 },
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
-  //   this.setData({
-  //     showDialog: true
-  // });
+ 
     if (this.dialogScreenExecuteUserRef) this.dialogScreenExecuteUserRef._showDialog(this.data.executeUser)
 },
  onSaveDialogScreenExecuteUserRef: function (ref) {
@@ -441,11 +380,7 @@ onSaveUploadFileRef: function (ref) {
 },
 bindScreenExecuteUserCallBack: function (list) {
   this.chooseExecuteUserList = list;
-  // this.form.setFieldValue('countersignLeader_text', list.map(e => e.username).toString());
-  // this.form.setFieldValue('countersignLeader', list.map(e => e.userId).toString());
-  // this.setData({
-  //   countersignLeader: list.map(e => e.userId).toString()
-  // })
+
   let str = "";
   let strId = ""
   for (let item of this.chooseExecuteUserList) {
@@ -480,101 +415,14 @@ _bindScreenShiGongUnitCallBack: function (data) {
       screenShiGongUnitData: data
   });
 
-  // this._getLastSubmitInfo();
 },
 // 
 paymentApplication(e){
-  console.log(e.currentTarget.dataset.index)
-//   ddUtils.setStorage({
-//     key: 'paymentApplication',
-//     data: {
-//       'projectTypeData.itemText': this.data.projectTypeData.itemText,
-//       'projectTypeData.itemValue': this.data.projectTypeData.itemValue,
-//       'projectData.name':this.data.projectData.name,
-//       'projectData.id':this.data.projectData.id,
-//       projectId:this.data.projectId,
-//       projectLeader:this.data.projectLeader,
-//       affiliateUnit:this.data.affiliateUnit,
-//       'contractData.contractName':this.data.contractData.contractName,
-//       'contractData.contractId':this.data.contractData.contractId,
-//       contractAmount:this.data.contractAmount,
-//       cumulativePayment:this.data.cumulativePayment,
-//       // 'slowUnitData.id':res.data.payUnitId,
-//       'slowUnitData.unitName':this.data.slowUnitData.unitName,
-//       'proceedsData.unitName':this.data.proceedsData.unitName,
-//       icMeasurementPaymentId:this.data.icMeasurementPaymentId,
-//       payAmount:this.data.payAmount,
-//       paymentNode:this.data.paymentNode,
-//       paymentContent:this.data.paymentContent,
-//       applicationTime:this.data.applicationTime,
-//       countersignLeader:this.data.countersignLeader,
-//       countersignLeader_text:this.data.countersignLeader_text,
-//       investmentFileList:this.data.investmentFileList,
-//       transitAmount:this.data.transitAmount,
-//       remark:this.data.remark,
-//     }
-// });
+
 ddUtils.navigateTo({
   url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?id=${e.currentTarget.dataset.index}&approvalType=1`
 });
 },
-// 缓存跳转
-// cacheJump() {
-//   let res = dd.getStorageSync({ key: 'paymentApplication' });
-//   if(res && JSON.stringify(res) !== '{data:{}}'){
-//     this.setData({
-//       'projectTypeData.itemText':res.data['projectTypeData.itemText'],
-//       'projectTypeData.itemValue':res.data['projectTypeData.itemValue'],
-//       'projectData.name':res.data['projectData.name'],
-//       'projectData.id':res.data['projectData.id'],
-//       projectId:res.data.projectId,
-//       projectLeader:res.data.projectLeader,
-//       affiliateUnit:res.data.affiliateUnit,
-//       'contractData.contractName':res.data['contractData.contractName'],
-//       'contractData.contractId':res.data['contractData.contractId'],
-//       contractAmount:res.data.contractAmount,
-//       cumulativePayment:res.data.cumulativePayment,
-//       // 'slowUnitData.id':res.data.payUnitId,
-//       'slowUnitData.unitName':res.data['slowUnitData.unitName'],
-//       'proceedsData.unitName':res.data['proceedsData.unitName'],
-//       icMeasurementPaymentId:res.data.icMeasurementPaymentId,
-//       payAmount:res.data.payAmount,
-//       paymentNode:res.data.paymentNode,
-//       paymentContent:res.data.paymentContent,
-//       applicationTime:res.data.applicationTime,
-//       countersignLeader:res.data.countersignLeader,
-//       countersignLeader_text:res.data.countersignLeader_text,
-//       investmentFileList:res.data.investmentFileList,
-//       transitAmount:res.data.transitAmount,
-//       remark:res.data.remark,
-//       accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0)
-//     })
-//     this.form.setFieldValue('projectType_text',res.data['proceedsData.unitName'] || '')
-//     this.form.setFieldValue('projectName', res.data['projectTypeData.itemValue'])
-//     this.form.setFieldValue('projectId', res.data['projectData.id'])
-//     this.form.setFieldValue('projectLeader', res.data.projectLeader)
-//     this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit || '')
-//     this.form.setFieldValue('contractName', res.data['contractData.contractName'])
-//     this.form.setFieldValue('contractId', res.data['contractData.contractId'])
-//     this.form.setFieldValue('contractAmount', res.data.contractAmount)
-//     this.form.setFieldValue('cumulativePayment', res.data.cumulativePayment)
-//     this.form.setFieldValue('payUnit', res.data['slowUnitData.unitName'] || '')
-//     this.form.setFieldValue('receiverUnit', res.data['proceedsData.unitName'] || '')
-//     this.form.setFieldValue('icMeasurementPaymentId', res.data.icMeasurementPaymentId || '')
-//     this.form.setFieldValue('payAmount', res.data.payAmount || '')
-//     this.form.setFieldValue('paymentNode', res.data.paymentNode || '')
-//     this.form.setFieldValue('paymentContent', res.data.paymentContent || '')
-//     this.form.setFieldValue('applicationTime', res.data.applicationTime || '')
-//     this.form.setFieldValue('countersignLeader_text', res.data.countersignLeader_dictText || '')
-//     this.form.setFieldValue('transitAmount', res.data.transitAmount || '')
-//     this.form.setFieldValue('remark', res.data.remark || '')
-//     this.form.setFieldValue('accumulatedPaymentAmount',  Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0))
-//     ddUtils.setStorage({
-//       key: 'paymentApplication',
-//       data: {}
-//     })
-//   }
-// },
 getProjectList(){
   request.doPostRequest({
     url: config.API_PROJECT_NAME,
@@ -828,7 +676,6 @@ workingStorage(){
   }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
-  // params.remark = this.data.remark,
   params.projectId = this.data.projectData.id,
   params.contractId = this.data.contractData.contractId,
   params.projectType = this.data.projectTypeData.itemValue
@@ -846,7 +693,6 @@ workingStorage(){
   if (this.uploadImageList) {
     let temFileLists=[]
     temFileLists = this.uploadImageList.data.imgList;
-    // if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
     temFileLists.forEach(e => {
       e.fileName = e.name
       e.type= 3
@@ -862,14 +708,7 @@ workingStorage(){
       })
       params.acceptanceFileList =  temsFileList
     }
-    // for (let item of temFileList) {
-    //   this.data.investmentFileList.push({
-    //       type: 4,
-    //       fileName: item.name,
-    //       size: item.size,
-    //       url: item.url,
-    //   })
-    // }
+ 
     request.doPostRequest({
       url: connector.API_TS_TO_POST,
       data: params,
@@ -886,118 +725,6 @@ bingFocusChange(){
     disabled:true
   })
 },
-//bind form submit
-// bindFormSubmit: function (e) {
-//   let payAmount = e.detail.value.payAmount
-//   let paymentNode = e.detail.value.paymentNode
-//   let paymentContent = e.detail.value.paymentContent
-//   let btnIndex =e.buttonTarget.dataset.flag
-//   /// 暂存
-//     let investmentFileList = [], temFileList=[]
-   
-//     console.log(this.uploadImgRef);
-//     if (this.uploadImgRef) {
-//       temFileList = this.uploadImgRef.data.imgList;
-//     // console.log( investmentFileList);
-//     for (let item of temFileList) {
-//       investmentFileList.push({
-//           type: 3,
-//           fileName: item.name,
-//           size: item.size,
-//           url: item.url,
-//       })
-//   }
-// }
-
-//   if(isEqual(btnIndex,1)){
-//     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
-//     request.doPostRequest({
-//       url: connector.API_TS_TO_POST,
-//       data: {
-//         projectType:this.data.projectTypeData.itemValue,
-//         projectId:this.data.projectData.id,
-//         projectName:this.data.projectData.name,
-//         projectLeader:this.data.projectLeader,
-//         affiliateUnit:this.data.affiliateUnit,
-//         contractId:this.data.contractData.contractId,
-//         contractName: this.data.contractData.contractName,
-//         contractAmount:this.data.contractAmount,
-//         cumulativePayment:this.data.cumulativePayment,
-//         payUnit:this.data.slowUnitData.unitName,
-//         payUnitId:this.data.slowUnitData.id,
-//         receiverUnit:this.data.proceedsData.unitName,
-//         receiverUnitId:this.data.proceedsData.id,
-//         payAmount:payAmount,
-//         paymentNode:paymentNode,
-//         paymentContent:paymentContent,
-//         id:this.data.id?this.data.id:'',
-//         icMeasurementPaymentId:this.data.icMeasurementPaymentId,
-//         applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
-//         countersignLeader_text:this.data.countersignLeader_text,//负责人
-//         countersignLeader:this.data.countersignLeader,//,
-//         investmentFileList:investmentFileList,
-//         vueUrl:'approveMoneyPaymentDetails',
-//       },
-//       success: res => {
-//         ddUtils.showToast({
-//           title:"暂存成功"
-//        })
-//        ddUtils.navigateBack();
-//       }
-//     })
-//   }else{
-//     console.log(this.data.countersignLeader_text);
-//     console.log(this.data.applicationTime);
-//   if(!this.data.isEdit){
-//     if (ddUtils.showEmptyToastTips(this.data.projectTypeData.itemValue, "请选择项目类型")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "请选择项目名称")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "请选择合同名称")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.slowUnitData.unitName, "请选择付款单元")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.proceedsData.unitName, "请选择收款单元")) return;
-//     if (ddUtils.showEmptyToastTips(payAmount, "请输入应付金额")) return;
-//     if (ddUtils.showEmptyToastTips(paymentNode, "请输入支付节点（或形象进度）")) return;
-//     if (ddUtils.showEmptyToastTips(paymentContent, "请输入付款内容")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
-//     if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传")) return;
-//   }
-//   request.doPostRequest({
-//     url: connector.API_PAY_BUT_POST,
-//     data: {
-//       projectType:this.data.projectTypeData.itemValue,
-//       projectId:this.data.projectData.id,
-//       projectName:this.data.projectData.name,
-//       projectLeader:this.data.projectLeader,
-//       affiliateUnit:this.data.affiliateUnit,
-//       contractId:this.data.contractData.contractId,
-//       contractName: this.data.contractData.contractName,
-//       contractAmount:this.data.contractAmount,
-//       cumulativePayment:this.data.cumulativePayment,
-//       payUnit:this.data.slowUnitData.unitName,
-//       payUnitId:this.data.slowUnitData.id,
-//       receiverUnit:this.data.proceedsData.unitName,
-//       receiverUnitId:this.data.proceedsData.id,
-//       payAmount:payAmount,
-//       id:this.data.id?this.data.id:'',
-//       paymentNode:paymentNode,
-//       paymentContent:paymentContent,
-//       icMeasurementPaymentId:this.data.icMeasurementPaymentId,
-//       applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
-//       countersignLeader_text:this.data.countersignLeader_text,//负责人
-//       countersignLeader:this.data.countersignLeader,//,
-//       investmentFileList:investmentFileList,
-//       vueUrl:'approveMoneyPaymentDetails',
-//     },
-//     success: res => {
-//       ddUtils.showToast({
-//         title:"提交成功"
-//      })
-//      ddUtils.navigateBack();
-//     }
-//   })
-// }
-//   },
-
 // 取消
 bindCancelTap: function (e) {
   ddUtils.navigateBack();
