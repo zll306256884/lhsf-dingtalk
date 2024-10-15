@@ -947,7 +947,7 @@ Page({
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
         this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
         this.form.setFieldValue('contractAmount', paramsdata.contractAmount)
-        this.form.setFieldValue('basisSigning', paramsdata.basisSigning.toString())
+        this.form.setFieldValue('basisSigning', paramsdata.basisSigning?paramsdata.basisSigning.toString(): '')
 
         if(paramsdata.contractType === 1){
           this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))

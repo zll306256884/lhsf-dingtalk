@@ -115,7 +115,6 @@
       name="meetingTime"
       placeholder="请选择"
       placeholder-class="placeholderClassName"
-      placeholder-style="color:#000;opacity:1;"
       disabled
       ref="handleRef"></form-input>
   </view>
