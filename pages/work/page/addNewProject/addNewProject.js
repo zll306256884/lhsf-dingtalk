@@ -98,12 +98,10 @@ Page({
     }
   },
   handleRef(ref) {
-    console.log(ref)
     this.form.addItem(ref);
   },
   events: {
     onBack() {
-        console.log('onBack')
     },
   },
   onSavePickerEndDateRef(ref){
@@ -111,7 +109,6 @@ Page({
   },
   onSaveUploadImgRef: function (ref) {
     this.uploadImageList = ref;
-    console.log(this.uploadImageList)
   },
   
   //
@@ -257,10 +254,6 @@ Page({
   },
   //详情
   getDetail(id){
-    const fields = this.form.getFieldsValue()
-    console.log('详情',fields);
-    // this.form.setFieldValue('', )
-
     request.doPostRequest({
       url: projectService.API_SELECTPROJECT_INFO_BYID,
       data:{id:id},
@@ -271,7 +264,7 @@ Page({
           // planConstructionDate:res.data.planConstructionStartTime+'至'+res.data.planConstructionEndTime,
           // actualConstruction: res.data.actualConstructionStartTime+'至'+res.data.actualConstructionEndTime,
           sourceListName:res.data.projectSourceConfigTreeRepList.map(i=>i.name).join(','),
-          projectSourceConfigTreeDtoList:res.data.projectSourceConfigTreeDtoList,
+          projectSourceConfigTreeDtoList:res.data.projectSourceConfigTreeRepList,
           projectSourceConfigTreeRepList:res.data.projectSourceConfigTreeRepList,
 
           // 前期阶段负责人
@@ -312,7 +305,6 @@ Page({
         }
         const paramsdata = res.data
         const fields = this.form.getFieldsValue()
-        console.log(fields);
         for (let item in fields) {
           if ({}.hasOwnProperty.call(fields, item)) {
             if(paramsdata[item] !== 0){
@@ -323,13 +315,11 @@ Page({
         this.form.setFieldsValue({
           ...fields,
         })
-        console.log('fields,fields',fields);
         this.form.setFieldValue('isAccess', paramsdata.isAccess )
         this.form.setFieldValue('proType', paramsdata.proType)
         setTimeout(() => {
           this.uploadImageList._setImageList(res.data.projectRedLineList?res.data.projectRedLineList:'') 
         }, 0);
-        console.log(this.data.isAccess)
       }
     })
   },

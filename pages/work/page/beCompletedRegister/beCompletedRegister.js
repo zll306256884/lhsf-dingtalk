@@ -1,11 +1,12 @@
 const app = getApp();
 import { Form } from 'antd-mini/es/Form/form';
-import {isEmpty} from "../../../../utils/utils"
-import config from "../../../../server/workServer/addInvestment"
-import ddUtils from "../../../../utils/ddUtils"
-import projectService from "../../../../server/workServer/projectServer";
-import request from "../../../../utils/request"
-import { formatTimeToDay } from "../../../../utils/utils";
+import {isEmpty} from "/utils/utils"
+import config from "/server/workServer/addInvestment"
+import configApi from "/utils/config"
+import ddUtils from "/utils/ddUtils"
+import projectService from "/server/workServer/projectServer";
+import request from "/utils/request"
+import { formatTimeToDay } from "/utils/utils";
 import Decimal from 'decimal'
 Page({
   form: new Form({
@@ -37,11 +38,11 @@ Page({
     uploadImageList:null,/// 上传,
     investmentFileList:[],
     isEdit: false,
-    projectData:{},// 项目名称,
-    dialogScreenprojectRef:null, //项目名称
-    dialogScreenpcontractRef:null,//合同名称
+    projectData:{},// 项目信息,
+    dialogScreenprojectRef:null, //项目
+    dialogScreenpcontractRef:null,//合同
     dialogScreenApplyDateRef:null,//申请会签批准日期
-    contractData:{},//合同名称
+    contractData:{},//合同信息
     unitList: [],
     executeUser1: [],
     executeUser2: [],
@@ -111,10 +112,10 @@ Page({
     })
     this.form.setFieldValue('projectLeader', column.name)
   },
-  getProjectLeader(){
+  getProjectLeader(projectId){
     request.doPostRequest({
       url: projectService.API_PROJECT_LEADER,
-      data: {projectId: this.data.projectId},
+      data: {projectId: this.data.projectId || projectId},
       success: res => {
         res.data.forEach(e => {
           e.label = e.name
@@ -396,7 +397,7 @@ onSaveUploadImgRef: function (ref) {
 },
 getProjectList(){
   request.doPostRequest({
-    url: config.API_PROJECT_NAME,
+    url: configApi.API_PROJECT_NAME,
     success: res => {
       res.data.forEach(e => {
         e.label = e.name
@@ -417,11 +418,34 @@ request.doPostRequest({
    id:id
   },
   success:res=>{
+    if(res.data.projectId){
+      this.getProjectLeader(res.data.projectId)
+    }
+    this.form.setFieldValue('projectName', res.data.projectName)
+    this.form.setFieldValue('contractName', res.data.contractName)
+    this.form.setFieldValue('projectId', res.data.projectId)
+    this.form.setFieldValue('contractId', res.data.contractId)
+    this.form.setFieldValue('contractAmount', res.data.contractAmount)
+    this.form.setFieldValue('contractorName', res.data.contractorName)
+    this.form.setFieldValue('applicationTime', res.data.applicationTime)
+    this.form.setFieldValue('pricingTrial', res.data.pricingTrial)
+    this.form.setFieldValue('netAccountAmount', res.data.netAccountAmount)
+    this.form.setFieldValue('approveTotalPrice', res.data.approveTotalPrice)
+    this.form.setFieldValue('projectLeader', res.data.projectLeader)
+    this.form.setFieldValue('projectLeaderId', res.data.projectLeaderId)
+
+    this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit)
+    this.form.setFieldValue('adjust', res.data.adjust)
+    this.form.setFieldValue('priceRate', res.data.priceRate)
+    this.form.setFieldValue('departmentManager_dictText', res.data.departmentManager_dictText)
+    this.form.setFieldValue('countersignLeader_dictText', res.data.countersignLeader_dictText)
     this.setData({
       'projectData.name':res.data.projectName,
       'projectData.id':res.data.projectId,
       'contractData.contractName':res.data.contractName,
       'contractData.contractId':res.data.contractId,
+      projectName:res.data.projectName,
+      projectId:res.data.projectId,
       contractAmount:res.data.contractAmount,
       contractorName:res.data.contractorName,
       applicationTime:res.data.applicationTime,
@@ -440,22 +464,6 @@ request.doPostRequest({
       operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
       operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
     })
-    this.form.setFieldValue('projectName', res.data.projectName)
-    this.form.setFieldValue('contractName', res.data.contractName)
-    this.form.setFieldValue('projectId', res.data.projectId)
-    this.form.setFieldValue('contractId', res.data.contractId)
-    this.form.setFieldValue('contractAmount', res.data.contractAmount)
-    this.form.setFieldValue('contractorName', res.data.contractorName)
-    this.form.setFieldValue('applicationTime', res.data.applicationTime)
-    this.form.setFieldValue('pricingTrial', res.data.pricingTrial)
-    this.form.setFieldValue('netAccountAmount', res.data.netAccountAmount)
-    this.form.setFieldValue('approveTotalPrice', res.data.approveTotalPrice)
-    this.form.setFieldValue('projectLeader', res.data.projectLeader)
-    this.form.setFieldValue('affiliateUnit', res.data.affiliateUnit)
-    this.form.setFieldValue('adjust', res.data.adjust)
-    this.form.setFieldValue('priceRate', res.data.priceRate)
-    this.form.setFieldValue('departmentManager_dictText', res.data.departmentManager_dictText)
-    this.form.setFieldValue('countersignLeader_dictText', res.data.countersignLeader_dictText)
     const files= res.data.investmentFileList.map((item)=>{
       return {
         ...item,
@@ -624,69 +632,6 @@ async submit(){
     }
   })
 },
-//bind form submit
-// bindFormSubmit: function (e) {
-//   let pricingTrial = e.detail.value.pricingTrial
-//   let netAccountAmount = e.detail.value.netAccountAmount
-//   let approveTotalPrice = e.detail.value.approveTotalPrice
-// //   let investmentFileList = [],temFileList=[]
-// //   if (this.uploadImgRef) {
-// //     temFileList = this.uploadImgRef._getUploadImgId().imgList;
-// // }
-// let investmentFileList = [], temFileList=[]
-// if (this.uploadImgRef) {
-//   temFileList = this.uploadImgRef.data.imgList;
-// // console.log( investmentFileList);
-// for (let item of temFileList) {
-//   investmentFileList.push({
-//       type: 4,
-//       fileName: item.name,
-//       size: item.size,
-//       url: item.url,
-//   })
-// }
-// }
-// if(!this.data.isEdit){
-//     if (ddUtils.showEmptyToastTips(this.data.projectData.id, "项目名称必填")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.contractData.contractId, "合同名称必填")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.applicationTime, "请选择申请日期")) return;
-//     if (ddUtils.showEmptyToastTips(pricingTrial, "请输入送审定价")) return;
-//     if (ddUtils.showEmptyToastTips(this.data.adjust, "请选择核增或核减")) return;
-//     if (ddUtils.showEmptyToastTips(netAccountAmount, "请输入净核算金额")) return;
-//     if (ddUtils.showEmptyToastTips(approveTotalPrice, "请选择审定总价")) return;
-//   }
-//   // if(this.data.adjust=== ''){
-//   //   ddUtils.showToast({
-//   //     title:"保存成功"
-//   //  })
-//   // }
-//   if (ddUtils.showEmptyArrayTips(investmentFileList, "请上传合同正式稿及相关附件")) return;
-// request.doPostRequest({
-//   url: config.API_JUNGONG_ADD_POST,
-//   data: {
-//     projectId:this.data.projectData.id,
-//     projectName:this.data.projectData.name,
-//     contractId:this.data.contractData.contractId,
-//     contractName: this.data.contractData.contractName,
-//     contractAmount:this.data.contractAmount,
-//     contractorName:this.data.contractorName,
-//     investmentFileList:investmentFileList,
-//     applicationTime:this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':'',
-//   pricingTrial:pricingTrial,
-//   id:this.data.id?this.data.id:'',
-//   adjust:this.data.adjust,
-//   netAccountAmount:netAccountAmount,
-//   approveTotalPrice:approveTotalPrice,
-//   vueUrl: 'completed'
-//   },
-//   success: res => {
-//     ddUtils.showToast({
-//       title:"保存成功"
-//    })
-//    ddUtils.navigateBack();
-//   }
-// })
-// },
 bingFocusChange(){
   this.setData({
     disabled:true
