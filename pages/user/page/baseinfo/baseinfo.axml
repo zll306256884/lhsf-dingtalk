@@ -9,6 +9,11 @@
     </layout-field-cell>
     <layout-field-cell borderTop name="职位" value="{{station?station:'--'}}" hidden="{{false}}">
     </layout-field-cell>
+    <view class="flex-row">
+      <view class="label">手机号</view>
+      <view class="value blue-text" data-mobile="{{mobile}}" catchTap="callMobile">{{mobile?mobile:'-'}}</view>
+    </view>
+    <!-- <layout-field-cell borderTop name="手机号" value="{{mobile?mobile:'-'}}" hidden="{{false}}"></layout-field-cell> -->
   </view>
   <!-- 在职项目 -->
   <view class="title box-sizing-box">在职项目</view>
