@@ -71,6 +71,14 @@
   <view style="margin-top:20rpx">
     <list>
       <list-item>
+        验收文件
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" type="1" disabled ref="onSaveUploadFileRef"></layout-upload-img>
+      </list-item>
+    </list>
+  </view>
+  <view style="margin-top:20rpx">
+    <list>
+      <list-item>
         相关附件
         <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
       </list-item>
