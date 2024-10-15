@@ -189,14 +189,14 @@ Page({
             e.name = e.fileName
           })
         }
-        if(res.data.basisSigning){
-          res.data.basisSigning.forEach(e => {
+        if(res.data.decisionBasisFileList){
+          res.data.decisionBasisFileList.forEach(e => {
             e.name = e.fileName
           })
         }
         setTimeout(() => {
           this.uploadImgRefList._setImageList(res.data.fileList?res.data.fileList:[]) 
-          this.uploadBasisImgRefList._setImageList(res.data.basisSigning?res.data.basisSigning:[]) 
+          this.uploadBasisImgRefList._setImageList(res.data.decisionBasisFileList?res.data.decisionBasisFileList:[]) 
         }, 0);
         // setTimeout(() => {
         //   this.uploadContractImage._setImageList(res.data.fileList?res.data.fileList:'') 

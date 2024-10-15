@@ -145,6 +145,11 @@ Page({
             e.name = e.fileName
           })
         }
+        if(res.data.decisionBasisFileList){
+          res.data.decisionBasisFileList.forEach(e => {
+            e.name = e.fileName
+          })
+        }
         setTimeout(() => {
           this.tenderDocumentRef._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:[]) 
           this.otherDocumentRef._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:[]) 

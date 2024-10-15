@@ -161,7 +161,8 @@ Page({
       developmentOrganizationModeList: [{ required: true, message: '请选择' }],
       contractPeriodType: [{ required: true, message: '请选择' }],
       projectLeaderId: [{ required: true, message: '请选择' }],
-      basisSigning: [{ required: true, message: '请选择' }]
+      basisSigning: [{ required: true, message: '请选择' }],
+      affiliateUnit: [{ required: true, message: '请选择项目' }]
     }
     this.getCodeList()
     setTimeout(() => {
@@ -720,7 +721,9 @@ Page({
     }
     
     params.projectLeaderId = this.data.projectLeaderId
+    
     params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
+
     params.contractType = this.data.contractType
     params.contractThirdPartyRepList = this.data.list
     params.projectName = this.data.projectName
@@ -883,14 +886,20 @@ Page({
       data: {id: this.data.contractId},
       success: res => {
         const paramsdata = res.data
+        console.log('我看看', res.data)
+        this.setData({
+          projectId: res.data.projectId
+        })
+        this.getProjectLeader()
         //查项目状态
         if(paramsdata.projectId){
+          console.log("项目id",paramsdata.projectId)
           request.doPostRequest({
             url: projectService.API_SELECTPROJECT_INFO_BYID,
             data: {id: paramsdata.projectId},
             success: res => {
               this.setData({
-                proType: res.data.proType
+                proType: res.data.proType,
               })
             }
           })
@@ -931,7 +940,7 @@ Page({
         this.form.setFieldValue('makeSure', paramsdata.makeSure)
         this.form.setFieldValue('contractNumber', paramsdata.contractNumber)
         this.form.setFieldValue('contractAmount', paramsdata.contractAmount)
-        
+        this.form.setFieldValue('basisSigning', paramsdata.basisSigning.toString())
 
         if(paramsdata.contractType === 1){
           this.form.setFieldValue('title',paramsdata.title.replace('合同审批流程：',''))
@@ -985,6 +994,7 @@ Page({
             e.name = e.fileName
           })
         }
+        
         setTimeout(() => {
           this.uploadImageList._setImageList(paramsdata.fileList?paramsdata.fileList:[]) 
           this.uploadTenderImageList._setImageList(paramsdata.decisionBasisFileList?paramsdata.decisionBasisFileList:[])
@@ -1003,6 +1013,7 @@ Page({
           this.form.setFieldValue('developmentOrganizationListName', paramsdata.developmentOrganizationList.map(e => e.developmentOrganizationName).join(),)
 
           this.form.setFieldValue('biddingType', paramsdata.biddingType.toString())
+          this.form.setFieldValue('projectLeaderId', paramsdata.projectLeaderId)
         }, 0);
 
         

@@ -70,7 +70,8 @@ Page({
       tenderDocumentList: [{required: true,message: '请上传'}],
       applicationTime: [{ required: true, message: '请选择' }],
       projectLeaderId: [{ required: true, message: '请选择' }],
-      meetingTime:[{ required: true, message: '请选择' }]
+      meetingTime:[{ required: true, message: '请选择' }],
+      affiliateUnit: [{ required: true, message: '请选择项目' }]
     }
     console.log('option', options, app.globalData.userInfo)
     this.setData({
