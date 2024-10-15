@@ -2,6 +2,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import {  isEqual,  isEmptyArray} from "../../../../utils/utils"
 import userServer from "../../../../server/userServer"
 import request from "../../../../utils/request"
+import progressServer from "../../../../server/workServer/progressServer";
 const app = getApp();
 
 Page({
@@ -75,24 +76,43 @@ Page({
     })
   },
   callMobile(e) {
-    console.log('e', e, this.data.mobile)
+    console.log('e', e, this.data.userId)
     // ddUtils.makePhoneCall({phoneNumber: this.data.mobile});
     ddUtils.showModal({
       title:  `您即将呼叫: ${this.data.username}？`,
       content: "请确认",
       success: res => {
         if (res.confirm) {
-          dd.makePhoneCall({
-            phoneNumber: this.data.mobile,
-            success: (res) => {
-              console.log('makePhoneCall', res);
-            },
-            fail: (res) => {
-              console.log(res)
-            },
-            complete: () => { },
-          });
-          return
+          console.log('确认：', this.data.userId);
+            return new Promise((resolve, reject) => {
+              request.doPostRequest({
+                url: progressServer.API_CALL_CODE,
+                showLoading: true,
+                data: {
+                  "userId": this.data.userId
+                },
+                success: res => {
+                  console.log('res.data', res.data)
+                  dd.callUsers({
+                    users: [res.data.dingTalkId],
+                    // users: ['01460242357481712'],
+                    corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+                    success: () => { },
+                    fail: (res) => {
+                      console.log(res)
+                      ddUtils.showToast({
+                        title: 'errorCode：' + res.error + ',' + res.errorMessage
+                      });
+                    },
+                    complete: () => { },
+                  });
+
+                },
+                fail: res => {
+                  reject(res)
+                }
+              });
+            })
         }
       }
     })
