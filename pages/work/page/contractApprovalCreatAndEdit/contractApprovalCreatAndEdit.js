@@ -900,13 +900,13 @@ Page({
             success: res => {
               this.setData({
                 proType: res.data.proType,
-                earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
-                earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
-                carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
-                carryLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryLeaderName,
-                operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
-                operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
-                projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
+                earlyStageLeaderId: res.data.personId,
+                earlyStageLeader: res.data.projectLeaderName,
+                carryPersonId: res.data.carryPersonId,
+                carryLeaderName: res.data.carryLeaderName,
+                operatePersonId: res.data.operatePersonId,
+                operateLeaderName: res.data.operateLeaderName,
+                projectTypeId: res.data.projectType.toString(),
               })
             }
           })
