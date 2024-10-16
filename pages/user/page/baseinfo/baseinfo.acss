@@ -36,6 +36,9 @@
 }
 
 .flex-row .value {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   line-height: 48rpx;
     font-size: 28rpx;
     color: rgb(82, 89, 102);
