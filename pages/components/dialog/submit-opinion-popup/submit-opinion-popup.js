@@ -47,7 +47,15 @@ Component({
           ddUtils.showToast({
             title: "暂存待办成功"
           });
-          ddUtils.navigateBack();
+        let pages = getCurrentPages();
+        let page = pages[pages.length - 2];
+          if(page){
+            ddUtils.navigateBack();
+          }else{
+             ddUtils.redirectTo({
+              url: `/pages/message/page/approval/approval?currentApproval=1`
+            });
+          }
         }
       })
     },
@@ -157,7 +165,15 @@ Component({
                   isLoading: false
                 })
                 this._hideDialog();
-                ddUtils.navigateBack();
+                let pages = getCurrentPages();
+                let page = pages[pages.length - 2];
+                  if(page){
+                    ddUtils.navigateBack();
+                  }else{
+                     ddUtils.redirectTo({
+                      url: `/pages/message/page/approval/approval?currentApproval=1`
+                    });
+                  }
               }
             },
             fail:res => {
@@ -181,13 +197,29 @@ Component({
                 isLoading: false
               })
               this._hideDialog();
-              ddUtils.navigateBack();
+              let pages = getCurrentPages();
+              let page = pages[pages.length - 2];
+              if(page){
+                ddUtils.navigateBack();
+              }else{
+              ddUtils.redirectTo({
+               url: `/pages/message/page/approval/approval?currentApproval=1`
+              });
+             }
             },
             fail:res => {
               this.setData({
                 isLoading: false
               })
-              ddUtils.navigateBack();
+              let pages = getCurrentPages();
+              let page = pages[pages.length - 2];
+                if(page){
+                  ddUtils.navigateBack();
+                }else{
+                   ddUtils.redirectTo({
+                    url: `/pages/message/page/approval/approval?currentApproval=1`
+                  });
+                }
             }
           })
         }
