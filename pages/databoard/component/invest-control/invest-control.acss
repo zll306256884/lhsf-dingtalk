@@ -197,3 +197,24 @@ opacity: 1;
 .ant-list-item-line{
   padding-left: 0rpx!important;
 }
+
+/* 自定义弹窗 */
+.body {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 20rpx;
+}
+.body .body-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.body .body-row .body-label {
+  white-space: nowrap;
+  margin-right: 20rpx;
+}
+.body .body-row .call-btn {
+  font-size: 28rpx;
+  padding: 6rpx 12rpx;
+}

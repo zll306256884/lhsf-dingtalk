@@ -7,6 +7,7 @@
     "divider": "antd-mini/es/Divider/index",
     "popover": "antd-mini/es/Popover/index",
     "container": "antd-mini/es/Container/index",
-    "button": "antd-mini/es/Button/index"
+    "button": "antd-mini/es/Button/index",
+    "ant-modal": "antd-mini/es/Modal/index"
   }
 }

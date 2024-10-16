@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "empty": "antd-mini/es/Empty/index"
+    "empty": "antd-mini/es/Empty/index",
+    "ant-modal": "antd-mini/es/Modal/index"
   }
 }

@@ -237,3 +237,20 @@
   width: 1.72rem;
   height: 1.56rem;
 }
+
+/* 自定义弹窗 */
+.body {
+  background: #fff;
+  padding: 30rpx;
+  border-radius: 20rpx;
+}
+.body .body-row {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+.body .body-row .body-label {
+  white-space: nowrap;
+  margin-right: 20rpx;
+}
