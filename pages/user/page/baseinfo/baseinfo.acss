@@ -48,4 +48,5 @@
 }
 .flex-row .blue-text {
   color: #1A6AFF;
+  margin-right: 12rpx;
 }
