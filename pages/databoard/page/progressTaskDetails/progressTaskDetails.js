@@ -133,7 +133,7 @@ Page({
   },
   // 电话
   callPerson(e) {
-    console.log(e)
+    console.log('eeeeeeee:',e, this.data.listData)
     // 1715236940858523649
     var callCode
     console.log('打电话', callCode)
@@ -181,10 +181,20 @@ Page({
         }
       })
 
-    }
-    if (e.target.dataset.form === '项目') {
-      callCode = this.data.listData.dingTalkId
-      let name = this.data.listData.projectLeaderName
+    } else {
+      let name = ''
+      let dingTalkId = ''
+      if(e.target.dataset.form === '1') {
+        name = this.data.listData.projectLeaderName
+        dingTalkId = this.data.listData.dingTalkId
+      } else if(e.target.dataset.form === '2') {
+        name = this.data.listData.carryPersonName
+        dingTalkId = this.data.listData.carryDingTalkId
+      } else if(e.target.dataset.form === '3') {
+        name = this.data.listData.operatePersonName
+        dingTalkId = this.data.listData.operateDingTalkId
+      }
+      // let name = this.data.listData.projectLeaderName
       let str = '您即将呼叫' + name + '?'
       ddUtils.showModal({
         // title: '您即将呼叫？',
@@ -193,7 +203,7 @@ Page({
         success: res => {
           if (res.confirm) {
             dd.callUsers({
-              users: [this.data.listData.dingTalkId],
+              users: [dingTalkId],
               // users: ['01460242357481712'],
               corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
               success: () => { },
@@ -208,8 +218,35 @@ Page({
           }
         }
       })
-
     }
+    // if (e.target.dataset.form === '项目') {
+    //   callCode = this.data.listData.dingTalkId
+    //   let name = this.data.listData.projectLeaderName
+    //   let str = '您即将呼叫' + name + '?'
+    //   ddUtils.showModal({
+    //     // title: '您即将呼叫？',
+    //     title: str,
+    //     content: "请确认",
+    //     success: res => {
+    //       if (res.confirm) {
+    //         dd.callUsers({
+    //           users: [this.data.listData.dingTalkId],
+    //           // users: ['01460242357481712'],
+    //           corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+    //           success: () => { },
+    //           fail: (res) => {
+    //             console.log(res)
+    //             ddUtils.showToast({
+    //               title: 'errorCode：' + res.error + ',' + res.errorMessage
+    //             });
+    //           },
+    //           complete: () => { },
+    //         });
+    //       }
+    //     }
+    //   })
+
+    // }
   },
   // 点击文件下载
   uploadThis(e) {

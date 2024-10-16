@@ -2,7 +2,7 @@ import apiDataBoardServer from "../../../../server/dataBoardServer"
 import request from "../../../../utils/request"
 import ddUtils from "../../../../utils/ddUtils"
 import progressServer from "../../../../server/workServer/progressServer"; //
-import projectService from "../../../../server/workServer/projectServer";
+import projectServer from "../../../../server/workServer/projectServer";
 Component({
   mixins: [],
   data: {
@@ -98,7 +98,9 @@ Component({
     visibelTwo: false,
     supplementAgreement: '',
     biddingType: '',
-    projectType: ''
+    projectType: '',
+    customVisible: false,
+    personList: []
   },
   props: {
     projectId: null,
@@ -304,56 +306,121 @@ Component({
       });
     },
     callIt(){
+      console.log('打电话： bidding', this.props.projectId);
+      // 通过项目ID查询项目负责人
       request.doPostRequest({
-        url: projectService.API_SELECTPROJECT_INFO_BYID,
-        data:{id:this.props.projectId},
+        url: projectServer.API_PROJECT_LEADER,
+        data: { projectId: this.props.projectId },
         success: res => {
-          console.log(res);
-          this.callCodeData = {personId: res.data.personId, projectLeaderName: res.data.projectLeaderName}
-          if(this.callCodeData.personId){
-            ddUtils.showModal({
-              title:'您即将呼叫'+this.callCodeData.projectLeaderName + '?',
-              content: "请确认",
-              success: res => {
-                if (res.confirm) {
-                  return new Promise((resolve, reject) => {
-                    request.doPostRequest({
-                      url: progressServer.API_CALL_CODE,
-                      showLoading: true,
-                      data: {
-                        "userId": this.callCodeData.personId
-                      },
-                      success: res => {
-                        console.log('res.data', res.data)
-                        dd.callUsers({
-                          users: [res.data.dingTalkId],
-                          // users: ['01460242357481712'],
-                          corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
-                          success: () => { },
-                          fail: (res) => {
-                            console.log(res)
-                            ddUtils.showToast({
-                              title: 'errorCode：' + res.error + ',' + res.errorMessage
-                            });
-                          },
-                          complete: () => {},
-                        });
+          console.log('项目负责人:', res.data)
+          this.setData({
+            personList: res.data,
+            customVisible: true
+          })
+        }
+      })
+      // request.doPostRequest({
+      //   url: projectService.API_SELECTPROJECT_INFO_BYID,
+      //   data:{id:this.props.projectId},
+      //   success: res => {
+      //     console.log(res);
+      //     this.callCodeData = {personId: res.data.personId, projectLeaderName: res.data.projectLeaderName}
+      //     if(this.callCodeData.personId){
+      //       ddUtils.showModal({
+      //         title:'您即将呼叫'+this.callCodeData.projectLeaderName + '?',
+      //         content: "请确认",
+      //         success: res => {
+      //           if (res.confirm) {
+      //             return new Promise((resolve, reject) => {
+      //               request.doPostRequest({
+      //                 url: progressServer.API_CALL_CODE,
+      //                 showLoading: true,
+      //                 data: {
+      //                   "userId": this.callCodeData.personId
+      //                 },
+      //                 success: res => {
+      //                   console.log('res.data', res.data)
+      //                   dd.callUsers({
+      //                     users: [res.data.dingTalkId],
+      //                     // users: ['01460242357481712'],
+      //                     corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+      //                     success: () => { },
+      //                     fail: (res) => {
+      //                       console.log(res)
+      //                       ddUtils.showToast({
+      //                         title: 'errorCode：' + res.error + ',' + res.errorMessage
+      //                       });
+      //                     },
+      //                     complete: () => {},
+      //                   });
           
-                      },
-                      fail: res => {
-                        reject(res)
-                      }
-                    });
-                  })
+      //                 },
+      //                 fail: res => {
+      //                   reject(res)
+      //                 }
+      //               });
+      //             })
+      //           }
+      //         }
+      //       })
+      //     }
+      //   }
+      // })
+      // console.log(this.callCodeData);
+      
+      
+    },
+    callPhone(e) {
+      console.log('callPhone---e:', e);
+      let name = ''
+      let callCode = ''
+      let info = e.currentTarget.dataset.info
+      name = info.name
+      callCode = info.personId
+      let str = '您即将呼叫' + name + '?'
+      ddUtils.showModal({
+        // title: '您即将呼叫？',
+        title: str,
+        content: "请确认",
+        success: res => {
+          if (res.confirm) {
+            return new Promise((resolve, reject) => {
+              request.doPostRequest({
+                url: progressServer.API_CALL_CODE,
+                showLoading: true,
+                data: {
+                  "userId": callCode
+                },
+                success: res => {
+                  console.log('获取电话ID---res.data', res.data)
+                  dd.callUsers({
+                    users: [res.data.dingTalkId],
+                    // users: ['01460242357481712'],
+                    corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+                    success: () => { },
+                    fail: (res) => {
+                      console.log(res)
+                      ddUtils.showToast({
+                        title: 'errorCode：' + res.error + ',' + res.errorMessage
+                      });
+                    },
+                    complete: () => { },
+                  });
+
+                },
+                fail: res => {
+                  reject(res)
                 }
-              }
+              });
             })
           }
         }
       })
-      console.log(this.callCodeData);
-      
-      
-    }
+    },
+    handleClose() {
+      this.setData({
+        customVisible: false,
+      });
+    },
   }
 });

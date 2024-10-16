@@ -11,6 +11,7 @@ const app = getApp();
 Page({
   form: new Form({
     initialValues: {
+      // logTypeName: '普通日志'
       // logDate: formatTimeToDay(new Date())+ ' 00:00:00'
       // applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
     },
@@ -61,7 +62,7 @@ Page({
       logPhotoList: [], //照片
       logFileList: [], //附件
     },
-    logTypeOptionShow: ['普通日志', '重大事件'],
+    logTypeOptionShow: [ '重大事件', '普通日志'],
     logTypeOption: [{
       name: '普通日志',
       value: '0'
@@ -92,6 +93,12 @@ Page({
     // }
 
 
+  },
+  onReady() {
+    this.form.setFieldValue('logTypeName', '普通日志')
+    this.setData({
+      logTypeName: '普通日志'
+    })
   },
   events: {
     onBack() {

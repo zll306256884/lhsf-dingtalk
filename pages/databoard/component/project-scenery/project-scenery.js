@@ -5,6 +5,7 @@ import ddUtils from "../../../../utils/ddUtils"
 import request from "../../../../utils/request"
 import config from "../../../../utils/config"
 import progressServer from "../../../../server/workServer/progressServer";
+import projectServer from "../../../../server/workServer/projectServer"; 
 
 
 Component({
@@ -18,6 +19,8 @@ Component({
     fileIdList: [],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
+    customVisible: false,
+    personList: []
   },
   props: {
     projectId: '12019020004',//项目id
@@ -89,36 +92,50 @@ Component({
     },
     // 电话
     callIt() {
-      // console.log('打电话')
+      console.log('打电话scenery', this.data.listData)
       if (this.data.listData && !this.data.listData.length) {
         return
       }
-      let name = this.data.listData[0].projectLeaderName
-      let dingTalkId = this.data.listData[0].dingTalkId
-      let str = '您即将呼叫：' + name + '?'
-      ddUtils.showModal({
-        title: str,
-        // title: '您即将呼叫？',
-        content: "请确认",
+      // 通过项目ID查询项目负责人
+      let projectId = this.data.listData[0].projectId
+      request.doPostRequest({
+        url: projectServer.API_PROJECT_LEADER,
+        data: { projectId: projectId },
         success: res => {
-          if (res.confirm) {
-            dd.callUsers({
-              users: [dingTalkId],
-              // users: ['0146024235748171'],
-              corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
-              success: () => { },
-              fail: (res) => {
-                console.log(res)
-                ddUtils.showToast({
-                  title: 'errorCode：' + res.error + ',' + res.errorMessage
-                });
-              },
-              complete: () => { },
-            });
-            return
-          }
+          console.log('项目负责人:', res.data)
+          this.setData({
+            personList: res.data,
+            customVisible: true
+          })
         }
       })
+
+      // let name = this.data.listData[0].projectLeaderName
+      // let dingTalkId = this.data.listData[0].dingTalkId
+      // let str = '您即将呼叫：' + name + '?'
+      // ddUtils.showModal({
+      //   title: str,
+      //   // title: '您即将呼叫？',
+      //   content: "请确认",
+      //   success: res => {
+      //     if (res.confirm) {
+      //       dd.callUsers({
+      //         users: [dingTalkId],
+      //         // users: ['0146024235748171'],
+      //         corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+      //         success: () => { },
+      //         fail: (res) => {
+      //           console.log(res)
+      //           ddUtils.showToast({
+      //             title: 'errorCode：' + res.error + ',' + res.errorMessage
+      //           });
+      //         },
+      //         complete: () => { },
+      //       });
+      //       return
+      //     }
+      //   }
+      // })
 
     },
     // 获取预览图片的数据
@@ -262,5 +279,58 @@ Component({
       })
     },
   
+
+    callPhone(e) {
+      console.log('callPhone---e:', e);
+      let name = ''
+      let callCode = ''
+      let info = e.currentTarget.dataset.info
+      name = info.name
+      callCode = info.personId
+      let str = '您即将呼叫' + name + '?'
+      ddUtils.showModal({
+        // title: '您即将呼叫？',
+        title: str,
+        content: "请确认",
+        success: res => {
+          if (res.confirm) {
+            return new Promise((resolve, reject) => {
+              request.doPostRequest({
+                url: progressServer.API_CALL_CODE,
+                showLoading: true,
+                data: {
+                  "userId": callCode
+                },
+                success: res => {
+                  console.log('获取电话ID---res.data', res.data)
+                  dd.callUsers({
+                    users: [res.data.dingTalkId],
+                    // users: ['01460242357481712'],
+                    corpId: 'ding1d9d54bb1a36aca6f5bf40eda33b7ba0',
+                    success: () => { },
+                    fail: (res) => {
+                      console.log(res)
+                      ddUtils.showToast({
+                        title: 'errorCode：' + res.error + ',' + res.errorMessage
+                      });
+                    },
+                    complete: () => { },
+                  });
+
+                },
+                fail: res => {
+                  reject(res)
+                }
+              });
+            })
+          }
+        }
+      })
+    },
+    handleClose() {
+      this.setData({
+        customVisible: false,
+      });
+    },
   },
 });

@@ -117,5 +117,19 @@
 <dialog-filter showDialog="{{visibelTwo}}" options="{{optionsTwo}}" onDialog="onDialogTwo" onBindSureTap="onBindSureTapTwo"></dialog-filter>
 
 <view class="mayflyBox" catchTap="callIt" >
+  <!-- 招标管理 -->
   <image class="mayfly" src="/assets/images/progress/callpic.png" />
 </view>
+
+<ant-modal
+    visible="{{customVisible}}"
+    onClose="handleClose"
+    primaryButtonText="取消"
+    onPrimaryButtonTap="handleClose"
+  >
+  <view class="body">
+    <block a:for="{{personList}}">
+      <view class="body-row"><view class="body-label">{{item.roleName}}：{{item.name || '-'}}</view><button a:if="{{item.name}}" type="primary" size="mini" data-info="{{item}}" catchTap="callPhone">呼叫</button></view>
+    </block>
+  </view>
+  </ant-modal>

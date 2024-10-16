@@ -11,7 +11,9 @@
     </layout-field-cell>
     <view class="flex-row">
       <view class="label">手机号</view>
-      <view class="value blue-text" data-mobile="{{mobile}}" catchTap="callMobile">{{mobile?mobile:'-'}}</view>
+      <view class="value" data-mobile="{{mobile}}" catchTap="callMobile"><text class="blue-text">{{mobile?mobile:'--'}}</text>
+        <image a:if="{{mobile}}" mode="scaleToFill" src="/assets/images/progress/phone.png" style="width: 50rpx;height:50rpx;" />
+      </view>
     </view>
     <!-- <layout-field-cell borderTop name="手机号" value="{{mobile?mobile:'-'}}" hidden="{{false}}"></layout-field-cell> -->
   </view>

@@ -35,10 +35,28 @@
       </list-item>
       <list-item>
         <view class="flex f-between">
-          <view class="title">项目负责人</view>
+          <view class="title">前期阶段负责人</view>
           <view class="flex f-start">
             <view style="line-height:48rpx;" class="desWord">{{listData.projectLeaderName?listData.projectLeaderName:'--'}}</view>
-            <button type="primary" size="mini" style="margin-left:16rpx" catchTap="callPerson" data-form='项目'>呼叫</button>
+            <button a:if="{{listData.projectLeaderName}}" type="primary" size="mini" style="margin-left:16rpx" catchTap="callPerson" data-form='1'>呼叫</button>
+          </view>
+        </view>
+      </list-item>
+      <list-item>
+        <view class="flex f-between">
+          <view class="title">实施阶段负责人</view>
+          <view class="flex f-start">
+            <view style="line-height:48rpx;" class="desWord">{{listData.carryPersonName?listData.carryPersonName:'--'}}</view>
+            <button a:if="{{listData.carryPersonName}}" type="primary" size="mini" style="margin-left:16rpx" catchTap="callPerson" data-form='2'>呼叫</button>
+          </view>
+        </view>
+      </list-item>
+      <list-item>
+        <view class="flex f-between">
+          <view class="title">运营阶段负责人</view>
+          <view class="flex f-start">
+            <view style="line-height:48rpx;" class="desWord">{{listData.operatePersonName?listData.operatePersonName:'--'}}</view>
+            <button a:if="{{listData.operatePersonName}}" type="primary" size="mini" style="margin-left:16rpx" catchTap="callPerson" data-form='3'>呼叫</button>
           </view>
         </view>
       </list-item>
@@ -163,6 +181,5 @@
     </list>
   </view>
   <!-- <web-view a:if="{{isWebView}}" id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>   -->
-  
-  
+
 </view>
