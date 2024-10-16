@@ -9,8 +9,8 @@
       <!--<layout-field-cell borderBottom name="日志类型" placeholder="请选择" mustFill value="{{logData.logTypeName}}" onArrowTap="_bindLogType" 
           showPopver=""></layout-field-cell> -->
     </view>
-    <view icon="ExclamationCircleOutline" a:if="{{logTypeName=='重大事件'}}" class="tips tips-right"> * 记录具有重大影响的事件或决策，项目的关键节点等</view>
-    <view a:if="{{logTypeName=='普通日志'}}" class="tips tips-right"> * 项目的日常进展、任务完成情况、团队成员的工作情况等内容</view>
+    <view icon="ExclamationCircleOutline" a:if="{{logTypeName=='重大事件'}}" class="tips"> * 记录具有重大影响的事件或决策，项目的关键节点等</view>
+    <view a:if="{{logTypeName=='普通日志'}}" class="tips"> * 项目的日常进展、任务完成情况、团队成员的工作情况等内容</view>
     <!-- 项目名称 -->
     <!-- <block a:if="{{logTypeName=='重大事件'}}"> -->
       <view catchTap="_bindChooseLogProject">
