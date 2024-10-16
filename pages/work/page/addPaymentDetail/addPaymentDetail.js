@@ -3,6 +3,7 @@ import request from "../../../../utils/request"
 import workService from "../../../../server/workServer";
 import ddUtils from "../../../../utils/ddUtils"
 import config from "/utils/config";
+import projectService from "../../../../server/workServer/projectServer";
 const app = getApp();
 Page({
   data: {
@@ -32,7 +33,8 @@ Page({
     dingTalkFormList: [],
     accumulatedPaymentAmount: 0,
     supplementaryAgreement: [],
-    imageUrl: ''
+    imageUrl: '',
+    payeeList: []
   },
   uploadContractImage: null,
   uploadTenderImageList: null,
@@ -160,6 +162,7 @@ Page({
             ...res.data
           }
         }) 
+        this.getPayeeList(res.data.contractId)
         // 获取补充协议
         request.doPostRequest({
           url: confing.API_SELECT_SUPPLEMENTAL_AGREEMENT,
@@ -247,5 +250,42 @@ Page({
         })
       }
     })
+  },
+  getPayeeList(id){
+    request.doPostRequest({
+      url: projectService.API_SELECT_UNIT_BY_PROJECTID,
+      data: {
+        projectId: this.data.projectId,
+        id: id
+      },
+      success: res => {
+        this.setData({
+          payeeList: res.data
+        })
+      }
+    })
+  },
+  viewReviews(e){
+    let data = e.target.dataset.row
+    request.doPostRequest({
+     url: projectService.API_LIST_CURRENT_UNITSCORE,
+     data: {
+       currentUnitId: data.currentUnitId
+     },
+     success: res => {
+       if (res.data.length === 1) {
+         this.JumpIt(res.data[0])
+       }else {
+         ddUtils.navigateTo({
+           url: `/pages/work/page/evaluationList/evaluationList?evaluationList=${JSON.stringify(res.data)}`
+         });
+       }
+     }
+   })
+ },
+ JumpIt(row) {
+   ddUtils.navigateTo({
+     url: `/pages/work/page/evaluationDetails/evaluationDetails?id=${row.id}`
+   });
   }
 });

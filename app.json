@@ -47,7 +47,9 @@
     "pages/components/upload-file/upload-file",
     "pages/work/page/myTask/taskFileList/taskFileList",
     "pages/databoard/page/preview-page/preview-page",
-    "pages/databoard/page/gantt/gantt"
+    "pages/databoard/page/gantt/gantt",
+    "pages/work/page/evaluationDetails/evaluationDetails",
+    "pages/work/page/evaluationList/evaluationList"
   ],
   "window": {
     "defaultTitle": "",

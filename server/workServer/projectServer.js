@@ -60,4 +60,8 @@ module.exports = {
   API_CONTRACT_PAGE: API_HOST + "/tender/contract/page",
   //查询项目负责人员信息
   API_PROJECT_LEADER: API_HOST + "/integratedService/personManagementInfo/queryProjectLeaderInfo",
+  // 查询需评价收款单位清单
+  API_SELECT_UNIT_BY_PROJECTID: API_HOST + "/tender/contract/selectUnitByProjectId",
+  // 查询参建方评分
+  API_LIST_CURRENT_UNITSCORE: API_HOST + '/integratedService/currentUnit/listCurrentUnitScore',
 }

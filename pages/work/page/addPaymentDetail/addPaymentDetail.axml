@@ -53,6 +53,46 @@
     <list-item extraBrief="{{infoData.receiverUnit}}">收款单位</list-item>
     <list-item extraBrief="{{infoData.payAmount}}">本次应付金额(万元)</list-item>
     <list-item extraBrief="{{infoData.accumulatedPaymentAmount}}">累计支付金额</list-item>
+
+    <view class="payeeList">
+      <view class="payeeListTitle">
+        需评价收款单位清单
+      </view>
+      <view class="payeeList-item" a:for="{{payeeList}}"  a:key="{{item.id}}" >
+        <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+          <view style="padding:10px 0">
+            单位名称
+          </view>
+          <view style="padding:10px 0; font-size:28rpx">
+            {{ item.unitPartyName }}
+          </view>
+        </view>
+        <view a:if="{{item.isBuddy === '0'}}" style="color:red;font-size:28rpx;text-align:right;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">
+           未添加生态伙伴，请到电脑端进行添加
+        </view>
+        <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+          <view style="padding:10px 0">
+          单位类型
+          </view>
+          <view style="padding:10px 0;font-size:28rpx">
+            {{ item.unitPartyType_dictText }} 
+          </view>
+        </view>
+        <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+          <view style="padding:10px 0;">
+          是否已评价
+          </view>
+          <view class="{{item.isEvaluate==='1'?'greenColor':'redColor'}}" style="padding:10px 0;font-size:28rpx">
+            {{ item.isEvaluate==='1'?'已评价':'未评价' }} 
+          </view>
+        </view>
+        <view class="payeeList-btn">
+         <text a:if="{{item.isEvaluate==='1'}}" catchTap="viewReviews" data-row="{{item}}" style="color:rgb(26, 106, 255);">查看</text>
+         <text a:else style="color:red;font-size:28rpx">未评价，请到电脑端进行评价</text>
+        </view>
+      </view>
+   </view>
+
     <list-item>
       备注
       <view style="margin-top:10rpx;color: #969799;">{{infoData.remark}}</view>

@@ -1,0 +1,179 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view class="evaluationTitle">社发集团服务日常评价表</view>
+  <view class="box-evaluation">
+    <view class="box-evaluation-item">
+      <view class="evaluation-item-title">
+        项目名称
+      </view>
+      <view class="evaluation-item-container">
+        {{ param.name }}
+      </view>
+    </view>
+    <view class="box-evaluation-item">
+      <view class="evaluation-item-title">
+        服务内容
+      </view>
+      <view class="evaluation-item-container">
+        {{ param.type_dictText }}
+      </view>
+    </view>
+    <view class="box-evaluation-item">
+      <view class="evaluation-item-title">
+        服务单位
+      </view>
+      <view class="evaluation-item-container">
+        {{ param.unitName }}
+      </view>
+    </view>
+    <view class="box-evaluation-item">
+      <view class="evaluation-title">
+        评价内容（含评分细则）
+      </view>
+      <view class="evaluation-fraction">
+        分值
+      </view>
+      <view class="evaluation-notes">
+        备注
+      </view>
+    </view>
+    <view class="box-evaluation-item evaluation-container">
+      <view class="evaluation-title">
+       <view>
+        1、职业道德(20分)
+       </view>
+       <view>
+        (1)严格遵守执业行为准则、职业道德准则，
+       </view>
+       <view>
+        (2)坚持实事求是、诚实守信原则，客观公正的展开服务工作;
+       </view>
+       <view>
+        (3)严格保守服务过程中技术和商务秘密，维护业主合法利益。
+       </view>
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.professScore }}
+      </view>
+      <view class="evaluation-notes">
+        {{ param.professRemark }}
+      </view>
+    </view>
+
+    <view class="box-evaluation-item evaluation-container">
+      <view class="evaluation-title">
+       <view>
+        2、专业技术水平(20分)
+       </view>
+       <view>
+        (1)熟悉行业相关法律法规、强制性标准，了解行业最新动态;
+       </view>
+       <view>
+        (2)人员技术力量配备完整，职责明确，有完整可行的实施计划;
+       </view>
+       <view>
+        (3)服务成果文件充分掌握项目情况及业主需求工作细致无技术差错，高质量完成工作任务。
+       </view>
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.techScore }}
+      </view>
+      <view class="evaluation-notes">
+        {{ param.techRemark }}
+      </view>
+    </view>
+
+    <view class="box-evaluation-item evaluation-container">
+      <view class="evaluation-title">
+       <view>
+        3、组织协调能力(20分)
+       </view>
+       <view>
+        (1)合理规划项目进度，要善安排项目重要时间节点;
+       </view>
+       <view>
+        (2)与项目建设相关各方单位沟通通畅，积极筹备服务过程中名项会议;
+       </view>
+       <view>
+        (3)及时解决项目实施过程中出现的问题，及时反馈项目相关意见与建议。
+       </view>
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.organizedScore }}
+      </view>
+      <view class="evaluation-notes">
+        {{ param.organizedRemark }}
+      </view>
+    </view>
+
+    <view class="box-evaluation-item evaluation-container">
+      <view class="evaluation-title">
+       <view>
+        4、工作效率(20分)
+       </view>
+       <view>
+        (1)安排专职项目负责人及项目团队对接项目，并保证沟通联系通畅;
+       </view>
+       <view>
+        (2)按时完成服务任务，及时提交服务相关成果文件;
+       </view>
+       <view>
+        (3)及时跟进项目进展情况，根据项目变动情况完善修改成果文件;
+       </view>
+       <view>
+        (4)及时介入并应对项目突发情况，保障项目稳定进展。
+       </view>
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.workScore }}
+      </view>
+      <view class="evaluation-notes">
+        {{ param.workRemark }}
+      </view>
+    </view>
+
+    <view class="box-evaluation-item evaluation-container">
+      <view class="evaluation-title">
+       <view>
+        5、服务态度(20分)
+       </view>
+       <view>
+        (1)工作人员热情礼貌、态度诚恳，对待项目认真负责，
+       </view>
+       <view>
+        (2)服从业主工作安排，认真听取业主建议与意见;
+       </view>
+       <view>
+        (3)积极主动完成服务过程各项任务。
+       </view>
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.serviceScore }}
+      </view>
+      <view class="evaluation-notes">
+        {{ param.serviceRemark }}
+      </view>
+    </view>
+    <view class="box-evaluation-item">
+      <view class="evaluation-title">
+        合计
+      </view>
+      <view class="evaluation-fraction">
+        {{ param.evaScore || 0 }}
+      </view>
+      <view class="evaluation-notes">
+        -
+      </view>
+    </view>
+    <view class="box-evaluation-item" style="padding:10rpx">
+      评价人(项目负责人)：{{ param.createBy_dictText }}
+    </view>
+  </view>
+  <view class="explanatory">
+    注:1、评分根据实际情况，结合评价内容，进行客观公正的打分，每项最高分不超过相应分值;
+  </view>
+  <view class="explanatory">
+    2、日常评分汇总后取平均值计入年度综合评价表中项目负责人评价分值
+  </view>
+  <view class="bottom-box"></view>
+</view>

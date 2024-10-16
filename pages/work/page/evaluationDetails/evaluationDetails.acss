@@ -1,0 +1,60 @@
+.container{
+  position: relative;
+  background-color: #fff;
+}
+.evaluationTitle{
+  padding:20rpx;
+  text-align: center;
+}
+.box-evaluation{
+  border: 1rpx solid #E4E7ED;
+  margin: 20rpx;
+}
+.box-evaluation-item{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  /* padding: 10rpx; */
+  border-bottom: 1rpx solid #E4E7ED;
+  font-size: 28rpx;
+}
+.evaluation-item-title{
+   padding: 10rpx;
+   width: 120rpx;
+}
+.evaluation-item-container{
+  width: 500rpx;
+  padding: 10rpx;
+  min-height: 40rpx;
+  border-left: 1rpx solid #E4E7ED;
+}
+.evaluation-title{
+  width: 400rpx;
+  padding: 10rpx;
+}
+.evaluation-fraction{
+  width: 100rpx;
+  padding: 10rpx;
+  border-left: 1rpx solid #E4E7ED;
+  border-right: 1rpx solid #E4E7ED;
+  height: 100%;
+}
+.evaluation-notes{
+  height: 100%;
+  padding: 10rpx;
+  width: 160rpx;
+}
+.evaluation-container{
+  height: 400rpx;
+}
+.evaluation-container .evaluation-fraction{
+  height: 100%;
+  line-height: 400rpx;
+}
+.explanatory{
+  margin: 30rpx;
+  font-size: 28rpx;
+}
+.bottom-box{
+  height: 30rpx;
+}

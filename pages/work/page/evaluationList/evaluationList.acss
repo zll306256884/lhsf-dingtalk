@@ -1,0 +1,26 @@
+.container{
+  position: relative;
+}
+.evaluation-item{
+  margin: 20rpx;
+  background-color: #fff;
+  padding: 28rpx;
+}
+.item-top{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.item-center{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  margin-top: 20rpx;
+}
+.item-center .name{
+  margin-right: 20rpx;
+}
+.bottom-box{
+  height: 30rpx;
+}

@@ -52,4 +52,6 @@ module.exports = {
     API_QUERY_ROLE_LIST: API_HOST + '/platform/role/queryRoleList',
     // 项目负责人员信息
     API_QUERY_PROJECT_LEADER_INFO: API_HOST + '/integratedService/personManagementInfo/queryProjectLeaderInfo',
+    // 根据id查询参建方项目评分
+    API_QUERY_CURRENT_UNIT_SCORE_DETAIL: API_HOST + '/integratedService/currentUnit/queryCurrentUnitScoreDetail',
 }

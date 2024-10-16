@@ -72,7 +72,8 @@ Page({
     operateLeaderName: '',
     projectTypeId: '',
     userId: '',
-    projectLeaderListOptions: []
+    projectLeaderListOptions: [],
+    payeeList: []
   },
   uploadTenderImageList: null,
   onLoad(option) {
@@ -196,8 +197,8 @@ Page({
     this.form.setFieldValue('contractAmount',data.contractAmount)
     this.form.setFieldValue('payUnit','')
     this.form.setFieldValue('receiverUnit','')
-
-
+    // 
+    this.getPayeeList(data.contractId)
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
@@ -518,6 +519,7 @@ getEdit(id){
       this.form.setFieldValue('projectLeaderId', res.data.projectLeaderId || '')
         // 获取补充协议
       this.getProjectLeader()
+      this.getPayeeList(this.data.contractData.contractId)
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
@@ -578,7 +580,6 @@ async submit() {
     this.setData({
       loading: true
     })
-    console.log('params--------',params);
     params.projectId = this.data.projectData.id,
     params.contractId = this.data.contractData.contractId,
     params.projectType = this.data.projectTypeData.itemValue
@@ -590,7 +591,9 @@ async submit() {
     params.singleUrl = '/pages/work/page/addPaymentDetail/addPaymentDetail',
     params.pcUrl = 'https://xmgk.lhbigdata.com/#/investmentManage/contractControl/moneyPaymentDetails'
     params.icMeasurementPaymentId=this.data.icMeasurementPaymentId,
-    params.countersignLeader = this.data.countersignLeader
+    params.countersignLeader = this.data.countersignLeader,
+    params.projectLeader = this.data.projectLeader,
+    params.projectLeaderId = this.data.projectLeaderId
     if (this.uploadImageList) {
       let temsFileList=[]
       temsFileList = this.uploadImageList.data.imgList;
@@ -613,6 +616,24 @@ async submit() {
       })
       params.acceptanceFileList =  temFileLists
     }
+    if (params.contractAmount === 0 || params.contractAmount === '0') {
+      this.isLoading = false
+       ddUtils.showToast({
+        title: "当前合同金额为0，请至【合同审批流程】中填写已定金额后再进行款项支付!"
+       });
+      return
+    }
+    if (params.accumulatedPaymentAmount > params.contractAmount * 0.85 || params.accumulatedPaymentAmount === params.contractAmount * 0.85) {
+      let result = this.data.payeeList.some(item => item.isEvaluate === '0')
+      if (result) {
+        ddUtils.showToast({
+          title: "存在收款单位未进行评价，请评价后再提交审批！"
+         });
+        this.isLoading = false
+        return
+      }
+    }
+
     if(params.accumulatedPaymentAmount > params.contractAmount){
       ddUtils.showModal({
         content: "累计支付金额已超过主合同金额,确定提交审批",
@@ -729,4 +750,41 @@ bingFocusChange(){
 bindCancelTap: function (e) {
   ddUtils.navigateBack();
 },
+getPayeeList(id){
+  request.doPostRequest({
+    url: projectService.API_SELECT_UNIT_BY_PROJECTID,
+    data: {
+      projectId: this.data.projectId,
+      id: id
+    },
+    success: res => {
+      this.setData({
+        payeeList: res.data
+      })
+    }
+  })
+},
+viewReviews(e){
+   let data = e.target.dataset.row
+   request.doPostRequest({
+    url: projectService.API_LIST_CURRENT_UNITSCORE,
+    data: {
+      currentUnitId: data.currentUnitId
+    },
+    success: res => {
+      if (res.data.length === 1) {
+        this.JumpIt(res.data[0])
+      }else {
+        ddUtils.navigateTo({
+          url: `/pages/work/page/evaluationList/evaluationList?evaluationList=${JSON.stringify(res.data)}`
+        });
+      }
+    }
+  })
+},
+JumpIt(row) {
+  ddUtils.navigateTo({
+    url: `/pages/work/page/evaluationDetails/evaluationDetails?id=${row.id}`
+  });
+ }
 });

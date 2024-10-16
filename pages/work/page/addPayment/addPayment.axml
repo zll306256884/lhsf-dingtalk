@@ -150,25 +150,62 @@
            <view a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
             {{ accumulatedPaymentAmountTitle }}
            </view>
-           
-           <view style="display:flex;flex-direction: row;">
-            <view  a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="width: 15px;color:rgb(238 10 36 / 79%);transform:translateX(8px)translateY(10px)">*</view>
-            <view style="width:100%">
-              <form-textarea
-            label="备注"
-              position='vertical'
-              name="remark"
-              placeholder="请输入"
-              maxLength="50"
-              autoHeight
-              ref="handleRef" />
-              <view a:if="{{remarkTitle}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
-                支付金额超过合同金额请填写备注
+          <view class="box-shadow" style="padding:10px">
+            <view class="payeeListTitle">
+              需评价收款单位清单
+            </view>
+            <view class="payeeList-item" a:for="{{payeeList}}"  a:key="{{item.id}}" >
+              <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+                <view style="padding:10px 0">
+                  单位名称
+                </view>
+                <view style="padding:10px 0; font-size:28rpx">
+                  {{ item.unitPartyName }}
+                </view>
               </view>
+              <view a:if="{{item.isBuddy === '0'}}" style="color:red;font-size:28rpx;text-align:right;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">
+                 未添加生态伙伴，请到电脑端进行添加
               </view>
-          </view>
+              <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+                <view style="padding:10px 0">
+                单位类型
+                </view>
+                <view style="padding:10px 0;font-size:28rpx">
+                  {{ item.unitPartyType_dictText }} 
+                </view>
+              </view>
+              <view style="display:flex;justify-content: space-between;padding-right: 10px;border-bottom: 1rpx solid rgb(237 237 237 / 83%);">  
+                <view style="padding:10px 0;">
+                是否已评价
+                </view>
+                <view class="{{item.isEvaluate==='1'?'greenColor':'redColor'}}" style="padding:10px 0;font-size:28rpx">
+                  {{ item.isEvaluate==='1'?'已评价':'未评价' }} 
+                </view>
+              </view>
+              <view class="payeeList-btn">
+               <text a:if="{{item.isEvaluate==='1'}}" catchTap="viewReviews" data-row="{{item}}" style="color:rgb(26, 106, 255);">查看</text>
+               <text a:else style="color:red;font-size:28rpx">未评价，请到电脑端进行评价</text>
+              </view>
+            </view>
+         </view>
+         <view style="display:flex;flex-direction: row; margin-top:30rpx">
+          <view  a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="width: 15px;color:rgb(238 10 36 / 79%);transform:translateX(8px)translateY(10px)">*</view>
+          <view style="width:100%">
+            <form-textarea
+            label="支出超出合同说明"
+            position='vertical'
+            name="remark"
+            placeholder="请输入"
+            maxLength="50"
+            autoHeight
+            ref="handleRef" />
+            <view a:if="{{remarkTitle}}" style="display:block;color:red;font-size:26rpx;background:#fff;text-align:right;padding:8rpx 20rpx">
+              支付金额超过合同金额请填写备注
+            </view>
+            </view>
+        </view>
           <view class="box-shadow annex" style="padding-bottom: 30rpx;">
-            <text class="annexTitle" a:if="{{accumulatedPaymentAmount < contractAmount*0.75}}">*</text>
+            <text class="annexTitle" a:if="{{accumulatedPaymentAmount < (contractAmount * 0.75) }}">*</text>
             <layout-field-cell cssStyle="margin-left:45rpx"   hidden={{false}} name="验收文件"></layout-field-cell>
              <layout-upload-img ref="onSaveUploadFileRef" type="1" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
           </view>

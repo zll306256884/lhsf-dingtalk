@@ -1,0 +1,14 @@
+<nav-bar navbarData="{{navbarData}}"></nav-bar>
+<view class="container">
+  <view a:for="{{evaluationList}}" catchTap="JumpIt" data-row="{{item}}" class="evaluation-item">
+    <view class="item-top">
+        <view>{{ item.chVersion}}</view>
+        <view>{{ item.evaScore }} 分</view>
+    </view>
+    <view class="item-center">
+      <view class="name">{{ item.createBy_dictText }}</view>
+      <view>{{ item.createTime}}</view>
+  </view>
+  </view>
+  <view class="bottom-box"></view>
+</view>
