@@ -191,3 +191,6 @@
   z-index: 1000;
   display: inline-block;
 }
+.ant-button-medium{
+  padding:8px 0
+}

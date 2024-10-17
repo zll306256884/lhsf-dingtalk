@@ -117,25 +117,31 @@ Page({
     this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(projectId){
-    request.doPostRequest({
-      url: projectService.API_PROJECT_LEADER,
-      data: {projectId: this.data.projectId || projectId},
-      success: res => {
-        res.data.forEach(e => {
-          e.label = e.name
-          e.value = e.personId
-        })
-        console.log('项目负责人',res.data)
-        this.setData({
-          projectLeaderListOptions: res.data || []
-        })
-        if(res.data && res.data.length === 1){
-          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
-          this.setData({
-            projectLeaderId: res.data[0].personId
+    return new Promise((resolve, reject) => {
+      request.doPostRequest({
+        url: projectService.API_PROJECT_LEADER,
+        data: {projectId: this.data.projectId || projectId},
+        success: res => {
+          res.data.forEach(e => {
+            e.label = e.name
+            e.value = e.personId
           })
+          console.log('项目负责人',res.data)
+          this.setData({
+            projectLeaderListOptions: res.data || []
+          })
+          if(res.data && res.data.length === 1){
+            this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+            this.setData({
+              projectLeaderId: res.data[0].personId
+            })
+          }
+          resolve(res.data)
+        },
+        fail: res => {
+          reject(res)
         }
-      }
+      })
     })
   },
   getLeaderList(){
@@ -240,7 +246,7 @@ bindChooseProjectTap:function (e) {
 onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
-bindChooseProjectCallBack: function (data) {
+bindChooseProjectCallBack: async function (data) {
   this.setData({
     projectData: data || {},
     projectLeader:data.projectLeaderName,
@@ -261,13 +267,14 @@ bindChooseProjectCallBack: function (data) {
 
   this.form.setFieldValue('projectLeader',data.projectLeaderName)
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
+  await this.getProjectLeader()
   const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
   if(!isLeader && this.data.projectType ==1){
-     ddUtils.showToast({
-       title: '注意：仅项目负责人可发起流程',
-       duration: 2000
-     });
-     return
+    ddUtils.showToast({
+      title: '注意：仅项目负责人可发起流程',
+      duration: 2000
+    });
+    return
   }
   request.doPostRequest({
     url: config.API_PROJECT_TO_POST,
@@ -278,8 +285,6 @@ bindChooseProjectCallBack: function (data) {
       this.setData({
         projectChangeAmount: res.data.projectCumulativeChange || 0,
       });
-    this.getProjectLeader()
-
     }
   })
 },

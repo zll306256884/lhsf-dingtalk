@@ -1,0 +1,39 @@
+<import-sjs from="/utils/utils.sjs" name="utils" />
+
+<view>
+    <image a:if="{{!disabled && !onlyUploadImage}}"
+      style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
+      class="item add" 
+      src="/assets/images/common/icon_add_img.png" catchTap="catchAddTap">
+    </image>
+
+    <image a:if="{{!disabled && onlyUploadImage}}"
+      style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
+      class="item add" 
+      src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
+    </image>
+
+    <image a:if="{{ !loding &&  disabled && imgList.length <= 0}}" 
+      style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" mode="aspectFit" 
+      src="/assets/images/common/icon_placeholder.png" />
+
+    <view a:if="{{ loding && disabled && imgList.length  <=  0}}"  class="flex f-center">
+      <ant-loading type="mini" color="#000000" />
+    </view>
+    <view a:if="{{!disabled && !onlyUploadImage}}" style="font-size: 24rpx;color: #969799;margin:8rpx 0 14rpx">{{descriptionText}}</view>
+ <!-- 文件列表 -->
+  <view class="flex f-wrap upload-img-list" style="{{cssStyle}}">
+    <view class="list-item flex f-between f-align-center" a:for="{{ imgList }}" a:key="index" >
+      <view class="flex f-start f-align-center single-line">
+        <image mode="scaleToFill" src="{{item.typeUrl}}" class="type-img" />
+        <view catchTap="ddDownFile" class="single-line  file-name"  data-index="{{index}}">{{item.name}}</view>
+      </view>
+
+      <view class="flex f-end" >
+        <image a:if="{{!disabled}}" class="type-img"  src="/assets/images/common/delete.png" catchTap="deleteClose"  data-index="{{index}}" />
+        <image class="type-img"  src="/assets/images/common/group.png"  style="margin-left:16rpx" catchTap="ddDownFile" data-index="{{index}}"/>
+      </view>
+    </view>
+  </view>
+
+</view>

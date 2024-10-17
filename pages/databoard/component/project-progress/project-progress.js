@@ -15,7 +15,7 @@ Component({
     listData: [1, 2, 3, 4, 5],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
-    planType: null,//前期计划、施工计划
+    // planType: null,//前期计划、施工计划
     status: '',//筛选的状态
     // new
     currentOpen: -1,
@@ -44,14 +44,14 @@ Component({
           //   value: 4,
           // },
           { text: '全部', value: null, },
-          { text: '前期进度计划', value: 1, },
-          { text: '施工进度计划', value: 2, },
-          // { text: '未开始', value: 0, },
-          // { text: '进行中', value: 1, },
-          // { text: '延期未开始', value: 2, },
-          // { text: '延期未完成', value: 3, },
-          // { text: '延期完成', value: 4, },
-          // { text: '已完成', value: 5, },
+          // { text: '前期进度计划', value: 1, },
+          // { text: '施工进度计划', value: 2, },
+          { text: '未开始', value: 0, },
+          { text: '进行中', value: 1, },
+          { text: '延期未开始', value: 2, },
+          { text: '延期未完成', value: 3, },
+          { text: '延期完成', value: 4, },
+          { text: '已完成', value: 5, },
         ],
       },
       {
@@ -98,8 +98,8 @@ Component({
     handleChange(value, items, e) {
       console.log(value, items, e, 1);
       // this.data.status = value
-      // this.setData({ status: value });
-      this.setData({ planType: value });
+      this.setData({ status: value });
+      // this.setData({ planType: value });
       this.getList()
       // this.data.currentOpen = -1;
       this.setData({ currentOpen: -1 });
@@ -125,15 +125,15 @@ Component({
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
-        // 'status': this.data.status,
+        'bootStatus': this.data.status,
         'flagNode': this.data.flagNode,
-        'planType': this.data.planType,
-        'enable': 1,
-        'clientType':2
+        // 'planType': this.data.planType,
+        // 'enable': 1,
+        // 'clientType':2
       }
       return new Promise((resolve, reject) => {
         request.doPostRequest({
-          url: progressServer.API_PROGRESS_LIST,
+          url: progressServer.API_PROGRESS_NODE_LIST,
           showLoading: false,
           data: param,
           success: res => {
@@ -156,7 +156,7 @@ Component({
       // 1  里程碑  0  非里程碑   空字符串   全量
       if (this.data.flagNode) {
         this.setData({
-          flagNode: ''
+          flagNode: 0
         });
       } else {
         this.setData({

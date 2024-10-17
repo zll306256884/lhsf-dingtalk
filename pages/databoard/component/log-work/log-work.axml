@@ -1,11 +1,8 @@
 <!--<nav-bar navbarData="{{navbarData}}"></nav-bar> -->
-<!--  -->
 <view class="container box-sizing-box">
-  <!--  -->
   <view>
     <selector defaultValue="{{logType}}" value="{{logType}}" onChange="handleChange" options="{{items1}}"  ref="_onSaveTabsRef" className='topSelect' activeItemClassName='bac' />
   </view>
-  <!--  -->
   <view class="listBox box-sizing-box">
     <block a:if="{{logList.length}}">
       <view class="bigPark flex f-column" a:for="{{logList}}" a:for-item="item" a:for-index="indexStart">
@@ -13,7 +10,6 @@
           <view class="year">{{item.year}}</view>
           <image class="bottomImg" mode="aspectFill" src="../../../../assets/images/log/Rectangle.png" />
         </view>
-        <!--  -->
         <view class="navContent flex f-column" a:for="{{item.appProjectLogResponseList}}" a:for-item="itemDay" a:for-index="dayIndex"> 
           <view class="navPark flex f-start">
             <view class="timeCell flex f-start">
@@ -51,16 +47,16 @@
                     <block  a:if="{{itemPart.expandedAll==0 && itemPart.showAll==1}}">收起</block>
                   </view>
                   <view class="imgBox flex f-wrap f-start">
-                    <block a:for="{{itemPart.logPhotoList}}" a:for-item="itemImg" a:for-index="imgIndex">
+                    <layout-upload-file disabled="true"  imgList="{{itemPart.logPhotoList}}" cssStyle="margin: 8rpx 0;" ref="_onSaveUploadFormImgRef"></layout-upload-file>
+                    <!-- <block a:for="{{itemPart.photoList}}" a:for-item="itemImg" a:for-index="imgIndex">
                       <image catchTap="_bindPreviewTap" data-index="{{imgIndex}}" data-url="{{itemImg.url}}" class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
-                    </block>
+                    </block> -->
                   </view>
                 </view>
               </block>
             </view>
           </view>
         </view>
-        <!--  -->
       </view>
     </block>
     <block a:else>

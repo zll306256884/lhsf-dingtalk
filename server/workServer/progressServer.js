@@ -6,6 +6,8 @@ module.exports = {
 
   // 获取进度节点
   API_PROGRESS_LIST: API_HOST + "/control/planTask/queryNewPlanTaskList",
+  // 获取进度节点（新接口）
+  API_PROGRESS_NODE_LIST: API_HOST + "/control/planTask/queryNodeOverList",
   // 获取填报记录信息 -查询计划详情
   API_PROGRESS_DETAIL: API_HOST + "/control/planTask/selectDetailById",
   // 保存填报

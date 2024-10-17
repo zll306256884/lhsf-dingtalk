@@ -11,6 +11,11 @@ function downloadFile (url) {
           targetPath: url,
       },
         success: res => {
+          if(res.code==1000){
+            ddUtils.showToast({
+              title: "下载成功！"
+            });
+          }
           let ddDownFileParams = ddUtils.urlParams(res.data)
           // 获取钉盘文件信息
           ddUtils.ddDownFile(ddDownFileParams)

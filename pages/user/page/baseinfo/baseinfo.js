@@ -76,7 +76,13 @@ Page({
     })
   },
   callMobile(e) {
-    console.log('e', e, this.data.userId)
+    console.log('e', e, this.data.userId, app.globalData.userInfo)
+    if(this.data.userId === app.globalData.userInfo.userId) {
+      ddUtils.showToast({
+        title: '不支持拨打自己的号码'
+      });
+      return
+    }
     // ddUtils.makePhoneCall({phoneNumber: this.data.mobile});
     ddUtils.showModal({
       title:  `您即将呼叫: ${this.data.username}？`,

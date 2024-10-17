@@ -1,1 +1,1 @@
-<web-view id="web-view-1" src="{{webViewUrl}}" onMessage="onMessage"></web-view>
+<web-view id="web-view-1" style="overflow: scroll" src="{{webViewUrl}}" onMessage="onMessage"></web-view>

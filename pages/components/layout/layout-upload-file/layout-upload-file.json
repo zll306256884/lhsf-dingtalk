@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ant-loading": "antd-mini/es/Loading/index",
+    "ant-container": "antd-mini/es/Container/index"
+  }
+}
