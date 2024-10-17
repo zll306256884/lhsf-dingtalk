@@ -97,7 +97,8 @@ Page({
   onReady() {
     this.form.setFieldValue('logTypeName', '普通日志')
     this.setData({
-      logTypeName: '普通日志'
+      logTypeName: '普通日志',
+      logType: '0'
     })
   },
   events: {
