@@ -1,0 +1,39 @@
+.grid-img-list {
+  margin: 10rpx 10rpx 0;
+}
+
+.grid-img-list .item {
+  width: 190rpx;
+  height: 190rpx;
+  margin: 0 0 15rpx 25rpx;
+}
+
+.grid-img-list .item:nth-child(3n+1) {
+  margin-left: 0rpx;
+}
+
+.grid-img-list .item .img {
+  border-radius: 10rpx;
+}
+
+.grid-img-list .item .file-name {
+  margin: 10rpx 0 0;
+  font-size: 24rpx;
+  color: #377DFF;
+  text-align: center;
+}
+.type-img{
+  width: 48rpx; 
+  height: 48rpx;
+  margin-right:8rpx;
+}
+.file-name{
+  vertical-align: middle;
+  width: 372rpx;
+  overflow-x: auto;
+}
+.list-item{
+  height: 64rpx;
+  width: 72vw;
+  overflow-x: auto;
+}

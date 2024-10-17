@@ -1,8 +1,8 @@
-import utils from "../../../../utils/utils"
-import ddUtils from "../../../../utils/ddUtils"
-import request from "../../../../utils/request"
-import config from "../../../../utils/config"
-import logServer from "../../../../server/dataBoardServer/log.js";
+import utils from "/utils/utils"
+import ddUtils from "/utils/ddUtils"
+import request from "/utils/request"
+import config from "/utils/config"
+import logServer from "/server/dataBoardServer/log.js";
 
 const app = getApp();
 
@@ -22,6 +22,7 @@ Component({
 
   },
   tabsRef:'',
+  uploadFormImgRef:'',
   props: {
     projectId: '',//项目id
   },
@@ -44,6 +45,11 @@ Component({
     _onSaveTabsRef: function (ref) {
       this.tabsRef = ref;
     },
+    _onSaveUploadFormImgRef: function (ref) {
+      this.uploadFormImgRef = ref;
+      let fileList = this.uploadFormImgRef._getUploadImgId().imgList
+      console.log('upload--->', this.uploadFormImgRef, fileList);
+    },
     initLogList() {
       return new Promise((resolve, reject) => {
         request.doPostRequest({
@@ -59,7 +65,7 @@ Component({
            this.getDetail()
            }else{
             this.setData({
-              logList: res.data
+              logList:this.handleData(res.data)
             });
            }
           resolve(res.data)
@@ -69,6 +75,27 @@ Component({
           }
         });
       })
+    },
+
+    handleData(list){
+     list.forEach(item => {
+        item.appProjectLogResponseList.forEach(e => {
+          if (e.appProjectLogDtoList && e.appProjectLogDtoList.length) {
+            e.appProjectLogDtoList.forEach(i => {
+              i.photoList = []
+              i.fileList=[]
+              i.logPhotoList.forEach(img=>{
+              if (['jpg', 'jpeg', 'png'].includes(img.url.slice(img.url.lastIndexOf('.') + 1))) {
+                i.photoList.push(img)
+              } else {
+                i.fileList.push(img)
+              }
+            })
+            })
+          }
+        })
+      })
+      return list
     },
     // 获取数据详情
     getDetail() {
@@ -83,8 +110,10 @@ Component({
           success: res => {
             console.log('res.data', res.data)
             this.setData({
-              logList: res.data
+              logList:this.handleData(res.data)
             });
+            console.log('res.data-------------------------->', res.data)
+
             resolve(res.data)
           },
           fail: res => {
