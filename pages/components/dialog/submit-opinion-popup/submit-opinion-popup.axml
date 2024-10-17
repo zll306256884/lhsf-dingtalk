@@ -52,7 +52,7 @@
       <textarea class="reason" name="remark" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
       <block a:if="{{!recipient}}">
         <view class="file-title">附件</view>
-        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef"></layout-upload-img>
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef" onlyUploadImage="{{true}}"></layout-upload-img>
       </block>
     </view>
     <!-- btn -->
