@@ -34,11 +34,14 @@ Page({
     accumulatedPaymentAmount: 0,
     supplementaryAgreement: [],
     imageUrl: '',
-    payeeList: []
+    payeeList: [],
+    recipient: true, // 展示接收人
+    transmit: null // 是否转发
   },
   uploadContractImage: null,
   uploadTenderImageList: null,
   onLoad(option) {
+    console.log('参数===：', option);
     // if (option.id) {
       this.setData({
         examineId:option.examineId,
@@ -47,7 +50,9 @@ Page({
         keyId:option.keyId,
         status:option.status,
         projectId:option.projectId,
-        showType:option.showType || ''
+        showType:option.showType || '',
+        transmit: option.transmit,
+        recipient: option.forwardType == '2' ? false : true
       })
       // this.getDetail(option.id)
     // }

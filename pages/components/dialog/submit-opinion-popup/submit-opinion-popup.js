@@ -302,6 +302,7 @@ Component({
 
     // 
     showMoreButton: function () {
+      console.log('查看当前参数：', this.props.recipient, this.props.transmit);
         this.setData({
             showMore: !this.data.showMore
         })

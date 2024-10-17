@@ -438,7 +438,7 @@ Page({
             break;
           case 4:
             ddUtils.navigateTo({
-              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}`
+              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
           case 8:
