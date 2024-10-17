@@ -406,13 +406,14 @@ Page({
 
   // 点击跳转
   toDetail(e) {
-    console.log(e);
+    console.log('跳转详情：',e);
     let temp = e.currentTarget.dataset.item.belongModule
     //1-进度计划 2-招标文件会签 3-合同审批流程 4-款项支付 5-项目资金计划 6-生态伙伴
     let id = e.target.dataset.item.keyId
     let projectId = e.target.dataset.item.projectId
     let showType = e.target.dataset.item.showType
     let examineId = e.target.dataset.item.id //审批组件用
+    let forwardType = e.target.dataset.item.forwardType || '' //审批组件用
     // 下面的
     let params = {
       "id": examineId,
@@ -442,7 +443,7 @@ Page({
             break;
           case 8:
             ddUtils.navigateTo({
-              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}`
+              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
           case 9:

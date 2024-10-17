@@ -46,7 +46,9 @@ Page({
     dingTalkFormList: [],
     deleteId: null,
     examineId: null,
-    currentAccount: null
+    currentAccount: null,
+    recipient: true, // 展示接收人
+    transmit: null // 是否转发
   },
   onNavTabChange(e){
     this.setData({
@@ -58,8 +60,11 @@ Page({
     console.log(this.uploadImgRefList)
   },
   onLoad(options) {
+    console.log('详情页面参数：', options);
     this.setData({
-      currentAccount: app.globalData.userInfo.userId
+      currentAccount: app.globalData.userInfo.userId,
+      transmit: options.transmit,
+      recipient: options.forwardType == '2' ? false : true
     })
     if(options.examineId){//审批
       this.setData({

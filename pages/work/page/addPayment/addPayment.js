@@ -597,7 +597,12 @@ async submit() {
     if (this.uploadImageList) {
       let temsFileList=[]
       temsFileList = this.uploadImageList.data.imgList;
-      if (ddUtils.showEmptyArrayTips(temsFileList, "请上传合同正式稿及相关附件")) return;
+      if (ddUtils.showEmptyArrayTips(temsFileList, "请上传合同正式稿及相关附件")){
+        this.setData({
+          loading: false
+        })
+        return
+      };
       temsFileList.forEach(e => {
         e.fileName = e.name
         e.type= 3
@@ -608,7 +613,12 @@ async submit() {
       let temFileLists=[]
       temFileLists = this.uploadTenderImageList.data.imgList;
       if(params.accumulatedPaymentAmount < params.contractAmount*0.75){
-        if (ddUtils.showEmptyArrayTips(temFileLists, "请上传验收文件")) return;
+        if (ddUtils.showEmptyArrayTips(temFileLists, "请上传验收文件")) {
+          this.setData({
+            loading: false
+          })
+          return
+        };
       }
       temFileLists.forEach(e => {
         e.fileName = e.name
@@ -621,6 +631,9 @@ async submit() {
        ddUtils.showToast({
         title: "当前合同金额为0，请至【合同审批流程】中填写已定金额后再进行款项支付!"
        });
+       this.setData({
+        loading: false
+      })
       return
     }
     if (params.accumulatedPaymentAmount > params.contractAmount * 0.85 || params.accumulatedPaymentAmount === params.contractAmount * 0.85) {
@@ -629,7 +642,9 @@ async submit() {
         ddUtils.showToast({
           title: "存在收款单位未进行评价，请评价后再提交审批！"
          });
-        this.isLoading = false
+         this.setData({
+          loading: false
+        })
         return
       }
     }

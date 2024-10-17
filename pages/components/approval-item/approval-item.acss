@@ -132,4 +132,15 @@
 }
 
 
-
+.approvalItem .detail-row {
+  font-size: 24rpx;
+  color: #323233;
+  line-height: 40rpx;
+  box-sizing: border-box;
+  padding-left: 38rpx;
+}
+.approvalItem .detail-row .detail-content {
+  width: 100%;
+  white-space: normal;
+  word-break: break-all;
+}
