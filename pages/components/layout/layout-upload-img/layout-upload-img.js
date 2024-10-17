@@ -306,9 +306,26 @@ Component({
     },
     // 下载
     ddDownFile(e) {
+      // let index = e.currentTarget.dataset.index;
+      // let url = this.data.imgList[index].preUrl || this.data.imgList[index].url;
+      // ddFile.downloadFile(url)
       let index = e.currentTarget.dataset.index;
       let url = this.data.imgList[index].preUrl || this.data.imgList[index].url;
-      ddFile.downloadFile(url)
+      let name = this.data.imgList[index].name;
+      let extension = name.slice(name.lastIndexOf(".") + 1);
+      if (['mov', 'mp4', 'm4v', 'avi', 'dat', 'mkv', 'flv', 'vob', 'rmvb', 'video'].includes(extension)) {
+        ddUtils.navigateTo({
+          url:`/pages/common/video-page/video-page?name=查看视频&url=` +url
+        });
+        return;
+      }
+      if(['png','jpg','jpeg'].includes(extension)){
+        ddUtils.previewImage({
+          urls: [url]
+        });
+      }else{
+        ddFile.downloadFile(url)
+      }
     },
     //deal choose image
     _dealChooseImage: function (files) {
