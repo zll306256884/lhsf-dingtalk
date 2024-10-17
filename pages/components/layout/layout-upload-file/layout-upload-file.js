@@ -402,8 +402,9 @@ Component({
         ddUtils.previewImage({
           urls: [url]
         });
+      }else{
+        ddFile.downloadFile(url)
       }
-      ddFile.downloadFile(url)
       // ddUtils.navigateTo({
       //   url: `/pages/common/preview-file/preview-file?type=${this.props.type}&fileUrl=${url}&fileName=${name}`
       // });
