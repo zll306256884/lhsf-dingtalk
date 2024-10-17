@@ -23,7 +23,7 @@
         附件：
       </view>
       <!--<layout-add-attachment cssStyle="border: none;"></layout-add-attachment> -->
-      <layout-upload-img ref="onSaveUploadApprovalRef" disabled="{{isLoading}}"></layout-upload-img>
+      <layout-upload-img ref="onSaveUploadApprovalRef" disabled="{{isLoading}}" onlyUploadImage="{{true}}"></layout-upload-img>
     </view>
     <!-- btn -->
     <view class="flex f-center btn-wrap ">

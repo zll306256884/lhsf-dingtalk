@@ -303,7 +303,7 @@ Component({
     // 
     showMoreButton: function () {
         this.setData({
-            showMore: true
+            showMore: !this.data.showMore
         })
     },
     handleTransmit: function () {
