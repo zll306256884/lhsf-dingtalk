@@ -33,6 +33,10 @@ module.exports = {
   //设置审批记录已读/未读
   API_Audit_UPDATE: API_HOST  + "/jflow/audit/updateIsRead",
   // 系统公告
-  API_NOTICE_MESSAGE:API_HOST + "/message/systemNotice/selectById"
+  API_NOTICE_MESSAGE:API_HOST + "/message/systemNotice/selectById",
+  //流程转发
+  API_JFLOW_FORWARD: API_HOST  + "/jflow/forwardAuditRecord/forward",
+  //流程附言
+  API_JFLOW_POSTSCRIPT: API_HOST  + "/jflow/forwardAuditRecord/postscript",
 }
 

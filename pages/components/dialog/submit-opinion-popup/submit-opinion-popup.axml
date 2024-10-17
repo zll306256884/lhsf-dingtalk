@@ -1,33 +1,77 @@
 <block>
   <view class="flex f-between btn-wrap approve-btn">
-      <button class="btn" catchTap="bindStagingToDo">暂存待办</button>
-      <button class="btn" catchTap="bindRefuseTap">审批驳回</button>
-      <button class="btn active" catchTap="bindAgreeTap">审批通过</button>
+    <button class="btn" catchTap="showMoreButton">更多</button>
+    <!--<button class="btn" catchTap="bindStagingToDo">暂存待办</button> -->
+    <button class="btn" catchTap="bindRefuseTap">审批驳回</button>
+    <button class="btn active" catchTap="bindAgreeTap">审批通过</button>
   </view>
 </block>
 
 <view a:if="{{showDialog}}" class="modal-mask" catchTouchMove="_bindTouchMove"></view>
 <view a:if="{{showDialog}}" class="box-sizing-box modal-content" catchTouchMove="_bindTouchMove">
-    <view class="dialog-title">
-        {{isApprovalAgree ? '审批通过' : '审批驳回'}}
+  <view class="dialog-title">
+    {{isApprovalAgree ? '审批通过' : '审批驳回'}}
+  </view>
+  <view class="dialog-name">
+    审批意见：
+  </view>
+  <form onSubmit="_bindFormSunmit">
+    <textarea class="reason" name="reason" maxlength="500" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
+    <!-- attachment -->
+    <view class="file">
+      <view class="dialog-name" style="margin: 0rpx;">
+        附件：
+      </view>
+      <!--<layout-add-attachment cssStyle="border: none;"></layout-add-attachment> -->
+      <layout-upload-img ref="onSaveUploadApprovalRef" disabled="{{isLoading}}"></layout-upload-img>
     </view>
-    <view class="dialog-name">
-        审批意见：
+    <!-- btn -->
+    <view class="flex f-center btn-wrap ">
+      <button class="btn" catchTap="_bindCancelTap">取消</button>
+      <button class="btn active" disabled="{{isLoading}}" loading="{{isLoading}}" form-type="submit">{{isApprovalAgree ? '通过' : '驳回'}}</button>
     </view>
-    <form onSubmit="_bindFormSunmit">
-        <textarea class="reason" name="reason" maxlength="500" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
-        <!-- attachment -->
-        <view class="file">
-            <view class="dialog-name" style="margin: 0rpx;">
-                附件：
-            </view>
-            <!-- <layout-add-attachment cssStyle="border: none;"></layout-add-attachment> -->
-            <layout-upload-img ref="onSaveUploadApprovalRef" disabled="{{isLoading}}"></layout-upload-img>
-        </view>
-        <!-- btn -->
-        <view class="flex f-center btn-wrap ">
-          <button class="btn" catchTap="_bindCancelTap">取消</button>
-          <button class="btn active" disabled="{{isLoading}}" loading="{{isLoading}}" form-type="submit">{{isApprovalAgree ? '通过' : '驳回'}}</button>
-        </view>
-    </form>
+  </form>
 </view>
+
+<!-- 更多按钮弹窗 -->
+<view a:if="{{showMore}}" class="btn-dialog">
+  <button a:if="{{transmit === '0' && recipient}}" class="btn active" catchTap="handleTransmit">转发</button>
+  <button a:if="{{transmit === '0' && !recipient}}" class="btn active">附言</button>
+  <button class="btn" catchTap="bindStagingToDo">暂存待办</button>
+</view>
+
+<view a:if="{{showTransmit}}" class="modal-mask" catchTouchMove="_bindTouchMove"></view>
+<view a:if="{{showTransmit}}" class="box-sizing-box modal-content" catchTouchMove="_bindTouchMove">
+  <view class="dialog-title">{{isTransmit ? '流程转发' : '附言'}}</view>
+  <form onSubmit="handleTransmitConfirm">
+    <view a:if="{{recipient}}" catchTap="chooseManager">
+      <layout-field-input borderBottom name="接收人" mustFill disabled="true" value="{{chooseUser}}" placeholder="请选择"></layout-field-input>
+    </view>
+    <view style="margin: 0 30rpx;">
+      <view class="file-title">附言</view>
+      <textarea class="reason" name="remark" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
+      <block a:if="{{!recipient}}">
+        <view class="file-title">附件</view>
+        <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef"></layout-upload-img>
+      </block>
+    </view>
+    <!-- btn -->
+    <view class="flex f-center btn-wrap">
+      <button class="btn" catchTap="handleCancel">取消</button>
+      <button class="btn active" disabled="{{isTransmitLoading}}" loading="{{isTransmitLoading}}" form-type="submit">确定</button>
+    </view>
+  </form>
+  <!-- <view catchTap="chooseManager">
+    <form-input label="接收人" name="people" placeholder="请选择" required disabled ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+  </view>
+  <form-textarea label="附言" name="remark" placeholder="请输入" maxLength="{{300}}" position="vertical" allowClear autoHeight 
+    ref="handleRef"></form-textarea>
+  <view class="file-title">附件</view>
+  <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef"></layout-upload-img>
+  <view class="flex f-center btn-wrap">
+    <button class="btn" catchTap="handleCancel">取消</button>
+    <button class="btn active" disabled="{{isTransmitLoading}}" loading="{{isTransmitLoading}}" catchTap="handleTransmitConfirm">确定</button>
+  </view> -->
+</view>
+
+<dialog-screen-company-staff ref="onSaveDialogScreenDepartmentManagerRef" multiChoose onScreenCallBack="bindScreenDepartmentManagerCallBack"></dialog-screen-company-staff>

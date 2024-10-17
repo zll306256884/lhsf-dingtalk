@@ -481,7 +481,7 @@ Page({
   },
   // 点击列表项查看待办详情
   async selectAwaitInfo(e) {
-    console.log(e);
+    console.log('点击',e);
     // 待办审批
     if (this.data.currentAwait === 0) {
       console.log('待办审批')
@@ -491,6 +491,7 @@ Page({
       let projectId = e.target.dataset.item.projectId
       let showType = e.target.dataset.item.showType
       let examineId = e.target.dataset.item.id //审批组件用
+      let forwardType = e.target.dataset.item.forwardType || '' //审批组件用
       // let resBack = await this.getRead(examineId)
       // console.log('resBack', resBack)
       let params = {
@@ -526,7 +527,7 @@ Page({
             //   break;
             case 8:
               ddUtils.navigateTo({
-                url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=1`
+                url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=1&transmit=${this.data.currentAwait}&forwardType=${forwardType}`
               });
               break;
             case 9:
