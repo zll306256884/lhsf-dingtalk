@@ -37,7 +37,9 @@ Page({
       { value: '3', label: '个人', text:'个人' },
     ],
     currentAccount: null,
-    imageUrl: ''
+    imageUrl: '',
+    recipient: true, // 展示接收人
+    transmit: null // 是否转发
   },
   uploadContractImage: null,
   uploadImgRefList:null,
@@ -45,7 +47,9 @@ Page({
 
   onLoad(options) {
     this.setData({
-      currentAccount: app.globalData.userInfo.userId
+      currentAccount: app.globalData.userInfo.userId,
+      transmit: options.transmit,
+      recipient: options.forwardType == '2' ? false : true
     })
     if(options.examineId){
       this.setData({
