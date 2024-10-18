@@ -96,38 +96,38 @@ Component({
                 })
               }
               // 处理附言的附件
-              console.log('处理附言的附件', item.forwardAuditList)
-              if(item.forwardAuditList && item.forwardAuditList.length) {
-                item.forwardAuditList.forEach(obj => {
-                  if(obj.forwardAnnexesUrl) {
-                    obj.forwardAnnexesUrl = JSON.parse(obj.forwardAnnexesUrl)
-                    if (obj.forwardAnnexesUrl && obj.forwardAnnexesUrl.length) {
-                      obj.forwardAnnexesUrl.map((item1) => {
-                        if (item1.url.indexOf('.pdf') > -1) {
-                          item1.type = 'pdf'
-                        }
-                        if (item1.url.indexOf('.ppt') > -1) {
-                          item1.type = 'ppt'
-                        }
-                        if (item1.url.indexOf('.png') > -1) {
-                          item1.type = 'png'
-                        }
-                        if (item1.url.indexOf('.jpg') > -1) {
-                          item1.type = 'jpg'
-                        }
-                        if (item1.url.indexOf('.doc') > -1) {
-                          item1.type = 'doc'
-                        }
-                        if (item1.url.indexOf('.docx') > -1) {
-                          item1.type = 'docx'
-                        }
+              // console.log('处理附言的附件', item.forwardAuditList)
+              // if(item.forwardAuditList && item.forwardAuditList.length) {
+              //   item.forwardAuditList.forEach(obj => {
+              //     if(obj.forwardAnnexesUrl) {
+              //       obj.forwardAnnexesUrl = JSON.parse(obj.forwardAnnexesUrl)
+              //       if (obj.forwardAnnexesUrl && obj.forwardAnnexesUrl.length) {
+              //         obj.forwardAnnexesUrl.map((item1) => {
+              //           if (item1.url.indexOf('.pdf') > -1) {
+              //             item1.type = 'pdf'
+              //           }
+              //           if (item1.url.indexOf('.ppt') > -1) {
+              //             item1.type = 'ppt'
+              //           }
+              //           if (item1.url.indexOf('.png') > -1) {
+              //             item1.type = 'png'
+              //           }
+              //           if (item1.url.indexOf('.jpg') > -1) {
+              //             item1.type = 'jpg'
+              //           }
+              //           if (item1.url.indexOf('.doc') > -1) {
+              //             item1.type = 'doc'
+              //           }
+              //           if (item1.url.indexOf('.docx') > -1) {
+              //             item1.type = 'docx'
+              //           }
       
-                      })
-                    }
-                  }
-                })
-              }
-              // 附言附件
+              //         })
+              //       }
+              //     }
+              //   })
+              // }
+              // // 附言附件
               // if(item.forwardAnnexesUrl && item.forwardAnnexesUrl !== '[]') {
               //   item.forwardAnnexesUrl = JSON.parse(item.forwardAnnexesUrl)
               //   if (item.forwardAnnexesUrl && item.forwardAnnexesUrl.length) {
