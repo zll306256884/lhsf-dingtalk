@@ -859,8 +859,10 @@ Page({
       e.fileName = e.name
       e.type = 4
     })
-    params.decisionBasisFileList = workAuditFile2
-    if(ddUtils.showEmptyArrayTips(workAuditFile2,"请上传合同正式稿及相关附件！")) return
+    params.decisionBasisFileList = workAuditFile2 || []
+    if(params.basisSigning != 1){
+      if(ddUtils.showEmptyArrayTips(workAuditFile2,"请上传决策依据文件！")) return
+    }
 
     request.doPostRequest({
       url: projectService.API_CONTRACT_SAVEANDSUBMIT,
