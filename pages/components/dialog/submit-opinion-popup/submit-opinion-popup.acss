@@ -106,6 +106,9 @@
   color: #FFFFFF;
   line-height: 80rpx;
 }
+.approve-btn .big-btn {
+  width: 100% !important;
+}
 
 .container .containerinner .textarea {
   z-index: 0;

@@ -134,7 +134,7 @@
 
 .approvalItem .detail-row {
   font-size: 24rpx;
-  color: #323233;
+  color: #969799;
   line-height: 40rpx;
   box-sizing: border-box;
   padding-left: 38rpx;

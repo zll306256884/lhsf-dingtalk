@@ -1,9 +1,12 @@
 <block>
   <view class="flex f-between btn-wrap approve-btn">
-    <button class="btn" catchTap="showMoreButton">更多</button>
-    <!--<button class="btn" catchTap="bindStagingToDo">暂存待办</button> -->
-    <button class="btn" catchTap="bindRefuseTap">审批驳回</button>
-    <button class="btn active" catchTap="bindAgreeTap">审批通过</button>
+    <button a:if="{{transmit === '0' && !recipient}}" class="btn active big-btn" catchTap="handleTransmit">附言</button>
+    <block a:else>
+      <button class="btn" catchTap="showMoreButton">更多</button>
+      <!--<button class="btn" catchTap="bindStagingToDo">暂存待办</button> -->
+      <button class="btn" catchTap="bindRefuseTap">审批驳回</button>
+      <button class="btn active" catchTap="bindAgreeTap">审批通过</button>
+    </block>
   </view>
 </block>
 
@@ -36,7 +39,7 @@
 <!-- 更多按钮弹窗 -->
 <view a:if="{{showMore}}" class="btn-dialog">
   <button a:if="{{transmit === '0' && recipient}}" class="btn active" catchTap="handleTransmit">转发</button>
-  <button a:if="{{transmit === '0' && !recipient}}" class="btn active" catchTap="handleTransmit">附言</button>
+  <!-- <button a:if="{{transmit === '0' && !recipient}}" class="btn active" catchTap="handleTransmit">附言</button> -->
   <button class="btn" catchTap="bindStagingToDo">暂存待办</button>
 </view>
 
