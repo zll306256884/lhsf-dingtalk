@@ -310,7 +310,7 @@ Component({
       // let url = this.data.imgList[index].preUrl || this.data.imgList[index].url;
       // ddFile.downloadFile(url)
       let index = e.currentTarget.dataset.index;
-      let url = this.data.imgList[index].preUrl || this.data.imgList[index].url;
+      let url =  this.data.imgList[index].url;
       let name = this.data.imgList[index].name;
       let extension = name.slice(name.lastIndexOf(".") + 1);
       if (['mov', 'mp4', 'm4v', 'avi', 'dat', 'mkv', 'flv', 'vob', 'rmvb', 'video'].includes(extension)) {
