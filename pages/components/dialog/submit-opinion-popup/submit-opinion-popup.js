@@ -362,6 +362,7 @@ Component({
           success: res => {
             console.log('附言：',res)
             ddUtils.showToast({title: '操作成功！'})
+            ddUtils.navigateBack();
             this.setData({
               showTransmit: false,
               showMore: false
