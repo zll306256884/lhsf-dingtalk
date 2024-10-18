@@ -167,7 +167,20 @@ Page({
             ...res.data
           }
         }) 
-        this.getPayeeList(res.data.contractId)
+        //  收款单位
+    request.doPostRequest({
+      url: config.API_SELECT_BYCONTRACT_ID_WITHUNIT,
+      data: {
+        contractId: res.data.contractId,
+      },
+      success: result => {
+        const option = result.data.find((item) => item.unitName === res.data.receiverUnit)
+        this.getPayeeList({
+          ...option,
+           id: res.data.contractId
+         })
+        }
+       });
         // 获取补充协议
         request.doPostRequest({
           url: confing.API_SELECT_SUPPLEMENTAL_AGREEMENT,
@@ -256,12 +269,12 @@ Page({
       }
     })
   },
-  getPayeeList(id){
+  getPayeeList(option){
     request.doPostRequest({
       url: projectService.API_SELECT_UNIT_BY_PROJECTID,
       data: {
         projectId: this.data.projectId,
-        id: id
+       ...option
       },
       success: res => {
         this.setData({

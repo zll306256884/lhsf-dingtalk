@@ -2,13 +2,22 @@
 
 <view class="container">
   <form onSubmit="bindFormSubmit">
-        <view  catchTap="bindChooseProjectTypeTap">
+        <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTypeTap">
          <form-input
          label="项目类型"
          name="projectType_text"
          placeholder="请选择"
+         disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
         </view>
+        <view a:else>
+          <form-input
+          label="项目类型"
+          name="projectType_text"
+          placeholder="请选择"
+          disabled
+          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
+         </view>
         <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTap">
           <form-input
           label="项目名称"
@@ -119,7 +128,7 @@
             maxLength="100"
             ref="handleRef" />
 
-           <view  catchTap="bindChooseProceedsUnitTap">
+           <view catchTap="bindChooseProceedsUnitTap">
             <form-input
             label="收款单位"
             name="receiverUnit"

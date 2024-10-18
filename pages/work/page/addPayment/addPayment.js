@@ -198,7 +198,6 @@ Page({
     this.form.setFieldValue('payUnit','')
     this.form.setFieldValue('receiverUnit','')
     // 
-    this.getPayeeList(data.contractId)
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
@@ -352,6 +351,7 @@ bindChooseProceedsUnitCallBack:function(data){
     proceedsData: data || {},
   });
   this.form.setFieldValue('receiverUnit',data.unitName)
+  this.getPayeeList(data)
 },
 // 申请日期
 bindChooseApplyDateTap :function(e){
@@ -519,7 +519,6 @@ getEdit(id){
       this.form.setFieldValue('projectLeaderId', res.data.projectLeaderId || '')
         // 获取补充协议
       this.getProjectLeader()
-      this.getPayeeList(this.data.contractData.contractId)
     request.doPostRequest({
       url: config.API_SELECT_SUPPLEMENTAL_AGREEMENT,
       data: {
@@ -533,6 +532,17 @@ getEdit(id){
         })
       }
     }) 
+    //  收款单位
+    request.doPostRequest({
+      url: config.API_SELECT_BYCONTRACT_ID_WITHUNIT,
+      data: {
+        contractId: this.data.contractData.contractId,
+      },
+      success: result => {
+        const option = result.data.find((item) => item.unitName === res.data.receiverUnit)
+        this.getPayeeList(option)
+       }
+     });
       const files = res.data.investmentFileList?res.data.investmentFileList.map((item)=>{
         return {
           ...item,
@@ -765,12 +775,13 @@ bingFocusChange(){
 bindCancelTap: function (e) {
   ddUtils.navigateBack();
 },
-getPayeeList(id){
+getPayeeList(option){
   request.doPostRequest({
     url: projectService.API_SELECT_UNIT_BY_PROJECTID,
     data: {
       projectId: this.data.projectId,
-      id: id
+      id: this.data.contractId,
+      ...option
     },
     success: res => {
       this.setData({
