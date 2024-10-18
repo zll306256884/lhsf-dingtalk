@@ -278,7 +278,7 @@ Page({
       },
       success: res => {
         this.setData({
-          payeeList: res.data
+          payeeList: res.data ? res.data : []
         })
       }
     })

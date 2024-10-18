@@ -71,7 +71,7 @@ Component({
           success: res => {
             console.log('节点数据res.data', res.data)
             res.data.map((item) => {
-              item.annexesUrl = JSON.parse(item.annexesUrl)
+              item.annexesUrl = item.annexesUrl ? JSON.parse(item.annexesUrl) : []
               if (item.annexesUrl && item.annexesUrl.length) {
                 item.annexesUrl.map((item1) => {
                   if (item1.url.indexOf('.pdf') > -1) {
