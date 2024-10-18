@@ -421,7 +421,7 @@ Page({
       })
     }
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
-    params.basisDocumentList = this.data.basisDocumentList
+    params.decisionBasisFileList = this.data.basisDocumentList
     params.title = params.title.replace('招标文件会签：', '')
     params.projectLeaderId = this.data.projectLeaderId
     params.projectLeader = this.data.projectLeaderListOptions.find(e => e.personId === this.data.projectLeaderId).name
@@ -509,7 +509,7 @@ Page({
     if(ddUtils.showEmptyArrayTips(this.data.basisDocumentList,"请上传决策依据证明文件！")) return
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
     console.log(params)
-    params.basisDocumentList = this.data.basisDocumentList
+    params.decisionBasisFileList = this.data.basisDocumentList
     request.doPostRequest({
       url: projectService.API_SAVEANDSUBMIT,
       data: params,
