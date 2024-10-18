@@ -30,7 +30,9 @@ Page({
     isCurrentAudit: false,
     dingTalkFormList: [],
     currentAccount: null,
-    imageUrl: ''
+    imageUrl: '',
+    recipient: true, // 展示接收人
+    transmit: null // 是否转发
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
@@ -38,7 +40,9 @@ Page({
   
   onLoad(options) {
     this.setData({
-      currentAccount: app.globalData.userInfo.userAccount
+      currentAccount: app.globalData.userInfo.userAccount,
+      transmit: options.transmit,
+      recipient: options.forwardType == '2' ? false : true
     })
     if(options.examineId){//审批
       this.setData({

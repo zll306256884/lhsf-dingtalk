@@ -25,10 +25,16 @@ Page({
     requestType: null,
     current: 0,
     dingTalkFormList: [],
-    imageUrl:''
+    imageUrl:'',
+    recipient: true, // 展示接收人
+    transmit: null // 是否转发
   },
   uploadContractImage: null,
   onLoad(option) {
+    this.setData({
+      transmit: option.transmit,
+      recipient: option.forwardType == '2' ? false : true
+    })
     if(option.id){
       // this.getDetail(option.id)
       this.setData({
