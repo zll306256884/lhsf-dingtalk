@@ -192,6 +192,7 @@ Page({
     this.setData({
       contractData: data || {},
       contractAmount:data.contractAmount,
+      payeeList: []
     });
     this.form.setFieldValue('contractName',data.contractName)
     this.form.setFieldValue('contractAmount',data.contractAmount)
@@ -780,12 +781,12 @@ getPayeeList(option){
     url: projectService.API_SELECT_UNIT_BY_PROJECTID,
     data: {
       projectId: this.data.projectId,
-      id: this.data.contractId,
+      id: this.data.contractData.contractId,
       ...option
     },
     success: res => {
       this.setData({
-        payeeList: res.data
+        payeeList: res.data? res.data : []
       })
     }
   })
