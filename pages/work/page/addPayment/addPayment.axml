@@ -2,15 +2,15 @@
 
 <view class="container">
   <form onSubmit="bindFormSubmit">
-        <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTypeTap">
+        <!-- <view a:if="{{disabled  ===false}}"  catchTap="bindChooseProjectTypeTap">
          <form-input
          label="项目类型"
          name="projectType_text"
          placeholder="请选择"
          disabled
          ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>  
-        </view>
-        <view a:else>
+        </view> -->
+        <view>
           <form-input
           label="项目类型"
           name="projectType_text"
