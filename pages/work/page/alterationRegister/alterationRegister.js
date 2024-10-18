@@ -79,8 +79,9 @@ Page({
     if (option.id) {
       this.data.disabled = true
       this.getDetail(option.id)
+    }else {
+      this.getRoleList()
     }
-    this.getRoleList()
     if (option.sort === '1') {
       this.data.navbarData.title = '编辑工程联系单'
     } else {
@@ -257,17 +258,7 @@ Page({
     this.dialogScreenExecuteUserRef = ref;
   },
   bindScreenExecuteUserCallBack: function (list) {
-      const seenIds = new Map();
-      let chooseExecuteUserList = this.data.defaultPerson.concat(list).filter(item => {
-        // 如果 Map 中还没有这个 id，则添加它并返回 true（保留该元素）  
-        // 否则，返回 false（不保留该元素）  
-        if (!seenIds.has(item.userId)) {
-          seenIds.set(item.userId, true);
-          return true;
-        }
-        return false;
-      });
-      console.log(chooseExecuteUserList);
+      let chooseExecuteUserList = list
       let str = "";
       let strId = ""
       for (let item of chooseExecuteUserList) {
@@ -284,7 +275,7 @@ Page({
       this.form.setFieldValue('person', isEmpty(strId) ? '' : strId.substring(0, strId.length - 1));
       this.setData({
         personList: list && list.map(e => {
-          return { userId: e.userId, username: e.username,};
+          return { userId: e.userId, username: e.username, disabled: e.disabled};
         })
       });
   },
@@ -390,6 +381,7 @@ Page({
         this.form.setFieldValue('code', res.data.code)
         this.form.setFieldValue('projectLeaderId',res.data.projectLeaderId)
         this.getProjectLeaderInfo()
+        this.getRoleList()
         if(res.data.subLeader_dictText && res.data.subLeader){
           const nameList = res.data.subLeader_dictText.split(',')
           const idList = res.data.subLeader.split(',')
@@ -569,11 +561,33 @@ Page({
     request.doPostRequest({
       url: config.API_QUERY_ROLE_LIST,
       success: res => {
-        // this.setData({
-        //   defaultPerson: res.data
-        // })
-        if(!this.data.id){
-          this.bindScreenExecuteUserCallBack([])
+        this.setData({
+          defaultPerson: res.data && res.data.map(e => {
+            return { userId: e.userId, username: e.username, disabled: true};
+          })
+        })
+        if (this.data.id && this.data.person) {
+          let arr1 = this.data.person.split(',')
+          let arr2 = this.data.person_text.split(',')
+          let list = arr2.map((item, index) => {
+            return { username: item, userId: arr1[index] }
+          })
+          const filteredList = list.filter(item => {
+            return !this.data.defaultPerson.some(s => item.userId === s.userId);
+          })
+          this.setData({
+            person_text: [...this.data.defaultPerson,...filteredList].map(e => e.username).toString(),
+            person: [...this.data.defaultPerson,...filteredList].map(e => e.userId).toString(),
+            personList: [...this.data.defaultPerson,...filteredList]
+          });
+        } else {
+          this.setData({
+            person_text: res.data && res.data.map(e => e.username).toString(),
+            person: res.data && res.data.map(e => e.userId).toString(),
+            personList: res.data && res.data.map(e => {
+              return { userId: e.userId, username: e.username, disabled: true};
+            })
+          });
         }
       }
     })

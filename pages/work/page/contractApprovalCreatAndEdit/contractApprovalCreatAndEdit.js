@@ -511,14 +511,15 @@ Page({
           e.label = e.name
           e.value = e.personId
         })
+        let list = res.data.filter(e => e.name && e.personId)
         console.log('项目负责人',res.data)
         this.setData({
-          projectLeaderListOptions: res.data || []
+          projectLeaderListOptions: list || []
         })
-        if(res.data && res.data.length === 1){
-          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+        if(list && list.length === 1){
+          this.form.setFieldValue('projectLeaderId', list[0].personId)
           this.setData({
-            projectLeaderId: res.data[0].personId
+            projectLeaderId: list[0].personId
           })
         }
       }
