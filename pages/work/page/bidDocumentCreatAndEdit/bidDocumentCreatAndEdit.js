@@ -194,7 +194,7 @@ Page({
       operateLeaderName: data.operateLeaderName,
       projectTypeId: (data.projectType).toString(),
     })
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
       ddUtils.showToast({
         title: '注意：仅项目负责人可发起流程',
         duration: 2000
@@ -375,7 +375,7 @@ Page({
   },
   //暂存
   staging(){
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
       ddUtils.showToast({
         title: '注意：仅项目负责人可发起流程',
         duration: 2000
@@ -446,7 +446,7 @@ Page({
   },
 
   async submit() {
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    if (this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
       ddUtils.showToast({
         title: '注意：仅项目负责人可发起流程',
         duration: 2000

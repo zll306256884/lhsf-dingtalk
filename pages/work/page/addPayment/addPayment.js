@@ -127,25 +127,31 @@ Page({
     this.form.setFieldValue('projectLeaderId', column.personId)
   },
   getProjectLeader(){
-    request.doPostRequest({
-      url: projectService.API_PROJECT_LEADER,
-      data: {projectId: this.data.projectId},
-      success: res => {
-        res.data.forEach(e => {
-          e.label = e.name
-          e.value = e.personId
-        })
-        console.log('项目负责人',res.data)
-        this.setData({
-          projectLeaderListOptions: res.data || []
-        })
-        if(res.data && res.data.length === 1){
-          this.form.setFieldValue('projectLeaderId', res.data[0].personId)
-          this.setData({
-            projectLeaderId: res.data[0].personId
+    return new Promise((resolve, reject) => {
+      request.doPostRequest({
+        url: projectService.API_PROJECT_LEADER,
+        data: {projectId: this.data.projectId},
+        success: res => {
+          res.data.forEach(e => {
+            e.label = e.name
+            e.value = e.personId
           })
+          console.log('项目负责人',res.data)
+          this.setData({
+            projectLeaderListOptions: res.data || []
+          })
+          if(res.data && res.data.length === 1){
+            this.form.setFieldValue('projectLeaderId', res.data[0].personId)
+            this.setData({
+              projectLeaderId: res.data[0].personId
+            })
+          }
+          resolve(res.data)
+        },
+        fail: res => {
+          reject(res)
         }
-      }
+      })
     })
   },
   // 获取补充协议
@@ -266,7 +272,7 @@ bindChooseProjectTap:function (e) {
 onSaveDialogScreenprojecteRef: function (ref) {
   this.dialogScreenprojectRef = ref;
 },
-bindChooseProjectCallBack: function (data) {
+bindChooseProjectCallBack: async function (data) {
 
   this.setData({
     projectData: data || {},
@@ -283,18 +289,11 @@ bindChooseProjectCallBack: function (data) {
     'projectTypeData.itemText':(data.projectType).toString() === '1' ? '集团项目（政府投资、地产类项目）' : '子公司项目',
     'projectTypeData.itemValue':(data.projectType).toString(),
   });
-  if(this.data.projectTypeId === '1') {
-    this.form.setFieldValue('projectType_text', '集团项目（政府投资、地产类项目）')
-  } else {
-    this.form.setFieldValue('projectType_text', '子公司项目')
-  }
-  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-    ddUtils.showToast({
-      title: '注意：仅项目负责人可发起流程',
-      duration: 2000
-    });
-    return
-  }
+  // if(this.data.projectTypeId === '1') {
+  //   this.form.setFieldValue('projectType_text', '集团项目（政府投资、地产类项目）')
+  // } else {
+  //   this.form.setFieldValue('projectType_text', '子公司项目')
+  // }
   this.form.setFieldValue('projectName',data.name)
   this.form.setFieldValue('projectLeader',data.projectLeaderName)
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
@@ -304,8 +303,24 @@ bindChooseProjectCallBack: function (data) {
   this.form.setFieldValue('cumulativePayment','')
   this.form.setFieldValue('payUnit','')
   this.form.setFieldValue('receiverUnit','')
-  this.getProjectLeader()
-
+  await this.getProjectLeader()
+  // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+  //   ddUtils.showToast({
+  //     title: '注意：仅项目负责人可发起流程',
+  //     duration: 2000
+  //   });
+  //   return
+  // }
+  console.log('projectType_text', this.data.projectLeaderListOptions, this.data.projectTypeData.itemValue);
+  if(this.form.getFieldValue('projectType_text') && this.data.projectLeaderListOptions.length) {
+    const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+    if(this.data.projectTypeData.itemValue === '1' && index === -1) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+    }
+  }
 },
 //项目类型
   bindChooseProjectTypeTap: function (e) {
@@ -321,6 +336,15 @@ bindChooseProjectCallBack: function (data) {
     });
     if(data) {
       this.form.setFieldValue('projectType_text',data.itemText)
+    }
+    if(this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.data.projectTypeData.itemValue === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+      }
     }
 },
 // 付款单位
@@ -572,12 +596,22 @@ getEdit(id){
   })
 },
 async submit() {
-  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-    ddUtils.showToast({
-      title: '注意：仅项目负责人可发起流程',
-      duration: 2000
-    });
-    return
+  // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+  //   ddUtils.showToast({
+  //     title: '注意：仅项目负责人可发起流程',
+  //     duration: 2000
+  //   });
+  //   return
+  // }
+  if(this.form.getFieldValue('projectType_text') && this.data.projectLeaderListOptions.length) {
+    const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+    if(this.data.projectTypeData.itemValue === '1' && index === -1) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
   }
   if ( this.form.getFieldValue('contractAmount') < this.form.getFieldValue('accumulatedPaymentAmount') && !this.form.getFieldValue('remark') ) {
       this.setData({
@@ -714,12 +748,22 @@ async submit() {
 },
 // 暂存
 workingStorage(){
-  if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-    ddUtils.showToast({
-      title: '注意：仅项目负责人可发起流程',
-      duration: 2000
-    });
-    return
+  // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+  //   ddUtils.showToast({
+  //     title: '注意：仅项目负责人可发起流程',
+  //     duration: 2000
+  //   });
+  //   return
+  // }
+  if(this.form.getFieldValue('projectType_text') && this.data.projectLeaderListOptions.length) {
+    const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+    if(this.data.projectTypeData.itemValue === '1' && index === -1) {
+      ddUtils.showToast({
+        title: '注意：仅项目负责人可发起流程',
+        duration: 2000
+      });
+      return
+    }
   }
   this.form.rules = {}
   let params = this.form.getFieldsValue()
