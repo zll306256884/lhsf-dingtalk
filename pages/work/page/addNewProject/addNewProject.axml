@@ -22,7 +22,7 @@
     <form-textarea label="项目来源说明" maxLength="1000" position='vertical' allowClear name="projectSourceDescription" placeholder="请输入" autoHeight ref="handleRef" />
     <form-picker label="建设阶段" arrow name="constructionPhase" options="{{constructionPhaseOptions}}" ref="handleRef" />
     
-    <form-picker label="项目类别" arrow name="projectType" options="{{projectTypeOptions}}" ref="handleRef" />
+    <!-- <form-picker label="项目类别" arrow name="projectType" options="{{projectTypeOptions}}" ref="handleRef" /> -->
 
     <layout-field-cell a:if="{{ constructionPhase=== '3' }}" borderBottom name="项目完成日期" mustFill value="{{projectEndTime}}" onArrowTap="_bindChooseProjectEndTime"></layout-field-cell>
     <form-picker a:if="{{ constructionPhase=== '3' }}" label="是否投入使用" arrow name="isOutPut" options="{{isOutPutOption}}" ref="handleRef" />
