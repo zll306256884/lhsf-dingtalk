@@ -1,6 +1,3 @@
-.tree-container {
-  padding: 10px;
-}
 
 .tree-node {
   display: flex;
@@ -11,10 +8,6 @@
 
 .icon {
   margin-right: 5px;
-}
-
-.sub-tree {
-  padding-left: 20px;
 }
 
 .checkbox-label {
