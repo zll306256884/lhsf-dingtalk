@@ -16,6 +16,13 @@
     options="{{projectListOptions}}"
     ref="handleRef" />
 </view>
+<form-picker
+  label="项目类型"
+  arrow
+  name="projectType"
+  options="{{projectTypeOptions}}"
+  disabled="disabledType"
+  ref="handleRef" />
 <!-- <form-input label="项目负责人" required labelWidth="280rpx" name="projectLeader" disabled placeholder="自动生成" ref="handleRef" /> -->
 <form-picker label="项目负责人" labelWidth="290rpx" arrow name="projectLeaderId" options="{{projectLeaderListOptions}}" ref="handleRef" onOk="chooseProjectLeader" />
 
@@ -53,14 +60,6 @@
   arrow
   name="masterContract"
   options="{{contractList}}"
-  ref="handleRef" />
-
-  <form-picker
-  label="项目类型"
-  arrow
-  name="projectType"
-  options="{{projectTypeOptions}}"
-  disabled="disabledType"
   ref="handleRef" />
 
   <!-- <form-radio-group

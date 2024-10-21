@@ -269,7 +269,8 @@ bindChooseProjectCallBack: async function (data) {
   this.form.setFieldValue('affiliateUnit',data.affiliatedUnitName)
   await this.getProjectLeader()
   const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
-  if(!isLeader && this.data.projectType ==1){
+  // && this.data.projectType ==1
+  if(!isLeader){
     ddUtils.showToast({
       title: '注意：仅项目负责人可发起流程',
       duration: 2000
@@ -504,7 +505,7 @@ request.doPostRequest({
 },
 async staging(){
  const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
- if(!isLeader && this.data.projectType ==1){
+ if(!isLeader){
     ddUtils.showToast({
       title: '注意：仅项目负责人可发起流程',
       duration: 2000
@@ -555,7 +556,7 @@ async staging(){
 },
 async submit(){
   const isLeader= this.data.projectLeaderListOptions.map(i=>i.value).includes(this.data.userId)
-  if(!isLeader && this.data.projectType ==1){
+  if(!isLeader){
      ddUtils.showToast({
        title: '注意：仅项目负责人可发起流程',
        duration: 2000

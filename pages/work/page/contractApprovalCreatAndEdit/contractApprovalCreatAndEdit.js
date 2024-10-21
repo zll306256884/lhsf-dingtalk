@@ -341,16 +341,16 @@ Page({
       operatePersonId: data.operatePersonId,
       operateLeaderName: data.operateLeaderName,
       projectTypeId: (data.projectType).toString(),
-      disabledType: true
+      // disabledType: true
     })
-    this.form.setFieldValue('projectType', (data.projectType).toString() || '')
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-      ddUtils.showToast({
-        title: '注意：仅项目负责人可发起流程',
-        duration: 2000
-      });
-      return
-    }
+    // this.form.setFieldValue('projectType', (data.projectType).toString() || '')
+    // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    //   ddUtils.showToast({
+    //     title: '注意：仅项目负责人可发起流程',
+    //     duration: 2000
+    //   });
+    //   return
+    // }
     let contractName = this.form.getFieldValue('contractName') || ''
     if( data.proType === 0){
       this.form.setFieldValue('title', data.name+'-'+contractName)
@@ -365,6 +365,16 @@ Page({
       this.getEcological()
       this.getProjectLeader()
     },500)
+    console.log('projectType_text', this.data.projectLeaderListOptions, this.form.getFieldValue('projectType'));
+    if(this.form.getFieldValue('projectType') && this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.form.getFieldValue('projectType') === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+      }
+    }
   },
   chooseProjectLeader(data, column){
     console.log(data, column)
@@ -686,12 +696,22 @@ Page({
     });
   },
   staging(){
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-      ddUtils.showToast({
-        title: '注意：仅项目负责人可发起流程',
-        duration: 2000
-      });
-      return
+    // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    //   ddUtils.showToast({
+    //     title: '注意：仅项目负责人可发起流程',
+    //     duration: 2000
+    //   });
+    //   return
+    // }
+    if(this.form.getFieldValue('projectType') && this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.form.getFieldValue('projectType') === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+        return
+      }
     }
     this.form.rules = {}
     let params = this.form.getFieldsValue()
@@ -773,12 +793,22 @@ Page({
     })
   },
   async submit(){
-    if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
-      ddUtils.showToast({
-        title: '注意：仅项目负责人可发起流程',
-        duration: 2000
-      });
-      return
+    // if (this.data.projectTypeId === '1' && this.data.userId !== this.data.earlyStageLeaderId && this.data.userId !== this.data.carryPersonId && this.data.userId !== this.data.operatePersonId) {
+    //   ddUtils.showToast({
+    //     title: '注意：仅项目负责人可发起流程',
+    //     duration: 2000
+    //   });
+    //   return
+    // }
+    if(this.form.getFieldValue('projectType') && this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.form.getFieldValue('projectType') === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+        return
+      }
     }
     console.log(this.data.list)
     const params = await this.form.submit();
@@ -1000,7 +1030,7 @@ Page({
           // operatePersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operatePersonId,
           // operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
           // projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
-          disabledType: true,
+          // disabledType: true,
           list
         })
         if(paramsdata.fileList && paramsdata.fileList){

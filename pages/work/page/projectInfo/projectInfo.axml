@@ -21,7 +21,7 @@
         <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom borderTop  name="是否考核项目" disabled mustFillTransparent hidden="{{false}}" value="{{isAccess.name || '-'}}"></layout-field-cell>
         <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom name="项目分类" mustFillTransparent disabled hidden="{{false}}" value="{{projectClassification.name || '-'}}"></layout-field-cell>
         <layout-field-cell borderBottom name="建设阶段" mustFillTransparent disabled hidden="{{false}}" value="{{constructionPhase.name || '-'}}"></layout-field-cell>
-        <layout-field-cell borderBottom name="项目类别" mustFillTransparent disabled hidden="{{false}}" value="{{['','集团项目','子公司项目'][formData.projectType]|| '-'}}"></layout-field-cell>
+        <!-- <layout-field-cell borderBottom name="项目类别" mustFillTransparent disabled hidden="{{false}}" value="{{['','集团项目','子公司项目'][formData.projectType]|| '-'}}"></layout-field-cell> -->
 
         <layout-field-cell a:if="{{ formData.proType== 0 }}" borderBottom name="是否投入使用" mustFillTransparent disabled hidden="{{false}}" value="{{isOutPut.name || '-'}}"></layout-field-cell>
         <layout-field-cell a:if="{{ isOutPut.value === '1' && formData.proType== 0  }}" borderBottom name="投入使用日期" mustFillTransparent disabled value="{{outPutTime.shortDate}}"></layout-field-cell>
