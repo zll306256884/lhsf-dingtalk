@@ -133,15 +133,16 @@ Component({
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
-        'bootStatus': this.data.status,
+        'status': this.data.status,
         'flagNode': this.data.flagNode,
-        'planType': this.data.planType
-        // 'enable': 1,
-        // 'clientType':2
+        'planType': this.data.planType,
+        'enable': 1,
+        'clientType':2
       }
       return new Promise((resolve, reject) => {
         request.doPostRequest({
-          url: progressServer.API_PROGRESS_NODE_LIST,
+          url: progressServer.API_PROGRESS_LIST,
+          // url: progressServer.API_PROGRESS_NODE_LIST,
           showLoading: false,
           data: param,
           success: res => {

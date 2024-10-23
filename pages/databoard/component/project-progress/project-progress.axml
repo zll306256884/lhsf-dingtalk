@@ -16,10 +16,6 @@
             title="请选择"
             options="{{planTypeOptions}}"
           >
-            <!-- <view
-              slot="content"
-              slot-scope="prop"
-            >{{prop.value}}</view> -->
           </ant-picker>
         </view>
         <view class="time" a:if="{{false}}">更新至2023-6-24 01:30:00</view>
