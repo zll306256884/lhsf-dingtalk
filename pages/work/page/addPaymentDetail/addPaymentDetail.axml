@@ -57,7 +57,7 @@
       累计支付金额超过主合同的合同金额，请注意
     </view>
 
-    <view class="payeeList">
+    <view class="payeeList" a:if="{{payeeList.length && infoData.cumulativePayment > infoData.contractAmount * 0.85 || infoData.cumulativePayment === infoData.contractAmount * 0.85}}">
       <view class="payeeListTitle">
         需评价收款单位清单
       </view>

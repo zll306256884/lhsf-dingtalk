@@ -8,7 +8,7 @@
     "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
     "dialog-screen-affiliated-unit": "/pages/components/dialog/dialog-screen-affiliated-unit/dialog-screen-affiliated-unit",
     "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
-    "dialog-screen-project-source": "/pages/components/dialog/dialog-screen-project-source1/dialog-screen-project-source1",
+    "dialog-screen-project-source": "/pages/components/dialog/dialog-screen-project-source/dialog-screen-project-source",
     "form-input": "antd-mini/es/Form/FormInput/index",
     "form-picker": "antd-mini/es/Form/FormPicker/index",
     "form-textarea": "antd-mini/es/Form/FormTextarea/index",

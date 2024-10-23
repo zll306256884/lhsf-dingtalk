@@ -97,7 +97,7 @@ Component({
         return
       }
       // 通过项目ID查询项目负责人
-      let projectId = this.data.listData[0].projectId
+      let projectId = this.data.listData[0].projectId || this.props.projectId
       request.doPostRequest({
         url: projectServer.API_PROJECT_LEADER,
         data: { projectId: projectId },

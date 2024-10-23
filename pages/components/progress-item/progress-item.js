@@ -9,7 +9,7 @@ import projectServer from "../../../server/workServer/projectServer"; //
 // import progressServer from "../../../../server/workServer/progressServer";
 // import { Form } from 'antd-mini/es/Form/form';
 
-
+const app = getApp();
 
 Component({
   mixins: [],
@@ -68,12 +68,12 @@ Component({
     },
     // 电话
     callIt() {
-      console.log('打电话', this.props.listData)
+      console.log('打电话', this.props.listData,this.props.projectId)
       if (this.props.listData && !this.props.listData.length) {
         return
       }
       // 通过项目ID查询项目负责人
-      let projectId = this.props.listData[0].projectId
+      let projectId = this.props.listData[0].projectId || this.props.projectId
       request.doPostRequest({
         url: projectServer.API_PROJECT_LEADER,
         data: { projectId: projectId },

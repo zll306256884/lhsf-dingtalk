@@ -11,21 +11,21 @@
       <text a:if="{{multiChoose}}" class="sure" catchTap="_bindSureTap">确定</text>
     </view>
     <scroll-view class="scroll" style="height: {{scrollHeight}}px;margin-top:20rpx" scroll-y="{{true}}">
-      <view class="tree-container">
+      <view style="margin:0 32rpx">
         <block a:for="{{dataList}}" a:key="id">
           <!-- <view class="tree-node" onTap="toggleNode" data-item="{{item}}"> -->
             <checkbox-group onChange="checkboxChange" data-item="{{item}}">
-              <label>
+              <label  style="margin-top:24rpx">
                 <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
               </label>
             </checkbox-group>
-            <icon type="right" hidden="{{!item.projectSourceConfigTreeRepList  || item.projectSourceConfigTreeRepList.length == 0}}"></icon>
+            <!-- <icon type="right" hidden="{{!item.projectSourceConfigTreeRepList  || item.projectSourceConfigTreeRepList.length == 0}}"></icon> -->
           <!-- </view> -->
           <block a:if="{{item.projectSourceConfigTreeRepList.length}}">
-            <view class="sub-tree" style="margin-left:64rpx">
+            <view style="margin-left: 48rpx">
               <block a:for="{{item.projectSourceConfigTreeRepList}}" a:key="id" >
                 <checkbox-group onChange="checkboxChange" data-item="{{item}}">
-                  <label>
+                  <label  style="margin-top:24rpx">
                     <checkbox value="{{item.id}}" checked="{{item.checked}}" />{{item.name}}
                   </label>
                 </checkbox-group>

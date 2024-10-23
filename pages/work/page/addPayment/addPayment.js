@@ -681,7 +681,7 @@ async submit() {
       })
       return
     }
-    if (params.accumulatedPaymentAmount > params.contractAmount * 0.85 || params.accumulatedPaymentAmount === params.contractAmount * 0.85) {
+    if (params.cumulativePayment > params.contractAmount * 0.85 || params.cumulativePayment === params.contractAmount * 0.85) {
       let result = this.data.payeeList.some(item => item.isEvaluate === '0')
       if (result) {
         ddUtils.showToast({
