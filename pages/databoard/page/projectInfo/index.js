@@ -76,9 +76,9 @@ Page({
   },
   onPageScroll(ev) {
     if (this.data.currentTabIndex === 0 ) {//&& this.mapRef
-      console.log("页面滚动");
+      console.log("页面滚动",ev.scrollTop);
       let _this = this;
-      // //当滚动的top值最大或者最小时，由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值
+       //当滚动的top值最大或者最小时，由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值
       // if (ev.scrollTop <= 0) {
       //   ev.scrollTop = 0;
       // } else if (ev.scrollTop > dd.getSystemInfoSync().windowHeight) {
@@ -90,7 +90,7 @@ Page({
         ev.scrollTop == dd.getSystemInfoSync().windowHeight
       ) {
         this.mapRef.onShowUnit();
-      } else {
+      } else if(ev.scrollTop <= 200){
         this.mapRef.onHideUnit();
       }
       // 给scrollTop重新赋值

@@ -17,7 +17,7 @@
         <form onSubmit="bindFormSubmit">
           <view class="box-shadow">
             <layout-field-cell name="项目名称"  placeholder="请选择" value="{{infoData.projectName}}" datasetValue="project"  onArrowTap="onSelectInfo"></layout-field-cell>
-            <layout-field-cell borderTop  name="项目负责任人"  placeholder="请选择" value="{{infoData.projectLeader}}" datasetValue="leader" onArrowTap="onSelectInfo" ></layout-field-cell>
+            <layout-field-cell borderTop  name="项目负责人"  placeholder="请选择" value="{{infoData.projectLeader}}" datasetValue="leader" onArrowTap="onSelectInfo" ></layout-field-cell>
             <layout-field-cell hidden="{{false}}" borderTop  name="项目所属单位"  placeholder="请选择" value="{{infoData.affiliateUnit}}" ></layout-field-cell>
             <layout-field-cell borderTop name="合同名称"  placeholder="请选择"  value="{{infoData.contractName || '-'}}" datasetValue="contract" onArrowTap="onSelectInfo"></layout-field-cell>
             <layout-field-cell hidden='{{false}}' borderTop name="合同金额(万元)" value="{{infoData.contractAmount || '-'}}"></layout-field-cell>
