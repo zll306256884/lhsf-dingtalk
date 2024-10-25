@@ -15,7 +15,7 @@ Component({
     listData: [1, 2, 3, 4, 5],
     // projectId: '12019020004',//项目id
     flagNode: '',//是否为里程碑节点
-    // planType: null,//前期计划、施工计划
+    planType: null,//前期计划、施工计划
     status: '',//筛选的状态
     // new
     currentOpen: -1,
@@ -44,8 +44,6 @@ Component({
           //   value: 4,
           // },
           { text: '全部', value: null, },
-          // { text: '前期进度计划', value: 1, },
-          // { text: '施工进度计划', value: 2, },
           { text: '未开始', value: 0, },
           { text: '进行中', value: 1, },
           { text: '延期未开始', value: 2, },
@@ -72,8 +70,12 @@ Component({
         ],
       },
     ],
-    tabText: '横道图',
-    webViewUrl: config.BASE_API_HOST+'/#/share/gantt'
+    planTypeOptions: [
+      { label: '项目全部进度', value: null },
+      { label: '项目前期进度', value: 1 },
+      { label: '项目施工进度', value: 2 }
+    ],
+    tabText: '横道图'
   },
   props: {
     projectId: '12019020004',//项目id
@@ -94,12 +96,18 @@ Component({
   //每当组件实例从页面卸载的时候都会触发此回调。
   didUnmount() { },
   methods: {
+    handlePlanTypeOk(value, items) {
+      console.log('handlePlanTypeOk', value, items);
+      this.setData({
+        planType: value
+      })
+      this.getList()
+    },
     // 二级选项更改
     handleChange(value, items, e) {
       console.log(value, items, e, 1);
       // this.data.status = value
       this.setData({ status: value });
-      // this.setData({ planType: value });
       this.getList()
       // this.data.currentOpen = -1;
       this.setData({ currentOpen: -1 });
@@ -125,15 +133,16 @@ Component({
     getList: function () {
       let param = {
         "projectId": this.props.projectId,
-        'bootStatus': this.data.status,
+        'status': this.data.status,
         'flagNode': this.data.flagNode,
-        // 'planType': this.data.planType,
-        // 'enable': 1,
-        // 'clientType':2
+        'planType': this.data.planType,
+        'enable': 1,
+        'clientType':2
       }
       return new Promise((resolve, reject) => {
         request.doPostRequest({
-          url: progressServer.API_PROGRESS_NODE_LIST,
+          url: progressServer.API_PROGRESS_LIST,
+          // url: progressServer.API_PROGRESS_NODE_LIST,
           showLoading: false,
           data: param,
           success: res => {
@@ -171,15 +180,6 @@ Component({
         ddUtils.navigateTo({
           url: `/pages/databoard/page/gantt/gantt?projectId=${this.props.projectId}`
         });
-        // this.setData({
-        //   tabText: '进度监控'
-        // })
-        // this.setData({
-        //   webViewUrl: `${config.BASE_API_HOST}/#/share/gantt?projectId=${this.props.projectId}`
-        // }) //http://192.168.6.41/#/share/gantt?projectId=12019020001&type=miniProgram
-        // this.webViewContext = dd.createWebViewContext('web-view-1')
-        // this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
-        // console.log('this.setData.webViewUrl',this.data.webViewUrl, config.BASE_API_HOST, app.globalData.userInfo.userToken)
       } else {
         this.setData({
           tabText: '横道图'

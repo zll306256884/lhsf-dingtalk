@@ -6,6 +6,7 @@
     "icon": "antd-mini/es/Icon/index",
     "empty": "antd-mini/es/Empty/index",
     "ant-button": "antd-mini/es/Button/index",
+    "ant-picker": "antd-mini/es/Picker/index",
     "progress-item": "/pages/components/progress-item/progress-item"
   }
 }

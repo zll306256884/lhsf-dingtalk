@@ -41,12 +41,15 @@
 
 .top .title {
   /* width: 128rpx; */
-  height: 46rpx;
+  height: 50rpx;
   font-size: 32rpx;
   font-weight: 500;
   color: #1D1D1F;
-  line-height: 46rpx;
+  line-height: 50rpx;
   margin-left: 15rpx;
+  border: 1px solid #ccb;
+  padding: 6rpx 12rpx;
+  border-radius: 10rpx;
 }
 
 .top .time {
@@ -138,7 +141,7 @@
 
 /* ----------- */
 .filterDemo {
-  margin-top:8rpx;
+  margin-top:20rpx;
   position: relative;
 }
 .filterDemo-bar {

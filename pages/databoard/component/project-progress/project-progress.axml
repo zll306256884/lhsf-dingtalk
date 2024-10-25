@@ -4,9 +4,19 @@
     <!-- 头部 -->
     <view class="headerBox {{tabText !== '横道图' ? 'border-transparent' : ''}}">
       <view class="top flex f-between" a:if="{{tabText === '横道图'}}">
-        <view class="flex f-start">
+        <view class="flex  f-align-center">
           <image class="titke-icon" src="../../../../assets/images/progress/titleleft.png" />
-          <view class="title" catchTap="showIt">项目进度</view>
+          <!-- <view class="title" catchTap="showIt">项目进度</view> -->
+          <ant-picker
+            className="title"
+            slot="extra"
+            onOk="handlePlanTypeOk"
+            value="{{planType}}"
+            placeholder="请选择"
+            title="请选择"
+            options="{{planTypeOptions}}"
+          >
+          </ant-picker>
         </view>
         <view class="time" a:if="{{false}}">更新至2023-6-24 01:30:00</view>
       </view>
