@@ -30,17 +30,26 @@ Component({
       const params = await this.data.form.submit();
       console.log("ddddd======",params)
       this.props.onScreenCallBack({
-        id:'12333'
+        state:'success'
       })
+      this._closePopup()
     },
     bindCancelTap(){
       this.setData({
         basicVisible: false
       })
+      this.props.onScreenCallBack({
+        state:'cancel'
+      })
     },
     _openPopup(){
       this.setData({
         basicVisible: true
+      })
+    },
+    _closePopup(){
+      this.setData({
+        basicVisible: false
       })
     }
   },
