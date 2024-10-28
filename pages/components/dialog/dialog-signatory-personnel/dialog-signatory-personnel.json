@@ -1,0 +1,10 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ant-popup": "antd-mini/es/Popup/index",
+    "ant-button": "antd-mini/es/Button/index",
+    "form-picker": "antd-mini/es/Form/FormPicker/index",
+    "ant-container": "antd-mini/es/Container/index",
+    "ant-form-input": "antd-mini/es/Form/FormInput/index"
+  }
+}

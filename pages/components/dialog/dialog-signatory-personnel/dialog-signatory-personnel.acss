@@ -1,0 +1,34 @@
+.signatory-personnel{
+  overflow: hidden;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+.signatory-personnel-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30rpx;
+}
+.signatory-personnel .button {
+  padding: 16rpx 18rpx;
+  margin-top: 16rpx;
+}
+.signatory-personnel .button .button-btn {
+  width: 100%;
+  height: 80rpx;
+  background: #FFFFFF;
+  border-radius: 8rpx 8rpx 8rpx 8rpx;
+  opacity: 1;
+  border: 2rpx solid #EBEDF0;
+  font-size: 28rpx;
+  font-family: PingFang SC-Regular, PingFang SC;
+  font-weight: 400;
+  color: #323233;
+  line-height: 80rpx;
+}
+
+.signatory-personnel  .button .button-btn.active {
+  margin-left: 20rpx;
+  color: #fff;
+  background: #1A6AFF;
+}

@@ -1,0 +1,26 @@
+<view a:if="{{basicVisible}}">
+  <ant-popup visible="{{basicVisible}}" height="{{550}}" position="{{position}}" animation="{{animation}}" bind:close="handlePopupClose">
+    <view class="signatory-personnel">
+      <view class="signatory-personnel-title">
+        选择会签人员
+      </view>
+      <view class="list">
+        <block a:for="{{list}}">
+          <form-picker
+               label="{{item.nodeName}}"
+               arrow
+               name="fruit"
+               options="{{item.userList}}"
+               ref="handleRef"
+               required
+               message="请选择{{item.nodeName}}"            
+             ></form-picker>
+          </block>
+      </view>
+      <view class="button flex f-between">
+        <button class="button-btn" catchTap="bindCancelTap">取消</button>
+        <button class="button-btn active" form-type="submit" onTap="submit">提交</button>
+      </view>
+    </view>
+  </ant-popup>
+</view>
