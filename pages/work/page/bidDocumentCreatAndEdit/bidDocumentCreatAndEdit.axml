@@ -180,7 +180,7 @@
   ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
 </view> -->
 
-<view catchTap="chooseLeader">
+<!-- <view catchTap="chooseLeader">
   <form-input
   label="选择会签分管领导"
   labelWidth="290rpx"
@@ -188,7 +188,7 @@
   placeholder="请选择"
   disabled
   ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
-</view>
+</view> -->
 
 <!-- <form-item a:if="{{applicationTime}}" label="项目名称" name="projectName" required >
   <view class="f-item" catchTap="chooseTime"> {{applicationTime?applicationTime:'请选择'}} <icon type="RightOutline" /></view>
@@ -222,7 +222,7 @@
   <button class="btn" loading="{{loading}}" onTap="staging">暂存</button>
   <button class="btn active" loading="{{loading}}" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
 </view>
-
+<dialog-signatory-personnel ref="onSaveSignatoryPersonnel" parameter="{{parameter}}" onScreenCallBack="bindSignatoryPersonnelCallBack" ></dialog-signatory-personnel>
 <dialog-picker-date ref="onSavePickerDateRef" selectionMode="single" formatDate="YYYY-MM-DD" onPickerCallBack="bindPickerDateCannBack"></dialog-picker-date>
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
 <!-- <dialog-screen-xiangmu-mingcheng ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-screen-xiangmu-mingcheng> -->

@@ -16,6 +16,7 @@
     "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
     "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project",
     "form-item": "antd-mini/es/Form/FormItem/index",
-    "icon": "antd-mini/es/Icon/index"
+    "icon": "antd-mini/es/Icon/index",
+    "dialog-signatory-personnel": "/pages/components/dialog/dialog-signatory-personnel/dialog-signatory-personnel"
   }
 }

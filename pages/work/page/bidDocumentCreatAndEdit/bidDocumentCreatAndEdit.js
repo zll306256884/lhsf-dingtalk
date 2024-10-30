@@ -45,7 +45,9 @@ Page({
     isShow: false,
     proType: null, //0工程，1非工程
     loading: false,
-    projectLeaderListOptions: []
+    projectLeaderListOptions: [],
+    params: null,
+    parameter: {}
   },
   dialogSScreenExecuteUser: null,
   dialogSScreen: null,
@@ -54,7 +56,7 @@ Page({
   pickerDateRef: null,
   dialogScreenProject: null,
   uploadImageList: null,
-
+  signatoryPersonnelRef :null,
   onLoad(options) {
     this.form.rules = {
       tenderName: [{ required: true, message: '请输入' }],
@@ -66,7 +68,7 @@ Page({
       tenderAmount: [{ required: true, message: '请输入(最多15位整数6位小数)',pattern: /^(0|\+?[1-9][0-9]{0,14})(\.\d{1,6})?$/   }],
       decisionBasis: [{ required: true, message: '请选择' }],
       biddingContent: [{ required: true, message: '请输入' }],
-      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      //countersignLeader_dictText: [{ required: true, message: '请选择' }],
       tenderDocumentList: [{required: true,message: '请上传'}],
       applicationTime: [{ required: true, message: '请选择' }],
       projectLeaderId: [{ required: true, message: '请选择' }],
@@ -127,6 +129,36 @@ Page({
   },
   chooseTenderingAgency(){
     if(this.dialogSScreen) this.dialogSScreen._showDialog()
+  },
+  onSaveSignatoryPersonnel: function( ref) {
+    this.signatoryPersonnelRef = ref
+  },
+  bindSignatoryPersonnelCallBack: function(data){
+    console.log("Dddd======",data.jflowAuditUser)
+    if(data.state==='success'){
+      let params = this.data.params
+      params.jflowAuditUser = data.jflowAuditUser
+      request.doPostRequest({
+        url: projectService.API_SAVEANDSUBMIT,
+        data: params,
+        success: res => {
+          this.setData({loading: false})
+          console.log(res.data)
+          ddUtils.showToast({
+            title: "保存成功！"
+          });
+          ddUtils.navigateBack();
+        },
+        fail: error => {
+          ddUtils.showToast({
+            title: error.message
+          });
+          this.setData({ loading: false })
+        }
+      })
+    } else {
+      this.setData({ loading: false })
+    }
   },
   bindScreenExecuteUserCallBack(data){
     console.log(data)
@@ -511,24 +543,34 @@ Page({
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
     console.log(params)
     params.decisionBasisFileList = this.data.basisDocumentList
-    request.doPostRequest({
-      url: projectService.API_SAVEANDSUBMIT,
-      data: params,
-      success: res => {
-        this.setData({loading: false})
-        console.log(res.data)
-        ddUtils.showToast({
-          title: "保存成功！"
-        });
-        ddUtils.navigateBack();
-      },
-      fail: error => {
-        ddUtils.showToast({
-          title: error.message
-        });
-        this.setData({ loading: false })
+    this.setData({
+      params: params,
+      parameter: {
+        projectType: params.projectType,
+        contractAmount: params.contractAmount,
+        moduleType: 1,
+        projectId: params.projectId
       }
     })
+    this.signatoryPersonnelRef._openPopup()
+    // request.doPostRequest({
+    //   url: projectService.API_SAVEANDSUBMIT,
+    //   data: params,
+    //   success: res => {
+    //     this.setData({loading: false})
+    //     console.log(res.data)
+    //     ddUtils.showToast({
+    //       title: "保存成功！"
+    //     });
+    //     ddUtils.navigateBack();
+    //   },
+    //   fail: error => {
+    //     ddUtils.showToast({
+    //       title: error.message
+    //     });
+    //     this.setData({ loading: false })
+    //   }
+    // })
   },
   tenderAmountOnChange: function (value, e) {
     console.log(value, e);
