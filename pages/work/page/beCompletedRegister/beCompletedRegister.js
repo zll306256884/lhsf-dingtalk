@@ -60,10 +60,13 @@ Page({
     projectType: '',
     userId: '',
     projectListOptions: [],
-    projectLeaderListOptions:[]
+    projectLeaderListOptions:[],
+    params: null,
+    parameter: {}
   },
   dialogScreenDepartmentManager: null,
   dialogScreenCountersignLeader: null,
+  signatoryPersonnelRef :null,
   onLoad(option) {
     this.setData({
       userId: app.globalData.userInfo.userId
@@ -175,6 +178,37 @@ Page({
   },
   chooseLeader(){
     if(this.dialogScreenCountersignLeader) this.dialogScreenCountersignLeader._showDialog(this.data.executeUser2)
+  },
+  onSaveSignatoryPersonnel: function( ref) {
+    this.signatoryPersonnelRef = ref
+  },
+  bindSignatoryPersonnelCallBack: function(data){
+    console.log("Dddd======",data.jflowAuditUser)
+    if(data.state==='success'){
+      let params = this.data.params
+      params.jflowAuditUser = data.jflowAuditUser
+      request.doPostRequest({
+        url: config.API_COMPLETION_SAVEANDSUBMIT,
+        data: params,
+        success: res => {
+          ddUtils.showToast({
+            title:"提交审批成功"
+          })
+          this.setData({
+            loading: false
+          })
+          ddUtils.navigateBack();
+        },
+        fail: error => {
+          ddUtils.showToast({
+            title: error.message
+          });
+          this.setData({ loading: false })
+        }
+      })
+    } else {
+      this.setData({ loading: false })
+    }
   },
   adjustChange(row,e){
     console.log(row,e);
@@ -612,25 +646,35 @@ async submit(){
   //   ddUtils.navigateBack();
   //   }
   // })
-  request.doPostRequest({
-    url: config.API_COMPLETION_SAVEANDSUBMIT,
-    data: params,
-    success: res => {
-      ddUtils.showToast({
-        title:"提交审批成功"
-      })
-      this.setData({
-        loading: false
-      })
-      ddUtils.navigateBack();
-    },
-    fail: error => {
-      ddUtils.showToast({
-        title: error.message
-      });
-      this.setData({ loading: false })
+  this.setData({
+    params: params,
+    parameter: {
+      projectType: params.projectType,
+      contractAmount: params.contractAmount,
+      moduleType: 5,
+      projectId: params.projectId
     }
   })
+  this.signatoryPersonnelRef._openPopup()
+  // request.doPostRequest({
+  //   url: config.API_COMPLETION_SAVEANDSUBMIT,
+  //   data: params,
+  //   success: res => {
+  //     ddUtils.showToast({
+  //       title:"提交审批成功"
+  //     })
+  //     this.setData({
+  //       loading: false
+  //     })
+  //     ddUtils.navigateBack();
+  //   },
+  //   fail: error => {
+  //     ddUtils.showToast({
+  //       title: error.message
+  //     });
+  //     this.setData({ loading: false })
+  //   }
+  // })
 },
 bingFocusChange(){
   this.setData({

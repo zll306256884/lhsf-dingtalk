@@ -134,7 +134,7 @@
       <layout-field-cell hidden={{false}} cssStyle="margin-left:50rpx"  name="相关附件"></layout-field-cell>
        <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
     </view>
-    <view catchTap="chooseManager">
+    <!-- <view catchTap="chooseManager">
       <form-input
       label="选择技术部经办人"
       labelWidth="290rpx"
@@ -142,15 +142,15 @@
       placeholder="请选择"
       disabled
       ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
-    </view>
+    </view> -->
     <view catchTap="chooseLeader"  class="bottom-shadow" style="margin-top:0rpx">
-      <form-input
+      <!-- <form-input
       label="选择会签分管领导"
       labelWidth="290rpx"
       name="countersignLeader_dictText"
       placeholder="请选择"
       disabled
-      ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
+      ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input> -->
 
       <!-- <selector
       label="选择会签分管领导"
@@ -167,6 +167,7 @@
   </view>
   </form>
 </view>
+<dialog-signatory-personnel ref="onSaveSignatoryPersonnel" parameter="{{parameter}}" onScreenCallBack="bindSignatoryPersonnelCallBack" ></dialog-signatory-personnel>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"    onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-hetong-mingcheng ref="onSaveDialogScreencontractRef" projectId="{{projectId}}"  positionBottom="{{true}}"   onScreenCallBack="bindChooseContractCallBack"></dialog-screen-hetong-mingcheng>
 <dialog-picker-date ref="onSaveDialogScreenApplyDateRef" formatDate='YYYY-MM-DD'selectionMode="single"  onPickerCallBack="bindChooseApplyDateCallBack"></dialog-picker-date>
