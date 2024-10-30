@@ -15,6 +15,7 @@
     "form-input": "antd-mini/es/Form/FormInput/index",
     "icon": "antd-mini/es/Icon/index",
     "form-textarea": "antd-mini/es/Form/FormTextarea/index",
-    "form-picker": "antd-mini/es/Form/FormPicker/index"
+    "form-picker": "antd-mini/es/Form/FormPicker/index",
+    "dialog-signatory-personnel": "/pages/components/dialog/dialog-signatory-personnel/dialog-signatory-personnel"
   }
 }

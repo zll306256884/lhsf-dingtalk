@@ -281,14 +281,14 @@
      <layout-upload-img ref="onSaveUploadImgRef" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
   </view>
   <view class="box-shadow bottom-shadow">
-    <view catchTap="bindChooseExecuteUserTap">
+    <!-- <view catchTap="bindChooseExecuteUserTap">
       <form-input
       label="会签分管领导"
       name="countersignLeader_text"
       placeholder="请选择"
      disabled
       ref="handleRef"><icon slot="suffix" type="RightOutline" /></form-input>
-    </view>
+    </view> -->
     <!-- <layout-field-cell  name="会签分管领导" mustFill placeholder="请选择" value="{{countersignLeader_text}}" onArrowTap="bindChooseExecuteUserTap"></layout-field-cell> -->
   </view>
   <view class="buttons flex f-between">
@@ -297,6 +297,7 @@
           <button class="btn active" data-flag="{{2}}" disabled={{loading}}  form-type="submit" loading="{{loading}}" onTap="submit">提交审批</button>
       </view>
 </view>
+<dialog-signatory-personnel ref="onSaveSignatoryPersonnel" parameter="{{parameter}}" onScreenCallBack="bindSignatoryPersonnelCallBack" ></dialog-signatory-personnel>
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef"  multiChoose onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>
 <!-- <dialog-screen-suoshu-danwei ref="_onSaveDialogScreenShiGongUnitRef" positionBottom="{{true}}" onScreenCallBack="_bindScreenShiGongUnitCallBack"></dialog-screen-suoshu-danwei> -->
 <dialog-screen-xiangmu-leixiang ref="onSaveDialogScreenprojectTypeRef" positionBottom="{{true}}"   onScreenCallBack="bindChooseProjectTypeCallBack"></dialog-screen-xiangmu-leixiang>

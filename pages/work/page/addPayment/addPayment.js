@@ -73,9 +73,12 @@ Page({
     projectTypeId: '',
     userId: '',
     projectLeaderListOptions: [],
-    payeeList: []
+    payeeList: [],
+    params: null,
+    parameter: {}
   },
   uploadTenderImageList: null,
+  signatoryPersonnelRef :null,
   onLoad(option) {
 
     this.setData({
@@ -110,7 +113,7 @@ Page({
       paymentNode: [{ required: true, message: '请输入支付节点（或形象进度）' }],
       paymentContent: [{ required: true, message: '请输入付款内容' }],
       applicationTime: [{ required: true, message: '请选择申请日期' }],
-      countersignLeader_text: [{ required: true, message: '请选择会签分管领导' }],
+      //countersignLeader_text: [{ required: true, message: '请选择会签分管领导' }],
       monthType: [{ required: true, message: '请选择关联资金计划' }]
     }
   },
@@ -395,6 +398,36 @@ onSaveUploadImgRef: function (ref) {
 },
 onSaveUploadFileRef: function (ref) {
   this.uploadTenderImageList = ref;
+},
+onSaveSignatoryPersonnel: function( ref) {
+  this.signatoryPersonnelRef = ref
+},
+bindSignatoryPersonnelCallBack: function(data){
+  if(data.state==='success'){
+    let params = this.data.params
+    params.jflowAuditUser = data.jflowAuditUser
+    request.doPostRequest({
+      url: connector.API_PAY_BUT_POST,
+      data: params,
+      success: res => {
+        ddUtils.showToast({
+          title:"保存成功"
+        })
+        this.setData({
+          loading: false
+        })
+        ddUtils.navigateBack();
+      },
+      fail: error => {
+        ddUtils.showToast({
+          title: error.message
+        });
+        this.setData({ loading: false })
+      }
+    })
+  } else {
+    this.setData({ loading: false })
+  }
 },
  //会签分管领导
   bindChooseExecuteUserTap: function (e) {
@@ -699,50 +732,70 @@ async submit() {
         content: "累计支付金额已超过主合同金额,确定提交审批",
         success: res => {
           if (res.confirm) {
-            request.doPostRequest({
-              url: connector.API_PAY_BUT_POST,
-              data: params,
-              success: res => {
-                ddUtils.showToast({
-                  title:"保存成功"
-                })
-                this.setData({
-                  loading: false
-                })
-                ddUtils.navigateBack();
-              },
-              fail: error => {
-                ddUtils.showToast({
-                  title: error.message
-                });
-                this.setData({ loading: false })
+            this.setData({
+              params: params,
+              parameter: {
+                projectType: params.projectType,
+                contractAmount: params.contractAmount,
+                moduleType: 4,
+                projectId: params.projectId
               }
             })
-          }else{
+            this.signatoryPersonnelRef._openPopup()
+            // request.doPostRequest({
+            //   url: connector.API_PAY_BUT_POST,
+            //   data: params,
+            //   success: res => {
+            //     ddUtils.showToast({
+            //       title:"保存成功"
+            //     })
+            //     this.setData({
+            //       loading: false
+            //     })
+            //     ddUtils.navigateBack();
+            //   },
+            //   fail: error => {
+            //     ddUtils.showToast({
+            //       title: error.message
+            //     });
+            //     this.setData({ loading: false })
+            //   }
+            // })
+          }else{ 
             this.setData({ loading: false })
           }
         }  
       })
     }else{
-      request.doPostRequest({
-        url: connector.API_PAY_BUT_POST,
-        data: params,
-        success: res => {
-          ddUtils.showToast({
-            title:"保存成功"
-          })
-          this.setData({
-            loading: false
-          })
-          ddUtils.navigateBack();
-        },
-        fail: error => {
-          ddUtils.showToast({
-            title: error.message
-          });
-          this.setData({ loading: false })
+      this.setData({
+        params: params,
+        parameter: {
+          projectType: params.projectType,
+          contractAmount: params.contractAmount,
+          moduleType: 4,
+          projectId: params.projectId
         }
       })
+      this.signatoryPersonnelRef._openPopup()
+      // request.doPostRequest({
+      //   url: connector.API_PAY_BUT_POST,
+      //   data: params,
+      //   success: res => {
+      //     ddUtils.showToast({
+      //       title:"保存成功"
+      //     })
+      //     this.setData({
+      //       loading: false
+      //     })
+      //     ddUtils.navigateBack();
+      //   },
+      //   fail: error => {
+      //     ddUtils.showToast({
+      //       title: error.message
+      //     });
+      //     this.setData({ loading: false })
+      //   }
+      // })
     }
   }
 },
