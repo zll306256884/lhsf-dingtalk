@@ -147,7 +147,7 @@
     options="{{radioGroupOptionsData}}"
     onChange="contractPeriodTypeChange"
     ref="handleRef" />
-
+    
     <form-input a:if="{{ contractPeriodType === 1 }}" label=""  name="contractPeriod" placeholder="请输入" allowClear ref="handleRef"><view slot="suffix">天</view></form-input>
     <form-input a:if="{{ contractPeriodType === 2}}" label=""  name="contractPeriodMonth" placeholder="请输入" allowClear ref="handleRef"><view slot="suffix">月</view></form-input>
     <view a:if="{{ contractPeriodType === 3 }}" class="flex f-end" style="background:#fff">
@@ -370,7 +370,7 @@
     </view>
   </view>
 
-  <view a:if="{{ contractType === '1' || contractType === 1 }}" catchTap="chooseLeader">
+  <!-- <view a:if="{{ contractType === '1' || contractType === 1 }}" catchTap="chooseLeader">
     <form-input
     label="选择会签分管领导"
     labelWidth="293rpx"
@@ -380,7 +380,7 @@
     disabled
     ref="handleRef" />
   </view>
-  
+   -->
   <!-- catchTap="chooseTime" -->
 <view>
   <form-input
@@ -398,7 +398,7 @@
     <button class="btn" loading="{{loading}}" onTap="staging">暂存</button>
     <button class="btn active" loading="{{loading}}" type="primary" onTap="submit" style="margin-bottom: 12px">提交审批</button>
   </view>
-
+  <dialog-signatory-personnel ref="onSaveSignatoryPersonnel" parameter="{{parameter}}" onScreenCallBack="bindSignatoryPersonnelCallBack" ></dialog-signatory-personnel>
 <dialog-screen-ecological-unit ref="onSaveDialogScreenEcologicalUnitRef" onScreenCallBack="bindScreenEcologicalUnitCallBack"></dialog-screen-ecological-unit>
 <dialog-select-project ref="onSaveDialogScreenprojecteRef"  onScreenCallBack="bindChooseProjectCallBack"></dialog-select-project>
 <dialog-screen-leader ref="onSaveDialogScreenExecuteUserRef" multiChoose  onScreenCallBack="bindScreenExecuteUserCallBack"></dialog-screen-leader>

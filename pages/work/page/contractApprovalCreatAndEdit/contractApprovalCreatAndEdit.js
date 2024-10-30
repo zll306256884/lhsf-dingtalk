@@ -109,7 +109,9 @@ Page({
     operateLeaderName: '',
     projectTypeId: '',
     userId: '',
-    disabledType: false
+    disabledType: false,
+    params: null,
+    parameter: {}
   },
   dialogScreenProject: null,
   dialogSScreenExecuteUser: null,
@@ -120,7 +122,7 @@ Page({
   pickerDateRef: null,
   pickerEndDateRef: null,
   uploadTenderImageList: null,
-
+  signatoryPersonnelRef :null,
   onLoad(options) {
     this.setData({
       userId: app.globalData.userInfo.userId
@@ -152,7 +154,7 @@ Page({
       unitParty: [{ required: true, message: '请选择' }],
       contractContent: [{ required: true, message: '请输入' }],
       paymentMethod: [{ required: true, message: '请选择' }],
-      countersignLeader_dictText: [{ required: true, message: '请选择' }],
+      //countersignLeader_dictText: [{ required: true, message: '请选择' }],
       applicationTime: [{ required: true, message: '请选择' }],
       developmentOrganizationName: [{ required: true, message: '请选择' }],
       developmentOrganizationListName: [{ required: true, message: '请选择' }],
@@ -893,25 +895,34 @@ Page({
     if(params.basisSigning != 1){
       if(ddUtils.showEmptyArrayTips(workAuditFile2,"请上传决策依据文件！")) return
     }
-
-    request.doPostRequest({
-      url: projectService.API_CONTRACT_SAVEANDSUBMIT,
-      data: params,
-      success: res => {
-        console.log(res.data)
-        this.setData({ loading: false })
-        ddUtils.showToast({
-          title: "保存成功！"
-        });
-        ddUtils.navigateBack();
-      },
-      fail: error => {
-        ddUtils.showToast({
-          title: error.message
-        });
-        this.setData({ loading: false })
+    this.setData({
+      params: params,
+      parameter: {
+        projectType: params.projectType,
+        contractAmount: params.contractAmount,
+        moduleType:this.data.contractType === 1 ? 2 : 3,
+        projectId: params.projectId
       }
     })
+    this.signatoryPersonnelRef._openPopup()
+    // request.doPostRequest({
+    //   url: projectService.API_CONTRACT_SAVEANDSUBMIT,
+    //   data: params,
+    //   success: res => {
+    //     console.log(res.data)
+    //     this.setData({ loading: false })
+    //     ddUtils.showToast({
+    //       title: "保存成功！"
+    //     });
+    //     ddUtils.navigateBack();
+    //   },
+    //   fail: error => {
+    //     ddUtils.showToast({
+    //       title: error.message
+    //     });
+    //     this.setData({ loading: false })
+    //   }
+    // })
   },
   getDetail(){
     request.doPostRequest({
@@ -1133,5 +1144,35 @@ Page({
         
       }
     })
+  },
+  onSaveSignatoryPersonnel: function( ref) {
+    this.signatoryPersonnelRef = ref
+  },
+  bindSignatoryPersonnelCallBack: function(data){
+    console.log("Dddd======",data.jflowAuditUser)
+    if(data.state==='success'){
+      let params = this.data.params
+      params.jflowAuditUser = data.jflowAuditUser
+      request.doPostRequest({
+        url: projectService.API_CONTRACT_SAVEANDSUBMIT,
+        data: params,
+        success: res => {
+          console.log(res.data)
+          this.setData({ loading: false })
+          ddUtils.showToast({
+            title: "保存成功！"
+          });
+          ddUtils.navigateBack();
+        },
+        fail: error => {
+          ddUtils.showToast({
+            title: error.message
+          });
+          this.setData({ loading: false })
+        }
+      })
+    } else {
+      this.setData({ loading: false })
+    }
   }
 });

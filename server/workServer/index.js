@@ -38,5 +38,7 @@ module.exports = {
   API_JFLOW_FORWARD: API_HOST  + "/jflow/forwardAuditRecord/forward",
   //流程附言
   API_JFLOW_POSTSCRIPT: API_HOST  + "/jflow/forwardAuditRecord/postscript",
+  // 根据类型查询流程节点列表
+  API_JFLOW_FLOWNODELISTBYTYPE:  API_HOST  + "/jflow/audit/queryFlowNodeListByType",
 }
 
