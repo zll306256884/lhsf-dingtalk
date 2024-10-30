@@ -1,53 +1,66 @@
 import { Form } from 'antd-mini/es/Form/form';
+import apiApprovalManage from "../../../../server/workServer"
+import request from "../../../../utils/request"
 Component({
   mixins: [],
   props: {
-    onScreenCallBack: function (id) { }
+    onScreenCallBack: function (id) { },
+    parameter: {}
   },
   data: {
     basicVisible: false,
     fruit: '',
     form: new Form(),
-    list: [{
-      nodeName:'测试A',
-      userList: [
-        { label: '苹果', value: 'apple' },
-        { label: '香蕉', value: 'banana' },
-        { label: '橙子', value: 'orange' }
-      ],
-    }],
+    list: [],
   },
-  didMount() {
-
-  },
-  didUpdate() {},
-  didUnmount() {},
+  didMount() { },
+  didUpdate() { },
+  didUnmount() { },
   methods: {
     handleRef(ref) {
       this.data.form.addItem(ref);
     },
     async submit() {
       const params = await this.data.form.submit();
-      console.log("ddddd======",params)
       this.props.onScreenCallBack({
-        state:'success'
+        state: 'success',
+        jflowAuditUser: JSON.stringify(params)
       })
       this._closePopup()
     },
-    bindCancelTap(){
+    async getList() {
+      request.doPostRequest({
+        url: apiApprovalManage.API_JFLOW_FLOWNODELISTBYTYPE,
+        data: this.props.parameter,
+        success: res => {
+          let data = res.data
+          data.forEach(element => {
+            element.userList.forEach(item=>{
+              item.value = item.userId
+              item.label = item.username
+            })
+          });
+          this.setData({
+            list: data
+          })
+        }
+      });
+    },
+    bindCancelTap() {
       this.setData({
         basicVisible: false
       })
       this.props.onScreenCallBack({
-        state:'cancel'
+        state: 'cancel'
       })
     },
-    _openPopup(){
+    _openPopup() {
+      this.getList()
       this.setData({
         basicVisible: true
       })
     },
-    _closePopup(){
+    _closePopup() {
       this.setData({
         basicVisible: false
       })
