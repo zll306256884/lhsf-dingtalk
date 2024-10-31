@@ -36,7 +36,7 @@
     
     <list-item a:if="{{ detailInfo.contractType === 1 && detailInfo.basisSigning == 5}}" extraBrief="{{detailInfo.modeContract}}">具体签订依据</list-item>
 
-    <view class="file-list">
+    <view class="file-list" a:if="{{ detailInfo.basisSigning != 1 }}">
       <view class="title">决策依据证明文件</view>
       <layout-upload-img ref="onSaveBasisUploadImgRef" disabled cssStyle="margin: 0rpx 0 0;"></layout-upload-img>
     </view>
