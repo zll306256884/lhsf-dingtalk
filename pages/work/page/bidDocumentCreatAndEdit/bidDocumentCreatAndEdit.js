@@ -372,7 +372,7 @@ Page({
             e.name = e.fileName
           })
         }
-        if(res.data.basisDocumentList && res.data.basisDocumentList.length){
+        if(res.data.decisionBasisFileList && res.data.decisionBasisFileList.length){
           res.data.basisDocumentList.forEach(e => {
             e.name = e.fileName
           })
@@ -380,7 +380,7 @@ Page({
         setTimeout(() => {
           this.uploadTenderImageList._setImageList(res.data.tenderDocumentList?res.data.tenderDocumentList:'') 
           this.uploadOtherImgList._setImageList(res.data.otherDocumentList?res.data.otherDocumentList:'') 
-          this.uploadImageList._setImageList(res.data.uploadImageList?res.data.uploadImageList:'') 
+          this.uploadImageList._setImageList(res.data.decisionBasisFileList?res.data.decisionBasisFileList:'') 
         }, 0);
 
         if(paramsdata.countersignLeader_dictText && paramsdata.countersignLeader){
