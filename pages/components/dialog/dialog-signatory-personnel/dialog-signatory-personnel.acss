@@ -38,3 +38,6 @@
   color: #fff;
   background: #1A6AFF;
 }
+.ant-form-item-field-vertical{
+  text-align: right;
+}
