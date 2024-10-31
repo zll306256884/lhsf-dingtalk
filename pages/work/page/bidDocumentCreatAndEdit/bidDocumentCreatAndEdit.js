@@ -373,7 +373,7 @@ Page({
           })
         }
         if(res.data.decisionBasisFileList && res.data.decisionBasisFileList.length){
-          res.data.basisDocumentList.forEach(e => {
+          res.data.decisionBasisFileList.forEach(e => {
             e.name = e.fileName
           })
         }
