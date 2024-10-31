@@ -736,7 +736,6 @@ async submit() {
               params: params,
               parameter: {
                 projectType: params.projectType,
-                contractAmount: params.contractAmount,
                 moduleType: 4,
                 projectId: params.projectId
               }
@@ -771,7 +770,6 @@ async submit() {
         params: params,
         parameter: {
           projectType: params.projectType,
-          contractAmount: params.contractAmount,
           moduleType: 4,
           projectId: params.projectId
         }
