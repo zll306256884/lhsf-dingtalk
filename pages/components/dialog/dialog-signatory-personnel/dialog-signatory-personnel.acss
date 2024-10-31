@@ -11,7 +11,13 @@
 }
 .signatory-personnel .button {
   padding: 16rpx 18rpx;
-  margin-top: 16rpx;
+  position: fixed;
+  bottom: 0;
+  width: 718rpx;
+  box-sizing: border-box;
+  background: #fff;
+  padding-bottom: 42rpx;
+  border-top: 1px solid #EBEDF0;
 }
 .signatory-personnel .button .button-btn {
   width: 100%;

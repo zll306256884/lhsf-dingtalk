@@ -37,7 +37,7 @@
       <layout-upload-img ref="onSaveBasisDocumentRef" disabled cssStyle="margin: 0rpx 0 0;"></layout-upload-img>
     </view>
 
-    <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">会签领导</list-item>
+    <!-- <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">会签领导</list-item> -->
     
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期</list-item>
 

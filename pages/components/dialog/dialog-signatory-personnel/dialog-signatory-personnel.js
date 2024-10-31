@@ -43,6 +43,11 @@ Component({
           this.setData({
             list: data
           })
+          data.forEach(element => {
+            if(element.userList.length === 1){
+              this.data.form.setFieldValue(element.nodeName,element.userList[0].userId)
+            }
+          });
         }
       });
     },

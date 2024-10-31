@@ -352,6 +352,7 @@ Page({
           projectName: paramsdata.projectName,
           applicationTime: paramsdata.startDate,
           projectLeaderId: paramsdata.projectLeaderId,
+          projectId: paramsdata.projectId
           // earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
           // earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
           // carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,
@@ -360,6 +361,7 @@ Page({
           // operateLeaderName: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).operateLeaderName,
           // projectTypeId: (this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectType).toString(),
         })
+        this.getProjectLeader()
         if(res.data.tenderDocumentList && res.data.tenderDocumentList.length){
           res.data.tenderDocumentList.forEach(e => {
             e.name = e.fileName
@@ -488,7 +490,6 @@ Page({
     console.log(this.form)
     // this.form.addItem(ref)
     const params = await this.form.submit();
-    this.setData({loading: true})
     if(this.data.tenderId){
       params.id = this.data.tenderId
       params.urlParameter = JSON.stringify({id: this.data.tenderId})
@@ -541,6 +542,7 @@ Page({
     }
     if(ddUtils.showEmptyArrayTips(this.data.basisDocumentList,"请上传决策依据证明文件！")) return
     params.fileList = [...this.data.tenderDocumentList, ...this.data.otherDocumentList]
+     this.setData({loading: true})
     console.log(params)
     params.decisionBasisFileList = this.data.basisDocumentList
     this.setData({
