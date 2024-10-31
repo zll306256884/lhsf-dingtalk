@@ -900,7 +900,7 @@ Page({
       parameter: {
         projectType: params.projectType,
         contractAmount: params.contractAmount,
-        moduleType:this.data.contractType === 1 ? 2 : 3,
+        moduleType:this.data.contractType == 1 ? 2 : 3,
         projectId: params.projectId
       }
     })
