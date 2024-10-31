@@ -1,6 +1,6 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <tabs items="{{items}}" current="{{current}}" onChange="onNavTabChange" />
-<view a:if="{{ current===0 }}" style="margin-bottom:150rpx;">
+<view hidden="{{ current !==0 }}" style="margin-bottom:150rpx;">
   <view class="container">
     <!-- <view style="margin-top:20rpx">
       <list>
