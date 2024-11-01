@@ -539,10 +539,10 @@ getEdit(id){
             e.value = e.id
           })
           this.setData({
-            projectListOptions: result.data || []
+            projectListOptions: result.data || [],
+            accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
           })
           this.setData({
-            accumulatedPaymentAmount: Number(res.data.payAmount || 0) + Number(res.data.cumulativePayment || 0),
             earlyStageLeaderId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).personId,
             earlyStageLeader: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).projectLeaderName,
             carryPersonId: this.data.projectListOptions.find(e => e.id === paramsdata.projectId).carryPersonId,

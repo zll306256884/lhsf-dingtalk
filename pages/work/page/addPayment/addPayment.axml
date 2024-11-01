@@ -213,9 +213,6 @@
             </view>
             </view>
         </view>
-        <view>
-          {{accumulatedPaymentAmount}} - {{contractAmount * 0.75}}{{accumulatedPaymentAmount > (contractAmount * 0.75)}}
-        </view>
           <view a:if="{{ accumulatedPaymentAmount > (contractAmount * 0.75) || accumulatedPaymentAmount == (contractAmount * 0.75) }}" class="box-shadow annex" style="padding-bottom: 30rpx;">
             <text class="annexTitle">*</text>
             <layout-field-cell cssStyle="margin-left:45rpx"   hidden={{false}} name="验收文件"></layout-field-cell>
