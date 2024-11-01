@@ -353,6 +353,16 @@ Page({
     //   });
     //   return
     // }
+    if(this.form.getFieldValue('projectType') && this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.form.getFieldValue('projectType') === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+        return
+      }
+    }
     let contractName = this.form.getFieldValue('contractName') || ''
     if( data.proType === 0){
       this.form.setFieldValue('title', data.name+'-'+contractName)
