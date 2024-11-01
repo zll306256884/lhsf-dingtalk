@@ -53,7 +53,7 @@ Page({
     proceedsData:{},//收款单位
     icMeasurementPaymentId:'',
     transitAmount:'',
-    accumulatedPaymentAmount:'', // 累计支付金额
+    accumulatedPaymentAmount:null, // 累计支付金额
     remark:'', // 备注
     executeUser: [],
     accumulatedPaymentAmountTitle: '',
@@ -690,7 +690,7 @@ async submit() {
     if(this.uploadTenderImageList){
       let temFileLists=[]
       temFileLists = this.uploadTenderImageList.data.imgList;
-      if(params.accumulatedPaymentAmount < params.contractAmount*0.75){
+      if(params.accumulatedPaymentAmount > params.contractAmount*0.75 ||params.accumulatedPaymentAmount == params.contractAmount*0.75){
         if (ddUtils.showEmptyArrayTips(temFileLists, "请上传验收文件")) {
           this.setData({
             loading: false

@@ -111,7 +111,7 @@
     </list-item>
     <list-item extraBrief="{{infoData.applicationTime}}">申请日期</list-item>
   </list>
-  <view style="margin-top:20rpx">
+  <view a:if="{{ infoData.accumulatedPaymentAmount > (infoData.contractAmount * 0.75) || infoData.accumulatedPaymentAmount == (infoData.contractAmount * 0.75) }}" style="margin-top:20rpx" >
     <list>
       <list-item>
         验收文件

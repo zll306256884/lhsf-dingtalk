@@ -201,7 +201,7 @@
           <view  a:if="{{accumulatedPaymentAmountTitle !== ''}}" style="width: 15px;color:rgb(238 10 36 / 79%);transform:translateX(8px)translateY(10px)">*</view>
           <view style="width:100%">
             <form-textarea
-            label="支出超出合同说明"
+            label="备注"
             position='vertical'
             name="remark"
             placeholder="请输入"
@@ -213,8 +213,11 @@
             </view>
             </view>
         </view>
-          <view class="box-shadow annex" style="padding-bottom: 30rpx;">
-            <text class="annexTitle" a:if="{{accumulatedPaymentAmount < (contractAmount * 0.75) }}">*</text>
+        <view>
+          {{accumulatedPaymentAmount}} - {{contractAmount * 0.75}}{{accumulatedPaymentAmount > (contractAmount * 0.75)}}
+        </view>
+          <view a:if="{{ accumulatedPaymentAmount > (contractAmount * 0.75) || accumulatedPaymentAmount == (contractAmount * 0.75) }}" class="box-shadow annex" style="padding-bottom: 30rpx;">
+            <text class="annexTitle">*</text>
             <layout-field-cell cssStyle="margin-left:45rpx"   hidden={{false}} name="验收文件"></layout-field-cell>
              <layout-upload-img ref="onSaveUploadFileRef" type="1" cssStyle="margin: 30rpx 30rpx 0;"></layout-upload-img>
           </view>
