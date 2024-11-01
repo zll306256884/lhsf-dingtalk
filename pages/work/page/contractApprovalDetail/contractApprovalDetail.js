@@ -39,7 +39,8 @@ Page({
     currentAccount: null,
     imageUrl: '',
     recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    transmit: null, // 是否转发
+    userLists:[]
   },
   uploadContractImage: null,
   uploadImgRefList:null,
@@ -185,8 +186,12 @@ Page({
           { key:'合同名称：', value: res.data.contractName },
           { key:'合同金额：', value: res.data.contractAmount+'万元' }
         ]
+        let userList = res.data.jflowAuditUser?JSON.parse(res.data.jflowAuditUser):{}
+        const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
+        console.log("ddddddd=====",arr)
         this.setData({
-          dingTalkFormList
+          dingTalkFormList,
+          userLists: arr
         })
         if(res.data.fileList){
           res.data.fileList.forEach(e => {

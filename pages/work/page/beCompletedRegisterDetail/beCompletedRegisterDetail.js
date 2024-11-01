@@ -27,7 +27,8 @@ Page({
     dingTalkFormList: [],
     imageUrl:'',
     recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    transmit: null, // 是否转发
+    userLists: []
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -69,8 +70,11 @@ Page({
       data: {id: tenderId},
       success: res => {
         console.log(res.data)
+        let userList = res.data.jflowAuditUser?JSON.parse(res.data.jflowAuditUser):{}
+        const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
         this.setData({
-          infoData: res.data
+          infoData: res.data,
+          userLists: arr
         })
         const files= res.data.investmentFileList.map((item)=>{
           return {

@@ -38,7 +38,9 @@
     </view>
 
     <!-- <list-item extraBrief="{{detailInfo.countersignLeader_dictText}}">会签领导</list-item> -->
-    
+    <block a:for="{{userLists}}">
+      <list-item extraBrief="{{item.value}}">{{item.label}}</list-item>
+   </block>
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期</list-item>
 
     <list-item>

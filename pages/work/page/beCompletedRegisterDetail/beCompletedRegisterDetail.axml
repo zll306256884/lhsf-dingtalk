@@ -45,6 +45,9 @@
           <layout-field-cell hidden="{{false}}" name="选择技术部经办人" borderTop  inputName="infoData.departmentManager_dictText"  disabled="{{isEdit}}" value="{{infoData.departmentManager_dictText || '-'}}"></layout-field-cell>
         </view> -->
         <view class="bottom-shadow" style="background:#fff">
+          <block a:for="{{userLists}}">
+            <list-item extraBrief="{{item.value}}">{{item.label}}</list-item>
+         </block>
           <!-- <layout-field-cell hidden="{{false}}" name="选择分管领导" borderTop  inputName="infoData.countersignLeader_dictText"  disabled="{{isEdit}}" value="{{infoData.countersignLeader_dictText || '-'}}"></layout-field-cell> -->
         </view>
         <!-- 1:未提交 2:审批中 3:已驳回 4:已完结 -->

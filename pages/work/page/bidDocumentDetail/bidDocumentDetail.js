@@ -32,7 +32,8 @@ Page({
     currentAccount: null,
     imageUrl: '',
     recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    transmit: null, // 是否转发
+    userLists: []
   },
   tenderDocumentRef: null,
   otherDocumentRef: null,
@@ -127,8 +128,11 @@ Page({
       data: {id: tenderId},
       success: res => {
         console.log(res.data)
+        let userList = res.data.jflowAuditUser?JSON.parse(res.data.jflowAuditUser):{}
+        const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
         this.setData({
-          detailInfo: res.data
+          detailInfo: res.data,
+          userLists: arr
         })
         let dingTalkFormList = [
           { key:'事项类型：', value:'招标文件会签' },

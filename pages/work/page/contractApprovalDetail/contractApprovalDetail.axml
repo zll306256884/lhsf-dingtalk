@@ -138,8 +138,10 @@
       合同正式稿及相关附件
       <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" disabled ref="onSaveUploadContractImgRef"></layout-upload-img>
     </list-item> -->
-
-    <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{detailInfo.countersignLeader_dictText || '-'}}">选择会签分管领导</list-item>
+    <block a:for="{{userLists}}">
+      <list-item extraBrief="{{item.value}}">{{item.label}}</list-item>
+   </block>
+    <!-- <list-item a:if="{{ detailInfo.contractType === 1 }}" extraBrief="{{detailInfo.countersignLeader_dictText || '-'}}">选择会签分管领导</list-item> -->
     <list-item extraBrief="{{utils.parseTime(detailInfo.applicationTime,'{y}-{m}-{d}')}}">申请日期</list-item>
     <view class="bottom-space" style="height:16rpx"></view>
   </list>

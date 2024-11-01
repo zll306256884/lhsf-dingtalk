@@ -129,6 +129,9 @@
   </view>
   <view style="margin-top:20rpx" class="bottom-shadow">
     <!-- <list-item extraBrief="{{infoData.countersignLeader_dictText}}">选择会签分管领导</list-item> -->
+    <block a:for="{{userLists}}">
+       <list-item extraBrief="{{item.value}}">{{item.label}}</list-item>
+    </block>
   </view>
   <view style="margin-top:20rpx" class="position_fixed">
     <view class="btn-wrap">

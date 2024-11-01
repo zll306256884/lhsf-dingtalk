@@ -36,7 +36,8 @@ Page({
     imageUrl: '',
     payeeList: [],
     recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    transmit: null, // 是否转发
+    userLists: []
   },
   uploadContractImage: null,
   uploadTenderImageList: null,
@@ -161,11 +162,14 @@ Page({
       url: confing.API_PAY_DETAIL_POST,
       data: { id: tenderId },
       success: res => {
+        let userList = res.data.jflowAuditUser?JSON.parse(res.data.jflowAuditUser):{}
+        const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
         this.setData({
           infoData: {
             accumulatedPaymentAmount:Number(res.data.payAmount) + Number(res.data.cumulativePayment),
-            ...res.data
-          }
+            ...res.data,
+          },
+          userLists: arr
         }) 
         //  收款单位
     request.doPostRequest({
