@@ -349,7 +349,7 @@ bindChooseContractCallBack: function (data) {
       this.form.setFieldValue('priceRate', 0)
     }else {
       let approveTotalPrice = Decimal(Number(this.form.getFieldValue('approveTotalPrice') || 0))
-      let contractAmount = Decimal(Number(data.contractAmoun) || 0)
+      let contractAmount = Decimal(Number(data.contractAmount) || 0)
 
       this.form.setFieldValue('priceRate', ((
         approveTotalPrice.sub(contractAmount)
@@ -599,30 +599,10 @@ async submit(){
      return
   }
   const params = await this.form.submit();
-  this.setData({
-    loading: true
-  })
-  params.approvalStatus = 2, // 暂存是未提交1，提交审批传2
-  params.projectId = this.data.projectData.id,
-  params.contractId = this.data.contractData.contractId,
-  params.id= this.data.id?this.data.id:''
-  params.applicationTime=this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':''
-  params.departmentManager = this.data.departmentManager
-  params.countersignLeader = this.data.countersignLeader
-  params.projectLeaderId = this.data.projectLeaderId
-  params.projectLeader = this.data.projectLeader
   let temFileList=[]
-  params.vueUrl = 'ApproveBeCompletedDetails, ApproveBeCompletedDetails'
-  params.singleUrl = '/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail'
-  params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/beCompletedDetails'
-  if(this.data.id){
-    params.urlParameter = JSON.stringify({ id: this.data.id })
-  }else{
-    params.urlParameter = JSON.stringify({ })
-  }
   if (this.uploadImageList) {
     temFileList = this.uploadImageList.data.imgList;
-    if (ddUtils.showEmptyArrayTips(temFileList, "请上传合同正式稿及相关附件")) return;
+    if (ddUtils.showEmptyArrayTips(temFileList, "请上传相关附件")) return;
     temFileList.forEach(e => {
       e.fileName = e.name
       e.type= 4
@@ -637,6 +617,27 @@ async submit(){
     // }
     params.investmentFileList =  temFileList
   }
+  this.setData({
+    loading: true
+  })
+  params.approvalStatus = 2, // 暂存是未提交1，提交审批传2
+  params.projectId = this.data.projectData.id,
+  params.contractId = this.data.contractData.contractId,
+  params.id= this.data.id?this.data.id:''
+  params.applicationTime=this.data.applicationTime?this.data.applicationTime+ ' 00:00:00':''
+  params.departmentManager = this.data.departmentManager
+  params.countersignLeader = this.data.countersignLeader
+  params.projectLeaderId = this.data.projectLeaderId
+  params.projectLeader = this.data.projectLeader
+  params.vueUrl = 'ApproveBeCompletedDetails, ApproveBeCompletedDetails'
+  params.singleUrl = '/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail'
+  params.pcUrl = 'https://xmgk.lhbigdata.com/#/approvalManagement/approve/beCompletedDetails'
+  if(this.data.id){
+    params.urlParameter = JSON.stringify({ id: this.data.id })
+  }else{
+    params.urlParameter = JSON.stringify({ })
+  }
+
   // request.doPostRequest({
   //   url: config.API_JUNGONG_ADD_POST,
   //   data: params,
