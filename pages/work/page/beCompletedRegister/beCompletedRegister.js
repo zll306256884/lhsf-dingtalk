@@ -336,12 +336,13 @@ bindChooseContractCallBack: function (data) {
     contractData: data || {},
     contractAmount:data.contractAmount,
     contractorName:data.unitPartyName,
-    contractId:data.contractId
+    contractId:data.contractId,
+    contractorName:''
   });
   this.form.setFieldValue('contractName',data.contractName)
   this.form.setFieldValue('contractId',data.contractId)
   this.form.setFieldValue('contractAmount',data.contractAmount)
-
+  this.form.setFieldValue('contractorName','')
   // 签约价节超率=（审定总价-合同金额）/合同金额
   if(this.form.getFieldValue('approveTotalPrice')){
     if( data.contractAmount == 0) {
