@@ -240,6 +240,9 @@ Component({
               // setTimeout(()=>{
               //   this.webViewContext.postMessage({type:'downFile',url:'https://linhaishefa.eos-shanghai-2.cmecloud.cn/knowledge/%E6%B5%8B%E8%AF%951.docx',name:'测试1.docx'})
               // },1000)
+              ddUtils.navigateTo({
+                url: `/pages/components/upload-file/upload-file?type=${this.props.type}&imgList=${this.data.imgList.length}`
+              });
               this.webViewContext.postMessage({tokenStr:app.globalData.userInfo.userToken})
             default:
               break

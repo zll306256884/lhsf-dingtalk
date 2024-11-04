@@ -6,7 +6,7 @@
     <image a:if="{{!disabled && !onlyUploadImage}}"
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
       class="item add" 
-      src="/assets/images/common/icon_add_img.png" catchTap="catchAddTap">
+      src="/assets/images/common/icon_add_img.png" catchTap="_bindAddTap">
     </image>
     <image a:if="{{!disabled && onlyUploadImage}}"
       style="width: {{imageSize}}rpx; height: {{imageSize}}rpx;" 
