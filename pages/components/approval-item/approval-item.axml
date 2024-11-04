@@ -16,6 +16,7 @@
             <view>
               <view class="name">{{ item.operatorsName }}</view>
               <view class="type" a:if="{{item.forwardType == 2}}">操作动作：流程转发</view>
+              <view class="type" a:if="{{item.forwardType == 3}}">操作动作：转发附言</view>
               <block a:else>
                 <view class="type wordblue" a:if="{{ item.type==99 }}">{{ item.operatorsContent}}</view>
                 <view class="type wordred" a:elif="{{ item.type==2 }}">{{ item.operatorsContent}}</view>
