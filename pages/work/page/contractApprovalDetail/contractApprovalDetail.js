@@ -188,10 +188,9 @@ Page({
         ]
         let userList = res.data.jflowAuditUser?JSON.parse(res.data.jflowAuditUser):{}
         const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
-        console.log("ddddddd=====",arr)
         this.setData({
           dingTalkFormList,
-          userLists: arr
+          userLists: arr.filter(item =>item.label !== "总经理" && item.label !=="董事长")
         })
         if(res.data.fileList){
           res.data.fileList.forEach(e => {

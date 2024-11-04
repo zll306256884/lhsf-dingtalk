@@ -132,7 +132,7 @@ Page({
         const arr = Object.entries(userList).map(([key,value])=>{return {label:key,value:value }})
         this.setData({
           detailInfo: res.data,
-          userLists: arr
+          userLists: arr.filter(item =>item.label !== "总经理" && item.label !=="董事长")
         })
         let dingTalkFormList = [
           { key:'事项类型：', value:'招标文件会签' },

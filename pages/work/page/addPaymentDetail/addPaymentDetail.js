@@ -169,7 +169,7 @@ Page({
             accumulatedPaymentAmount:Number(res.data.payAmount) + Number(res.data.cumulativePayment),
             ...res.data,
           },
-          userLists: arr
+          userLists: arr.filter(item =>item.label !== "总经理" && item.label !=="董事长")
         }) 
         //  收款单位
     request.doPostRequest({
