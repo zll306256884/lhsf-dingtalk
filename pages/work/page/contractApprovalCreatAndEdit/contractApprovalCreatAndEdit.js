@@ -377,6 +377,17 @@ Page({
     },500)
     console.log('projectType_text', this.data.projectLeaderListOptions, this.form.getFieldValue('projectType'));
   },
+  chooseProjectType(data, column){
+    if(this.form.getFieldValue('projectType') && this.data.projectLeaderListOptions.length) {
+      const index = this.data.projectLeaderListOptions.findIndex(e => e.personId === this.data.userId)
+      if(this.form.getFieldValue('projectType') === '1' && index === -1) {
+        ddUtils.showToast({
+          title: '注意：仅项目负责人可发起流程',
+          duration: 2000
+        });
+      }
+    }
+  },
   chooseProjectLeader(data, column){
     console.log(data, column)
     this.setData({
