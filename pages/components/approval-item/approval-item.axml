@@ -32,13 +32,17 @@
         <block a:if="{{item.forwardType == 2 && item.receiverUserName}}">
           <view class="detail-row"><text>接收人：</text><text class="detail-content">{{ item.receiverUserName }}</text></view>
         </block>
+        <!-- 附言接收人 -->
+        <block a:if="{{item.forwardType == 3 && item.receiverUserName}}">
+          <view class="detail-row"><text>接收人：</text><text class="detail-content">{{ item.receiverUserName }}</text></view>
+        </block>
         <block a:if="{{item.forwardType == 2 && item.remark}}">
           <view class="detail-row"><text>转发附言：</text><text class="detail-content">{{ item.remark }}</text></view>
         </block>
-        <block a:if="{{item.forwardType == 2 && item.content}}">
+        <block a:if="{{item.forwardType == 3 && item.content}}">
           <view class="detail-row"><text>附言：</text><text class="detail-content">{{ item.content }}</text></view>
         </block>
-        <view class="fileList" a:if="{{ item.forwardType == 2 && item.annexesUrl&&item.annexesUrl.length }}">
+        <view class="fileList" a:if="{{ item.forwardType == 3 && item.annexesUrl&&item.annexesUrl.length }}">
           <view class="detail-row"><text>附言附件：</text></view>
           <!-- 我收i文件 -->
           <view class="desWord" style="margin-top:16rpx">
