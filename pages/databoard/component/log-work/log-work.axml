@@ -46,7 +46,7 @@
                     <block  a:if="{{itemPart.expandedAll==0 && itemPart.showAll==0}}">全文</block>
                     <block  a:if="{{itemPart.expandedAll==0 && itemPart.showAll==1}}">收起</block>
                   </view>
-                  <view class="imgBox flex f-wrap f-start" a:if="{{itemPart.fileList && itemPart.fileList.length && itemPart.photoList && itemPart.photoList.length}}">
+                  <view class="imgBox flex f-wrap f-start" a:if="{{itemPart.fileList && itemPart.fileList.length}}">
                     <layout-upload-file disabled="true"  imgList="{{itemPart.fileList}}" cssStyle="margin: 8rpx 0;" ref="_onSaveUploadFormImgRef"></layout-upload-file>
                     <!-- <block a:for="{{itemPart.photoList}}" a:for-item="itemImg" a:for-index="imgIndex">
                       <image catchTap="_bindPreviewTap" data-index="{{imgIndex}}" data-url="{{itemImg.url}}" class="imgPart" mode="aspectFill" src="{{itemImg.url}}" />
