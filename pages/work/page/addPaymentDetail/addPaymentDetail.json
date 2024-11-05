@@ -1,5 +1,4 @@
 {
-  "titlePenetrate":"NO",
   "usingComponents": {
     "tabs": "antd-mini/es/Tabs/index",
     "nav-bar": "/pages/components/nav-bar/nav-bar",
