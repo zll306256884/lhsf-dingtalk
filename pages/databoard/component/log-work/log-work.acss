@@ -194,3 +194,25 @@
 .ant-button-medium{
   padding:8px 0
 }
+
+/* 图片铺开展示 */
+.img-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  background: #F8F9FA;
+  padding-bottom: 24rpx;
+}
+.img-item {
+  width: 32%;
+  height: 96rpx;
+  border-radius: 16rpx;
+  margin-right: 2%;
+  margin-top: 16rpx;
+}
+.img-item:nth-child(3n) {
+  margin-right: 0;
+}
