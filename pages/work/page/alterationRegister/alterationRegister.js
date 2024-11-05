@@ -373,7 +373,7 @@ Page({
         this.form.setFieldValue('constructionUnitReportDate', res.data.constructionUnitReportDate)
         this.form.setFieldValue('changeContentTime', res.data.changeContentTime)
         this.form.setFieldValue('contactChange', res.data.contactChange)
-        this.form.setFieldValue('remark', res.data.remark)
+        this.form.setFieldValue('remark', res.data.remark?res.data.remark:'')
         this.form.setFieldValue('person_text', res.data.person_dictText)
         this.form.setFieldValue('person', res.data.person)
         this.form.setFieldValue('subLeader_text', res.data.subLeader_dictText)
@@ -383,15 +383,15 @@ Page({
         this.getProjectLeaderInfo()
         this.getRoleList()
         if(res.data.subLeader_dictText && res.data.subLeader){
-          const nameList = res.data.subLeader_dictText.split(',')
-          const idList = res.data.subLeader.split(',')
+          const nameList = res.data.subLeader_dictText?res.data.subLeader_dictText.split(','):[]
+          const idList = res.data.subLeader?res.data.subLeader.split(','):[]
           this.setData({
             executeLeader: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || [],
           })
         }
         if(res.data.person_dictText && res.data.person){
-          const nameList = res.data.person_dictText.split(',')
-          const idList = res.data.person.split(',')
+          const nameList = res.data.person_dictText?res.data.person_dictText.split(','):[]
+          const idList = res.data.person?res.data.person.split(','):[]
           this.setData({
             personList: nameList.map((item, index) => { return { username: item, userId: idList[index] } }) || [],
           })
@@ -567,8 +567,8 @@ Page({
           })
         })
         if (this.data.id && this.data.person) {
-          let arr1 = this.data.person.split(',')
-          let arr2 = this.data.person_text.split(',')
+          let arr1 = this.data.person?this.data.person.split(','):[]
+          let arr2 = this.data.person_text?this.data.person_text.split(','):[]
           let list = arr2.map((item, index) => {
             return { username: item, userId: arr1[index] }
           })
