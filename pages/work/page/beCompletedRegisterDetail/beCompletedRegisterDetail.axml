@@ -68,7 +68,7 @@
             <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
           </view>
           <view style="flex: 3;margin-right:16rpx;" a:if="{{ examineId && infoData.approvalStatus === 2 && approvalType !== '2' }}">
-            <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" departmentManager="{{infoData.departmentManager}}" dingTalkFormList="{{dingTalkFormList}}" moduleName="investment-jungong" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+            <submit-opinion-popup examineId="{{examineId}}" keyId="{{id}}" specialUserIds="{{infoData.countersignLeader}}" departmentManager="{{infoData.departmentManager}}" dingTalkFormList="{{dingTalkFormList}}" moduleName="investment-jungong" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
           </view>
         </view>
   </view>

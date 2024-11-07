@@ -85,7 +85,7 @@
       <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
     </view>
     <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}">
-      <submit-opinion-popup examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+      <submit-opinion-popup examineId="{{examineId}}" keyId="{{tenderId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
     </view>
   </view>
 </view>
