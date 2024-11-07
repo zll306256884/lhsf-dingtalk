@@ -146,7 +146,16 @@
       <!-- </view> -->
       </list-item>
       <!-- <submit-opinion-popup a:if="{{status!=='2'&&infoData.approvalStatus === 2&&examineId&&isCurrentAudit}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}"></submit-opinion-popup> -->
-            <submit-opinion-popup a:if="{{(examineId && showType==='1' && infoData.approvalStatus === 2)||(infoData.approvalStatus === 2&&examineId&&isCurrentAudit)}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" recipient="{{recipient}}" transmit="{{transmit}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+      <!-- <submit-opinion-popup a:if="{{(examineId && showType==='1' && infoData.approvalStatus === 2)||(infoData.approvalStatus === 2&&examineId&&isCurrentAudit)}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" recipient="{{recipient}}" transmit="{{transmit}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup> -->
+      <view class="bottom-wrap">
+        <view style="flex: 1;">
+          <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
+        </view>
+        <view style="flex: 3;margin-right:16rpx;">
+          <submit-opinion-popup a:if="{{(examineId && showType==='1' && infoData.approvalStatus === 2)||(infoData.approvalStatus === 2&&examineId&&isCurrentAudit)}}" keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+        </view>
+      </view>
+    
     </view>
   </view>
   

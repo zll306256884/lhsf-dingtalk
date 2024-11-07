@@ -15,12 +15,12 @@ Component({
     isApprovalAgree: true,
     paramsData: {},
     isLoading: false,
-    showMore: false,
-    showTransmit: false, // 弹窗展示
-    isTransmit: true, // 转发/附言
-    isTransmitLoading: false,
-    chooseUser: '',
-    alreadyCheckedUser: [],
+    // showMore: false,
+    // showTransmit: false, // 弹窗展示
+    // isTransmit: true, // 转发/附言
+    // isTransmitLoading: false,
+    // chooseUser: '',
+    // alreadyCheckedUser: [],
   },
   props: {
     examineId: '',
@@ -30,8 +30,8 @@ Component({
     dingTalkFormList: [],
     departmentManager: '',
     moduleName: '',
-    recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    // recipient: true, // 展示接收人
+    // transmit: null // 是否转发
   },
   uploadApproval: null,
   uploadImageList: null,

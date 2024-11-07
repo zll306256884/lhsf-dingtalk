@@ -160,8 +160,14 @@
 
   <!-- 有参数才显示 -->
   <!-- a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" -->
-  <view a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx">
-    <submit-opinion-popup keyId="" examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+  <!-- style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx" -->
+  <view class="bottom-wrap">
+    <view style="flex: 1;">
+      <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
+    </view>
+    <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}">
+      <submit-opinion-popup keyId="" examineId="{{examineId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+    </view>
   </view>
 </view>
 <block a:if="{{ current === 1 }}">

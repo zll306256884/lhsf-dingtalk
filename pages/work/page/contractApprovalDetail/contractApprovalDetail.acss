@@ -167,3 +167,15 @@
   width: 48rpx;
   height: 48rpx;
 }
+
+/* 底部固定盒子 */
+.bottom-wrap {
+  display: flex;
+  position:fixed;
+  bottom:0rpx;
+  width:100%;
+  background:#fff;
+  padding: 16rpx 16rpx 20rpx 16rpx;
+  /* padding-bottom: 20rpx; */
+  border-top: 1px solid #EBEDF0;
+}

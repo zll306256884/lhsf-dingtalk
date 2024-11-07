@@ -87,8 +87,16 @@
       <button class="btn active" size="default" type="primary" catchTap="editThis">编辑</button>
     </view>
     <!-- 项目状态:0暂存,1审批中,2审批完成,3待审批 -->
-    <view a:if="{{(examineId && approvalType === '1' && formData.status === 1) || (examineId && formData.status === 1 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
+    <!-- <view a:if="{{(examineId && approvalType === '1' && formData.status === 1) || (examineId && formData.status === 1 && isCurrentAudit)}}" style="position:fixed;bottom:18rpx;width:100%">
       <submit-opinion-popup examineId="{{examineId}}" dingTalkFormList="{{dingTalkFormList}}" recipient="{{recipient}}" transmit="{{transmit}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+    </view> -->
+    <view class="bottom-wrap">
+      <view style="flex: 1;">
+        <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
+      </view>
+      <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && approvalType === '1' && formData.status === 1) || (examineId && formData.status === 1 && isCurrentAudit)}}">
+        <submit-opinion-popup examineId="{{examineId}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
+      </view>
     </view>
 
     <view a:if="{{ requestType === '1' &&  formData.status === 1}}" class="bottom-content flex f-between">

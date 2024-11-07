@@ -6,6 +6,7 @@
     "list-item": "antd-mini/es/List/ListItem/index",
     "layout-upload-img": "/pages/components/layout/layout-upload-img/layout-upload-img",
     "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
+    "forward-popup": "/pages/components/dialog/forward-popup/forward-popup",
     "approval-item": "/pages/components//approval-item/approval-item"
 
   }

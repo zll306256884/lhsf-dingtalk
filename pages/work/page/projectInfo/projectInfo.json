@@ -6,6 +6,7 @@
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker",
     "submit-opinion-popup": "/pages/components/dialog/submit-opinion-popup/submit-opinion-popup",
+    "forward-popup": "/pages/components/dialog/forward-popup/forward-popup",
     "approval-item": "/pages/components//approval-item/approval-item",
     "tabs": "antd-mini/es/Tabs/index"
   }

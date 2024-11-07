@@ -79,26 +79,25 @@
   color: white;
 }
 
-.approve-btn{
-  /* flex: 3; */
+.forward-btn{
   /* border-top: 1px solid #EBEDF0;
   padding: 16rpx;
   background: #fff; */
 }
-.approve-btn .button{
+.forward-btn .btn{
   flex: 1;
   /* width: 227rpx; */
   height: 80rpx;
   background: #FFFFFF;
   border-radius: 8rpx 8rpx 8rpx 8rpx;
   opacity: 1;
-  border: 1rpx solid #EBEDF0;
+  border: 2rpx solid #EBEDF0;
   font-size: 28rpx;
   font-weight: 400;
   color: #323233;
   line-height: 80rpx;
 }
-.approve-btn .active{
+.forward-btn .active{
   flex: 1;
   /* width: 227rpx; */
   height: 80rpx;
@@ -110,7 +109,7 @@
   color: #FFFFFF;
   line-height: 80rpx;
 }
-.approve-btn .big-btn {
+.forward-btn .big-btn {
   width: 100% !important;
 }
 

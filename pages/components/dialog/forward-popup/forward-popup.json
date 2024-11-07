@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "layout-upload-img": "../../layout//layout-upload-img/layout-upload-img",
+    "dialog-screen-company-staff": "/pages/components/dialog/dialog-screen-company-staff/dialog-screen-company-staff",
+    "form-input": "antd-mini/es/Form/FormInput/index",
+    "layout-field-input":"/pages/components/layout/layout-field-input/layout-field-input",
+    "form-textarea": "antd-mini/es/Form/FormTextarea/index",
+    "ant-icon": "antd-mini/es/Icon/index"
+   }
+}
