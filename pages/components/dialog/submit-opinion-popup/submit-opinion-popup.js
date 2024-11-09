@@ -39,7 +39,7 @@ Component({
   uploadImageList: null,
   dialogScreenDepartmentManager: null,
   didMount() {
-    this.getCurrent()
+    // this.getCurrent()
   },
   didUpdate() {},
   didUnmount() {},
@@ -47,26 +47,26 @@ Component({
     // 在组件实例进入页面节点树时执行
   },
   methods: {
-    //查询当前审批人
-    getCurrent(){
-      request.doPostRequest({
-        url: approvalServer.API_NEXT_APPROVAL_NODE,
-        data: {keyId: this.props.keyId},
-        success: res => {
-          console.log(res.data)
-          let currentAccount = app.globalData.userInfo.userAccount
-          if(res.data.auditUserNameList.includes(currentAccount)){
-            this.setData({
-              isShowButton: true
-            })
-          }else{
-            this.setData({
-              isShowButton: false
-            })
-          }
-        }
-      })
-    },
+    // //查询当前审批人
+    // getCurrent(){
+    //   request.doPostRequest({
+    //     url: approvalServer.API_NEXT_APPROVAL_NODE,
+    //     data: {keyId: this.props.keyId},
+    //     success: res => {
+    //       console.log(res.data)
+    //       let currentAccount = app.globalData.userInfo.userAccount
+    //       if(res.data.auditUserNameList.includes(currentAccount)){
+    //         this.setData({
+    //           isShowButton: true
+    //         })
+    //       }else{
+    //         this.setData({
+    //           isShowButton: false
+    //         })
+    //       }
+    //     }
+    //   })
+    // },
     // handleRef(ref) {
     //   this.form.addItem(ref);
     // },

@@ -19,8 +19,11 @@ Component({
   },
   props: {
     examineId: '',
-    recipient: true, // 展示接收人
-    transmit: null // 是否转发
+    isCurrentApprover: false, // 是否为当前审批人
+    forwardType: null, // 是否转发 2 转发标识 显示附言按钮
+    showType: null, // 1-待办审批 2-已办审批 3-办结审批
+    // recipient: true, // 展示接收人
+    // transmit: null // 是否转发
   },
   uploadImageList: null,
   dialogScreenDepartmentManager: null,
@@ -55,8 +58,27 @@ Component({
       console.log('提交：', e, this.props.recipient);
       // 附言
       let remark = e.detail.value.remark;
-      // 转发
-      if (this.props.recipient) {
+      if (this.props.forwardType == '2') { // 附言
+        // 文件
+        let annexesUrl = [];
+        if (this.uploadImageList) {
+          annexesUrl = this.uploadImageList._getUploadImgId().imgList;
+        }
+        let params = {
+          forwardAuditRecordId: this.props.examineId,
+          content: remark,
+          annexesUrl: JSON.stringify(annexesUrl)
+        }
+        request.doPostRequest({
+          url: workService.API_JFLOW_POSTSCRIPT,
+          data: params,
+          success: res => {
+            console.log('附言：',res)
+            ddUtils.showToast({title: '操作成功！'})
+            ddUtils.navigateBack();
+          }
+        })
+      } else { // 转发
         // 接收人
         if(!this.data.chooseUser || !this.data.alreadyCheckedUser.length) {
           ddUtils.showToast({title: '请选择接收人！'})
@@ -79,28 +101,7 @@ Component({
             })
           }
         })
-      } else {
-        // 文件
-        let annexesUrl = [];
-        if (this.uploadImageList) {
-          annexesUrl = this.uploadImageList._getUploadImgId().imgList;
-        }
-        let params = {
-          forwardAuditRecordId: this.props.examineId,
-          content: remark,
-          annexesUrl: JSON.stringify(annexesUrl)
-        }
-        request.doPostRequest({
-          url: workService.API_JFLOW_POSTSCRIPT,
-          data: params,
-          success: res => {
-            console.log('附言：',res)
-            ddUtils.showToast({title: '操作成功！'})
-            ddUtils.navigateBack();
-          }
-        })
       }
-      
     },
     onSaveDialogScreenDepartmentManagerRef(ref){
       this.dialogScreenDepartmentManager = ref
