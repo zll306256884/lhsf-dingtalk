@@ -428,12 +428,12 @@ Page({
         switch (temp) {
           case 2:
             ddUtils.navigateTo({
-              url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
           case 3:
             ddUtils.navigateTo({
-              url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
           case 4:
@@ -443,12 +443,12 @@ Page({
             break;
           case 8:
             ddUtils.navigateTo({
-              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
           case 9:
             ddUtils.navigateTo({
-              url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
             });
             break;
         }

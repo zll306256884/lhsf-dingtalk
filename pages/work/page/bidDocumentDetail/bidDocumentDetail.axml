@@ -81,10 +81,10 @@
     <submit-opinion-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
   </view> -->
   <view class="bottom-wrap">
-    <view style="flex: 1;">
-      <forward-popup examineId="{{examineId}}" recipient="{{recipient}}" transmit="{{transmit}}"></forward-popup>
+    <view style="flex: 1;" a:if="{{ examineId && showType == '1' && (isCurrentApprover || forwardType == '2')}}">
+      <forward-popup examineId="{{examineId}}" isCurrentApprover="{{isCurrentApprover}}" forwardType="{{forwardType}}"></forward-popup>
     </view>
-    <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}">
+    <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentApprover)}}">
       <submit-opinion-popup examineId="{{examineId}}" keyId="{{tenderId}}" specialUserIds="{{detailInfo.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
     </view>
   </view>

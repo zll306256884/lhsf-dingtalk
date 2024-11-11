@@ -4,6 +4,7 @@ import workService from "../../../../server/workServer";
 import ddUtils from "../../../../utils/ddUtils"
 import config from "/utils/config";
 import projectService from "../../../../server/workServer/projectServer";
+import approvalServer from "../../../../server/approvalServer/approvalServer"
 const app = getApp();
 Page({
   data: {
@@ -35,9 +36,12 @@ Page({
     supplementaryAgreement: [],
     imageUrl: '',
     payeeList: [],
-    recipient: true, // 展示接收人
-    transmit: null, // 是否转发
-    userLists: []
+    // recipient: true, // 展示接收人
+    // transmit: null, // 是否转发
+    userLists: [],
+    isCurrentApprover: false, // 接口查询是否为当前审批人
+    forwardType: null, // 是否转发
+    // showType: null, // 1-待办审批 2-已办审批 3-办结审批
   },
   uploadContractImage: null,
   uploadTenderImageList: null,
@@ -52,8 +56,9 @@ Page({
         status:option.status,
         projectId:option.projectId,
         showType:option.showType || '',
-        transmit: option.transmit,
-        recipient: option.forwardType == '2' ? false : true
+        // transmit: option.transmit,
+        // recipient: option.forwardType == '2' ? false : true,
+        forwardType: option.forwardType,
       })
       // this.getDetail(option.id)
     // }
@@ -81,7 +86,28 @@ Page({
     this.uploadTenderImageList = ref;
   },
   onShow(){
+    this.getCurrent()
     this.getDetail(this.data.id)
+  },
+  //查询当前审批人
+  getCurrent(){
+    request.doPostRequest({
+      url: approvalServer.API_NEXT_APPROVAL_NODE,
+      data: {keyId: this.data.id},
+      success: res => {
+        console.log('当前审批人：：：',res.data)
+        let currentAccount = app.globalData.userInfo.userAccount
+        if(res.data.auditUserNameList && res.data.auditUserNameList.includes(currentAccount)){
+          this.setData({
+            isCurrentApprover: true
+          })
+        }else{
+          this.setData({
+            isCurrentApprover: false
+          })
+        }
+      }
+    })
   },
   onSelectInfo(e) {
     let string=e.target.dataset.string

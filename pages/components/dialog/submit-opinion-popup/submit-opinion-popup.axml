@@ -1,5 +1,5 @@
 <block>
-  <view a:if="{{ isShowButton }}" class="flex approve-btn">
+  <view class="flex approve-btn">
     <!-- <button a:if="{{transmit === '0' && !recipient}}" class="btn active big-btn" catchTap="handleTransmit">附言</button>
     <block a:else>
       <button class="btn" catchTap="showMoreButton">更多</button> -->

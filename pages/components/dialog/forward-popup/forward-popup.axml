@@ -1,21 +1,21 @@
 <block>
   <view class="forward-btn">
-    <button a:if="{{transmit === '0' && recipient}}" class="btn big-btn" catchTap="handleTransmit">转发</button>
-    <button a:if="{{transmit === '0' && !recipient}}" class="btn big-btn" catchTap="handleTransmit">附言</button>
+    <button a:if="{{isCurrentApprover}}" class="btn big-btn" catchTap="handleTransmit">转发</button>
+    <button a:if="{{forwardType=='2'}}" class="btn big-btn" catchTap="handleTransmit">附言</button>
   </view>
 </block>
 
 <view a:if="{{showTransmit}}" class="modal-mask" catchTouchMove="_bindTouchMove"></view>
 <view a:if="{{showTransmit}}" class="box-sizing-box modal-content" catchTouchMove="_bindTouchMove">
-  <view class="dialog-title">{{isTransmit ? '流程转发' : '附言'}}</view>
+  <view class="dialog-title">{{forwardType == '2' ? '附言' : '流程转发'}}</view>
   <form onSubmit="handleTransmitConfirm">
-    <view a:if="{{recipient}}" catchTap="chooseManager">
+    <view a:if="{{!forwardType || forwardType != '2'}}" catchTap="chooseManager">
       <layout-field-input borderBottom name="接收人" mustFill disabled="true" value="{{chooseUser}}" placeholder="请选择"></layout-field-input>
     </view>
     <view style="margin: 0 30rpx;">
       <view class="file-title">附言</view>
       <textarea class="reason" name="remark" maxlength="300" placeholder="请输入" placeholder-class="placeholder-class"></textarea>
-      <block a:if="{{!recipient}}">
+      <block a:if="{{forwardType == '2'}}">
         <view class="file-title">附件</view>
         <layout-upload-img cssStyle="margin: 0rpx 0 0;padding: 10rpx 30rpx 30rpx;" ref="onSaveUploadFileRef" onlyUploadImage="{{true}}"></layout-upload-img>
       </block>
