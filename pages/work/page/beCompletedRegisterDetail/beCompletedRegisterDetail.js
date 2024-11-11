@@ -33,7 +33,9 @@ Page({
     userLists: [],
     isCurrentApprover: false, // 接口查询是否为当前审批人
     forwardType: null, // 是否转发
-    showType: null, // 1-待办审批 2-已办审批 3-办结审批
+    isNopostscripted: true, // 是否未附言 默认没有进行附言操作，从消息跳过来的需要调接口查
+    forwardAuditRecordId: '', // 附言id, 查询是否附言过
+    // showType: null, // 1-待办审批 2-已办审批 3-办结审批
   },
   uploadContractImage: null,
   onLoad(option) {
@@ -41,7 +43,8 @@ Page({
       // transmit: option.transmit,
       // recipient: option.forwardType == '2' ? false : true,
       forwardType: option.forwardType,
-      showType: option.showType,
+      forwardAuditRecordId: option.forwardAuditRecordId
+      // showType: option.showType,
     })
     if(option.id){
       // this.getDetail(option.id)
@@ -71,6 +74,28 @@ Page({
   onShow(){
     this.getDetail(this.data.id)
     this.getCurrent()
+    if(this.data.forwardAuditRecordId) {
+      this.getPostscript()
+    }
+  },
+  // 查询是否附言过
+  getPostscript() {
+    request.doPostRequest({
+      url: workService.API_IS_POSTSCRIPT,
+      data: {forwardAuditRecordId: this.data.forwardAuditRecordId},
+      success: res => {
+        console.log('是否已附言：', res.data);
+        if(res.data.status === 2) { // 2代表附言过 不能再展示附言按钮
+          this.setData({
+            isNopostscripted: false
+          })
+        } else {
+          this.setData({
+            isNopostscripted: true
+          })
+        }
+      }
+    })
   },
   //查询当前审批人
   getCurrent(){

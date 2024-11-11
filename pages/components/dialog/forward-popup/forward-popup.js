@@ -12,7 +12,6 @@ Component({
   // form: new Form(),
   data: {
     showTransmit: false, // 弹窗展示
-    isTransmit: true, // 转发/附言
     isTransmitLoading: false,
     chooseUser: '',
     alreadyCheckedUser: [],
@@ -22,6 +21,7 @@ Component({
     isCurrentApprover: false, // 是否为当前审批人
     forwardType: null, // 是否转发 2 转发标识 显示附言按钮
     showType: null, // 1-待办审批 2-已办审批 3-办结审批
+    forwardAuditRecordId: '', // 附言id, 查询是否附言过
     // recipient: true, // 展示接收人
     // transmit: null // 是否转发
   },
@@ -55,7 +55,6 @@ Component({
       })
     },
     handleTransmitConfirm: function (e) {
-      console.log('提交：', e, this.props.recipient);
       // 附言
       let remark = e.detail.value.remark;
       if (this.props.forwardType == '2') { // 附言

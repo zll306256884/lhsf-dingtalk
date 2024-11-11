@@ -428,27 +428,27 @@ Page({
         switch (temp) {
           case 2:
             ddUtils.navigateTo({
-              url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/bidDocumentDetail/bidDocumentDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&forwardType=${forwardType}`
             });
             break;
           case 3:
             ddUtils.navigateTo({
-              url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/contractApprovalDetail/contractApprovalDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&forwardType=${forwardType}`
             });
             break;
           case 4:
             ddUtils.navigateTo({
-              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/addPaymentDetail/addPaymentDetail?id=${id}&projectId=${projectId}&showType=${showType}&examineId=${examineId}&forwardType=${forwardType}`
             });
             break;
           case 8:
             ddUtils.navigateTo({
-              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/projectInfo/projectInfo?examineId=${examineId}&id=${id}&approvalType=${showType}&forwardType=${forwardType}`
             });
             break;
           case 9:
             ddUtils.navigateTo({
-              url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&showType=${showType}&transmit=${this.data.tabIndex}&forwardType=${forwardType}`
+              url: `/pages/work/page/beCompletedRegisterDetail/beCompletedRegisterDetail?examineId=${examineId}&id=${id}&approvalType=${showType}&forwardType=${forwardType}`
             });
             break;
         }

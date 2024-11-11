@@ -163,7 +163,7 @@
   <!-- a:if="{{(examineId && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentAudit)}}" -->
   <!-- style="position:fixed;bottom:0rpx;width:100%;background:#fff;padding-bottom:20rpx" -->
   <view class="bottom-wrap">
-    <view style="flex: 1;" a:if="{{ examineId && showType == '1' && (isCurrentApprover || forwardType == '2')}}">
+    <view style="flex: 1;" a:if="{{ examineId && (detailInfo.approvalStatus === 2 && isCurrentApprover || forwardType == '2' && isNopostscripted)}}">
       <forward-popup examineId="{{examineId}}" isCurrentApprover="{{isCurrentApprover}}" forwardType="{{forwardType}}"></forward-popup>
     </view>
     <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && detailInfo.approvalStatus === 2 && approvalType === '1') || (examineId && detailInfo.approvalStatus === 2 && isCurrentApprover)}}">
