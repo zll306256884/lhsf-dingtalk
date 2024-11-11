@@ -1,9 +1,8 @@
 <nav-bar navbarData="{{navbarData}}"></nav-bar>
 <view class="container" id="addLog">
-  <!--<form onSubmit="logAddSubmit"> -->
   <view class="containerinner">
-    <view class="title" a:if="{{ false }}">项目信息</view>
     <!-- 日志类型 -->
+    <form-picker label="日志范畴" arrow name="logCategory" placeholder="请选择" options="{{logCategoryOption}}" ref="handleRef" onOk="chooseLogCategory" />
     <view catchTap="_bindLogType">
       <form-picker label="日志类型" arrow disabled name="logTypeName" placeholder="请选择" options="{{logTypeOptionShow}}" ref="handleRef" />
       <!--<layout-field-cell borderBottom name="日志类型" placeholder="请选择" mustFill value="{{logData.logTypeName}}" onArrowTap="_bindLogType" 
@@ -11,19 +10,14 @@
     </view>
     <view icon="ExclamationCircleOutline" a:if="{{logTypeName=='重大事件'}}" class="tips"> * 记录具有重大影响的事件或决策，项目的关键节点等</view>
     <view a:if="{{logTypeName=='普通日志'}}" class="tips"> * 项目的日常进展、任务完成情况、团队成员的工作情况等内容</view>
+
     <!-- 项目名称 -->
-    <!-- <block a:if="{{logTypeName=='重大事件'}}"> -->
-      <view catchTap="_bindChooseLogProject">
+    <view catchTap="_bindChooseLogProject" class="flex f-start  f-align-center">
+      <view a:if="{{ logCategory == 2 }}" class='redStart'>*</view>
+      <view style="width:99%">
         <form-picker label="项目名称" arrow disabled options="{{projectListOptions}}" name="projectId" ref="handleRef" />
       </view>
-      <!--<layout-field-cell name="项目名称" borderBottom mustFill placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject"></layout-field-cell> -->
-    <!-- </block> -->
-    <!-- <block a:else> -->
-      <!-- <view catchTap="_bindChooseLogProject">
-        <form-picker label="项目名称" arrow disabled options="{{projectListOptions}}" name="projectIdNext" ref="handleRef" />
-      </view> -->
-      <!--<layout-field-cell name="项目名称" borderBottom mustFillTransparent placeholder="请选择" value="{{logData.name}}" onArrowTap="_bindChooseLogProject"></layout-field-cell> -->
-    <!-- </block> -->
+    </view>
     
     <!-- 日志日期 -->
     <view catchTap="_bindLogTime">
@@ -31,11 +25,7 @@
       <form-input label="日志日期" name="logDate" placeholder="请选择" placeholder-class="placeholderClassName" placeholder-style="color:#ccc;opacity:1;font-size:16px" 
         disabled ref="handleRef">
         <icon slot="suffix" type="RightOutline" /></form-input>
-      
-      <!--<layout-field-cell borderBottom name="日志日期" mustFill value="{{logData.logDate}}" placeholder="请选择" onArrowTap="_bindLogTime"></layout-field-cell> -->
     </view>
-    
-    
     
     <!--日志内容  -->
     <view>
@@ -77,8 +67,6 @@
     <button class="btn active" onTap="logAddSubmit">保存</button>
   </view>
   
-  
-  <!--</form> -->
 </view>
 
 <!-- 项目名称选择 -->

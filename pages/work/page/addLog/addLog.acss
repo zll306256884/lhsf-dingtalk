@@ -33,6 +33,11 @@
   line-height: 48rpx;
   padding: 32rpx 32rpx 8rpx;
 }
+.redStart{
+  color: red;
+  margin-top: 20rpx;
+  display: inline;
+}
 .redline-title .redStart{
   color: red;
   margin-top: 20rpx;

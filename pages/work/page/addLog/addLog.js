@@ -16,25 +16,20 @@ Page({
       // applicationTime: formatTimeToDay(new Date())+ ' 00:00:00'
     },
     rules: {
-      projectId: [{ required: true, message: '请选择' }],
-      // projectIdNext: [{ required: true, message: '请选择' }],
+      logCategory: [{required: true, message: '请选择'}],
       logDate: [{ required: true, message: '请选择' }],
       logTypeName: [{ required: true, message: '请选择' }],
       logContent: [{ required: true, message: '请输入' }],
-
-      // biddingPerson: [{ required: true, message: '请输入' }],
-      // tenderingAgencyName: [{ required: true, message: '请选择' }],
-      // biddingType: [{ required: true, message: '请选择' }],
-      // projectType: [{ required: true, message: '请选择' }],
-      // tenderAmount: [{ required: true, message: '请输入' }],
-      // decisionBasis: [{ required: true, message: '请选择' }],
-      // biddingContent: [{ required: true, message: '请输入' }],
-      // countersignLeader_dictText: [{ required: true, message: '请选择' }],
-      // tenderDocumentList: [{ required: true, message: '请上传' }],
-      // applicationTime: [{ required: true, message: '请选择' }]
     },
   }),
   data: {
+    rules2: {
+      logCategory: [{required: true, message: '请选择'}],
+      projectId: [{ required: true, message: '请选择' }],
+      logDate: [{ required: true, message: '请选择' }],
+      logTypeName: [{ required: true, message: '请选择' }],
+      logContent: [{ required: true, message: '请输入' }],
+    },
     navbarData: {
       title: "新增日志"
     },
@@ -64,14 +59,19 @@ Page({
     },
     logTypeOptionShow: [ '重大事件', '普通日志'],
     logTypeOption: [{
-      name: '普通日志',
-      value: '0'
-    },
-    {
-      name: '重大事件',
-      value: '1'
-    },
+        name: '普通日志',
+        value: '0'
+      },
+      {
+        name: '重大事件',
+        value: '1'
+      },
     ],
+    logCategoryOption: [
+      {label: '个人日志',value: '1'},
+      {label: '项目日志',value: '2'}
+    ],
+    logCategory: null
   },
   dialogProjectNameRef: null, //项目名称弹框实例
   dialogLogTypeRef: null, //日志类型
@@ -247,46 +247,20 @@ Page({
       logType: this.data.logType, //日志类型id
       content: this.data.logContent,//日志内容
       logPhotoList: this.data.logPhotoList, //照片
+      logCategory: this.data.logCategory //范畴
       // logFileList: this.data.logFileList, //附件
       // ...this.data.logData,
 
     }
     console.log('param', param)
-
-    // 校验
-    // if (!this.data.logData.logDate) {
-    //   ddUtils.showToast({
-    //     title: "日志日期必选"
-    //   });
-    //   return
-    // }
-    // if (!this.data.logData.logType.length) {
-    //   ddUtils.showToast({
-    //     title: "日志类型必选"
-    //   });
-    //   return
-    // }
-    // if (!this.data.logContent) {
-    //   ddUtils.showToast({
-    //     title: "日志内容必填"
-    //   });
-    //   return
-    // }
-    // if (this.data.logTypeName == '重大事件') {
-    //   // if (!this.data.logData.name) {
-    //   //   ddUtils.showToast({
-    //   //     title: "请选择项目名称"
-    //   //   });
-    //   //   return
-    //   // }
-    //   if (!this.data.logPhotoList.length) {
-    //     ddUtils.showToast({
-    //       title: "重大事件的时候 图片必填",
-
-    //     });
-    //     return
-    //   }
-    // }
+    if(this.data.logCategory == 2){
+      if (!this.data.projectId) {
+        ddUtils.showToast({
+          title: "项目名称必选！",
+        });
+        return
+      }
+    }
     // return
       if (!this.data.logPhotoList.length) {
         ddUtils.showToast({
@@ -338,5 +312,30 @@ Page({
       }
     })
   },
+  chooseLogCategory(data){
+    // if(data == 1){
+    //   // this.form.rules = this.data.rules1
+    //   this.form.updateRules(() => {
+    //     this.data.rules1
+    //   })
+    // }else{
+    //   // this.form.rules = this.data.rules2
+    //   this.form.updateRules(() => {
+    //     this.data.rules2
+    //   })
+    // }
+    // setTimeout(() => {
+    //   // 填入表单及校验
+    //   this.form.setFieldValidatorStatus('projectId', {
+    //       status: 'error',
+    //       errors: ['后台服务返回: 橘子还在进货，请换一个'],
+    //   });
+    // });
+    this.setData({
+      logCategory: data
+    })
+    console.log(this.form)
+    console.log(this.form.rules)
+  }
   // 
 });
