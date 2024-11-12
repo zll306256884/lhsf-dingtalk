@@ -133,20 +133,20 @@ Component({
           size: item.size,
           name: item.name
         } 
-        request.doPostRequest({
-          url: config.API_FILE_SETURL,
-          data: {
-              fileName: a.url,
-          },
-          success: result => {
-              if (result.code == 1000) {
-                 a.preUrl = result.data
-              }
-            },
-            fail: error => {
-              console.log('11111',error,a)
-            },
-        })
+        // request.doPostRequest({
+        //   url: config.API_FILE_SETURL,
+        //   data: {
+        //       fileName: a.url,
+        //   },
+        //   success: result => {
+        //       if (result.code == 1000) {
+        //          a.preUrl = result.data
+        //       }
+        //     },
+        //     fail: error => {
+        //       console.log('11111',error,a)
+        //     },
+        // })
 
         tempList.push(a);
       }
@@ -163,7 +163,7 @@ Component({
             e.url = 'https://' + e.url
           }
           request.doPostRequest({
-            url: config.API_FILE_SETURL,
+            url: config.API_FILE_GETURL,
             data: {
                 fileName: e.url,
             },
