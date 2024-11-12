@@ -59,7 +59,7 @@
                   <!-- 图片铺开展示 -->
                   <view class="img-wrap">
                     <block a:for="{{itemPart.photoList}}">
-                      <image class="img-item" src="{{item.url}}" />
+                      <image class="img-item" src="{{item.url}}" catchTap="ddDownFile" data-index="{{index}}" data-list="{{itemPart.photoList}}" />
                     </block>
                   </view>
                 </view>

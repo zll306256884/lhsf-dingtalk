@@ -156,5 +156,30 @@ Component({
         urls: urlList
       });
     },
+    // 图片预览
+    ddDownFile(e) {
+      console.log('e--------------',e);
+      let index = e.currentTarget.dataset.index;
+      let list = e.currentTarget.dataset.list;
+      let urls = []
+      list.forEach(img => {
+        let url = img.preUrl || img.url
+        urls.push(url)
+      })
+        ddUtils.previewImage({
+          current: index,
+          urls: urls
+        });
+      // let item = e.currentTarget.dataset.item;
+      // let url = item.preUrl || item.url;
+      // let name = item.name;
+      // let extension = name.slice(name.lastIndexOf(".") + 1);
+      // console.log('url',url);
+      // if(['png','jpg','jpeg'].includes(extension)){
+      //   ddUtils.previewImage({
+      //     urls: [url]
+      //   });
+      // }
+    },
   },
 });
