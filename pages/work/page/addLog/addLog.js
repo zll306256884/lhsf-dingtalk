@@ -18,7 +18,7 @@ Page({
     rules: {
       logCategory: [{required: true, message: '请选择'}],
       logDate: [{ required: true, message: '请选择' }],
-      logTypeName: [{ required: true, message: '请选择' }],
+      logType: [{ required: true, message: '请选择' }],
       logContent: [{ required: true, message: '请输入' }],
     },
   }),
@@ -27,7 +27,7 @@ Page({
       logCategory: [{required: true, message: '请选择'}],
       projectId: [{ required: true, message: '请选择' }],
       logDate: [{ required: true, message: '请选择' }],
-      logTypeName: [{ required: true, message: '请选择' }],
+      logType: [{ required: true, message: '请选择' }],
       logContent: [{ required: true, message: '请输入' }],
     },
     navbarData: {
@@ -59,11 +59,11 @@ Page({
     },
     logTypeOptionShow: [ '重大事件', '普通日志'],
     logTypeOption: [{
-        name: '普通日志',
+        label: '普通日志',
         value: '0'
       },
       {
-        name: '重大事件',
+        label: '重大事件',
         value: '1'
       },
     ],
@@ -243,7 +243,7 @@ Page({
       name: this.data.projectName, //名称
       projectId: this.data.projectId, //项目id
       logDate: this.data.logDate, //日志日期
-      logTypeName: this.data.logTypeName, //日志类型名字
+      // logTypeName: this.data.logTypeName, //日志类型名字
       logType: this.data.logType, //日志类型id
       content: this.data.logContent,//日志内容
       logPhotoList: this.data.logPhotoList, //照片
@@ -336,6 +336,11 @@ Page({
     })
     console.log(this.form)
     console.log(this.form.rules)
+  },
+  chooseLogType(data){
+    this.setData({
+      logType: data
+    })
   }
   // 
 });

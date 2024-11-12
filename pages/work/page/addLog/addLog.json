@@ -10,7 +10,8 @@
     "nav-bar": "/pages/components/nav-bar/nav-bar",
     "dialog-picker": "/pages/components/dialog/dialog-picker/dialog-picker",
     "dialog-picker-date": "/pages/components/dialog/dialog-picker-date/dialog-picker-date",
-    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project"
+    "dialog-select-project":"/pages/components/dialog/dialog-select-project/dialog-select-project",
+    "form-radio-group": "antd-mini/es/Form/FormRadioGroup/index"
   }
 }
 
