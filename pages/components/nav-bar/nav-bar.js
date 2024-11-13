@@ -87,6 +87,7 @@ Component({
             }
         },
         _bindNavBackHome: function (e) {
+          console.log('1111111112');
           ddUtils.reLaunch({
             url: `/pages/work/index`
           });

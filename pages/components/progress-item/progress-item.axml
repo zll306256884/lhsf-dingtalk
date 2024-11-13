@@ -36,11 +36,11 @@
           </view>
         </view>
         <!--  -->
-        <view a:if="{{formPage==='databoard'}}" class="belowItem flex f-between box-sizing-box">
+        <!-- <view a:if="{{formPage==='databoard'}}" class="belowItem flex f-between box-sizing-box">
           <view class="plan">计划完成: {{item.planEndTime?item.planEndTime:'--'}}</view>
           <view class="plan">实际完成: {{item.endTime?item.endTime:'--'}}</view>
-        </view>
-        <view a:else class="belowItem flex f-between box-sizing-box">
+        </view> -->
+        <view class="belowItem flex f-between box-sizing-box">
           <view class="plan">计划完成: {{item.endTime?item.endTime:'--'}}</view>
           <view class="plan">实际完成: {{item.actualEndTime?item.actualEndTime:'--'}}</view>
         </view>
