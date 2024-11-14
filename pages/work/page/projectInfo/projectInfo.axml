@@ -91,7 +91,7 @@
       <submit-opinion-popup examineId="{{examineId}}" dingTalkFormList="{{dingTalkFormList}}" recipient="{{recipient}}" transmit="{{transmit}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
     </view> -->
     <view class="bottom-wrap">
-      <view style="flex: 1;" a:if="{{ examineId && (formData.status === 1 && isCurrentApprover || forwardType == '2' && isNopostscripted)}}">
+      <view style="flex: 1;" a:if="{{ examineId && ((formData.status === 1 && isCurrentApprover) || (forwardType == '2' && isNopostscripted))}}">
         <forward-popup examineId="{{examineId}}" isCurrentApprover="{{isCurrentApprover}}" forwardType="{{forwardType}}"></forward-popup>
       </view>
       <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && formData.status === 1 && isCurrentApprover)}}">
