@@ -15,6 +15,7 @@ Component({
     isTransmitLoading: false,
     chooseUser: '',
     alreadyCheckedUser: [],
+    isNopostscripted: true, // 默认没附言过
   },
   props: {
     examineId: '',
@@ -29,9 +30,9 @@ Component({
   dialogScreenDepartmentManager: null,
   didMount() {
   },
-  didUpdate() {},
-  didUnmount() {},
-  attached: function() {
+  didUpdate() { },
+  didUnmount() { },
+  attached: function () {
     // 在组件实例进入页面节点树时执行
   },
   methods: {
@@ -46,12 +47,12 @@ Component({
 
     handleTransmit: function () {
       this.setData({
-          showTransmit: true
+        showTransmit: true
       })
     },
     handleCancel: function () {
       this.setData({
-          showTransmit: false
+        showTransmit: false
       })
     },
     handleTransmitConfirm: function (e) {
@@ -72,15 +73,45 @@ Component({
           url: workService.API_JFLOW_POSTSCRIPT,
           data: params,
           success: res => {
-            console.log('附言：',res)
-            ddUtils.showToast({title: '操作成功！'})
-            ddUtils.navigateBack();
+            console.log('附言：', res)
+            ddUtils.showToast({ title: '操作成功！' })
+            this.setData({
+              showTransmit: false,
+            })
+            // this.triggerEvent('updateJudge', { message: '更新附言判断' });
+            // if(this.props.forwardAuditRecordId) { // 从消息来的，附言之后再次调接口查询附言状态，从而防止多次附言
+            //   this.getPostscript()
+            // }
+            // ddUtils.navigateBack();
+            let pages = getCurrentPages();
+            let page = pages[pages.length - 2];
+            if (page) {
+              ddUtils.navigateBack();
+            } else {
+              ddUtils.redirectTo({
+                url: `/pages/message/page/approval/approval?currentApproval=1`
+              });
+            }
+          },
+          fail: res => {
+            this.setData({
+              showTransmit: false,
+            })
+            let pages = getCurrentPages();
+            let page = pages[pages.length - 2];
+            if (page) {
+              ddUtils.navigateBack();
+            } else {
+              ddUtils.redirectTo({
+                url: `/pages/message/page/approval/approval?currentApproval=1`
+              });
+            }
           }
         })
       } else { // 转发
         // 接收人
-        if(!this.data.chooseUser || !this.data.alreadyCheckedUser.length) {
-          ddUtils.showToast({title: '请选择接收人！'})
+        if (!this.data.chooseUser || !this.data.alreadyCheckedUser.length) {
+          ddUtils.showToast({ title: '请选择接收人！' })
           return
         }
         let params = {
@@ -92,20 +123,24 @@ Component({
           url: workService.API_JFLOW_FORWARD,
           data: params,
           success: res => {
-            console.log('转发：',res)
-            ddUtils.showToast({title: '操作成功！'})
+            console.log('转发：', res)
+            ddUtils.showToast({ title: '操作成功！' })
             this.setData({
               showTransmit: false,
-              showMore: false
+            })
+          },
+          fail: res => {
+            this.setData({
+              showTransmit: false,
             })
           }
         })
       }
     },
-    onSaveDialogScreenDepartmentManagerRef(ref){
+    onSaveDialogScreenDepartmentManagerRef(ref) {
       this.dialogScreenDepartmentManager = ref
     },
-    bindScreenDepartmentManagerCallBack(data){
+    bindScreenDepartmentManagerCallBack(data) {
       console.log('人员data:', data);
       // this.form.setFieldValue('people', data.map(e => e.username).join(','));
       this.setData({
@@ -115,8 +150,27 @@ Component({
         })
       });
     },
-    chooseManager(){
-      if(this.dialogScreenDepartmentManager) this.dialogScreenDepartmentManager._showDialog(this.data.alreadyCheckedUser)
+    chooseManager() {
+      if (this.dialogScreenDepartmentManager) this.dialogScreenDepartmentManager._showDialog(this.data.alreadyCheckedUser)
+    },
+    // 查询是否附言过
+    getPostscript() {
+      request.doPostRequest({
+        url: workService.API_IS_POSTSCRIPT,
+        data: { forwardAuditRecordId: this.props.forwardAuditRecordId },
+        success: res => {
+          console.log('是否已附言-component：', res.data);
+          if (res.data.status === 2) { // 2代表附言过 不能再展示附言按钮
+            this.setData({
+              isNopostscripted: false
+            })
+          } else {
+            this.setData({
+              isNopostscripted: true
+            })
+          }
+        }
+      })
     },
   },
 });
