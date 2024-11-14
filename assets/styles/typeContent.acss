@@ -1,5 +1,5 @@
 .greenTypeBtn {
-  width: 76rpx;
+  width: 90rpx;
   height: 36rpx;
   background: #E6F8EA;
   border-radius: 8rpx 8rpx 8rpx 8rpx;

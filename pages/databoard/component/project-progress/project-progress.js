@@ -165,7 +165,7 @@ Component({
       // 1  里程碑  0  非里程碑   空字符串   全量
       if (this.data.flagNode) {
         this.setData({
-          flagNode: 0
+          flagNode: ""
         });
       } else {
         this.setData({
