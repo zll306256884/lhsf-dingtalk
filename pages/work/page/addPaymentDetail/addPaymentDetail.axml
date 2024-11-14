@@ -151,7 +151,7 @@
         <view style="flex: 1;" a:if="{{ examineId && (infoData.approvalStatus === 2 && isCurrentApprover || forwardType == '2' && isNopostscripted)}}">
           <forward-popup examineId="{{examineId}}" isCurrentApprover="{{isCurrentApprover}}" forwardType="{{forwardType}}"></forward-popup>
         </view>
-        <view style="flex: 3;margin-right:16rpx;" a:if="{{(examineId && showType==='1' && infoData.approvalStatus === 2)||(infoData.approvalStatus === 2&&examineId&&isCurrentApprover)}}">
+        <view style="flex: 3;margin-right:16rpx;" a:if="{{(infoData.approvalStatus === 2&&examineId&&isCurrentApprover)}}">
           <submit-opinion-popup keyId="{{id}}" examineId="{{examineId}}" specialUserIds="{{infoData.countersignLeader}}" dingTalkFormList="{{dingTalkFormList}}" onApprovalOperate="bindApprovalOperateTap"></submit-opinion-popup>
         </view>
       </view>
