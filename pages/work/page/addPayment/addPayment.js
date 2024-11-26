@@ -288,9 +288,9 @@ bindChooseProjectCallBack: async function (data) {
     carryLeaderName: data.carryLeaderName,
     operatePersonId: data.operatePersonId,
     operateLeaderName: data.operateLeaderName,
-    projectTypeId: (data.projectType).toString(),
-    'projectTypeData.itemText':(data.projectType).toString() === '1' ? '集团项目（政府投资、地产类项目）' : '子公司项目',
-    'projectTypeData.itemValue':(data.projectType).toString(),
+    projectTypeId: data.projectType ? (data.projectType).toString(): '',
+    'projectTypeData.itemText':data.projectType ? (data.projectType).toString() === '1' ? '集团项目（政府投资、地产类项目）' : '子公司项目' : '',
+    'projectTypeData.itemValue':data.projectType ? (data.projectType).toString() : '',
   });
   // if(this.data.projectTypeId === '1') {
   //   this.form.setFieldValue('projectType_text', '集团项目（政府投资、地产类项目）')
